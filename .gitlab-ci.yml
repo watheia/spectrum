@@ -35,11 +35,10 @@ build:
       - export PATH="./node_modules/.bin:${PATH}"
   script:
     - yarn install
-    - make build
     - mkdir -p dist/production/docs && echo "OK" >> dist/production/docs/health
+    - make website-production
   artifacts:
     paths:
-      - "**/dist/"
       - "dist/"
 
 pages:
