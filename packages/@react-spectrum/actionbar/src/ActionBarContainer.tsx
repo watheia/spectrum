@@ -19,7 +19,7 @@ import styles from './actionbar.css';
 import {useProviderProps} from '@react-spectrum/provider';
 
 function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<HTMLDivElement>) {
-  // Grabs specific props from the closest Provider (see https://react-spectrum.adobe.com/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
+  // Grabs specific props from the closest Provider (see https://spectrum-kit.vercel.app/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
   props = useProviderProps(props);
 
   let {children} = props;
