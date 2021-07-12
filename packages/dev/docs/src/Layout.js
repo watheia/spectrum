@@ -15,6 +15,7 @@ import clsx from 'clsx';
 import {Divider} from '@react-spectrum/divider';
 import docStyles from './docs.css';
 import {getAnchorProps} from './utils';
+import LogoSvg from "./LogoSvg"
 import heroImageAria from 'url:../pages/assets/ReactAria_976x445_2x.png';
 import heroImageHome from 'url:../pages/assets/ReactSpectrumHome_976x445_2x.png';
 import heroImageSpectrum from 'url:../pages/assets/ReactSpectrum_976x445_2x.png';
@@ -33,7 +34,7 @@ import {ToC} from './ToC';
 import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
 import {VersionBadge} from './VersionBadge';
 
-const TLD = 'react-spectrum.adobe.com';
+const TLD = 'spectrum-kit.vercel.app';
 const HERO = {
   'react-spectrum': heroImageSpectrum,
   'react-aria': heroImageAria,
@@ -75,8 +76,8 @@ const mdxComponents = {
 };
 
 const sectionTitles = {
-  blog: 'React Spectrum Blog',
-  releases: 'React Spectrum Releases'
+  blog: 'Case Studies',
+  releases: 'Spectrum Resources'
 };
 
 function dirToTitle(dir) {
@@ -99,7 +100,7 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
   let parts = currentPage.name.split('/');
   let isBlog = isBlogSection(parts[0]);
   let isSubpage = parts.length > 1 && !/index\.html$/.test(currentPage.name);
-  let pageSection = isSubpage ? dirToTitle(currentPage.name) : 'React Spectrum';
+  let pageSection = isSubpage ? dirToTitle(currentPage.name) : 'Spectrum UI';
   if (isBlog && isSubpage) {
     pageSection = sectionTitles[parts[0]];
   }
@@ -189,15 +190,15 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
             {
               '@context': 'http://schema.org',
               '@type': 'Article',
-              author: 'Adobe Inc',
+              author: 'Watheia Labs',
               headline: currentPage.title,
               description: description,
               image: heroUrl,
               publisher: {
                 '@type': 'Organization',
-                url: 'https://www.adobe.com',
-                name: 'Adobe',
-                logo: 'https://www.adobe.com/favicon.ico'
+                url: 'https://rsp-kit.vercel.app',
+                name: 'Watheia',
+                logo: 'https://cdn.watheia.org/assets/favicon.ico'
               }
             }
           )}} />
@@ -313,7 +314,7 @@ function Nav({currentPageName, pages}) {
     }
   }
 
-  let title = currentParts.length > 1 ? dirToTitle(currentPageName) : 'React Spectrum';
+  let title = currentParts.length > 1 ? dirToTitle(currentPageName) : 'Watheia Labs';
   let currentPageIsIndex = isIndex.test(currentPageName);
 
   function SideNavItem({name, url, title, preRelease}) {
@@ -340,11 +341,7 @@ function Nav({currentPageName, pages}) {
           </a>
         }
         <a href={isBlog ? '/index.html' : './index.html'} className={docStyles.homeBtn} id="nav-title-id">
-          <svg viewBox="0 0 30 26" fill="#E1251B" aria-label="Adobe">
-            <polygon points="19,0 30,0 30,26" />
-            <polygon points="11.1,0 0,0 0,26" />
-            <polygon points="15,9.6 22.1,26 17.5,26 15.4,20.8 10.2,20.8" />
-          </svg>
+          <LogoSvg />
           <h2 className={typographyStyles['spectrum-Heading4']}>
             {title}
           </h2>
@@ -374,11 +371,10 @@ function Footer() {
     <footer className={docStyles.pageFooter}>
       <hr className={clsx(ruleStyles['spectrum-Rule'], ruleStyles['spectrum-Rule--small'], ruleStyles['spectrum-Rule--horizontal'])} />
       <ul>
-        <li>Copyright © {year} Adobe. All rights reserved.</li>
-        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//www.adobe.com/privacy.html">Privacy</a></li>
-        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//www.adobe.com/legal/terms.html">Terms of Use</a></li>
-        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//www.adobe.com/privacy/cookies.html">Cookies</a></li>
-        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//www.adobe.com/privacy/ca-rights.html">Do not sell my personal information</a></li>
+        <li>Copyright © {year} Watheia Labs, LLC. All rights reserved.</li>
+        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//watheia.app/terms">Privacy</a></li>
+        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//watheia.app/terms">Terms of Use</a></li>
+        <li><a className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} href="//watheia.app/terms">Cookies</a></li>
       </ul>
     </footer>
   );
