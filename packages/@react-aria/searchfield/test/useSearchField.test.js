@@ -11,14 +11,14 @@
  */
 
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {theme} from '@react-spectrum/theme-default';
-import {useSearchField} from '../';
+import intlMessages from "../intl/*.json";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {theme} from "@react-spectrum/theme-default";
+import {useSearchField} from "../";
 
-describe('useSearchField hook', () => {
+describe("useSearchField hook", () => {
   let state = {};
   let setValue = jest.fn();
   let ref = React.createRef();
@@ -26,12 +26,12 @@ describe('useSearchField hook', () => {
   let onClear = jest.fn();
 
   let renderSearchHook = (props, wrapper) => {
-    let {result} = renderHook(() => useSearchField({...props, 'aria-label': 'testLabel'}, state, ref), {wrapper});
+    let {result} = renderHook(() => useSearchField({...props, "aria-label": "testLabel"}, state, ref), {wrapper});
     return result.current;
   };
 
   beforeEach(() => {
-    state.value = '';
+    state.value = "";
     state.setValue = setValue;
     ref.current = {focus};
   });
@@ -42,15 +42,15 @@ describe('useSearchField hook', () => {
     onClear.mockClear();
   });
 
-  describe('should return inputProps', () => {
-    it('with base props and value equal to state.value', () => {
+  describe("should return inputProps", () => {
+    it("with base props and value equal to state.value", () => {
       let {inputProps} = renderSearchHook({});
-      expect(inputProps.type).toBe('search');
+      expect(inputProps.type).toBe("search");
       expect(inputProps.value).toBe(state.value);
-      expect(typeof inputProps.onKeyDown).toBe('function');
+      expect(typeof inputProps.onKeyDown).toBe("function");
     });
 
-    describe('with specific onKeyDown behavior', () => {
+    describe("with specific onKeyDown behavior", () => {
       let preventDefault = jest.fn();
       let stopPropagation = jest.fn();
       let onSubmit = jest.fn();
@@ -65,73 +65,73 @@ describe('useSearchField hook', () => {
         onSubmit.mockClear();
       });
 
-      it('preventDefault is called for Enter and Escape', () => {
+      it("preventDefault is called for Enter and Escape", () => {
         let {inputProps} = renderSearchHook({});
-        inputProps.onKeyDown(event('Enter'));
+        inputProps.onKeyDown(event("Enter"));
         expect(preventDefault).toHaveBeenCalledTimes(1);
-        inputProps.onKeyDown(event('Escape'));
+        inputProps.onKeyDown(event("Escape"));
         expect(preventDefault).toHaveBeenCalledTimes(2);
       });
 
-      it('onSubmit is called if Enter is pressed', () => {
+      it("onSubmit is called if Enter is pressed", () => {
         let {inputProps} = renderSearchHook({onSubmit});
-        inputProps.onKeyDown(event('Enter'));
+        inputProps.onKeyDown(event("Enter"));
         expect(onSubmit).toHaveBeenCalledTimes(1);
         expect(onSubmit).toHaveBeenCalledWith(state.value);
       });
 
       it('pressing the Escape key sets the state value to "" and calls onClear if provided', () => {
         let {inputProps} = renderSearchHook({onClear});
-        inputProps.onKeyDown(event('Escape'));
+        inputProps.onKeyDown(event("Escape"));
         expect(state.setValue).toHaveBeenCalledTimes(1);
-        expect(state.setValue).toHaveBeenCalledWith('');
+        expect(state.setValue).toHaveBeenCalledWith("");
         expect(onClear).toHaveBeenCalledTimes(1);
       });
 
-      it('does not return an onKeyDown prop if isDisabled is true', () => {
+      it("does not return an onKeyDown prop if isDisabled is true", () => {
         let {inputProps} = renderSearchHook({isDisabled: true, onClear, onSubmit});
         expect(inputProps.onKeyDown).not.toBeDefined();
       });
 
-      it('does not return an defaultValue prop', () => {
-        let {inputProps} = renderSearchHook({onClear, onSubmit, defaultValue: 'ABC'});
+      it("does not return an defaultValue prop", () => {
+        let {inputProps} = renderSearchHook({onClear, onSubmit, defaultValue: "ABC"});
         expect(inputProps.defaultValue).not.toBeDefined();
       });
     });
   });
 
-  describe('should return clearButtonProps', () => {
-    it('with a localized aria-label', () => {
-      let locale = 'de-DE';
+  describe("should return clearButtonProps", () => {
+    it("with a localized aria-label", () => {
+      let locale = "de-DE";
       let wrapper = ({children}) => <Provider locale={locale} theme={theme}>{children}</Provider>;
-      let expectedIntl = intlMessages[locale]['Clear search'];
+      let expectedIntl = intlMessages[locale]["Clear search"];
       let {clearButtonProps} = renderSearchHook({}, wrapper);
-      expect(clearButtonProps['aria-label']).toBe(expectedIntl);
+      expect(clearButtonProps["aria-label"]).toBe(expectedIntl);
     });
 
-    it('clear button should not be tabbable', () => {
+    it("clear button should not be tabbable", () => {
       let {clearButtonProps} = renderSearchHook({});
       expect(clearButtonProps.excludeFromTabOrder).toBe(true);
     });
 
-    describe('with specific onPress behavior', () => {
+    describe("with specific onPress behavior", () => {
       let mockEvent = {blah: 1};
       it('sets the state to "" and focuses the search field', () => {
         let {clearButtonProps} = renderSearchHook({});
         clearButtonProps.onPressStart(mockEvent);
         clearButtonProps.onPress(mockEvent);
         expect(state.setValue).toHaveBeenCalledTimes(1);
-        expect(state.setValue).toHaveBeenCalledWith('');
+        expect(state.setValue).toHaveBeenCalledWith("");
         expect(ref.current.focus).toHaveBeenCalledTimes(1);
       });
 
-      it('calls the user provided onClear if provided', () => {
+      it("calls the user provided onClear if provided", () => {
         let {clearButtonProps} = renderSearchHook({onClear});
         clearButtonProps.onPressStart(mockEvent);
         clearButtonProps.onPress(mockEvent);
         // Verify that onClearButtonClick stuff still triggers
         expect(state.setValue).toHaveBeenCalledTimes(1);
-        expect(state.setValue).toHaveBeenCalledWith('');
+        expect(state.setValue).toHaveBeenCalledWith("");
         expect(ref.current.focus).toHaveBeenCalledTimes(1);
         // Verify that props.onClear is triggered as well with the same event
         expect(onClear).toHaveBeenCalledTimes(1);

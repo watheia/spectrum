@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useFocusableRef, useStyleProps} from '@react-spectrum/utils';
-import {ColorThumb} from './ColorThumb';
-import {Flex} from '@react-spectrum/layout';
-import {FocusableRef} from '@react-types/shared';
-import {Label} from '@react-spectrum/label';
-import React, {useRef, useState} from 'react';
-import {SpectrumColorSliderProps} from '@react-types/color';
-import styles from '@adobe/spectrum-css-temp/components/colorslider/vars.css';
-import {useColorSlider} from '@react-aria/color';
-import {useColorSliderState} from '@react-stately/color';
-import {useFocus, useFocusVisible} from '@react-aria/interactions';
-import {useLocale} from '@react-aria/i18n';
-import {useProviderProps} from '@react-spectrum/provider';
+import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import {ColorThumb} from "./ColorThumb";
+import {Flex} from "@react-spectrum/layout";
+import {FocusableRef} from "@react-types/shared";
+import {Label} from "@react-spectrum/label";
+import React, {useRef, useState} from "react";
+import {SpectrumColorSliderProps} from "@react-types/color";
+import styles from "@adobe/spectrum-css-temp/components/colorslider/vars.css";
+import {useColorSlider} from "@react-aria/color";
+import {useColorSliderState} from "@react-stately/color";
+import {useFocus, useFocusVisible} from "@react-aria/interactions";
+import {useLocale} from "@react-aria/i18n";
+import {useProviderProps} from "@react-spectrum/provider";
 
 function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -33,9 +33,9 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
     orientation,
     label,
     showValueLabel,
-    'aria-label': ariaLabel
+    "aria-label": ariaLabel
   } = props;
-  let vertical = orientation === 'vertical';
+  let vertical = orientation === "vertical";
 
   let {styleProps} = useStyleProps(props);
   let {locale} = useLocale();
@@ -48,7 +48,7 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
 
   // If vertical and a label is provided, use it as an aria-label instead.
   if (vertical && label) {
-    ariaLabel = ariaLabel || (typeof label === 'string' ? label : null);
+    ariaLabel = ariaLabel || (typeof label === "string" ? label : null);
     label = null;
   }
 
@@ -56,7 +56,7 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
   // default to displaying the localized channel value.
   // Specifically check if label is undefined. If label is `null` then display no visible label.
   // A default aria-label is provided by useColorSlider in that case.
-  if (label === undefined && !ariaLabel && !props['aria-labelledby'] && !vertical) {
+  if (label === undefined && !ariaLabel && !props["aria-labelledby"] && !vertical) {
     label = state.value.getChannelName(channel, locale);
   }
 
@@ -68,7 +68,7 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
   let {inputProps, thumbProps, trackProps, labelProps, outputProps} = useColorSlider({
     ...props,
     label,
-    'aria-label': ariaLabel,
+    "aria-label": ariaLabel,
     trackRef,
     inputRef
   }, state);
@@ -82,13 +82,13 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
 
   let alignLabel;
   if (vertical) {
-    alignLabel = 'center';
+    alignLabel = "center";
   } else if (label != null && showValueLabel) {
-    alignLabel = 'space-between';
+    alignLabel = "space-between";
   } else if (label != null) {
-    alignLabel = 'flex-start';
+    alignLabel = "flex-start";
   } else if (showValueLabel) {
-    alignLabel = 'flex-end';
+    alignLabel = "flex-end";
   }
 
   return (
@@ -98,8 +98,8 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
       className={classNames(
         styles,
         {
-          'spectrum-ColorSlider-container--horizontal': !vertical,
-          'spectrum-ColorSlider-container--vertical': vertical
+          "spectrum-ColorSlider-container--horizontal": !vertical,
+          "spectrum-ColorSlider-container--vertical": vertical
         }
       )}>
       {label &&
@@ -113,9 +113,9 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
         ref={trackRef}
         className={classNames(
           styles,
-          'spectrum-ColorSlider', {
-            'is-disabled': isDisabled,
-            'spectrum-ColorSlider--vertical': vertical
+          "spectrum-ColorSlider", {
+            "is-disabled": isDisabled,
+            "spectrum-ColorSlider--vertical": vertical
           }
         )
       }>
@@ -124,9 +124,9 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
           isFocused={isFocused && isFocusVisible}
           isDisabled={isDisabled}
           isDragging={state.isThumbDragging(0)}
-          className={classNames(styles, 'spectrum-ColorSlider-handle')}
+          className={classNames(styles, "spectrum-ColorSlider-handle")}
           {...thumbProps}>
-          <input {...inputProps} {...focusProps} ref={inputRef} className={classNames(styles, 'spectrum-ColorSlider-slider')} />
+          <input {...inputProps} {...focusProps} ref={inputRef} className={classNames(styles, "spectrum-ColorSlider-slider")} />
         </ColorThumb>
       </div>
     </div>

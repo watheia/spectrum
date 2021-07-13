@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '../';
-import React from 'react';
-import {render} from '@testing-library/react';
-import {triggerPress} from '@react-spectrum/test-utils';
-import V2Button from '@react/react-spectrum/Button';
+import {ActionButton} from "../";
+import React from "react";
+import {render} from "@testing-library/react";
+import {triggerPress} from "@react-spectrum/test-utils";
+import V2Button from "@react/react-spectrum/Button";
 
-describe('ActionButton', function () {
+describe("ActionButton", function () {
   let onPressSpy = jest.fn();
 
   afterEach(() => {
@@ -25,26 +25,26 @@ describe('ActionButton', function () {
 
   it.each`
     Name              | Component        | props
-    ${'ActionButton'} | ${ActionButton}  | ${{onPress: onPressSpy}}
-    ${'V2Button'}     | ${V2Button}      | ${{variant: 'action', onClick: onPressSpy}}
-  `('$Name handles defaults', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}  | ${{onPress: onPressSpy}}
+    ${"V2Button"}     | ${V2Button}      | ${{variant: "action", onClick: onPressSpy}}
+  `("$Name handles defaults", function ({Component, props}) {
     let {getByRole} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     triggerPress(button);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
-    expect(button).not.toHaveAttribute('aria-pressed');
-    expect(button).not.toHaveAttribute('aria-checked');
+    expect(button).not.toHaveAttribute("aria-pressed");
+    expect(button).not.toHaveAttribute("aria-checked");
   });
 
   it.each`
     Name              | Component        | props
-    ${'ActionButton'} | ${ActionButton}  | ${{}}
-    ${'V2Button'}     | ${V2Button}      | ${{variant: 'action'}}
-  `('$Name allows custom props to be passed through to the button', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}  | ${{}}
+    ${"V2Button"}     | ${V2Button}      | ${{variant: "action"}}
+  `("$Name allows custom props to be passed through to the button", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} data-foo="bar">Click Me</Component>);
 
-    let button = getByRole('button', {hidden: true});
-    expect(button).toHaveAttribute('data-foo', 'bar');
+    let button = getByRole("button", {hidden: true});
+    expect(button).toHaveAttribute("data-foo", "bar");
   });
 });

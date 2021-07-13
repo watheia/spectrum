@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {ReactNode, useRef, useState} from 'react';
-import {Timer} from './';
-import {ToastProps, ToastState, ToastStateValue} from '@react-types/toast';
+import {ReactNode, useRef, useState} from "react";
+import {Timer} from "./";
+import {ToastProps, ToastState, ToastStateValue} from "@react-types/toast";
 
 interface ToastStateProps {
   value?: ToastStateValue[]

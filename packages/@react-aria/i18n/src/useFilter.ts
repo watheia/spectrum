@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {useCollator} from './useCollator';
+import {useCollator} from "./useCollator";
 
 interface Filter {
   /** Returns whether a string starts with a given substring. */
@@ -27,7 +27,7 @@ interface Filter {
  */
 export function useFilter(options?: Intl.CollatorOptions): Filter {
   let collator = useCollator({
-    usage: 'search',
+    usage: "search",
     ...options
   });
 
@@ -41,8 +41,8 @@ export function useFilter(options?: Intl.CollatorOptions): Filter {
 
       // Normalize both strings so we can slice safely
       // TODO: take into account the ignorePunctuation option as well...
-      string = string.normalize('NFC');
-      substring = substring.normalize('NFC');
+      string = string.normalize("NFC");
+      substring = substring.normalize("NFC");
       return collator.compare(string.slice(0, substring.length), substring) === 0;
     },
     endsWith(string, substring) {
@@ -50,8 +50,8 @@ export function useFilter(options?: Intl.CollatorOptions): Filter {
         return true;
       }
 
-      string = string.normalize('NFC');
-      substring = substring.normalize('NFC');
+      string = string.normalize("NFC");
+      substring = substring.normalize("NFC");
       return collator.compare(string.slice(-substring.length), substring) === 0;
     },
     contains(string, substring) {
@@ -59,8 +59,8 @@ export function useFilter(options?: Intl.CollatorOptions): Filter {
         return true;
       }
 
-      string = string.normalize('NFC');
-      substring = substring.normalize('NFC');
+      string = string.normalize("NFC");
+      substring = substring.normalize("NFC");
 
       let scan = 0;
       let sliceLen = substring.length;

@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Alignment, DOMRef, LabelPosition, SpectrumLabelableProps} from '@react-types/shared';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {filterDOMProps} from '@react-aria/utils';
-import {Provider, useProviderProps} from '@react-spectrum/provider';
-import React, {useContext} from 'react';
-import {SpectrumFormProps} from '@react-types/form';
-import styles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
+import {Alignment, DOMRef, LabelPosition, SpectrumLabelableProps} from "@react-types/shared";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {filterDOMProps} from "@react-aria/utils";
+import {Provider, useProviderProps} from "@react-spectrum/provider";
+import React, {useContext} from "react";
+import {SpectrumFormProps} from "@react-types/form";
+import styles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
 
 let FormContext = React.createContext<SpectrumLabelableProps>({});
 export function useFormProps<T extends SpectrumLabelableProps>(props: T): T {
@@ -25,20 +25,20 @@ export function useFormProps<T extends SpectrumLabelableProps>(props: T): T {
 }
 
 const formPropNames = new Set([
-  'action',
-  'autoComplete',
-  'encType',
-  'method',
-  'target',
-  'onSubmit'
+  "action",
+  "autoComplete",
+  "encType",
+  "method",
+  "target",
+  "onSubmit"
 ]);
 
 function Form(props: SpectrumFormProps, ref: DOMRef<HTMLFormElement>) {
   props = useProviderProps(props);
   let {
     children,
-    labelPosition = 'top' as LabelPosition,
-    labelAlign = 'start' as Alignment,
+    labelPosition = "top" as LabelPosition,
+    labelAlign = "start" as Alignment,
     isRequired,
     necessityIndicator,
     isQuiet,
@@ -66,10 +66,10 @@ function Form(props: SpectrumFormProps, ref: DOMRef<HTMLFormElement>) {
       className={
         classNames(
           styles,
-          'spectrum-Form',
+          "spectrum-Form",
           {
-            'spectrum-Form--positionSide': labelPosition === 'side',
-            'spectrum-Form--positionTop': labelPosition === 'top'
+            "spectrum-Form--positionSide": labelPosition === "side",
+            "spectrum-Form--positionTop": labelPosition === "top"
           },
           styleProps.className
         )

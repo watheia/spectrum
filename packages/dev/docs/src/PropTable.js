@@ -10,68 +10,68 @@
  * governing permissions and limitations under the License.
  */
 
-import ChevronRight from '@spectrum-icons/workflow/ChevronRight';
-import {InterfaceType, TypeContext} from './types';
-import React from 'react';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
+import ChevronRight from "@spectrum-icons/workflow/ChevronRight";
+import {InterfaceType, TypeContext} from "./types";
+import React from "react";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 const GROUPS = {
   Events: [
     /^on[A-Z]/
   ],
   Layout: [
-    'flex', 'flexGrow', 'flexShrink', 'flexBasis', 'alignSelf', 'justifySelf', 'order', 'flexOrder',
-    'gridArea', 'gridColumn', 'gridRow', 'gridColumnStart', 'gridColumnEnd', 'gridRowStart', 'gridRowEnd', 'slot',
-    'overflow'
+    "flex", "flexGrow", "flexShrink", "flexBasis", "alignSelf", "justifySelf", "order", "flexOrder",
+    "gridArea", "gridColumn", "gridRow", "gridColumnStart", "gridColumnEnd", "gridRowStart", "gridRowEnd", "slot",
+    "overflow"
   ],
   Spacing: [
-    'margin', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom', 'marginStart', 'marginEnd', 'marginX', 'marginY',
-    'padding', 'paddingTop', 'paddingLeft', 'paddingRight', 'paddingBottom', 'paddingStart', 'paddingEnd', 'paddingX', 'paddingY'
+    "margin", "marginTop", "marginLeft", "marginRight", "marginBottom", "marginStart", "marginEnd", "marginX", "marginY",
+    "padding", "paddingTop", "paddingLeft", "paddingRight", "paddingBottom", "paddingStart", "paddingEnd", "paddingX", "paddingY"
   ],
   Sizing: [
-    'width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight'
+    "width", "minWidth", "maxWidth", "height", "minHeight", "maxHeight"
   ],
   Background: [
-    'background', 'backgroundColor', 'backgroundImage', 'backgroundSize', 'backgroundPosition', 'backgroundRepeat',
-    'opacity' // ???
+    "background", "backgroundColor", "backgroundImage", "backgroundSize", "backgroundPosition", "backgroundRepeat",
+    "opacity" // ???
   ],
   Borders: [
-    'border',
-    'borderX',
-    'borderY',
-    'borderStyle',
-    'borderTop',
-    'borderLeft',
-    'borderRight',
-    'borderTop',
-    'borderBottom',
-    'borderWidth', 'borderStartWidth', 'borderEndWidth', 'borderLeftWidth', 'borderRightWidth', 'borderTopWidth', 'borderBottomWidth', 'borderXWidth', 'borderYWidth',
-    'borderColor', 'borderStartColor', 'borderEndColor', 'borderLeftColor', 'borderRightColor', 'borderTopColor', 'borderBottomColor', 'borderXColor', 'borderYColor',
-    'borderRadius', 'borderTopStartRadius', 'borderTopEndRadius', 'borderBottomStartRadius', 'borderBottomEndRadius', 'borderTopLeftRadius', 'borderTopRightRadius', 'borderBottomLeftRadius', 'borderBottomRightRadius'
+    "border",
+    "borderX",
+    "borderY",
+    "borderStyle",
+    "borderTop",
+    "borderLeft",
+    "borderRight",
+    "borderTop",
+    "borderBottom",
+    "borderWidth", "borderStartWidth", "borderEndWidth", "borderLeftWidth", "borderRightWidth", "borderTopWidth", "borderBottomWidth", "borderXWidth", "borderYWidth",
+    "borderColor", "borderStartColor", "borderEndColor", "borderLeftColor", "borderRightColor", "borderTopColor", "borderBottomColor", "borderXColor", "borderYColor",
+    "borderRadius", "borderTopStartRadius", "borderTopEndRadius", "borderBottomStartRadius", "borderBottomEndRadius", "borderTopLeftRadius", "borderTopRightRadius", "borderBottomLeftRadius", "borderBottomRightRadius"
   ],
   Shadows: [
-    'boxShadow',
-    'textShadow'
+    "boxShadow",
+    "textShadow"
   ],
   Positioning: [
-    'position', 'top', 'bottom', 'left', 'right', 'start', 'end', 'zIndex', 'isHidden', 'hidden', 'display'
+    "position", "top", "bottom", "left", "right", "start", "end", "zIndex", "isHidden", "hidden", "display"
   ],
   Typography: [
-    'font',
-    'fontFamily',
-    'fontSize',
-    'fontStyle',
-    'textAlign',
-    'verticalAlign',
-    'lineHeight',
-    'letterSpacing',
-    'color'
+    "font",
+    "fontFamily",
+    "fontSize",
+    "fontStyle",
+    "textAlign",
+    "verticalAlign",
+    "lineHeight",
+    "letterSpacing",
+    "color"
   ],
   Accessibility: [
-    'role', 'id', 'tabIndex', 'excludeFromTabOrder', /^aria-/
+    "role", "id", "tabIndex", "excludeFromTabOrder", /^aria-/
   ],
   Advanced: [
-    'UNSAFE_className', 'UNSAFE_style'
+    "UNSAFE_className", "UNSAFE_style"
   ]
 };
 
@@ -84,7 +84,7 @@ export function PropTable({component, links, style}) {
         <InterfaceType properties={ungrouped} showRequired showDefault isComponent />
         {Object.keys(groups).map(group => (
           <details>
-            <summary className={typographyStyles['spectrum-Heading4']}>
+            <summary className={typographyStyles["spectrum-Heading4"]}>
               <ChevronRight size="S" />
               {group}
             </summary>

@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {BreadcrumbItemProps} from '@react-types/breadcrumbs';
-import ChevronRightSmall from '@spectrum-icons/ui/ChevronRightSmall';
-import {classNames, getWrappedElement} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React, {Fragment, useRef} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/breadcrumb/vars.css';
-import {useBreadcrumbItem} from '@react-aria/breadcrumbs';
-import {useHover} from '@react-aria/interactions';
-import {useLocale} from '@react-aria/i18n';
+import {BreadcrumbItemProps} from "@react-types/breadcrumbs";
+import ChevronRightSmall from "@spectrum-icons/ui/ChevronRightSmall";
+import {classNames, getWrappedElement} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React, {Fragment, useRef} from "react";
+import styles from "@adobe/spectrum-css-temp/components/breadcrumb/vars.css";
+import {useBreadcrumbItem} from "@react-aria/breadcrumbs";
+import {useHover} from "@react-aria/interactions";
+import {useLocale} from "@react-aria/i18n";
 
 export function BreadcrumbItem(props: BreadcrumbItemProps) {
   let {
@@ -32,7 +32,7 @@ export function BreadcrumbItem(props: BreadcrumbItemProps) {
   let ref = useRef();
   let {itemProps} = useBreadcrumbItem({
     ...props,
-    elementType: typeof children === 'string' ? 'span' : 'a'
+    elementType: typeof children === "string" ? "span" : "a"
   }, ref);
   let {hoverProps, isHovered} = useHover(props);
 
@@ -44,10 +44,10 @@ export function BreadcrumbItem(props: BreadcrumbItemProps) {
       className:
         classNames(
           styles,
-          'spectrum-Breadcrumbs-itemLink',
+          "spectrum-Breadcrumbs-itemLink",
           {
-            'is-disabled': !isCurrent && isDisabled,
-            'is-hovered': isHovered
+            "is-disabled": !isCurrent && isDisabled,
+            "is-hovered": isHovered
           }
         )
     }
@@ -55,7 +55,7 @@ export function BreadcrumbItem(props: BreadcrumbItemProps) {
 
   return (
     <Fragment>
-      <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+      <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
         {element}
       </FocusRing>
       {isCurrent === false &&
@@ -63,9 +63,9 @@ export function BreadcrumbItem(props: BreadcrumbItemProps) {
           UNSAFE_className={
             classNames(
               styles,
-              'spectrum-Breadcrumbs-itemSeparator',
+              "spectrum-Breadcrumbs-itemSeparator",
               {
-                'is-reversed': direction === 'rtl'
+                "is-reversed": direction === "rtl"
               }
             )
           } />

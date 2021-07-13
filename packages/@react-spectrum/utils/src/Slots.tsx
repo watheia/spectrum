@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps} from '@react-aria/utils';
-import React, {useContext, useMemo} from 'react';
+import {mergeProps} from "@react-aria/utils";
+import React, {useContext, useMemo} from "react";
 
 interface SlotProps {
   slot?: string
@@ -56,7 +56,7 @@ export function ClearSlots(props) {
   let {children, ...otherProps} = props;
   let content = children;
   if (React.Children.toArray(children).length <= 1) {
-    if (typeof children === 'function') { // need to know if the node is a string or something else that react can render that doesn't get props
+    if (typeof children === "function") { // need to know if the node is a string or something else that react can render that doesn't get props
       content = React.cloneElement(React.Children.only(children), otherProps);
     }
   }

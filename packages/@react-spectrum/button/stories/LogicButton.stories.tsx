@@ -10,37 +10,37 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {LogicButton} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {LogicButton} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Button/LogicButton', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Button/LogicButton", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'logic variant: and',
-    () => render({variant: 'and', label: 'and'})
+    "logic variant: and",
+    () => render({variant: "and", label: "and"})
   )
   .add(
-    'logic variant: or',
-    () => render({variant: 'or', label: 'or'})
+    "logic variant: or",
+    () => render({variant: "or", label: "or"})
   );
 
 function render(props: any = {}) {
   return (
     <div>
       <LogicButton
-        onPress={action('press')}
-        onPressStart={action('pressstart')}
-        onPressEnd={action('pressend')}
+        onPress={action("press")}
+        onPressStart={action("pressstart")}
+        onPressEnd={action("pressend")}
         {...props}>
         Default
       </LogicButton>
       <LogicButton
         marginStart="10px"
-        onPress={action('press')}
-        onPressStart={action('pressstart')}
-        onPressEnd={action('pressend')}
+        onPress={action("press")}
+        onPressStart={action("pressstart")}
+        onPressEnd={action("pressend")}
         isDisabled
         {...props}>
         Disabled

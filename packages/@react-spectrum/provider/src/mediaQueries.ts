@@ -10,52 +10,52 @@
  * governing permissions and limitations under the License.
  */
 
-import {ColorScheme, Scale} from '@react-types/provider';
-import {Theme} from '@react-types/provider';
-import {useMediaQuery} from '@react-spectrum/utils';
+import {ColorScheme, Scale} from "@react-types/provider";
+import {Theme} from "@react-types/provider";
+import {useMediaQuery} from "@react-spectrum/utils";
 
 export function useColorScheme(theme: Theme, defaultColorScheme: ColorScheme): ColorScheme {
-  let matchesDark = useMediaQuery('(prefers-color-scheme: dark)');
-  let matchesLight = useMediaQuery('(prefers-color-scheme: light)');
+  let matchesDark = useMediaQuery("(prefers-color-scheme: dark)");
+  let matchesLight = useMediaQuery("(prefers-color-scheme: light)");
 
   // importance OS > default > omitted
 
   if (theme.dark && matchesDark) {
-    return 'dark';
+    return "dark";
   }
 
   if (theme.light && matchesLight) {
-    return 'light';
+    return "light";
   }
 
-  if (theme.dark && defaultColorScheme === 'dark') {
-    return 'dark';
+  if (theme.dark && defaultColorScheme === "dark") {
+    return "dark";
   }
 
-  if (theme.light && defaultColorScheme === 'light') {
-    return 'light';
+  if (theme.light && defaultColorScheme === "light") {
+    return "light";
   }
 
   if (!theme.dark) {
-    return 'light';
+    return "light";
   }
 
   if (!theme.light) {
-    return 'dark';
+    return "dark";
   }
 
-  return 'light';
+  return "light";
 }
 
 export function useScale(theme: Theme): Scale {
-  let matchesFine = useMediaQuery('(any-pointer: fine)');
+  let matchesFine = useMediaQuery("(any-pointer: fine)");
   if (matchesFine && theme.medium) {
-    return 'medium';
+    return "medium";
   }
 
   if (theme.large) {
-    return 'large';
+    return "large";
   }
 
-  return 'medium';
+  return "medium";
 }

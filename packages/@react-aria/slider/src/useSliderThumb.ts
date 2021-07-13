@@ -1,12 +1,12 @@
-import {AriaSliderThumbProps} from '@react-types/slider';
-import {clamp, focusWithoutScrolling, mergeProps, useGlobalListeners} from '@react-aria/utils';
-import {getSliderThumbId, sliderIds} from './utils';
-import React, {ChangeEvent, HTMLAttributes, InputHTMLAttributes, LabelHTMLAttributes, RefObject, useCallback, useEffect, useRef} from 'react';
-import {SliderState} from '@react-stately/slider';
-import {useFocusable} from '@react-aria/focus';
-import {useLabel} from '@react-aria/label';
-import {useLocale} from '@react-aria/i18n';
-import {useMove} from '@react-aria/interactions';
+import {AriaSliderThumbProps} from "@react-types/slider";
+import {clamp, focusWithoutScrolling, mergeProps, useGlobalListeners} from "@react-aria/utils";
+import {getSliderThumbId, sliderIds} from "./utils";
+import React, {ChangeEvent, HTMLAttributes, InputHTMLAttributes, LabelHTMLAttributes, RefObject, useCallback, useEffect, useRef} from "react";
+import {SliderState} from "@react-stately/slider";
+import {useFocusable} from "@react-aria/focus";
+import {useLabel} from "@react-aria/label";
+import {useLocale} from "@react-aria/i18n";
+import {useMove} from "@react-aria/interactions";
 
 interface SliderThumbAria {
   /** Props for the root thumb element; handles the dragging motion. */
@@ -45,7 +45,7 @@ export function useSliderThumb(
     inputRef
   } = opts;
 
-  let isVertical = opts.orientation === 'vertical';
+  let isVertical = opts.orientation === "vertical";
 
   let {direction} = useLocale();
   let {addGlobalListener, removeGlobalListener} = useGlobalListeners();
@@ -54,7 +54,7 @@ export function useSliderThumb(
   const {labelProps, fieldProps} = useLabel({
     ...opts,
     id: getSliderThumbId(state, index),
-    'aria-labelledby': `${labelId} ${opts['aria-labelledby'] ?? ''}`.trim()
+    "aria-labelledby": `${labelId} ${opts["aria-labelledby"] ?? ""}`.trim()
   });
 
   const value = state.values[index];
@@ -75,7 +75,7 @@ export function useSliderThumb(
 
   const stateRef = useRef<SliderState>(null);
   stateRef.current = state;
-  let reverseX = direction === 'rtl';
+  let reverseX = direction === "rtl";
   let currentPosition = useRef<number>(null);
   let {moveProps} = useMove({
     onMoveStart() {
@@ -88,7 +88,7 @@ export function useSliderThumb(
       if (currentPosition.current == null) {
         currentPosition.current = stateRef.current.getThumbPercent(index) * size;
       }
-      if (pointerType === 'keyboard') {
+      if (pointerType === "keyboard") {
         // (invert left/right according to language direction) + (according to vertical)
         let delta = ((reverseX ? -deltaX : deltaX) + (isVertical ? -deltaY : -deltaY)) * stateRef.current.step;
         currentPosition.current += delta * size;
@@ -125,9 +125,9 @@ export function useSliderThumb(
     currentPointer.current = id;
     state.setThumbDragging(index, true);
 
-    addGlobalListener(window, 'mouseup', onUp, false);
-    addGlobalListener(window, 'touchend', onUp, false);
-    addGlobalListener(window, 'pointerup', onUp, false);
+    addGlobalListener(window, "mouseup", onUp, false);
+    addGlobalListener(window, "touchend", onUp, false);
+    addGlobalListener(window, "pointerup", onUp, false);
 
   };
 
@@ -136,9 +136,9 @@ export function useSliderThumb(
     if (id === currentPointer.current) {
       focusInput();
       state.setThumbDragging(index, false);
-      removeGlobalListener(window, 'mouseup', onUp, false);
-      removeGlobalListener(window, 'touchend', onUp, false);
-      removeGlobalListener(window, 'pointerup', onUp, false);
+      removeGlobalListener(window, "mouseup", onUp, false);
+      removeGlobalListener(window, "touchend", onUp, false);
+      removeGlobalListener(window, "pointerup", onUp, false);
     }
   };
 
@@ -148,18 +148,18 @@ export function useSliderThumb(
   // interactions; we then listen to input's onChange to update state.
   return {
     inputProps: mergeProps(focusableProps, fieldProps, {
-      type: 'range',
+      type: "range",
       tabIndex: !isDisabled ? 0 : undefined,
       min: state.getThumbMinValue(index),
       max: state.getThumbMaxValue(index),
       step: state.step,
       value: value,
       disabled: isDisabled,
-      'aria-orientation': opts.orientation,
-      'aria-valuetext': state.getThumbValueLabel(index),
-      'aria-required': isRequired || undefined,
-      'aria-invalid': validationState === 'invalid' || undefined,
-      'aria-errormessage': opts['aria-errormessage'],
+      "aria-orientation": opts.orientation,
+      "aria-valuetext": state.getThumbValueLabel(index),
+      "aria-required": isRequired || undefined,
+      "aria-invalid": validationState === "invalid" || undefined,
+      "aria-errormessage": opts["aria-errormessage"],
       onChange: (e: ChangeEvent<HTMLInputElement>) => {
         state.setThumbValue(index, parseFloat(e.target.value));
       }

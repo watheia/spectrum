@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Axis, Placement, PlacementAxis, SizeAxis} from '@react-types/overlays';
-import getCss from 'dom-helpers/style';
-import getOffset from 'dom-helpers/query/offset';
-import getPosition from 'dom-helpers/query/position';
-import getScrollLeft from 'dom-helpers/query/scrollLeft';
-import getScrollTop from 'dom-helpers/query/scrollTop';
-import ownerDocument from 'dom-helpers/ownerDocument';
+import {Axis, Placement, PlacementAxis, SizeAxis} from "@react-types/overlays";
+import getCss from "dom-helpers/style";
+import getOffset from "dom-helpers/query/offset";
+import getPosition from "dom-helpers/query/position";
+import getScrollLeft from "dom-helpers/query/scrollLeft";
+import getScrollTop from "dom-helpers/query/scrollTop";
+import ownerDocument from "dom-helpers/ownerDocument";
 
 interface Position {
   top?: number,
@@ -70,39 +70,39 @@ export interface PositionResult {
 }
 
 const AXIS = {
-  top: 'top',
-  bottom: 'top',
-  left: 'left',
-  right: 'left'
+  top: "top",
+  bottom: "top",
+  left: "left",
+  right: "left"
 };
 
 const FLIPPED_DIRECTION = {
-  top: 'bottom',
-  bottom: 'top',
-  left: 'right',
-  right: 'left'
+  top: "bottom",
+  bottom: "top",
+  left: "right",
+  right: "left"
 };
 
 const CROSS_AXIS = {
-  top: 'left',
-  left: 'top'
+  top: "left",
+  left: "top"
 };
 
 const AXIS_SIZE = {
-  top: 'height',
-  left: 'width'
+  top: "height",
+  left: "width"
 };
 
 const PARSED_PLACEMENT_CACHE = {};
 
 // @ts-ignore
-let visualViewport = typeof window !== 'undefined' && window.visualViewport;
+let visualViewport = typeof window !== "undefined" && window.visualViewport;
 
 function getContainerDimensions(containerNode: Element): Dimensions {
   let width = 0, height = 0, top = 0, left = 0;
   let scroll: Position = {};
 
-  if (containerNode.tagName === 'BODY') {
+  if (containerNode.tagName === "BODY") {
     width = visualViewport?.width ?? document.documentElement.clientWidth;
     height = visualViewport?.height ?? document.documentElement.clientHeight;
 
@@ -167,12 +167,12 @@ function parsePlacement(input: Placement): ParsedPlacement {
     return PARSED_PLACEMENT_CACHE[input];
   }
 
-  let [placement, crossPlacement] = input.split(' ');
-  let axis: Axis = AXIS[placement] || 'right';
+  let [placement, crossPlacement] = input.split(" ");
+  let axis: Axis = AXIS[placement] || "right";
   let crossAxis: Axis = CROSS_AXIS[axis];
 
   if (!AXIS[crossPlacement]) {
-    crossPlacement = 'center';
+    crossPlacement = "center";
   }
 
   let size = AXIS_SIZE[axis];
@@ -196,7 +196,7 @@ function computePosition(
 
   // button position
   position[crossAxis] = childOffset[crossAxis];
-  if (crossPlacement === 'center') {
+  if (crossPlacement === "center") {
     //  + (button size / 2) - (overlay size / 2)
     // at this point the overlay center should match the button center
     position[crossAxis] += (childOffset[crossSize] - overlaySize[crossSize]) / 2;
@@ -367,14 +367,14 @@ export function calculatePosition(opts: PositionOpts): PositionResult {
   } = opts;
 
   let container = overlayNode.offsetParent || document.body;
-  let isBodyContainer = container.tagName === 'BODY';
+  let isBodyContainer = container.tagName === "BODY";
   const containerPositionStyle = window.getComputedStyle(container).position;
-  let isContainerPositioned = !!containerPositionStyle && containerPositionStyle !== 'static';
+  let isContainerPositioned = !!containerPositionStyle && containerPositionStyle !== "static";
   let childOffset: Offset = isBodyContainer ? getOffset(targetNode) : getPosition(targetNode, container);
 
   if (!isBodyContainer) {
-    childOffset.top += parseInt(getCss(targetNode, 'marginTop'), 10) || 0;
-    childOffset.left += parseInt(getCss(targetNode, 'marginLeft'), 10) || 0;
+    childOffset.top += parseInt(getCss(targetNode, "marginTop"), 10) || 0;
+    childOffset.left += parseInt(getCss(targetNode, "marginLeft"), 10) || 0;
   }
 
   let overlaySize: Offset = getOffset(overlayNode);
@@ -384,7 +384,7 @@ export function calculatePosition(opts: PositionOpts): PositionResult {
 
   let scrollSize = getScroll(scrollNode);
   let boundaryDimensions = getContainerDimensions(boundaryElement);
-  let containerOffsetWithBoundary: Offset = boundaryElement.tagName === 'BODY' ? getOffset(container) : getPosition(container, boundaryElement);
+  let containerOffsetWithBoundary: Offset = boundaryElement.tagName === "BODY" ? getOffset(container) : getPosition(container, boundaryElement);
 
   return calculatePositionInternal(
     placement,

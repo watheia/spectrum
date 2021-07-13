@@ -10,43 +10,43 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import Refresh from '@spectrum-icons/workflow/Refresh';
-import {SearchField} from '../';
-import {storiesOf} from '@storybook/react';
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import Refresh from "@spectrum-icons/workflow/Refresh";
+import {SearchField} from "../";
+import {storiesOf} from "@storybook/react";
 
 const info = 'A containing element with `role="search"` has been added to define a **search** landmark region.';
 // not quite duplicate of Textfield, has things like clear button
-storiesOf('SearchField', module)
+storiesOf("SearchField", module)
   .add(
-    'Default',
+    "Default",
     () => renderSearchLandmark(render()),
     {info}
   )
   .add(
-    'value',
-    () => renderSearchLandmark(render({value: 'React'})),
+    "value",
+    () => renderSearchLandmark(render({value: "React"})),
     {info}
   )
   .add(
-    'isDisabled',
-    () => renderSearchLandmark(render({value: 'React', isDisabled: true})),
+    "isDisabled",
+    () => renderSearchLandmark(render({value: "React", isDisabled: true})),
     {info}
   )
   .add(
-    'isReadOnly',
-    () => renderSearchLandmark(render({value: 'React', isReadOnly: true})),
+    "isReadOnly",
+    () => renderSearchLandmark(render({value: "React", isReadOnly: true})),
     {info}
   )
   // don't need to test label positions or required, covered by Textfield
   .add(
-    'icon: refresh',
-    () => renderSearchLandmark(render({defaultValue: 'React', icon: <Refresh />})),
+    "icon: refresh",
+    () => renderSearchLandmark(render({defaultValue: "React", icon: <Refresh />})),
     {info}
   )
-  .add('custom width',
-    () => render({defaultValue: 'React', width: 275})
+  .add("custom width",
+    () => render({defaultValue: "React", width: 275})
   );
 
 function renderSearchLandmark(child) {

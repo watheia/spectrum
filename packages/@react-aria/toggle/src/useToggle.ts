@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaToggleProps} from '@react-types/checkbox';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {InputHTMLAttributes, RefObject} from 'react';
-import {ToggleState} from '@react-stately/toggle';
-import {useFocusable} from '@react-aria/focus';
-import {usePress} from '@react-aria/interactions';
+import {AriaToggleProps} from "@react-types/checkbox";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {InputHTMLAttributes, RefObject} from "react";
+import {ToggleState} from "@react-stately/toggle";
+import {useFocusable} from "@react-aria/focus";
+import {usePress} from "@react-aria/interactions";
 
 export interface ToggleAria {
   /**
@@ -35,9 +35,9 @@ export function useToggle(props: AriaToggleProps, state: ToggleState, ref: RefOb
     value,
     name,
     children,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    validationState = 'valid'
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
+    validationState = "valid"
   } = props;
 
   let onChange = (e) => {
@@ -50,7 +50,7 @@ export function useToggle(props: AriaToggleProps, state: ToggleState, ref: RefOb
   let hasChildren = children != null;
   let hasAriaLabel = ariaLabel != null || ariaLabelledby != null;
   if (!hasChildren && !hasAriaLabel) {
-    console.warn('If you do not provide children, you must specify an aria-label for accessibility');
+    console.warn("If you do not provide children, you must specify an aria-label for accessibility");
   }
 
   // This handles focusing the input on pointer down, which Safari does not do by default.
@@ -64,16 +64,16 @@ export function useToggle(props: AriaToggleProps, state: ToggleState, ref: RefOb
 
   return {
     inputProps: mergeProps(domProps, {
-      'aria-invalid': validationState === 'invalid' || undefined,
-      'aria-errormessage': props['aria-errormessage'],
-      'aria-controls': props['aria-controls'],
-      'aria-readonly': isReadOnly || undefined,
+      "aria-invalid": validationState === "invalid" || undefined,
+      "aria-errormessage": props["aria-errormessage"],
+      "aria-controls": props["aria-controls"],
+      "aria-readonly": isReadOnly || undefined,
       onChange,
       disabled: isDisabled,
       required: isRequired,
       value,
       name,
-      type: 'checkbox',
+      type: "checkbox",
       ...interactions
     })
   };

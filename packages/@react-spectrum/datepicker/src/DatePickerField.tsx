@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import Alert from '@spectrum-icons/ui/AlertMedium';
-import Checkmark from '@spectrum-icons/ui/CheckmarkMedium';
-import {classNames} from '@react-spectrum/utils';
-import {DatePickerSegment} from './DatePickerSegment';
-import datepickerStyles from './index.css';
-import inputgroupStyles from '@adobe/spectrum-css-temp/components/inputgroup/vars.css';
-import React from 'react';
-import {SpectrumDatePickerProps} from '@react-types/datepicker';
-import textfieldStyles from '@adobe/spectrum-css-temp/components/textfield/vars.css';
-import {useDateField} from '@react-aria/datepicker';
-import {useDatePickerFieldState} from '@react-stately/datepicker';
-import {useStyleProps} from '@react-spectrum/utils';
+import Alert from "@spectrum-icons/ui/AlertMedium";
+import Checkmark from "@spectrum-icons/ui/CheckmarkMedium";
+import {classNames} from "@react-spectrum/utils";
+import {DatePickerSegment} from "./DatePickerSegment";
+import datepickerStyles from "./index.css";
+import inputgroupStyles from "@adobe/spectrum-css-temp/components/inputgroup/vars.css";
+import React from "react";
+import {SpectrumDatePickerProps} from "@react-types/datepicker";
+import textfieldStyles from "@adobe/spectrum-css-temp/components/textfield/vars.css";
+import {useDateField} from "@react-aria/datepicker";
+import {useDatePickerFieldState} from "@react-stately/datepicker";
+import {useStyleProps} from "@react-spectrum/utils";
 
 export function DatePickerField(props: SpectrumDatePickerProps) {
   let state = useDatePickerFieldState(props);
@@ -36,50 +36,50 @@ export function DatePickerField(props: SpectrumDatePickerProps) {
   let {styleProps} = useStyleProps(otherProps);
   let {fieldProps, segmentProps} = useDateField(props);
 
-  let isInvalid = validationState === 'invalid';
+  let isInvalid = validationState === "invalid";
   let textfieldClass = classNames(
     textfieldStyles,
-    'spectrum-Textfield',
+    "spectrum-Textfield",
     {
-      'is-invalid': isInvalid,
-      'is-valid': validationState === 'valid',
-      'spectrum-Textfield--quiet': isQuiet
+      "is-invalid": isInvalid,
+      "is-valid": validationState === "valid",
+      "spectrum-Textfield--quiet": isQuiet
     },
-    classNames(datepickerStyles, 'react-spectrum-Datepicker-field'),
+    classNames(datepickerStyles, "react-spectrum-Datepicker-field"),
     styleProps.className
   );
 
   let inputClass = classNames(
     textfieldStyles,
-    'spectrum-Textfield-input',
+    "spectrum-Textfield-input",
     {
-      'is-disabled': isDisabled,
-      'is-invalid': isInvalid
+      "is-disabled": isDisabled,
+      "is-invalid": isInvalid
     },
     classNames(
       inputgroupStyles,
-      'spectrum-InputGroup-input',
+      "spectrum-InputGroup-input",
       {
-        'is-disabled': isDisabled,
-        'is-invalid': isInvalid
+        "is-disabled": isDisabled,
+        "is-invalid": isInvalid
       }
     ),
-    classNames(datepickerStyles, 'react-spectrum-Datepicker-input')
+    classNames(datepickerStyles, "react-spectrum-Datepicker-input")
   );
 
   let iconClass = classNames(
     textfieldStyles,
-    'spectrum-Textfield-validationIcon',
+    "spectrum-Textfield-validationIcon",
     {
-      'is-invalid': isInvalid,
-      'is-valid': validationState === 'valid'
+      "is-invalid": isInvalid,
+      "is-valid": validationState === "valid"
     }
   );
 
   let validationIcon = null;
-  if (validationState === 'invalid') {
+  if (validationState === "invalid") {
     validationIcon = <Alert data-testid="invalid-icon" UNSAFE_className={iconClass} />;
-  } else if (validationState === 'valid') {
+  } else if (validationState === "valid") {
     validationIcon = <Checkmark data-testid="valid-icon" UNSAFE_className={iconClass} />;
   }
 

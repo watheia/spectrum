@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaSideNavProps} from '@react-types/sidenav';
-import {filterDOMProps, mergeProps, useId} from '@react-aria/utils';
-import {HTMLAttributes, RefObject} from 'react';
-import {KeyboardDelegate} from '@react-types/shared';
-import {TreeState} from '@react-stately/tree';
-import {useSelectableCollection} from '@react-aria/selection';
+import {AriaSideNavProps} from "@react-types/sidenav";
+import {filterDOMProps, mergeProps, useId} from "@react-aria/utils";
+import {HTMLAttributes, RefObject} from "react";
+import {KeyboardDelegate} from "@react-types/shared";
+import {TreeState} from "@react-stately/tree";
+import {useSelectableCollection} from "@react-aria/selection";
 
 interface SideNavAriaOptions<T> extends AriaSideNavProps<T> {
   layout?: KeyboardDelegate
@@ -29,8 +29,8 @@ interface SideNavAria {
 export function useSideNav<T>(props: SideNavAriaOptions<T>, state: TreeState<T>, ref: RefObject<HTMLElement>): SideNavAria {
   let {
     id,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabeldBy,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabeldBy,
     shouldFocusWrap,
     layout
   } = props;
@@ -48,12 +48,12 @@ export function useSideNav<T>(props: SideNavAriaOptions<T>, state: TreeState<T>,
 
   return {
     navProps: mergeProps(domProps, {
-      role: 'navigation',
+      role: "navigation",
       id
     }),
     listProps: {
-      'aria-labelledby': ariaLabeldBy || (ariaLabel ? id : null),
-      role: 'list',
+      "aria-labelledby": ariaLabeldBy || (ariaLabel ? id : null),
+      role: "list",
       ...collectionProps
     }
   };

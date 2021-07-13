@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {clamp, snapValueToStep, useControlledState} from '@react-stately/utils';
-import {NumberFieldProps} from '@react-types/numberfield';
-import {NumberFormatter, NumberParser} from '@internationalized/number';
-import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {clamp, snapValueToStep, useControlledState} from "@react-stately/utils";
+import {NumberFieldProps} from "@react-types/numberfield";
+import {NumberFormatter, NumberParser} from "@internationalized/number";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 
 export interface NumberFieldState {
   /**
@@ -88,16 +88,16 @@ export function useNumberFieldState(
   } = props;
 
   let [numberValue, setNumberValue] = useControlledState<number>(value, isNaN(defaultValue) ? NaN : defaultValue, onChange);
-  let [inputValue, setInputValue] = useState(() => isNaN(numberValue) ? '' : new NumberFormatter(locale, formatOptions).format(numberValue));
+  let [inputValue, setInputValue] = useState(() => isNaN(numberValue) ? "" : new NumberFormatter(locale, formatOptions).format(numberValue));
 
   let numberParser = useMemo(() => new NumberParser(locale, formatOptions), [locale, formatOptions]);
   let numberingSystem = useMemo(() => numberParser.getNumberingSystem(inputValue), [numberParser, inputValue]);
   let formatter = useMemo(() => new NumberFormatter(locale, {...formatOptions, numberingSystem}), [locale, formatOptions, numberingSystem]);
   let intlOptions = useMemo(() => formatter.resolvedOptions(), [formatter]);
-  let format = useCallback((value: number) => isNaN(value) ? '' : formatter.format(value), [formatter]);
+  let format = useCallback((value: number) => isNaN(value) ? "" : formatter.format(value), [formatter]);
 
   let clampStep = !isNaN(step) ? step : 1;
-  if (intlOptions.style === 'percent' && isNaN(step)) {
+  if (intlOptions.style === "percent" && isNaN(step)) {
     clampStep = 0.01;
   }
 
@@ -117,7 +117,7 @@ export function useNumberFieldState(
     // Set to empty state if input value is empty
     if (!inputValue.length) {
       setNumberValue(NaN);
-      setInputValue(value === undefined ? '' : format(numberValue));
+      setInputValue(value === undefined ? "" : format(numberValue));
       return;
     }
 
@@ -142,7 +142,7 @@ export function useNumberFieldState(
     setInputValue(format(value === undefined ? clampedValue : numberValue));
   };
 
-  let safeNextStep = (operation: '+' | '-', minMax: number) => {
+  let safeNextStep = (operation: "+" | "-", minMax: number) => {
     let prev = parsed.current;
 
     if (isNaN(prev)) {
@@ -154,7 +154,7 @@ export function useNumberFieldState(
       // otherwise, first snap the current value to the nearest step. if it moves in the direction
       // we're going, use that value, otherwise add the step and snap that value.
       let newValue = snapValueToStep(prev, minValue, maxValue, clampStep);
-      if ((operation === '+' && newValue > prev) || (operation === '-' && newValue < prev)) {
+      if ((operation === "+" && newValue > prev) || (operation === "-" && newValue < prev)) {
         return newValue;
       }
 
@@ -169,7 +169,7 @@ export function useNumberFieldState(
 
   let increment = () => {
     setNumberValue((previousValue) => {
-      let newValue = safeNextStep('+', minValue);
+      let newValue = safeNextStep("+", minValue);
 
       // if we've arrived at the same value that was previously in the state, the
       // input value should be updated to match
@@ -185,7 +185,7 @@ export function useNumberFieldState(
 
   let decrement = () => {
     setNumberValue((previousValue) => {
-      let newValue = safeNextStep('-', maxValue);
+      let newValue = safeNextStep("-", maxValue);
 
       if (newValue === previousValue) {
         setInputValue(format(newValue));
@@ -214,7 +214,7 @@ export function useNumberFieldState(
       isNaN(parsedValue) ||
       isNaN(maxValue) ||
       snapValueToStep(parsedValue, minValue, maxValue, clampStep) > parsedValue ||
-      handleDecimalOperation('+', parsedValue, clampStep) <= maxValue
+      handleDecimalOperation("+", parsedValue, clampStep) <= maxValue
     )
   ), [isDisabled, isReadOnly, minValue, maxValue, clampStep, parsedValue]);
 
@@ -225,7 +225,7 @@ export function useNumberFieldState(
       isNaN(parsedValue) ||
       isNaN(minValue) ||
       snapValueToStep(parsedValue, minValue, maxValue, clampStep) < parsedValue ||
-      handleDecimalOperation('-', parsedValue, clampStep) >= minValue
+      handleDecimalOperation("-", parsedValue, clampStep) >= minValue
     )
   ), [isDisabled, isReadOnly, minValue, maxValue, clampStep, parsedValue]);
 
@@ -248,13 +248,13 @@ export function useNumberFieldState(
   };
 }
 
-function handleDecimalOperation(operator: '-' | '+', value1: number, value2: number): number {
-  let result = operator === '+' ? value1 + value2 : value1 - value2;
+function handleDecimalOperation(operator: "-" | "+", value1: number, value2: number): number {
+  let result = operator === "+" ? value1 + value2 : value1 - value2;
 
   // Check if we have decimals
   if (value1 % 1 !== 0 || value2 % 1 !== 0) {
-    const value1Decimal = value1.toString().split('.');
-    const value2Decimal = value2.toString().split('.');
+    const value1Decimal = value1.toString().split(".");
+    const value2Decimal = value2.toString().split(".");
     const value1DecimalLength = (value1Decimal[1] && value1Decimal[1].length) || 0;
     const value2DecimalLength = (value2Decimal[1] && value2Decimal[1].length) || 0;
     const multiplier = Math.pow(10, Math.max(value1DecimalLength, value2DecimalLength));
@@ -264,7 +264,7 @@ function handleDecimalOperation(operator: '-' | '+', value1: number, value2: num
     value2 = Math.round(value2 * multiplier);
 
     // Perform the operation on integers values to make sure we don't get a fancy decimal value
-    result = operator === '+' ? value1 + value2 : value1 - value2;
+    result = operator === "+" ? value1 + value2 : value1 - value2;
 
     // Transform the integer result back to decimal
     result /= multiplier;

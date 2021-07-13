@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {ValueBase} from '@react-types/shared';
+import {ValueBase} from "@react-types/shared";
 
 export interface PaginationBase extends ValueBase<number> {
   maxValue?: number,

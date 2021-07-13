@@ -10,36 +10,36 @@
  * governing permissions and limitations under the License.
  */
 
-import {Button} from '@react-spectrum/button';
-import {ButtonGroup} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {View} from '@react-spectrum/view';
+import {Button} from "@react-spectrum/button";
+import {ButtonGroup} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {View} from "@react-spectrum/view";
 
-storiesOf('ButtonGroup', module)
+storiesOf("ButtonGroup", module)
   .add(
-    'default',
+    "default",
     () => render({})
   )
   .add(
-    'align: center',
-    () => render({align: 'center'})
+    "align: center",
+    () => render({align: "center"})
   )
   .add(
-    'align: end',
-    () => render({align: 'end'})
+    "align: end",
+    () => render({align: "end"})
   )
   .add(
-    'orientation: vertical',
-    () => render({orientation: 'vertical'})
+    "orientation: vertical",
+    () => render({orientation: "vertical"})
   )
   .add(
-    'orientation: vertical, align: center',
-    () => render({orientation: 'vertical', align: 'center'})
+    "orientation: vertical, align: center",
+    () => render({orientation: "vertical", align: "center"})
   )
   .add(
-    'orientation: vertical, align: end',
-    () => render({orientation: 'vertical', align: 'end'})
+    "orientation: vertical, align: end",
+    () => render({orientation: "vertical", align: "end"})
   );
 
 function render(props) {

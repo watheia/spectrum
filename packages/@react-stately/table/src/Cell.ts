@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {CellProps} from '@react-types/table';
-import {PartialNode} from '@react-stately/collections';
-import {ReactElement} from 'react';
+import {CellProps} from "@react-types/table";
+import {PartialNode} from "@react-stately/collections";
+import {ReactElement} from "react";
 
 function Cell(props: CellProps): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -21,13 +21,13 @@ function Cell(props: CellProps): ReactElement { // eslint-disable-line @typescri
 Cell.getCollectionNode = function* getCollectionNode<T>(props: CellProps): Generator<PartialNode<T>> {
   let {children} = props;
 
-  let textValue = props.textValue || (typeof children === 'string' ? children : '') || props['aria-label'] || '';
+  let textValue = props.textValue || (typeof children === "string" ? children : "") || props["aria-label"] || "";
   yield {
-    type: 'cell',
+    type: "cell",
     props: props,
     rendered: children,
     textValue,
-    'aria-label': props['aria-label'],
+    "aria-label": props["aria-label"],
     hasChildNodes: false
   };
 };

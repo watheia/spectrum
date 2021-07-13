@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {FocusStrategy} from '@react-types/shared';
-import React, {HTMLAttributes, MutableRefObject, useContext} from 'react';
+import {FocusStrategy} from "@react-types/shared";
+import React, {HTMLAttributes, MutableRefObject, useContext} from "react";
 
 export interface MenuContextValue extends HTMLAttributes<HTMLElement> {
   onClose?: () => void,

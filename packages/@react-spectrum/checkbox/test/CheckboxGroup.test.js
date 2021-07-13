@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {Checkbox, CheckboxGroup} from '../';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {render, within} from '@testing-library/react';
-import {theme} from '@react-spectrum/theme-default';
-import userEvent from '@testing-library/user-event';
+import {Checkbox, CheckboxGroup} from "../";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {render, within} from "@testing-library/react";
+import {theme} from "@react-spectrum/theme-default";
+import userEvent from "@testing-library/user-event";
 
-describe('CheckboxGroup', () => {
-  it('handles defaults', () => {
+describe("CheckboxGroup", () => {
+  it("handles defaults", () => {
     let onChangeSpy = jest.fn();
     let {getByRole, getAllByRole, getByLabelText} = render(
       <Provider theme={theme}>
@@ -30,37 +30,37 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxGroup = getByRole('group', {exact: true});
-    let checkboxes = getAllByRole('checkbox');
+    let checkboxGroup = getByRole("group", {exact: true});
+    let checkboxes = getAllByRole("checkbox");
     expect(checkboxGroup).toBeInTheDocument();
     expect(checkboxes.length).toBe(3);
 
-    expect(checkboxes[0]).not.toHaveAttribute('name');
-    expect(checkboxes[1]).not.toHaveAttribute('name');
-    expect(checkboxes[2]).not.toHaveAttribute('name');
+    expect(checkboxes[0]).not.toHaveAttribute("name");
+    expect(checkboxes[1]).not.toHaveAttribute("name");
+    expect(checkboxes[2]).not.toHaveAttribute("name");
 
-    expect(checkboxes[0].value).toBe('dogs');
-    expect(checkboxes[1].value).toBe('cats');
-    expect(checkboxes[2].value).toBe('dragons');
+    expect(checkboxes[0].value).toBe("dogs");
+    expect(checkboxes[1].value).toBe("cats");
+    expect(checkboxes[2].value).toBe("dragons");
 
     expect(checkboxes[0].checked).toBe(false);
     expect(checkboxes[1].checked).toBe(false);
     expect(checkboxes[2].checked).toBe(false);
 
-    let dragons = getByLabelText('Dragons');
+    let dragons = getByLabelText("Dragons");
     userEvent.click(dragons);
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
-    expect(onChangeSpy).toHaveBeenCalledWith(['dragons']);
+    expect(onChangeSpy).toHaveBeenCalledWith(["dragons"]);
 
     expect(checkboxes[0].checked).toBe(false);
     expect(checkboxes[1].checked).toBe(false);
     expect(checkboxes[2].checked).toBe(true);
   });
 
-  it('can have a default value', () => {
+  it("can have a default value", () => {
     let {getByLabelText} = render(
       <Provider theme={theme}>
-        <CheckboxGroup label="Favorite Pet" value={['cats']}>
+        <CheckboxGroup label="Favorite Pet" value={["cats"]}>
           <Checkbox value="dogs">Dogs</Checkbox>
           <Checkbox value="cats">Cats</Checkbox>
           <Checkbox value="dragons">Dragons</Checkbox>
@@ -68,10 +68,10 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    expect(getByLabelText('Cats').checked).toBe(true);
+    expect(getByLabelText("Cats").checked).toBe(true);
   });
 
-  it('name can be controlled', () => {
+  it("name can be controlled", () => {
     let {getAllByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet" name="awesome-react-aria">
@@ -82,14 +82,14 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxes = getAllByRole('checkbox');
+    let checkboxes = getAllByRole("checkbox");
 
-    expect(checkboxes[0]).toHaveAttribute('name', 'awesome-react-aria');
-    expect(checkboxes[1]).toHaveAttribute('name', 'awesome-react-aria');
-    expect(checkboxes[2]).toHaveAttribute('name', 'awesome-react-aria');
+    expect(checkboxes[0]).toHaveAttribute("name", "awesome-react-aria");
+    expect(checkboxes[1]).toHaveAttribute("name", "awesome-react-aria");
+    expect(checkboxes[2]).toHaveAttribute("name", "awesome-react-aria");
   });
 
-  it('supports labeling', () => {
+  it("supports labeling", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet">
@@ -99,15 +99,15 @@ describe('CheckboxGroup', () => {
         </CheckboxGroup>
       </Provider>
     );
-    let checkboxGroup = getByRole('group', {exact: true});
+    let checkboxGroup = getByRole("group", {exact: true});
 
-    let labelId = checkboxGroup.getAttribute('aria-labelledby');
+    let labelId = checkboxGroup.getAttribute("aria-labelledby");
     expect(labelId).toBeDefined();
     let label = document.getElementById(labelId);
-    expect(label).toHaveTextContent('Favorite Pet');
+    expect(label).toHaveTextContent("Favorite Pet");
   });
 
-  it('supports aria-label', () => {
+  it("supports aria-label", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup aria-label="My Favorite Pet">
@@ -117,12 +117,12 @@ describe('CheckboxGroup', () => {
         </CheckboxGroup>
       </Provider>
     );
-    let checkboxGroup = getByRole('group', {exact: true});
+    let checkboxGroup = getByRole("group", {exact: true});
 
-    expect(checkboxGroup).toHaveAttribute('aria-label', 'My Favorite Pet');
+    expect(checkboxGroup).toHaveAttribute("aria-label", "My Favorite Pet");
   });
 
-  it('supports custom props', () => {
+  it("supports custom props", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet" data-testid="favorite-pet">
@@ -132,12 +132,12 @@ describe('CheckboxGroup', () => {
         </CheckboxGroup>
       </Provider>
     );
-    let checkboxGroup = getByRole('group', {exact: true});
+    let checkboxGroup = getByRole("group", {exact: true});
 
-    expect(checkboxGroup).toHaveAttribute('data-testid', 'favorite-pet');
+    expect(checkboxGroup).toHaveAttribute("data-testid", "favorite-pet");
   });
 
-  it('sets aria-disabled when isDisabled is true', () => {
+  it("sets aria-disabled when isDisabled is true", () => {
     let {getAllByRole, getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet" isDisabled>
@@ -148,16 +148,16 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxGroup = getByRole('group', {exact: true});
-    expect(checkboxGroup).toHaveAttribute('aria-disabled', 'true');
+    let checkboxGroup = getByRole("group", {exact: true});
+    expect(checkboxGroup).toHaveAttribute("aria-disabled", "true");
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).toHaveAttribute('disabled');
-    expect(checkboxes[1]).toHaveAttribute('disabled');
-    expect(checkboxes[2]).toHaveAttribute('disabled');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).toHaveAttribute("disabled");
+    expect(checkboxes[1]).toHaveAttribute("disabled");
+    expect(checkboxes[2]).toHaveAttribute("disabled");
   });
 
-  it('doesn\'t set aria-disabled by default', () => {
+  it("doesn't set aria-disabled by default", () => {
     let {getAllByRole, getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet">
@@ -168,16 +168,16 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxGroup = getByRole('group', {exact: true});
-    expect(checkboxGroup).not.toHaveAttribute('aria-disabled');
+    let checkboxGroup = getByRole("group", {exact: true});
+    expect(checkboxGroup).not.toHaveAttribute("aria-disabled");
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).not.toHaveAttribute('disabled');
-    expect(checkboxes[1]).not.toHaveAttribute('disabled');
-    expect(checkboxes[2]).not.toHaveAttribute('disabled');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).not.toHaveAttribute("disabled");
+    expect(checkboxes[1]).not.toHaveAttribute("disabled");
+    expect(checkboxes[2]).not.toHaveAttribute("disabled");
   });
 
-  it('doesn\'t set aria-disabled when isDisabled is false', () => {
+  it("doesn't set aria-disabled when isDisabled is false", () => {
     let {getAllByRole, getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet" isDisabled={false}>
@@ -188,13 +188,13 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxGroup = getByRole('group', {exact: true});
-    expect(checkboxGroup).not.toHaveAttribute('aria-disabled');
+    let checkboxGroup = getByRole("group", {exact: true});
+    expect(checkboxGroup).not.toHaveAttribute("aria-disabled");
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).not.toHaveAttribute('disabled');
-    expect(checkboxes[1]).not.toHaveAttribute('disabled');
-    expect(checkboxes[2]).not.toHaveAttribute('disabled');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).not.toHaveAttribute("disabled");
+    expect(checkboxes[1]).not.toHaveAttribute("disabled");
+    expect(checkboxes[2]).not.toHaveAttribute("disabled");
   });
 
   it('sets aria-readonly="true" on each checkbox', () => {
@@ -208,13 +208,13 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).toHaveAttribute('aria-readonly', 'true');
-    expect(checkboxes[1]).toHaveAttribute('aria-readonly', 'true');
-    expect(checkboxes[2]).toHaveAttribute('aria-readonly', 'true');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).toHaveAttribute("aria-readonly", "true");
+    expect(checkboxes[1]).toHaveAttribute("aria-readonly", "true");
+    expect(checkboxes[2]).toHaveAttribute("aria-readonly", "true");
   });
 
-  it('should not update state for readonly checkbox', () => {
+  it("should not update state for readonly checkbox", () => {
     let groupOnChangeSpy = jest.fn();
     let checkboxOnChangeSpy = jest.fn();
     let {getAllByRole, getByLabelText} = render(
@@ -227,8 +227,8 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    let dragons = getByLabelText('Dragons');
+    let checkboxes = getAllByRole("checkbox");
+    let dragons = getByLabelText("Dragons");
 
     userEvent.click(dragons);
 
@@ -237,7 +237,7 @@ describe('CheckboxGroup', () => {
     expect(checkboxes[2].checked).toBe(false);
   });
 
-  it('adds required to group label', () => {
+  it("adds required to group label", () => {
     let {getAllByRole, getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet" isRequired>
@@ -248,21 +248,21 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxGroup = getByRole('group', {exact: true});
-    let labelId = checkboxGroup.getAttribute('aria-labelledby');
+    let checkboxGroup = getByRole("group", {exact: true});
+    let labelId = checkboxGroup.getAttribute("aria-labelledby");
     let label = document.getElementById(labelId);
-    expect(label).toHaveTextContent('Favorite Pet');
+    expect(label).toHaveTextContent("Favorite Pet");
 
-    let necessityIndicator = within(label).getByRole('img');
-    expect(necessityIndicator).toHaveAttribute('aria-label', '(required)');
+    let necessityIndicator = within(label).getByRole("img");
+    expect(necessityIndicator).toHaveAttribute("aria-label", "(required)");
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).not.toHaveAttribute('required');
-    expect(checkboxes[1]).not.toHaveAttribute('required');
-    expect(checkboxes[2]).not.toHaveAttribute('required');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).not.toHaveAttribute("required");
+    expect(checkboxes[1]).not.toHaveAttribute("required");
+    expect(checkboxes[2]).not.toHaveAttribute("required");
   });
 
-  it('supports isRequired on individual checkboxes', () => {
+  it("supports isRequired on individual checkboxes", () => {
     let {getAllByRole, getByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Agree to the following" isRequired>
@@ -273,21 +273,21 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxGroup = getByRole('group', {exact: true});
-    let labelId = checkboxGroup.getAttribute('aria-labelledby');
+    let checkboxGroup = getByRole("group", {exact: true});
+    let labelId = checkboxGroup.getAttribute("aria-labelledby");
     let label = document.getElementById(labelId);
-    expect(label).toHaveTextContent('Agree to the following');
+    expect(label).toHaveTextContent("Agree to the following");
 
-    let necessityIndicator = within(label).getByRole('img');
-    expect(necessityIndicator).toHaveAttribute('aria-label', '(required)');
+    let necessityIndicator = within(label).getByRole("img");
+    expect(necessityIndicator).toHaveAttribute("aria-label", "(required)");
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).toHaveAttribute('required');
-    expect(checkboxes[1]).toHaveAttribute('required');
-    expect(checkboxes[2]).toHaveAttribute('required');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).toHaveAttribute("required");
+    expect(checkboxes[1]).toHaveAttribute("required");
+    expect(checkboxes[2]).toHaveAttribute("required");
   });
 
-  it('does not add aria-invalid to every checkbox by default', () => {
+  it("does not add aria-invalid to every checkbox by default", () => {
     let {getAllByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet" validationState="invalid">
@@ -298,13 +298,13 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).not.toHaveAttribute('aria-invalid');
-    expect(checkboxes[1]).not.toHaveAttribute('aria-invalid');
-    expect(checkboxes[2]).not.toHaveAttribute('aria-invalid');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).not.toHaveAttribute("aria-invalid");
+    expect(checkboxes[1]).not.toHaveAttribute("aria-invalid");
+    expect(checkboxes[2]).not.toHaveAttribute("aria-invalid");
   });
 
-  it('supports validationState on individual checkboxes', () => {
+  it("supports validationState on individual checkboxes", () => {
     let {getAllByRole} = render(
       <Provider theme={theme}>
         <CheckboxGroup label="Agree to the following">
@@ -315,15 +315,15 @@ describe('CheckboxGroup', () => {
       </Provider>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    expect(checkboxes[0]).toHaveAttribute('aria-invalid', 'true');
-    expect(checkboxes[1]).toHaveAttribute('aria-invalid', 'true');
-    expect(checkboxes[2]).not.toHaveAttribute('aria-invalid');
+    let checkboxes = getAllByRole("checkbox");
+    expect(checkboxes[0]).toHaveAttribute("aria-invalid", "true");
+    expect(checkboxes[1]).toHaveAttribute("aria-invalid", "true");
+    expect(checkboxes[2]).not.toHaveAttribute("aria-invalid");
   });
 
-  it.each(['isSelected', 'defaultSelected', 'isEmphasized'])('warns if %s is passed to an individual checkbox', (prop) => {
+  it.each(["isSelected", "defaultSelected", "isEmphasized"])("warns if %s is passed to an individual checkbox", (prop) => {
     let props = {[prop]: true};
-    let spy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    let spy = jest.spyOn(console, "warn").mockImplementation(() => {});
     render(
       <Provider theme={theme}>
         <CheckboxGroup label="Favorite Pet">

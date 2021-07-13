@@ -1,7 +1,7 @@
-import {GridCollection} from '@react-types/grid';
-import {Key, useEffect, useMemo} from 'react';
-import {MultipleSelection} from '@react-types/shared';
-import {SelectionManager, useMultipleSelectionState} from '@react-stately/selection';
+import {GridCollection} from "@react-types/grid";
+import {Key, useEffect, useMemo} from "react";
+import {MultipleSelection} from "@react-types/shared";
+import {SelectionManager, useMultipleSelectionState} from "@react-stately/selection";
 
 export interface GridState<T, C extends GridCollection<T>> {
   collection: C,
@@ -14,7 +14,7 @@ export interface GridState<T, C extends GridCollection<T>> {
 interface GridStateOptions<T, C extends GridCollection<T>> extends MultipleSelection {
   collection: C,
   disabledKeys?: Iterable<Key>,
-  focusMode?: 'row' | 'cell'
+  focusMode?: "row" | "cell"
 }
 
 /**
@@ -30,11 +30,11 @@ export function useGridState<T extends object, C extends GridCollection<T>>(prop
   let setFocusedKey = selectionState.setFocusedKey;
   selectionState.setFocusedKey = (key, child) => {
     // If focusMode is cell and an item is focused, focus a child cell instead.
-    if (focusMode === 'cell' && key != null) {
+    if (focusMode === "cell" && key != null) {
       let item = collection.getItem(key);
-      if (item?.type === 'item') {
+      if (item?.type === "item") {
         let children = [...item.childNodes];
-        if (child === 'last') {
+        if (child === "last") {
           key = children[children.length - 1]?.key;
         } else {
           key = children[0]?.key;

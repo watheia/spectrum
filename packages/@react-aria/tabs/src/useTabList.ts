@@ -10,14 +10,14 @@
 * governing permissions and limitations under the License.
 */
 
-import {AriaTabListProps} from '@react-types/tabs';
-import {HTMLAttributes, RefObject, useMemo} from 'react';
-import {mergeProps, useId, useLabels} from '@react-aria/utils';
-import {TabListState} from '@react-stately/tabs';
-import {tabsIds} from './utils';
-import {TabsKeyboardDelegate} from './TabsKeyboardDelegate';
-import {useLocale} from '@react-aria/i18n';
-import {useSelectableCollection} from '@react-aria/selection';
+import {AriaTabListProps} from "@react-types/tabs";
+import {HTMLAttributes, RefObject, useMemo} from "react";
+import {mergeProps, useId, useLabels} from "@react-aria/utils";
+import {TabListState} from "@react-stately/tabs";
+import {tabsIds} from "./utils";
+import {TabsKeyboardDelegate} from "./TabsKeyboardDelegate";
+import {useLocale} from "@react-aria/i18n";
+import {useSelectableCollection} from "@react-aria/selection";
 
 interface TabListAria {
   /** Props for the tablist container. */
@@ -31,8 +31,8 @@ interface TabListAria {
  */
 export function useTabList<T>(props: AriaTabListProps<T>, state: TabListState<T>, ref: RefObject<HTMLElement>): TabListAria {
   let {
-    orientation = 'horizontal',
-    keyboardActivation = 'automatic'
+    orientation = "horizontal",
+    keyboardActivation = "automatic"
   } = props;
   let {
     collection,
@@ -50,7 +50,7 @@ export function useTabList<T>(props: AriaTabListProps<T>, state: TabListState<T>
     ref,
     selectionManager: manager,
     keyboardDelegate: delegate,
-    selectOnFocus: keyboardActivation === 'automatic',
+    selectOnFocus: keyboardActivation === "automatic",
     disallowEmptySelection: true
   });
 
@@ -63,8 +63,8 @@ export function useTabList<T>(props: AriaTabListProps<T>, state: TabListState<T>
   return {
     tabListProps: {
       ...mergeProps(collectionProps, tabListLabelProps),
-      role: 'tablist',
-      'aria-orientation': orientation,
+      role: "tablist",
+      "aria-orientation": orientation,
       tabIndex: undefined
     }
   };

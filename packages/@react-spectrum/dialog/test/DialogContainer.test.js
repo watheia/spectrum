@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render, within} from '@testing-library/react';
-import {DialogContainerExample, MenuExample} from '../stories/DialogContainerExamples';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {theme} from '@react-spectrum/theme-default';
-import {triggerPress} from '@react-spectrum/test-utils';
+import {act, fireEvent, render, within} from "@testing-library/react";
+import {DialogContainerExample, MenuExample} from "../stories/DialogContainerExamples";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {theme} from "@react-spectrum/theme-default";
+import {triggerPress} from "@react-spectrum/test-utils";
 
-describe('DialogContainer', function () {
+describe("DialogContainer", function () {
   beforeAll(() => {
     jest.useFakeTimers();
   });
@@ -27,7 +27,7 @@ describe('DialogContainer', function () {
   });
 
   beforeEach(() => {
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+    jest.spyOn(window, "requestAnimationFrame").mockImplementation(cb => cb());
   });
 
   afterEach(() => {
@@ -35,148 +35,148 @@ describe('DialogContainer', function () {
     window.requestAnimationFrame.mockRestore();
   });
 
-  it('should open and close a dialog based on controlled state', function () {
+  it("should open and close a dialog based on controlled state", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <DialogContainerExample />
       </Provider>
     );
 
-    let button = getByRole('button');
-    expect(() => getByRole('dialog')).toThrow();
+    let button = getByRole("button");
+    expect(() => getByRole("dialog")).toThrow();
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(document.activeElement).toBe(dialog);
 
-    button = within(dialog).getByText('Confirm');
+    button = within(dialog).getByText("Confirm");
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    expect(() => getByRole('dialog')).toThrow();
+    expect(() => getByRole("dialog")).toThrow();
   });
 
-  it('should support closing a dialog via the Escape key', function () {
+  it("should support closing a dialog via the Escape key", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <DialogContainerExample />
       </Provider>
     );
 
-    let button = getByRole('button');
-    expect(() => getByRole('dialog')).toThrow();
+    let button = getByRole("button");
+    expect(() => getByRole("dialog")).toThrow();
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(document.activeElement).toBe(dialog);
 
-    fireEvent.keyDown(dialog, {key: 'Escape'});
-    fireEvent.keyUp(dialog, {key: 'Escape'});
+    fireEvent.keyDown(dialog, {key: "Escape"});
+    fireEvent.keyUp(dialog, {key: "Escape"});
     act(() => {jest.runAllTimers();});
 
-    expect(() => getByRole('dialog')).toThrow();
+    expect(() => getByRole("dialog")).toThrow();
   });
 
-  it('should not close a dialog via the Escape key if isKeyboardDismissDisabled', function () {
+  it("should not close a dialog via the Escape key if isKeyboardDismissDisabled", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <DialogContainerExample isKeyboardDismissDisabled />
       </Provider>
     );
 
-    let button = getByRole('button');
-    expect(() => getByRole('dialog')).toThrow();
+    let button = getByRole("button");
+    expect(() => getByRole("dialog")).toThrow();
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(document.activeElement).toBe(dialog);
 
-    fireEvent.keyDown(dialog, {key: 'Escape'});
-    fireEvent.keyUp(dialog, {key: 'Escape'});
+    fireEvent.keyDown(dialog, {key: "Escape"});
+    fireEvent.keyUp(dialog, {key: "Escape"});
     act(() => {jest.runAllTimers();});
 
-    expect(getByRole('dialog')).toBeVisible();
+    expect(getByRole("dialog")).toBeVisible();
   });
 
-  it('should not close when clicking outside the dialog by default', function () {
+  it("should not close when clicking outside the dialog by default", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <DialogContainerExample />
       </Provider>
     );
 
-    let button = getByRole('button');
-    expect(() => getByRole('dialog')).toThrow();
+    let button = getByRole("button");
+    expect(() => getByRole("dialog")).toThrow();
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    expect(getByRole('dialog')).toBeVisible();
+    expect(getByRole("dialog")).toBeVisible();
 
     triggerPress(document.body);
     act(() => {jest.runAllTimers();});
 
-    expect(getByRole('dialog')).toBeVisible();
+    expect(getByRole("dialog")).toBeVisible();
   });
 
-  it('should close when clicking outside the dialog when isDismissible', function () {
+  it("should close when clicking outside the dialog when isDismissible", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <DialogContainerExample isDismissable />
       </Provider>
     );
 
-    let button = getByRole('button');
-    expect(() => getByRole('dialog')).toThrow();
+    let button = getByRole("button");
+    expect(() => getByRole("dialog")).toThrow();
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    expect(getByRole('dialog')).toBeVisible();
+    expect(getByRole("dialog")).toBeVisible();
 
     triggerPress(document.body);
     act(() => {jest.runAllTimers();});
 
-    expect(() => getByRole('dialog')).toThrow();
+    expect(() => getByRole("dialog")).toThrow();
   });
 
-  it('should not close the dialog when a trigger unmounts', function () {
+  it("should not close the dialog when a trigger unmounts", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <MenuExample />
       </Provider>
     );
 
-    let button = getByRole('button');
-    expect(() => getByRole('dialog')).toThrow();
+    let button = getByRole("button");
+    expect(() => getByRole("dialog")).toThrow();
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    expect(() => getByRole('dialog')).toThrow();
+    expect(() => getByRole("dialog")).toThrow();
 
-    let menu = getByRole('menu');
-    let menuitem = within(menu).getByRole('menuitem');
+    let menu = getByRole("menu");
+    let menuitem = within(menu).getByRole("menuitem");
 
     triggerPress(menuitem);
     act(() => {jest.runAllTimers();});
 
-    expect(() => getByRole('menu')).toThrow();
-    expect(() => getByRole('menuitem')).toThrow();
+    expect(() => getByRole("menu")).toThrow();
+    expect(() => getByRole("menuitem")).toThrow();
 
-    let dialog = getByRole('dialog');
-    button = within(dialog).getByText('Confirm');
+    let dialog = getByRole("dialog");
+    button = within(dialog).getByText("Confirm");
 
     triggerPress(button);
     act(() => {jest.runAllTimers();});
 
-    expect(() => getByRole('dialog')).toThrow();
+    expect(() => getByRole("dialog")).toThrow();
   });
 });

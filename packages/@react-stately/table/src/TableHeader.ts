@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {PartialNode} from '@react-stately/collections';
-import React, {ReactElement} from 'react';
-import {TableHeaderProps} from '@react-types/table';
+import {PartialNode} from "@react-stately/collections";
+import React, {ReactElement} from "react";
+import {TableHeaderProps} from "@react-types/table";
 
 function TableHeader<T>(props: TableHeaderProps<T>): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -20,14 +20,14 @@ function TableHeader<T>(props: TableHeaderProps<T>): ReactElement { // eslint-di
 
 TableHeader.getCollectionNode = function* getCollectionNode<T>(props: TableHeaderProps<T>): Generator<PartialNode<T>, void, any> {
   let {children, columns} = props;
-  if (typeof children === 'function') {
+  if (typeof children === "function") {
     if (!columns) {
-      throw new Error('props.children was a function but props.columns is missing');
+      throw new Error("props.children was a function but props.columns is missing");
     }
 
     for (let column of columns) {
       yield {
-        type: 'column',
+        type: "column",
         value: column,
         renderer: children
       };
@@ -36,7 +36,7 @@ TableHeader.getCollectionNode = function* getCollectionNode<T>(props: TableHeade
     let columns: PartialNode<T>[] = [];
     React.Children.forEach(children, column => {
       columns.push({
-        type: 'column',
+        type: "column",
         element: column
       });
     });

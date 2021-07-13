@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {useCallback, useRef, useState} from 'react';
+import {useCallback, useRef, useState} from "react";
 
 export function useControlledState<T>(
   value: T,
@@ -24,7 +24,7 @@ export function useControlledState<T>(
   // Internal state reference for useCallback
   let stateRef = useRef(stateValue);
   if (wasControlled !== isControlled) {
-    console.warn(`WARN: A component changed from ${wasControlled ? 'controlled' : 'uncontrolled'} to ${isControlled ? 'controlled' : 'uncontrolled'}.`);
+    console.warn(`WARN: A component changed from ${wasControlled ? "controlled" : "uncontrolled"} to ${isControlled ? "controlled" : "uncontrolled"}.`);
   }
 
   ref.current = isControlled;
@@ -41,7 +41,7 @@ export function useControlledState<T>(
       }
     };
 
-    if (typeof value === 'function') {
+    if (typeof value === "function") {
       // this supports functional updates https://reactjs.org/docs/hooks-reference.html#functional-updates
       // when someone using useControlledState calls setControlledState(myFunc)
       // this will call our useState setState with a function as well which invokes myFunc and calls onChange with the value from myFunc

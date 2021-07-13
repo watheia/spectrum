@@ -10,32 +10,32 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {Tag, TagGroup} from '../src';
+import {action} from "@storybook/addon-actions";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {Tag, TagGroup} from "../src";
 
-storiesOf('TagGroup', module)
+storiesOf("TagGroup", module)
   .add(
-    'default',
+    "default",
     () => render({})
   ).add(
-    'onRemove',
+    "onRemove",
     () => renderWithRemovableTags({
-      onRemove: action('onRemove')
+      onRemove: action("onRemove")
     })
   ).add(
-    'is Disabled',
+    "is Disabled",
     () => render({
       isDisabled: true
     })
   ).add(
-    'isReadOnly',
+    "isReadOnly",
     () => renderWithRemovableTags({
       isReadOnly: true
     })
   ).add(
-    'with announcing',
+    "with announcing",
     () => (
       <WithAnnouncing />
     )
@@ -62,12 +62,12 @@ function renderWithRemovableTags(props: any = {}) {
 }
 
 function WithAnnouncing() {
-  let [tags, setTags] = useState(['Tag']);
+  let [tags, setTags] = useState(["Tag"]);
 
   function handleKeyDown(e) {
-    if (e.ctrlKey && e.key === 'd') {
+    if (e.ctrlKey && e.key === "d") {
       e.preventDefault();
-      setTags([...tags, 'New Tag']);
+      setTags([...tags, "New Tag"]);
     }
   }
   return (

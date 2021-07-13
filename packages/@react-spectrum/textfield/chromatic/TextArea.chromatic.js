@@ -10,75 +10,75 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from '@react-spectrum/layout';
-import Info from '@spectrum-icons/workflow/Info';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {TextArea} from '../';
+import {Flex} from "@react-spectrum/layout";
+import Info from "@spectrum-icons/workflow/Info";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {TextArea} from "../";
 
-storiesOf('TextArea', module)
+storiesOf("TextArea", module)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'value: Test (controlled)',
-    () => render({value: 'Test'})
+    "value: Test (controlled)",
+    () => render({value: "Test"})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid'})
+    "validationState: invalid",
+    () => render({validationState: "invalid"})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid'})
+    "validationState: valid",
+    () => render({validationState: "valid"})
   )
   .add(
-    'isReadOnly: true',
+    "isReadOnly: true",
     () => render({isReadOnly: true})
   )
   .add(
-    'isReadOnly: true, value: read only value',
-    () => render({value: 'Read only value', isReadOnly: true})
+    "isReadOnly: true, value: read only value",
+    () => render({value: "Read only value", isReadOnly: true})
   )
   .add(
-    'isRequired: true',
+    "isRequired: true",
     () => render({isRequired: true})
   )
   .add(
-    'isRequired: true, necessityIndicator: label',
-    () => render({isRequired: true, necessityIndicator: 'label'}, false)
+    "isRequired: true, necessityIndicator: label",
+    () => render({isRequired: true, necessityIndicator: "label"}, false)
   )
   .add(
-    'isRequired: false, necessityIndicator: label',
-    () => render({isRequired: false, necessityIndicator: 'label'}, false)
+    "isRequired: false, necessityIndicator: label",
+    () => render({isRequired: false, necessityIndicator: "label"}, false)
   )
   .add(
-    'icon: Info',
+    "icon: Info",
     () => render({icon: <Info />})
   )
   .add(
-    'icon: Info, validationState: invalid',
-    () => render({icon: <Info />, validationState: 'invalid'})
+    "icon: Info, validationState: invalid",
+    () => render({icon: <Info />, validationState: "invalid"})
   )
   .add(
-    'labelAlign: end',
-    () => render({labelAlign: 'end'}, false)
+    "labelAlign: end",
+    () => render({labelAlign: "end"}, false)
   )
   .add(
-    'labelPosition: side',
-    () => render({labelPosition: 'side'}, false)
+    "labelPosition: side",
+    () => render({labelPosition: "side"}, false)
   )
   .add(
-    'labelAlign: end, labelPosition: side',
-    () => render({labelAlign: 'end', labelPosition: 'side'}, false)
+    "labelAlign: end, labelPosition: side",
+    () => render({labelAlign: "end", labelPosition: "side"}, false)
   )
   .add(
-    'no visible label',
-    () => render({label: null, 'aria-label': 'Street address'}, false)
+    "no visible label",
+    () => render({label: null, "aria-label": "Street address"}, false)
   )
-  .add('custom width',
-    () => render({icon: <Info />, validationState: 'invalid', width: 275})
+  .add("custom width",
+    () => render({icon: <Info />, validationState: "invalid", width: 275})
   );
 
 // allow some stories where disabled styles probably won't affect anything to turn that off, mostly to reduce clutter

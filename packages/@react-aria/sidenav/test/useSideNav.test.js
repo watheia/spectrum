@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {ListLayout} from '@react-stately/layout';
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useSideNav} from '../';
+import {ListLayout} from "@react-stately/layout";
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useSideNav} from "../";
 
-describe('useSideNav', function () {
+describe("useSideNav", function () {
   let mockState = {selectionManager: {}};
   let mockLayout = new ListLayout({
     rowHeight: 40
@@ -26,37 +26,37 @@ describe('useSideNav', function () {
     return result.current;
   };
 
-  it('returns default aria for navigation', function () {
+  it("returns default aria for navigation", function () {
     let {navProps, listProps} = renderSideNavHook({});
     expect(navProps).toBeDefined();
     expect(navProps.id).toBeDefined();
-    expect(navProps.role).toBe('navigation');
+    expect(navProps.role).toBe("navigation");
     expect(listProps).toBeDefined();
-    expect(listProps.role).toBe('list');
-    expect(typeof listProps.onKeyDownCapture).toBe('function');
-    expect(typeof listProps.onFocus).toBe('function');
-    expect(typeof listProps.onBlur).toBe('function');
+    expect(listProps.role).toBe("list");
+    expect(typeof listProps.onKeyDownCapture).toBe("function");
+    expect(typeof listProps.onFocus).toBe("function");
+    expect(typeof listProps.onBlur).toBe("function");
   });
 
-  it('handles aria props', function () {
+  it("handles aria props", function () {
     let props = {
-      'aria-label': 'test-aria-label',
-      'aria-labelledby': 'test-aria-labelledby',
-      id: 'test-id'
+      "aria-label": "test-aria-label",
+      "aria-labelledby": "test-aria-labelledby",
+      id: "test-id"
     };
 
     let {navProps, listProps} = renderSideNavHook(props);
     expect(navProps).toBeDefined();
-    expect(navProps.id).toBe('test-id');
-    expect(navProps.role).toBe('navigation');
-    expect(navProps.role).toBe('navigation');
-    expect(navProps['aria-label']).toBe('test-aria-label');
-    expect(navProps['aria-labelledby']).toBe('test-aria-labelledby');
+    expect(navProps.id).toBe("test-id");
+    expect(navProps.role).toBe("navigation");
+    expect(navProps.role).toBe("navigation");
+    expect(navProps["aria-label"]).toBe("test-aria-label");
+    expect(navProps["aria-labelledby"]).toBe("test-aria-labelledby");
     expect(listProps).toBeDefined();
-    expect(listProps.role).toBe('list');
-    expect(listProps['aria-labelledby']).toBe('test-aria-labelledby');
-    expect(typeof listProps.onKeyDownCapture).toBe('function');
-    expect(typeof listProps.onFocus).toBe('function');
-    expect(typeof listProps.onBlur).toBe('function');
+    expect(listProps.role).toBe("list");
+    expect(listProps["aria-labelledby"]).toBe("test-aria-labelledby");
+    expect(typeof listProps.onKeyDownCapture).toBe("function");
+    expect(typeof listProps.onFocus).toBe("function");
+    expect(typeof listProps.onBlur).toBe("function");
   });
 });

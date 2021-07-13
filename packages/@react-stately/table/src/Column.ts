@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {CollectionBuilderContext} from './useTableState';
-import {ColumnProps} from '@react-types/table';
-import {GridNode} from '@react-types/grid';
-import {PartialNode} from '@react-stately/collections';
-import React, {ReactElement} from 'react';
+import {CollectionBuilderContext} from "./useTableState";
+import {ColumnProps} from "@react-types/table";
+import {GridNode} from "@react-types/grid";
+import {PartialNode} from "@react-stately/collections";
+import React, {ReactElement} from "react";
 
 function Column<T>(props: ColumnProps<T>): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -23,7 +23,7 @@ function Column<T>(props: ColumnProps<T>): ReactElement { // eslint-disable-line
 Column.getCollectionNode = function* getCollectionNode<T>(props: ColumnProps<T>, context: CollectionBuilderContext<T>): Generator<PartialNode<T>, void, GridNode<T>[]> {
   let {title, children, childColumns} = props;
   let fullNodes = yield {
-    type: 'column',
+    type: "column",
     hasChildNodes: !!childColumns || (title && React.Children.count(children) > 0),
     rendered: title || children,
     props,
@@ -31,7 +31,7 @@ Column.getCollectionNode = function* getCollectionNode<T>(props: ColumnProps<T>,
       if (childColumns) {
         for (let child of childColumns) {
           yield {
-            type: 'column',
+            type: "column",
             value: child
           };
         }
@@ -39,7 +39,7 @@ Column.getCollectionNode = function* getCollectionNode<T>(props: ColumnProps<T>,
         let childColumns: PartialNode<T>[] = [];
         React.Children.forEach(children, child => {
           childColumns.push({
-            type: 'column',
+            type: "column",
             element: child as ReactElement<ColumnProps<T>>
           });
         });

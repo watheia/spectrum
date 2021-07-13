@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
-import AlertMedium from '@spectrum-icons/ui/AlertMedium';
-import CheckmarkMedium from '@spectrum-icons/ui/CheckmarkMedium';
+import AlertMedium from "@spectrum-icons/ui/AlertMedium";
+import CheckmarkMedium from "@spectrum-icons/ui/CheckmarkMedium";
 import {
   classNames,
   createFocusableRef,
   useStyleProps
-} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {Label} from '@react-spectrum/label';
-import {LabelPosition, PressEvents} from '@react-types/shared';
-import labelStyles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
-import {mergeProps} from '@react-aria/utils';
-import React, {cloneElement, forwardRef, InputHTMLAttributes, LabelHTMLAttributes, ReactElement, Ref, RefObject, TextareaHTMLAttributes, useImperativeHandle, useRef} from 'react';
-import {SpectrumTextFieldProps, TextFieldRef} from '@react-types/textfield';
-import styles from '@adobe/spectrum-css-temp/components/textfield/vars.css';
-import {useFormProps} from '@react-spectrum/form';
-import {useHover} from '@react-aria/interactions';
-import {useProviderProps} from '@react-spectrum/provider';
+} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {Label} from "@react-spectrum/label";
+import {LabelPosition, PressEvents} from "@react-types/shared";
+import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
+import {mergeProps} from "@react-aria/utils";
+import React, {cloneElement, forwardRef, InputHTMLAttributes, LabelHTMLAttributes, ReactElement, Ref, RefObject, TextareaHTMLAttributes, useImperativeHandle, useRef} from "react";
+import {SpectrumTextFieldProps, TextFieldRef} from "@react-types/textfield";
+import styles from "@adobe/spectrum-css-temp/components/textfield/vars.css";
+import {useFormProps} from "@react-spectrum/form";
+import {useHover} from "@react-aria/interactions";
+import {useProviderProps} from "@react-spectrum/provider";
 
 interface TextFieldBaseProps extends SpectrumTextFieldProps, PressEvents {
   wrapperChildren?: ReactElement | ReactElement[],
@@ -46,7 +46,7 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
   props = useFormProps(props);
   let {
     label,
-    labelPosition = 'top' as LabelPosition,
+    labelPosition = "top" as LabelPosition,
     labelAlign,
     isRequired,
     necessityIndicator,
@@ -85,19 +85,19 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
   }));
 
   let {styleProps} = useStyleProps(otherProps);
-  let ElementType: React.ElementType = multiLine ? 'textarea' : 'input';
-  let isInvalid = validationState === 'invalid';
+  let ElementType: React.ElementType = multiLine ? "textarea" : "input";
+  let isInvalid = validationState === "invalid";
 
   if (icon) {
     let UNSAFE_className = classNames(
       styles,
       icon.props && icon.props.UNSAFE_className,
-      'spectrum-Textfield-icon'
+      "spectrum-Textfield-icon"
     );
 
     icon = cloneElement(icon, {
       UNSAFE_className,
-      size: 'S'
+      size: "S"
     });
   }
 
@@ -105,7 +105,7 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
   let validation = cloneElement(validationIcon, {
     UNSAFE_className: classNames(
       styles,
-      'spectrum-Textfield-validationIcon',
+      "spectrum-Textfield-validationIcon",
       validationIconClassName
     )
   });
@@ -115,17 +115,17 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
       className={
         classNames(
           styles,
-          'spectrum-Textfield',
+          "spectrum-Textfield",
           {
-            'spectrum-Textfield--invalid': isInvalid,
-            'spectrum-Textfield--valid': validationState === 'valid',
-            'spectrum-Textfield--loadable': loadingIndicator,
-            'spectrum-Textfield--quiet': isQuiet,
-            'spectrum-Textfield--multiline': multiLine
+            "spectrum-Textfield--invalid": isInvalid,
+            "spectrum-Textfield--valid": validationState === "valid",
+            "spectrum-Textfield--loadable": loadingIndicator,
+            "spectrum-Textfield--quiet": isQuiet,
+            "spectrum-Textfield--multiline": multiLine
           }
         )
       }>
-      <FocusRing focusRingClass={classNames(styles, 'focus-ring')} isTextInput autoFocus={autoFocus}>
+      <FocusRing focusRingClass={classNames(styles, "focus-ring")} isTextInput autoFocus={autoFocus}>
         <ElementType
           {...mergeProps(inputProps, hoverProps)}
           ref={inputRef as any}
@@ -133,10 +133,10 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
           className={
             classNames(
               styles,
-              'spectrum-Textfield-input',
+              "spectrum-Textfield-input",
               {
-                'spectrum-Textfield-inputIcon': icon,
-                'is-hovered': isHovered
+                "spectrum-Textfield-inputIcon": icon,
+                "is-hovered": isHovered
               },
               inputClassName
             )
@@ -152,10 +152,10 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
   if (label) {
     let labelWrapperClass = classNames(
       labelStyles,
-      'spectrum-Field',
+      "spectrum-Field",
       {
-        'spectrum-Field--positionTop': labelPosition === 'top',
-        'spectrum-Field--positionSide': labelPosition === 'side'
+        "spectrum-Field--positionTop": labelPosition === "top",
+        "spectrum-Field--positionSide": labelPosition === "side"
       },
       styleProps.className
     );
@@ -163,9 +163,9 @@ function TextFieldBase(props: TextFieldBaseProps, ref: Ref<TextFieldRef>) {
     textField = React.cloneElement(textField, mergeProps(textField.props, {
       className: classNames(
         labelStyles,
-        'spectrum-Field-field',
+        "spectrum-Field-field",
         {
-          'spectrum-Field-field--multiline': multiLine
+          "spectrum-Field-field--multiline": multiLine
         }
       )
     }));

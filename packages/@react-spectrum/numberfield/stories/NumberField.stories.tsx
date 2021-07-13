@@ -10,223 +10,223 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {chain} from '@react-aria/utils';
-import {Flex} from '@react-spectrum/layout';
-import {Form} from '@react-spectrum/form';
-import {Item, Picker} from '@react-spectrum/picker';
-import {NumberField} from '../src';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {chain} from "@react-aria/utils";
+import {Flex} from "@react-spectrum/layout";
+import {Form} from "@react-spectrum/form";
+import {Item, Picker} from "@react-spectrum/picker";
+import {NumberField} from "../src";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('NumberField', module)
-  .addParameters({providerSwitcher: {status: 'notice'}})
+storiesOf("NumberField", module)
+  .addParameters({providerSwitcher: {status: "notice"}})
   .addDecorator(story => (
     <ErrorBoundary>{story()}</ErrorBoundary>
   ))
   .add(
-    'default',
+    "default",
     () => render({})
   )
   .add(
-    'defaultValue: 10',
+    "defaultValue: 10",
     () => render({defaultValue: 10})
   )
   .add(
-    'value: 10',
+    "value: 10",
     () => render({value: 10})
   )
   .add(
-    'maximumFractionDigits = 0',
+    "maximumFractionDigits = 0",
     () => render({formatOptions: {maximumFractionDigits: 0}})
   )
   .add(
-    'currency',
-    () => render({formatOptions: {style: 'currency', currency: 'EUR'}, label: 'Price'})
+    "currency",
+    () => render({formatOptions: {style: "currency", currency: "EUR"}, label: "Price"})
   )
   .add(
-    'percent',
-    () => render({formatOptions: {style: 'percent'}, label: 'Tax'})
+    "percent",
+    () => render({formatOptions: {style: "percent"}, label: "Tax"})
   )
   .add(
-    'percent min = 2 max = 2 fraction digits',
-    () => render({formatOptions: {style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2}, label: 'Tax'})
+    "percent min = 2 max = 2 fraction digits",
+    () => render({formatOptions: {style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2}, label: "Tax"})
   )
   .add(
-    'percent min = 2 max = 3 fraction digits',
-    () => render({formatOptions: {style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 3}, label: 'Tax'})
+    "percent min = 2 max = 3 fraction digits",
+    () => render({formatOptions: {style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 3}, label: "Tax"})
   )
   .add(
-    'minValue = 0, 0 fraction digits',
+    "minValue = 0, 0 fraction digits",
     () => render({minValue: 0, formatOptions: {maximumFractionDigits: 0}})
   )
   .add(
-    'percent using sign',
-    () => render({formatOptions: {style: 'percent', signDisplay: 'always'}, label: 'Tax'})
+    "percent using sign",
+    () => render({formatOptions: {style: "percent", signDisplay: "always"}, label: "Tax"})
   )
   .add(
-    'disabled',
+    "disabled",
     () => render({isDisabled: true})
   )
   .add(
-    'readonly',
+    "readonly",
     () => render({defaultValue: 10, isReadOnly: true})
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'quiet disabled',
+    "quiet disabled",
     () => render({isQuiet: true, isDisabled: true, defaultValue: 10})
   )
   .add(
-    'quiet readonly',
+    "quiet readonly",
     () => render({isQuiet: true, isReadOnly: true, defaultValue: 10})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid'})
+    "validationState: invalid",
+    () => render({validationState: "invalid"})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid'})
+    "validationState: valid",
+    () => render({validationState: "valid"})
   )
   .add(
-    'validationState: invalid, isQuiet',
-    () => render({validationState: 'invalid', isQuiet: true})
+    "validationState: invalid, isQuiet",
+    () => render({validationState: "invalid", isQuiet: true})
   )
   .add(
-    'validationState: valid, isQuiet',
-    () => render({validationState: 'valid', isQuiet: true})
+    "validationState: valid, isQuiet",
+    () => render({validationState: "valid", isQuiet: true})
   )
   .add(
-    'minValue = 0, maxValue = 20',
+    "minValue = 0, maxValue = 20",
     () => render({minValue: 0, maxValue: 20})
   )
   .add(
-    'minValue = 0, maxValue = 20, quiet',
+    "minValue = 0, maxValue = 20, quiet",
     () => render({isQuiet: true, minValue: 0, maxValue: 20})
   )
   .add(
-    'minValue = -50, maxValue = -20',
+    "minValue = -50, maxValue = -20",
     () => render({minValue: -50, maxValue: -20})
   )
   .add(
-    'minValue = 20, maxValue = 50',
+    "minValue = 20, maxValue = 50",
     () => render({minValue: 20, maxValue: 50})
   )
   .add(
-    'minValue = 0, defaultValue = 0',
+    "minValue = 0, defaultValue = 0",
     () => render({minValue: 0, defaultValue: 0})
   )
   .add(
-    'step = 5',
+    "step = 5",
     () => render({step: 5})
   )
   .add(
-    'step = 3 with min = 2, max = 21',
+    "step = 3 with min = 2, max = 21",
     () => render({step: 3, minValue: 2, maxValue: 21})
   )
   .add(
-    'autoFocus',
+    "autoFocus",
     () => render({autoFocus: true})
   )
   .add(
-    'hideStepper',
+    "hideStepper",
     () => render({hideStepper: true})
   )
   .add(
-    'isQuiet, hideStepper',
+    "isQuiet, hideStepper",
     () => render({isQuiet: true, hideStepper: true})
   )
   .add(
-    'required',
+    "required",
     () => render({isRequired: true})
   )
   .add(
-    'optional',
-    () => render({necessityIndicator: 'label'})
+    "optional",
+    () => render({necessityIndicator: "label"})
   )
   .add(
-    'required with label',
-    () => render({isRequired: true, necessityIndicator: 'label'})
+    "required with label",
+    () => render({isRequired: true, necessityIndicator: "label"})
   )
   .add(
-    'label top end',
-    () => render({isRequired: true, labelPosition: 'top', labelAlign: 'end'})
+    "label top end",
+    () => render({isRequired: true, labelPosition: "top", labelAlign: "end"})
   )
   .add(
-    'label side',
-    () => render({isRequired: true, labelPosition: 'side'})
+    "label side",
+    () => render({isRequired: true, labelPosition: "side"})
   )
   .add(
-    'no visible label',
-    () => renderNoLabel({isRequired: true, 'aria-label': 'Width'})
+    "no visible label",
+    () => renderNoLabel({isRequired: true, "aria-label": "Width"})
   )
   .add(
-    'quiet no visible label',
-    () => renderNoLabel({isQuiet: true, isRequired: true, 'aria-label': 'Width'})
+    "quiet no visible label",
+    () => renderNoLabel({isQuiet: true, isRequired: true, "aria-label": "Width"})
   )
   .add(
-    'quiet no visible label hidestepper',
-    () => renderNoLabel({hideStepper: true, isQuiet: true, isRequired: true, 'aria-label': 'Width'})
+    "quiet no visible label hidestepper",
+    () => renderNoLabel({hideStepper: true, isQuiet: true, isRequired: true, "aria-label": "Width"})
   )
   .add(
-    'aria-labelledby',
+    "aria-labelledby",
     () => (
       <>
         <label htmlFor="numberfield" id="label">Width</label>
-        {renderNoLabel({isRequired: true, id: 'numberfield', 'aria-labelledby': 'label'})}
+        {renderNoLabel({isRequired: true, id: "numberfield", "aria-labelledby": "label"})}
       </>
     )
   )
   .add(
-    'custom width',
-    () => render({width: 'size-3000'})
+    "custom width",
+    () => render({width: "size-3000"})
   )
   .add(
-    'quiet custom width',
-    () => render({isQuiet: true, width: 'size-3000'})
+    "quiet custom width",
+    () => render({isQuiet: true, width: "size-3000"})
   )
   .add(
-    'custom width no visible label',
-    () => renderNoLabel({width: 'size-3000', isRequired: true, 'aria-label': 'Width'})
+    "custom width no visible label",
+    () => renderNoLabel({width: "size-3000", isRequired: true, "aria-label": "Width"})
   )
   .add(
-    'custom width, labelPosition=side',
-    () => render({width: 'size-3000', labelPosition: 'side'})
+    "custom width, labelPosition=side",
+    () => render({width: "size-3000", labelPosition: "side"})
   )
   .add(
-    'controlled',
+    "controlled",
     () => <NumberFieldControlled />
   )
   .add(
-    'currency switcher',
+    "currency switcher",
     () => <NumberFieldWithCurrencySelect />
   )
   .add(
-    'flexed',
+    "flexed",
     () => renderSet()
   )
   .add(
-    'min width',
+    "min width",
     () => render({width: 0})
   )
   .add(
-    'focus events',
-    () => render({onBlur: action('onBlur'), onFocus: action('onFocus'), onFocusChange: action('onFocusChange'), onKeyDown: action('onKeyDown'), onKeyUp: action('onKeyUp')})
+    "focus events",
+    () => render({onBlur: action("onBlur"), onFocus: action("onFocus"), onFocusChange: action("onFocusChange"), onKeyDown: action("onKeyDown"), onKeyUp: action("onKeyUp")})
   );
 
 function render(props: any = {}) {
   return (
-    <NumberField onChange={action('onChange')} UNSAFE_className="custom_classname" label="Width" {...props} />
+    <NumberField onChange={action("onChange")} UNSAFE_className="custom_classname" label="Width" {...props} />
   );
 }
 
 function renderNoLabel(props: any = {}) {
   return (
-    <NumberField {...props} onChange={action('onChange')} UNSAFE_className="custom_classname" />
+    <NumberField {...props} onChange={action("onChange")} UNSAFE_className="custom_classname" />
   );
 }
 
@@ -243,36 +243,36 @@ function renderSet() {
 
 function NumberFieldControlled(props) {
   let [value, setValue] = useState(10);
-  return <NumberField {...props} formatOptions={{style: 'currency', currency: 'EUR'}} value={value} onChange={chain(setValue, action('onChange'))} label="Price" />;
+  return <NumberField {...props} formatOptions={{style: "currency", currency: "EUR"}} value={value} onChange={chain(setValue, action("onChange"))} label="Price" />;
 }
 
 function NumberFieldWithCurrencySelect(props) {
   let [value, setValue] = useState(10);
-  let [currency, setCurrency] = useState('EUR');
-  let [currencySign, setCurrencySign] = useState('standard');
-  let [currencyDisplay, setCurrencyDisplay] = useState('symbol');
+  let [currency, setCurrency] = useState("EUR");
+  let [currencySign, setCurrencySign] = useState("standard");
+  let [currencyDisplay, setCurrencyDisplay] = useState("symbol");
   return (
     <Form>
-      <NumberField label="Price" {...props} formatOptions={{style: 'currency', currency, currencySign, currencyDisplay}} value={value} onChange={chain(setValue, action('onChange'))} />
+      <NumberField label="Price" {...props} formatOptions={{style: "currency", currency, currencySign, currencyDisplay}} value={value} onChange={chain(setValue, action("onChange"))} />
       <Picker
         onSelectionChange={item => setCurrency(String(item))}
         label="Choose Currency"
         selectedKey={currency}
-        items={[{label: 'Euro', value: 'EUR'}, {label: 'US Dollar', value: 'USD'}, {label: 'Japanese Yen', value: 'JPY'}, {label: 'Saudi Riyal', value: 'SAR'}]}>
+        items={[{label: "Euro", value: "EUR"}, {label: "US Dollar", value: "USD"}, {label: "Japanese Yen", value: "JPY"}, {label: "Saudi Riyal", value: "SAR"}]}>
         {item => <Item key={item.value}>{item.label}</Item>}
       </Picker>
       <Picker
         onSelectionChange={item => setCurrencySign(String(item))}
         label="Currency Sign"
         selectedKey={currencySign}
-        items={[{label: 'Standard', value: 'standard'}, {label: 'Accounting', value: 'accounting'}]}>
+        items={[{label: "Standard", value: "standard"}, {label: "Accounting", value: "accounting"}]}>
         {item => <Item key={item.value}>{item.label}</Item>}
       </Picker>
       <Picker
         onSelectionChange={item => setCurrencyDisplay(String(item))}
         label="Currency Display"
         selectedKey={currencyDisplay}
-        items={[{label: 'Symbol', value: 'symbol'}, {label: 'Narrow Symbol', value: 'narrowSymbol'}, {label: 'Code', value: 'code'}, {label: 'Name', value: 'name'}]}>
+        items={[{label: "Symbol", value: "symbol"}, {label: "Narrow Symbol", value: "narrowSymbol"}, {label: "Code", value: "code"}, {label: "Name", value: "name"}]}>
         {item => <Item key={item.value}>{item.label}</Item>}
       </Picker>
     </Form>

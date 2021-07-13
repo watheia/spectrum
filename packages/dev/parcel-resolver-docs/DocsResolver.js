@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-const {Resolver} = require('@parcel/plugin');
-const NodeResolver = require('@parcel/node-resolver-core').default;
-const path = require('path');
+const {Resolver} = require("@parcel/plugin");
+const NodeResolver = require("@parcel/node-resolver-core").default;
+const path = require("path");
 
 module.exports = new Resolver({
   async resolve({dependency, options, filePath}) {
-    if (dependency.moduleSpecifier.startsWith('docs:') || dependency.pipeline === 'docs' || dependency.pipeline === 'docs-json') {
+    if (dependency.moduleSpecifier.startsWith("docs:") || dependency.pipeline === "docs" || dependency.pipeline === "docs-json") {
       const resolver = new NodeResolver({
-        extensions: ['ts', 'tsx', 'd.ts', 'js'],
-        mainFields: ['source', 'types', 'main'],
+        extensions: ["ts", "tsx", "d.ts", "js"],
+        mainFields: ["source", "types", "main"],
         options
       });
 
@@ -33,8 +33,8 @@ module.exports = new Resolver({
       if (resolved) {
         // HACK: ensure source code is used to build types, not compiled code.
         // Parcel removes the source field from package.json when the code comes from node_modules.
-        if (resolved.filePath.endsWith('.d.ts') && !resolved.filePath.includes('@react-types')) {
-          resolved.filePath = path.resolve(path.dirname(resolved.filePath), '..', 'src', 'index.ts');
+        if (resolved.filePath.endsWith(".d.ts") && !resolved.filePath.includes("@react-types")) {
+          resolved.filePath = path.resolve(path.dirname(resolved.filePath), "..", "src", "index.ts");
         }
 
         resolved.filePath = await options.inputFS.realpath(resolved.filePath);

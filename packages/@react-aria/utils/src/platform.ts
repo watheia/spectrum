@@ -11,13 +11,13 @@
  */
 
 function testUserAgent(re: RegExp) {
-  return typeof window !== 'undefined' && window.navigator != null
+  return typeof window !== "undefined" && window.navigator != null
     ? re.test(window.navigator.userAgent)
     : false;
 }
 
 function testPlatform(re: RegExp) {
-  return typeof window !== 'undefined' && window.navigator != null
+  return typeof window !== "undefined" && window.navigator != null
     ? re.test(window.navigator.platform)
     : false;
 }

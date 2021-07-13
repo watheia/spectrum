@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, passthroughStyle, responsiveDimensionValue, StyleHandlers, useBreakpoint, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import {FlexProps} from '@react-types/layout';
-import React, {forwardRef} from 'react';
-import styles from './flex-gap.css';
-import {useIsSSR} from '@react-aria/ssr';
+import {classNames, passthroughStyle, responsiveDimensionValue, StyleHandlers, useBreakpoint, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import {FlexProps} from "@react-types/layout";
+import React, {forwardRef} from "react";
+import styles from "./flex-gap.css";
+import {useIsSSR} from "@react-aria/ssr";
 
 const flexStyleProps: StyleHandlers = {
-  direction: ['flexDirection', passthroughStyle],
-  wrap: ['flexWrap', flexWrapValue],
-  justifyContent: ['justifyContent', flexAlignValue],
-  alignItems: ['alignItems', flexAlignValue],
-  alignContent: ['alignContent', flexAlignValue]
+  direction: ["flexDirection", passthroughStyle],
+  wrap: ["flexWrap", flexWrapValue],
+  justifyContent: ["justifyContent", flexAlignValue],
+  alignItems: ["alignItems", flexAlignValue],
+  alignContent: ["alignContent", flexAlignValue]
 };
 
 function Flex(props: FlexProps, ref: DOMRef<HTMLDivElement>) {
@@ -32,7 +32,7 @@ function Flex(props: FlexProps, ref: DOMRef<HTMLDivElement>) {
     ...otherProps
   } = props;
   let breakpointProvider = useBreakpoint();
-  let matchedBreakpoints = breakpointProvider?.matchedBreakpoints || ['base'];
+  let matchedBreakpoints = breakpointProvider?.matchedBreakpoints || ["base"];
   let {styleProps} = useStyleProps(otherProps);
   let {styleProps: flexStyle} = useStyleProps(otherProps, flexStyleProps);
   let domRef = useDOMRef(ref);
@@ -47,14 +47,14 @@ function Flex(props: FlexProps, ref: DOMRef<HTMLDivElement>) {
   if ((props.gap || props.rowGap || props.columnGap) && (isSSR || !isFlexGapSupported())) {
     let style = {
       ...flexStyle.style,
-      '--column-gap': props.columnGap != null ? responsiveDimensionValue(props.columnGap, matchedBreakpoints) : undefined,
-      '--row-gap': props.rowGap != null ? responsiveDimensionValue(props.rowGap, matchedBreakpoints) : undefined,
-      '--gap': props.gap != null ? responsiveDimensionValue(props.gap, matchedBreakpoints) : undefined
+      "--column-gap": props.columnGap != null ? responsiveDimensionValue(props.columnGap, matchedBreakpoints) : undefined,
+      "--row-gap": props.rowGap != null ? responsiveDimensionValue(props.rowGap, matchedBreakpoints) : undefined,
+      "--gap": props.gap != null ? responsiveDimensionValue(props.gap, matchedBreakpoints) : undefined
     };
 
     return (
-      <div {...filterDOMProps(otherProps)} {...styleProps} className={classNames(styles, 'flex-container', styleProps.className)} ref={domRef}>
-        <div className={classNames(styles, 'flex', 'flex-gap')} style={style}>
+      <div {...filterDOMProps(otherProps)} {...styleProps} className={classNames(styles, "flex-container", styleProps.className)} ref={domRef}>
+        <div className={classNames(styles, "flex", "flex-gap")} style={style}>
           {children}
         </div>
       </div>
@@ -80,7 +80,7 @@ function Flex(props: FlexProps, ref: DOMRef<HTMLDivElement>) {
   }
 
   return (
-    <div {...filterDOMProps(otherProps)} className={classNames(styles, 'flex', styleProps.className)} style={style} ref={domRef}>
+    <div {...filterDOMProps(otherProps)} className={classNames(styles, "flex", styleProps.className)} style={style} ref={domRef}>
       {children}
     </div>
   );
@@ -91,12 +91,12 @@ function Flex(props: FlexProps, ref: DOMRef<HTMLDivElement>) {
  * in flex containers for browser compatibility.
  */
 function flexAlignValue(value) {
-  if (value === 'start') {
-    return 'flex-start';
+  if (value === "start") {
+    return "flex-start";
   }
 
-  if (value === 'end') {
-    return 'flex-end';
+  if (value === "end") {
+    return "flex-end";
   }
 
   return value;
@@ -106,8 +106,8 @@ function flexAlignValue(value) {
  * Takes a boolean and translates it to flex wrap or nowrap.
  */
 function flexWrapValue(value) {
-  if (typeof value === 'boolean') {
-    return value ? 'wrap' : 'nowrap';
+  if (typeof value === "boolean") {
+    return value ? "wrap" : "nowrap";
   }
 
   return value;
@@ -124,19 +124,19 @@ function isFlexGapSupported() {
     return _isFlexGapSupported;
   }
 
-  if (typeof document === 'undefined') {
+  if (typeof document === "undefined") {
     return false;
   }
 
   // create flex container with row-gap set
-  var flex = document.createElement('div');
-  flex.style.display = 'flex';
-  flex.style.flexDirection = 'column';
-  flex.style.rowGap = '1px';
+  var flex = document.createElement("div");
+  flex.style.display = "flex";
+  flex.style.flexDirection = "column";
+  flex.style.rowGap = "1px";
 
   // create two, elements inside it
-  flex.appendChild(document.createElement('div'));
-  flex.appendChild(document.createElement('div'));
+  flex.appendChild(document.createElement("div"));
+  flex.appendChild(document.createElement("div"));
 
   // append to the DOM (needed to obtain scrollHeight)
   document.body.appendChild(flex);

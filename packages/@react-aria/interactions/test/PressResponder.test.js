@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from '@testing-library/react';
-import {Pressable, PressResponder} from '../';
-import React from 'react';
+import {fireEvent, render} from "@testing-library/react";
+import {Pressable, PressResponder} from "../";
+import React from "react";
 
-describe('PressResponder', function () {
-  it('should handle press events on nested pressable children', function () {
+describe("PressResponder", function () {
+  it("should handle press events on nested pressable children", function () {
     let onPress = jest.fn();
     let {getByRole} = render(
       <PressResponder onPress={onPress}>
@@ -25,7 +25,7 @@ describe('PressResponder', function () {
       </PressResponder>
     );
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     fireEvent.mouseDown(button);
     fireEvent.mouseUp(button);
     fireEvent.click(button);
@@ -33,7 +33,7 @@ describe('PressResponder', function () {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
-  it('should handle forward refs to nested pressable children', function () {
+  it("should handle forward refs to nested pressable children", function () {
     let ref = React.createRef();
     let {getByRole} = render(
       <PressResponder ref={ref}>
@@ -43,12 +43,12 @@ describe('PressResponder', function () {
       </PressResponder>
     );
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     expect(ref.current).toBe(button);
   });
 
-  it('should warn if there is no pressable child', function () {
-    let warn = jest.spyOn(global.console, 'warn').mockImplementation();
+  it("should warn if there is no pressable child", function () {
+    let warn = jest.spyOn(global.console, "warn").mockImplementation();
     render(
       <PressResponder>
         <div>
@@ -61,8 +61,8 @@ describe('PressResponder', function () {
     warn.mockRestore();
   });
 
-  it('should not warn if there is a pressable child', function () {
-    let warn = jest.spyOn(global.console, 'warn').mockImplementation();
+  it("should not warn if there is a pressable child", function () {
+    let warn = jest.spyOn(global.console, "warn").mockImplementation();
     render(
       <PressResponder>
         <div>
@@ -75,7 +75,7 @@ describe('PressResponder', function () {
     warn.mockRestore();
   });
 
-  it('should merge with existing props, not overwrite', function () {
+  it("should merge with existing props, not overwrite", function () {
     let onPress = jest.fn();
     let onClick = jest.fn();
     let {getByRole} = render(
@@ -88,7 +88,7 @@ describe('PressResponder', function () {
       </PressResponder>
     );
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     fireEvent.mouseDown(button);
     fireEvent.mouseUp(button);
     fireEvent.click(button);

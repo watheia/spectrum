@@ -10,45 +10,45 @@
  * governing permissions and limitations under the License.
  */
 
-import {Divider} from '../';
-import React from 'react';
-import {render} from '@testing-library/react';
+import {Divider} from "../";
+import React from "react";
+import {render} from "@testing-library/react";
 
-describe('Divider', function () {
+describe("Divider", function () {
   it.each`
     Name                 | Component  | props
-    ${'Divider default'} | ${Divider} | ${{}}
-    ${'Divider medium'}  | ${Divider} | ${{size: 'M'}}
-    ${'Divider small'}   | ${Divider} | ${{size: 'S'}}
-  `('$Name handles defaults', function ({Component, props}) {
+    ${"Divider default"} | ${Divider} | ${{}}
+    ${"Divider medium"}  | ${Divider} | ${{size: "M"}}
+    ${"Divider small"}   | ${Divider} | ${{size: "S"}}
+  `("$Name handles defaults", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} aria-label="divides" />);
 
-    let divider = getByRole('separator');
+    let divider = getByRole("separator");
     expect(divider).toBeTruthy();
-    expect(divider).not.toHaveAttribute('aria-orientation');
-    expect(divider).toHaveAttribute('aria-label', 'divides');
+    expect(divider).not.toHaveAttribute("aria-orientation");
+    expect(divider).toHaveAttribute("aria-label", "divides");
   });
 
   it.each`
     Name                 | Component  | props
-    ${'Divider default'} | ${Divider} | ${{orientation: 'vertical'}}
-    ${'Divider medium'}  | ${Divider} | ${{orientation: 'vertical', size: 'M'}}
-    ${'Divider small'}   | ${Divider} | ${{orientation: 'vertical', size: 'S'}}
-  `('$Name can be vertical', function ({Component, props}) {
+    ${"Divider default"} | ${Divider} | ${{orientation: "vertical"}}
+    ${"Divider medium"}  | ${Divider} | ${{orientation: "vertical", size: "M"}}
+    ${"Divider small"}   | ${Divider} | ${{orientation: "vertical", size: "S"}}
+  `("$Name can be vertical", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} aria-label="divides" />);
 
-    let divider = getByRole('separator');
+    let divider = getByRole("separator");
     expect(divider).toBeTruthy();
-    expect(divider).toHaveAttribute('aria-orientation', 'vertical');
-    expect(divider).toHaveAttribute('aria-label', 'divides');
+    expect(divider).toHaveAttribute("aria-orientation", "vertical");
+    expect(divider).toHaveAttribute("aria-label", "divides");
   });
 
   it.each`
     Name                 | Component  | props
-    ${'Divider default'} | ${Divider} | ${{orientation: 'vertical'}}
-    ${'Divider medium'}  | ${Divider} | ${{orientation: 'vertical', size: 'M'}}
-    ${'Divider small'}   | ${Divider} | ${{orientation: 'vertical', size: 'S'}}
-  `('$Name supports aria-labelledby', function ({Component, props}) {
+    ${"Divider default"} | ${Divider} | ${{orientation: "vertical"}}
+    ${"Divider medium"}  | ${Divider} | ${{orientation: "vertical", size: "M"}}
+    ${"Divider small"}   | ${Divider} | ${{orientation: "vertical", size: "S"}}
+  `("$Name supports aria-labelledby", function ({Component, props}) {
     let {getByRole} = render(
       <>
         <span id="test">Test</span>
@@ -56,16 +56,16 @@ describe('Divider', function () {
       </>
     );
 
-    let divider = getByRole('separator');
-    expect(divider).toHaveAttribute('aria-labelledby', 'test');
+    let divider = getByRole("separator");
+    expect(divider).toHaveAttribute("aria-labelledby", "test");
   });
 
   it.each`
     Name                 | Component  | props
-    ${'Divider default'} | ${Divider} | ${{orientation: 'vertical'}}
-    ${'Divider medium'}  | ${Divider} | ${{orientation: 'vertical', size: 'M'}}
-    ${'Divider small'}   | ${Divider} | ${{orientation: 'vertical', size: 'S'}}
-  `('$Name supports custom data attributes', function ({Component, props}) {
+    ${"Divider default"} | ${Divider} | ${{orientation: "vertical"}}
+    ${"Divider medium"}  | ${Divider} | ${{orientation: "vertical", size: "M"}}
+    ${"Divider small"}   | ${Divider} | ${{orientation: "vertical", size: "S"}}
+  `("$Name supports custom data attributes", function ({Component, props}) {
     let {getByRole} = render(
       <>
         <span id="test">Test</span>
@@ -73,28 +73,28 @@ describe('Divider', function () {
       </>
     );
 
-    let divider = getByRole('separator');
-    expect(divider).toHaveAttribute('data-testid', 'test');
+    let divider = getByRole("separator");
+    expect(divider).toHaveAttribute("data-testid", "test");
   });
 
   it.each`
     Name         | Component
-    ${'Divider'} | ${Divider}
-  `('$Name should not include implicit attributes', function ({Component}) {
+    ${"Divider"} | ${Divider}
+  `("$Name should not include implicit attributes", function ({Component}) {
     let {getByRole} = render(<Component aria-label="divides" />);
 
-    let divider = getByRole('separator');
-    expect(divider).not.toHaveAttribute('aria-orientation');
+    let divider = getByRole("separator");
+    expect(divider).not.toHaveAttribute("aria-orientation");
   });
 
   it.each`
     Name         | Component
-    ${'Divider'} | ${Divider}
-  `('$Name forwards the ref', function ({Component}) {
+    ${"Divider"} | ${Divider}
+  `("$Name forwards the ref", function ({Component}) {
     let ref = React.createRef();
     let {getByRole} = render(<Component aria-label="divides" ref={ref} />);
 
-    let divider = getByRole('separator');
+    let divider = getByRole("separator");
     expect(divider).toBe(ref.current.UNSAFE_getDOMNode());
   });
 });

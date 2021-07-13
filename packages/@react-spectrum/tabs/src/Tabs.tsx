@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, SlotProvider, unwrapDOMRef, useDOMRef, useStyleProps, useValueEffect} from '@react-spectrum/utils';
-import {DOMProps, DOMRef, Node, Orientation} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import {FocusRing} from '@react-aria/focus';
-import {Item, Picker} from '@react-spectrum/picker';
-import {ListCollection, SingleSelectListState} from '@react-stately/list';
-import {mergeProps, useId, useLayoutEffect} from '@react-aria/utils';
-import React, {Key, MutableRefObject, ReactElement, useCallback, useContext, useEffect, useRef, useState} from 'react';
-import {SpectrumPickerProps} from '@react-types/select';
-import {SpectrumTabListProps, SpectrumTabPanelsProps, SpectrumTabsProps} from '@react-types/tabs';
-import styles from '@adobe/spectrum-css-temp/components/tabs/vars.css';
-import {TabListState, useTabListState} from '@react-stately/tabs';
-import {Text} from '@react-spectrum/text';
-import {useCollection} from '@react-stately/collections';
-import {useHover} from '@react-aria/interactions';
-import {useLocale} from '@react-aria/i18n';
-import {useProvider, useProviderProps} from '@react-spectrum/provider';
-import {useResizeObserver} from '@react-aria/utils';
-import {useTab, useTabList, useTabPanel} from '@react-aria/tabs';
+import {classNames, SlotProvider, unwrapDOMRef, useDOMRef, useStyleProps, useValueEffect} from "@react-spectrum/utils";
+import {DOMProps, DOMRef, Node, Orientation} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import {FocusRing} from "@react-aria/focus";
+import {Item, Picker} from "@react-spectrum/picker";
+import {ListCollection, SingleSelectListState} from "@react-stately/list";
+import {mergeProps, useId, useLayoutEffect} from "@react-aria/utils";
+import React, {Key, MutableRefObject, ReactElement, useCallback, useContext, useEffect, useRef, useState} from "react";
+import {SpectrumPickerProps} from "@react-types/select";
+import {SpectrumTabListProps, SpectrumTabPanelsProps, SpectrumTabsProps} from "@react-types/tabs";
+import styles from "@adobe/spectrum-css-temp/components/tabs/vars.css";
+import {TabListState, useTabListState} from "@react-stately/tabs";
+import {Text} from "@react-spectrum/text";
+import {useCollection} from "@react-stately/collections";
+import {useHover} from "@react-aria/interactions";
+import {useLocale} from "@react-aria/i18n";
+import {useProvider, useProviderProps} from "@react-spectrum/provider";
+import {useResizeObserver} from "@react-aria/utils";
+import {useTab, useTabList, useTabPanel} from "@react-aria/tabs";
 
 interface TabsContext<T> {
   tabProps: SpectrumTabsProps<T>,
@@ -43,7 +43,7 @@ interface TabsContext<T> {
     tablistRef: MutableRefObject<HTMLDivElement>
   },
   tabPanelProps: {
-    'aria-labelledby': string
+    "aria-labelledby": string
   }
 }
 
@@ -52,8 +52,8 @@ const TabContext = React.createContext<TabsContext<any>>(null);
 function Tabs<T extends object>(props: SpectrumTabsProps<T>, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
   let {
-    orientation = 'horizontal' as Orientation,
-    density = 'regular',
+    orientation = "horizontal" as Orientation,
+    density = "regular",
     children,
     ...otherProps
   } = props;
@@ -86,16 +86,16 @@ function Tabs<T extends object>(props: SpectrumTabsProps<T>, ref: DOMRef<HTMLDiv
         let tabs = tablistRef.current.querySelectorAll('[role="tab"]');
         let lastTab = tabs[tabs.length - 1];
 
-        let end = direction === 'rtl' ? 'left' : 'right';
+        let end = direction === "rtl" ? "left" : "right";
         let farEdgeTabList = tabsComponent.getBoundingClientRect()[end];
         let farEdgeLastTab = lastTab?.getBoundingClientRect()[end];
-        let shouldCollapse = direction === 'rtl' ? farEdgeLastTab < farEdgeTabList : farEdgeTabList < farEdgeLastTab;
+        let shouldCollapse = direction === "rtl" ? farEdgeLastTab < farEdgeTabList : farEdgeTabList < farEdgeLastTab;
 
         return shouldCollapse;
       }
     };
 
-    if (orientation !== 'vertical') {
+    if (orientation !== "vertical") {
       setCollapse(function* () {
         // Make Tabs render in non-collapsed state
         yield false;
@@ -113,13 +113,13 @@ function Tabs<T extends object>(props: SpectrumTabsProps<T>, ref: DOMRef<HTMLDiv
   useResizeObserver({ref: wrapperRef, onResize: checkShouldCollapse});
 
   let tabPanelProps = {
-    'aria-labelledby': undefined
+    "aria-labelledby": undefined
   };
 
   // When the tabs are collapsed, the tabPanel should be labelled by the Picker button element.
   let collapsibleTabListId = useId();
-  if (collapse && orientation !== 'vertical') {
-    tabPanelProps['aria-labelledby'] = collapsibleTabListId;
+  if (collapse && orientation !== "vertical") {
+    tabPanelProps["aria-labelledby"] = collapsibleTabListId;
   }
   return (
     <TabContext.Provider
@@ -135,7 +135,7 @@ function Tabs<T extends object>(props: SpectrumTabsProps<T>, ref: DOMRef<HTMLDiv
         ref={domRef}
         className={classNames(
           styles,
-          'spectrum-TabsPanel',
+          "spectrum-TabsPanel",
           `spectrum-TabsPanel--${orientation}`,
           styleProps.className
         )}>
@@ -167,30 +167,30 @@ function Tab<T>(props: TabProps<T>) {
   let isSelected = state.selectedKey === key;
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...mergeProps(tabProps, hoverProps)}
         ref={ref}
         className={classNames(
           styles,
-          'spectrum-Tabs-item',
+          "spectrum-Tabs-item",
           {
-            'is-selected': isSelected,
-            'is-disabled': isDisabled,
-            'is-hovered': isHovered
+            "is-selected": isSelected,
+            "is-disabled": isDisabled,
+            "is-hovered": isHovered
           }
         )}>
         <SlotProvider
           slots={{
             icon: {
-              size: 'S',
-              UNSAFE_className: classNames(styles, 'spectrum-Icon')
+              size: "S",
+              UNSAFE_className: classNames(styles, "spectrum-Icon")
             },
             text: {
-              UNSAFE_className: classNames(styles, 'spectrum-Tabs-itemLabel')
+              UNSAFE_className: classNames(styles, "spectrum-Tabs-itemLabel")
             }
           }}>
-          {typeof rendered === 'string'
+          {typeof rendered === "string"
             ? <Text>{rendered}</Text>
             : rendered}
         </SlotProvider>
@@ -227,12 +227,12 @@ function TabLine(props: TabLineProps) {
     if (selectedTab) {
       let styleObj = {transform: undefined, width: undefined, height: undefined};
       // In RTL, calculate the transform from the right edge of the tablist so that resizing the window doesn't break the Tabline position due to offsetLeft changes
-      let offset = direction === 'rtl' ? -1 * ((selectedTab.offsetParent as HTMLElement)?.offsetWidth - selectedTab.offsetWidth - selectedTab.offsetLeft) : selectedTab.offsetLeft;
-      styleObj.transform = orientation === 'vertical'
+      let offset = direction === "rtl" ? -1 * ((selectedTab.offsetParent as HTMLElement)?.offsetWidth - selectedTab.offsetWidth - selectedTab.offsetLeft) : selectedTab.offsetLeft;
+      styleObj.transform = orientation === "vertical"
         ? `translateY(${selectedTab.offsetTop}px)`
         : `translateX(${offset}px)`;
 
-      if (orientation === 'horizontal') {
+      if (orientation === "horizontal") {
         styleObj.width = `${selectedTab.offsetWidth}px`;
       } else {
         styleObj.height = `${selectedTab.offsetHeight}px`;
@@ -242,7 +242,7 @@ function TabLine(props: TabLineProps) {
 
   }, [direction, setStyle, selectedTab, orientation, scale, selectedKey]);
 
-  return <div className={classNames(styles, 'spectrum-Tabs-selectionIndicator')} role="presentation" style={style} />;
+  return <div className={classNames(styles, "spectrum-Tabs-selectionIndicator")} role="presentation" style={style} />;
 }
 
 /**
@@ -266,9 +266,9 @@ export function TabList<T>(props: SpectrumTabListProps<T>) {
     setTabListState(state);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.disabledKeys, state.selectedItem, state.selectedKey, props.children]);
-  let stylePropsForVertical = orientation === 'vertical' ? styleProps : {};
+  let stylePropsForVertical = orientation === "vertical" ? styleProps : {};
 
-  let tabListclassName = classNames(styles, 'spectrum-TabsPanel-tabs');
+  let tabListclassName = classNames(styles, "spectrum-TabsPanel-tabs");
   const tabContent = (
     <div
       {...stylePropsForVertical}
@@ -276,14 +276,14 @@ export function TabList<T>(props: SpectrumTabListProps<T>) {
       ref={tablistRef}
       className={classNames(
         styles,
-        'spectrum-Tabs',
+        "spectrum-Tabs",
         `spectrum-Tabs--${orientation}`,
         tabListclassName,
         {
-          'spectrum-Tabs--quiet': isQuiet,
-          ['spectrum-Tabs--compact']: density === 'compact'
+          "spectrum-Tabs--quiet": isQuiet,
+          ["spectrum-Tabs--compact"]: density === "compact"
         },
-        orientation === 'vertical' && styleProps.className
+        orientation === "vertical" && styleProps.className
       )
       }>
       {[...state.collection].map((item) => (
@@ -294,7 +294,7 @@ export function TabList<T>(props: SpectrumTabListProps<T>) {
   );
 
 
-  if (orientation === 'vertical') {
+  if (orientation === "vertical") {
     return tabContent;
   } else {
     return (
@@ -303,10 +303,10 @@ export function TabList<T>(props: SpectrumTabListProps<T>) {
         ref={wrapperRef}
         className={classNames(
           styles,
-          'spectrum-TabsPanel-collapseWrapper',
+          "spectrum-TabsPanel-collapseWrapper",
           styleProps.className
         )}>
-        {collapse ? <TabPicker {...props} {...tabProps} id={tabPanelProps['aria-labelledby']} state={state} className={tabListclassName} /> : tabContent}
+        {collapse ? <TabPicker {...props} {...tabProps} id={tabPanelProps["aria-labelledby"]} state={state} className={tabListclassName} /> : tabContent}
       </div>
     );
   }
@@ -339,21 +339,21 @@ function TabPanel<T>(props: SpectrumTabPanelsProps<T>) {
   const {tabPanelProps} = useTabPanel(props, tabListState, ref);
   let {styleProps} = useStyleProps(props);
 
-  if (ctxTabPanelProps['aria-labelledby']) {
-    tabPanelProps['aria-labelledby'] = ctxTabPanelProps['aria-labelledby'];
+  if (ctxTabPanelProps["aria-labelledby"]) {
+    tabPanelProps["aria-labelledby"] = ctxTabPanelProps["aria-labelledby"];
   }
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
-      <div {...styleProps} {...tabPanelProps} ref={ref} className={classNames(styles, 'spectrum-TabsPanel-tabpanel', styleProps.className)}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
+      <div {...styleProps} {...tabPanelProps} ref={ref} className={classNames(styles, "spectrum-TabsPanel-tabpanel", styleProps.className)}>
         {props.children}
       </div>
     </FocusRing>
   );
 }
 
-interface TabPickerProps<T> extends Omit<SpectrumPickerProps<T>, 'children'> {
-  density?: 'compact' | 'regular',
+interface TabPickerProps<T> extends Omit<SpectrumPickerProps<T>, "children"> {
+  density?: "compact" | "regular",
   state: SingleSelectListState<T>,
   className?: string
 }
@@ -363,8 +363,8 @@ function TabPicker<T>(props: TabPickerProps<T>) {
     isDisabled,
     isQuiet,
     state,
-    'aria-labelledby': ariaLabeledBy,
-    'aria-label': ariaLabel,
+    "aria-labelledby": ariaLabeledBy,
+    "aria-label": ariaLabel,
     density,
     className,
     id
@@ -385,8 +385,8 @@ function TabPicker<T>(props: TabPickerProps<T>) {
   }));
 
   let pickerProps = {
-    'aria-labelledby': ariaLabeledBy,
-    'aria-label': ariaLabel
+    "aria-labelledby": ariaLabeledBy,
+    "aria-label": ariaLabel
   };
 
   // TODO: Figure out if tabListProps should go onto the div here, v2 doesn't do it
@@ -394,23 +394,23 @@ function TabPicker<T>(props: TabPickerProps<T>) {
     <div
       className={classNames(
         styles,
-        'spectrum-Tabs',
-        'spectrum-Tabs--horizontal',
-        'spectrum-Tabs--isCollapsed',
+        "spectrum-Tabs",
+        "spectrum-Tabs--horizontal",
+        "spectrum-Tabs--isCollapsed",
         {
-          'spectrum-Tabs--quiet': isQuiet,
-          ['spectrum-Tabs--compact']: density === 'compact'
+          "spectrum-Tabs--quiet": isQuiet,
+          ["spectrum-Tabs--compact"]: density === "compact"
         },
         className
       )}>
       <SlotProvider
         slots={{
           icon: {
-            size: 'S',
-            UNSAFE_className: classNames(styles, 'spectrum-Icon')
+            size: "S",
+            UNSAFE_className: classNames(styles, "spectrum-Icon")
           },
           button: {
-            focusRingClass: classNames(styles, 'focus-ring')
+            focusRingClass: classNames(styles, "focus-ring")
           }
         }}>
         <Picker

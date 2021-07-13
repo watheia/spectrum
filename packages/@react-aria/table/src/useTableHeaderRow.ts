@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {GridRowAria, GridRowProps} from '@react-aria/grid';
-import {RefObject} from 'react';
-import {TableState} from '@react-stately/table';
+import {GridRowAria, GridRowProps} from "@react-aria/grid";
+import {RefObject} from "react";
+import {TableState} from "@react-stately/table";
 
 /**
  * Provides the behavior and accessibility implementation for a header row in a table.
@@ -23,11 +23,11 @@ import {TableState} from '@react-stately/table';
 export function useTableHeaderRow<T>(props: GridRowProps<T>, state: TableState<T>, ref: RefObject<HTMLElement>): GridRowAria {
   let {node, isVirtualized} = props;
   let rowProps = {
-    role: 'row'
+    role: "row"
   };
 
   if (isVirtualized) {
-    rowProps['aria-rowindex'] = node.index + 1; // aria-rowindex is 1 based
+    rowProps["aria-rowindex"] = node.index + 1; // aria-rowindex is 1 based
   }
 
   return {

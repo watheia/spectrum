@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {RefObject, useEffect} from 'react';
+import {RefObject, useEffect} from "react";
 
 // This behavior moved from useOverlayTrigger to useOverlayPosition.
 // For backward compatibility, where useOverlayTrigger handled hiding the popover on close,
@@ -47,9 +47,9 @@ export function useCloseOnScroll(opts: CloseOnScrollOptions) {
       }
     };
 
-    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener("scroll", onScroll, true);
     return () => {
-      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener("scroll", onScroll, true);
     };
   }, [isOpen, onClose, triggerRef]);
 }

@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {FocusEvents} from '@react-types/shared';
-import {getInteractionModality, HoverProps, isFocusVisible, PressProps, usePress} from '@react-aria/interactions';
-import {HTMLAttributes, RefObject, useEffect, useRef} from 'react';
-import {mergeProps, useId} from '@react-aria/utils';
-import {TooltipTriggerProps} from '@react-types/tooltip';
-import {TooltipTriggerState} from '@react-stately/tooltip';
-import {useFocusable} from '@react-aria/focus';
-import {useHover} from '@react-aria/interactions';
+import {FocusEvents} from "@react-types/shared";
+import {getInteractionModality, HoverProps, isFocusVisible, PressProps, usePress} from "@react-aria/interactions";
+import {HTMLAttributes, RefObject, useEffect, useRef} from "react";
+import {mergeProps, useId} from "@react-aria/utils";
+import {TooltipTriggerProps} from "@react-types/tooltip";
+import {TooltipTriggerState} from "@react-stately/tooltip";
+import {useFocusable} from "@react-aria/focus";
+import {useHover} from "@react-aria/interactions";
 
 interface TooltipTriggerAria {
   /**
@@ -63,28 +63,28 @@ export function useTooltipTrigger(props: TooltipTriggerProps, state: TooltipTrig
       if (ref && ref.current) {
         // Escape after clicking something can give it keyboard focus
         // dismiss tooltip on esc key press
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           state.close(true);
         }
       }
     };
     if (state.isOpen) {
-      document.addEventListener('keydown', onKeyDown, true);
+      document.addEventListener("keydown", onKeyDown, true);
       return () => {
-        document.removeEventListener('keydown', onKeyDown, true);
+        document.removeEventListener("keydown", onKeyDown, true);
       };
     }
   }, [ref, state]);
 
   let onHoverStart = () => {
-    if (trigger === 'focus') {
+    if (trigger === "focus") {
       return;
     }
     // In chrome, if you hover a trigger, then another element obscures it, due to keyboard
     // interactions for example, hover will end. When hover is restored after that element disappears,
     // focus moves on for example, then the tooltip will reopen. We check the modality to know if the hover
     // is the result of moving the mouse.
-    if (getInteractionModality() === 'pointer') {
+    if (getInteractionModality() === "pointer") {
       isHovered.current = true;
     } else {
       isHovered.current = false;
@@ -93,7 +93,7 @@ export function useTooltipTrigger(props: TooltipTriggerProps, state: TooltipTrig
   };
 
   let onHoverEnd = () => {
-    if (trigger === 'focus') {
+    if (trigger === "focus") {
       return;
     }
     // no matter how the trigger is left, we should close the tooltip
@@ -139,7 +139,7 @@ export function useTooltipTrigger(props: TooltipTriggerProps, state: TooltipTrig
 
   return {
     triggerProps: {
-      'aria-describedby': state.isOpen ? tooltipId : undefined,
+      "aria-describedby": state.isOpen ? tooltipId : undefined,
       ...mergeProps(focusableProps, hoverProps, pressProps)
     },
     tooltipProps: {

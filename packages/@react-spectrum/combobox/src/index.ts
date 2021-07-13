@@ -12,5 +12,5 @@
 
 /// <reference types="css-module-types" />
 
-export * from './ComboBox';
-export {Item, Section} from '@react-stately/collections';
+export * from "./ComboBox";
+export {Item, Section} from "@react-stately/collections";

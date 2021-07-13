@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Item, Section, Tree} from '../src';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Item, Section, Tree} from "../src";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
 interface ItemType {
   name: string,
@@ -20,28 +20,28 @@ interface ItemType {
 }
 
 let items: ItemType[] = [
-  {name: 'Animals', children: [
-    {name: 'Aardvark'},
-    {name: 'Kangaroo'},
-    {name: 'Snake'}
+  {name: "Animals", children: [
+    {name: "Aardvark"},
+    {name: "Kangaroo"},
+    {name: "Snake"}
   ]},
-  {name: 'People', children: [
-    {name: 'Danni'},
-    {name: 'Devon'},
-    {name: 'Ross', children: [
-      {name: 'Tests'}
+  {name: "People", children: [
+    {name: "Danni"},
+    {name: "Devon"},
+    {name: "Ross", children: [
+      {name: "Tests"}
     ]}
   ]}
 ];
 
 let longList: ItemType[] = [];
 for (let i = 0; i < 1000; i++) {
-  longList.push({name: 'Item ' + i});
+  longList.push({name: "Item " + i});
 }
 
-storiesOf('Tree', module)
+storiesOf("Tree", module)
   .add(
-    'Default',
+    "Default",
     () => (
       <Tree items={items} onSelectionChange={keys => console.log(keys)}>
         {item => <Item key={item.name} childItems={item.children}>{item.name}</Item>}
@@ -49,7 +49,7 @@ storiesOf('Tree', module)
     )
   )
   .add(
-    'Sections',
+    "Sections",
     () => (
       <Tree items={items}>
         {item => (
@@ -61,7 +61,7 @@ storiesOf('Tree', module)
     )
   )
   .add(
-    'Static',
+    "Static",
     () => (
       <Tree>
         <Item>One</Item>
@@ -76,7 +76,7 @@ storiesOf('Tree', module)
     )
   )
   .add(
-    'Static sections',
+    "Static sections",
     () => (
       <Tree>
         <Section title="Section 1">
@@ -93,7 +93,7 @@ storiesOf('Tree', module)
     )
   )
   .add(
-    'Long list',
+    "Long list",
     () => (
       <div>
         <input />

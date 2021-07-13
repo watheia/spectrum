@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaSwitchProps} from '@react-types/switch';
-import {InputHTMLAttributes, RefObject} from 'react';
-import {ToggleState} from '@react-stately/toggle';
-import {useToggle} from '@react-aria/toggle';
+import {AriaSwitchProps} from "@react-types/switch";
+import {InputHTMLAttributes, RefObject} from "react";
+import {ToggleState} from "@react-stately/toggle";
+import {useToggle} from "@react-aria/toggle";
 
 export interface SwitchAria {
   /** Props for the input element. */
@@ -34,9 +34,9 @@ export function useSwitch(props: AriaSwitchProps, state: ToggleState, ref: RefOb
   return {
     inputProps: {
       ...inputProps,
-      role: 'switch',
+      role: "switch",
       checked: isSelected,
-      'aria-checked': isSelected
+      "aria-checked": isSelected
     }
   };
 }

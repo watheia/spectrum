@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {PressProps} from './usePress';
-import React, {MutableRefObject} from 'react';
+import {PressProps} from "./usePress";
+import React, {MutableRefObject} from "react";
 
 interface IPressResponderContext extends PressProps {
   register(): void,
@@ -19,4 +19,4 @@ interface IPressResponderContext extends PressProps {
 }
 
 export const PressResponderContext = React.createContext<IPressResponderContext>(null);
-PressResponderContext.displayName = 'PressResponderContext';
+PressResponderContext.displayName = "PressResponderContext";

@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from '@react-spectrum/table';
-import Paste from '@spectrum-icons/workflow/Paste';
-import React, {useEffect, useState} from 'react';
-import {SearchField} from '@react-spectrum/searchfield';
-import {useProvider} from '@react-spectrum/provider';
+import {ActionButton} from "@react-spectrum/button";
+import {Cell, Column, Row, TableBody, TableHeader, TableView} from "@react-spectrum/table";
+import Paste from "@spectrum-icons/workflow/Paste";
+import React, {useEffect, useState} from "react";
+import {SearchField} from "@react-spectrum/searchfield";
+import {useProvider} from "@react-spectrum/provider";
 
 const icons = {
   workflow: {
     // @ts-ignore
-    import: () => import('@adobe/spectrum-css-workflow-icons'),
+    import: () => import("@adobe/spectrum-css-workflow-icons"),
     importTemplate: name => {
       // Add _ to the icon name import if it starts with a number
       let defaultExport = name.match(/^\d/) ? `_${name}` : name;
@@ -57,7 +57,7 @@ export default function IconTable(props: {iconPackage: string}) {
     const packageMeta = icons[props.iconPackage];
     packageMeta.import().then(i => {
       let originalItems = i.map(name => {
-        name = name.split('.')[0];
+        name = name.split(".")[0];
         return {
           name,
           icon: packageMeta.iconTemplate(name),
@@ -88,7 +88,7 @@ export default function IconTable(props: {iconPackage: string}) {
             (<Row key={item.name}>
               {key => (
                 <Cell>
-                  {key === 'action'
+                  {key === "action"
                     ? <ActionButton onPress={() => navigator.clipboard.writeText(item.importText)} aria-label="Copy import text"><Paste /></ActionButton>
                     : item[key]
                   }
@@ -111,6 +111,6 @@ function IconImage(props) {
       src={props.src}
       width={22}
       height={22}
-      style={{verticalAlign: 'middle', filter: colorScheme === 'dark' ? 'invert()' : undefined}} />
+      style={{verticalAlign: "middle", filter: colorScheme === "dark" ? "invert()" : undefined}} />
   );
 }

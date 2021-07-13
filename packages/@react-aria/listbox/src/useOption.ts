@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {getItemCount} from '@react-stately/collections';
-import {getItemId, listData} from './utils';
-import {HTMLAttributes, Key, RefObject} from 'react';
-import {isFocusVisible, useHover, usePress} from '@react-aria/interactions';
-import {isMac, isWebKit, mergeProps, useSlotId} from '@react-aria/utils';
-import {ListState} from '@react-stately/list';
-import {useSelectableItem} from '@react-aria/selection';
+import {getItemCount} from "@react-stately/collections";
+import {getItemId, listData} from "./utils";
+import {HTMLAttributes, Key, RefObject} from "react";
+import {isFocusVisible, useHover, usePress} from "@react-aria/interactions";
+import {isMac, isWebKit, mergeProps, useSlotId} from "@react-aria/utils";
+import {ListState} from "@react-stately/list";
+import {useSelectableItem} from "@react-aria/selection";
 
 interface OptionAria {
   /** Props for the option element. */
@@ -52,7 +52,7 @@ interface AriaOptionProps {
   isSelected?: boolean,
 
   /** A screen reader only label for the option. */
-  'aria-label'?: string,
+  "aria-label"?: string,
 
   /** The unique key for the option. */
   key: Key,
@@ -107,23 +107,23 @@ export function useOption<T>(props: AriaOptionProps, state: ListState<T>, ref: R
   let descriptionId = useSlotId();
 
   let optionProps = {
-    role: 'option',
-    'aria-disabled': isDisabled,
-    'aria-selected': isSelected
+    role: "option",
+    "aria-disabled": isDisabled,
+    "aria-selected": isSelected
   };
 
   // Safari with VoiceOver on macOS misreads options with aria-labelledby or aria-label as simply "text".
   // We should not map slots to the label and description on Safari and instead just have VoiceOver read the textContent.
   // https://bugs.webkit.org/show_bug.cgi?id=209279
   if (!(isMac() && isWebKit())) {
-    optionProps['aria-label'] = props['aria-label'];
-    optionProps['aria-labelledby'] = labelId;
-    optionProps['aria-describedby'] = descriptionId;
+    optionProps["aria-label"] = props["aria-label"];
+    optionProps["aria-labelledby"] = labelId;
+    optionProps["aria-describedby"] = descriptionId;
   }
 
   if (isVirtualized) {
-    optionProps['aria-posinset'] = state.collection.getItem(key).index + 1;
-    optionProps['aria-setsize'] = getItemCount(state.collection);
+    optionProps["aria-posinset"] = state.collection.getItem(key).index + 1;
+    optionProps["aria-setsize"] = getItemCount(state.collection);
   }
 
   let {itemProps} = useSelectableItem({

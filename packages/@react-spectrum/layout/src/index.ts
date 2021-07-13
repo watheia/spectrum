@@ -12,5 +12,5 @@
 
 /// <reference types="css-module-types" />
 
-export * from './Grid';
-export * from './Flex';
+export * from "./Grid";
+export * from "./Flex";

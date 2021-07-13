@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {DatePickerBase} from '@react-types/datepicker';
-import {DatePickerFieldState, DateSegment} from '@react-stately/datepicker';
-import React from 'react';
-import styles from './index.css';
-import {useDateSegment} from '@react-aria/datepicker';
-import {useFocusManager} from '@react-aria/focus';
+import {classNames} from "@react-spectrum/utils";
+import {DatePickerBase} from "@react-types/datepicker";
+import {DatePickerFieldState, DateSegment} from "@react-stately/datepicker";
+import React from "react";
+import styles from "./index.css";
+import {useDateSegment} from "@react-aria/datepicker";
+import {useFocusManager} from "@react-aria/focus";
 
 interface DatePickerSegmentProps extends DatePickerBase {
   segment: DateSegment,
@@ -31,13 +31,13 @@ interface LiteralSegmentProps {
 export function DatePickerSegment({segment, state, ...otherProps}: DatePickerSegmentProps) {
   switch (segment.type) {
     // A separator, e.g. punctuation
-    case 'literal':
+    case "literal":
       return <LiteralSegment segment={segment} />;
 
     // These segments cannot be directly edited by the user.
-    case 'weekday':
-    case 'timeZoneName':
-    case 'era':
+    case "weekday":
+    case "timeZoneName":
+    case "era":
       return <LiteralSegment segment={segment} isPlaceholder />;
 
     // Editable segment
@@ -59,9 +59,9 @@ function LiteralSegment({segment, isPlaceholder}: LiteralSegmentProps) {
   return (
     <span 
       role="presentation"
-      className={classNames(styles, 'react-spectrum-Datepicker-literal', {'is-placeholder': isPlaceholder})}
+      className={classNames(styles, "react-spectrum-Datepicker-literal", {"is-placeholder": isPlaceholder})}
       onMouseDown={onMouseDown}
-      data-testid={segment.type === 'literal' ? undefined : segment.type}>
+      data-testid={segment.type === "literal" ? undefined : segment.type}>
       {segment.text}
     </span>
   );
@@ -71,7 +71,7 @@ function EditableSegment({segment, state, ...otherProps}: DatePickerSegmentProps
   let {segmentProps} = useDateSegment(otherProps, segment, state);
   return (
     <div
-      className={classNames(styles, 'react-spectrum-DatePicker-cell', {'is-placeholder': segment.isPlaceholder})}
+      className={classNames(styles, "react-spectrum-DatePicker-cell", {"is-placeholder": segment.isPlaceholder})}
       data-testid={segment.type}
       {...segmentProps}>
       {segment.text}

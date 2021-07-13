@@ -11,8 +11,8 @@
  */
 
 
-import {Alignment, DOMProps, Orientation, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {Alignment, DOMProps, Orientation, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 export interface SpectrumButtonGroupProps extends DOMProps, StyleProps {
   /** Whether the Buttons in the ButtonGroup are all disabled. */
@@ -29,5 +29,5 @@ export interface SpectrumButtonGroupProps extends DOMProps, StyleProps {
    * The alignment of the buttons within the ButtonGroup.
    * @default 'start'
    */
-  align?: Alignment | 'center'
+  align?: Alignment | "center"
 }

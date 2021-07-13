@@ -1,24 +1,24 @@
-import {GridCollection, useGridState} from '@react-stately/grid';
-import {mergeProps} from '@react-aria/utils';
-import React from 'react';
-import {useFocus} from '@react-aria/interactions';
-import {useGrid, useGridCell, useGridRow} from '../';
-import {useListState} from '@react-stately/list';
+import {GridCollection, useGridState} from "@react-stately/grid";
+import {mergeProps} from "@react-aria/utils";
+import React from "react";
+import {useFocus} from "@react-aria/interactions";
+import {useGrid, useGridCell, useGridRow} from "../";
+import {useListState} from "@react-stately/list";
 
 export function Grid(props) {
-  let {gridFocusMode = 'row', cellFocusMode = 'child'} = props;
+  let {gridFocusMode = "row", cellFocusMode = "child"} = props;
   let state = useListState(props);
   let gridState = useGridState({
     ...props,
-    selectionMode: 'multiple',
+    selectionMode: "multiple",
     collection: new GridCollection({
       columnCount: 1,
       items: [...state.collection].map(item => ({
-        type: 'item',
+        type: "item",
         childNodes: [{
           ...item,
           index: 0,
-          type: 'cell'
+          type: "cell"
         }]
       }))
     })
@@ -26,7 +26,7 @@ export function Grid(props) {
 
   let ref = React.useRef();
   let {gridProps} = useGrid({
-    'aria-label': 'Grid',
+    "aria-label": "Grid",
     focusMode: gridFocusMode
   }, gridState, ref);
 
@@ -64,8 +64,8 @@ function Row({state, item, focusMode}) {
   });
 
   return (
-    <div {...mergeProps(rowProps, rowFocusProps)} ref={rowRef} style={{outline: isRowFocused ? '2px solid red' : null}}>
-      <div {...mergeProps(gridCellProps, cellFocusProps)} ref={cellRef} style={{outline: isCellFocused ? '2px solid green' : null}}>
+    <div {...mergeProps(rowProps, rowFocusProps)} ref={rowRef} style={{outline: isRowFocused ? "2px solid red" : null}}>
+      <div {...mergeProps(gridCellProps, cellFocusProps)} ref={cellRef} style={{outline: isCellFocused ? "2px solid green" : null}}>
         {cellNode.rendered}
       </div>
     </div>

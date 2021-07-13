@@ -12,5 +12,5 @@
 
 /// <reference types="css-module-types" />
 
-export * from './events';
-export * from './testSSR';
+export * from "./events";
+export * from "./testSSR";

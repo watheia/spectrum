@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {number, withKnobs} from '@storybook/addon-knobs';
-import {ProgressBar} from '../';
-import React, {CSSProperties} from 'react';
-import {storiesOf} from '@storybook/react';
+import {number, withKnobs} from "@storybook/addon-knobs";
+import {ProgressBar} from "../";
+import React, {CSSProperties} from "react";
+import {storiesOf} from "@storybook/react";
 
 const sliderOptions = {
   range: true,
@@ -23,63 +23,63 @@ const sliderOptions = {
 };
 
 const formatOptions = {
-  style: 'currency',
-  currency: 'JPY'
+  style: "currency",
+  currency: "JPY"
 };
 
 const grayedBoxStyle: CSSProperties = {
-  width: '250px',
-  height: '60px',
-  backgroundColor: 'rgba(0,0,0,0.4)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
+  width: "250px",
+  height: "60px",
+  backgroundColor: "rgba(0,0,0,0.4)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
 };
 
-storiesOf('Progress/ProgressBar', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Progress/ProgressBar", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'value: 50',
+    "value: 50",
     () => render({value: 50})
   )
   .add(
-    'value: 100',
+    "value: 100",
     () => render({value: 100})
   )
   .add(
-    'size: S',
+    "size: S",
     () => {
-      const value = number('Value', 50, sliderOptions);
-      return render({value, size: 'S'});
+      const value = number("Value", 50, sliderOptions);
+      return render({value, size: "S"});
     }
   )
   .add(
-    'showValueLabel: true',
+    "showValueLabel: true",
     () => {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return render({showValueLabel: true, value});
     }
   )
   .add(
-    'showValueLabel: false',
+    "showValueLabel: false",
     () => {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return render({showValueLabel: false, value});
     }
   )
   .add(
-    'valueLabel: 1 of 4',
-    () => render({value: 25, valueLabel: '1 of 4'})
+    "valueLabel: 1 of 4",
+    () => render({value: 25, valueLabel: "1 of 4"})
   )
   .add(
-    'Using number formatOptions with currency style',
+    "Using number formatOptions with currency style",
     () => {
-      const value = number('Value', 60, sliderOptions);
+      const value = number("Value", 60, sliderOptions);
       return render({
         showValueLabel: true,
         value,
@@ -88,129 +88,129 @@ storiesOf('Progress/ProgressBar', module)
     }
   )
   .add(
-    'no visible label',
+    "no visible label",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({label: null, 'aria-label': 'Loading…', value});
+      const value = number("Value", 32, sliderOptions);
+      return render({label: null, "aria-label": "Loading…", value});
     }
   )
   .add(
-    'labelPosition: side',
+    "labelPosition: side",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, labelPosition: 'side'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, labelPosition: "side"});
     }
   )
   .add(
-    'labelPosition: top',
+    "labelPosition: top",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, labelPosition: 'top'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, labelPosition: "top"});
     }
   )
   .add(
-    'long label',
+    "long label",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, label: 'Super long progress bar label. Sample label copy. Loading...'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, label: "Super long progress bar label. Sample label copy. Loading..."});
     }
   )
   .add(
-    'long label, labelPosition: side',
+    "long label, labelPosition: side",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, labelPosition: 'side', label: 'Super long progress bar label. Sample label copy. Loading...'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, labelPosition: "side", label: "Super long progress bar label. Sample label copy. Loading..."});
     }
   )
   .add(
-    'isIndeterminate: true',
+    "isIndeterminate: true",
     () => {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return render({isIndeterminate: true, value});
     }
   )
   .add(
-    'isIndeterminate: true, size: S',
-    () => render({isIndeterminate: true, size: 'S'})
+    "isIndeterminate: true, size: S",
+    () => render({isIndeterminate: true, size: "S"})
   )
   .add(
-    'variant: overBackground',
+    "variant: overBackground",
     () => {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return (
         <div style={grayedBoxStyle}>
-          {render({variant: 'overBackground', value})}
+          {render({variant: "overBackground", value})}
         </div>
       );
     }
   )
   .add(
-    'parent width 100%',
+    "parent width 100%",
     () => (
-      <span style={{width: '100%'}}>
+      <span style={{width: "100%"}}>
         {render()}
       </span>
     )
   )
   .add(
-    'parent width 100px',
+    "parent width 100px",
     () => (
-      <span style={{width: '100px'}}>
+      <span style={{width: "100px"}}>
         {render()}
       </span>
     )
   )
   .add(
-    'width: 300px',
-    () => render({width: '300px', value: 100})
+    "width: 300px",
+    () => render({width: "300px", value: 100})
   )
   .add(
-    'width: 300px, isIndeterminate: true',
-    () => render({width: '300px', isIndeterminate: true})
+    "width: 300px, isIndeterminate: true",
+    () => render({width: "300px", isIndeterminate: true})
   )
   .add(
-    'width: 300px, labelPosition: side',
-    () => render({width: '300px', labelPosition: 'side'})
+    "width: 300px, labelPosition: side",
+    () => render({width: "300px", labelPosition: "side"})
   )
   .add(
-    'width: 300px, labelPosition: side, isIndeterminate: true',
-    () => render({width: '300px', labelPosition: 'side', isIndeterminate: true})
+    "width: 300px, labelPosition: side, isIndeterminate: true",
+    () => render({width: "300px", labelPosition: "side", isIndeterminate: true})
   )
   .add(
-    'width: 30px',
-    () => render({width: '30px'})
+    "width: 30px",
+    () => render({width: "30px"})
   )
   .add(
-    'width: 30px, size: S',
-    () => render({width: '30px', size: 'S'})
+    "width: 30px, size: S",
+    () => render({width: "30px", size: "S"})
   )
   .add(
-    'width: 30px, labelPosition: side, long label',
-    () => render({width: '30px', labelPosition: 'side', label: 'Super long progress bar label. Sample label copy. Loading...'})
+    "width: 30px, labelPosition: side, long label",
+    () => render({width: "30px", labelPosition: "side", label: "Super long progress bar label. Sample label copy. Loading..."})
   )
   .add(
-    'width: 30px, labelPosition: side, isIndeterminate: true, long label, button on right',
+    "width: 30px, labelPosition: side, isIndeterminate: true, long label, button on right",
     () => (
       <>
-        {render({width: '30px', labelPosition: 'side', isIndeterminate: true, label: 'Super long progress bar label. Sample label copy. Loading...'})}
+        {render({width: "30px", labelPosition: "side", isIndeterminate: true, label: "Super long progress bar label. Sample label copy. Loading..."})}
         <button>Confirm</button>
       </>
     )
   )
   .add(
-    'Using raw values for minValue, maxValue, and value',
+    "Using raw values for minValue, maxValue, and value",
     () => render({
       showValueLabel: true,
-      labelPosition: 'top',
+      labelPosition: "top",
       maxValue: 2147483648,
       value: 715827883
     })
   )
   .add(
-    'Using raw values with number formatter',
+    "Using raw values with number formatter",
     () => render({
       showValueLabel: true,
-      labelPosition: 'top',
+      labelPosition: "top",
       maxValue: 2147483648,
       value: 715827883,
       formatOptions

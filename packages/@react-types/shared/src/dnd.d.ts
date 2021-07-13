@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key} from 'react';
+import {Key} from "react";
 
 export interface DragDropEvent {
   // Relative to the target element's position
@@ -18,49 +18,49 @@ export interface DragDropEvent {
   y: number
 }
 
-export type DropOperation = 'copy' | 'link' | 'move' | 'cancel';
+export type DropOperation = "copy" | "link" | "move" | "cancel";
 
 export interface DragItem {
   [type: string]: string
 }
 
 export interface DragStartEvent extends DragDropEvent {
-  type: 'dragstart'
+  type: "dragstart"
 }
 
 export interface DragMoveEvent extends DragDropEvent {
-  type: 'dragmove'
+  type: "dragmove"
 }
 
 export interface DragEndEvent extends DragDropEvent {
-  type: 'dragend',
+  type: "dragend",
   dropOperation: DropOperation
 }
 
 export interface DropEnterEvent extends DragDropEvent {
-  type: 'dropenter'
+  type: "dropenter"
 }
 
 export interface DropMoveEvent extends DragDropEvent {
-  type: 'dropmove'
+  type: "dropmove"
 }
 
 export interface DropActivateEvent extends DragDropEvent {
-  type: 'dropactivate'
+  type: "dropactivate"
 }
 
 export interface DropExitEvent extends DragDropEvent {
-  type: 'dropexit'
+  type: "dropexit"
 }
 
 export interface TextItem {
-  kind: 'text',
+  kind: "text",
   types: Set<string>,
   getText(type: string): Promise<string>
 }
 
 export interface FileItem {
-  kind: 'file',
+  kind: "file",
   type: string,
   name: string,
   getFile(): Promise<File>,
@@ -68,7 +68,7 @@ export interface FileItem {
 }
 
 export interface DirectoryItem {
-  kind: 'directory',
+  kind: "directory",
   name: string,
   getEntries(): AsyncIterable<FileItem | DirectoryItem>
 }
@@ -76,18 +76,18 @@ export interface DirectoryItem {
 export type DropItem = TextItem | FileItem | DirectoryItem;
 
 export interface DropEvent extends DragDropEvent {
-  type: 'drop',
+  type: "drop",
   dropOperation: DropOperation,
   items: DropItem[]
 }
 
-export type DropPosition = 'on' | 'before' | 'after';
+export type DropPosition = "on" | "before" | "after";
 interface RootDropTarget {
-  type: 'root'
+  type: "root"
 }
 
 export interface ItemDropTarget {
-  type: 'item',
+  type: "item",
   key: Key,
   dropPosition: DropPosition
 }

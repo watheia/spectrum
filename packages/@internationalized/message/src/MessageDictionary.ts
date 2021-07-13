@@ -24,7 +24,7 @@ export class MessageDictionary {
   private messages: LocalizedStrings;
   private defaultLocale: string;
 
-  constructor(messages: LocalizedStrings, defaultLocale: string = 'en-US') {
+  constructor(messages: LocalizedStrings, defaultLocale: string = "en-US") {
     // Clone messages so we don't modify the original object.
     this.messages = {...messages};
     this.defaultLocale = defaultLocale;
@@ -46,7 +46,7 @@ export class MessageDictionary {
   }
 }
 
-function getStringsForLocale(locale: string, strings: LocalizedStrings, defaultLocale = 'en-US') {
+function getStringsForLocale(locale: string, strings: LocalizedStrings, defaultLocale = "en-US") {
   // If there is an exact match, use it.
   if (strings[locale]) {
     return strings[locale];
@@ -59,7 +59,7 @@ function getStringsForLocale(locale: string, strings: LocalizedStrings, defaultL
   // https://github.com/tc39/proposal-intl-localematcher
   let language = getLanguage(locale);
   for (let key in strings) {
-    if (key.startsWith(language + '-')) {
+    if (key.startsWith(language + "-")) {
       return strings[key];
     }
   }
@@ -75,5 +75,5 @@ function getLanguage(locale: string) {
     return new Intl.Locale(locale).language;
   }
 
-  return locale.split('-')[0];
+  return locale.split("-")[0];
 }

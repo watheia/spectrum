@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Example} from './Example';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {useViewportSize} from '@react-aria/utils';
+import {action} from "@storybook/addon-actions";
+import {Example} from "./Example";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {useViewportSize} from "@react-aria/utils";
 
-storiesOf('ActionBar', module)
+storiesOf("ActionBar", module)
   .add(
-    'default',
-    () => <Example onAction={action('onAction')} />
+    "default",
+    () => <Example onAction={action("onAction")} />
   )
   .add(
-    'isEmphasized',
-    () => <Example isEmphasized onAction={action('onAction')} />
+    "isEmphasized",
+    () => <Example isEmphasized onAction={action("onAction")} />
   )
   .add(
-    'full width',
+    "full width",
     () => {
       let viewport = useViewportSize();
-      return <Example isEmphasized tableWidth="100vw" containerHeight={viewport.height} isQuiet onAction={action('onAction')} />;
+      return <Example isEmphasized tableWidth="100vw" containerHeight={viewport.height} isQuiet onAction={action("onAction")} />;
     }
   );

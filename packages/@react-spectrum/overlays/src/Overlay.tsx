@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMRef} from '@react-types/shared';
-import {OpenTransition} from './OpenTransition';
-import {OverlayProps} from '@react-types/overlays';
-import {Provider} from '@react-spectrum/provider';
-import React, {useCallback, useState} from 'react';
-import ReactDOM from 'react-dom';
+import {DOMRef} from "@react-types/shared";
+import {OpenTransition} from "./OpenTransition";
+import {OverlayProps} from "@react-types/overlays";
+import {Provider} from "@react-spectrum/provider";
+import React, {useCallback, useState} from "react";
+import ReactDOM from "react-dom";
 
 function Overlay(props: OverlayProps, ref: DOMRef<HTMLDivElement>) {
   let {children, isOpen, container, onEnter, onEntering, onEntered, onExit, onExiting, onExited} = props;
@@ -43,7 +43,7 @@ function Overlay(props: OverlayProps, ref: DOMRef<HTMLDivElement>) {
   }
 
   let contents = (
-    <Provider ref={ref} UNSAFE_style={{background: 'transparent', isolation: 'isolate'}}>
+    <Provider ref={ref} UNSAFE_style={{background: "transparent", isolation: "isolate"}}>
       <OpenTransition
         in={isOpen}
         appear

@@ -10,26 +10,26 @@
  * governing permissions and limitations under the License.
  */
 
-import {Checkbox, CheckboxGroup} from '@react-spectrum/checkbox';
-import {Form} from '../';
-import {Item, Picker} from '@react-spectrum/picker';
-import {Meta, Story} from '@storybook/react';
-import {NumberField} from '@react-spectrum/numberfield';
-import {Radio, RadioGroup} from '@react-spectrum/radio';
-import React from 'react';
-import {SpectrumFormProps} from '@react-types/form';
-import {TextArea, TextField} from '@react-spectrum/textfield';
+import {Checkbox, CheckboxGroup} from "@react-spectrum/checkbox";
+import {Form} from "../";
+import {Item, Picker} from "@react-spectrum/picker";
+import {Meta, Story} from "@storybook/react";
+import {NumberField} from "@react-spectrum/numberfield";
+import {Radio, RadioGroup} from "@react-spectrum/radio";
+import React from "react";
+import {SpectrumFormProps} from "@react-types/form";
+import {TextArea, TextField} from "@react-spectrum/textfield";
 
 const meta: Meta<SpectrumFormProps> = {
-  title: 'Form'
+  title: "Form"
 };
 
 export default meta;
 
 let flatOptions = [
-  {id: 1, name: 'Aardvark'},
-  {id: 2, name: 'Kangaroo'},
-  {id: 3, name: 'Snake'}
+  {id: 1, name: "Aardvark"},
+  {id: 2, name: "Kangaroo"},
+  {id: 3, name: "Snake"}
 ];
 
 const Template = (): Story<SpectrumFormProps> => (args) => (
@@ -39,7 +39,7 @@ const Template = (): Story<SpectrumFormProps> => (args) => (
       {item => <Item key={item.id}>{item.name}</Item>}
     </Picker>
     <NumberField label="Test" />
-    <CheckboxGroup defaultValue={['dragons']} label="Pets">
+    <CheckboxGroup defaultValue={["dragons"]} label="Pets">
       <Checkbox value="dogs">Dogs</Checkbox>
       <Checkbox value="cats">Cats</Checkbox>
       <Checkbox value="dragons">Dragons</Checkbox>
@@ -55,45 +55,45 @@ const Template = (): Story<SpectrumFormProps> => (args) => (
 
 // No need to make a set of all permutations, rely on each individual component story to do that for us. Just make sure Form is passing the options down
 export const Default = Template().bind({});
-Default.storyName = 'default';
+Default.storyName = "default";
 Default.args = {};
 
 export const LabelPositionSide = Template().bind({});
-LabelPositionSide.storyName = 'label position: side';
-LabelPositionSide.args = {...Default.args, labelPosition: 'side'};
+LabelPositionSide.storyName = "label position: side";
+LabelPositionSide.args = {...Default.args, labelPosition: "side"};
 
 export const LabelAlignEnd = Template().bind({});
-LabelAlignEnd.storyName = 'label align: end';
-LabelAlignEnd.args = {...Default.args, labelAlign: 'end'};
+LabelAlignEnd.storyName = "label align: end";
+LabelAlignEnd.args = {...Default.args, labelAlign: "end"};
 
 export const Required = Template().bind({});
-Required.storyName = 'isRequired';
+Required.storyName = "isRequired";
 Required.args = {...Default.args, isRequired: true};
 
 export const NecessityIndicatorLabel = Template().bind({});
-NecessityIndicatorLabel.storyName = 'necessity indicator: label';
-NecessityIndicatorLabel.args = {...Default.args, necessityIndicator: 'label'};
+NecessityIndicatorLabel.storyName = "necessity indicator: label";
+NecessityIndicatorLabel.args = {...Default.args, necessityIndicator: "label"};
 
 export const Quiet = Template().bind({});
-Quiet.storyName = 'isQuiet';
+Quiet.storyName = "isQuiet";
 Quiet.args = {...Default.args, isQuiet: true};
 
 export const Emphasized = Template().bind({});
-Emphasized.storyName = 'isEmphasized';
+Emphasized.storyName = "isEmphasized";
 Emphasized.args = {...Default.args, isEmphasized: true};
 
 export const Disabled = Template().bind({});
-Disabled.storyName = 'isDisabled';
+Disabled.storyName = "isDisabled";
 Disabled.args = {...Default.args, isDisabled: true};
 
 export const ReadOnly = Template().bind({});
-ReadOnly.storyName = 'isReadOnly';
+ReadOnly.storyName = "isReadOnly";
 ReadOnly.args = {...Default.args, isReadOnly: true};
 
 export const ValidationStateInvalid = Template().bind({});
-ValidationStateInvalid.storyName = 'validationState: invalid';
-ValidationStateInvalid.args = {...Default.args, validationState: 'invalid'};
+ValidationStateInvalid.storyName = "validationState: invalid";
+ValidationStateInvalid.args = {...Default.args, validationState: "invalid"};
 
 export const ValidationStateValid = Template().bind({});
-ValidationStateValid.storyName = 'validationState: valid';
-ValidationStateValid.args = {...Default.args, validationState: 'valid'};
+ValidationStateValid.storyName = "validationState: valid";
+ValidationStateValid.args = {...Default.args, validationState: "valid"};

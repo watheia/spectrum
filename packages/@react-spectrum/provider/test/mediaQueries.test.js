@@ -11,11 +11,11 @@
  */
 
 // needs to be imported first
-import MatchMediaMock from 'jest-matchmedia-mock';
+import MatchMediaMock from "jest-matchmedia-mock";
 // eslint-disable-next-line rulesdir/sort-imports
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useColorScheme} from '../src/mediaQueries';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useColorScheme} from "../src/mediaQueries";
 
 let theme = {
   global: {},
@@ -25,10 +25,10 @@ let theme = {
   large: {}
 };
 
-let mediaQueryLight = '(prefers-color-scheme: light)';
-let mediaQueryDark = '(prefers-color-scheme: dark)';
+let mediaQueryLight = "(prefers-color-scheme: light)";
+let mediaQueryDark = "(prefers-color-scheme: dark)";
 
-describe('mediaQueries', () => {
+describe("mediaQueries", () => {
   let matchMedia;
   beforeEach(() => {
     matchMedia = new MatchMediaMock();
@@ -37,27 +37,27 @@ describe('mediaQueries', () => {
     matchMedia.clear();
   });
 
-  describe('useColorScheme', () => {
-    it('uses OS as default - dark', () => {
+  describe("useColorScheme", () => {
+    it("uses OS as default - dark", () => {
       matchMedia.useMediaQuery(mediaQueryDark);
-      let {result} = renderHook(() => useColorScheme(theme, 'light'));
-      expect(result.current).toBe('dark');
+      let {result} = renderHook(() => useColorScheme(theme, "light"));
+      expect(result.current).toBe("dark");
     });
 
-    it('uses OS as default - light', () => {
+    it("uses OS as default - light", () => {
       matchMedia.useMediaQuery(mediaQueryLight);
-      let {result} = renderHook(() => useColorScheme(theme, 'light'));
-      expect(result.current).toBe('light');
+      let {result} = renderHook(() => useColorScheme(theme, "light"));
+      expect(result.current).toBe("light");
     });
 
-    it('uses default light if OS is not useable', () => {
-      let {result} = renderHook(() => useColorScheme(theme, 'light'));
-      expect(result.current).toBe('light');
+    it("uses default light if OS is not useable", () => {
+      let {result} = renderHook(() => useColorScheme(theme, "light"));
+      expect(result.current).toBe("light");
     });
 
-    it('uses default dark if OS is not useable', () => {
-      let {result} = renderHook(() => useColorScheme(theme, 'dark'));
-      expect(result.current).toBe('dark');
+    it("uses default dark if OS is not useable", () => {
+      let {result} = renderHook(() => useColorScheme(theme, "dark"));
+      expect(result.current).toBe("dark");
     });
   });
 });

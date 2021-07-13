@@ -10,115 +10,115 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ActionGroup, Flex, Heading, Text} from '@adobe/react-spectrum';
-import Bookmark from '@spectrum-icons/workflow/Bookmark';
-import {Button} from '@react-spectrum/button';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import Calendar from '@spectrum-icons/workflow/Calendar';
-import Dashboard from '@spectrum-icons/workflow/Dashboard';
-import {Item, TabList, TabPanels, Tabs} from '..';
-import React, {ReactNode, useState} from 'react';
-import {SpectrumTabsProps} from '@react-types/tabs';
-import {storiesOf} from '@storybook/react';
-import {TextField} from '@react-spectrum/textfield';
+import {action} from "@storybook/addon-actions";
+import {ActionGroup, Flex, Heading, Text} from "@adobe/react-spectrum";
+import Bookmark from "@spectrum-icons/workflow/Bookmark";
+import {Button} from "@react-spectrum/button";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import Calendar from "@spectrum-icons/workflow/Calendar";
+import Dashboard from "@spectrum-icons/workflow/Dashboard";
+import {Item, TabList, TabPanels, Tabs} from "..";
+import React, {ReactNode, useState} from "react";
+import {SpectrumTabsProps} from "@react-types/tabs";
+import {storiesOf} from "@storybook/react";
+import {TextField} from "@react-spectrum/textfield";
 
-storiesOf('Tabs', module)
+storiesOf("Tabs", module)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'with falsy item key',
+    "with falsy item key",
     () => renderWithFalsyKey()
   )
   .add(
-    'defaultSelectedKey: val2',
-    () => render({defaultSelectedKey: 'val2'})
+    "defaultSelectedKey: val2",
+    () => render({defaultSelectedKey: "val2"})
   )
   .add(
-    'controlled: selectedKey: val3',
-    () => render({selectedKey: 'val3'})
+    "controlled: selectedKey: val3",
+    () => render({selectedKey: "val3"})
   )
   .add(
-    'orientation: vertical',
-    () => render({orientation: 'vertical'}))
+    "orientation: vertical",
+    () => render({orientation: "vertical"}))
   .add(
-    'density: compact',
-    () => render({density: 'compact'}))
+    "density: compact",
+    () => render({density: "compact"}))
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true}))
   .add(
-    'isQuiet, density: compact',
-    () => render({isQuiet: true, density: 'compact'})
+    "isQuiet, density: compact",
+    () => render({isQuiet: true, density: "compact"})
   )
   .add(
-    'density: compact, orientation: vertical',
-    () => render({density: 'compact', orientation: 'vertical'})
+    "density: compact, orientation: vertical",
+    () => render({density: "compact", orientation: "vertical"})
   )
   .add(
-    'icons',
+    "icons",
     () => renderWithIcons())
   .add(
-    'icons, density: compact',
-    () => renderWithIcons({density: 'compact'})
+    "icons, density: compact",
+    () => renderWithIcons({density: "compact"})
   )
   .add(
-    'icons, orientation: vertical',
-    () => renderWithIcons({orientation: 'vertical'})
+    "icons, orientation: vertical",
+    () => renderWithIcons({orientation: "vertical"})
   )
   .add(
-    'icons, density: compact, orientation: vertical',
-    () => renderWithIcons({orientation: 'vertical', density: 'compact'})
+    "icons, density: compact, orientation: vertical",
+    () => renderWithIcons({orientation: "vertical", density: "compact"})
   )
   .add(
-    'disable all tabs',
+    "disable all tabs",
     () => render({isDisabled: true}))
   .add(
-    'keyboardActivation: manual',
-    () => render({keyboardActivation: 'manual'})
+    "keyboardActivation: manual",
+    () => render({keyboardActivation: "manual"})
   )
   .add(
-    'middle disabled',
-    () => render({disabledKeys: ['val2']})
+    "middle disabled",
+    () => render({disabledKeys: ["val2"]})
   )
   .add(
-    'all disabled',
-    () => render({disabledKeys: ['val1', 'val2', 'val3', 'val4', 'val5']})
+    "all disabled",
+    () => render({disabledKeys: ["val1", "val2", "val3", "val4", "val5"]})
   )
   .add(
-    'resizeable',
+    "resizeable",
     () => (
-      <div style={{minWidth: '100px', width: '300px', height: '400px', padding: '10px', resize: 'horizontal', overflow: 'auto', backgroundColor: 'var(--spectrum-global-color-gray-50)'}}>
+      <div style={{minWidth: "100px", width: "300px", height: "400px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
         {render()}
       </div>
     )
   )
   .add(
-    'collapse behavior',
+    "collapse behavior",
     () => <DynamicTabs />
   )
   .add(
-    'collapse behavior, isQuiet',
+    "collapse behavior, isQuiet",
     () => <DynamicTabs isQuiet />
   )
   .add(
-    'collapse behavior, density: compact',
+    "collapse behavior, density: compact",
     () => <DynamicTabs density="compact" />
   )
   .add(
-    'collapse behavior, density: compact, isQuiet',
+    "collapse behavior, density: compact, isQuiet",
     () => <DynamicTabs isQuiet density="compact" />
   )
   .add(
-    'orientation flip',
+    "orientation flip",
     () => <OrientationFlip />
   )
   .add(
-    'testing: tabs in flex',
+    "testing: tabs in flex",
     () => (
-      <Flex minHeight={400} minWidth={400} UNSAFE_style={{borderWidth: 1, borderStyle: 'solid', borderColor: 'var(--spectrum-global-color-gray-800)', padding: '10px'}}>
+      <Flex minHeight={400} minWidth={400} UNSAFE_style={{borderWidth: 1, borderStyle: "solid", borderColor: "var(--spectrum-global-color-gray-800)", padding: "10px"}}>
         <Tabs>
           <TabList>
             <Item>Tab 1</Item>
@@ -133,7 +133,7 @@ storiesOf('Tabs', module)
     )
   )
   .add(
-    'transition between tab sizes',
+    "transition between tab sizes",
     () => (
       (
         <Tabs maxWidth={500}>
@@ -154,11 +154,11 @@ storiesOf('Tabs', module)
     )
   )
   .add(
-    'Tab with flex container in between',
+    "Tab with flex container in between",
     () => <DynamicTabsWithDecoration />
   )
   .add(
-    'tabs at the bottom',
+    "tabs at the bottom",
     () => (
       (
         <Tabs maxWidth={500}>
@@ -175,7 +175,7 @@ storiesOf('Tabs', module)
     )
   )
   .add(
-    'tabs on the right',
+    "tabs on the right",
     () => (
       (
         <Tabs maxWidth={500} orientation="vertical">
@@ -192,7 +192,7 @@ storiesOf('Tabs', module)
     )
   )
   .add(
-    'focusable element in tab panel',
+    "focusable element in tab panel",
     () => (
       <Tabs maxWidth={500}>
         <TabList>
@@ -211,9 +211,9 @@ storiesOf('Tabs', module)
     )
   )
   .add(
-    'Tab 1 controlled child',
+    "Tab 1 controlled child",
     () => {
-      let [tab1Text, setTab1Text] = useState('');
+      let [tab1Text, setTab1Text] = useState("");
 
       return (
         <Tabs maxWidth={500}>
@@ -237,7 +237,7 @@ storiesOf('Tabs', module)
 
 function render(props = {}) {
   return (
-    <Tabs {...props} aria-label="Tab example" maxWidth={500} onSelectionChange={action('onSelectionChange')}>
+    <Tabs {...props} aria-label="Tab example" maxWidth={500} onSelectionChange={action("onSelectionChange")}>
       <TabList>
         <Item key="val1">Tab 1</Item>
         <Item key="val2">Tab 2</Item>
@@ -293,7 +293,7 @@ function render(props = {}) {
 
 function renderWithIcons(props = {}) {
   return (
-    <Tabs {...props} aria-label="Tab example" maxWidth={500} onSelectionChange={action('onSelectionChange')}>
+    <Tabs {...props} aria-label="Tab example" maxWidth={500} onSelectionChange={action("onSelectionChange")}>
       <TabList>
         <Item key="dashboard">
           <Dashboard />
@@ -340,7 +340,7 @@ function renderWithIcons(props = {}) {
 
 function renderWithFalsyKey(props = {}) {
   return (
-    <Tabs {...props} aria-label="Tab example" maxWidth={500} onSelectionChange={action('onSelectionChange')}>
+    <Tabs {...props} aria-label="Tab example" maxWidth={500} onSelectionChange={action("onSelectionChange")}>
       <TabList>
         <Item key="">Tab 1</Item>
         <Item key="val2">Tab 2</Item>
@@ -401,15 +401,15 @@ interface DynamicTabItem {
 }
 
 let items = [
-  {name: 'Tab 1', children: 'Tab Body 1', icon: <Dashboard size="S" />},
-  {name: 'Tab 2', children: 'Tab Body 2', icon: <Calendar size="S" />},
-  {name: 'Tab 3', children: 'Tab Body 3', icon: <Bookmark size="S" />},
-  {name: 'Tab 4', children: 'Tab Body 4', icon: <Dashboard size="S" />},
-  {name: 'Tab 5', children: 'Tab Body 5', icon: <Calendar size="S" />},
-  {name: 'Tab 6', children: 'Tab Body 6', icon: <Bookmark size="S" />}
+  {name: "Tab 1", children: "Tab Body 1", icon: <Dashboard size="S" />},
+  {name: "Tab 2", children: "Tab Body 2", icon: <Calendar size="S" />},
+  {name: "Tab 3", children: "Tab Body 3", icon: <Bookmark size="S" />},
+  {name: "Tab 4", children: "Tab Body 4", icon: <Dashboard size="S" />},
+  {name: "Tab 5", children: "Tab Body 5", icon: <Calendar size="S" />},
+  {name: "Tab 6", children: "Tab Body 6", icon: <Bookmark size="S" />}
 ] as DynamicTabItem[];
 
-let DynamicTabs = (props: Omit<SpectrumTabsProps<DynamicTabItem>, 'children'>) => {
+let DynamicTabs = (props: Omit<SpectrumTabsProps<DynamicTabItem>, "children">) => {
 
   let [tabs, setTabs] = React.useState(items);
   let addTab = () => {
@@ -429,8 +429,8 @@ let DynamicTabs = (props: Omit<SpectrumTabsProps<DynamicTabItem>, 'children'>) =
   };
 
   return (
-    <div style={{width: '80%'}}>
-      <Tabs {...props} aria-label="Tab example" items={tabs} onSelectionChange={action('onSelectionChange')}>
+    <div style={{width: "80%"}}>
+      <Tabs {...props} aria-label="Tab example" items={tabs} onSelectionChange={action("onSelectionChange")}>
         <TabList>
           {(item: DynamicTabItem) => (
             <Item key={item.name}>
@@ -468,8 +468,8 @@ let OrientationFlip = (props = {}) => {
   let [flipOrientation, setFlipOrientation] = React.useState(true);
 
   return (
-    <div style={{width: '80%'}}>
-      <Tabs {...props} aria-label="Tab example" items={items} onSelectionChange={action('onSelectionChange')} orientation={flipOrientation ? 'horizontal' : 'vertical'}>
+    <div style={{width: "80%"}}>
+      <Tabs {...props} aria-label="Tab example" items={items} onSelectionChange={action("onSelectionChange")} orientation={flipOrientation ? "horizontal" : "vertical"}>
         <TabList>
           {(item: DynamicTabItem) => (
             <Item key={item.name}>
@@ -521,10 +521,10 @@ let DynamicTabsWithDecoration = (props = {}) => {
   };
 
   return (
-    <div style={{width: '80%'}}>
-      <Tabs {...props} aria-label="Tab example" items={tabs} onSelectionChange={action('onSelectionChange')}>
+    <div style={{width: "80%"}}>
+      <Tabs {...props} aria-label="Tab example" items={tabs} onSelectionChange={action("onSelectionChange")}>
         <Flex direction="row" alignItems="center">
-          <TabList flex="1 1 auto" UNSAFE_style={{overflow: 'hidden'}}>
+          <TabList flex="1 1 auto" UNSAFE_style={{overflow: "hidden"}}>
             {(item: DynamicTabItem) => (
               <Item key={item.name}>
                 {item.icon}
@@ -532,8 +532,8 @@ let DynamicTabsWithDecoration = (props = {}) => {
               </Item>
             )}
           </TabList>
-          <Flex alignItems="center" justifyContent="end" flex="0 0 auto" alignSelf="stretch" UNSAFE_style={{borderBottom: 'var(--spectrum-alias-border-size-thick) solid var(--spectrum-global-color-gray-200)'}}>
-            <ActionGroup marginEnd="30px" disabledKeys={tabs.length === 1 ? ['remove'] : undefined} onAction={val => val === 'add' ? addTab() : removeTab()}>
+          <Flex alignItems="center" justifyContent="end" flex="0 0 auto" alignSelf="stretch" UNSAFE_style={{borderBottom: "var(--spectrum-alias-border-size-thick) solid var(--spectrum-global-color-gray-200)"}}>
+            <ActionGroup marginEnd="30px" disabledKeys={tabs.length === 1 ? ["remove"] : undefined} onAction={val => val === "add" ? addTab() : removeTab()}>
               <Item key="add">
                 <Text>Add Tab</Text>
               </Item>

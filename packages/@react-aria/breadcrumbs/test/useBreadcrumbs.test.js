@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useBreadcrumbs} from '../';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useBreadcrumbs} from "../";
 
-describe('useBreadcrumbs', function () {
+describe("useBreadcrumbs", function () {
   let renderLinkHook = (props) => {
     let {result} = renderHook(() => useBreadcrumbs(props));
     return result.current;
   };
 
-  it('handles defaults', function () {
+  it("handles defaults", function () {
     let {navProps} = renderLinkHook({});
-    expect(navProps['aria-label']).toBe('Breadcrumbs');
+    expect(navProps["aria-label"]).toBe("Breadcrumbs");
   });
 
-  it('handles custom aria label', function () {
-    let {navProps} = renderLinkHook({'aria-label': 'test-label'});
-    expect(navProps['aria-label']).toBe('test-label');
+  it("handles custom aria label", function () {
+    let {navProps} = renderLinkHook({"aria-label": "test-label"});
+    expect(navProps["aria-label"]).toBe("test-label");
   });
 
 });

@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, CollectionBase, MultipleSelection, Node} from '@react-types/shared';
-import {Key, useEffect, useMemo} from 'react';
-import {ListCollection} from './ListCollection';
-import {SelectionManager, useMultipleSelectionState} from '@react-stately/selection';
-import {useCollection} from '@react-stately/collections';
+import {Collection, CollectionBase, MultipleSelection, Node} from "@react-types/shared";
+import {Key, useEffect, useMemo} from "react";
+import {ListCollection} from "./ListCollection";
+import {SelectionManager, useMultipleSelectionState} from "@react-stately/selection";
+import {useCollection} from "@react-stately/collections";
 
 export interface ListProps<T> extends CollectionBase<T>, MultipleSelection {
   /** Filter function to generate a filtered list of nodes. */

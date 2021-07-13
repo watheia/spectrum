@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {ItemElement, ItemProps} from '@react-types/shared';
-import {PartialNode} from './types';
-import React, {ReactElement} from 'react';
+import {ItemElement, ItemProps} from "@react-types/shared";
+import {PartialNode} from "./types";
+import React, {ReactElement} from "react";
 
 function Item<T>(props: ItemProps<T>): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -22,25 +22,25 @@ Item.getCollectionNode = function* getCollectionNode<T>(props: ItemProps<T>, con
   let {childItems, title, children} = props;
 
   let rendered = props.title || props.children;
-  let textValue = props.textValue || (typeof rendered === 'string' ? rendered : '') || props['aria-label'] || '';
+  let textValue = props.textValue || (typeof rendered === "string" ? rendered : "") || props["aria-label"] || "";
 
   // suppressTextValueWarning is used in components like Tabs, which don't have type to select support.
   if (!textValue && !context?.suppressTextValueWarning) {
-    console.warn('<Item> with non-plain text contents is unsupported by type to select for accessibility. Please add a `textValue` prop.');
+    console.warn("<Item> with non-plain text contents is unsupported by type to select for accessibility. Please add a `textValue` prop.");
   }
 
   yield {
-    type: 'item',
+    type: "item",
     props: props,
     rendered,
     textValue,
-    'aria-label': props['aria-label'],
+    "aria-label": props["aria-label"],
     hasChildNodes: hasChildItems(props),
     *childNodes() {
       if (childItems) {
         for (let child of childItems) {
           yield {
-            type: 'item',
+            type: "item",
             value: child
           };
         }
@@ -48,7 +48,7 @@ Item.getCollectionNode = function* getCollectionNode<T>(props: ItemProps<T>, con
         let items: PartialNode<T>[] = [];
         React.Children.forEach(children, child => {
           items.push({
-            type: 'item',
+            type: "item",
             element: child as ItemElement<T>
           });
         });

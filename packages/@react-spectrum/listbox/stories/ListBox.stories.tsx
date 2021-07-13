@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import AlignCenter from '@spectrum-icons/workflow/AlignCenter';
-import AlignLeft from '@spectrum-icons/workflow/AlignLeft';
-import AlignRight from '@spectrum-icons/workflow/AlignRight';
-import Blower from '@spectrum-icons/workflow/Blower';
-import Book from '@spectrum-icons/workflow/Book';
-import {Button, Flex} from '@adobe/react-spectrum';
-import Copy from '@spectrum-icons/workflow/Copy';
-import Cut from '@spectrum-icons/workflow/Cut';
-import {Item, ListBox, Section} from '../';
-import {Label} from '@react-spectrum/label';
-import Paste from '@spectrum-icons/workflow/Paste';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {Text} from '@react-spectrum/text';
-import {useAsyncList} from '@react-stately/data';
+import {action} from "@storybook/addon-actions";
+import AlignCenter from "@spectrum-icons/workflow/AlignCenter";
+import AlignLeft from "@spectrum-icons/workflow/AlignLeft";
+import AlignRight from "@spectrum-icons/workflow/AlignRight";
+import Blower from "@spectrum-icons/workflow/Blower";
+import Book from "@spectrum-icons/workflow/Book";
+import {Button, Flex} from "@adobe/react-spectrum";
+import Copy from "@spectrum-icons/workflow/Copy";
+import Cut from "@spectrum-icons/workflow/Cut";
+import {Item, ListBox, Section} from "../";
+import {Label} from "@react-spectrum/label";
+import Paste from "@spectrum-icons/workflow/Paste";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {Text} from "@react-spectrum/text";
+import {useAsyncList} from "@react-stately/data";
 
 let iconMap = {
   AlignCenter,
@@ -39,40 +39,40 @@ let iconMap = {
 };
 
 let hardModeProgrammatic = [
-  {name: 'Section 1', children: [
-    {name: 'Copy', icon: 'Copy'},
-    {name: 'Cut', icon: 'Cut'},
-    {name: 'Paste', icon: 'Paste'}
+  {name: "Section 1", children: [
+    {name: "Copy", icon: "Copy"},
+    {name: "Cut", icon: "Cut"},
+    {name: "Paste", icon: "Paste"}
   ]},
-  {name: 'Section 2', children: [
-    {name: 'Puppy', icon: 'AlignLeft'},
-    {name: 'Doggo', icon: 'AlignCenter'},
-    {name: 'Floof', icon: 'AlignRight'}
+  {name: "Section 2", children: [
+    {name: "Puppy", icon: "AlignLeft"},
+    {name: "Doggo", icon: "AlignCenter"},
+    {name: "Floof", icon: "AlignRight"}
   ]}
 ];
 
 let flatOptions = [
-  {name: 'Aardvark'},
-  {name: 'Kangaroo'},
-  {name: 'Snake'},
-  {name: 'Danni'},
-  {name: 'Devon'},
-  {name: 'Ross'},
-  {name: 'Puppy'},
-  {name: 'Doggo'},
-  {name: 'Floof'}
+  {name: "Aardvark"},
+  {name: "Kangaroo"},
+  {name: "Snake"},
+  {name: "Danni"},
+  {name: "Devon"},
+  {name: "Ross"},
+  {name: "Puppy"},
+  {name: "Doggo"},
+  {name: "Floof"}
 ];
 
 let withSection = [
-  {name: 'Animals', children: [
-    {name: 'Aardvark'},
-    {name: 'Kangaroo'},
-    {name: 'Snake'}
+  {name: "Animals", children: [
+    {name: "Aardvark"},
+    {name: "Kangaroo"},
+    {name: "Snake"}
   ]},
-  {name: 'People', children: [
-    {name: 'Danni'},
-    {name: 'Devon'},
-    {name: 'Ross'}
+  {name: "People", children: [
+    {name: "Danni"},
+    {name: "Devon"},
+    {name: "Ross"}
   ]}
 ];
 
@@ -83,20 +83,20 @@ for (let i = 0; i < 50; i++) {
     children.push({name: `Section ${i}, Item ${j}`});
   }
 
-  lotsOfSections.push({name: 'Section ' + i, children});
+  lotsOfSections.push({name: "Section " + i, children});
 }
 
-storiesOf('ListBox', module)
+storiesOf("ListBox", module)
   .addDecorator(story => (
-    <div style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{display: "flex", flexDirection: "column"}}>
       <Label id="label">Choose an item</Label>
-      <div style={{display: 'flex', minWidth: '200px', background: 'var(--spectrum-global-color-gray-50)', border: '1px solid lightgray', maxHeight: 300}}>
+      <div style={{display: "flex", minWidth: "200px", background: "var(--spectrum-global-color-gray-50)", border: "1px solid lightgray", maxHeight: 300}}>
         {story()}
       </div>
     </div>
   ))
   .add(
-    'Default ListBox',
+    "Default ListBox",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={flatOptions}>
         {item => <Item key={item.name}>{item.name}</Item>}
@@ -104,7 +104,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'ListBox w/ sections',
+    "ListBox w/ sections",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={withSection}>
         {item => (
@@ -116,9 +116,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'ListBox w/ many sections and selection',
+    "ListBox w/ many sections and selection",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" items={lotsOfSections} onSelectionChange={action('onSelectionChange')}>
+      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" items={lotsOfSections} onSelectionChange={action("onSelectionChange")}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {(item: any) => <Item key={item.name}>{item.name}</Item>}
@@ -128,7 +128,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'ListBox w/ sections and no title',
+    "ListBox w/ sections and no title",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={withSection}>
         {item => (
@@ -140,7 +140,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'Static',
+    "Static",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label">
         <Item>One</Item>
@@ -150,7 +150,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'Static with sections and selection',
+    "Static with sections and selection",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple">
         <Section title="Section 1">
@@ -167,7 +167,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'Static with sections and no title',
+    "Static with sections and no title",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label">
         <Section aria-label="Section 1">
@@ -184,9 +184,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'with default selected option',
+    "with default selected option",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action('onSelectionChange')} items={withSection} defaultSelectedKeys={['Kangaroo']}>
+      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action("onSelectionChange")} items={withSection} defaultSelectedKeys={["Kangaroo"]}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -196,17 +196,17 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'single selection with default selected option',
+    "single selection with default selected option",
     () => (
-      <ListBox flexGrow={1} selectionMode="single" onSelectionChange={action('onSelectionChange')} aria-labelledby="label" items={flatOptions} defaultSelectedKeys={['Kangaroo']}>
+      <ListBox flexGrow={1} selectionMode="single" onSelectionChange={action("onSelectionChange")} aria-labelledby="label" items={flatOptions} defaultSelectedKeys={["Kangaroo"]}>
         {item => <Item key={item.name}>{item.name}</Item>}
       </ListBox>
     )
   )
   .add(
-    'static with default selected options',
+    "static with default selected options",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action('onSelectionChange')} defaultSelectedKeys={['2', '3']}>
+      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action("onSelectionChange")} defaultSelectedKeys={["2", "3"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -236,9 +236,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'with selected options (controlled)',
+    "with selected options (controlled)",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action('onSelectionChange')} items={withSection} selectedKeys={['Kangaroo']}>
+      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action("onSelectionChange")} items={withSection} selectedKeys={["Kangaroo"]}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -248,9 +248,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'static with selected options (controlled)',
+    "static with selected options (controlled)",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action('onSelectionChange')} selectedKeys={['2']}>
+      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action("onSelectionChange")} selectedKeys={["2"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -280,9 +280,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'with disabled options',
+    "with disabled options",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} disabledKeys={['Kangaroo', 'Ross']}>
+      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} disabledKeys={["Kangaroo", "Ross"]}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -292,9 +292,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'static with disabled options',
+    "static with disabled options",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" disabledKeys={['3', '5']}>
+      <ListBox flexGrow={1} aria-labelledby="label" disabledKeys={["3", "5"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -324,9 +324,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'Multiple selection',
+    "Multiple selection",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} onSelectionChange={action('onSelectionChange')} selectionMode="multiple" defaultSelectedKeys={['Aardvark', 'Snake']} disabledKeys={['Kangaroo', 'Ross']}>
+      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} onSelectionChange={action("onSelectionChange")} selectionMode="multiple" defaultSelectedKeys={["Aardvark", "Snake"]} disabledKeys={["Kangaroo", "Ross"]}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -336,9 +336,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'Multiple selection, static',
+    "Multiple selection, static",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" onSelectionChange={action('onSelectionChange')} selectionMode="multiple" defaultSelectedKeys={['2', '5']} disabledKeys={['1', '3']}>
+      <ListBox flexGrow={1} aria-labelledby="label" onSelectionChange={action("onSelectionChange")} selectionMode="multiple" defaultSelectedKeys={["2", "5"]} disabledKeys={["1", "3"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -365,7 +365,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'No selection allowed',
+    "No selection allowed",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={withSection}>
         {item => (
@@ -377,7 +377,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'No selection allowed, static',
+    "No selection allowed, static",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label">
         <Section title="Section 1">
@@ -394,7 +394,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'ListBox with autoFocus=true',
+    "ListBox with autoFocus=true",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={withSection} autoFocus>
         {item => (
@@ -406,9 +406,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'ListBox with autoFocus=true, selectionMode=single, default selected key (uncontrolled)',
+    "ListBox with autoFocus=true, selectionMode=single, default selected key (uncontrolled)",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} autoFocus defaultSelectedKeys={['Snake']} selectionMode="single">
+      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} autoFocus defaultSelectedKeys={["Snake"]} selectionMode="single">
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -420,7 +420,7 @@ storiesOf('ListBox', module)
   .add(
     'ListBox with autoFocus="first"',
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} selectionMode="multiple" onSelectionChange={action('onSelectionChange')} autoFocus="first">
+      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} selectionMode="multiple" onSelectionChange={action("onSelectionChange")} autoFocus="first">
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -432,7 +432,7 @@ storiesOf('ListBox', module)
   .add(
     'ListBox with autoFocus="last"',
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} selectionMode="multiple" onSelectionChange={action('onSelectionChange')} autoFocus="last">
+      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} selectionMode="multiple" onSelectionChange={action("onSelectionChange")} autoFocus="last">
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -442,9 +442,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'ListBox with keyboard selection wrapping',
+    "ListBox with keyboard selection wrapping",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} selectionMode="multiple" onSelectionChange={action('onSelectionChange')} shouldFocusWrap>
+      <ListBox flexGrow={1} aria-labelledby="label" items={withSection} selectionMode="multiple" onSelectionChange={action("onSelectionChange")} shouldFocusWrap>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -454,9 +454,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'with semantic elements (static)',
+    "with semantic elements (static)",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action('onSelectionChange')}>
+      <ListBox flexGrow={1} aria-labelledby="label" selectionMode="multiple" onSelectionChange={action("onSelectionChange")}>
         <Section title="Section 1">
           <Item textValue="Copy">
             <Copy size="S" />
@@ -493,9 +493,9 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'with semantic elements (generative), multiple selection',
+    "with semantic elements (generative), multiple selection",
     () => (
-      <ListBox flexGrow={1} aria-labelledby="label" items={hardModeProgrammatic} onSelectionChange={action('onSelectionChange')} selectionMode="multiple">
+      <ListBox flexGrow={1} aria-labelledby="label" items={hardModeProgrammatic} onSelectionChange={action("onSelectionChange")} selectionMode="multiple">
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => customOption(item)}
@@ -505,7 +505,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'isLoading',
+    "isLoading",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={[]} isLoading>
         {item => <Item>{item.name}</Item>}
@@ -513,7 +513,7 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'isLoading more',
+    "isLoading more",
     () => (
       <ListBox flexGrow={1} aria-labelledby="label" items={flatOptions} isLoading>
         {item => <Item key={item.name}>{item.name}</Item>}
@@ -521,34 +521,34 @@ storiesOf('ListBox', module)
     )
   )
   .add(
-    'async loading',
+    "async loading",
     () => (
       <AsyncLoadingExample />
     )
   );
 
-storiesOf('ListBox', module)
+storiesOf("ListBox", module)
   .addDecorator(story => (
-    <div style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{display: "flex", flexDirection: "column"}}>
       <Label id="label">Choose an item</Label>
-      <div style={{display: 'flex', minWidth: '200px', background: 'var(--spectrum-global-color-gray-50)', border: '1px solid lightgray'}}>
+      <div style={{display: "flex", minWidth: "200px", background: "var(--spectrum-global-color-gray-50)", border: "1px solid lightgray"}}>
         {story()}
       </div>
     </div>
   ))
   .add(
-    'async loading, resizable',
+    "async loading, resizable",
     () => (
       // need display flex or set a height on the listbox so it doesn't keep getting more elements
-      <div style={{display: 'flex', height: '200px', flexGrow: 1, minWidth: '200px', padding: '10px', resize: 'both', overflow: 'auto'}}>
+      <div style={{display: "flex", height: "200px", flexGrow: 1, minWidth: "200px", padding: "10px", resize: "both", overflow: "auto"}}>
         <AsyncLoadingExample />
       </div>
     )
   );
 
-storiesOf('ListBox', module)
+storiesOf("ListBox", module)
   .add(
-    'listbox containers',
+    "listbox containers",
     () => (
       <App />
     )
@@ -572,7 +572,7 @@ function AsyncLoadingExample() {
 
   let list = useAsyncList<Pokemon>({
     async load({signal, cursor}) {
-      let res = await fetch(cursor || 'https://pokeapi.co/api/v2/pokemon', {signal});
+      let res = await fetch(cursor || "https://pokeapi.co/api/v2/pokemon", {signal});
       let json = await res.json();
       return {
         items: json.results,
@@ -590,20 +590,20 @@ function AsyncLoadingExample() {
 
 let itemsForDemo = Array.from(new Array(100)).map((val, index) => ({val, index}));
 function App() {
-  let [size, setSize] = useState('700px');
+  let [size, setSize] = useState("700px");
 
   const toggleSize = () => {
-    if (size === '700px') {
-      setSize('300px');
+    if (size === "700px") {
+      setSize("300px");
     } else {
-      setSize('700px');
+      setSize("700px");
     }
   };
 
   return (
     <>
       <Button variant="primary" onPress={toggleSize}> Toggle Size</Button>
-      <div style={{display: 'flex', height: size, overflow: 'hidden'}}>
+      <div style={{display: "flex", height: size, overflow: "hidden"}}>
         <Flex maxHeight="300px">
           <Text>Max-Height: 300px</Text>
           <ListBox width="150px" items={itemsForDemo}>

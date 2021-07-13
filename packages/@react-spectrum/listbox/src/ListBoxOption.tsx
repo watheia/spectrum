@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import CheckmarkMedium from '@spectrum-icons/ui/CheckmarkMedium';
-import {classNames, SlotProvider} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {Grid} from '@react-spectrum/layout';
-import {isFocusVisible, useHover} from '@react-aria/interactions';
-import {ListBoxContext} from './ListBoxContext';
-import {mergeProps} from '@react-aria/utils';
-import {Node} from '@react-types/shared';
-import React, {useContext} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {Text} from '@react-spectrum/text';
-import {useOption} from '@react-aria/listbox';
-import {useRef} from 'react';
+import CheckmarkMedium from "@spectrum-icons/ui/CheckmarkMedium";
+import {classNames, SlotProvider} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {Grid} from "@react-spectrum/layout";
+import {isFocusVisible, useHover} from "@react-aria/interactions";
+import {ListBoxContext} from "./ListBoxContext";
+import {mergeProps} from "@react-aria/utils";
+import {Node} from "@react-types/shared";
+import React, {useContext} from "react";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {Text} from "@react-spectrum/text";
+import {useOption} from "@react-aria/listbox";
+import {useRef} from "react";
 
 interface OptionProps<T> {
   item: Node<T>,
@@ -50,7 +50,7 @@ export function ListBoxOption<T>(props: OptionProps<T>) {
   let ref = useRef<HTMLDivElement>();
   let {optionProps, labelProps, descriptionProps, isSelected, isDisabled, isFocused} = useOption(
     {
-      'aria-label': item['aria-label'],
+      "aria-label": item["aria-label"],
       key,
       shouldSelectOnPressUp,
       shouldFocusOnHover,
@@ -65,43 +65,43 @@ export function ListBoxOption<T>(props: OptionProps<T>) {
     isDisabled
   });
 
-  let contents = typeof rendered === 'string'
+  let contents = typeof rendered === "string"
     ? <Text>{rendered}</Text>
     : rendered;
 
   let isKeyboardModality = isFocusVisible();
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...mergeProps(optionProps, shouldFocusOnHover ? {} : hoverProps)}
         ref={ref}
         className={classNames(
           styles,
-          'spectrum-Menu-item',
+          "spectrum-Menu-item",
           {
             // If using virtual focus, apply focused styles to the item when the user is interacting with keyboard modality
-            'is-focused': shouldUseVirtualFocus && isFocused && isKeyboardModality,
-            'is-disabled': isDisabled,
-            'is-selected': isSelected,
-            'is-selectable': state.selectionManager.selectionMode !== 'none',
+            "is-focused": shouldUseVirtualFocus && isFocused && isKeyboardModality,
+            "is-disabled": isDisabled,
+            "is-selected": isSelected,
+            "is-selectable": state.selectionManager.selectionMode !== "none",
             // When shouldFocusOnHover is false, apply hover styles both when hovered with the mouse.
             // Otherwise, apply hover styles when focused using non-keyboard modality.
-            'is-hovered': (isHovered && !shouldFocusOnHover) || (isFocused && !isKeyboardModality)
+            "is-hovered": (isHovered && !shouldFocusOnHover) || (isFocused && !isKeyboardModality)
           }
         )}>
         <Grid
           UNSAFE_className={
             classNames(
               styles,
-              'spectrum-Menu-itemGrid'
+              "spectrum-Menu-itemGrid"
             )
           }>
           <SlotProvider
             slots={{
-              text: {UNSAFE_className: styles['spectrum-Menu-itemLabel'], ...labelProps},
-              icon: {size: 'S', UNSAFE_className: styles['spectrum-Menu-icon']},
-              description: {UNSAFE_className: styles['spectrum-Menu-description'], ...descriptionProps}
+              text: {UNSAFE_className: styles["spectrum-Menu-itemLabel"], ...labelProps},
+              icon: {size: "S", UNSAFE_className: styles["spectrum-Menu-icon"]},
+              description: {UNSAFE_className: styles["spectrum-Menu-description"], ...descriptionProps}
             }}>
             {contents}
             {isSelected &&
@@ -110,7 +110,7 @@ export function ListBoxOption<T>(props: OptionProps<T>) {
                 UNSAFE_className={
                       classNames(
                         styles,
-                        'spectrum-Menu-checkmark'
+                        "spectrum-Menu-checkmark"
                       )
                     } />
                 }

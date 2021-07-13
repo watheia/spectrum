@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMPropsResponderContext} from './DOMPropsContext';
-import {HoverProps} from './useHover';
-import React, {ReactNode, RefObject, useEffect, useRef} from 'react';
+import {DOMPropsResponderContext} from "./DOMPropsContext";
+import {HoverProps} from "./useHover";
+import React, {ReactNode, RefObject, useEffect, useRef} from "react";
 
 interface DOMPropsResponderProps extends HoverProps {
   children: ReactNode
@@ -32,7 +32,7 @@ export const DOMPropsResponder = React.forwardRef(({children, ...props}: DOMProp
   useEffect(() => {
     if (!isRegistered.current) {
       console.warn(
-        'A DOMPropsResponder was ultilized without a hoverable DOM node.'
+        "A DOMPropsResponder was ultilized without a hoverable DOM node."
       );
     }
   }, []);

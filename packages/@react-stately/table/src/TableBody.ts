@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {PartialNode} from '@react-stately/collections';
-import React, {ReactElement} from 'react';
-import {TableBodyProps} from '@react-types/table';
+import {PartialNode} from "@react-stately/collections";
+import React, {ReactElement} from "react";
+import {TableBodyProps} from "@react-types/table";
 
 function TableBody<T>(props: TableBodyProps<T>): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -21,18 +21,18 @@ function TableBody<T>(props: TableBodyProps<T>): ReactElement { // eslint-disabl
 TableBody.getCollectionNode = function* getCollectionNode<T>(props: TableBodyProps<T>): Generator<PartialNode<T>> {
   let {children, items} = props;
   yield {
-    type: 'body',
+    type: "body",
     hasChildNodes: true,
     props,
     *childNodes() {
-      if (typeof children === 'function') {
+      if (typeof children === "function") {
         if (!items) {
-          throw new Error('props.children was a function but props.items is missing');
+          throw new Error("props.children was a function but props.items is missing");
         }
 
         for (let item of items) {
           yield {
-            type: 'item',
+            type: "item",
             value: item,
             renderer: children
           };
@@ -41,7 +41,7 @@ TableBody.getCollectionNode = function* getCollectionNode<T>(props: TableBodyPro
         let items: PartialNode<T>[] = [];
         React.Children.forEach(children, item => {
           items.push({
-            type: 'item',
+            type: "item",
             element: item
           });
         });

@@ -15,12 +15,12 @@
 // NOTICE file in the root directory of this source tree.
 // See https://github.com/facebook/react/tree/cc7c1aece46a6b69b41958d731e0fd27c94bfc6c/packages/react-interactions
 
-import {disableTextSelection, restoreTextSelection} from './textSelection';
-import {focusWithoutScrolling, mergeProps, useGlobalListeners, useSyncRef} from '@react-aria/utils';
-import {HTMLAttributes, RefObject, useContext, useEffect, useMemo, useRef, useState} from 'react';
-import {isVirtualClick} from './utils';
-import {PointerType, PressEvents} from '@react-types/shared';
-import {PressResponderContext} from './context';
+import {disableTextSelection, restoreTextSelection} from "./textSelection";
+import {focusWithoutScrolling, mergeProps, useGlobalListeners, useSyncRef} from "@react-aria/utils";
+import {HTMLAttributes, RefObject, useContext, useEffect, useMemo, useRef, useState} from "react";
+import {isVirtualClick} from "./utils";
+import {PointerType, PressEvents} from "@react-types/shared";
+import {PressResponderContext} from "./context";
 
 export interface PressProps extends PressEvents {
   /** Whether the target is in a controlled press state (e.g. an overlay it triggers is open). */
@@ -121,7 +121,7 @@ export function usePress(props: PressHookProps): PressResult {
 
       if (onPressStart) {
         onPressStart({
-          type: 'pressstart',
+          type: "pressstart",
           pointerType,
           target: originalEvent.currentTarget as HTMLElement,
           shiftKey: originalEvent.shiftKey,
@@ -149,7 +149,7 @@ export function usePress(props: PressHookProps): PressResult {
 
       if (onPressEnd) {
         onPressEnd({
-          type: 'pressend',
+          type: "pressend",
           pointerType,
           target: originalEvent.currentTarget as HTMLElement,
           shiftKey: originalEvent.shiftKey,
@@ -166,7 +166,7 @@ export function usePress(props: PressHookProps): PressResult {
 
       if (onPress && wasPressed && !isDisabled) {
         onPress({
-          type: 'press',
+          type: "press",
           pointerType,
           target: originalEvent.currentTarget as HTMLElement,
           shiftKey: originalEvent.shiftKey,
@@ -184,7 +184,7 @@ export function usePress(props: PressHookProps): PressResult {
 
       if (onPressUp) {
         onPressUp({
-          type: 'pressup',
+          type: "pressup",
           pointerType,
           target: originalEvent.currentTarget as HTMLElement,
           shiftKey: originalEvent.shiftKey,
@@ -220,17 +220,17 @@ export function usePress(props: PressHookProps): PressResult {
           if (!state.isPressed && !e.repeat) {
             state.target = e.currentTarget as HTMLElement;
             state.isPressed = true;
-            triggerPressStart(e, 'keyboard');
+            triggerPressStart(e, "keyboard");
 
             // Focus may move before the key up event, so register the event on the document
             // instead of the same element where the key down event occurred.
-            addGlobalListener(document, 'keyup', onKeyUp, false);
+            addGlobalListener(document, "keyup", onKeyUp, false);
           }
         }
       },
       onKeyUp(e) {
         if (isValidKeyboardEvent(e.nativeEvent) && !e.repeat && e.currentTarget.contains(e.target as HTMLElement)) {
-          triggerPressUp(createEvent(state.target, e), 'keyboard');
+          triggerPressUp(createEvent(state.target, e), "keyboard");
         }
       },
       onClick(e) {
@@ -252,9 +252,9 @@ export function usePress(props: PressHookProps): PressResult {
               focusWithoutScrolling(e.currentTarget);
             }
 
-            triggerPressStart(e, 'virtual');
-            triggerPressUp(e, 'virtual');
-            triggerPressEnd(e, 'virtual');
+            triggerPressStart(e, "virtual");
+            triggerPressUp(e, "virtual");
+            triggerPressEnd(e, "virtual");
           }
 
           state.ignoreEmulatedMouseEvents = false;
@@ -269,18 +269,18 @@ export function usePress(props: PressHookProps): PressResult {
         e.stopPropagation();
 
         state.isPressed = false;
-        triggerPressEnd(createEvent(state.target, e), 'keyboard', e.target === state.target);
+        triggerPressEnd(createEvent(state.target, e), "keyboard", e.target === state.target);
         removeAllGlobalListeners();
 
         // If the target is a link, trigger the click method to open the URL,
         // but defer triggering pressEnd until onClick event handler.
-        if (e.target === state.target && isHTMLAnchorLink(state.target) || state.target.getAttribute('role') === 'link') {
+        if (e.target === state.target && isHTMLAnchorLink(state.target) || state.target.getAttribute("role") === "link") {
           state.target.click();
         }
       }
     };
 
-    if (typeof PointerEvent !== 'undefined') {
+    if (typeof PointerEvent !== "undefined") {
       pressProps.onPointerDown = (e) => {
         // Only handle left clicks, and ignore events that bubbled through portals.
         if (e.button !== 0 || !e.currentTarget.contains(e.target as HTMLElement)) {
@@ -295,7 +295,7 @@ export function usePress(props: PressHookProps): PressResult {
 
         // iOS safari fires pointer events from VoiceOver (but only when outside an iframe...)
         // https://bugs.webkit.org/show_bug.cgi?id=222627
-        state.pointerType = isVirtualPointerEvent(e.nativeEvent) ? 'virtual' : e.pointerType;
+        state.pointerType = isVirtualPointerEvent(e.nativeEvent) ? "virtual" : e.pointerType;
 
         e.stopPropagation();
         if (!state.isPressed) {
@@ -311,9 +311,9 @@ export function usePress(props: PressHookProps): PressResult {
           disableTextSelection();
           triggerPressStart(e, state.pointerType);
 
-          addGlobalListener(document, 'pointermove', onPointerMove, false);
-          addGlobalListener(document, 'pointerup', onPointerUp, false);
-          addGlobalListener(document, 'pointercancel', onPointerCancel, false);
+          addGlobalListener(document, "pointermove", onPointerMove, false);
+          addGlobalListener(document, "pointerup", onPointerUp, false);
+          addGlobalListener(document, "pointercancel", onPointerCancel, false);
         }
       };
 
@@ -416,7 +416,7 @@ export function usePress(props: PressHookProps): PressResult {
         state.isPressed = true;
         state.isOverTarget = true;
         state.target = e.currentTarget;
-        state.pointerType = isVirtualClick(e.nativeEvent) ? 'virtual' : 'mouse';
+        state.pointerType = isVirtualClick(e.nativeEvent) ? "virtual" : "mouse";
 
         if (!isDisabled && !preventFocusOnPress) {
           focusWithoutScrolling(e.currentTarget);
@@ -424,7 +424,7 @@ export function usePress(props: PressHookProps): PressResult {
 
         triggerPressStart(e, state.pointerType);
 
-        addGlobalListener(document, 'mouseup', onMouseUp, false);
+        addGlobalListener(document, "mouseup", onMouseUp, false);
       };
 
       pressProps.onMouseEnter = (e) => {
@@ -499,7 +499,7 @@ export function usePress(props: PressHookProps): PressResult {
         state.isOverTarget = true;
         state.isPressed = true;
         state.target = e.currentTarget;
-        state.pointerType = 'touch';
+        state.pointerType = "touch";
 
         // Due to browser inconsistencies, especially on mobile browsers, we prevent default
         // on the emulated mouse event and handle focusing the pressable element ourselves.
@@ -510,7 +510,7 @@ export function usePress(props: PressHookProps): PressResult {
         disableTextSelection();
         triggerPressStart(e, state.pointerType);
 
-        addGlobalListener(window, 'scroll', onScroll, true);
+        addGlobalListener(window, "scroll", onScroll, true);
       };
 
       pressProps.onTouchMove = (e) => {
@@ -608,26 +608,26 @@ export function usePress(props: PressHookProps): PressResult {
 }
 
 function isHTMLAnchorLink(target: HTMLElement): boolean {
-  return target.tagName === 'A' && target.hasAttribute('href');
+  return target.tagName === "A" && target.hasAttribute("href");
 }
 
 function isValidKeyboardEvent(event: KeyboardEvent): boolean {
   const {key, target} = event;
   const element = target as HTMLElement;
   const {tagName, isContentEditable} = element;
-  const role = element.getAttribute('role');
+  const role = element.getAttribute("role");
   // Accessibility for keyboards. Space and Enter only.
   // "Spacebar" is for IE 11
   return (
-    (key === 'Enter' || key === ' ' || key === 'Spacebar') &&
-    (tagName !== 'INPUT' &&
-      tagName !== 'TEXTAREA' &&
+    (key === "Enter" || key === " " || key === "Spacebar") &&
+    (tagName !== "INPUT" &&
+      tagName !== "TEXTAREA" &&
       isContentEditable !== true) &&
     // A link with a valid href should be handled natively,
     // unless it also has role='button' and was triggered using Space.
-    (!isHTMLAnchorLink(element) || (role === 'button' && key !== 'Enter')) &&
+    (!isHTMLAnchorLink(element) || (role === "button" && key !== "Enter")) &&
     // An element with role='link' should only trigger with Enter key
-    !(role === 'link' && key !== 'Enter')
+    !(role === "link" && key !== "Enter")
   );
 }
 

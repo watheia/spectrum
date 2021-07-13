@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {Slider} from '../';
-import {SpectrumSliderProps} from '@react-types/slider';
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {Slider} from "../";
+import {SpectrumSliderProps} from "@react-types/slider";
 
 const meta: Meta<SpectrumSliderProps> = {
-  title: 'Slider',
+  title: "Slider",
   component: Slider
 };
 
@@ -29,7 +29,7 @@ const Template = (): Story<SpectrumSliderProps> => (args) => (
 
 
 export const Default = Template().bind({});
-Default.args = {label: 'Slider label'};
+Default.args = {label: "Slider label"};
 
 export const Disabled = Template().bind({});
 Disabled.args = {...Default.args, isDisabled: true};
@@ -40,7 +40,7 @@ Vertical.args = {...Default.args, orientation: 'vertical'};
 */
 
 export const LabelPositionSide = Template().bind({});
-LabelPositionSide.args = {...Default.args, labelPosition: 'side'};
+LabelPositionSide.args = {...Default.args, labelPosition: "side"};
 
 /*
 Not supported but prop exists
@@ -58,4 +58,4 @@ export const FillOffset = Template().bind({});
 FillOffset.args = {...Filled.args, defaultValue: 80, fillOffset: 50};
 
 export const TrackGradient = Template().bind({});
-TrackGradient.args = {...Default.args, isFilled: true, defaultValue: 30, trackGradient: ['white', 'rgba(177,141,32,1)']};
+TrackGradient.args = {...Default.args, isFilled: true, defaultValue: 30, trackGradient: ["white", "rgba(177,141,32,1)"]};

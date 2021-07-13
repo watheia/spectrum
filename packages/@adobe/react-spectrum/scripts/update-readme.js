@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-let fs = require('fs');
-let packageJson = require('../package.json');
+let fs = require("fs");
+let packageJson = require("../package.json");
 
 /***
  * Updates the table of components in README.md with the versions from the package.json.
@@ -21,21 +21,21 @@ let packageJson = require('../package.json');
 function updateReadme() {
   let packages = new Map(
     Object.keys(packageJson.dependencies).reduce((context, packageName) => {
-      if (packageName.startsWith('@react-spectrum/')) {
+      if (packageName.startsWith("@react-spectrum/")) {
         context.push([packageName, packageJson.dependencies[packageName]]);
       }
       return context;
     }, [])
   );
 
-  let readmeContent = fs.readFileSync('README.md', 'utf-8');
+  let readmeContent = fs.readFileSync("README.md", "utf-8");
 
   for (let [packageName, packageVersion] of packages) {
     const versionRegex = new RegExp(`\\| (${packageName}[ ]+)\\| ([^ ]+)[ ]+\\|`);
-    readmeContent = readmeContent.replace(versionRegex, `| $1| ${packageVersion.padEnd(15, ' ')}|`);
+    readmeContent = readmeContent.replace(versionRegex, `| $1| ${packageVersion.padEnd(15, " ")}|`);
   }
 
-  fs.writeFileSync('README.md', readmeContent, 'utf-8');
+  fs.writeFileSync("README.md", readmeContent, "utf-8");
 }
 
 updateReadme();

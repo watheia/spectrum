@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {TreeState} from '@react-stately/tree';
+import React from "react";
+import {TreeState} from "@react-stately/tree";
 
 export const SideNavContext = React.createContext<TreeState<unknown>>(null);

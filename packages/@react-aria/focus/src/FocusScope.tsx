@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {focusSafely} from './focusSafely';
-import {isElementVisible} from './isElementVisible';
-import React, {ReactNode, RefObject, useContext, useEffect, useRef} from 'react';
-import {useLayoutEffect} from '@react-aria/utils';
+import {focusSafely} from "./focusSafely";
+import {isElementVisible} from "./isElementVisible";
+import React, {ReactNode, RefObject, useContext, useEffect, useRef} from "react";
+import {useLayoutEffect} from "@react-aria/utils";
 
 // import {FocusScope, useFocusScope} from 'react-events/focus-scope';
 // export {FocusScope};
@@ -157,22 +157,22 @@ function createFocusManagerForScope(scopeRef: React.RefObject<HTMLElement[]>): F
 }
 
 const focusableElements = [
-  'input:not([disabled]):not([type=hidden])',
-  'select:not([disabled])',
-  'textarea:not([disabled])',
-  'button:not([disabled])',
-  'a[href]',
-  'area[href]',
-  'summary',
-  'iframe',
-  'object',
-  'embed',
-  'audio[controls]',
-  'video[controls]',
-  '[contenteditable]'
+  "input:not([disabled]):not([type=hidden])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  "button:not([disabled])",
+  "a[href]",
+  "area[href]",
+  "summary",
+  "iframe",
+  "object",
+  "embed",
+  "audio[controls]",
+  "video[controls]",
+  "[contenteditable]"
 ];
 
-const FOCUSABLE_ELEMENT_SELECTOR = focusableElements.join(':not([hidden]),') + ',[tabindex]:not([disabled]):not([hidden])';
+const FOCUSABLE_ELEMENT_SELECTOR = focusableElements.join(":not([hidden]),") + ",[tabindex]:not([disabled]):not([hidden])";
 
 focusableElements.push('[tabindex]:not([tabindex="-1"]):not([disabled])');
 const TABBABLE_ELEMENT_SELECTOR = focusableElements.join(':not([hidden]):not([tabindex="-1"]),');
@@ -193,7 +193,7 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain: boolea
 
     // Handle the Tab key to contain focus within the scope
     let onKeyDown = (e) => {
-      if (e.key !== 'Tab' || e.altKey || e.ctrlKey || e.metaKey) {
+      if (e.key !== "Tab" || e.altKey || e.ctrlKey || e.metaKey) {
         return;
       }
 
@@ -246,15 +246,15 @@ function useFocusContainment(scopeRef: RefObject<HTMLElement[]>, contain: boolea
       });
     };
 
-    document.addEventListener('keydown', onKeyDown, false);
-    document.addEventListener('focusin', onFocus, false);
-    scope.forEach(element => element.addEventListener('focusin', onFocus, false));
-    scope.forEach(element => element.addEventListener('focusout', onBlur, false));
+    document.addEventListener("keydown", onKeyDown, false);
+    document.addEventListener("focusin", onFocus, false);
+    scope.forEach(element => element.addEventListener("focusin", onFocus, false));
+    scope.forEach(element => element.addEventListener("focusout", onBlur, false));
     return () => {
-      document.removeEventListener('keydown', onKeyDown, false);
-      document.removeEventListener('focusin', onFocus, false);
-      scope.forEach(element => element.removeEventListener('focusin', onFocus, false));
-      scope.forEach(element => element.removeEventListener('focusout', onBlur, false));
+      document.removeEventListener("keydown", onKeyDown, false);
+      document.removeEventListener("focusin", onFocus, false);
+      scope.forEach(element => element.removeEventListener("focusin", onFocus, false));
+      scope.forEach(element => element.removeEventListener("focusout", onBlur, false));
     };
   }, [scopeRef, contain]);
 
@@ -322,7 +322,7 @@ function useRestoreFocus(scopeRef: RefObject<HTMLElement[]>, restoreFocus: boole
     // using portals for overlays, so that focus goes to the expected element when
     // tabbing out of the overlay.
     let onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab' || e.altKey || e.ctrlKey || e.metaKey) {
+      if (e.key !== "Tab" || e.altKey || e.ctrlKey || e.metaKey) {
         return;
       }
 
@@ -364,12 +364,12 @@ function useRestoreFocus(scopeRef: RefObject<HTMLElement[]>, restoreFocus: boole
     };
 
     if (!contain) {
-      document.addEventListener('keydown', onKeyDown, true);
+      document.addEventListener("keydown", onKeyDown, true);
     }
 
     return () => {
       if (!contain) {
-        document.removeEventListener('keydown', onKeyDown, true);
+        document.removeEventListener("keydown", onKeyDown, true);
       }
 
       if (restoreFocus && nodeToRestore && isElementInScope(document.activeElement, scope)) {

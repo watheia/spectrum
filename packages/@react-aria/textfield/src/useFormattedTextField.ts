@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaTextFieldProps} from '@react-types/textfield';
-import {mergeProps} from '@react-aria/utils';
-import {RefObject, useEffect, useRef} from 'react';
-import {TextFieldAria, useTextField} from './useTextField';
+import {AriaTextFieldProps} from "@react-types/textfield";
+import {mergeProps} from "@react-aria/utils";
+import {RefObject, useEffect, useRef} from "react";
+import {TextFieldAria, useTextField} from "./useTextField";
 
 interface FormattedTextFieldState {
   validate: (val: string) => boolean,
@@ -22,10 +22,10 @@ interface FormattedTextFieldState {
 
 
 function supportsNativeBeforeInputEvent() {
-  return typeof window !== 'undefined' &&
+  return typeof window !== "undefined" &&
     window.InputEvent &&
     // @ts-ignore
-    typeof InputEvent.prototype.getTargetRanges === 'function';
+    typeof InputEvent.prototype.getTargetRanges === "function";
 }
 
 export function useFormattedTextField(props: AriaTextFieldProps, state: FormattedTextFieldState, inputRef: RefObject<HTMLInputElement>): TextFieldAria {
@@ -53,17 +53,17 @@ export function useFormattedTextField(props: AriaTextFieldProps, state: Formatte
       // See https://www.w3.org/TR/input-events-2/#interface-InputEvent-Attributes for a full list of input types.
       let nextValue: string;
       switch (e.inputType) {
-        case 'historyUndo':
-        case 'historyRedo':
+        case "historyUndo":
+        case "historyRedo":
           // Explicitly allow undo/redo. e.data is null in this case, but there's no need to validate,
           // because presumably the input would have already been validated previously.
           return;
-        case 'deleteContent':
-        case 'deleteByCut':
-        case 'deleteByDrag':
+        case "deleteContent":
+        case "deleteByCut":
+        case "deleteByDrag":
           nextValue = input.value.slice(0, input.selectionStart) + input.value.slice(input.selectionEnd);
           break;
-        case 'deleteContentForward':
+        case "deleteContentForward":
           // This is potentially incorrect, since the browser may actually delete more than a single UTF-16
           // character. In reality, a full Unicode grapheme cluster consisting of multiple UTF-16 characters
           // or code points may be deleted. However, in our currently supported locales, there are no such cases.
@@ -72,13 +72,13 @@ export function useFormattedTextField(props: AriaTextFieldProps, state: Formatte
             ? input.value.slice(0, input.selectionStart) + input.value.slice(input.selectionEnd + 1)
             : input.value.slice(0, input.selectionStart) + input.value.slice(input.selectionEnd);
           break;
-        case 'deleteContentBackward':
+        case "deleteContentBackward":
           nextValue = input.selectionEnd === input.selectionStart
             ? input.value.slice(0, input.selectionStart - 1) + input.value.slice(input.selectionStart)
             : input.value.slice(0, input.selectionStart) + input.value.slice(input.selectionEnd);
           break;
-        case 'deleteSoftLineBackward':
-        case 'deleteHardLineBackward':
+        case "deleteSoftLineBackward":
+        case "deleteHardLineBackward":
           nextValue = input.value.slice(input.selectionStart);
           break;
         default:
@@ -99,9 +99,9 @@ export function useFormattedTextField(props: AriaTextFieldProps, state: Formatte
       }
     };
 
-    input.addEventListener('beforeinput', onBeforeInput, false);
+    input.addEventListener("beforeinput", onBeforeInput, false);
     return () => {
-      input.removeEventListener('beforeinput', onBeforeInput, false);
+      input.removeEventListener("beforeinput", onBeforeInput, false);
     };
   }, [inputRef, stateRef]);
 

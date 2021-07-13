@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Color, ColorWheelProps} from '@react-types/color';
-import {parseColor} from './Color';
-import {useControlledState} from '@react-stately/utils';
-import {useRef, useState} from 'react';
+import {Color, ColorWheelProps} from "@react-types/color";
+import {parseColor} from "./Color";
+import {useControlledState} from "@react-stately/utils";
+import {useRef, useState} from "react";
 
 export interface ColorWheelState {
   /** The current color value represented by the color wheel. */
@@ -45,14 +45,14 @@ export interface ColorWheelState {
 }
 
 function normalizeColor(v: string | Color) {
-  if (typeof v === 'string') {
+  if (typeof v === "string") {
     return parseColor(v);
   } else {
     return v;
   }
 }
 
-const DEFAULT_COLOR = parseColor('hsl(0, 100%, 50%)');
+const DEFAULT_COLOR = parseColor("hsl(0, 100%, 50%)");
 
 function roundToStep(value: number, step: number): number {
   return Math.round(value / step) * step;
@@ -109,7 +109,7 @@ export function useColorWheelState(props: ColorWheelProps): ColorWheelState {
 
   let [isDragging, setDragging] = useState(false);
 
-  let hue = value.getChannelValue('hue');
+  let hue = value.getChannelValue("hue");
   function setHue(v: number) {
     if (v > 360) {
       // Make sure you can always get back to 0.
@@ -117,7 +117,7 @@ export function useColorWheelState(props: ColorWheelProps): ColorWheelState {
     }
     v = roundToStep(mod(v, 360), step);
     if (hue !== v) {
-      setValue(value.withChannelValue('hue', v));
+      setValue(value.withChannelValue("hue", v));
     }
   }
 
@@ -134,7 +134,7 @@ export function useColorWheelState(props: ColorWheelProps): ColorWheelState {
       setHue(cartesianToAngle(x, y, radius));
     },
     getThumbPosition(radius) {
-      return angleToCartesian(value.getChannelValue('hue'), radius);
+      return angleToCartesian(value.getChannelValue("hue"), radius);
     },
     increment(minStepSize: number = 0) {
       let newValue = hue + Math.max(minStepSize, step);
@@ -165,7 +165,7 @@ export function useColorWheelState(props: ColorWheelProps): ColorWheelState {
     },
     isDragging,
     getDisplayColor() {
-      return value.withChannelValue('saturation', 100).withChannelValue('lightness', 50);
+      return value.withChannelValue("saturation", 100).withChannelValue("lightness", 50);
     }
   };
 }

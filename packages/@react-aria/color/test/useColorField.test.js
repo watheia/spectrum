@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {parseColor} from '@react-stately/color';
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useColorField} from '../';
+import {parseColor} from "@react-stately/color";
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useColorField} from "../";
 
-describe('useColorField', function () {
+describe("useColorField", function () {
   let ref;
 
   beforeEach(() => {
@@ -27,70 +27,70 @@ describe('useColorField', function () {
 
   let renderColorFieldHook = (props, state = {}) => {
     let {result} = renderHook(() => useColorField({
-      'aria-label': 'Primary Color',
+      "aria-label": "Primary Color",
       ...props
     }, state, ref));
     return result.current;
   };
 
-  it('handles defaults', function () {
+  it("handles defaults", function () {
     let {inputProps} = renderColorFieldHook({});
-    expect(inputProps.type).toBe('text');
-    expect(inputProps.autoComplete).toBe('off');
-    expect(inputProps.autoCorrect).toBe('off');
+    expect(inputProps.type).toBe("text");
+    expect(inputProps.autoComplete).toBe("off");
+    expect(inputProps.autoCorrect).toBe("off");
     expect(inputProps.id).toBeTruthy();
-    expect(inputProps.role).toBe('textbox');
-    expect(inputProps['aria-valuenow']).toBeNull();
-    expect(inputProps['aria-valuetext']).toBeNull();
-    expect(inputProps['aria-valuemin']).toBeNull();
-    expect(inputProps['aria-valuemax']).toBeNull();
-    expect(inputProps['aria-required']).toBeNull();
-    expect(inputProps['aria-disabled']).toBeNull();
-    expect(inputProps['aria-readonly']).toBeNull();
-    expect(inputProps['aria-invalid']).toBeUndefined();
+    expect(inputProps.role).toBe("textbox");
+    expect(inputProps["aria-valuenow"]).toBeNull();
+    expect(inputProps["aria-valuetext"]).toBeNull();
+    expect(inputProps["aria-valuemin"]).toBeNull();
+    expect(inputProps["aria-valuemax"]).toBeNull();
+    expect(inputProps["aria-required"]).toBeNull();
+    expect(inputProps["aria-disabled"]).toBeNull();
+    expect(inputProps["aria-readonly"]).toBeNull();
+    expect(inputProps["aria-invalid"]).toBeUndefined();
     expect(inputProps.disabled).toBe(false);
     expect(inputProps.readOnly).toBe(false);
   });
 
-  it('should return props for colorValue provided', function () {
-    let colorValue = parseColor('#ff88a0');
-    let {inputProps} = renderColorFieldHook({}, {colorValue, inputValue: colorValue.toString('hex')});
-    expect(inputProps['aria-valuenow']).toBeNull();
-    expect(inputProps['aria-valuetext']).toBeNull();
-    expect(inputProps['value']).toBe('#FF88A0');
+  it("should return props for colorValue provided", function () {
+    let colorValue = parseColor("#ff88a0");
+    let {inputProps} = renderColorFieldHook({}, {colorValue, inputValue: colorValue.toString("hex")});
+    expect(inputProps["aria-valuenow"]).toBeNull();
+    expect(inputProps["aria-valuetext"]).toBeNull();
+    expect(inputProps["value"]).toBe("#FF88A0");
   });
 
-  it('should return props for label', function () {
+  it("should return props for label", function () {
     let {labelProps, inputProps} = renderColorFieldHook({
-      'aria-label': undefined,
-      label: 'Secondary Color'
+      "aria-label": undefined,
+      label: "Secondary Color"
     });
     expect(labelProps.id).toBeTruthy();
     expect(labelProps.htmlFor).toBe(inputProps.id);
     expect(inputProps.id).toBeTruthy();
-    expect(inputProps['aria-labelledby']).toBe(labelProps.id);
-    expect(inputProps['aria-label']).toBeUndefined(); // because label prop is provided instead of aria-label
+    expect(inputProps["aria-labelledby"]).toBe(labelProps.id);
+    expect(inputProps["aria-label"]).toBeUndefined(); // because label prop is provided instead of aria-label
   });
 
-  it('should return prop for invalid', function () {
-    let {inputProps} = renderColorFieldHook({validationState: 'invalid'});
-    expect(inputProps['aria-invalid']).toBe(true);
+  it("should return prop for invalid", function () {
+    let {inputProps} = renderColorFieldHook({validationState: "invalid"});
+    expect(inputProps["aria-invalid"]).toBe(true);
   });
 
-  it('should return prop for required', function () {
+  it("should return prop for required", function () {
     let {inputProps} = renderColorFieldHook({isRequired: true});
-    expect(inputProps['aria-required']).toBe(true);
+    expect(inputProps["aria-required"]).toBe(true);
   });
 
-  it('should return prop for readonly', function () {
+  it("should return prop for readonly", function () {
     let {inputProps} = renderColorFieldHook({isReadOnly: true});
-    expect(inputProps['aria-readonly']).toBe(true);
+    expect(inputProps["aria-readonly"]).toBe(true);
     expect(inputProps.readOnly).toBe(true);
   });
 
-  it('should return prop for disabled', function () {
+  it("should return prop for disabled", function () {
     let {inputProps} = renderColorFieldHook({isDisabled: true});
-    expect(inputProps['aria-disabled']).toBe(true);
+    expect(inputProps["aria-disabled"]).toBe(true);
     expect(inputProps.disabled).toBe(true);
   });
 });

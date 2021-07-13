@@ -20,7 +20,7 @@ import {
   TextInputBase,
   Validation,
   ValueBase
-} from '@react-types/shared';
+} from "@react-types/shared";
 
 export interface NumberFieldProps extends InputBase, Validation, FocusableProps, TextInputBase, ValueBase<number>, RangeInputBase<number>, LabelableProps {
   /**
@@ -37,7 +37,7 @@ export interface AriaNumberFieldProps extends NumberFieldProps, DOMProps, AriaLa
   incrementAriaLabel?: string
 }
 
-export interface SpectrumNumberFieldProps extends Omit<AriaNumberFieldProps, 'placeholder'>, StyleProps, SpectrumLabelableProps {
+export interface SpectrumNumberFieldProps extends Omit<AriaNumberFieldProps, "placeholder">, StyleProps, SpectrumLabelableProps {
   /** Whether the numberfield should be displayed with a quiet style. */
   isQuiet?: boolean,
   /** Whether to hide the increment and decrement buttons. */

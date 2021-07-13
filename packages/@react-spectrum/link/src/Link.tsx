@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, getWrappedElement, useStyleProps} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React, {useRef} from 'react';
-import {SpectrumLinkProps} from '@react-types/link';
-import styles from '@adobe/spectrum-css-temp/components/link/vars.css';
-import {useHover} from '@react-aria/interactions';
-import {useLink} from '@react-aria/link';
-import {useProviderProps} from '@react-spectrum/provider';
+import {classNames, getWrappedElement, useStyleProps} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React, {useRef} from "react";
+import {SpectrumLinkProps} from "@react-types/link";
+import styles from "@adobe/spectrum-css-temp/components/link/vars.css";
+import {useHover} from "@react-aria/interactions";
+import {useLink} from "@react-aria/link";
+import {useProviderProps} from "@react-spectrum/provider";
 
 /**
  * Links allow users to navigate to a different location.
@@ -27,7 +27,7 @@ import {useProviderProps} from '@react-spectrum/provider';
 export function Link(props: SpectrumLinkProps) {
   props = useProviderProps(props);
   let {
-    variant = 'primary',
+    variant = "primary",
     isQuiet,
     children,
     // @ts-ignore
@@ -37,17 +37,17 @@ export function Link(props: SpectrumLinkProps) {
   let {hoverProps, isHovered} = useHover({});
 
   if (href) {
-    console.warn('href is deprecated, please use an anchor element as children');
+    console.warn("href is deprecated, please use an anchor element as children");
   }
 
   let ref = useRef();
   let {linkProps} = useLink({
     ...props,
-    elementType: typeof children === 'string' ? 'span' : 'a'
+    elementType: typeof children === "string" ? "span" : "a"
   }, ref);
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       {React.cloneElement(
         getWrappedElement(children),
         {
@@ -56,11 +56,11 @@ export function Link(props: SpectrumLinkProps) {
           ref,
           className: classNames(
             styles,
-            'spectrum-Link',
+            "spectrum-Link",
             {
-              'spectrum-Link--quiet': isQuiet,
+              "spectrum-Link--quiet": isQuiet,
               [`spectrum-Link--${variant}`]: variant,
-              'is-hovered': isHovered
+              "is-hovered": isHovered
             },
             styleProps.className
           )

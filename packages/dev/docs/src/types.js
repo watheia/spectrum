@@ -10,35 +10,35 @@
  * governing permissions and limitations under the License.
  */
 
-import Asterisk from '@spectrum-icons/workflow/Asterisk';
-import clsx from 'clsx';
-import {getAnchorProps, getUsedLinks} from './utils';
-import {getDoc} from 'globals-docs';
-import linkStyle from '@adobe/spectrum-css-temp/components/link/vars.css';
-import Lowlight from 'react-lowlight';
-import Markdown from 'markdown-to-jsx';
-import React, {useContext} from 'react';
-import styles from './docs.css';
-import tableStyles from '@adobe/spectrum-css-temp/components/table/vars.css';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
+import Asterisk from "@spectrum-icons/workflow/Asterisk";
+import clsx from "clsx";
+import {getAnchorProps, getUsedLinks} from "./utils";
+import {getDoc} from "globals-docs";
+import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
+import Lowlight from "react-lowlight";
+import Markdown from "markdown-to-jsx";
+import React, {useContext} from "react";
+import styles from "./docs.css";
+import tableStyles from "@adobe/spectrum-css-temp/components/table/vars.css";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 const DOC_LINKS = {
-  'React.Component': 'https://reactjs.org/docs/react-component.html',
-  ReactElement: 'https://reactjs.org/docs/rendering-elements.html',
-  ReactNode: 'https://reactjs.org/docs/rendering-elements.html',
-  Generator: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator',
-  Iterator: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols',
-  Iterable: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols',
-  DataTransfer: 'https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer',
-  CSSProperties: 'https://reactjs.org/docs/dom-elements.html#style',
-  'Intl.NumberFormat': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat',
-  'Intl.NumberFormatOptions': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat',
-  'Intl.DateTimeFormat': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat',
-  'Intl.DateTimeFormatOptions': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat',
-  'Intl.Collator': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator',
-  'Intl.CollatorOptions': 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator',
-  'AbortSignal': 'https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal',
-  'Key': 'https://reactjs.org/docs/lists-and-keys.html'
+  "React.Component": "https://reactjs.org/docs/react-component.html",
+  ReactElement: "https://reactjs.org/docs/rendering-elements.html",
+  ReactNode: "https://reactjs.org/docs/rendering-elements.html",
+  Generator: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+  Iterator: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols",
+  Iterable: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols",
+  DataTransfer: "https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer",
+  CSSProperties: "https://reactjs.org/docs/dom-elements.html#style",
+  "Intl.NumberFormat": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat",
+  "Intl.NumberFormatOptions": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat",
+  "Intl.DateTimeFormat": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat",
+  "Intl.DateTimeFormatOptions": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat",
+  "Intl.Collator": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator",
+  "Intl.CollatorOptions": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator",
+  "AbortSignal": "https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal",
+  "Key": "https://reactjs.org/docs/lists-and-keys.html"
 };
 
 export const TypeContext = React.createContext();
@@ -52,86 +52,86 @@ export function Type({type}) {
   }
 
   switch (type.type) {
-    case 'any':
-    case 'null':
-    case 'undefined':
-    case 'void':
-    case 'unknown':
+    case "any":
+    case "null":
+    case "undefined":
+    case "void":
+    case "unknown":
       return <Keyword {...type} />;
-    case 'identifier':
+    case "identifier":
       return <Identifier {...type} />;
-    case 'string':
+    case "string":
       if (type.value) {
         return <StringLiteral {...type} />;
       }
 
       return <Keyword {...type} />;
-    case 'number':
+    case "number":
       if (type.value) {
         return <NumberLiteral {...type} />;
       }
 
       return <Keyword {...type} />;
-    case 'boolean':
+    case "boolean":
       if (type.value) {
         return <BooleanLiteral {...type} />;
       }
 
       return <Keyword {...type} />;
-    case 'union':
+    case "union":
       return <UnionType {...type} />;
-    case 'intersection':
+    case "intersection":
       return <IntersectionType {...type} />;
-    case 'application':
+    case "application":
       return <TypeApplication {...type} />;
-    case 'function':
+    case "function":
       return <FunctionType {...type} />;
-    case 'parameter':
+    case "parameter":
       return <Parameter {...type} />;
-    case 'link':
+    case "link":
       return <LinkType {...type} />;
-    case 'interface':
+    case "interface":
       return <InterfaceType {...type} />;
-    case 'object':
+    case "object":
       if (type.properties) {
         return <ObjectType {...type} />;
       }
 
       return <Keyword {...type} />;
-    case 'alias':
-      return <code className={typographyStyles['spectrum-Code4']}><Type type={type.value} /></code>;
-    case 'array':
+    case "alias":
+      return <code className={typographyStyles["spectrum-Code4"]}><Type type={type.value} /></code>;
+    case "array":
       return <ArrayType {...type} />;
-    case 'tuple':
+    case "tuple":
       return <TupleType {...type} />;
-    case 'typeParameter':
+    case "typeParameter":
       return <TypeParameter {...type} />;
-    case 'component': {
+    case "component": {
       let props = type.props;
-      if (props.type === 'application') {
+      if (props.type === "application") {
         props = props.base;
       }
-      if (props.type === 'link') {
+      if (props.type === "link") {
         props = links[props.id];
       }
       return <Type type={{...props, description: type.description}} />;
     }
     default:
-      console.log('no render component for TYPE', type);
+      console.log("no render component for TYPE", type);
       return null;
   }
 }
 
 function StringLiteral({value}) {
-  return <span className="token hljs-string">{`'${value.replace(/'/, '\\\'')}'`}</span>;
+  return <span className="token hljs-string">{`'${value.replace(/'/, "\\'")}'`}</span>;
 }
 
 function NumberLiteral({value}) {
-  return <span className="token hljs-number">{'' + value}</span>;
+  return <span className="token hljs-number">{"" + value}</span>;
 }
 
 function BooleanLiteral({value}) {
-  return <span className="token hljs-literal">{'' + value}</span>;
+  return <span className="token hljs-literal">{"" + value}</span>;
 }
 
 function Keyword({type}) {
@@ -152,7 +152,7 @@ function Identifier({name}) {
   return <span className="token hljs-name">{name}</span>;
 }
 
-const IndentContext = React.createContext({small: '', large: ''});
+const IndentContext = React.createContext({small: "", large: ""});
 
 export function Indent({params, open, close, children, alwaysIndent}) {
   let {small, large} = useContext(IndentContext);
@@ -162,27 +162,27 @@ export function Indent({params, open, close, children, alwaysIndent}) {
     close = <span className="token punctuation">{close}</span>;
   } else if (params.length > 2 || alwaysIndent) {
     // Always indent.
-    open =  <span className="token punctuation">{open.trimEnd() + '\n' + large + '  '}</span>;
-    close =  <span className="token punctuation">{'\n' + large + close.trimStart()}</span>;
-    large += '  ';
-    small += '  ';
+    open =  <span className="token punctuation">{open.trimEnd() + "\n" + large + "  "}</span>;
+    close =  <span className="token punctuation">{"\n" + large + close.trimStart()}</span>;
+    large += "  ";
+    small += "  ";
   } else {
     // Indent on small screens. Don't indent on large screens.
     open = (
       <>
-        <span className="token punctuation small">{open.trimEnd() + '\n' + small + '  '}</span>
+        <span className="token punctuation small">{open.trimEnd() + "\n" + small + "  "}</span>
         <span className="token punctuation large">{open}</span>
       </>
     );
 
     close = (
       <>
-        <span className="token punctuation small">{'\n' + small + close.trimStart()}</span>
+        <span className="token punctuation small">{"\n" + small + close.trimStart()}</span>
         <span className="token punctuation large">{close}</span>
       </>
     );
 
-    small += '  ';
+    small += "  ";
   }
 
   return (
@@ -203,22 +203,22 @@ export function JoinList({elements, joiner, minIndent = 2, newlineBefore, neverI
   } else if (elements.length > minIndent || alwaysIndent) {
     // Always indent.
     if (newlineBefore) {
-      large += '  ';
-      small += '  ';
+      large += "  ";
+      small += "  ";
     }
 
     contents = newlineBefore
-      ? '\n' + large + joiner.trimStart()
-      : joiner.trimEnd() + '\n' + large;
+      ? "\n" + large + joiner.trimStart()
+      : joiner.trimEnd() + "\n" + large;
   } else {
     // Indent on small screens. Don't indent on large screens.
     if (newlineBefore) {
-      small += '  ';
+      small += "  ";
     }
 
     let indented = newlineBefore
-      ? '\n' + small + joiner.trimStart()
-      : joiner.trimEnd() + '\n' + small;
+      ? "\n" + small + joiner.trimStart()
+      : joiner.trimEnd() + "\n" + small;
 
     contents = (
       <>
@@ -246,11 +246,11 @@ export function JoinList({elements, joiner, minIndent = 2, newlineBefore, neverI
 }
 
 function UnionType({elements}) {
-  return <JoinList elements={elements} joiner={' |\u00a0'} newlineBefore />;
+  return <JoinList elements={elements} joiner={" |\u00a0"} newlineBefore />;
 }
 
 function IntersectionType({types}) {
-  return <JoinList elements={types} joiner={' &\u00a0'} newlineBefore />;
+  return <JoinList elements={types} joiner={" &\u00a0"} newlineBefore />;
 }
 
 function TypeApplication({base, typeParameters}) {
@@ -282,7 +282,7 @@ function TypeParameter({name, default: defaultType}) {
       <span className="token hljs-name">{name}</span>
       {defaultType &&
         <>
-          <span className="token punctuation">{' = '}</span>
+          <span className="token punctuation">{" = "}</span>
           <Type type={defaultType} />
         </>
       }
@@ -298,7 +298,7 @@ function FunctionType({name, parameters, return: returnType, typeParameters, res
       <Indent params={parameters} open="(" close=")">
         <JoinList elements={parameters} joiner=", " />
       </Indent>
-      <span className="token punctuation">{name ? ': ' : ' => '}</span>
+      <span className="token punctuation">{name ? ": " : " => "}</span>
       <Type type={returnType} />
     </>
   );
@@ -339,11 +339,11 @@ export function LinkRenderer() {
   let links = useContext(LinkContext);
   return [...links.values()].map(({type, links}) => (
     <section key={type.id} id={type.id} data-title={type.name} hidden>
-      {type.description && <Markdown options={{forceBlock: true, overrides: {a: {component: SpectrumLink}}}} className={styles['type-description']}>{type.description}</Markdown>}
+      {type.description && <Markdown options={{forceBlock: true, overrides: {a: {component: SpectrumLink}}}} className={styles["type-description"]}>{type.description}</Markdown>}
       <TypeContext.Provider value={links}>
-        {type.type === 'interface' || type.type === 'alias' || type.type === 'component'
+        {type.type === "interface" || type.type === "alias" || type.type === "component"
           ? <Type type={type} />
-          : <code className={`${typographyStyles['spectrum-Code4']}`}><Type type={type} /></code>
+          : <code className={`${typographyStyles["spectrum-Code4"]}`}><Type type={type} /></code>
         }
       </TypeContext.Provider>
     </section>
@@ -365,11 +365,11 @@ export function LinkType({id}) {
     registered.set(id, {type: used[id], links});
   }
 
-  return <a href={'#' + id} data-link={id} className={`${styles.colorLink} token hljs-name`}>{value.name}</a>;
+  return <a href={"#" + id} data-link={id} className={`${styles.colorLink} token hljs-name`}>{value.name}</a>;
 }
 
 function SpectrumLink({href, children, title}) {
-  return <a className={clsx(linkStyle['spectrum-Link--secondary'], styles.link)} href={href} title={title} {...getAnchorProps(href)}>{children}</a>;
+  return <a className={clsx(linkStyle["spectrum-Link--secondary"], styles.link)} href={href} title={title} {...getAnchorProps(href)}>{children}</a>;
 }
 
 export function renderHTMLfromMarkdown(description) {
@@ -377,12 +377,12 @@ export function renderHTMLfromMarkdown(description) {
     const options = {forceInline: true, overrides: {a: {component: SpectrumLink}}};
     return <Markdown options={options}>{description}</Markdown>;
   }
-  return '';
+  return "";
 }
 
 export function InterfaceType({description, properties: props, showRequired, showDefault, isComponent}) {
-  let properties = Object.values(props).filter(prop => prop.type === 'property' && prop.access !== 'private' && prop.access !== 'protected');
-  let methods = Object.values(props).filter(prop => prop.type === 'method' && prop.access !== 'private' && prop.access !== 'protected');
+  let properties = Object.values(props).filter(prop => prop.type === "property" && prop.access !== "private" && prop.access !== "protected");
+  let methods = Object.values(props).filter(prop => prop.type === "method" && prop.access !== "private" && prop.access !== "protected");
 
   // Default to showing required indicators if some properties are optional but not all.
   showRequired = showRequired || (!properties.every(p => p.optional) && !properties.every(p => !p.optional));
@@ -408,75 +408,75 @@ export function InterfaceType({description, properties: props, showRequired, sho
   return (
     <>
       {methods.length > 0 && properties.length > 0 &&
-        <h3 className={typographyStyles['spectrum-Heading4']}>Properties</h3>
+        <h3 className={typographyStyles["spectrum-Heading4"]}>Properties</h3>
       }
       {properties.length > 0 &&
-        <table className={`${tableStyles['spectrum-Table']} ${tableStyles['spectrum-Table--quiet']} ${styles.propTable}`}>
+        <table className={`${tableStyles["spectrum-Table"]} ${tableStyles["spectrum-Table--quiet"]} ${styles.propTable}`}>
           <thead>
             <tr>
-              <td role="columnheader" className={tableStyles['spectrum-Table-headCell']}>Name</td>
-              <td role="columnheader" className={tableStyles['spectrum-Table-headCell']} style={{'width': '30%'}}>Type</td>
-              {showDefault && <td role="columnheader" className={tableStyles['spectrum-Table-headCell']}>Default</td>}
-              <td role="columnheader" className={tableStyles['spectrum-Table-headCell']} style={{'width': '40%'}}>Description</td>
+              <td role="columnheader" className={tableStyles["spectrum-Table-headCell"]}>Name</td>
+              <td role="columnheader" className={tableStyles["spectrum-Table-headCell"]} style={{"width": "30%"}}>Type</td>
+              {showDefault && <td role="columnheader" className={tableStyles["spectrum-Table-headCell"]}>Default</td>}
+              <td role="columnheader" className={tableStyles["spectrum-Table-headCell"]} style={{"width": "40%"}}>Description</td>
             </tr>
           </thead>
-          <tbody className={tableStyles['spectrum-Table-body']}>
+          <tbody className={tableStyles["spectrum-Table-body"]}>
             {properties.map((prop, index) => (
-              <tr key={index} className={clsx(tableStyles['spectrum-Table-row'], styles.tableRow)}>
-                <td role="rowheader" className={clsx(tableStyles['spectrum-Table-cell'], styles.tableCell)} data-column="Name">
-                  <code className={`${typographyStyles['spectrum-Code4']}`}>
-                    <span className={`token ${isComponent ? 'hljs-attr' : 'hljs-variable'}`}>{prop.name}</span>
+              <tr key={index} className={clsx(tableStyles["spectrum-Table-row"], styles.tableRow)}>
+                <td role="rowheader" className={clsx(tableStyles["spectrum-Table-cell"], styles.tableCell)} data-column="Name">
+                  <code className={`${typographyStyles["spectrum-Code4"]}`}>
+                    <span className={`token ${isComponent ? "hljs-attr" : "hljs-variable"}`}>{prop.name}</span>
                   </code>
                   {!prop.optional && showRequired
                     ? <Asterisk size="XXS" UNSAFE_className={styles.requiredIcon} aria-label="Required" />
                     : null
                   }
                 </td>
-                <td className={clsx(tableStyles['spectrum-Table-cell'], styles.tableCell)} data-column="Type">
-                  <code className={typographyStyles['spectrum-Code4']}>
+                <td className={clsx(tableStyles["spectrum-Table-cell"], styles.tableCell)} data-column="Type">
+                  <code className={typographyStyles["spectrum-Code4"]}>
                     <Type type={prop.value} />
                   </code>
                 </td>
                 {showDefault &&
-                  <td className={`${tableStyles['spectrum-Table-cell']} ${styles.tableCell} ${!prop.default ? styles.noDefault : ''}`} data-column="Default">
+                  <td className={`${tableStyles["spectrum-Table-cell"]} ${styles.tableCell} ${!prop.default ? styles.noDefault : ""}`} data-column="Default">
                     {prop.default
-                      ? <Lowlight language="js" value={prop.default} inline className={typographyStyles['spectrum-Code4']} />
-                      : '—'
+                      ? <Lowlight language="js" value={prop.default} inline className={typographyStyles["spectrum-Code4"]} />
+                      : "—"
                     }
                   </td>
                 }
-                <td className={clsx(tableStyles['spectrum-Table-cell'], styles.tableCell)}>{renderHTMLfromMarkdown(prop.description)}</td>
+                <td className={clsx(tableStyles["spectrum-Table-cell"], styles.tableCell)}>{renderHTMLfromMarkdown(prop.description)}</td>
               </tr>
             ))}
           </tbody>
         </table>
       }
       {methods.length > 0 && properties.length > 0 &&
-        <h3 className={typographyStyles['spectrum-Heading4']}>Methods</h3>
+        <h3 className={typographyStyles["spectrum-Heading4"]}>Methods</h3>
       }
       {methods.length > 0 &&
-        <table className={`${tableStyles['spectrum-Table']} ${tableStyles['spectrum-Table--quiet']} ${styles.propTable} ${styles.methodTable}`}>
+        <table className={`${tableStyles["spectrum-Table"]} ${tableStyles["spectrum-Table--quiet"]} ${styles.propTable} ${styles.methodTable}`}>
           <thead>
             <tr>
-              <td role="columnheader" className={tableStyles['spectrum-Table-headCell']}>Method</td>
-              <td role="columnheader" className={tableStyles['spectrum-Table-headCell']}>Description</td>
+              <td role="columnheader" className={tableStyles["spectrum-Table-headCell"]}>Method</td>
+              <td role="columnheader" className={tableStyles["spectrum-Table-headCell"]}>Description</td>
             </tr>
           </thead>
-          <tbody className={tableStyles['spectrum-Table-body']}>
+          <tbody className={tableStyles["spectrum-Table-body"]}>
             {methods.map((prop, index) => (
-              <tr key={index} className={clsx(tableStyles['spectrum-Table-row'], styles.tableRow)}>
-                <td role="rowheader" className={clsx(tableStyles['spectrum-Table-cell'], styles.tableCell)} data-column="Name">
-                  <code className={`${typographyStyles['spectrum-Code4']}`}>
+              <tr key={index} className={clsx(tableStyles["spectrum-Table-row"], styles.tableRow)}>
+                <td role="rowheader" className={clsx(tableStyles["spectrum-Table-cell"], styles.tableCell)} data-column="Name">
+                  <code className={`${typographyStyles["spectrum-Code4"]}`}>
                     <span className="token hljs-function">{prop.name}</span>
                     <TypeParameters typeParameters={prop.value.typeParameters} />
                     <Indent params={prop.value.parameters} open="(" close=")">
                       <JoinList elements={prop.value.parameters} joiner=", " />
                     </Indent>
-                    <span className="token punctuation">{': '}</span>
+                    <span className="token punctuation">{": "}</span>
                     <Type type={prop.value.return} />
                   </code>
                 </td>
-                <td className={clsx(tableStyles['spectrum-Table-cell'], styles.tableCell)}>{renderHTMLfromMarkdown(prop.description)}</td>
+                <td className={clsx(tableStyles["spectrum-Table-cell"], styles.tableCell)}>{renderHTMLfromMarkdown(prop.description)}</td>
               </tr>
             ))}
           </tbody>
@@ -487,49 +487,49 @@ export function InterfaceType({description, properties: props, showRequired, sho
 }
 
 function ObjectType({properties, exact}) {
-  const startObject = <span className="token punctuation">{exact ? '{|' : '{'}</span>;
-  const endObject = <span className="token punctuation">{exact ? '|}' : '}'}</span>;
+  const startObject = <span className="token punctuation">{exact ? "{|" : "{"}</span>;
+  const endObject = <span className="token punctuation">{exact ? "|}" : "}"}</span>;
   return (
     <>
       {startObject}
       {Object.values(properties).map((property, i, arr) => {
-        let token = 'hljs-attr';
+        let token = "hljs-attr";
         let k = property.name;
         // https://mathiasbynens.be/notes/javascript-identifiers-es6
         if (!/^[$_\p{ID_Start}][$_\u{200C}\u{200D}\p{ID_Continue}]+$/u.test(property.key)) {
           k = `'${property.name}'`;
-          token = 'hljs-string';
+          token = "hljs-string";
         }
 
         let optional = property.optional;
         let value = property.value;
 
         // Special handling for methods
-        if (value && value.type === 'function' && !optional && token === 'method') {
+        if (value && value.type === "function" && !optional && token === "method") {
           return (
-            <div key={property.key} style={{paddingLeft: '1.5em'}}>
+            <div key={property.key} style={{paddingLeft: "1.5em"}}>
               <span className="token hljs-function">{k}</span>
               <span className="token punctuation">(</span>
               <JoinList elements={value.parameters} joiner=", " />
               <span className="token punctuation">)</span>
-              <span className="token punctuation">{': '}</span>
+              <span className="token punctuation">{": "}</span>
               <Type type={value.return} />
-              {i < arr.length - 1 ? ',' : ''}
+              {i < arr.length - 1 ? "," : ""}
             </div>
           );
         }
 
-        let punc = optional ? '?: ' : ': ';
+        let punc = optional ? "?: " : ": ";
         return (
-          <div key={property.key} style={{paddingLeft: '1.5em'}}>
+          <div key={property.key} style={{paddingLeft: "1.5em"}}>
             {property.indexType && <span className="token punctuation">[</span>}
             <span className={`token ${token}`}>{k}</span>
-            {property.indexType && <span className="token punctuation">{': '}</span>}
+            {property.indexType && <span className="token punctuation">{": "}</span>}
             {property.indexType && <Type type={property.indexType} />}
             {property.indexType && <span className="token punctuation">]</span>}
             <span className="token punctuation">{punc}</span>
             <Type type={value} />
-            {i < arr.length - 1 ? ',' : ''}
+            {i < arr.length - 1 ? "," : ""}
           </div>
         );
       })}

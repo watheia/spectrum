@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {Direction} from '@react-types/shared';
-import {LayoutInfo, ReusableView} from '@react-stately/virtualizer';
-import React, {CSSProperties, useRef} from 'react';
-import {useLocale} from '@react-aria/i18n';
-import {useVirtualizerItem} from './useVirtualizerItem';
+import {Direction} from "@react-types/shared";
+import {LayoutInfo, ReusableView} from "@react-stately/virtualizer";
+import React, {CSSProperties, useRef} from "react";
+import {useLocale} from "@react-aria/i18n";
+import {useVirtualizerItem} from "./useVirtualizerItem";
 
 interface VirtualizerItemProps<T extends object, V> {
   reusableView: ReusableView<T, V>,
@@ -40,7 +40,7 @@ export function VirtualizerItem<T extends object, V>(props: VirtualizerItemProps
 
 let cache = new WeakMap();
 export function layoutInfoToStyle(layoutInfo: LayoutInfo, dir: Direction, parent?: LayoutInfo | null): CSSProperties {
-  let xProperty = dir === 'rtl' ? 'right' : 'left';
+  let xProperty = dir === "rtl" ? "right" : "left";
   let cached = cache.get(layoutInfo);
   if (cached && cached[xProperty] != null) {
     if (!parent) {
@@ -56,20 +56,20 @@ export function layoutInfoToStyle(layoutInfo: LayoutInfo, dir: Direction, parent
   }
 
   let style: CSSProperties = {
-    position: layoutInfo.isSticky ? 'sticky' : 'absolute',
-    overflow: 'hidden',
+    position: layoutInfo.isSticky ? "sticky" : "absolute",
+    overflow: "hidden",
     top: layoutInfo.rect.y - (parent ? parent.rect.y : 0),
     [xProperty]: layoutInfo.rect.x - (parent ? parent.rect.x : 0),
-    transition: 'all',
-    WebkitTransition: 'all',
-    WebkitTransitionDuration: 'inherit',
-    transitionDuration: 'inherit',
+    transition: "all",
+    WebkitTransition: "all",
+    WebkitTransitionDuration: "inherit",
+    transitionDuration: "inherit",
     width: layoutInfo.rect.width,
     height: layoutInfo.rect.height,
     opacity: layoutInfo.opacity,
     zIndex: layoutInfo.zIndex,
     transform: layoutInfo.transform,
-    contain: 'size layout style paint'
+    contain: "size layout style paint"
   };
 
   cache.set(layoutInfo, style);

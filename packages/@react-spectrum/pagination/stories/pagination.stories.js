@@ -10,21 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {PaginationInput} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {PaginationInput} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('PaginationInput', module)
+storiesOf("PaginationInput", module)
   .add(
-    'Default',
-    () => render({maxValue: '10', onChange: action('onChange')})
+    "Default",
+    () => render({maxValue: "10", onChange: action("onChange")})
   )
   .add(
-    'controlled',
-    () => render({maxValue: '50', value: '2', onChange: action('onChange')})
+    "controlled",
+    () => render({maxValue: "50", value: "2", onChange: action("onChange")})
   );
 
 function render(props = {}) {
-  return (<PaginationInput {...props} onPrevious={action('onPrevious')} onNext={action('onNext')} />);
+  return (<PaginationInput {...props} onPrevious={action("onPrevious")} onNext={action("onNext")} />);
 }

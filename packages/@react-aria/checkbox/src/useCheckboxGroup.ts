@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaCheckboxGroupProps} from '@react-types/checkbox';
-import {checkboxGroupNames} from './utils';
-import {CheckboxGroupState} from '@react-stately/checkbox';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes} from 'react';
-import {useLabel} from '@react-aria/label';
+import {AriaCheckboxGroupProps} from "@react-types/checkbox";
+import {checkboxGroupNames} from "./utils";
+import {CheckboxGroupState} from "@react-stately/checkbox";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes} from "react";
+import {useLabel} from "@react-aria/label";
 
 interface CheckboxGroupAria {
   /** Props for the checkbox group wrapper element. */
@@ -37,7 +37,7 @@ export function useCheckboxGroup(props: AriaCheckboxGroupProps, state: CheckboxG
     ...props,
     // Checkbox group is not an HTML input element so it
     // shouldn't be labeled by a <label> element.
-    labelElementType: 'span'
+    labelElementType: "span"
   });
 
   let domProps = filterDOMProps(props, {labelable: true});
@@ -47,8 +47,8 @@ export function useCheckboxGroup(props: AriaCheckboxGroupProps, state: CheckboxG
 
   return {
     groupProps: mergeProps(domProps, {
-      role: 'group',
-      'aria-disabled': isDisabled || undefined,
+      role: "group",
+      "aria-disabled": isDisabled || undefined,
       ...fieldProps
     }),
     labelProps

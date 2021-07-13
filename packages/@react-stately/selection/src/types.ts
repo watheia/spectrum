@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {FocusStrategy, PressEvent, Selection, SelectionMode} from '@react-types/shared';
-import {Key} from 'react';
+import {FocusStrategy, PressEvent, Selection, SelectionMode} from "@react-types/shared";
+import {Key} from "react";
 
 export interface FocusState {
   /** Whether the collection is currently focused. */

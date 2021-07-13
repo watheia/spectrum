@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {testSSR} from '@react-spectrum/test-utils';
+import {testSSR} from "@react-spectrum/test-utils";
 
-describe('Flex SSR', function () {
-  it('should render without errors', async function () {
+describe("Flex SSR", function () {
+  it("should render without errors", async function () {
     await testSSR(__filename, `
       import {Flex} from '../';
       <Flex />

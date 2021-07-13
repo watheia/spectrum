@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {RefObject} from 'react';
-import {useDOMPropsResponderContext} from './DOMPropsContext';
+import {RefObject} from "react";
+import {useDOMPropsResponderContext} from "./DOMPropsContext";
 
 export function useDOMPropsResponder(domRef: RefObject<HTMLElement>) {
 

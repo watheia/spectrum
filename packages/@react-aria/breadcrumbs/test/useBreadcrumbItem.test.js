@@ -10,43 +10,43 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useBreadcrumbItem} from '../';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useBreadcrumbItem} from "../";
 
-describe('useBreadcrumbItem', function () {
+describe("useBreadcrumbItem", function () {
   let renderLinkHook = (props) => {
     let {result} = renderHook(() => useBreadcrumbItem(props));
     return result.current;
   };
 
-  it('handles span elements', function () {
-    let {itemProps} = renderLinkHook({elementType: 'span'});
+  it("handles span elements", function () {
+    let {itemProps} = renderLinkHook({elementType: "span"});
     expect(itemProps.tabIndex).toBe(0);
-    expect(itemProps.role).toBe('link');
-    expect(itemProps['aria-disabled']).toBeUndefined();
-    expect(typeof itemProps.onKeyDown).toBe('function');
+    expect(itemProps.role).toBe("link");
+    expect(itemProps["aria-disabled"]).toBeUndefined();
+    expect(typeof itemProps.onKeyDown).toBe("function");
   });
 
-  it('handles isCurrent', function () {
-    let {itemProps} = renderLinkHook({elementType: 'span', isCurrent: true});
+  it("handles isCurrent", function () {
+    let {itemProps} = renderLinkHook({elementType: "span", isCurrent: true});
     expect(itemProps.tabIndex).toBeUndefined();
-    expect(itemProps.role).toBe('link');
-    expect(itemProps['aria-current']).toBe('page');
+    expect(itemProps.role).toBe("link");
+    expect(itemProps["aria-current"]).toBe("page");
   });
 
-  it('handles isDisabled', function () {
-    let {itemProps} = renderLinkHook({elementType: 'span', isDisabled: true});
+  it("handles isDisabled", function () {
+    let {itemProps} = renderLinkHook({elementType: "span", isDisabled: true});
     expect(itemProps.tabIndex).toBeUndefined();
-    expect(itemProps.role).toBe('link');
-    expect(itemProps['aria-disabled']).toBe(true);
+    expect(itemProps.role).toBe("link");
+    expect(itemProps["aria-disabled"]).toBe(true);
   });
 
-  it('handles descendant link with href', function () {
+  it("handles descendant link with href", function () {
     let {itemProps} = renderLinkHook({children: <a href="https://example.com">Breadcrumb Item</a>});
     expect(itemProps.tabIndex).toBeUndefined();
     expect(itemProps.role).toBeUndefined();
-    expect(itemProps['aria-disabled']).toBeUndefined();
-    expect(typeof itemProps.onKeyDown).toBe('function');
+    expect(itemProps["aria-disabled"]).toBeUndefined();
+    expect(typeof itemProps.onKeyDown).toBe("function");
   });
 });

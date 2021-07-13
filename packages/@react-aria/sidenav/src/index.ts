@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useSideNav';
-export * from './useSideNavItem';
+export * from "./useSideNav";
+export * from "./useSideNavItem";

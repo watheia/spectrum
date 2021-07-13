@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useTag';
-export * from './useTagGroup';
+export * from "./useTag";
+export * from "./useTagGroup";

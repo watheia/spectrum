@@ -10,39 +10,39 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ActionButton} from '../';
-import Add from '@spectrum-icons/workflow/Add';
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Text} from '@react-spectrum/text';
-import {View} from '@react-spectrum/view';
+import {action} from "@storybook/addon-actions";
+import {ActionButton} from "../";
+import Add from "@spectrum-icons/workflow/Add";
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Text} from "@react-spectrum/text";
+import {View} from "@react-spectrum/view";
 
-storiesOf('Button/ActionButton', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Button/ActionButton", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'default',
+    "default",
     () => render()
   )
   .add(
-    'icon',
+    "icon",
     () => renderWithIcon()
   )
   .add(
-    'icon only',
+    "icon only",
     () => (
       <Flex gap="size-100">
         <ActionButton
-          onPress={action('press')}
-          onPressStart={action('pressstart')}
-          onPressEnd={action('pressend')}>
+          onPress={action("press")}
+          onPressStart={action("pressstart")}
+          onPressEnd={action("pressend")}>
           <Add />
         </ActionButton>
         <ActionButton
-          onPress={action('press')}
-          onPressStart={action('pressstart')}
-          onPressEnd={action('pressend')}
+          onPress={action("press")}
+          onPressStart={action("pressstart")}
+          onPressEnd={action("pressend")}
           isDisabled>
           <Add />
         </ActionButton>
@@ -50,31 +50,31 @@ storiesOf('Button/ActionButton', module)
     )
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'autoFocus',
+    "autoFocus",
     () => render({autoFocus: true})
   )
   .add(
-    'staticColor: white',
+    "staticColor: white",
     () => (
       <View backgroundColor="static-seafoam-600" padding="size-1000">
         <Flex direction="column" rowGap="size-150">
-          {renderWithIcon({staticColor: 'white'})}
-          {renderWithIcon({staticColor: 'white', isQuiet: true})}
+          {renderWithIcon({staticColor: "white"})}
+          {renderWithIcon({staticColor: "white", isQuiet: true})}
         </Flex>
       </View>
     )
   )
   .add(
-    'staticColor: black',
+    "staticColor: black",
     () => (
       <View backgroundColor="static-yellow-400" padding="size-1000">
         <Flex direction="column" rowGap="size-150">
-          {renderWithIcon({staticColor: 'black'})}
-          {renderWithIcon({staticColor: 'black', isQuiet: true})}
+          {renderWithIcon({staticColor: "black"})}
+          {renderWithIcon({staticColor: "black", isQuiet: true})}
         </Flex>
       </View>
     )
@@ -84,16 +84,16 @@ function render(props = {}) {
   return (
     <Flex gap="size-100">
       <ActionButton
-        onPress={action('press')}
-        onPressStart={action('pressstart')}
-        onPressEnd={action('pressend')}
+        onPress={action("press")}
+        onPressStart={action("pressstart")}
+        onPressEnd={action("pressend")}
         {...props}>
         Default
       </ActionButton>
       <ActionButton
-        onPress={action('press')}
-        onPressStart={action('pressstart')}
-        onPressEnd={action('pressend')}
+        onPress={action("press")}
+        onPressStart={action("pressstart")}
+        onPressEnd={action("pressend")}
         isDisabled
         {...props}>
         Disabled
@@ -106,17 +106,17 @@ function renderWithIcon(props = {}) {
   return (
     <Flex gap="size-100">
       <ActionButton
-        onPress={action('press')}
-        onPressStart={action('pressstart')}
-        onPressEnd={action('pressend')}
+        onPress={action("press")}
+        onPressStart={action("pressstart")}
+        onPressEnd={action("pressend")}
         {...props}>
         <Add />
         <Text>Default</Text>
       </ActionButton>
       <ActionButton
-        onPress={action('press')}
-        onPressStart={action('pressstart')}
-        onPressEnd={action('pressend')}
+        onPress={action("press")}
+        onPressStart={action("pressstart")}
+        onPressEnd={action("pressend")}
         isDisabled
         {...props}>
         <Text>Disabled</Text>

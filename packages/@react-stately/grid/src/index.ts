@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useGridState';
-export * from './GridCollection';
+export * from "./useGridState";
+export * from "./GridCollection";

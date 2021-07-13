@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {MenuItem} from './MenuItem';
-import {Node} from '@react-types/shared';
-import React, {Fragment, Key} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {TreeState} from '@react-stately/tree';
-import {useMenuSection} from '@react-aria/menu';
-import {useSeparator} from '@react-aria/separator';
+import {classNames} from "@react-spectrum/utils";
+import {MenuItem} from "./MenuItem";
+import {Node} from "@react-types/shared";
+import React, {Fragment, Key} from "react";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {TreeState} from "@react-stately/tree";
+import {useMenuSection} from "@react-aria/menu";
+import {useSeparator} from "@react-aria/separator";
 
 interface MenuSectionProps<T> {
   item: Node<T>,
@@ -30,11 +30,11 @@ export function MenuSection<T>(props: MenuSectionProps<T>) {
   let {item, state, onAction} = props;
   let {itemProps, headingProps, groupProps} = useMenuSection({
     heading: item.rendered,
-    'aria-label': item['aria-label']
+    "aria-label": item["aria-label"]
   });
 
   let {separatorProps} = useSeparator({
-    elementType: 'li'
+    elementType: "li"
   });
 
   return (
@@ -44,7 +44,7 @@ export function MenuSection<T>(props: MenuSectionProps<T>) {
           {...separatorProps}
           className={classNames(
             styles,
-            'spectrum-Menu-divider'
+            "spectrum-Menu-divider"
           )} />
       }
       <li {...itemProps}>
@@ -54,7 +54,7 @@ export function MenuSection<T>(props: MenuSectionProps<T>) {
             className={
               classNames(
                 styles,
-                'spectrum-Menu-sectionHeading'
+                "spectrum-Menu-sectionHeading"
               )
             }>
             {item.rendered}
@@ -65,7 +65,7 @@ export function MenuSection<T>(props: MenuSectionProps<T>) {
           className={
             classNames(
               styles,
-              'spectrum-Menu'
+              "spectrum-Menu"
             )
           }>
           {[...item.childNodes].map(node => {

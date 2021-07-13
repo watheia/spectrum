@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key, useMemo, useRef, useState} from 'react';
-import {MultipleSelection, SelectionMode} from '@react-types/shared';
-import {MultipleSelectionState} from './types';
-import {Selection} from './Selection';
-import {useControlledState} from '@react-stately/utils';
+import {Key, useMemo, useRef, useState} from "react";
+import {MultipleSelection, SelectionMode} from "@react-types/shared";
+import {MultipleSelectionState} from "./types";
+import {Selection} from "./Selection";
+import {useControlledState} from "@react-stately/utils";
 
 /**
  * Manages state for multiple selection and focus in a collection.
  */
 export function useMultipleSelectionState(props: MultipleSelection): MultipleSelectionState {
   let {
-    selectionMode = 'none' as SelectionMode,
+    selectionMode = "none" as SelectionMode,
     disallowEmptySelection
   } = props;
 
@@ -59,7 +59,7 @@ export function useMultipleSelectionState(props: MultipleSelection): MultipleSel
     get childFocusStrategy() {
       return childFocusStrategyRef.current;
     },
-    setFocusedKey(k, childFocusStrategy = 'first') {
+    setFocusedKey(k, childFocusStrategy = "first") {
       focusedKeyRef.current = k;
       childFocusStrategyRef.current = childFocusStrategy;
       setFocusedKey(k);
@@ -70,12 +70,12 @@ export function useMultipleSelectionState(props: MultipleSelection): MultipleSel
   };
 }
 
-function convertSelection(selection: 'all' | Iterable<Key>, defaultValue?: Selection): 'all' | Selection {
+function convertSelection(selection: "all" | Iterable<Key>, defaultValue?: Selection): "all" | Selection {
   if (!selection) {
     return defaultValue;
   }
 
-  return selection === 'all'
-    ? 'all'
+  return selection === "all"
+    ? "all"
     : new Selection(selection);
 }

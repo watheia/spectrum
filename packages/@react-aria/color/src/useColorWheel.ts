@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaColorWheelProps} from '@react-types/color';
-import {ColorWheelState} from '@react-stately/color';
-import {focusWithoutScrolling, mergeProps, useGlobalListeners, useLabels} from '@react-aria/utils';
-import React, {ChangeEvent, HTMLAttributes, InputHTMLAttributes, RefObject, useCallback, useRef} from 'react';
-import {useKeyboard, useMove} from '@react-aria/interactions';
-import {useLocale} from '@react-aria/i18n';
+import {AriaColorWheelProps} from "@react-types/color";
+import {ColorWheelState} from "@react-stately/color";
+import {focusWithoutScrolling, mergeProps, useGlobalListeners, useLabels} from "@react-aria/utils";
+import React, {ChangeEvent, HTMLAttributes, InputHTMLAttributes, RefObject, useCallback, useRef} from "react";
+import {useKeyboard, useMove} from "@react-aria/interactions";
+import {useLocale} from "@react-aria/i18n";
 
 interface ColorWheelAriaProps extends AriaColorWheelProps {
   /** The outer radius of the color wheel. */
@@ -45,7 +45,7 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
     step = 1,
     innerRadius,
     outerRadius,
-    'aria-label': ariaLabel
+    "aria-label": ariaLabel
   } = props;
 
   let {addGlobalListener, removeGlobalListener} = useGlobalListeners();
@@ -73,7 +73,7 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       }
       currentPosition.current.x += deltaX;
       currentPosition.current.y += deltaY;
-      if (pointerType === 'keyboard') {
+      if (pointerType === "keyboard") {
         if (deltaX > 0 || deltaY < 0) {
           state.increment();
         } else if (deltaX < 0 || deltaY > 0) {
@@ -116,9 +116,9 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       currentPointer.current = id;
       focusInput();
       state.setDragging(true);
-      addGlobalListener(window, 'mouseup', onThumbUp, false);
-      addGlobalListener(window, 'touchend', onThumbUp, false);
-      addGlobalListener(window, 'pointerup', onThumbUp, false);
+      addGlobalListener(window, "mouseup", onThumbUp, false);
+      addGlobalListener(window, "touchend", onThumbUp, false);
+      addGlobalListener(window, "pointerup", onThumbUp, false);
     }
   };
 
@@ -130,9 +130,9 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       currentPointer.current = undefined;
       isOnTrack.current = false;
 
-      removeGlobalListener(window, 'mouseup', onThumbUp, false);
-      removeGlobalListener(window, 'touchend', onThumbUp, false);
-      removeGlobalListener(window, 'pointerup', onThumbUp, false);
+      removeGlobalListener(window, "mouseup", onThumbUp, false);
+      removeGlobalListener(window, "touchend", onThumbUp, false);
+      removeGlobalListener(window, "pointerup", onThumbUp, false);
     }
   };
 
@@ -149,9 +149,9 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       focusInput();
       state.setDragging(true);
 
-      addGlobalListener(window, 'mouseup', onTrackUp, false);
-      addGlobalListener(window, 'touchend', onTrackUp, false);
-      addGlobalListener(window, 'pointerup', onTrackUp, false);
+      addGlobalListener(window, "mouseup", onTrackUp, false);
+      addGlobalListener(window, "touchend", onTrackUp, false);
+      addGlobalListener(window, "pointerup", onTrackUp, false);
     }
   };
 
@@ -163,20 +163,20 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       state.setDragging(false);
       focusInput();
 
-      removeGlobalListener(window, 'mouseup', onTrackUp, false);
-      removeGlobalListener(window, 'touchend', onTrackUp, false);
-      removeGlobalListener(window, 'pointerup', onTrackUp, false);
+      removeGlobalListener(window, "mouseup", onTrackUp, false);
+      removeGlobalListener(window, "touchend", onTrackUp, false);
+      removeGlobalListener(window, "pointerup", onTrackUp, false);
     }
   };
 
   let {keyboardProps} = useKeyboard({
     onKeyDown(e) {
       switch (e.key) {
-        case 'PageUp':
+        case "PageUp":
           e.preventDefault();
           state.increment(PAGE_MIN_STEP_SIZE);
           break;
-        case 'PageDown':
+        case "PageDown":
           e.preventDefault();
           state.decrement(PAGE_MIN_STEP_SIZE);
           break;
@@ -192,7 +192,7 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       onTrackDown(e.currentTarget, undefined, e.clientX, e.clientY);
     },
     onPointerDown: (e: React.PointerEvent) => {
-      if (e.pointerType === 'mouse' && (e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey)) {
+      if (e.pointerType === "mouse" && (e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey)) {
         return;
       }
       onTrackDown(e.currentTarget, e.pointerId, e.clientX, e.clientY);
@@ -210,7 +210,7 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
       onThumbDown(undefined);
     },
     onPointerDown: (e: React.PointerEvent) => {
-      if (e.pointerType === 'mouse' && (e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey)) {
+      if (e.pointerType === "mouse" && (e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey)) {
         return;
       }
       onThumbDown(e.pointerId);
@@ -223,21 +223,21 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
 
   // Provide a default aria-label if none is given
   let {locale} = useLocale();
-  if (ariaLabel == null && props['aria-labelledby'] == null) {
-    ariaLabel = state.value.getChannelName('hue', locale);
+  if (ariaLabel == null && props["aria-labelledby"] == null) {
+    ariaLabel = state.value.getChannelName("hue", locale);
   }
 
   let inputLabellingProps = useLabels({
     ...props,
-    'aria-label': ariaLabel
+    "aria-label": ariaLabel
   });
 
   return {
     trackProps: {
       ...trackInteractions,
       style: {
-        position: 'relative',
-        touchAction: 'none',
+        position: "relative",
+        touchAction: "none",
         width: outerRadius * 2,
         height: outerRadius * 2,
         background: `
@@ -264,23 +264,23 @@ export function useColorWheel(props: ColorWheelAriaProps, state: ColorWheelState
     thumbProps: {
       ...thumbInteractions,
       style: {
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
+        position: "absolute",
+        left: "50%",
+        top: "50%",
         transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
-        touchAction: 'none'
+        touchAction: "none"
       }
     },
     inputProps: mergeProps(
       inputLabellingProps,
       {
-        type: 'range',
-        min: '0',
-        max: '360',
+        type: "range",
+        min: "0",
+        max: "360",
         step: String(step),
-        'aria-valuetext': state.value.formatChannelValue('hue', locale),
+        "aria-valuetext": state.value.formatChannelValue("hue", locale),
         disabled: isDisabled,
-        value: `${state.value.getChannelValue('hue')}`,
+        value: `${state.value.getChannelValue("hue")}`,
         onChange: (e: ChangeEvent<HTMLInputElement>) => {
           state.setHue(parseFloat(e.target.value));
         }

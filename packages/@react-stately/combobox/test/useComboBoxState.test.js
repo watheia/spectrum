@@ -10,21 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, renderHook} from '@testing-library/react-hooks';
-import {Item} from '@react-stately/collections';
-import React from 'react';
-import {useComboBoxState} from '../';
+import {act, renderHook} from "@testing-library/react-hooks";
+import {Item} from "@react-stately/collections";
+import React from "react";
+import {useComboBoxState} from "../";
 
-describe('useComboBoxState tests', function () {
-  describe('open state', function () {
+describe("useComboBoxState tests", function () {
+  describe("open state", function () {
     let onOpenChange;
     let defaultProps;
     beforeEach(() => {
       onOpenChange = jest.fn();
       let collator = {compare: jest.fn().mockReturnValue(true)};
-      defaultProps = {isFocused: true, items: [{id: 1, name: 'one'}], children: (props) => <Item>{props.name}</Item>, onOpenChange, collator};
+      defaultProps = {isFocused: true, items: [{id: 1, name: "one"}], children: (props) => <Item>{props.name}</Item>, onOpenChange, collator};
     });
-    it('should be closed by default', function () {
+    it("should be closed by default", function () {
       let initialProps = defaultProps;
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
       expect(result.current.isOpen).toBe(false);
@@ -40,156 +40,156 @@ describe('useComboBoxState tests', function () {
       expect(onOpenChange).toHaveBeenCalledWith(false, undefined);
     });
 
-    it('onOpenChange should return the reason that open was called', function () {
+    it("onOpenChange should return the reason that open was called", function () {
       let initialProps = defaultProps;
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
 
       act(() => {
-        result.current.open(undefined, 'focus');
+        result.current.open(undefined, "focus");
       });
       expect(result.current.isOpen).toBe(true);
-      expect(onOpenChange).toHaveBeenCalledWith(true, 'focus');
+      expect(onOpenChange).toHaveBeenCalledWith(true, "focus");
 
       act(() => result.current.close());
       expect(result.current.isOpen).toBe(false);
       expect(onOpenChange).toHaveBeenCalledWith(false, undefined);
 
       act(() => {
-        result.current.open(undefined, 'input');
+        result.current.open(undefined, "input");
       });
       expect(result.current.isOpen).toBe(true);
-      expect(onOpenChange).toHaveBeenCalledWith(true, 'input');
+      expect(onOpenChange).toHaveBeenCalledWith(true, "input");
 
       act(() => result.current.close());
 
       act(() => {
-        result.current.open(undefined, 'manual');
+        result.current.open(undefined, "manual");
       });
       expect(result.current.isOpen).toBe(true);
-      expect(onOpenChange).toHaveBeenCalledWith(true, 'manual');
+      expect(onOpenChange).toHaveBeenCalledWith(true, "manual");
     });
 
-    it('onOpenChange should return the reason that toggle was called when opening', function () {
+    it("onOpenChange should return the reason that toggle was called when opening", function () {
       let initialProps = defaultProps;
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
 
       act(() => {
-        result.current.toggle(undefined, 'focus');
+        result.current.toggle(undefined, "focus");
       });
       expect(result.current.isOpen).toBe(true);
-      expect(onOpenChange).toHaveBeenCalledWith(true, 'focus');
+      expect(onOpenChange).toHaveBeenCalledWith(true, "focus");
 
-      act(() => result.current.toggle(undefined, 'focus'));
+      act(() => result.current.toggle(undefined, "focus"));
       expect(result.current.isOpen).toBe(false);
       expect(onOpenChange).toHaveBeenCalledWith(false, undefined);
 
       act(() => {
-        result.current.toggle(undefined, 'input');
+        result.current.toggle(undefined, "input");
       });
       expect(result.current.isOpen).toBe(true);
-      expect(onOpenChange).toHaveBeenCalledWith(true, 'input');
+      expect(onOpenChange).toHaveBeenCalledWith(true, "input");
 
       act(() => result.current.close());
 
       act(() => {
-        result.current.toggle(undefined, 'manual');
+        result.current.toggle(undefined, "manual");
       });
       expect(result.current.isOpen).toBe(true);
-      expect(onOpenChange).toHaveBeenCalledWith(true, 'manual');
+      expect(onOpenChange).toHaveBeenCalledWith(true, "manual");
     });
   });
 
-  describe('values', function () {
+  describe("values", function () {
     let onInputChange;
     let defaultProps;
     beforeEach(() => {
       onInputChange = jest.fn();
       let collator = {compare: jest.fn().mockReturnValue(true)};
-      defaultProps = {items: [{id: 1, name: 'one'}], children: (props) => <Item>{props.name}</Item>, onInputChange, collator};
+      defaultProps = {items: [{id: 1, name: "one"}], children: (props) => <Item>{props.name}</Item>, onInputChange, collator};
     });
 
-    it('can have a default value', function () {
-      let initialProps = {...defaultProps, defaultInputValue: 'hello'};
+    it("can have a default value", function () {
+      let initialProps = {...defaultProps, defaultInputValue: "hello"};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.inputValue).toBe('hello');
+      expect(result.current.inputValue).toBe("hello");
     });
 
-    it('fires an event when the value is changed and updates if uncontrolled', function () {
-      let initialProps = {...defaultProps, defaultInputValue: 'hello'};
+    it("fires an event when the value is changed and updates if uncontrolled", function () {
+      let initialProps = {...defaultProps, defaultInputValue: "hello"};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.inputValue).toBe('hello');
+      expect(result.current.inputValue).toBe("hello");
       expect(onInputChange).not.toHaveBeenCalled();
-      act(() => result.current.setInputValue('hellow'));
-      expect(result.current.inputValue).toBe('hellow');
-      expect(onInputChange).toHaveBeenCalledWith('hellow');
+      act(() => result.current.setInputValue("hellow"));
+      expect(result.current.inputValue).toBe("hellow");
+      expect(onInputChange).toHaveBeenCalledWith("hellow");
     });
 
-    it('starts blank if no (default) value', function () {
+    it("starts blank if no (default) value", function () {
       let initialProps = {...defaultProps};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.inputValue).toBe('');
+      expect(result.current.inputValue).toBe("");
       expect(onInputChange).not.toHaveBeenCalled();
-      act(() => result.current.setInputValue('h'));
-      expect(result.current.inputValue).toBe('h');
-      expect(onInputChange).toHaveBeenCalledWith('h');
+      act(() => result.current.setInputValue("h"));
+      expect(result.current.inputValue).toBe("h");
+      expect(onInputChange).toHaveBeenCalledWith("h");
     });
 
-    it('can be controlled', function () {
-      let initialProps = {...defaultProps, inputValue: 'hello'};
+    it("can be controlled", function () {
+      let initialProps = {...defaultProps, inputValue: "hello"};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.inputValue).toBe('hello');
+      expect(result.current.inputValue).toBe("hello");
       expect(onInputChange).not.toHaveBeenCalled();
-      act(() => result.current.setInputValue('hellow'));
-      expect(result.current.inputValue).toBe('hello');
-      expect(onInputChange).toHaveBeenCalledWith('hellow');
+      act(() => result.current.setInputValue("hellow"));
+      expect(result.current.inputValue).toBe("hello");
+      expect(onInputChange).toHaveBeenCalledWith("hellow");
     });
   });
 
-  describe('collection', function () {
+  describe("collection", function () {
     let onSelectionChange;
     let defaultProps;
     beforeEach(() => {
       onSelectionChange = jest.fn();
       let collator = {compare: jest.fn().mockReturnValue(true)};
-      defaultProps = {items: [{key: '0', name: 'one'}, {key: '1', name: 'onomatopoeia'}], children: (props) => <Item {...props}>{props.name}</Item>, onSelectionChange, collator};
+      defaultProps = {items: [{key: "0", name: "one"}, {key: "1", name: "onomatopoeia"}], children: (props) => <Item {...props}>{props.name}</Item>, onSelectionChange, collator};
     });
 
-    it('support selectedKey', function () {
-      let initialProps = {...defaultProps, selectedKey: '0'};
+    it("support selectedKey", function () {
+      let initialProps = {...defaultProps, selectedKey: "0"};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.selectionManager.selectionMode).toBe('single');
-      expect(result.current.selectionManager.selectedKeys).toContain('0');
-      expect(result.current.selectionManager.selectedKeys).not.toContain('1');
+      expect(result.current.selectionManager.selectionMode).toBe("single");
+      expect(result.current.selectionManager.selectedKeys).toContain("0");
+      expect(result.current.selectionManager.selectedKeys).not.toContain("1");
 
-      act(() => result.current.selectionManager.replaceSelection('1'));
-      expect(result.current.selectionManager.selectedKeys).toContain('0');
-      expect(result.current.selectionManager.selectedKeys).not.toContain('1');
-      expect(onSelectionChange).toHaveBeenCalledWith('1');
+      act(() => result.current.selectionManager.replaceSelection("1"));
+      expect(result.current.selectionManager.selectedKeys).toContain("0");
+      expect(result.current.selectionManager.selectedKeys).not.toContain("1");
+      expect(onSelectionChange).toHaveBeenCalledWith("1");
     });
 
-    it('support defaultSelectedKey', function () {
-      let initialProps = {...defaultProps, defaultSelectedKey: '0'};
+    it("support defaultSelectedKey", function () {
+      let initialProps = {...defaultProps, defaultSelectedKey: "0"};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.selectionManager.selectionMode).toBe('single');
-      expect(result.current.selectionManager.selectedKeys).toContain('0');
-      expect(result.current.selectionManager.selectedKeys).not.toContain('1');
+      expect(result.current.selectionManager.selectionMode).toBe("single");
+      expect(result.current.selectionManager.selectedKeys).toContain("0");
+      expect(result.current.selectionManager.selectedKeys).not.toContain("1");
 
-      act(() => result.current.selectionManager.replaceSelection('1'));
-      expect(result.current.selectionManager.selectedKeys).toContain('1');
-      expect(result.current.selectionManager.selectedKeys).not.toContain('0');
-      expect(onSelectionChange).toHaveBeenCalledWith('1');
+      act(() => result.current.selectionManager.replaceSelection("1"));
+      expect(result.current.selectionManager.selectedKeys).toContain("1");
+      expect(result.current.selectionManager.selectedKeys).not.toContain("0");
+      expect(onSelectionChange).toHaveBeenCalledWith("1");
     });
 
-    it('supports sdefault no selection', function () {
+    it("supports sdefault no selection", function () {
       let initialProps = {...defaultProps};
       let {result} = renderHook((props) => useComboBoxState(props), {initialProps});
-      expect(result.current.selectionManager.selectionMode).toBe('single');
+      expect(result.current.selectionManager.selectionMode).toBe("single");
       expect(result.current.selectionManager.selectedKeys.size).toBe(0);
 
-      act(() => result.current.selectionManager.replaceSelection('1'));
-      expect(result.current.selectionManager.selectedKeys).toContain('1');
-      expect(result.current.selectionManager.selectedKeys).not.toContain('0');
-      expect(onSelectionChange).toHaveBeenCalledWith('1');
+      act(() => result.current.selectionManager.replaceSelection("1"));
+      expect(result.current.selectionManager.selectedKeys).toContain("1");
+      expect(result.current.selectionManager.selectedKeys).not.toContain("0");
+      expect(onSelectionChange).toHaveBeenCalledWith("1");
     });
   });
 });

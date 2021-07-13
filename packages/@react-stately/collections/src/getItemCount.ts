@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {Node} from '@react-types/shared';
+import {Node} from "@react-types/shared";
 
 const cache = new WeakMap<Iterable<unknown>, number>();
 
@@ -22,7 +22,7 @@ export function getItemCount<T>(collection: Iterable<Node<T>>): number {
 
   count = 0;
   for (let item of collection) {
-    if (item.type === 'section') {
+    if (item.type === "section") {
       count += getItemCount(item.childNodes);
     } else {
       count++;

@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useSlider';
-export * from './useSliderThumb';
+export * from "./useSlider";
+export * from "./useSliderThumb";

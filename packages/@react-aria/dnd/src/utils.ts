@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {CUSTOM_DRAG_TYPE, GENERIC_TYPE, NATIVE_DRAG_TYPES} from './constants';
-import {DirectoryItem, DragItem, DropItem, FileItem, DragTypes as IDragTypes} from '@react-types/shared';
-import {DroppableCollectionState} from '@react-stately/dnd';
-import {getInteractionModality, useInteractionModality} from '@react-aria/interactions';
-import {useId} from '@react-aria/utils';
+import {CUSTOM_DRAG_TYPE, GENERIC_TYPE, NATIVE_DRAG_TYPES} from "./constants";
+import {DirectoryItem, DragItem, DropItem, FileItem, DragTypes as IDragTypes} from "@react-types/shared";
+import {DroppableCollectionState} from "@react-stately/dnd";
+import {getInteractionModality, useInteractionModality} from "@react-aria/interactions";
+import {useId} from "@react-aria/utils";
 
 const droppableCollectionIds = new WeakMap<DroppableCollectionState, string>();
 
@@ -27,7 +27,7 @@ export function useDroppableCollectionId(state: DroppableCollectionState) {
 export function getDroppableCollectionId(state: DroppableCollectionState) {
   let id = droppableCollectionIds.get(state);
   if (!id) {
-    throw new Error('Droppable item outside a droppable collection');
+    throw new Error("Droppable item outside a droppable collection");
   }
 
   return id;
@@ -46,15 +46,15 @@ export function getTypes(items: DragItem[]): Set<string> {
 
 function mapModality(modality: string) {
   if (!modality) {
-    modality = 'virtual';
+    modality = "virtual";
   }
 
-  if (modality === 'pointer') {
-    modality = 'virtual';
+  if (modality === "pointer") {
+    modality = "virtual";
   }
 
-  if (modality === 'virtual' && 'ontouchstart' in window) {
-    modality = 'touch';
+  if (modality === "virtual" && "ontouchstart" in window) {
+    modality = "touch";
   }
 
   return modality;
@@ -112,7 +112,7 @@ export function writeToDataTransfer(dataTransfer: DataTransfer, items: DragItem[
     if (NATIVE_DRAG_TYPES.has(type)) {
       // Only one item of a given type can be set on a data transfer.
       // Join all of the items together separated by newlines.
-      let data = items.join('\n');
+      let data = items.join("\n");
       dataTransfer.items.add(data, type);
     } else {
       // Set data to the first item so we have access to the list of types.
@@ -136,7 +136,7 @@ export class DragTypes implements IDragTypes {
     let hasFiles = false;
     for (let item of dataTransfer.items) {
       if (item.type !== CUSTOM_DRAG_TYPE) {
-        if (item.kind === 'file') {
+        if (item.kind === "file") {
           hasFiles = true;
         }
 
@@ -155,7 +155,7 @@ export class DragTypes implements IDragTypes {
     // In Safari, when dragging files, the dataTransfer.items list is empty, but dataTransfer.types contains "Files".
     // Unfortunately, this doesn't tell us what types of files the user is dragging, so we need to assume that any
     // type the user checks for is included. See https://bugs.webkit.org/show_bug.cgi?id=223517.
-    this.includesUnknownTypes = !hasFiles && dataTransfer.types.includes('Files');
+    this.includesUnknownTypes = !hasFiles && dataTransfer.types.includes("Files");
   }
 
   has(type: string) {
@@ -180,7 +180,7 @@ export function readFromDataTransfer(dataTransfer: DataTransfer) {
       let parsed = JSON.parse(data);
       for (let item of parsed) {
         items.push({
-          kind: 'text',
+          kind: "text",
           types: new Set(Object.keys(item)),
           getText: (type) => Promise.resolve(item[type])
         });
@@ -196,16 +196,16 @@ export function readFromDataTransfer(dataTransfer: DataTransfer) {
   if (!hasCustomType) {
     let stringItems = new Map();
     for (let item of dataTransfer.items) {
-      if (item.kind === 'string') {
+      if (item.kind === "string") {
         // The data for all formats must be read here because the data transfer gets
         // cleared out after the event handler finishes. If the item has an empty string
         // as a type, the mime type is unknown. Map to a generic mime type instead.
         stringItems.set(item.type || GENERIC_TYPE, dataTransfer.getData(item.type));
-      } else if (item.kind === 'file') {
+      } else if (item.kind === "file") {
         // Despite the name, webkitGetAsEntry is also implemented in Firefox and Edge.
         // In the future, we may use getAsFileSystemHandle instead, but that's currently
         // only implemented in Chrome.
-        if (typeof item.webkitGetAsEntry === 'function') {
+        if (typeof item.webkitGetAsEntry === "function") {
           let entry: FileSystemEntry = item.webkitGetAsEntry();
           if (!entry) {
             // For some reason, Firefox includes an item with type image/png when copy
@@ -232,7 +232,7 @@ export function readFromDataTransfer(dataTransfer: DataTransfer) {
     // multiple string items at once in the current DataTransfer API.
     if (stringItems.size > 0) {
       items.push({
-        kind: 'text',
+        kind: "text",
         types: new Set(stringItems.keys()),
         getText: (type) => Promise.resolve(stringItems.get(type))
       });
@@ -243,7 +243,7 @@ export function readFromDataTransfer(dataTransfer: DataTransfer) {
 }
 
 function blobToString(blob: Blob): Promise<string> {
-  if (typeof blob.text === 'function') {
+  if (typeof blob.text === "function") {
     return blob.text();
   }
 
@@ -261,7 +261,7 @@ function blobToString(blob: Blob): Promise<string> {
 
 function createFileItem(file: File): FileItem {
   return {
-    kind: 'file',
+    kind: "file",
     type: file.type || GENERIC_TYPE,
     name: file.name,
     getText: () => blobToString(file),
@@ -271,7 +271,7 @@ function createFileItem(file: File): FileItem {
 
 function createDirectoryItem(entry: any): DirectoryItem {
   return {
-    kind: 'directory',
+    kind: "directory",
     name: entry.name,
     getEntries: () => getEntries(entry)
   };

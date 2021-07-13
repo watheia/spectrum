@@ -10,80 +10,80 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ActionButton, Button} from '@react-spectrum/button';
-import {ActionGroup, Item} from '@react-spectrum/actiongroup';
-import {Flex} from '@react-spectrum/layout';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {Tooltip, TooltipTrigger} from '../src';
+import {action} from "@storybook/addon-actions";
+import {ActionButton, Button} from "@react-spectrum/button";
+import {ActionGroup, Item} from "@react-spectrum/actiongroup";
+import {Flex} from "@react-spectrum/layout";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {Tooltip, TooltipTrigger} from "../src";
 
-storiesOf('TooltipTrigger', module)
+storiesOf("TooltipTrigger", module)
   .add(
-    'default',
+    "default",
     () => render({})
   )
   .add(
-    'placement: left',
-    () => render({placement: 'left'})
+    "placement: left",
+    () => render({placement: "left"})
   )
   .add(
-    'placement: right',
-    () => render({placement: 'right'})
+    "placement: right",
+    () => render({placement: "right"})
   )
   .add(
-    'placement: start',
-    () => render({placement: 'start'})
+    "placement: start",
+    () => render({placement: "start"})
   )
   .add(
-    'placement: top',
-    () => render({placement: 'top'})
+    "placement: top",
+    () => render({placement: "top"})
   )
   .add(
-    'placement: bottom',
-    () => render({placement: 'bottom'})
+    "placement: bottom",
+    () => render({placement: "bottom"})
   )
   .add(
-    'placement: top with offset',
-    () => render({placement: 'top', offset: 50})
+    "placement: top with offset",
+    () => render({placement: "top", offset: 50})
   )
   .add(
-    'placement: bottom with crossOffset',
-    () => render({placement: 'bottom', crossOffset: 50})
+    "placement: bottom with crossOffset",
+    () => render({placement: "bottom", crossOffset: 50})
   )
   .add(
-    'isDisabled',
-    () => render({placement: 'start', isDisabled: true})
+    "isDisabled",
+    () => render({placement: "start", isDisabled: true})
   )
   .add(
-    'zero delay',
+    "zero delay",
     () => render({delay: 0})
   )
   .add(
-    'focus only',
-    () => render({trigger: 'focus'})
+    "focus only",
+    () => render({trigger: "focus"})
   )
   .add(
-    'multiple tooltips',
-    () => renderMultipleTriggers({placement: 'start'})
+    "multiple tooltips",
+    () => renderMultipleTriggers({placement: "start"})
   )
   .add(
-    'zero delay multiple tooltips',
+    "zero delay multiple tooltips",
     () => renderMultipleTriggers({delay: 0})
   )
   .add(
-    'controlled',
+    "controlled",
     () => <ControlledButtons />
   )
   .add(
-    'trigger disabled',
+    "trigger disabled",
     () => renderDisabledTrigger()
   )
   .add(
-    'arrow positioning at edge',
+    "arrow positioning at edge",
     () => (
-      <div style={{width: '100%'}}>
-        <TooltipTrigger onOpenChange={action('openChange')}>
+      <div style={{width: "100%"}}>
+        <TooltipTrigger onOpenChange={action("openChange")}>
           <ActionButton>Trigger Tooltip</ActionButton>
           <Tooltip>
             Long tooltip message that just goes on and on.
@@ -93,10 +93,10 @@ storiesOf('TooltipTrigger', module)
     )
   )
   .add(
-    'tooltip with other hoverables',
+    "tooltip with other hoverables",
     () => (
       <Flex gap="size-100">
-        <TooltipTrigger onOpenChange={action('openChange')}>
+        <TooltipTrigger onOpenChange={action("openChange")}>
           <ActionButton>Trigger Tooltip</ActionButton>
           <Tooltip>
             Long tooltip message that just goes on and on.
@@ -107,11 +107,11 @@ storiesOf('TooltipTrigger', module)
     )
   )
   .add(
-    'tooltrip trigger inside action group',
+    "tooltrip trigger inside action group",
     () => ActionGroupTrigger()
   )
   .add(
-    'crossoffset examples',
+    "crossoffset examples",
     () => (
       <Flex gap="size-200">
         <Flex gap="size-200" direction="column" alignItems="start">
@@ -201,7 +201,7 @@ storiesOf('TooltipTrigger', module)
 
 function render(props = {}) {
   return (
-    <TooltipTrigger {...props} onOpenChange={action('openChange')}>
+    <TooltipTrigger {...props} onOpenChange={action("openChange")}>
       <ActionButton>Trigger Tooltip</ActionButton>
       <Tooltip>
         Tooltip message.
@@ -212,7 +212,7 @@ function render(props = {}) {
 
 function renderDisabledTrigger() {
   return (
-    <TooltipTrigger onOpenChange={action('openChange')}>
+    <TooltipTrigger onOpenChange={action("openChange")}>
       <ActionButton isDisabled>Trigger Tooltip</ActionButton>
       <Tooltip>
         Tooltip message.
@@ -224,7 +224,7 @@ function renderDisabledTrigger() {
 function renderMultipleTriggers(props = {}) {
   return (
     <Flex gap="size-100" direction="column">
-      <TooltipTrigger {...props} onOpenChange={action('openChange')}>
+      <TooltipTrigger {...props} onOpenChange={action("openChange")}>
         <ActionButton>
           Neutral Tooltip
         </ActionButton>
@@ -232,7 +232,7 @@ function renderMultipleTriggers(props = {}) {
           Neutral message.
         </Tooltip>
       </TooltipTrigger>
-      <TooltipTrigger {...props} onOpenChange={action('openChange')}>
+      <TooltipTrigger {...props} onOpenChange={action("openChange")}>
         <ActionButton>
           Positive Tooltip
         </ActionButton>
@@ -240,7 +240,7 @@ function renderMultipleTriggers(props = {}) {
           Positive message.
         </Tooltip>
       </TooltipTrigger>
-      <TooltipTrigger {...props} onOpenChange={action('openChange')}>
+      <TooltipTrigger {...props} onOpenChange={action("openChange")}>
         <ActionButton>
           Negative Tooltip
         </ActionButton>
@@ -248,7 +248,7 @@ function renderMultipleTriggers(props = {}) {
           Negative message.
         </Tooltip>
       </TooltipTrigger>
-      <TooltipTrigger {...props} onOpenChange={action('openChange')}>
+      <TooltipTrigger {...props} onOpenChange={action("openChange")}>
         <ActionButton>
           Info Tooltip
         </ActionButton>
@@ -261,7 +261,7 @@ function renderMultipleTriggers(props = {}) {
 }
 
 function ActionGroupTrigger() {
-  let onSelectionChange = action('onSelectionChange');
+  let onSelectionChange = action("onSelectionChange");
 
   return (
     <ActionGroup

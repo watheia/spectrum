@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaTabPanelProps} from '@react-types/tabs';
-import {generateId} from './utils';
-import {getFocusableTreeWalker} from '@react-aria/focus';
-import {HTMLAttributes, RefObject, useLayoutEffect, useState} from 'react';
-import {mergeProps, useLabels} from '@react-aria/utils';
-import {TabListState} from '@react-stately/tabs';
+import {AriaTabPanelProps} from "@react-types/tabs";
+import {generateId} from "./utils";
+import {getFocusableTreeWalker} from "@react-aria/focus";
+import {HTMLAttributes, RefObject, useLayoutEffect, useState} from "react";
+import {mergeProps, useLabels} from "@react-aria/utils";
+import {TabListState} from "@react-stately/tabs";
 
 interface TabPanelAria {
   /** Props for the tab panel element. */
@@ -49,7 +49,7 @@ export function useTabPanel<T>(props: AriaTabPanelProps, state: TabListState<T>,
         subtree: true,
         childList: true,
         attributes: true,
-        attributeFilter: ['tabIndex', 'disabled']
+        attributeFilter: ["tabIndex", "disabled"]
       });
 
       return () => {
@@ -58,15 +58,15 @@ export function useTabPanel<T>(props: AriaTabPanelProps, state: TabListState<T>,
     }
   }, [ref]);
 
-  const id = generateId(state, state?.selectedKey, 'tabpanel');
-  const tabPanelProps = useLabels({...props, id, 'aria-labelledby': generateId(state, state?.selectedKey, 'tab')});
+  const id = generateId(state, state?.selectedKey, "tabpanel");
+  const tabPanelProps = useLabels({...props, id, "aria-labelledby": generateId(state, state?.selectedKey, "tab")});
 
   return {
     tabPanelProps: mergeProps(tabPanelProps, {
       tabIndex,
-      role: 'tabpanel',
-      'aria-describedby': props['aria-describedby'],
-      'aria-details': props['aria-details']
+      role: "tabpanel",
+      "aria-describedby": props["aria-describedby"],
+      "aria-details": props["aria-details"]
     })
   };
 }

@@ -41,7 +41,7 @@ function supportsPreventScroll() {
   if (supportsPreventScrollCached == null) {
     supportsPreventScrollCached = false;
     try {
-      var focusElem = document.createElement('div');
+      var focusElem = document.createElement("div");
       focusElem.focus({
         get preventScroll() {
           supportsPreventScrollCached = true;

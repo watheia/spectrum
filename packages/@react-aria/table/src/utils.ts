@@ -10,23 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key} from 'react';
-import {TableState} from '@react-stately/table';
+import {Key} from "react";
+import {TableState} from "@react-stately/table";
 
 export const gridIds = new WeakMap<TableState<unknown>, string>();
 
 function normalizeKey(key: Key): string {
-  if (typeof key === 'string') {
-    return key.replace(/\s*/g, '');
+  if (typeof key === "string") {
+    return key.replace(/\s*/g, "");
   }
 
-  return '' + key;
+  return "" + key;
 }
 
 export function getColumnHeaderId<T>(state: TableState<T>, columnKey: Key): string {
   let gridId = gridIds.get(state);
   if (!gridId) {
-    throw new Error('Unknown grid');
+    throw new Error("Unknown grid");
   }
 
   return `${gridId}-${normalizeKey(columnKey)}`;
@@ -35,7 +35,7 @@ export function getColumnHeaderId<T>(state: TableState<T>, columnKey: Key): stri
 export function getCellId<T>(state: TableState<T>, rowKey: Key, columnKey: Key) {
   let gridId = gridIds.get(state);
   if (!gridId) {
-    throw new Error('Unknown grid');
+    throw new Error("Unknown grid");
   }
 
   return `${gridId}-${normalizeKey(rowKey)}-${normalizeKey(columnKey)}`;
@@ -45,5 +45,5 @@ export function getRowLabelledBy<T>(state: TableState<T>, rowKey: Key): string {
   // A row is labelled by it's row headers.
   return [...state.collection.rowHeaderColumnKeys].map(columnKey =>
     getCellId(state, rowKey, columnKey)
-  ).join(' ');
+  ).join(" ");
 }

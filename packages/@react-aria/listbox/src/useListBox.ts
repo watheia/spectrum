@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaListBoxProps} from '@react-types/listbox';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes, ReactNode, RefObject} from 'react';
-import {KeyboardDelegate} from '@react-types/shared';
-import {listData} from './utils';
-import {ListState} from '@react-stately/list';
-import {useFocusWithin} from '@react-aria/interactions';
-import {useId} from '@react-aria/utils';
-import {useLabel} from '@react-aria/label';
-import {useSelectableList} from '@react-aria/selection';
+import {AriaListBoxProps} from "@react-types/listbox";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes, ReactNode, RefObject} from "react";
+import {KeyboardDelegate} from "@react-types/shared";
+import {listData} from "./utils";
+import {ListState} from "@react-stately/list";
+import {useFocusWithin} from "@react-aria/interactions";
+import {useId} from "@react-aria/utils";
+import {useLabel} from "@react-aria/label";
+import {useSelectableList} from "@react-aria/selection";
 
 interface ListBoxAria {
   /** Props for the listbox element. */
@@ -28,7 +28,7 @@ interface ListBoxAria {
   labelProps: HTMLAttributes<HTMLElement>
 }
 
-export interface AriaListBoxOptions<T> extends Omit<AriaListBoxProps<T>, 'children'> {
+export interface AriaListBoxOptions<T> extends Omit<AriaListBoxProps<T>, "children"> {
   /** Whether the listbox uses virtual scrolling. */
   isVirtualized?: boolean,
 
@@ -92,15 +92,15 @@ export function useListBox<T>(props: AriaListBoxOptions<T>, state: ListState<T>,
     id,
     // listbox is not an HTML input element so it
     // shouldn't be labeled by a <label> element.
-    labelElementType: 'span'
+    labelElementType: "span"
   });
 
   return {
     labelProps,
-    listBoxProps: mergeProps(domProps, focusWithinProps, state.selectionManager.selectionMode === 'multiple' ? {
-      'aria-multiselectable': 'true'
+    listBoxProps: mergeProps(domProps, focusWithinProps, state.selectionManager.selectionMode === "multiple" ? {
+      "aria-multiselectable": "true"
     } : {}, {
-      role: 'listbox',
+      role: "listbox",
       ...mergeProps(fieldProps, listProps)
     })
   };

@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {GridKeyboardDelegate} from '@react-aria/grid';
-import {Key} from 'react';
-import {Node} from '@react-types/shared';
-import {TableCollection} from '@react-types/table';
+import {GridKeyboardDelegate} from "@react-aria/grid";
+import {Key} from "react";
+import {Node} from "@react-types/shared";
+import {TableCollection} from "@react-types/table";
 
 export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableCollection<T>> {
 
   protected isCell(node: Node<T>) {
-    return node.type === 'cell' || node.type === 'rowheader' || node.type === 'column';
+    return node.type === "cell" || node.type === "rowheader" || node.type === "column";
   }
 
   getKeyBelow(key: Key) {
@@ -29,7 +29,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
 
     // If focus was on a column, then focus the first child column if any,
     // or find the corresponding cell in the first row.
-    if (startItem.type === 'column') {
+    if (startItem.type === "column") {
       let child = [...startItem.childNodes][0];
       if (child) {
         return child.key;
@@ -49,9 +49,9 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
     }
 
     // If focus was on a column, focus the parent column if any
-    if (startItem.type === 'column') {
+    if (startItem.type === "column") {
       let parent = this.collection.getItem(startItem.parentKey);
-      if (parent && parent.type === 'column') {
+      if (parent && parent.type === "column") {
         return parent.key;
       }
 
@@ -60,7 +60,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
 
     // only return above row key if not header row
     let superKey = super.getKeyAbove(key);
-    if (superKey && this.collection.getItem(superKey).type !== 'headerrow') {
+    if (superKey && this.collection.getItem(superKey).type !== "headerrow") {
       return superKey;
     }
 
@@ -76,7 +76,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
 
   private findNextColumnKey(column: Node<T>) {
     // Search following columns
-    let key = this.findNextKey(column.key, item => item.type === 'column');
+    let key = this.findNextKey(column.key, item => item.type === "column");
     if (key != null) {
       return key;
     }
@@ -84,7 +84,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
     // Wrap around to the first column
     let row = this.collection.headerRows[column.level];
     for (let item of row.childNodes) {
-      if (item.type === 'column') {
+      if (item.type === "column") {
         return item.key;
       }
     }
@@ -92,7 +92,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
 
   private findPreviousColumnKey(column: Node<T>) {
     // Search previous columns
-    let key = this.findPreviousKey(column.key, item => item.type === 'column');
+    let key = this.findPreviousKey(column.key, item => item.type === "column");
     if (key != null) {
       return key;
     }
@@ -102,7 +102,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
     let childNodes = [...row.childNodes];
     for (let i = childNodes.length - 1; i >= 0; i--) {
       let item = childNodes[i];
-      if (item.type === 'column') {
+      if (item.type === "column") {
         return item.key;
       }
     }
@@ -115,8 +115,8 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
     }
 
     // If focus was on a column, then focus the next column
-    if (item.type === 'column') {
-      return this.direction === 'rtl'
+    if (item.type === "column") {
+      return this.direction === "rtl"
         ? this.findPreviousColumnKey(item)
         : this.findNextColumnKey(item);
     }
@@ -131,8 +131,8 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
     }
 
     // If focus was on a column, then focus the previous column
-    if (item.type === 'column') {
-      return this.direction === 'rtl'
+    if (item.type === "column") {
+      return this.direction === "rtl"
         ? this.findNextColumnKey(item)
         : this.findPreviousColumnKey(item);
     }
@@ -150,7 +150,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
 
     // If the starting key is a cell, search from its parent row.
     let startItem = collection.getItem(key);
-    if (startItem.type === 'cell') {
+    if (startItem.type === "cell") {
       key = startItem.parentKey;
     }
 
@@ -166,7 +166,7 @@ export class TableKeyboardDelegate<T> extends GridKeyboardDelegate<T, TableColle
           if (this.collator.compare(substring, search) === 0) {
             // If we started on a cell, end on the matching cell. Otherwise, end on the row.
             let fromItem = fromKey != null ? collection.getItem(fromKey) : startItem;
-            return fromItem.type === 'cell'
+            return fromItem.type === "cell"
               ? cell.key
               : item.key;
           }

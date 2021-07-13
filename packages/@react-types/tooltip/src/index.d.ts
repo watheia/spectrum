@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, StyleProps} from '@react-types/shared';
-import {OverlayTriggerProps, PositionProps} from '@react-types/overlays';
-import {ReactElement, ReactNode} from 'react';
+import {AriaLabelingProps, DOMProps, StyleProps} from "@react-types/shared";
+import {OverlayTriggerProps, PositionProps} from "@react-types/overlays";
+import {ReactElement, ReactNode} from "react";
 
 export interface TooltipTriggerProps extends OverlayTriggerProps {
   /**
@@ -29,7 +29,7 @@ export interface TooltipTriggerProps extends OverlayTriggerProps {
   /**
    * By default, opens for both focus and hover. Can be made to open only for focus.
    */
-  trigger?: 'focus'
+  trigger?: "focus"
 }
 
 export interface SpectrumTooltipTriggerProps extends TooltipTriggerProps, PositionProps {
@@ -53,13 +53,13 @@ export interface SpectrumTooltipProps extends AriaTooltipProps, StyleProps {
   /**
    * The [visual style](https://spectrum.adobe.com/page/tooltip/#Semantic-variants) of the Tooltip.
    */
-  variant?: 'neutral' | 'positive' | 'negative' | 'info',
+  variant?: "neutral" | "positive" | "negative" | "info",
 
   /**
    * The placement of the element with respect to its anchor element.
    * @default 'top'
    */
-  placement?: 'start' | 'end' | 'right' | 'left' | 'top' | 'bottom',
+  placement?: "start" | "end" | "right" | "left" | "top" | "bottom",
 
   /**
    * Whether the element is rendered.

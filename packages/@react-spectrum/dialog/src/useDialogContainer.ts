@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {DialogContext} from './context';
-import {useContext} from 'react';
+import {DialogContext} from "./context";
+import {useContext} from "react";
 
 interface DialogContainer {
-  type: 'modal' | 'popover' | 'tray' | 'fullscreen' | 'fullscreenTakeover',
+  type: "modal" | "popover" | "tray" | "fullscreen" | "fullscreenTakeover",
   dismiss(): void
 }
 
 export function useDialogContainer(): DialogContainer {
   let context = useContext(DialogContext);
   if (!context) {
-    throw new Error('Cannot call useDialogContext outside a <DialogTrigger> or <DialogContainer>.');
+    throw new Error("Cannot call useDialogContext outside a <DialogTrigger> or <DialogContainer>.");
   }
 
   return {

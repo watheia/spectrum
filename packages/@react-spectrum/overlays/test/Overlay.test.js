@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {Overlay} from '../';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {render} from '@testing-library/react';
-import {theme} from '@react-spectrum/theme-default';
+import {Overlay} from "../";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {render} from "@testing-library/react";
+import {theme} from "@react-spectrum/theme-default";
 
 function ExampleOverlay() {
   return <span data-testid="contents">Overlay</span>;
 }
 
-describe('Overlay', function () {
-  it('should render nothing if isOpen is not set', function () {
+describe("Overlay", function () {
+  it("should render nothing if isOpen is not set", function () {
     let overlayRef = React.createRef();
     render(
       <Provider theme={theme}>
@@ -34,7 +34,7 @@ describe('Overlay', function () {
     expect(overlayRef.current).toBe(null);
   });
 
-  it('should render into a portal in the body', function () {
+  it("should render into a portal in the body", function () {
     let providerRef = React.createRef();
     let overlayRef = React.createRef();
     render(

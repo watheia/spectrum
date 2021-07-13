@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import AlignCenter from '@spectrum-icons/workflow/AlignCenter';
-import AlignLeft from '@spectrum-icons/workflow/AlignLeft';
-import AlignRight from '@spectrum-icons/workflow/AlignRight';
-import Blower from '@spectrum-icons/workflow/Blower';
-import Book from '@spectrum-icons/workflow/Book';
-import Copy from '@spectrum-icons/workflow/Copy';
-import Cut from '@spectrum-icons/workflow/Cut';
-import {Item, ListBox, Section} from '../';
-import {Label} from '@react-spectrum/label';
-import {Meta, Story} from '@storybook/react';
-import Paste from '@spectrum-icons/workflow/Paste';
-import React from 'react';
-import {SpectrumListBoxProps} from '@react-types/listbox';
-import {Text} from '@react-spectrum/text';
+import AlignCenter from "@spectrum-icons/workflow/AlignCenter";
+import AlignLeft from "@spectrum-icons/workflow/AlignLeft";
+import AlignRight from "@spectrum-icons/workflow/AlignRight";
+import Blower from "@spectrum-icons/workflow/Blower";
+import Book from "@spectrum-icons/workflow/Book";
+import Copy from "@spectrum-icons/workflow/Copy";
+import Cut from "@spectrum-icons/workflow/Cut";
+import {Item, ListBox, Section} from "../";
+import {Label} from "@react-spectrum/label";
+import {Meta, Story} from "@storybook/react";
+import Paste from "@spectrum-icons/workflow/Paste";
+import React from "react";
+import {SpectrumListBoxProps} from "@react-types/listbox";
+import {Text} from "@react-spectrum/text";
 
 let iconMap = {
   AlignCenter,
@@ -37,51 +37,51 @@ let iconMap = {
 };
 
 let hardModeProgrammatic = [
-  {name: 'Section 1', children: [
-    {name: 'Copy', icon: 'Copy'},
-    {name: 'Cut', icon: 'Cut'},
-    {name: 'Paste', icon: 'Paste'}
+  {name: "Section 1", children: [
+    {name: "Copy", icon: "Copy"},
+    {name: "Cut", icon: "Cut"},
+    {name: "Paste", icon: "Paste"}
   ]},
-  {name: 'Section 2', children: [
-    {name: 'Puppy', icon: 'AlignLeft'},
-    {name: 'Doggo', icon: 'AlignCenter'},
-    {name: 'Floof', icon: 'AlignRight'}
+  {name: "Section 2", children: [
+    {name: "Puppy", icon: "AlignLeft"},
+    {name: "Doggo", icon: "AlignCenter"},
+    {name: "Floof", icon: "AlignRight"}
   ]}
 ];
 
 let flatOptions = [
-  {name: 'Aardvark'},
-  {name: 'Kangaroo'},
-  {name: 'Snake'},
-  {name: 'Danni'},
-  {name: 'Devon'},
-  {name: 'Ross'}
+  {name: "Aardvark"},
+  {name: "Kangaroo"},
+  {name: "Snake"},
+  {name: "Danni"},
+  {name: "Devon"},
+  {name: "Ross"}
 ];
 
 let withSection = [
-  {name: 'Animals', children: [
-    {name: 'Aardvark'},
-    {name: 'Kangaroo'},
-    {name: 'Snake'}
+  {name: "Animals", children: [
+    {name: "Aardvark"},
+    {name: "Kangaroo"},
+    {name: "Snake"}
   ]},
-  {name: 'People', children: [
-    {name: 'Danni'},
-    {name: 'Devon'},
-    {name: 'Ross'}
+  {name: "People", children: [
+    {name: "Danni"},
+    {name: "Devon"},
+    {name: "Ross"}
   ]}
 ];
 
 const meta: Meta<SpectrumListBoxProps<object>> = {
-  title: 'ListBox',
+  title: "ListBox",
   component: ListBox,
   parameters: {
     // noticed a small shifting before final layout, delaying so chromatic doesn't hit that
     chromatic: {delay: 600}
   },
   decorators: [Story => (
-    <div style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{display: "flex", flexDirection: "column"}}>
       <Label id="label">Choose an item</Label>
-      <div style={{display: 'flex', minWidth: '200px', background: 'var(--spectrum-global-color-gray-50)', border: '1px solid lightgray', maxHeight: 600}}>
+      <div style={{display: "flex", minWidth: "200px", background: "var(--spectrum-global-color-gray-50)", border: "1px solid lightgray", maxHeight: 600}}>
         <Story />
       </div>
     </div>
@@ -137,17 +137,17 @@ const TemplateComplex = (): Story<SpectrumListBoxProps<object>> => (args) => (
 );
 
 export const Default = Template().bind({});
-Default.storyName = 'flat list with selection';
-Default.args = {selectedKeys: ['Snake', 'Aardvark'], disabledKeys: ['Ross'], selectionMode: 'multiple'};
+Default.storyName = "flat list with selection";
+Default.args = {selectedKeys: ["Snake", "Aardvark"], disabledKeys: ["Ross"], selectionMode: "multiple"};
 
 export const Sections = TemplateWithSections().bind({});
-Sections.storyName = 'with sections';
-Sections.args = {selectedKeys: ['Snake', 'Aardvark'], disabledKeys: ['Ross'], selectionMode: 'multiple'};
+Sections.storyName = "with sections";
+Sections.args = {selectedKeys: ["Snake", "Aardvark"], disabledKeys: ["Ross"], selectionMode: "multiple"};
 
 export const SectionsNoTitle = TemplateNoTitle().bind({});
-SectionsNoTitle.storyName = 'sections without titles';
-SectionsNoTitle.args = {selectedKeys: ['Snake', 'Aardvark'],  disabledKeys: ['Ross'], selectionMode: 'multiple'};
+SectionsNoTitle.storyName = "sections without titles";
+SectionsNoTitle.args = {selectedKeys: ["Snake", "Aardvark"],  disabledKeys: ["Ross"], selectionMode: "multiple"};
 
 export const ComplexItems = TemplateComplex().bind({});
-ComplexItems.storyName = 'complex items';
-ComplexItems.args = {selectedKeys: ['Puppy', 'Cut'],  disabledKeys: ['Paste'], selectionMode: 'multiple'};
+ComplexItems.storyName = "complex items";
+ComplexItems.args = {selectedKeys: ["Puppy", "Cut"],  disabledKeys: ["Paste"], selectionMode: "multiple"};

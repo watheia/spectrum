@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection} from '@react-types/shared';
-import {focusWithoutScrolling, mergeProps, useLayoutEffect} from '@react-aria/utils';
-import {Layout, Rect, ReusableView, useVirtualizerState, VirtualizerState} from '@react-stately/virtualizer';
-import React, {FocusEvent, HTMLAttributes, Key, ReactElement, RefObject, useCallback, useEffect, useRef} from 'react';
-import {ScrollView} from './ScrollView';
-import {VirtualizerItem} from './VirtualizerItem';
+import {Collection} from "@react-types/shared";
+import {focusWithoutScrolling, mergeProps, useLayoutEffect} from "@react-aria/utils";
+import {Layout, Rect, ReusableView, useVirtualizerState, VirtualizerState} from "@react-stately/virtualizer";
+import React, {FocusEvent, HTMLAttributes, Key, ReactElement, RefObject, useCallback, useEffect, useRef} from "react";
+import {ScrollView} from "./ScrollView";
+import {VirtualizerItem} from "./VirtualizerItem";
 
 interface VirtualizerProps<T extends object, V> extends HTMLAttributes<HTMLElement> {
   children: (type: string, content: T) => V,
@@ -28,8 +28,8 @@ interface VirtualizerProps<T extends object, V> extends HTMLAttributes<HTMLEleme
   layout: Layout<T>,
   collection: Collection<T>,
   focusedKey?: Key,
-  sizeToFit?: 'width' | 'height',
-  scrollDirection?: 'horizontal' | 'vertical' | 'both',
+  sizeToFit?: "width" | "height",
+  scrollDirection?: "horizontal" | "vertical" | "both",
   transitionDuration?: number,
   isLoading?: boolean,
   onLoadMore?: () => void,

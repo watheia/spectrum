@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render, waitFor} from '@testing-library/react';
-import {Modal} from '../';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {theme} from '@react-spectrum/theme-default';
+import {fireEvent, render, waitFor} from "@testing-library/react";
+import {Modal} from "../";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {theme} from "@react-spectrum/theme-default";
 
-describe('Modal', function () {
-  it('should render nothing if isOpen is not set', function () {
+describe("Modal", function () {
+  it("should render nothing if isOpen is not set", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Modal>
@@ -27,12 +27,12 @@ describe('Modal', function () {
     );
 
     expect(() => {
-      getByRole('dialog');
+      getByRole("dialog");
     }).toThrow();
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
   });
 
-  it('should render when isOpen is true', async function () {
+  it("should render when isOpen is true", async function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Modal isOpen>
@@ -42,15 +42,15 @@ describe('Modal', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(dialog).toBeVisible();
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
   });
 
-  it('hides the modal when pressing the escape key', async function () {
+  it("hides the modal when pressing the escape key", async function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -61,15 +61,15 @@ describe('Modal', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
 
-    let dialog = getByRole('dialog');
-    fireEvent.keyDown(dialog, {key: 'Escape'});
+    let dialog = getByRole("dialog");
+    fireEvent.keyDown(dialog, {key: "Escape"});
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('doesn\'t hide the modal when clicking outside by default', async function () {
+  it("doesn't hide the modal when clicking outside by default", async function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -80,14 +80,14 @@ describe('Modal', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
 
     fireEvent.mouseUp(document.body);
     expect(onClose).toHaveBeenCalledTimes(0);
   });
 
-  it('hides the modal when clicking outside if isDismissible is true', async function () {
+  it("hides the modal when clicking outside if isDismissible is true", async function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -98,7 +98,7 @@ describe('Modal', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
 
     fireEvent.mouseDown(document.body);

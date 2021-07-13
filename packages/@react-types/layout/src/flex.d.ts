@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, FlexStyleProps} from '@react-types/shared';
-import {ReactElement} from 'react';
+import {DOMProps, FlexStyleProps} from "@react-types/shared";
+import {ReactElement} from "react";
 
 export type Slots = {[key: string]: any};
 

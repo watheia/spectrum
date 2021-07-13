@@ -10,178 +10,178 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, renderHook} from '@testing-library/react-hooks';
-import React from 'react';
-import {useListData} from '../src/useListData';
+import {act, renderHook} from "@testing-library/react-hooks";
+import React from "react";
+import {useListData} from "../src/useListData";
 
 const initial = [
-  {name: 'David'},
-  {name: 'Sam'},
-  {name: 'Julia'}
+  {name: "David"},
+  {name: "Sam"},
+  {name: "Julia"}
 ];
 
 const many = [
-  {name: 'One'},
-  {name: 'Two'},
-  {name: 'Three'},
-  {name: 'Four'},
-  {name: 'Five'},
-  {name: 'Six'}
+  {name: "One"},
+  {name: "Two"},
+  {name: "Three"},
+  {name: "Four"},
+  {name: "Five"},
+  {name: "Six"}
 ];
 
 let getKey = (item) => item.name;
 let filter = (item, text) => item.name.includes(text);
 
-describe('useListData', function () {
-  it('should construct a list using initial data', function () {
-    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ['Sam', 'Julia']}));
+describe("useListData", function () {
+  it("should construct a list using initial data", function () {
+    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ["Sam", "Julia"]}));
     expect(result.current.items).toBe(initial);
-    expect(result.current.selectedKeys).toEqual(new Set(['Sam', 'Julia']));
+    expect(result.current.selectedKeys).toEqual(new Set(["Sam", "Julia"]));
   });
 
-  it('should get an item by key', function () {
+  it("should get an item by key", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
-    expect(result.current.getItem('Sam')).toBe(initial[1]);
+    expect(result.current.getItem("Sam")).toBe(initial[1]);
   });
 
-  it('should insert an item at an index', function () {
+  it("should insert an item at an index", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.insert(1, {name: 'Devon'});
+      result.current.insert(1, {name: "Devon"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(4);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
     expect(result.current.items[2]).toBe(initialResult.items[1]);
     expect(result.current.items[3]).toBe(initialResult.items[2]);
   });
 
-  it('should insert multiple items at an index', function () {
+  it("should insert multiple items at an index", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.insert(1, {name: 'Devon'}, {name: 'Danni'});
+      result.current.insert(1, {name: "Devon"}, {name: "Danni"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(5);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
-    expect(result.current.items[2]).toEqual({name: 'Danni'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
+    expect(result.current.items[2]).toEqual({name: "Danni"});
     expect(result.current.items[3]).toBe(initialResult.items[1]);
     expect(result.current.items[4]).toBe(initialResult.items[2]);
   });
 
-  it('should insert an item before another item', function () {
+  it("should insert an item before another item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.insertBefore('Sam', {name: 'Devon'});
+      result.current.insertBefore("Sam", {name: "Devon"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(4);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
     expect(result.current.items[2]).toBe(initialResult.items[1]);
     expect(result.current.items[3]).toBe(initialResult.items[2]);
   });
 
-  it('should insert multiple items before another item', function () {
+  it("should insert multiple items before another item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.insertBefore('Sam', {name: 'Devon'}, {name: 'Danni'});
+      result.current.insertBefore("Sam", {name: "Devon"}, {name: "Danni"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(5);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
-    expect(result.current.items[2]).toEqual({name: 'Danni'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
+    expect(result.current.items[2]).toEqual({name: "Danni"});
     expect(result.current.items[3]).toBe(initialResult.items[1]);
     expect(result.current.items[4]).toBe(initialResult.items[2]);
   });
 
-  it('should insert an item after another item', function () {
+  it("should insert an item after another item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.insertAfter('David', {name: 'Devon'});
+      result.current.insertAfter("David", {name: "Devon"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(4);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
     expect(result.current.items[2]).toBe(initialResult.items[1]);
     expect(result.current.items[3]).toBe(initialResult.items[2]);
   });
 
-  it('should insert multiple items after another item', function () {
+  it("should insert multiple items after another item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.insertAfter('David', {name: 'Devon'}, {name: 'Danni'});
+      result.current.insertAfter("David", {name: "Devon"}, {name: "Danni"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(5);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
-    expect(result.current.items[2]).toEqual({name: 'Danni'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
+    expect(result.current.items[2]).toEqual({name: "Danni"});
     expect(result.current.items[3]).toBe(initialResult.items[1]);
     expect(result.current.items[4]).toBe(initialResult.items[2]);
   });
 
-  it('should insert an prepend an item', function () {
+  it("should insert an prepend an item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.prepend({name: 'Devon'});
+      result.current.prepend({name: "Devon"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(4);
-    expect(result.current.items[0]).toEqual({name: 'Devon'});
+    expect(result.current.items[0]).toEqual({name: "Devon"});
     expect(result.current.items[1]).toBe(initialResult.items[0]);
     expect(result.current.items[2]).toBe(initialResult.items[1]);
     expect(result.current.items[3]).toBe(initialResult.items[2]);
   });
 
-  it('should insert an prepend multiple items', function () {
+  it("should insert an prepend multiple items", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.prepend({name: 'Devon'}, {name: 'Danni'});
+      result.current.prepend({name: "Devon"}, {name: "Danni"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(5);
-    expect(result.current.items[0]).toEqual({name: 'Devon'});
-    expect(result.current.items[1]).toEqual({name: 'Danni'});
+    expect(result.current.items[0]).toEqual({name: "Devon"});
+    expect(result.current.items[1]).toEqual({name: "Danni"});
     expect(result.current.items[2]).toBe(initialResult.items[0]);
     expect(result.current.items[3]).toBe(initialResult.items[1]);
     expect(result.current.items[4]).toBe(initialResult.items[2]);
   });
 
-  it('should insert an append an item', function () {
+  it("should insert an append an item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.append({name: 'Devon'});
+      result.current.append({name: "Devon"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
@@ -189,15 +189,15 @@ describe('useListData', function () {
     expect(result.current.items[0]).toBe(initialResult.items[0]);
     expect(result.current.items[1]).toBe(initialResult.items[1]);
     expect(result.current.items[2]).toBe(initialResult.items[2]);
-    expect(result.current.items[3]).toEqual({name: 'Devon'});
+    expect(result.current.items[3]).toEqual({name: "Devon"});
   });
 
-  it('should insert an append multiple items', function () {
+  it("should insert an append multiple items", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.append({name: 'Devon'}, {name: 'Danni'});
+      result.current.append({name: "Devon"}, {name: "Danni"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
@@ -205,16 +205,16 @@ describe('useListData', function () {
     expect(result.current.items[0]).toBe(initialResult.items[0]);
     expect(result.current.items[1]).toBe(initialResult.items[1]);
     expect(result.current.items[2]).toBe(initialResult.items[2]);
-    expect(result.current.items[3]).toEqual({name: 'Devon'});
-    expect(result.current.items[4]).toEqual({name: 'Danni'});
+    expect(result.current.items[3]).toEqual({name: "Devon"});
+    expect(result.current.items[4]).toEqual({name: "Danni"});
   });
 
-  it('should remove an item', function () {
-    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ['Sam', 'Julia']}));
+  it("should remove an item", function () {
+    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ["Sam", "Julia"]}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.remove('Sam');
+      result.current.remove("Sam");
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
@@ -222,26 +222,26 @@ describe('useListData', function () {
     expect(result.current.items[0]).toBe(initialResult.items[0]);
     expect(result.current.items[1]).toBe(initialResult.items[2]);
     expect(result.current.selectedKeys).not.toBe(initialResult.selectedKeys);
-    expect(result.current.selectedKeys).toEqual(new Set(['Julia']));
+    expect(result.current.selectedKeys).toEqual(new Set(["Julia"]));
   });
 
-  it('should remove multiple items', function () {
-    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ['Sam', 'David', 'Julia']}));
+  it("should remove multiple items", function () {
+    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ["Sam", "David", "Julia"]}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.remove('Sam', 'David');
+      result.current.remove("Sam", "David");
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(1);
     expect(result.current.items[0]).toBe(initialResult.items[2]);
     expect(result.current.selectedKeys).not.toBe(initialResult.selectedKeys);
-    expect(result.current.selectedKeys).toEqual(new Set(['Julia']));
+    expect(result.current.selectedKeys).toEqual(new Set(["Julia"]));
   });
 
-  it('should remove the selected items', function () {
-    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ['Sam', 'Julia']}));
+  it("should remove the selected items", function () {
+    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: ["Sam", "Julia"]}));
     let initialResult = result.current;
 
     act(() => {
@@ -255,8 +255,8 @@ describe('useListData', function () {
     expect(result.current.selectedKeys).toEqual(new Set());
   });
 
-  it('should remove the selected items with select all', function () {
-    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: 'all'}));
+  it("should remove the selected items with select all", function () {
+    let {result} = renderHook(() => useListData({initialItems: initial, getKey, initialSelectedKeys: "all"}));
     let initialResult = result.current;
 
     act(() => {
@@ -269,28 +269,28 @@ describe('useListData', function () {
     expect(result.current.selectedKeys).toEqual(new Set());
   });
 
-  it('should update an item', function () {
+  it("should update an item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.update('Sam', {name: 'Devon'});
+      result.current.update("Sam", {name: "Devon"});
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
     expect(result.current.items).toHaveLength(3);
     expect(result.current.items[0]).toBe(initialResult.items[0]);
     expect(result.current.items[1]).not.toBe(initialResult.items[1]);
-    expect(result.current.items[1]).toEqual({name: 'Devon'});
+    expect(result.current.items[1]).toEqual({name: "Devon"});
     expect(result.current.items[2]).toBe(initialResult.items[2]);
   });
 
-  it('should move an item', function () {
+  it("should move an item", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
     let initialResult = result.current;
 
     act(() => {
-      result.current.move('Sam', 0);
+      result.current.move("Sam", 0);
     });
 
     expect(result.current.items).not.toBe(initialResult.items);
@@ -300,13 +300,13 @@ describe('useListData', function () {
     expect(result.current.items[2]).toBe(initialResult.items[2]);
   });
 
-  describe('moveBefore', function () {
-    it('should move an item before another item from before', function () {
+  describe("moveBefore", function () {
+    it("should move an item before another item from before", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Three', ['One']);
+        result.current.moveBefore("Three", ["One"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -321,12 +321,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move an item before another item from after', function () {
+    it("should move an item before another item from after", function () {
       let {result} = renderHook(() => useListData({initialItems: initial, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Sam', ['Julia']);
+        result.current.moveBefore("Sam", ["Julia"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -338,12 +338,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple subsequent items before another item from before', function () {
+    it("should move multiple subsequent items before another item from before", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Five', ['Two', 'Three']);
+        result.current.moveBefore("Five", ["Two", "Three"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -358,12 +358,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple subsequent items before another item from after', function () {
+    it("should move multiple subsequent items before another item from after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Two', ['Five', 'Six']);
+        result.current.moveBefore("Two", ["Five", "Six"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -378,12 +378,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple non-subsequent items before another item from before', function () {
+    it("should move multiple non-subsequent items before another item from before", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Five', ['One', 'Three']);
+        result.current.moveBefore("Five", ["One", "Three"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -398,12 +398,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple non-subsequent items before another item from after', function () {
+    it("should move multiple non-subsequent items before another item from after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Two', ['Four', 'Six']);
+        result.current.moveBefore("Two", ["Four", "Six"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -418,12 +418,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple items before another item from both before and after', function () {
+    it("should move multiple items before another item from both before and after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveBefore('Three', ['One', 'Five']);
+        result.current.moveBefore("Three", ["One", "Five"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -439,13 +439,13 @@ describe('useListData', function () {
     });
   });
 
-  describe('moveAfter', function () {
-    it('should move an item before another item from before', function () {
+  describe("moveAfter", function () {
+    it("should move an item before another item from before", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Three', ['One']);
+        result.current.moveAfter("Three", ["One"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -460,12 +460,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move an item before another item from after', function () {
+    it("should move an item before another item from after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Three', ['Five']);
+        result.current.moveAfter("Three", ["Five"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -480,12 +480,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple subsequent items before another item from before', function () {
+    it("should move multiple subsequent items before another item from before", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Five', ['Two', 'Three']);
+        result.current.moveAfter("Five", ["Two", "Three"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -500,12 +500,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple subsequent items before another item from after', function () {
+    it("should move multiple subsequent items before another item from after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Two', ['Five', 'Six']);
+        result.current.moveAfter("Two", ["Five", "Six"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -520,12 +520,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple non-subsequent items before another item from before', function () {
+    it("should move multiple non-subsequent items before another item from before", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Five', ['One', 'Three']);
+        result.current.moveAfter("Five", ["One", "Three"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -540,12 +540,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple non-subsequent items before another item from after', function () {
+    it("should move multiple non-subsequent items before another item from after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Two', ['Four', 'Six']);
+        result.current.moveAfter("Two", ["Four", "Six"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -560,12 +560,12 @@ describe('useListData', function () {
       ]);
     });
 
-    it('should move multiple items before another item from both before and after', function () {
+    it("should move multiple items before another item from both before and after", function () {
       let {result} = renderHook(() => useListData({initialItems: many, getKey}));
       let initialResult = result.current;
 
       act(() => {
-        result.current.moveAfter('Three', ['One', 'Five']);
+        result.current.moveAfter("Three", ["One", "Five"]);
       });
 
       expect(result.current.items).not.toBe(initialResult.items);
@@ -581,24 +581,24 @@ describe('useListData', function () {
     });
   });
 
-  it('should support filtering', function () {
-    let {result} = renderHook(() => useListData({initialItems: initial, filter, initialFilterText: 'Sa'}));
+  it("should support filtering", function () {
+    let {result} = renderHook(() => useListData({initialItems: initial, filter, initialFilterText: "Sa"}));
 
     expect(result.current.items).toHaveLength(1);
-    expect(result.current.items[0]).toEqual({name: 'Sam'});
+    expect(result.current.items[0]).toEqual({name: "Sam"});
   });
 
-  it('should support updating the filter text', function () {
+  it("should support updating the filter text", function () {
     let {result} = renderHook(() => useListData({initialItems: initial, filter}));
 
     expect(result.current.items).toHaveLength(3);
     expect(result.current.items).toEqual(initial);
 
     act(() => {
-      result.current.setFilterText('Da');
+      result.current.setFilterText("Da");
     });
 
     expect(result.current.items).toHaveLength(1);
-    expect(result.current.items[0]).toEqual({name: 'David'});
+    expect(result.current.items[0]).toEqual({name: "David"});
   });
 });

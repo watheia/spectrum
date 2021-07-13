@@ -10,27 +10,27 @@
  * governing permissions and limitations under the License.
  */
 
-import AlignCenter from '@spectrum-icons/workflow/AlignCenter';
-import AlignLeft from '@spectrum-icons/workflow/AlignLeft';
-import AlignRight from '@spectrum-icons/workflow/AlignRight';
-import Copy from '@spectrum-icons/workflow/Copy';
-import Cut from '@spectrum-icons/workflow/Cut';
-import {Item, Picker, Section} from '../';
-import {Meta, Story} from '@storybook/react';
-import Paste from '@spectrum-icons/workflow/Paste';
-import React from 'react';
-import {SpectrumPickerProps} from '@react-types/select';
-import {Text} from '@react-spectrum/text';
+import AlignCenter from "@spectrum-icons/workflow/AlignCenter";
+import AlignLeft from "@spectrum-icons/workflow/AlignLeft";
+import AlignRight from "@spectrum-icons/workflow/AlignRight";
+import Copy from "@spectrum-icons/workflow/Copy";
+import Cut from "@spectrum-icons/workflow/Cut";
+import {Item, Picker, Section} from "../";
+import {Meta, Story} from "@storybook/react";
+import Paste from "@spectrum-icons/workflow/Paste";
+import React from "react";
+import {SpectrumPickerProps} from "@react-types/select";
+import {Text} from "@react-spectrum/text";
 
 const meta: Meta<SpectrumPickerProps<object>> = {
-  title: 'Picker',
+  title: "Picker",
   component: Picker,
   parameters: {
-    chromaticProvider: {colorSchemes: ['light'], locales: ['en-US'], scales: ['medium'], disableAnimations: true},
+    chromaticProvider: {colorSchemes: ["light"], locales: ["en-US"], scales: ["medium"], disableAnimations: true},
     // chromatic needs a bit more time than disableAnimations allows
     chromatic: {delay: 1200}
   },
-  decorators: [Story => <div style={{height: '400px'}}><Story /></div>]
+  decorators: [Story => <div style={{height: "400px"}}><Story /></div>]
 };
 
 export default meta;
@@ -87,23 +87,23 @@ const ComplexItemsTemplate = <T extends object>(): Story<SpectrumPickerProps<T>>
 
 
 export const Default = Template().bind({});
-Default.args = {label: 'Pick your favorite', isOpen: true};
+Default.args = {label: "Pick your favorite", isOpen: true};
 
 // should probably fix this one
 export const Disabled = Template().bind({});
 Disabled.args = {...Default.args, isDisabled: true};
 
 export const LabelAlignEnd = Template().bind({});
-LabelAlignEnd.args = {...Default.args, labelAlign: 'end'};
+LabelAlignEnd.args = {...Default.args, labelAlign: "end"};
 
 export const LabelPositionSide = Template().bind({});
-LabelPositionSide.args = {...Default.args, labelPosition: 'side'};
+LabelPositionSide.args = {...Default.args, labelPosition: "side"};
 
 export const ValidationStateInvalid = Template().bind({});
-ValidationStateInvalid.args = {...Default.args, validationState: 'invalid'};
+ValidationStateInvalid.args = {...Default.args, validationState: "invalid"};
 
 export const ValidationStateValid = Template().bind({});
-ValidationStateValid.args = {...Default.args, validationState: 'valid'};
+ValidationStateValid.args = {...Default.args, validationState: "valid"};
 
 export const ComplexItems = ComplexItemsTemplate().bind({});
 ComplexItems.args = {...Default.args};

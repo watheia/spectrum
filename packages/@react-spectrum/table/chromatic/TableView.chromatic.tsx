@@ -10,52 +10,52 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from '../';
-import {Content} from '@react-spectrum/view';
-import Delete from '@spectrum-icons/workflow/Delete';
-import {generatePowerset} from '@react-spectrum/story-utils';
-import {Grid, repeat} from '@react-spectrum/layout';
-import {Heading} from '@react-spectrum/text';
-import {IllustratedMessage} from '@react-spectrum/illustratedmessage';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumTableProps} from '@react-types/table';
-import {View} from '@react-spectrum/view';
+import {ActionButton} from "@react-spectrum/button";
+import {Cell, Column, Row, TableBody, TableHeader, TableView} from "../";
+import {Content} from "@react-spectrum/view";
+import Delete from "@spectrum-icons/workflow/Delete";
+import {generatePowerset} from "@react-spectrum/story-utils";
+import {Grid, repeat} from "@react-spectrum/layout";
+import {Heading} from "@react-spectrum/text";
+import {IllustratedMessage} from "@react-spectrum/illustratedmessage";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumTableProps} from "@react-types/table";
+import {View} from "@react-spectrum/view";
 
 let states = [
   {isQuiet: true},
-  {overflowMode: 'wrap'},
-  {selectionMode: ['multiple', 'single']},
-  {density: ['compact', 'spacious']}
+  {overflowMode: "wrap"},
+  {selectionMode: ["multiple", "single"]},
+  {density: ["compact", "spacious"]}
 ];
 
 let combinations = generatePowerset(states);
 
 function shortName(key, value) {
-  let returnVal = '';
+  let returnVal = "";
   switch (key) {
-    case 'isQuiet':
-      returnVal = 'quiet';
+    case "isQuiet":
+      returnVal = "quiet";
       break;
-    case 'overflowMode':
-      returnVal = 'wrap';
+    case "overflowMode":
+      returnVal = "wrap";
       break;
-    case 'selectionMode':
-      returnVal = `sm: ${value === undefined ? 'none' : value}`;
+    case "selectionMode":
+      returnVal = `sm: ${value === undefined ? "none" : value}`;
       break;
-    case 'density':
-      returnVal = `den: ${value === undefined ? 'regular' : value}`;
+    case "density":
+      returnVal = `den: ${value === undefined ? "regular" : value}`;
       break;
   }
   return returnVal;
 }
 
 const meta: Meta<SpectrumTableProps<object>> = {
-  title: 'TableView',
+  title: "TableView",
   component: TableView,
   parameters: {
-    chromaticProvider: {colorSchemes: ['light'], locales: ['en-US'], scales: ['medium'], disableAnimations: true},
+    chromaticProvider: {colorSchemes: ["light"], locales: ["en-US"], scales: ["medium"], disableAnimations: true},
     // large delay with the layout since there are so many tables
     chromatic: {delay: 2000}
   }
@@ -64,65 +64,65 @@ const meta: Meta<SpectrumTableProps<object>> = {
 export default meta;
 
 let columns = [
-  {name: 'Foo', key: 'foo'},
-  {name: 'Bar', key: 'bar'},
-  {name: 'Baz', key: 'baz'}
+  {name: "Foo", key: "foo"},
+  {name: "Bar", key: "bar"},
+  {name: "Baz", key: "baz"}
 ];
 
 let alignColumns = [
-  {name: 'Foo', key: 'foo', align: 'end'},
-  {name: 'Bar', key: 'bar', align: 'center'},
-  {name: 'Baz', key: 'baz', align: 'start'}
+  {name: "Foo", key: "foo", align: "end"},
+  {name: "Bar", key: "bar", align: "center"},
+  {name: "Baz", key: "baz", align: "start"}
 ];
 
 let dividerColumns = [
-  {name: 'Foo', key: 'foo', showDivider: true},
-  {name: 'Bar', key: 'bar', showDivider: true},
-  {name: 'Baz', key: 'baz', showDivider: true}
+  {name: "Foo", key: "foo", showDivider: true},
+  {name: "Bar", key: "bar", showDivider: true},
+  {name: "Baz", key: "baz", showDivider: true}
 ];
 
 let customWidth = [
-  {name: 'Foo', key: 'foo', width: 150},
-  {name: 'Bar', key: 'bar', width: 100},
-  {name: 'Baz', key: 'baz'}
+  {name: "Foo", key: "foo", width: 150},
+  {name: "Bar", key: "bar", width: 100},
+  {name: "Baz", key: "baz"}
 ];
 
 let hiddenColumns = [
-  {name: 'Foo', key: 'foo'},
-  {name: 'Bar', key: 'bar'},
-  {name: 'Baz', key: 'baz', hideHeader: true}
+  {name: "Foo", key: "foo"},
+  {name: "Bar", key: "bar"},
+  {name: "Baz", key: "baz", hideHeader: true}
 ];
 
 let nestedColumns = [
-  {name: 'Tiered One Header', key: 'tier1', children: [
-    {name: 'Tier Two Header A', key: 'tier2a', children: [
-      {name: 'Foo', key: 'foo'},
-      {name: 'Bar', key: 'bar'}
+  {name: "Tiered One Header", key: "tier1", children: [
+    {name: "Tier Two Header A", key: "tier2a", children: [
+      {name: "Foo", key: "foo"},
+      {name: "Bar", key: "bar"}
     ]},
-    {name: 'Tier Two Header B', key: 'tier2b', children: [
-      {name: 'Baz', key: 'baz'}
+    {name: "Tier Two Header B", key: "tier2b", children: [
+      {name: "Baz", key: "baz"}
     ]}
   ]}
 ];
 
 let items = [
-  {foo: 'Foo 1', bar: 'Baaaaaaaaaar 1', baz: 'Baz 1'},
-  {foo: 'Foo 2', bar: 'Baaaaaaaaaar 2', baz: 'Baz 2'},
-  {foo: 'Foo 3', bar: 'Baaaaaaaaaar 3', baz: 'Baz 1'},
-  {foo: 'Foo 4', bar: 'Baaaaaaaaaar 4', baz: 'Baz 2'},
-  {foo: 'Foo 5', bar: 'Baaaaaaaaaar 5', baz: 'Baz 1'}
+  {foo: "Foo 1", bar: "Baaaaaaaaaar 1", baz: "Baz 1"},
+  {foo: "Foo 2", bar: "Baaaaaaaaaar 2", baz: "Baz 2"},
+  {foo: "Foo 3", bar: "Baaaaaaaaaar 3", baz: "Baz 1"},
+  {foo: "Foo 4", bar: "Baaaaaaaaaar 4", baz: "Baz 2"},
+  {foo: "Foo 5", bar: "Baaaaaaaaaar 5", baz: "Baz 1"}
 ];
 
 const Template = (): Story => ({columns, items, ...args}) => (
-  <Grid columns={repeat(3, '1fr')} autoFlow="row" gap="size-300">
+  <Grid columns={repeat(3, "1fr")} autoFlow="row" gap="size-300">
     {combinations.map(c => {
-      let key = Object.keys(c).map(k => shortName(k, c[k])).join(' ');
+      let key = Object.keys(c).map(k => shortName(k, c[k])).join(" ");
       if (!key) {
-        key = 'empty';
+        key = "empty";
       }
       return (
         <View flexGrow={1} maxWidth="size-5000" maxHeight={700}>
-          <TableView {...args} {...c} width="100%" height="100%" key={key} selectedKeys={['Foo 3', 'Foo 1']} disabledKeys={['Foo 2', 'Foo 4']}>
+          <TableView {...args} {...c} width="100%" height="100%" key={key} selectedKeys={["Foo 3", "Foo 1"]} disabledKeys={["Foo 2", "Foo 4"]}>
             <TableHeader columns={columns}>
               {(column: any) => (
                 <Column key={column.key} width={column.width} showDivider={column.showDivider} align={column.align} hideHeader={column.hideHeader} childColumns={column.children}>
@@ -135,7 +135,7 @@ const Template = (): Story => ({columns, items, ...args}) => (
                 (<Row key={item.foo}>
                   {key => {
                     let button = <ActionButton isQuiet><Delete /></ActionButton>;
-                    return <Cell>{key === 'baz' ? button : item[key]}</Cell>;
+                    return <Cell>{key === "baz" ? button : item[key]}</Cell>;
                   }}
                 </Row>)
               }
@@ -175,29 +175,29 @@ const EmptyTemplate = (): Story => (args) => (
 );
 
 export const Default = Template().bind({});
-Default.storyName = 'default items and columns';
+Default.storyName = "default items and columns";
 Default.args = {columns, items};
 
 export const ColumnAlign = Template().bind({});
-ColumnAlign.storyName = 'column alignment';
+ColumnAlign.storyName = "column alignment";
 ColumnAlign.args = {columns: alignColumns, items};
 
 export const ColumnDividers = Template().bind({});
-ColumnDividers.storyName = 'columns dividers';
+ColumnDividers.storyName = "columns dividers";
 ColumnDividers.args = {columns: dividerColumns, items};
 
 export const ColumnWidth = Template().bind({});
-ColumnWidth.storyName = 'columns widths';
+ColumnWidth.storyName = "columns widths";
 ColumnWidth.args = {columns: customWidth, items};
 
 export const HiddenColumns = Template().bind({});
-HiddenColumns.storyName = 'hidden columns';
+HiddenColumns.storyName = "hidden columns";
 HiddenColumns.args = {columns: hiddenColumns, items};
 
 export const NestedColumns = Template().bind({});
-NestedColumns.storyName = 'nested columns';
+NestedColumns.storyName = "nested columns";
 NestedColumns.args = {columns: nestedColumns, items};
 
 export const Empty = EmptyTemplate().bind({});
-Empty.storyName = 'empty table';
+Empty.storyName = "empty table";
 Empty.args = {};

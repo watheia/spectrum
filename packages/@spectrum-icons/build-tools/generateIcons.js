@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import fs from 'fs-extra';
-import path from 'path';
+import fs from "fs-extra";
+import path from "path";
 
 function writeToFile(filepath, data) {
   let buffer = Buffer.from(data);
@@ -28,13 +28,13 @@ function writeToFile(filepath, data) {
 export function generateIcons(iconDir, outputDir, nameRegex, template) {
   fs.ensureDirSync(outputDir);
   fs.readdir(iconDir, (err, items) => {
-    let ignoreList = ['index.js', 'util.js'];
+    let ignoreList = ["index.js", "util.js"];
     // get all icon files
-    let iconFiles = items.filter(item => !!item.endsWith('.js')).filter(item => !ignoreList.includes(item));
+    let iconFiles = items.filter(item => !!item.endsWith(".js")).filter(item => !ignoreList.includes(item));
 
     // generate all icon files
     iconFiles.forEach(icon => {
-      fs.readFile(path.resolve(iconDir, icon), 'utf8', (err, contents) => {
+      fs.readFile(path.resolve(iconDir, icon), "utf8", (err, contents) => {
         let matches = contents.match(nameRegex).groups;
         let iconName = matches.name;
         let newFile = template(iconName);
@@ -48,7 +48,7 @@ export function generateIcons(iconDir, outputDir, nameRegex, template) {
     let indexFile = iconFiles.map(icon => {
       let iconName = icon.substring(0, icon.length - 3);
       return `export * from './${iconName}';\n`;
-    }).join('');
+    }).join("");
     let indexFilepath = `${outputDir}/index.ts`;
     writeToFile(indexFilepath, indexFile);
   });

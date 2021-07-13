@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {DOMProps, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 export interface TextProps extends DOMProps, StyleProps {
   /**

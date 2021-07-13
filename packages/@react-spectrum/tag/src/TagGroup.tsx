@@ -10,21 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from '@react-spectrum/utils';
-import React, {useContext} from 'react';
-import {Removable} from '@react-types/shared';
-import {SpectrumTagGroupProps} from '@react-types/tag';
-import styles from '@adobe/spectrum-css-temp/components/tags/vars.css';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useTagGroup} from '@react-aria/tag';
+import {classNames, useStyleProps} from "@react-spectrum/utils";
+import React, {useContext} from "react";
+import {Removable} from "@react-types/shared";
+import {SpectrumTagGroupProps} from "@react-types/tag";
+import styles from "@adobe/spectrum-css-temp/components/tags/vars.css";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useTagGroup} from "@react-aria/tag";
 
 interface TagGroupContextValue extends Removable<any, void> {
   isDisabled?: boolean,
   isFocused?: boolean,
   isRequired?: boolean,
   isReadOnly?: boolean,
-  validationState?: 'valid' | 'invalid',
-  role?: 'gridcell'
+  validationState?: "valid" | "invalid",
+  role?: "gridcell"
 }
 
 const TagGroupContext = React.createContext<TagGroupContextValue | {}>({});
@@ -57,9 +57,9 @@ export const TagGroup = ((props: SpectrumTagGroupProps) => {
       className={
         classNames(
           styles,
-          'spectrum-Tags',
+          "spectrum-Tags",
           {
-            'is-disabled': isDisabled
+            "is-disabled": isDisabled
           },
           styleProps.className
         )
@@ -71,7 +71,7 @@ export const TagGroup = ((props: SpectrumTagGroupProps) => {
           isDisabled,
           onRemove: isReadOnly ? null : removeAll,
           validationState,
-          role: 'gridcell'
+          role: "gridcell"
         }}>
         {children}
       </TagGroupContext.Provider>

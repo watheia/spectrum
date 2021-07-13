@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaTextFieldProps} from '@react-types/textfield';
-import {ChangeEvent, InputHTMLAttributes, LabelHTMLAttributes, RefObject, TextareaHTMLAttributes} from 'react';
-import {ElementType} from 'react';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {useFocusable} from '@react-aria/focus';
-import {useLabel} from '@react-aria/label';
+import {AriaTextFieldProps} from "@react-types/textfield";
+import {ChangeEvent, InputHTMLAttributes, LabelHTMLAttributes, RefObject, TextareaHTMLAttributes} from "react";
+import {ElementType} from "react";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {useFocusable} from "@react-aria/focus";
+import {useLabel} from "@react-aria/label";
 
 export interface TextFieldAria {
   /** Props for the input element. */
@@ -44,12 +44,12 @@ export function useTextField(
   ref: RefObject<HTMLInputElement | HTMLTextAreaElement>
 ): TextFieldAria {
   let {
-    inputElementType = 'input',
+    inputElementType = "input",
     isDisabled = false,
     isRequired = false,
     isReadOnly = false,
     validationState,
-    type = 'text',
+    type = "text",
     onChange = () => {}
   } = props;
   let {focusableProps} = useFocusable(props, ref);
@@ -65,16 +65,16 @@ export function useTextField(
     labelProps,
     inputProps: mergeProps(
       domProps,
-      inputElementType === 'input' && inputOnlyProps,
+      inputElementType === "input" && inputOnlyProps,
       {
         disabled: isDisabled,
         readOnly: isReadOnly,
-        'aria-required': isRequired || undefined,
-        'aria-invalid': validationState === 'invalid' || undefined,
-        'aria-errormessage': props['aria-errormessage'],
-        'aria-activedescendant': props['aria-activedescendant'],
-        'aria-autocomplete': props['aria-autocomplete'],
-        'aria-haspopup': props['aria-haspopup'],
+        "aria-required": isRequired || undefined,
+        "aria-invalid": validationState === "invalid" || undefined,
+        "aria-errormessage": props["aria-errormessage"],
+        "aria-activedescendant": props["aria-activedescendant"],
+        "aria-autocomplete": props["aria-autocomplete"],
+        "aria-haspopup": props["aria-haspopup"],
         value: props.value,
         defaultValue: props.value ? undefined : props.defaultValue,
         onChange: (e: ChangeEvent<HTMLInputElement>) => onChange(e.target.value),

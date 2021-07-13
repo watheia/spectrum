@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, StyleProps, ValidationState} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {DOMProps, StyleProps, ValidationState} from "@react-types/shared";
+import {ReactNode} from "react";
 
-export type ColorScheme = 'light' | 'dark';
-export type Scale = 'medium' | 'large';
+export type ColorScheme = "light" | "dark";
+export type Scale = "medium" | "large";
 export interface Breakpoints {
   S?: number,
   M?: number,

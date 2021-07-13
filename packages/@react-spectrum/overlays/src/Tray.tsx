@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {mergeProps, useViewportSize} from '@react-aria/utils';
-import {Overlay} from './Overlay';
-import overrideStyles from './overlays.css';
-import React, {forwardRef, HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState} from 'react';
-import {TrayProps} from '@react-types/overlays';
-import trayStyles from '@adobe/spectrum-css-temp/components/tray/vars.css';
-import {Underlay} from './Underlay';
-import {useModal, useOverlay, usePreventScroll} from '@react-aria/overlays';
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {mergeProps, useViewportSize} from "@react-aria/utils";
+import {Overlay} from "./Overlay";
+import overrideStyles from "./overlays.css";
+import React, {forwardRef, HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState} from "react";
+import {TrayProps} from "@react-types/overlays";
+import trayStyles from "@adobe/spectrum-css-temp/components/tray/vars.css";
+import {Underlay} from "./Underlay";
+import {useModal, useOverlay, usePreventScroll} from "@react-aria/overlays";
 
 interface TrayWrapperProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode,
@@ -95,25 +95,25 @@ let TrayWrapper = forwardRef(function (props: TrayWrapperProps, ref: RefObject<H
   }, [height, viewport.height]);
 
   let wrapperStyle: any = {
-    '--spectrum-visual-viewport-height': height + 'px'
+    "--spectrum-visual-viewport-height": height + "px"
   };
 
   let wrapperClassName = classNames(
     trayStyles,
-    'spectrum-Tray-wrapper'
+    "spectrum-Tray-wrapper"
   );
 
   let className = classNames(
     trayStyles,
-    'spectrum-Tray',
+    "spectrum-Tray",
     {
-      'is-open': isOpen,
-      'spectrum-Tray--fixedHeight': isFixedHeight
+      "is-open": isOpen,
+      "spectrum-Tray--fixedHeight": isFixedHeight
     },
     classNames(
       overrideStyles,
-      'spectrum-Tray',
-      'react-spectrum-Tray'
+      "spectrum-Tray",
+      "react-spectrum-Tray"
     ),
     otherProps.className
   );

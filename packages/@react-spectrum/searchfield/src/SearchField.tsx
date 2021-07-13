@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {ClearButton} from '@react-spectrum/button';
-import Magnifier from '@spectrum-icons/ui/Magnifier';
-import React, {forwardRef, RefObject, useRef} from 'react';
-import {SpectrumSearchFieldProps} from '@react-types/searchfield';
-import styles from '@adobe/spectrum-css-temp/components/search/vars.css';
-import {TextFieldBase} from '@react-spectrum/textfield';
-import {TextFieldRef} from '@react-types/textfield';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useSearchField} from '@react-aria/searchfield';
-import {useSearchFieldState} from '@react-stately/searchfield';
+import {classNames} from "@react-spectrum/utils";
+import {ClearButton} from "@react-spectrum/button";
+import Magnifier from "@spectrum-icons/ui/Magnifier";
+import React, {forwardRef, RefObject, useRef} from "react";
+import {SpectrumSearchFieldProps} from "@react-types/searchfield";
+import styles from "@adobe/spectrum-css-temp/components/search/vars.css";
+import {TextFieldBase} from "@react-spectrum/textfield";
+import {TextFieldRef} from "@react-types/textfield";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useSearchField} from "@react-aria/searchfield";
+import {useSearchFieldState} from "@react-stately/searchfield";
 
 function SearchField(props: SpectrumSearchFieldProps, ref: RefObject<TextFieldRef>) {
   props = useProviderProps(props);
@@ -46,7 +46,7 @@ function SearchField(props: SpectrumSearchFieldProps, ref: RefObject<TextFieldRe
       UNSAFE_className={
         classNames(
           styles,
-          'spectrum-ClearButton'
+          "spectrum-ClearButton"
         )
       }
       isDisabled={isDisabled} />
@@ -60,23 +60,23 @@ function SearchField(props: SpectrumSearchFieldProps, ref: RefObject<TextFieldRe
       UNSAFE_className={
         classNames(
           styles,
-          'spectrum-Search',
-          'spectrum-Textfield',
+          "spectrum-Search",
+          "spectrum-Textfield",
           {
-            'is-disabled': isDisabled,
-            'is-quiet': props.isQuiet,
-            'spectrum-Search--invalid': props.validationState === 'invalid',
-            'spectrum-Search--valid': props.validationState === 'valid'
+            "is-disabled": isDisabled,
+            "is-quiet": props.isQuiet,
+            "spectrum-Search--invalid": props.validationState === "invalid",
+            "spectrum-Search--valid": props.validationState === "valid"
           },
           UNSAFE_className
         )
       }
-      inputClassName={classNames(styles, 'spectrum-Search-input')}
+      inputClassName={classNames(styles, "spectrum-Search-input")}
       ref={ref}
       inputRef={inputRef}
       isDisabled={isDisabled}
       icon={icon}
-      wrapperChildren={(state.value !== '' && !props.isReadOnly) && clearButton} />
+      wrapperChildren={(state.value !== "" && !props.isReadOnly) && clearButton} />
   );
 }
 

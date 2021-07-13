@@ -10,71 +10,71 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Switch} from '../';
+import {action} from "@storybook/addon-actions";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Switch} from "../";
 
-storiesOf('Switch', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Switch", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'defaultSelected: true',
+    "defaultSelected: true",
     () => render({defaultSelected: true})
   )
   .add(
-    'isSelected: true',
+    "isSelected: true",
     () => render({isSelected: true})
   )
   .add(
-    'isSelected: false',
+    "isSelected: false",
     () => render({isSelected: false})
   )
   .add(
-    'isDisabled: true',
+    "isDisabled: true",
     () => render({isDisabled: true})
   )
   .add(
-    'isEmphasized: true',
+    "isEmphasized: true",
     () => render({isEmphasized: true})
   )
   .add(
-    'isEmphasized: true, isDisabled: true',
+    "isEmphasized: true, isDisabled: true",
     () => render({isEmphasized: true, isDisabled: true})
   )
   .add(
-    'isReadOnly: true, isSelected: true',
+    "isReadOnly: true, isSelected: true",
     () => render({isReadOnly: true, isSelected: true})
   )
   .add(
-    'autoFocus: true',
+    "autoFocus: true",
     () => render({autoFocus: true})
   )
   .add(
-    'custom label',
+    "custom label",
     () => renderCustomLabel()
   )
   .add(
-    'long label',
+    "long label",
     () => (
       <Switch
-        onChange={action('change')}>
+        onChange={action("change")}>
         Super long checkbox label. Sample text. Arma virumque cano, Troiae qui primus ab oris. Italiam, fato profugus, Laviniaque venit.
       </Switch>
     )
   )
   .add(
-    'no label',
-    () => renderNoLabel({'aria-label': 'This switch has no visible label'})
+    "no label",
+    () => renderNoLabel({"aria-label": "This switch has no visible label"})
   );
 
 function render(props = {}) {
   return (
     <Switch
-      onChange={action('change')}
+      onChange={action("change")}
       {...props}>
       Switch Label
     </Switch>
@@ -84,7 +84,7 @@ function render(props = {}) {
 function renderCustomLabel(props = {}) {
   return (
     <Switch
-      onChange={action('change')}
+      onChange={action("change")}
       {...props}>
       <span><i>Italicized</i> Switch Label</span>
     </Switch>
@@ -94,7 +94,7 @@ function renderCustomLabel(props = {}) {
 function renderNoLabel(props = {}) {
   return (
     <Switch
-      onChange={action('change')}
+      onChange={action("change")}
       {...props} />
   );
 }

@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {OverlayContainer, OverlayProvider, useModal} from '../src';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
+import {ActionButton} from "@react-spectrum/button";
+import {OverlayContainer, OverlayProvider, useModal} from "../src";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
 
 
-storiesOf('useModal', module)
-  .add('default container', () => (
+storiesOf("useModal", module)
+  .add("default container", () => (
     <App />
   ))
-  .add('different container', () => (
+  .add("different container", () => (
     <App useAlternateContainer />
   ));
 
@@ -38,19 +38,19 @@ function App(props) {
 
 function ModalDOM(props) {
   let {modalProps} = useModal();
-  return <div data-testid={props.modalId || 'modal'} {...modalProps}>{props.children}</div>;
+  return <div data-testid={props.modalId || "modal"} {...modalProps}>{props.children}</div>;
 }
 
 function Modal(props) {
   return (
-    <OverlayContainer portalContainer={props.container} data-testid={props.providerId || 'modal-provider'}>
+    <OverlayContainer portalContainer={props.container} data-testid={props.providerId || "modal-provider"}>
       <ModalDOM modalId={props.modalId}>{props.children}</ModalDOM>
     </OverlayContainer>
   );
 }
 
 function Example(props) {
-  let container = props.useAlternateContainer ? document.getElementById('alternateContainer') : undefined;
+  let container = props.useAlternateContainer ? document.getElementById("alternateContainer") : undefined;
   return (
     <OverlayProvider data-testid="root-provider">
       This is the root provider.

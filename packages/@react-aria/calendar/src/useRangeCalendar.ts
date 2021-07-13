@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {CalendarAria} from './types';
+import {CalendarAria} from "./types";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {isSameDay} from 'date-fns';
-import {mergeProps} from '@react-aria/utils';
-import {RangeCalendarProps} from '@react-types/calendar';
-import {RangeCalendarState} from '@react-stately/calendar';
-import {useCalendarBase} from './useCalendarBase';
-import {useMemo} from 'react';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {isSameDay} from "date-fns";
+import {mergeProps} from "@react-aria/utils";
+import {RangeCalendarProps} from "@react-types/calendar";
+import {RangeCalendarState} from "@react-stately/calendar";
+import {useCalendarBase} from "./useCalendarBase";
+import {useMemo} from "react";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 export function useRangeCalendar(props: RangeCalendarProps, state: RangeCalendarState): CalendarAria {
   // Compute localized message for the selected date or range
@@ -31,17 +31,17 @@ export function useRangeCalendar(props: RangeCalendarProps, state: RangeCalendar
       // Use a single date message if the start and end dates are the same day,
       // otherwise include both dates.
       if (isSameDay(start, end)) {
-        return formatMessage('selectedDateDescription', {date: start});
+        return formatMessage("selectedDateDescription", {date: start});
       } else {
-        return formatMessage('selectedRangeDescription', {start, end});
+        return formatMessage("selectedRangeDescription", {start, end});
       }
     }
-    return '';
+    return "";
   }, [start, end, state.anchorDate, formatMessage]);
 
   let onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
-      case 'Escape':
+      case "Escape":
         // Cancel the selection.
         state.setAnchorDate(null);
         break;
@@ -50,7 +50,7 @@ export function useRangeCalendar(props: RangeCalendarProps, state: RangeCalendar
 
   let res = useCalendarBase(props, state, selectedDateDescription);
   res.calendarBodyProps = mergeProps(res.calendarBodyProps, {
-    'aria-multiselectable': true,
+    "aria-multiselectable": true,
     onKeyDown
   });
 

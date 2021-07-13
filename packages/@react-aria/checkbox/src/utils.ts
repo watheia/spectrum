@@ -10,6 +10,6 @@
  * governing permissions and limitations under the License.
  */
 
-import {CheckboxGroupState} from '@react-stately/checkbox';
+import {CheckboxGroupState} from "@react-stately/checkbox";
 
 export const checkboxGroupNames = new WeakMap<CheckboxGroupState, string>();

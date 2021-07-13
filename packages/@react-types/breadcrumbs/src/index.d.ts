@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, PressEvents, StyleProps} from '@react-types/shared';
-import {ItemProps} from '@react-types/shared';
-import {Key, ReactElement, ReactNode} from 'react';
+import {AriaLabelingProps, DOMProps, PressEvents, StyleProps} from "@react-types/shared";
+import {ItemProps} from "@react-types/shared";
+import {Key, ReactElement, ReactNode} from "react";
 
 export interface BreadcrumbItemProps extends PressEvents {
   /** Whether the breadcrumb item represents the current page. */
@@ -21,7 +21,7 @@ export interface BreadcrumbItemProps extends PressEvents {
    * The type of current location the breadcrumb item represents, if `isCurrent` is true.
    * @default 'page'
    */
-  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | boolean | 'true' | 'false',
+  "aria-current"?: "page" | "step" | "location" | "date" | "time" | boolean | "true" | "false",
   /** Whether the breadcrumb item is disabled. */
   isDisabled?: boolean,
   /** The contents of the breadcrumb item. */
@@ -52,7 +52,7 @@ export interface SpectrumBreadcrumbsProps<T> extends AriaBreadcrumbsProps<T>, St
    * Size of the Breadcrumbs including spacing and layout.
    * @default 'L'
    */
-  size?: 'S' | 'M' | 'L',
+  size?: "S" | "M" | "L",
   /** Whether to always show the root item if the items are collapsed. */
   showRoot?: boolean,
   /**

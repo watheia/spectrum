@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {Grid, repeat} from '@react-spectrum/layout';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {View} from '@react-spectrum/view';
+import {Grid, repeat} from "@react-spectrum/layout";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {View} from "@react-spectrum/view";
 
-let baseColors = ['celery', 'chartreuse', 'yellow', 'magenta', 'fuchsia', 'purple', 'indigo', 'seafoam', 'red', 'orange', 'green', 'blue'];
+let baseColors = ["celery", "chartreuse", "yellow", "magenta", "fuchsia", "purple", "indigo", "seafoam", "red", "orange", "green", "blue"];
 let colors = [];
 for (let color of baseColors) {
   for (let i = 4; i <= 7; i++) {
@@ -23,18 +23,18 @@ for (let color of baseColors) {
   }
 }
 
-storiesOf('Grid', module)
+storiesOf("Grid", module)
   .add(
-    'Explicit grid',
+    "Explicit grid",
     () => (
       <Grid
         areas={[
-          'header  header',
-          'sidebar content',
-          'footer  footer'
+          "header  header",
+          "sidebar content",
+          "footer  footer"
         ]}
-        columns={['size-3000', 'auto']}
-        rows={['size-1000', 'auto', 'size-1000']}
+        columns={["size-3000", "auto"]}
+        rows={["size-1000", "auto", "size-1000"]}
         height="size-6000"
         width="80%"
         gap="size-100">
@@ -46,10 +46,10 @@ storiesOf('Grid', module)
     )
   )
   .add(
-    'Implicit grid',
+    "Implicit grid",
     () => (
       <Grid
-        columns={repeat('auto-fit', 'size-800')}
+        columns={repeat("auto-fit", "size-800")}
         autoRows="size-800"
         justifyContent="center"
         width="80%"

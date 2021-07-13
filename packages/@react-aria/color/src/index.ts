@@ -10,6 +10,6 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useColorSlider';
-export * from './useColorWheel';
-export * from './useColorField';
+export * from "./useColorSlider";
+export * from "./useColorWheel";
+export * from "./useColorField";

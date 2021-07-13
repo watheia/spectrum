@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {announce} from '@react-aria/live-announcer';
-import {AriaLabelingProps, DOMProps, KeyboardDelegate, Selection} from '@react-types/shared';
-import {filterDOMProps, mergeProps, useId, useUpdateEffect} from '@react-aria/utils';
-import {GridCollection} from '@react-types/grid';
-import {GridKeyboardDelegate} from './GridKeyboardDelegate';
-import {gridKeyboardDelegates} from './utils';
-import {GridState} from '@react-stately/grid';
-import {HTMLAttributes, Key, RefObject, useMemo, useRef} from 'react';
+import {announce} from "@react-aria/live-announcer";
+import {AriaLabelingProps, DOMProps, KeyboardDelegate, Selection} from "@react-types/shared";
+import {filterDOMProps, mergeProps, useId, useUpdateEffect} from "@react-aria/utils";
+import {GridCollection} from "@react-types/grid";
+import {GridKeyboardDelegate} from "./GridKeyboardDelegate";
+import {gridKeyboardDelegates} from "./utils";
+import {GridState} from "@react-stately/grid";
+import {HTMLAttributes, Key, RefObject, useMemo, useRef} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useCollator, useLocale, useMessageFormatter} from '@react-aria/i18n';
-import {useSelectableCollection} from '@react-aria/selection';
+import intlMessages from "../intl/*.json";
+import {useCollator, useLocale, useMessageFormatter} from "@react-aria/i18n";
+import {useSelectableCollection} from "@react-aria/selection";
 
 export interface GridProps extends DOMProps, AriaLabelingProps {
   /** Whether the grid uses virtual scrolling. */
@@ -35,7 +35,7 @@ export interface GridProps extends DOMProps, AriaLabelingProps {
    * Whether initial grid focus should be placed on the grid row or grid cell.
    * @default 'row'
    */
-  focusMode?: 'row' | 'cell',
+  focusMode?: "row" | "cell",
   /**
    * A function that returns the text that should be announced by assistive technology when a row is added or removed from selection.
    * @default (key) => state.collection.getItem(key)?.textValue
@@ -64,13 +64,13 @@ export function useGrid<T>(props: GridProps, state: GridState<T, GridCollection<
   } = props;
   let formatMessage = useMessageFormatter(intlMessages);
 
-  if (!props['aria-label'] && !props['aria-labelledby']) {
-    console.warn('An aria-label or aria-labelledby prop is required for accessibility.');
+  if (!props["aria-label"] && !props["aria-labelledby"]) {
+    console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
   }
 
   // By default, a KeyboardDelegate is provided which uses the DOM to query layout information (e.g. for page up/page down).
   // When virtualized, the layout object will be passed in as a prop and override this.
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let {direction} = useLocale();
   let delegate = useMemo(() => keyboardDelegate || new GridKeyboardDelegate({
     collection: state.collection,
@@ -91,15 +91,15 @@ export function useGrid<T>(props: GridProps, state: GridState<T, GridCollection<
 
   let domProps = filterDOMProps(props, {labelable: true});
   let gridProps: HTMLAttributes<HTMLElement> = mergeProps(domProps, {
-    role: 'grid',
+    role: "grid",
     id,
-    'aria-multiselectable': state.selectionManager.selectionMode === 'multiple' ? 'true' : undefined,
+    "aria-multiselectable": state.selectionManager.selectionMode === "multiple" ? "true" : undefined,
     ...collectionProps
   });
 
   if (isVirtualized) {
-    gridProps['aria-rowcount'] = state.collection.size;
-    gridProps['aria-colcount'] = state.collection.columnCount;
+    gridProps["aria-rowcount"] = state.collection.size;
+    gridProps["aria-colcount"] = state.collection.columnCount;
   }
 
   // Many screen readers do not announce when items in a grid are selected/deselected.
@@ -119,27 +119,27 @@ export function useGrid<T>(props: GridProps, state: GridState<T, GridCollection<
     if (addedKeys.size === 1 && removedKeys.size === 0) {
       let addedText = getRowText(addedKeys.keys().next().value);
       if (addedText) {
-        messages.push(formatMessage('selectedItem', {item: addedText}));
+        messages.push(formatMessage("selectedItem", {item: addedText}));
       }
     } else if (removedKeys.size === 1 && addedKeys.size === 0) {
       let removedText = getRowText(removedKeys.keys().next().value);
       if (removedText) {
-        messages.push(formatMessage('deselectedItem', {item: removedText}));
+        messages.push(formatMessage("deselectedItem", {item: removedText}));
       }
     }
 
     // Announce how many items are selected, except when selecting the first item.
-    if (state.selectionManager.selectionMode === 'multiple') {
-      if (messages.length === 0 || selection === 'all' || selection.size > 1 || lastSelection.current === 'all' || lastSelection.current.size > 1) {
-        messages.push(selection === 'all'
-          ? formatMessage('selectedAll')
-          : formatMessage('selectedCount', {count: selection.size})
+    if (state.selectionManager.selectionMode === "multiple") {
+      if (messages.length === 0 || selection === "all" || selection.size > 1 || lastSelection.current === "all" || lastSelection.current.size > 1) {
+        messages.push(selection === "all"
+          ? formatMessage("selectedAll")
+          : formatMessage("selectedCount", {count: selection.size})
         );
       }
     }
 
     if (messages.length > 0) {
-      announce(messages.join(' '));
+      announce(messages.join(" "));
     }
 
     lastSelection.current = selection;
@@ -152,7 +152,7 @@ export function useGrid<T>(props: GridProps, state: GridState<T, GridCollection<
 
 function diffSelection(a: Selection, b: Selection): Set<Key> {
   let res = new Set<Key>();
-  if (a === 'all' || b === 'all') {
+  if (a === "all" || b === "all") {
     return res;
   }
 

@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {Dialog} from '../';
-import {DialogContext} from '../src/context';
-import {fireEvent, render} from '@testing-library/react';
-import {Header} from '@react-spectrum/view';
-import {Heading} from '@react-spectrum/text';
-import {ModalProvider} from '@react-aria/overlays';
-import React from 'react';
+import {Dialog} from "../";
+import {DialogContext} from "../src/context";
+import {fireEvent, render} from "@testing-library/react";
+import {Header} from "@react-spectrum/view";
+import {Heading} from "@react-spectrum/text";
+import {ModalProvider} from "@react-aria/overlays";
+import React from "react";
 
-describe('Dialog', function () {
-  it('does not auto focus anything inside', function () {
+describe("Dialog", function () {
+  it("does not auto focus anything inside", function () {
     let {getByRole} = render(
       <Dialog>
         <input data-testid="input1" />
@@ -27,24 +27,24 @@ describe('Dialog', function () {
       </Dialog>
     );
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(document.activeElement).toBe(dialog);
     // if there is no heading, then we shouldn't auto label
-    expect(dialog).not.toHaveAttribute('aria-labelledby');
+    expect(dialog).not.toHaveAttribute("aria-labelledby");
   });
 
-  it('auto focuses the dialog itself if there is no focusable child', function () {
+  it("auto focuses the dialog itself if there is no focusable child", function () {
     let {getByRole} = render(
       <Dialog>
         contents
       </Dialog>
     );
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(document.activeElement).toBe(dialog);
   });
 
-  it('autofocuses any element that has autofocus inside', function () {
+  it("autofocuses any element that has autofocus inside", function () {
     let {getByTestId} = render(
       <Dialog>
         <input data-testid="input1" />
@@ -52,11 +52,11 @@ describe('Dialog', function () {
       </Dialog>
     );
 
-    let input2 = getByTestId('input2');
+    let input2 = getByTestId("input2");
     expect(document.activeElement).toBe(input2);
   });
 
-  it('contains focus within the dialog', function () {
+  it("contains focus within the dialog", function () {
     let {getByRole, getByTestId} = render(
       <Dialog>
         <input data-testid="input1" />
@@ -64,25 +64,25 @@ describe('Dialog', function () {
       </Dialog>
     );
 
-    let dialog = getByRole('dialog');
-    let input1 = getByTestId('input1');
-    let input2 = getByTestId('input2');
+    let dialog = getByRole("dialog");
+    let input1 = getByTestId("input1");
+    let input2 = getByTestId("input2");
     expect(document.activeElement).toBe(dialog);
 
-    fireEvent.keyDown(document.activeElement, {key: 'Tab'});
+    fireEvent.keyDown(document.activeElement, {key: "Tab"});
     expect(document.activeElement).toBe(input1);
 
-    fireEvent.keyDown(document.activeElement, {key: 'Tab'});
+    fireEvent.keyDown(document.activeElement, {key: "Tab"});
     expect(document.activeElement).toBe(input2);
 
-    fireEvent.keyDown(document.activeElement, {key: 'Tab'});
+    fireEvent.keyDown(document.activeElement, {key: "Tab"});
     expect(document.activeElement).toBe(input1);
   });
 
-  it('should be labelled by its header', function () {
+  it("should be labelled by its header", function () {
     let {getByRole} = render(
       <ModalProvider>
-        <DialogContext.Provider value={{type: 'modal'}}>
+        <DialogContext.Provider value={{type: "modal"}}>
           <Dialog>
             <Heading><Header>The Title</Header></Heading>
           </Dialog>
@@ -90,18 +90,18 @@ describe('Dialog', function () {
       </ModalProvider>
     );
 
-    let dialog = getByRole('dialog');
-    let heading = getByRole('heading');
+    let dialog = getByRole("dialog");
+    let heading = getByRole("heading");
 
     let id = heading.id;
-    expect(dialog).toHaveAttribute('aria-labelledby', id);
+    expect(dialog).toHaveAttribute("aria-labelledby", id);
   });
 
-  it('if aria-labelledby is specified, then that takes precedence over the title', function () {
+  it("if aria-labelledby is specified, then that takes precedence over the title", function () {
     let {getByRole} = render(
       <div>
         <ModalProvider>
-          <DialogContext.Provider value={{type: 'modal'}}>
+          <DialogContext.Provider value={{type: "modal"}}>
             <Dialog aria-labelledby="batman">
               <Heading><Header>The Title</Header></Heading>
             </Dialog>
@@ -111,18 +111,18 @@ describe('Dialog', function () {
       </div>
     );
 
-    let dialog = getByRole('dialog');
-    let heading = getByRole('heading');
+    let dialog = getByRole("dialog");
+    let heading = getByRole("heading");
 
     let id = heading.id;
-    expect(dialog).not.toHaveAttribute('aria-labelledby', id);
-    expect(dialog).toHaveAttribute('aria-labelledby', 'batman');
+    expect(dialog).not.toHaveAttribute("aria-labelledby", id);
+    expect(dialog).toHaveAttribute("aria-labelledby", "batman");
   });
 
-  it('if aria-label is specified, then that takes precedence over the title', function () {
+  it("if aria-label is specified, then that takes precedence over the title", function () {
     let {getByRole} = render(
       <ModalProvider>
-        <DialogContext.Provider value={{type: 'modal'}}>
+        <DialogContext.Provider value={{type: "modal"}}>
           <Dialog aria-label="robin">
             <Heading><Header>The Title</Header></Heading>
           </Dialog>
@@ -130,17 +130,17 @@ describe('Dialog', function () {
       </ModalProvider>
     );
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
 
-    expect(dialog).not.toHaveAttribute('aria-labelledby');
-    expect(dialog).toHaveAttribute('aria-label', 'robin');
+    expect(dialog).not.toHaveAttribute("aria-labelledby");
+    expect(dialog).toHaveAttribute("aria-label", "robin");
   });
 
-  it('should have a hidden dismiss button for screen readers when displayed in a popover', function () {
+  it("should have a hidden dismiss button for screen readers when displayed in a popover", function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <ModalProvider>
-        <DialogContext.Provider value={{type: 'popover', onClose}}>
+        <DialogContext.Provider value={{type: "popover", onClose}}>
           <Dialog aria-label="robin">
             <Heading><Header>The Title</Header></Heading>
           </Dialog>
@@ -148,18 +148,18 @@ describe('Dialog', function () {
       </ModalProvider>
     );
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-label', 'Dismiss');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-label", "Dismiss");
 
     fireEvent.click(button);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('should have a hidden dismiss button for screen readers when displayed in a tray', function () {
+  it("should have a hidden dismiss button for screen readers when displayed in a tray", function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <ModalProvider>
-        <DialogContext.Provider value={{type: 'tray', onClose}}>
+        <DialogContext.Provider value={{type: "tray", onClose}}>
           <Dialog aria-label="robin">
             <Heading><Header>The Title</Header></Heading>
           </Dialog>
@@ -167,18 +167,18 @@ describe('Dialog', function () {
       </ModalProvider>
     );
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-label', 'Dismiss');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-label", "Dismiss");
 
     fireEvent.click(button);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('should support custom data attributes', function () {
+  it("should support custom data attributes", function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <ModalProvider>
-        <DialogContext.Provider value={{type: 'tray', onClose}}>
+        <DialogContext.Provider value={{type: "tray", onClose}}>
           <Dialog data-testid="test">
             <Heading><Header>The Title</Header></Heading>
           </Dialog>
@@ -186,7 +186,7 @@ describe('Dialog', function () {
       </ModalProvider>
     );
 
-    let dialog = getByRole('dialog');
-    expect(dialog).toHaveAttribute('data-testid', 'test');
+    let dialog = getByRole("dialog");
+    expect(dialog).toHaveAttribute("data-testid", "test");
   });
 });

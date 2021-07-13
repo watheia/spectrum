@@ -12,7 +12,7 @@ import {
   StyleProps,
   Validation,
   ValueBase
-} from '@react-types/shared';
+} from "@react-types/shared";
 
 export interface SliderProps<T = number[]> extends RangeInputBase<number>, ValueBase<T>, LabelableProps {
   /**

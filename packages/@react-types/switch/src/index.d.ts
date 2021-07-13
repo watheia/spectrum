@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, FocusableDOMProps, FocusableProps, InputBase, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {AriaLabelingProps, FocusableDOMProps, FocusableProps, InputBase, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 interface SwitchBase extends InputBase, FocusableProps {
   /**
@@ -44,7 +44,7 @@ export interface AriaSwitchBase extends SwitchBase, FocusableDOMProps, AriaLabel
   /**
    * Identifies the element (or elements) whose contents or presence are controlled by the current element.
    */
-  'aria-controls'?: string
+  "aria-controls"?: string
 }
 export interface AriaSwitchProps extends SwitchProps, AriaSwitchBase {}
 

@@ -25,14 +25,14 @@ import {
   TextInputDOMProps,
   Validation,
   ValueBase
-} from '@react-types/shared';
-import {SliderProps} from '@react-types/slider';
+} from "@react-types/shared";
+import {SliderProps} from "@react-types/slider";
 
 /** A list of supported color formats. */
-export type ColorFormat = 'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'hsb' | 'hsba';
+export type ColorFormat = "hex" | "hexa" | "rgb" | "rgba" | "hsl" | "hsla" | "hsb" | "hsba";
 
 /** A list of color channels. */
-export type ColorChannel = 'hue' | 'saturation' | 'brightness' | 'lightness' | 'red' | 'green' | 'blue' | 'alpha';
+export type ColorChannel = "hue" | "saturation" | "brightness" | "lightness" | "red" | "green" | "blue" | "alpha";
 
 export interface ColorChannelRange {
   /** The minimum value of the color channel. */
@@ -48,7 +48,7 @@ export interface Color {
   /** Converts the color to the given color format, and returns a new Color object. */
   toFormat(format: ColorFormat): Color,
   /** Converts the color to a string in the given format. */
-  toString(format: ColorFormat | 'css'): string,
+  toString(format: ColorFormat | "css"): string,
   /** Converts the color to hex, and returns an integer representation. */
   toHexInt(): number,
   /**
@@ -86,7 +86,7 @@ export interface ColorFieldProps extends ValueBase<string | Color>, InputBase, V
   step?: number
 }
 
-export interface AriaColorFieldProps extends ColorFieldProps, AriaLabelingProps, FocusableDOMProps, Omit<TextInputDOMProps, 'minLength' | 'maxLength' | 'pattern' | 'type' | 'inputMode' | 'autoComplete'>, AriaValidationProps {}
+export interface AriaColorFieldProps extends ColorFieldProps, AriaLabelingProps, FocusableDOMProps, Omit<TextInputDOMProps, "minLength" | "maxLength" | "pattern" | "type" | "inputMode" | "autoComplete">, AriaValidationProps {}
 
 export interface SpectrumColorFieldProps extends AriaColorFieldProps, SpectrumLabelableProps, StyleProps {
   /** Whether the ColorField should be displayed with a quiet style. */
@@ -114,12 +114,12 @@ export interface ColorWheelProps extends ValueBase<string | Color> {
 
 export interface AriaColorWheelProps extends ColorWheelProps, DOMProps, AriaLabelingProps {}
 
-export interface SpectrumColorWheelProps extends AriaColorWheelProps, Omit<StyleProps, 'width' | 'height'> {
+export interface SpectrumColorWheelProps extends AriaColorWheelProps, Omit<StyleProps, "width" | "height"> {
   /** The outer diameter of the ColorWheel. */
   size?: DimensionValue
 }
 
-export interface ColorSliderProps extends Omit<SliderProps<string | Color>, 'minValue' | 'maxValue'> {
+export interface ColorSliderProps extends Omit<SliderProps<string | Color>, "minValue" | "maxValue"> {
   /** The color channel that the slider manipulates. */
   channel: ColorChannel,
   /** Handler that is called when the value changes, as the user drags. */

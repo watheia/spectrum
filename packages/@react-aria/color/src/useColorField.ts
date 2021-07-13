@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaColorFieldProps} from '@react-types/color';
-import {ColorFieldState} from '@react-stately/color';
+import {AriaColorFieldProps} from "@react-types/color";
+import {ColorFieldState} from "@react-stately/color";
 import {
   HTMLAttributes,
   LabelHTMLAttributes,
   RefObject,
   useCallback,
   useState
-} from 'react';
-import {mergeProps, useId} from '@react-aria/utils';
-import {useFocusWithin, useScrollWheel} from '@react-aria/interactions';
-import {useFormattedTextField} from '@react-aria/textfield';
-import {useSpinButton} from '@react-aria/spinbutton';
+} from "react";
+import {mergeProps, useId} from "@react-aria/utils";
+import {useFocusWithin, useScrollWheel} from "@react-aria/interactions";
+import {useFormattedTextField} from "@react-aria/textfield";
+import {useSpinButton} from "@react-aria/spinbutton";
 
 interface ColorFieldAria {
   /** Props for the label element. */
@@ -69,7 +69,7 @@ export function useColorField(
       onDecrement: decrement,
       onDecrementToMin: decrementToMin,
       value: colorValue ? colorValue.toHexInt() : undefined,
-      textValue: colorValue ? colorValue.toString('hex') : undefined
+      textValue: colorValue ? colorValue.toString("hex") : undefined
     }
   );
 
@@ -98,20 +98,20 @@ export function useColorField(
     mergeProps(props, {
       id: inputId,
       value: inputValue,
-      type: 'text',
-      autoComplete: 'off',
+      type: "text",
+      autoComplete: "off",
       onChange
     }), state, ref);
 
   return {
     labelProps,
     inputProps: mergeProps(inputProps, spinButtonProps, focusWithinProps, {
-      role: 'textbox',
-      'aria-valuemax': null,
-      'aria-valuemin': null,
-      'aria-valuenow': null,
-      'aria-valuetext': null,
-      autoCorrect: 'off',
+      role: "textbox",
+      "aria-valuemax": null,
+      "aria-valuemin": null,
+      "aria-valuenow": null,
+      "aria-valuetext": null,
+      autoCorrect: "off",
       onBlur: commit
     })
   };

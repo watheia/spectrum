@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, render} from '@testing-library/react';
-import {ClearButton} from '../';
-import React from 'react';
-import {triggerPress} from '@react-spectrum/test-utils';
-import V2Button from '@react/react-spectrum/Button';
+import {act, render} from "@testing-library/react";
+import {ClearButton} from "../";
+import React from "react";
+import {triggerPress} from "@react-spectrum/test-utils";
+import V2Button from "@react/react-spectrum/Button";
 
 // NOTE: ClearButton doesn't use Button.tsx as a base and thus differs from v2 ClearButton in a couple ways
 // Refinement of ClearButton to be done later
-describe('ClearButton', function () {
+describe("ClearButton", function () {
   let onPressSpy = jest.fn();
   let FakeIcon = (props) => <svg {...props}><path d="M 10,150 L 70,10 L 130,150 z" /></svg>;
 
@@ -28,48 +28,48 @@ describe('ClearButton', function () {
 
   it.each`
     Name                | Component      | props
-    ${'v3 ClearButton'} | ${ClearButton} | ${{onPress: onPressSpy}}
-    ${'v2 ClearButton'} | ${V2Button}    | ${{variant: 'clear', onClick: onPressSpy}}
-  `('$Name handles defaults', function ({Component, props}) {
+    ${"v3 ClearButton"} | ${ClearButton} | ${{onPress: onPressSpy}}
+    ${"v2 ClearButton"} | ${V2Button}    | ${{variant: "clear", onClick: onPressSpy}}
+  `("$Name handles defaults", function ({Component, props}) {
     let {getByRole} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button', {hidden: true});
+    let button = getByRole("button", {hidden: true});
     triggerPress(button);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
   });
 
   it.each`
     Name                | Component      | props
-    ${'v3 ClearButton'} | ${ClearButton} | ${{}}
-    ${'v2 ClearButton'} | ${V2Button}    | ${{variant: 'clear'}}
-  `('$Name allows custom props to be passed through to the button', function ({Component, props}) {
+    ${"v3 ClearButton"} | ${ClearButton} | ${{}}
+    ${"v2 ClearButton"} | ${V2Button}    | ${{variant: "clear"}}
+  `("$Name allows custom props to be passed through to the button", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} data-foo="bar">Click Me</Component>);
 
-    let button = getByRole('button', {hidden: true});
-    expect(button).toHaveAttribute('data-foo', 'bar');
+    let button = getByRole("button", {hidden: true});
+    expect(button).toHaveAttribute("data-foo", "bar");
   });
 
   // Current v3 implementation that diverges from v2
   it.each`
     Name                | Component
-    ${'v3 ClearButton'} | ${ClearButton}
-  `('$Name doesn\'t accept an icon as a prop', function ({Component}) {
+    ${"v3 ClearButton"} | ${ClearButton}
+  `("$Name doesn't accept an icon as a prop", function ({Component}) {
     let mockIcon = <FakeIcon role="status" />;
     let tree = render(<Component icon={mockIcon} />);
 
-    let icon = tree.queryByRole('status');
+    let icon = tree.queryByRole("status");
     expect(icon).toBeNull();
   });
 
   // Only v3 allows for ref forwarding
   it.each`
     Name                | Component
-    ${'v3 ClearButton'} | ${ClearButton}
-  `('$Name allows a user to forward a ref to the button', function ({Component}) {
+    ${"v3 ClearButton"} | ${ClearButton}
+  `("$Name allows a user to forward a ref to the button", function ({Component}) {
     let ref = React.createRef();
     let tree = render(<Component ref={ref} />);
 
-    let button = tree.queryByRole('button');
+    let button = tree.queryByRole("button");
     expect(button).toBe(ref.current.UNSAFE_getDOMNode());
 
     act(() => {ref.current.focus();});

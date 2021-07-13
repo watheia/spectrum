@@ -10,28 +10,28 @@
  * governing permissions and limitations under the License.
  */
 
-import {ClipboardEventHandler, CompositionEventHandler, FormEventHandler, ReactEventHandler} from 'react';
+import {ClipboardEventHandler, CompositionEventHandler, FormEventHandler, ReactEventHandler} from "react";
 
 export interface AriaLabelingProps {
   /**
    * Defines a string value that labels the current element.
    */
-  'aria-label'?: string,
+  "aria-label"?: string,
 
   /**
    * Identifies the element (or elements) that labels the current element.
    */
-  'aria-labelledby'?: string,
+  "aria-labelledby"?: string,
 
   /**
    * Identifies the element (or elements) that describes the object.
    */
-  'aria-describedby'?: string,
+  "aria-describedby"?: string,
 
   /**
    * Identifies the element (or elements) that provide a detailed, extended description for the object.
    */
-  'aria-details'?: string
+  "aria-details"?: string
 }
 
 export interface AriaValidationProps {
@@ -39,7 +39,7 @@ export interface AriaValidationProps {
   /**
    * Identifies the element that provides an error message for the object.
    */
-  'aria-errormessage'?: string
+  "aria-errormessage"?: string
 }
 
 // A set of common DOM props that are allowed on any component
@@ -97,12 +97,12 @@ export interface TextInputDOMProps extends DOMProps {
   /**
    * The type of input to render. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#htmlattrdeftype).
    */
-  type?: 'text' | 'search' | 'url' | 'tel' | 'email' | 'password' | string,
+  type?: "text" | "search" | "url" | "tel" | "email" | "password" | string,
 
   /**
    * Hints at the type of data that might be entered by the user while editing the element or its contents. See [MDN](https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute).
    */
-  inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search',
+  inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search",
 
   // Clipboard events
   /**

@@ -10,31 +10,31 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {render} from '@testing-library/react';
-import {TextArea} from '../';
-import {typeText} from '@react-spectrum/test-utils';
+import React from "react";
+import {render} from "@testing-library/react";
+import {TextArea} from "../";
+import {typeText} from "@react-spectrum/test-utils";
 
-let testId = 'test-id';
+let testId = "test-id";
 let mockScrollHeight = 500;
 
 function renderComponent(Component, props) {
   return render(<Component aria-label="megatron" {...props} data-testid={testId} />);
 }
 
-describe('TextArea', () => {
+describe("TextArea", () => {
   let onChange = jest.fn();
-  let oldScrollHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'scrollHeight');
+  let oldScrollHeight = Object.getOwnPropertyDescriptor(HTMLElement.prototype, "scrollHeight");
 
   beforeEach(() => {
-    Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {configurable: true, value: mockScrollHeight});
+    Object.defineProperty(HTMLElement.prototype, "scrollHeight", {configurable: true, value: mockScrollHeight});
   });
 
   afterEach(() => {
     if (oldScrollHeight === undefined) {
       delete HTMLElement.prototype.scrollHeight;
     } else {
-      Object.defineProperty(HTMLElement.prototype, 'scrollHeight', oldScrollHeight);
+      Object.defineProperty(HTMLElement.prototype, "scrollHeight", oldScrollHeight);
     }
     onChange.mockClear();
   });
@@ -45,10 +45,10 @@ describe('TextArea', () => {
   // and properly adjust the height of the textarea to match the currently input text
   it.each`
     Name                               | Component        | props
-    ${'v3 TextArea default'}           | ${TextArea}      | ${{isQuiet: true, onChange}}
-    ${'v3 TextArea (controlled)'}      | ${TextArea}      | ${{isQuiet: true, onChange, value: 'foo'}}
-    ${'v3 TextArea (uncontrolled)'}    | ${TextArea}      | ${{isQuiet: true, onChange, defaultValue: 'foo'}}
-  `('$Name quiet variant automatically adjusts its vertical height on mount', ({Component, props}) => {
+    ${"v3 TextArea default"}           | ${TextArea}      | ${{isQuiet: true, onChange}}
+    ${"v3 TextArea (controlled)"}      | ${TextArea}      | ${{isQuiet: true, onChange, value: "foo"}}
+    ${"v3 TextArea (uncontrolled)"}    | ${TextArea}      | ${{isQuiet: true, onChange, defaultValue: "foo"}}
+  `("$Name quiet variant automatically adjusts its vertical height on mount", ({Component, props}) => {
     let tree = renderComponent(Component, props);
     let input = tree.getByTestId(testId);
 
@@ -61,16 +61,16 @@ describe('TextArea', () => {
     let newScrollHeight = 1000;
     expect(input.style.height).toBe(`${mockScrollHeight}px`);
     // this will be cleaned up in the afterEach
-    Object.defineProperty(HTMLElement.prototype, 'scrollHeight', {configurable: true, value: newScrollHeight});
-    typeText(input, '15');
+    Object.defineProperty(HTMLElement.prototype, "scrollHeight", {configurable: true, value: newScrollHeight});
+    typeText(input, "15");
     expect(input.style.height).toBe(`${newScrollHeight}px`);
   });
 
-  it('default does not change height', () => {
+  it("default does not change height", () => {
     let tree = renderComponent(TextArea, {});
     let input = tree.getByTestId(testId);
-    expect(input.style.height).toBe('');
-    typeText(input, '15');
-    expect(input.style.height).toBe('');
+    expect(input.style.height).toBe("");
+    typeText(input, "15");
+    expect(input.style.height).toBe("");
   });
 });

@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button/src';
-import Copy from '@spectrum-icons/workflow/Copy';
-import {Divider} from '../';
-import Edit from '@spectrum-icons/workflow/Edit';
-import Properties from '@spectrum-icons/workflow/Properties';
-import React from 'react';
-import Select from '@spectrum-icons/workflow/Select';
-import {storiesOf} from '@storybook/react';
+import {ActionButton} from "@react-spectrum/button/src";
+import Copy from "@spectrum-icons/workflow/Copy";
+import {Divider} from "../";
+import Edit from "@spectrum-icons/workflow/Edit";
+import Properties from "@spectrum-icons/workflow/Properties";
+import React from "react";
+import Select from "@spectrum-icons/workflow/Select";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Divider', module)
+storiesOf("Divider", module)
   // pretty simple component, test the three variants at once
-  .add('Horizontal',
+  .add("Horizontal",
     () => (
       <section>
         <h1>Large</h1>
@@ -34,9 +34,9 @@ storiesOf('Divider', module)
       </section>
     )
   )
-  .add('Vertical',
+  .add("Vertical",
     () => (
-      <section style={{display: 'flex'}}>
+      <section style={{display: "flex"}}>
         <ActionButton aria-label="Properties" isQuiet><Properties /></ActionButton>
         <Divider orientation="vertical" />
         <ActionButton aria-label="Select" isQuiet><Select /></ActionButton>

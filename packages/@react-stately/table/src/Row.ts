@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {CollectionBuilderContext} from './useTableState';
-import {PartialNode} from '@react-stately/collections';
-import React, {ReactElement} from 'react';
-import {RowProps} from '@react-types/table';
+import {CollectionBuilderContext} from "./useTableState";
+import {PartialNode} from "@react-stately/collections";
+import React, {ReactElement} from "react";
+import {RowProps} from "@react-types/table";
 
 function Row(props: RowProps): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -23,27 +23,27 @@ Row.getCollectionNode = function* getCollectionNode<T>(props: RowProps, context:
   let {children, textValue} = props;
 
   yield {
-    type: 'item',
+    type: "item",
     props: props,
     textValue,
-    'aria-label': props['aria-label'],
+    "aria-label": props["aria-label"],
     hasChildNodes: true,
     *childNodes() {
       // Process cells first
-      if (context.showSelectionCheckboxes && context.selectionMode !== 'none') {
+      if (context.showSelectionCheckboxes && context.selectionMode !== "none") {
         yield {
-          type: 'cell',
-          key: 'header', // this is combined with the row key by CollectionBuilder
+          type: "cell",
+          key: "header", // this is combined with the row key by CollectionBuilder
           props: {
             isSelectionCell: true
           }
         };
       }
 
-      if (typeof children === 'function') {
+      if (typeof children === "function") {
         for (let column of context.columns) {
           yield {
-            type: 'cell',
+            type: "cell",
             element: children(column.key),
             key: column.key // this is combined with the row key by CollectionBuilder
           };
@@ -52,7 +52,7 @@ Row.getCollectionNode = function* getCollectionNode<T>(props: RowProps, context:
         let cells: PartialNode<T>[] = [];
         React.Children.forEach(children, cell => {
           cells.push({
-            type: 'cell',
+            type: "cell",
             element: cell
           });
         });

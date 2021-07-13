@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render} from '@testing-library/react';
-import React from 'react';
-import {useInteractionModality} from '@react-aria/interactions';
-import {useTooltip, useTooltipTrigger} from '../';
-import {useTooltipTriggerState} from '@react-stately/tooltip';
+import {act, fireEvent, render} from "@testing-library/react";
+import React from "react";
+import {useInteractionModality} from "@react-aria/interactions";
+import {useTooltip, useTooltipTrigger} from "../";
+import {useTooltipTriggerState} from "@react-stately/tooltip";
 
-describe('useTooltip', function () {
+describe("useTooltip", function () {
   afterEach(() => {
     jest.useRealTimers();
   });
-  it('opens tooltip on hover after delay', function () {
-    jest.useFakeTimers('modern');
+  it("opens tooltip on hover after delay", function () {
+    jest.useFakeTimers("modern");
 
     function Test() {
       useInteractionModality();
@@ -43,13 +43,13 @@ describe('useTooltip', function () {
     // trigger pointer modality
     fireEvent.mouseMove(container);
 
-    fireEvent.mouseEnter(queryByRole('button'));
+    fireEvent.mouseEnter(queryByRole("button"));
 
-    expect(queryByRole('tooltip')).toBeNull();
+    expect(queryByRole("tooltip")).toBeNull();
     act(jest.runAllTimers);
-    expect(queryByRole('tooltip')).not.toBeNull();
+    expect(queryByRole("tooltip")).not.toBeNull();
   });
-  it('opens tooltip immediately on hover with `delay: 0`', function () {
+  it("opens tooltip immediately on hover with `delay: 0`", function () {
     function Test() {
       useInteractionModality();
 
@@ -70,13 +70,13 @@ describe('useTooltip', function () {
     // trigger pointer modality
     fireEvent.mouseMove(container);
 
-    fireEvent.mouseEnter(queryByRole('button'));
+    fireEvent.mouseEnter(queryByRole("button"));
 
-    expect(queryByRole('tooltip')).not.toBeNull();
+    expect(queryByRole("tooltip")).not.toBeNull();
   });
 
-  it('hides tooltip when hover leaves the trigger', function () {
-    jest.useFakeTimers('modern');
+  it("hides tooltip when hover leaves the trigger", function () {
+    jest.useFakeTimers("modern");
 
     function Test() {
       useInteractionModality();
@@ -98,17 +98,17 @@ describe('useTooltip', function () {
     // trigger pointer modality
     fireEvent.mouseMove(container);
 
-    fireEvent.mouseEnter(queryByRole('button'));
-    expect(queryByRole('tooltip')).not.toBeNull();
+    fireEvent.mouseEnter(queryByRole("button"));
+    expect(queryByRole("tooltip")).not.toBeNull();
 
-    fireEvent.mouseLeave(queryByRole('button'));
+    fireEvent.mouseLeave(queryByRole("button"));
     act(jest.runAllTimers);
-    expect(queryByRole('tooltip')).toBeNull();
+    expect(queryByRole("tooltip")).toBeNull();
 
   });
 
-  it('keeps tooltip open when it gets hovered', function () {
-    jest.useFakeTimers('modern');
+  it("keeps tooltip open when it gets hovered", function () {
+    jest.useFakeTimers("modern");
 
     function Test() {
       useInteractionModality();
@@ -130,19 +130,19 @@ describe('useTooltip', function () {
     // trigger pointer modality
     fireEvent.mouseMove(container);
 
-    fireEvent.mouseEnter(getByRole('button'));
+    fireEvent.mouseEnter(getByRole("button"));
 
-    const tooltipElement = getByRole('tooltip');
-    fireEvent.mouseLeave(getByRole('button'));
+    const tooltipElement = getByRole("tooltip");
+    fireEvent.mouseLeave(getByRole("button"));
     fireEvent.mouseEnter(tooltipElement);
-    expect(getByRole('tooltip')).not.toBeNull();
+    expect(getByRole("tooltip")).not.toBeNull();
 
     act(jest.runAllTimers);
-    expect(getByRole('tooltip')).not.toBeNull();
+    expect(getByRole("tooltip")).not.toBeNull();
   });
 
-  it('hides tooltip when hover leaves', function () {
-    jest.useFakeTimers('modern');
+  it("hides tooltip when hover leaves", function () {
+    jest.useFakeTimers("modern");
 
     function Test() {
       useInteractionModality();
@@ -164,20 +164,20 @@ describe('useTooltip', function () {
     // trigger pointer modality
     fireEvent.mouseMove(container);
 
-    fireEvent.mouseEnter(queryByRole('button'));
+    fireEvent.mouseEnter(queryByRole("button"));
 
-    const tooltipElement = queryByRole('tooltip');
-    fireEvent.mouseLeave(queryByRole('button'));
+    const tooltipElement = queryByRole("tooltip");
+    fireEvent.mouseLeave(queryByRole("button"));
     fireEvent.mouseEnter(tooltipElement);
-    expect(queryByRole('tooltip')).not.toBeNull();
+    expect(queryByRole("tooltip")).not.toBeNull();
 
     fireEvent.mouseLeave(tooltipElement);
     act(jest.runAllTimers);
-    expect(queryByRole('tooltip')).toBeNull();
+    expect(queryByRole("tooltip")).toBeNull();
   });
 
-  it('keeps tooltip open when hover returns to trigger from the tooltip', function () {
-    jest.useFakeTimers('modern');
+  it("keeps tooltip open when hover returns to trigger from the tooltip", function () {
+    jest.useFakeTimers("modern");
 
     function Test() {
       useInteractionModality();
@@ -199,16 +199,16 @@ describe('useTooltip', function () {
     // trigger pointer modality
     fireEvent.mouseMove(container);
 
-    fireEvent.mouseEnter(getByRole('button'));
+    fireEvent.mouseEnter(getByRole("button"));
 
-    const tooltipElement = getByRole('tooltip');
-    fireEvent.mouseLeave(getByRole('button'));
+    const tooltipElement = getByRole("tooltip");
+    fireEvent.mouseLeave(getByRole("button"));
     fireEvent.mouseEnter(tooltipElement);
-    expect(getByRole('tooltip')).not.toBeNull();
+    expect(getByRole("tooltip")).not.toBeNull();
 
     fireEvent.mouseLeave(tooltipElement);
-    fireEvent.mouseEnter(getByRole('button'));
+    fireEvent.mouseEnter(getByRole("button"));
     act(jest.runAllTimers);
-    expect(getByRole('tooltip')).not.toBeNull();
+    expect(getByRole("tooltip")).not.toBeNull();
   });
 });

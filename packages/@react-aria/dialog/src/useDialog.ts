@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaDialogProps} from '@react-types/dialog';
-import {filterDOMProps, useSlotId} from '@react-aria/utils';
-import {focusSafely} from '@react-aria/focus';
-import {HTMLAttributes, RefObject, useEffect} from 'react';
+import {AriaDialogProps} from "@react-types/dialog";
+import {filterDOMProps, useSlotId} from "@react-aria/utils";
+import {focusSafely} from "@react-aria/focus";
+import {HTMLAttributes, RefObject, useEffect} from "react";
 
 interface DialogAria {
   /** Props for the dialog container element. */
@@ -28,9 +28,9 @@ interface DialogAria {
  * A dialog is an overlay shown above other content in an application.
  */
 export function useDialog(props: AriaDialogProps, ref: RefObject<HTMLElement>): DialogAria {
-  let {role = 'dialog'} = props;
+  let {role = "dialog"} = props;
   let titleId = useSlotId();
-  titleId = props['aria-label'] ? undefined : titleId;
+  titleId = props["aria-label"] ? undefined : titleId;
 
   // Focus the dialog itself on mount, unless a child element is already focused.
   useEffect(() => {
@@ -63,7 +63,7 @@ export function useDialog(props: AriaDialogProps, ref: RefObject<HTMLElement>): 
       ...filterDOMProps(props, {labelable: true}),
       role,
       tabIndex: -1,
-      'aria-labelledby': props['aria-labelledby'] || titleId
+      "aria-labelledby": props["aria-labelledby"] || titleId
     },
     titleProps: {
       id: titleId

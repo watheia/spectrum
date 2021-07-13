@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton, Button} from '@react-spectrum/button';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import {Content} from '@react-spectrum/view';
-import {Dialog, DialogTrigger} from '@react-spectrum/dialog';
-import {Divider} from '@react-spectrum/divider';
-import {Heading, Text} from '@react-spectrum/text';
-import {Modal} from '../';
-import React, {Fragment, useState} from 'react';
-import {storiesOf} from '@storybook/react';
+import {ActionButton, Button} from "@react-spectrum/button";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import {Content} from "@react-spectrum/view";
+import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
+import {Divider} from "@react-spectrum/divider";
+import {Heading, Text} from "@react-spectrum/text";
+import {Modal} from "../";
+import React, {Fragment, useState} from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Modal', module)
-  .addParameters({providerSwitcher: {status: 'notice'}})
+storiesOf("Modal", module)
+  .addParameters({providerSwitcher: {status: "notice"}})
   .add(
-    'default',
+    "default",
     () => <ModalExample />
   )
   .add(
-    'unmounting trigger',
+    "unmounting trigger",
     () => <UnmountingTrigger />
   );
 

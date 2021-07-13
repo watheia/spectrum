@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-export type ValidationState = 'valid' | 'invalid';
+export type ValidationState = "valid" | "invalid";
 
 export interface Validation {
   /** Whether the input should display its "valid" or "invalid" visual styling. */

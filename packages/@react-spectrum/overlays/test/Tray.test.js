@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render, waitFor} from '@testing-library/react';
-import {Dialog} from '@react-spectrum/dialog';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {theme} from '@react-spectrum/theme-default';
-import {Tray} from '../';
+import {act, fireEvent, render, waitFor} from "@testing-library/react";
+import {Dialog} from "@react-spectrum/dialog";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {theme} from "@react-spectrum/theme-default";
+import {Tray} from "../";
 
-describe('Tray', function () {
+describe("Tray", function () {
   beforeAll(() => jest.useFakeTimers());
   afterAll(() => jest.useRealTimers());
 
-  it('should render nothing if isOpen is not set', function () {
+  it("should render nothing if isOpen is not set", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Tray>
@@ -31,12 +31,12 @@ describe('Tray', function () {
     );
 
     expect(() => {
-      getByRole('dialog');
+      getByRole("dialog");
     }).toThrow();
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
   });
 
-  it('should render when isOpen is true', function () {
+  it("should render when isOpen is true", function () {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Tray isOpen>
@@ -45,12 +45,12 @@ describe('Tray', function () {
       </Provider>
     );
 
-    let dialog = getByRole('dialog');
+    let dialog = getByRole("dialog");
     expect(dialog).toBeVisible();
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
   });
 
-  it('hides the tray when pressing the escape key', async function () {
+  it("hides the tray when pressing the escape key", async function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -61,16 +61,16 @@ describe('Tray', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
     act(() => {jest.runAllTimers();});
 
-    let dialog = await getByRole('dialog');
-    fireEvent.keyDown(dialog, {key: 'Escape'});
+    let dialog = await getByRole("dialog");
+    fireEvent.keyDown(dialog, {key: "Escape"});
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('hides the tray when clicking outside', async function () {
+  it("hides the tray when clicking outside", async function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -81,7 +81,7 @@ describe('Tray', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
     act(() => {jest.runAllTimers();});
 
@@ -90,7 +90,7 @@ describe('Tray', function () {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('hides the tray on blur when shouldCloseOnBlur is true', async function () {
+  it("hides the tray on blur when shouldCloseOnBlur is true", async function () {
     let onClose = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -101,11 +101,11 @@ describe('Tray', function () {
     );
 
     await waitFor(() => {
-      expect(getByRole('dialog')).toBeVisible();
+      expect(getByRole("dialog")).toBeVisible();
     }); // wait for animation
     act(() => {jest.runAllTimers();});
 
-    let dialog = await getByRole('dialog');
+    let dialog = await getByRole("dialog");
     expect(document.activeElement).toBe(dialog);
     // The iOS Safari workaround blurs and refocuses the dialog after 0.5s
     expect(onClose).toHaveBeenCalledTimes(1);

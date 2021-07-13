@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {CancelablePromise, easeOut, tween} from './tween';
-import {Collection} from '@react-types/shared';
-import {concatIterators, difference} from './utils';
+import {CancelablePromise, easeOut, tween} from "./tween";
+import {Collection} from "@react-types/shared";
+import {concatIterators, difference} from "./utils";
 import {
   InvalidationContext,
   ScrollAnchor,
   ScrollToItemOptions,
   VirtualizerDelegate,
   VirtualizerOptions
-} from './types';
-import {Key} from 'react';
-import {Layout} from './Layout';
-import {LayoutInfo} from './LayoutInfo';
-import {OverscanManager} from './OverscanManager';
-import {Point} from './Point';
-import {Rect} from './Rect';
-import {ReusableView} from './ReusableView';
-import {Size} from './Size';
-import {Transaction} from './Transaction';
+} from "./types";
+import {Key} from "react";
+import {Layout} from "./Layout";
+import {LayoutInfo} from "./LayoutInfo";
+import {OverscanManager} from "./OverscanManager";
+import {Point} from "./Point";
+import {Rect} from "./Rect";
+import {ReusableView} from "./ReusableView";
+import {Size} from "./Size";
+import {Transaction} from "./Transaction";
 
 /**
  * The CollectionView class renders a scrollable collection of data using customizable layouts,
@@ -127,7 +127,7 @@ export class Virtualizer<T extends object, V, W> {
     this.anchorScrollPosition = options.anchorScrollPosition || false;
     this.anchorScrollPositionAtTop = options.anchorScrollPositionAtTop || false;
     this.shouldOverscan = options.shouldOverscan !== false;
-    for (let key of ['delegate', 'size', 'layout', 'collection']) {
+    for (let key of ["delegate", "size", "layout", "collection"]) {
       if (options[key]) {
         this[key] = options[key];
       }
@@ -281,9 +281,9 @@ export class Virtualizer<T extends object, V, W> {
   }
 
   private _getReuseType(layoutInfo: LayoutInfo, content: T | null) {
-    if (layoutInfo.type === 'item' && content) {
-      let type = this.delegate.getType ? this.delegate.getType(content) : 'item';
-      let reuseType = type === 'item' ? 'item' : layoutInfo.type + '_' + type;
+    if (layoutInfo.type === "item" && content) {
+      let type = this.delegate.getType ? this.delegate.getType(content) : "item";
+      let reuseType = type === "item" ? "item" : layoutInfo.type + "_" + type;
       return {type, reuseType};
     }
 
@@ -404,7 +404,7 @@ export class Virtualizer<T extends object, V, W> {
    */
   relayout(context: InvalidationContext<T, V> = {}) {
     // Ignore relayouts while animating the scroll position
-    if (this._scrollAnimation || typeof requestAnimationFrame === 'undefined') {
+    if (this._scrollAnimation || typeof requestAnimationFrame === "undefined") {
       return;
     }
 
@@ -448,7 +448,7 @@ export class Virtualizer<T extends object, V, W> {
     let scrollAnchor = this._getScrollAnchor();
 
     // Trigger the beforeLayout hook, if provided
-    if (typeof context.beforeLayout === 'function') {
+    if (typeof context.beforeLayout === "function") {
       context.beforeLayout();
     }
 
@@ -457,7 +457,7 @@ export class Virtualizer<T extends object, V, W> {
     this._setContentSize(this.layout.getContentSize());
 
     // Trigger the afterLayout hook, if provided
-    if (typeof context.afterLayout === 'function') {
+    if (typeof context.afterLayout === "function") {
       context.afterLayout();
     }
 
@@ -508,7 +508,7 @@ export class Virtualizer<T extends object, V, W> {
           this._setContentOffset(new Point(x, y));
         }
 
-        if (typeof context.afterAnimation === 'function') {
+        if (typeof context.afterAnimation === "function") {
           context.afterAnimation();
         }
       };
@@ -516,7 +516,7 @@ export class Virtualizer<T extends object, V, W> {
       // Sometimes the animation takes slightly longer than expected.
       setTimeout(done, this.transitionDuration + 100);
       return;
-    } else if (typeof context.afterAnimation === 'function') {
+    } else if (typeof context.afterAnimation === "function") {
       context.afterAnimation();
     }
   }

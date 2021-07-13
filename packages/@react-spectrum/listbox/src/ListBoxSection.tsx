@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {layoutInfoToStyle, useVirtualizerItem} from '@react-aria/virtualizer';
-import {ListBoxContext} from './ListBoxContext';
-import {Node} from '@react-types/shared';
-import React, {Fragment, ReactNode, useContext, useRef} from 'react';
-import {ReusableView} from '@react-stately/virtualizer';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {useListBoxSection} from '@react-aria/listbox';
-import {useLocale} from '@react-aria/i18n';
-import {useSeparator} from '@react-aria/separator';
+import {classNames} from "@react-spectrum/utils";
+import {layoutInfoToStyle, useVirtualizerItem} from "@react-aria/virtualizer";
+import {ListBoxContext} from "./ListBoxContext";
+import {Node} from "@react-types/shared";
+import React, {Fragment, ReactNode, useContext, useRef} from "react";
+import {ReusableView} from "@react-stately/virtualizer";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {useListBoxSection} from "@react-aria/listbox";
+import {useLocale} from "@react-aria/i18n";
+import {useSeparator} from "@react-aria/separator";
 
 interface ListBoxSectionProps<T> {
   reusableView: ReusableView<Node<T>, unknown>,
@@ -33,11 +33,11 @@ export function ListBoxSection<T>(props: ListBoxSectionProps<T>) {
   let item = reusableView.content;
   let {headingProps, groupProps} = useListBoxSection({
     heading: item.rendered,
-    'aria-label': item['aria-label']
+    "aria-label": item["aria-label"]
   });
 
   let {separatorProps} = useSeparator({
-    elementType: 'li'
+    elementType: "li"
   });
 
   let headerRef = useRef();
@@ -57,7 +57,7 @@ export function ListBoxSection<T>(props: ListBoxSectionProps<T>) {
             {...separatorProps}
             className={classNames(
               styles,
-              'spectrum-Menu-divider'
+              "spectrum-Menu-divider"
             )} />
         }
         {item.rendered &&
@@ -66,7 +66,7 @@ export function ListBoxSection<T>(props: ListBoxSectionProps<T>) {
             className={
               classNames(
                 styles,
-                'spectrum-Menu-sectionHeading'
+                "spectrum-Menu-sectionHeading"
               )
             }>
             {item.rendered}
@@ -79,7 +79,7 @@ export function ListBoxSection<T>(props: ListBoxSectionProps<T>) {
         className={
           classNames(
             styles,
-            'spectrum-Menu'
+            "spectrum-Menu"
           )
         }>
         {children}

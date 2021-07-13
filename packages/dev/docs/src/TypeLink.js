@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {getUsedLinks} from './utils';
-import {LinkContext, TypeContext} from './types';
-import React, {useContext} from 'react';
-import styles from './docs.css';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
+import {getUsedLinks} from "./utils";
+import {LinkContext, TypeContext} from "./types";
+import React, {useContext} from "react";
+import styles from "./docs.css";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 export function TypeLink({links, type}) {
   let registered = useContext(LinkContext);
@@ -27,8 +27,8 @@ export function TypeLink({links, type}) {
 
   return (
     <TypeContext.Provider value={links}>
-      <code className={`${typographyStyles['spectrum-Code4']}`}>
-        <a href={'#' + type.id} data-link={type.id} className={`${styles.colorLink} token hljs-name`}>{type.name}</a>
+      <code className={`${typographyStyles["spectrum-Code4"]}`}>
+        <a href={"#" + type.id} data-link={type.id} className={`${styles.colorLink} token hljs-name`}>{type.name}</a>
       </code>
     </TypeContext.Provider>
   );

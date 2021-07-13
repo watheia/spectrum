@@ -10,6 +10,6 @@
  * governing permissions and limitations under the License.
  */
 
-import {RadioGroupState} from '@react-stately/radio';
+import {RadioGroupState} from "@react-stately/radio";
 
 export const radioGroupNames = new WeakMap<RadioGroupState, string>();

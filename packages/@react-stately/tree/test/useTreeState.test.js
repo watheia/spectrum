@@ -10,44 +10,44 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from '@testing-library/react';
-import {KeyboardNavigation} from '../stories/useTreeState.stories';
-import React from 'react';
-import userEvent from '@testing-library/user-event';
+import {fireEvent, render} from "@testing-library/react";
+import {KeyboardNavigation} from "../stories/useTreeState.stories";
+import React from "react";
+import userEvent from "@testing-library/user-event";
 
-describe('useTreeState', () => {
-  it('should be keyboard navigable', () => {
+describe("useTreeState", () => {
+  it("should be keyboard navigable", () => {
     let {getAllByRole} = render(<KeyboardNavigation />);
     userEvent.tab();
-    let items = getAllByRole('treeitem');
+    let items = getAllByRole("treeitem");
     expect(items.length).toBe(2);
     expect(document.activeElement).toBe(items[0]);
 
     // at Animals, expand
     // don't bother to check the text, what matters is where we are positionally
-    fireEvent.keyDown(document.activeElement, {key: 'Enter'});
-    fireEvent.keyUp(document.activeElement, {key: 'Enter'});
-    items = getAllByRole('treeitem');
+    fireEvent.keyDown(document.activeElement, {key: "Enter"});
+    fireEvent.keyUp(document.activeElement, {key: "Enter"});
+    items = getAllByRole("treeitem");
     expect(items.length).toBe(6);
     expect(document.activeElement).toBe(items[0]);
 
     // move to Aardvark
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowDown'});
-    fireEvent.keyUp(document.activeElement, {key: 'ArrowDown'});
+    fireEvent.keyDown(document.activeElement, {key: "ArrowDown"});
+    fireEvent.keyUp(document.activeElement, {key: "ArrowDown"});
     expect(document.activeElement).toBe(items[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowDown'});
-    fireEvent.keyUp(document.activeElement, {key: 'ArrowDown'});
+    fireEvent.keyDown(document.activeElement, {key: "ArrowDown"});
+    fireEvent.keyUp(document.activeElement, {key: "ArrowDown"});
     // at Bear now, expand again
-    fireEvent.keyDown(document.activeElement, {key: 'Enter'});
-    fireEvent.keyUp(document.activeElement, {key: 'Enter'});
-    items = getAllByRole('treeitem');
+    fireEvent.keyDown(document.activeElement, {key: "Enter"});
+    fireEvent.keyUp(document.activeElement, {key: "Enter"});
+    items = getAllByRole("treeitem");
     expect(items.length).toBe(8);
     expect(document.activeElement).toBe(items[2]);
 
     // move to Black Bear
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowDown'});
-    fireEvent.keyUp(document.activeElement, {key: 'ArrowDown'});
+    fireEvent.keyDown(document.activeElement, {key: "ArrowDown"});
+    fireEvent.keyUp(document.activeElement, {key: "ArrowDown"});
     expect(document.activeElement).toBe(items[3]);
   });
 });

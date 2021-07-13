@@ -12,8 +12,8 @@
 
 /// <reference types="css-module-types" />
 
-export * from './AlertDialog';
-export * from './Dialog';
-export * from './DialogTrigger';
-export * from './DialogContainer';
-export * from './useDialogContainer';
+export * from "./AlertDialog";
+export * from "./Dialog";
+export * from "./DialogTrigger";
+export * from "./DialogContainer";
+export * from "./useDialogContainer";

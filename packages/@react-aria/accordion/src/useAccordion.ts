@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaAccordionProps} from '@react-types/accordion';
-import {ButtonHTMLAttributes, HTMLAttributes, RefObject} from 'react';
-import {mergeProps, useId} from '@react-aria/utils';
-import {Node} from '@react-types/shared';
-import {TreeState} from '@react-stately/tree';
-import {useButton} from '@react-aria/button';
-import {useSelectableItem, useSelectableList} from '@react-aria/selection';
+import {AriaAccordionProps} from "@react-types/accordion";
+import {ButtonHTMLAttributes, HTMLAttributes, RefObject} from "react";
+import {mergeProps, useId} from "@react-aria/utils";
+import {Node} from "@react-types/shared";
+import {TreeState} from "@react-stately/tree";
+import {useButton} from "@react-aria/button";
+import {useSelectableItem, useSelectableList} from "@react-aria/selection";
 
 interface AccordionAria {
   /** Props for the accordion container element. */
@@ -45,7 +45,7 @@ export function useAccordionItem<T>(props: AccordionItemAriaProps<T>, state: Tre
   });
   let {buttonProps} = useButton(mergeProps(itemProps as any, {
     id: buttonId,
-    elementType: 'button',
+    elementType: "button",
     isDisabled,
     onPress: () => state.toggleKey(item.key)
   }), ref);
@@ -53,13 +53,13 @@ export function useAccordionItem<T>(props: AccordionItemAriaProps<T>, state: Tre
   return {
     buttonProps: {
       ...buttonProps,
-      'aria-expanded': isExpanded,
-      'aria-controls': isExpanded ? regionId : undefined
+      "aria-expanded": isExpanded,
+      "aria-controls": isExpanded ? regionId : undefined
     },
     regionProps: {
       id: regionId,
-      role: 'region',
-      'aria-labelledby': buttonId
+      role: "region",
+      "aria-labelledby": buttonId
     }
   };
 }

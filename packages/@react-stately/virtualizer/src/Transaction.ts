@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key} from 'react';
-import {LayoutInfo} from './LayoutInfo';
-import {ReusableView} from './ReusableView';
+import {Key} from "react";
+import {LayoutInfo} from "./LayoutInfo";
+import {ReusableView} from "./ReusableView";
 
 type LayoutInfoMap = Map<Key, LayoutInfo>;
 export class Transaction<T extends object, V> {

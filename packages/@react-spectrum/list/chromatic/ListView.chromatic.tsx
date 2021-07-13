@@ -10,29 +10,29 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {Content, View} from '@react-spectrum/view';
-import {Flex} from '@react-spectrum/layout';
-import {Heading} from '@react-spectrum/text';
-import {IllustratedMessage} from '@react-spectrum/illustratedmessage';
-import {Item, ListView} from '../';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
+import {ActionButton} from "@react-spectrum/button";
+import {Content, View} from "@react-spectrum/view";
+import {Flex} from "@react-spectrum/layout";
+import {Heading} from "@react-spectrum/text";
+import {IllustratedMessage} from "@react-spectrum/illustratedmessage";
+import {Item, ListView} from "../";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
 
 let flatOptions = [
-  {name: 'row 1'},
-  {name: 'row 2'},
-  {name: 'row 3'}
+  {name: "row 1"},
+  {name: "row 2"},
+  {name: "row 3"}
 ];
 
 let withButtons = [
-  {name: 'row 1', button: 'Button 1'},
-  {name: 'row 2', button: 'Button 2'},
-  {name: 'row 3', button: 'Button 3'}
+  {name: "row 1", button: "Button 1"},
+  {name: "row 2", button: "Button 2"},
+  {name: "row 3", button: "Button 3"}
 ];
 
 const meta: Meta = {
-  title: 'ListView',
+  title: "ListView",
   component: ListView,
   parameters: {
     // noticed a small shifting before final layout, delaying so chromatic doesn't hit that
@@ -80,10 +80,10 @@ const TemplateEmptyState = (): Story => () => (
 );
 
 export const Default = Template().bind({});
-Default.storyName = 'default';
+Default.storyName = "default";
 
 export const WithButtons = TemplateWithButtons().bind({});
-WithButtons.storyName = 'with buttons';
+WithButtons.storyName = "with buttons";
 
 export const Empty = TemplateEmptyState().bind({});
-Empty.storyName = 'empty state';
+Empty.storyName = "empty state";

@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumTooltipTriggerProps} from '@react-types/tooltip';
-import {Tooltip, TooltipTrigger} from '../';
+import {ActionButton} from "@react-spectrum/button";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumTooltipTriggerProps} from "@react-types/tooltip";
+import {Tooltip, TooltipTrigger} from "../";
 
 const meta: Meta<SpectrumTooltipTriggerProps> = {
-  title: 'TooltipTrigger',
+  title: "TooltipTrigger",
   component: TooltipTrigger,
   parameters: {
-    chromaticProvider: {colorSchemes: ['light'], locales: ['en-US'], scales: ['medium'], disableAnimations: true},
+    chromaticProvider: {colorSchemes: ["light"], locales: ["en-US"], scales: ["medium"], disableAnimations: true},
     // chromatic needs a bit more time than disableAnimations allows
     chromatic: {delay: 2000}
   }
@@ -42,7 +42,7 @@ export const Default = Template().bind({});
 Default.args = {};
 
 export const PlacementStart = Template().bind({});
-PlacementStart.args = {...Default.args, placement: 'start'};
+PlacementStart.args = {...Default.args, placement: "start"};
 
 export const PlacementEnd = Template().bind({});
-PlacementEnd.args = {...Default.args, placement: 'end'};
+PlacementEnd.args = {...Default.args, placement: "end"};

@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {TooltipTriggerProps} from '@react-types/tooltip';
-import {useEffect, useMemo, useRef} from 'react';
-import {useOverlayTriggerState} from '@react-stately/overlays';
+import {TooltipTriggerProps} from "@react-types/tooltip";
+import {useEffect, useMemo, useRef} from "react";
+import {useOverlayTriggerState} from "@react-stately/overlays";
 
 const TOOLTIP_DELAY = 1500; // this seems to be a 1.5 second delay, check with design
 const TOOLTIP_COOLDOWN = 500;

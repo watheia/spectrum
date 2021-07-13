@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaSliderThumbProps} from '@react-types/slider';
-import {classNames} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React, {RefObject, useRef} from 'react';
-import {SliderState} from '@react-stately/slider';
-import styles from '@adobe/spectrum-css-temp/components/slider/vars.css';
-import {useHover} from '@react-aria/interactions';
-import {useLocale} from '@react-aria/i18n';
-import {useSliderThumb} from '@react-aria/slider';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import {AriaSliderThumbProps} from "@react-types/slider";
+import {classNames} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React, {RefObject, useRef} from "react";
+import {SliderState} from "@react-stately/slider";
+import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
+import {useHover} from "@react-aria/interactions";
+import {useLocale} from "@react-aria/i18n";
+import {useSliderThumb} from "@react-aria/slider";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 interface SliderThumbProps extends AriaSliderThumbProps {
   trackRef: RefObject<HTMLElement>,
@@ -44,19 +44,19 @@ export function SliderThumb(props: SliderThumbProps) {
 
   let {hoverProps, isHovered} = useHover({});
   let {direction} = useLocale();
-  let cssDirection = direction === 'rtl' ? 'right' : 'left';
+  let cssDirection = direction === "rtl" ? "right" : "left";
 
   return (
-    <FocusRing within focusRingClass={classNames(styles, 'is-focused')}>
+    <FocusRing within focusRingClass={classNames(styles, "is-focused")}>
       <div
         className={
           classNames(
             styles,
-            'spectrum-Slider-handle',
+            "spectrum-Slider-handle",
             {
-              'is-hovered': isHovered,
-              'is-dragged': state.isThumbDragging(index),
-              'is-tophandle': state.focusedThumb === index
+              "is-hovered": isHovered,
+              "is-dragged": state.isThumbDragging(index),
+              "is-tophandle": state.focusedThumb === index
             }
           )
         }
@@ -64,7 +64,7 @@ export function SliderThumb(props: SliderThumbProps) {
         {...mergeProps(thumbProps, hoverProps)}
         role="presentation">
         <VisuallyHidden>
-          <input className={classNames(styles, 'spectrum-Slider-input')} ref={inputRef} {...inputProps} />
+          <input className={classNames(styles, "spectrum-Slider-input")} ref={inputRef} {...inputProps} />
         </VisuallyHidden>
       </div>
     </FocusRing>

@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaBreadcrumbsProps} from '@react-types/breadcrumbs';
-import {filterDOMProps} from '@react-aria/utils';
-import {HTMLAttributes} from 'react';
+import {AriaBreadcrumbsProps} from "@react-types/breadcrumbs";
+import {filterDOMProps} from "@react-aria/utils";
+import {HTMLAttributes} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 interface BreadcrumbsAria {
   /** Props for the breadcrumbs navigation element. */
@@ -28,7 +28,7 @@ interface BreadcrumbsAria {
  */
 export function useBreadcrumbs<T>(props: AriaBreadcrumbsProps<T>): BreadcrumbsAria {
   let {
-    'aria-label': ariaLabel,
+    "aria-label": ariaLabel,
     ...otherProps
   } = props;
 
@@ -36,7 +36,7 @@ export function useBreadcrumbs<T>(props: AriaBreadcrumbsProps<T>): BreadcrumbsAr
   return {
     navProps: {
       ...filterDOMProps(otherProps, {labelable: true}),
-      'aria-label': ariaLabel || formatMessage('breadcrumbs')
+      "aria-label": ariaLabel || formatMessage("breadcrumbs")
     }
   };
 }

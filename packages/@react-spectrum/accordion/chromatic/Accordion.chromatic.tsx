@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Accordion, Item} from '../';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumAccordionProps} from '@react-types/accordion';
+import {Accordion, Item} from "../";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumAccordionProps} from "@react-types/accordion";
 
 const meta: Meta<SpectrumAccordionProps<object>> = {
-  title: 'Accordion',
+  title: "Accordion",
   component: Accordion
 };
 
@@ -42,7 +42,7 @@ export const Default = Template().bind({});
 Default.args = {};
 
 export const ExpandedKeys = Template().bind({});
-ExpandedKeys.args = {defaultExpandedKeys: ['shared']};
+ExpandedKeys.args = {defaultExpandedKeys: ["shared"]};
 
 export const DisabledKeys = Template().bind({});
-DisabledKeys.args = {disabledKeys: ['shared']};
+DisabledKeys.args = {disabledKeys: ["shared"]};

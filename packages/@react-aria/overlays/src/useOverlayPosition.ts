@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {calculatePosition, PositionResult} from './calculatePosition';
-import {HTMLAttributes, RefObject, useCallback, useRef, useState} from 'react';
-import {Placement, PlacementAxis, PositionProps} from '@react-types/overlays';
-import {useCloseOnScroll} from './useCloseOnScroll';
-import {useLayoutEffect} from '@react-aria/utils';
-import {useLocale} from '@react-aria/i18n';
+import {calculatePosition, PositionResult} from "./calculatePosition";
+import {HTMLAttributes, RefObject, useCallback, useRef, useState} from "react";
+import {Placement, PlacementAxis, PositionProps} from "@react-types/overlays";
+import {useCloseOnScroll} from "./useCloseOnScroll";
+import {useLayoutEffect} from "@react-aria/utils";
+import {useLocale} from "@react-aria/i18n";
 
 interface AriaPositionProps extends PositionProps {
   /**
@@ -57,7 +57,7 @@ interface PositionAria {
 }
 
 // @ts-ignore
-let visualViewport = typeof window !== 'undefined' && window.visualViewport;
+let visualViewport = typeof window !== "undefined" && window.visualViewport;
 
 /**
  * Handles positioning overlays like popovers and menus relative to a trigger
@@ -69,10 +69,10 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
     targetRef,
     overlayRef,
     scrollRef = overlayRef,
-    placement = 'bottom' as Placement,
+    placement = "bottom" as Placement,
     containerPadding = 12,
     shouldFlip = true,
-    boundaryElement = typeof document !== 'undefined' ? document.body : null,
+    boundaryElement = typeof document !== "undefined" ? document.body : null,
     offset = 0,
     crossOffset = 0,
     shouldUpdatePosition = true,
@@ -144,10 +144,10 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
       updatePosition();
     };
 
-    visualViewport?.addEventListener('resize', onResize);
+    visualViewport?.addEventListener("resize", onResize);
 
     return () => {
-      visualViewport?.removeEventListener('resize', onResize);
+      visualViewport?.removeEventListener("resize", onResize);
     };
   }, [updatePosition]);
 
@@ -168,7 +168,7 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
   return {
     overlayProps: {
       style: {
-        position: 'absolute',
+        position: "absolute",
         zIndex: 100000, // should match the z-index in ModalTrigger
         ...position.position,
         maxHeight: position.maxHeight
@@ -187,16 +187,16 @@ export function useOverlayPosition(props: AriaPositionProps): PositionAria {
 
 function useResize(onResize) {
   useLayoutEffect(() => {
-    window.addEventListener('resize', onResize, false);
+    window.addEventListener("resize", onResize, false);
     return () => {
-      window.removeEventListener('resize', onResize, false);
+      window.removeEventListener("resize", onResize, false);
     };
   }, [onResize]);
 }
 
 function translateRTL(position, direction) {
-  if (direction === 'rtl') {
-    return position.replace('start', 'right').replace('end', 'left');
+  if (direction === "rtl") {
+    return position.replace("start", "right").replace("end", "left");
   }
-  return position.replace('start', 'left').replace('end', 'right');
+  return position.replace("start", "left").replace("end", "right");
 }

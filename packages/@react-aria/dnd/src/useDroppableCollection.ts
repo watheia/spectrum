@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, DropEvent, DropOperation, DroppableCollectionProps, DropPosition, DropTarget, KeyboardDelegate, Node} from '@react-types/shared';
-import * as DragManager from './DragManager';
-import {DroppableCollectionState} from '@react-stately/dnd';
-import {getTypes} from './utils';
-import {HTMLAttributes, Key, RefObject, useCallback, useEffect, useLayoutEffect, useRef} from 'react';
-import {mergeProps} from '@react-aria/utils';
-import {setInteractionModality} from '@react-aria/interactions';
-import {useAutoScroll} from './useAutoScroll';
-import {useDrop} from './useDrop';
-import {useDroppableCollectionId} from './utils';
+import {Collection, DropEvent, DropOperation, DroppableCollectionProps, DropPosition, DropTarget, KeyboardDelegate, Node} from "@react-types/shared";
+import * as DragManager from "./DragManager";
+import {DroppableCollectionState} from "@react-stately/dnd";
+import {getTypes} from "./utils";
+import {HTMLAttributes, Key, RefObject, useCallback, useEffect, useLayoutEffect, useRef} from "react";
+import {mergeProps} from "@react-aria/utils";
+import {setInteractionModality} from "@react-aria/interactions";
+import {useAutoScroll} from "./useAutoScroll";
+import {useDrop} from "./useDrop";
+import {useDroppableCollectionId} from "./utils";
 
 interface DroppableCollectionOptions extends DroppableCollectionProps {
   keyboardDelegate: KeyboardDelegate,
@@ -37,7 +37,7 @@ interface DroppingState {
   timeout: NodeJS.Timeout
 }
 
-const DROP_POSITIONS: DropPosition[] = ['before', 'on', 'after'];
+const DROP_POSITIONS: DropPosition[] = ["before", "on", "after"];
 
 export function useDroppableCollection(props: DroppableCollectionOptions, state: DroppableCollectionState, ref: RefObject<HTMLElement>): DroppableCollectionResult {
   let localState = useRef({
@@ -63,9 +63,9 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
     getDropOperationForPoint(types, allowedOperations, x, y) {
       let target = props.getDropTargetFromPoint(x, y);
       if (!target) {
-        localState.dropOperation = 'cancel';
+        localState.dropOperation = "cancel";
         localState.nextTarget = null;
-        return 'cancel';
+        return "cancel";
       }
 
       if (state.isDropTarget(target)) {
@@ -76,16 +76,16 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       localState.dropOperation = state.getDropOperation(target, types, allowedOperations);
 
       // If the target doesn't accept the drop, see if the root accepts it instead.
-      if (localState.dropOperation === 'cancel') {
-        let rootTarget: DropTarget = {type: 'root'};
+      if (localState.dropOperation === "cancel") {
+        let rootTarget: DropTarget = {type: "root"};
         let dropOperation = state.getDropOperation(rootTarget, types, allowedOperations);
-        if (dropOperation !== 'cancel') {
+        if (dropOperation !== "cancel") {
           target = rootTarget;
           localState.dropOperation = dropOperation;
         }
       }
 
-      localState.nextTarget = localState.dropOperation === 'cancel' ? null : target;
+      localState.nextTarget = localState.dropOperation === "cancel" ? null : target;
       return localState.dropOperation;
     },
     onDropExit() {
@@ -93,9 +93,9 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       autoScroll.stop();
     },
     onDropActivate(e) {
-      if (state.target?.type === 'item' && state.target?.dropPosition === 'on' && typeof props.onDropActivate === 'function') {
+      if (state.target?.type === "item" && state.target?.dropPosition === "on" && typeof props.onDropActivate === "function") {
         props.onDropActivate({
-          type: 'dropactivate',
+          type: "dropactivate",
           x: e.x, // todo
           y: e.y,
           target: state.target
@@ -103,7 +103,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       }
     },
     onDrop(e) {
-      if (state.target && typeof props.onDrop === 'function') {
+      if (state.target && typeof props.onDrop === "function") {
         onDrop(e, state.target);
       }
     }
@@ -126,7 +126,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
     };
 
     localState.props.onDrop({
-      type: 'drop',
+      type: "drop",
       x: e.x, // todo
       y: e.y,
       target,
@@ -144,12 +144,12 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       // Also show the focus ring if the focused key is not selected, e.g. in case of a reorder.
       let {state} = localState;
       if (state.selectionManager.focusedKey === focusedKey) {
-        if (target.type === 'item' && target.dropPosition === 'on' && state.collection.getItem(target.key) != null) {
+        if (target.type === "item" && target.dropPosition === "on" && state.collection.getItem(target.key) != null) {
           state.selectionManager.setFocusedKey(target.key);
           state.selectionManager.setFocused(true);
-          setInteractionModality('keyboard');
+          setInteractionModality("keyboard");
         } else if (!state.selectionManager.isSelected(focusedKey)) {
-          setInteractionModality('keyboard');
+          setInteractionModality("keyboard");
         }
       }
 
@@ -192,8 +192,8 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         let first = newKeys.keys().next().value;
         state.selectionManager.setFocusedKey(first);
 
-        if (state.selectionManager.selectionMode === 'none') {
-          setInteractionModality('keyboard');
+        if (state.selectionManager.selectionMode === "none") {
+          setInteractionModality("keyboard");
         }
       }
 
@@ -205,22 +205,22 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
     let getNextTarget = (target: DropTarget, wrap = true): DropTarget => {
       if (!target) {
         return {
-          type: 'root'
+          type: "root"
         };
       }
 
       let {keyboardDelegate} = localState.props;
-      let nextKey = target.type === 'item'
+      let nextKey = target.type === "item"
         ? keyboardDelegate.getKeyBelow(target.key)
         : keyboardDelegate.getFirstKey();
-      let dropPosition: DropPosition = 'before';
+      let dropPosition: DropPosition = "before";
 
-      if (target.type === 'item') {
+      if (target.type === "item") {
         let positionIndex = DROP_POSITIONS.indexOf(target.dropPosition);
         let nextDropPosition = DROP_POSITIONS[positionIndex + 1];
-        if (positionIndex < DROP_POSITIONS.length - 1 && !(nextDropPosition === 'after' && nextKey != null)) {
+        if (positionIndex < DROP_POSITIONS.length - 1 && !(nextDropPosition === "after" && nextKey != null)) {
           return {
-            type: 'item',
+            type: "item",
             key: target.key,
             dropPosition: nextDropPosition
           };
@@ -228,15 +228,15 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
 
         // If the last drop position was 'after', then 'before' on the next key is equivalent.
         // Switch to 'on' instead.
-        if (target.dropPosition === 'after') {
-          dropPosition = 'on';
+        if (target.dropPosition === "after") {
+          dropPosition = "on";
         }
       }
 
       if (nextKey == null) {
         if (wrap) {
           return {
-            type: 'root'
+            type: "root"
           };
         }
 
@@ -244,7 +244,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       }
 
       return {
-        type: 'item',
+        type: "item",
         key: nextKey,
         dropPosition
       };
@@ -252,17 +252,17 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
 
     let getPreviousTarget = (target: DropTarget, wrap = true): DropTarget => {
       let {keyboardDelegate} = localState.props;
-      let nextKey = target?.type === 'item'
+      let nextKey = target?.type === "item"
         ? keyboardDelegate.getKeyAbove(target.key)
         : keyboardDelegate.getLastKey();
-      let dropPosition: DropPosition = !target || target.type === 'root' ? 'after' : 'on';
+      let dropPosition: DropPosition = !target || target.type === "root" ? "after" : "on";
 
-      if (target?.type === 'item') {
+      if (target?.type === "item") {
         let positionIndex = DROP_POSITIONS.indexOf(target.dropPosition);
         let nextDropPosition = DROP_POSITIONS[positionIndex - 1];
-        if (positionIndex > 0 && nextDropPosition !== 'after') {
+        if (positionIndex > 0 && nextDropPosition !== "after") {
           return {
-            type: 'item',
+            type: "item",
             key: target.key,
             dropPosition: nextDropPosition
           };
@@ -270,15 +270,15 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
 
         // If the last drop position was 'before', then 'after' on the previous key is equivalent.
         // Switch to 'on' instead.
-        if (target.dropPosition === 'before') {
-          dropPosition = 'on';
+        if (target.dropPosition === "before") {
+          dropPosition = "on";
         }
       }
 
       if (nextKey == null) {
         if (wrap) {
           return {
-            type: 'root'
+            type: "root"
           };
         }
 
@@ -286,7 +286,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       }
 
       return {
-        type: 'item',
+        type: "item",
         key: nextKey,
         dropPosition
       };
@@ -308,16 +308,16 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         }
         target = nextTarget;
         operation = localState.state.getDropOperation(nextTarget, types, allowedDropOperations);
-        if (target.type === 'root') {
+        if (target.type === "root") {
           seenRoot++;
         }
       } while (
-        operation === 'cancel' &&
+        operation === "cancel" &&
         !localState.state.isDropTarget(target) &&
         seenRoot < 2
       );
 
-      if (operation === 'cancel') {
+      if (operation === "cancel") {
         return null;
       }
 
@@ -334,7 +334,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         // Check if any of the targets accept the drop.
         // TODO: should we have a faster way of doing this or e.g. for pagination?
         let target = nextValidTarget(null, types, allowedOperations, getNextTarget);
-        return target ? 'move' : 'cancel';
+        return target ? "move" : "cancel";
       },
       onDropEnter(e, drag) {
         let types = getTypes(drag.items);
@@ -344,12 +344,12 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         // When entering the droppable collection for the first time, the default drop target
         // is after the focused key.
         let key = selectionManager.focusedKey;
-        let dropPosition: DropPosition = 'after';
+        let dropPosition: DropPosition = "after";
 
         // If the focused key is a cell, get the parent item instead.
         // For now, we assume that individual cells cannot be dropped on.
         let item = localState.state.collection.getItem(key);
-        if (item?.type === 'cell') {
+        if (item?.type === "cell") {
           key = item.parentKey;
         }
 
@@ -359,7 +359,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         // move the items down. If you select bottom up, we assume you want to move the items up.
         if (selectionManager.isSelected(key)) {
           if (selectionManager.selectedKeys.size > 1 && selectionManager.firstSelectedKey === key) {
-            dropPosition = 'before';
+            dropPosition = "before";
           } else {
             key = selectionManager.lastSelectedKey;
           }
@@ -367,13 +367,13 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
 
         if (key != null) {
           target = {
-            type: 'item',
+            type: "item",
             key,
             dropPosition
           };
 
           // If the default target is not valid, find the next one that is.
-          if (localState.state.getDropOperation(target, types, drag.allowedDropOperations) === 'cancel') {
+          if (localState.state.getDropOperation(target, types, drag.allowedDropOperations) === "cancel") {
             target = nextValidTarget(target, types, drag.allowedDropOperations, getNextTarget, false)
               ?? nextValidTarget(target, types, drag.allowedDropOperations, getPreviousTarget, false);
           }
@@ -394,12 +394,12 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       },
       onDropActivate(e) {
         if (
-          localState.state.target?.type === 'item' &&
-          localState.state.target?.dropPosition === 'on' &&
-          typeof localState.props.onDropActivate === 'function'
+          localState.state.target?.type === "item" &&
+          localState.state.target?.dropPosition === "on" &&
+          typeof localState.props.onDropActivate === "function"
         ) {
           localState.props.onDropActivate({
-            type: 'dropactivate',
+            type: "dropactivate",
             x: e.x, // todo
             y: e.y,
             target: localState.state.target
@@ -407,7 +407,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         }
       },
       onDrop(e, target) {
-        if (localState.state.target && typeof localState.props.onDrop === 'function') {
+        if (localState.state.target && typeof localState.props.onDrop === "function") {
           onDrop(e, target || localState.state.target);
         }
       },
@@ -415,35 +415,35 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
         let {keyboardDelegate} = localState.props;
         let types = getTypes(drag.items);
         switch (e.key) {
-          case 'ArrowDown': {
+          case "ArrowDown": {
             if (keyboardDelegate.getKeyBelow) {
               let target = nextValidTarget(localState.state.target, types, drag.allowedDropOperations, getNextTarget);
               localState.state.setTarget(target);
             }
             break;
           }
-          case 'ArrowUp': {
+          case "ArrowUp": {
             if (keyboardDelegate.getKeyAbove) {
               let target = nextValidTarget(localState.state.target, types, drag.allowedDropOperations, getPreviousTarget);
               localState.state.setTarget(target);
             }
             break;
           }
-          case 'Home': {
+          case "Home": {
             if (keyboardDelegate.getFirstKey) {
               let target = nextValidTarget(null, types, drag.allowedDropOperations, getNextTarget);
               localState.state.setTarget(target);
             }
             break;
           }
-          case 'End': {
+          case "End": {
             if (keyboardDelegate.getLastKey) {
               let target = nextValidTarget(null, types, drag.allowedDropOperations, getPreviousTarget);
               localState.state.setTarget(target);
             }
             break;
           }
-          case 'PageDown': {
+          case "PageDown": {
             if (keyboardDelegate.getKeyPageBelow) {
               let target = localState.state.target;
               if (!target) {
@@ -451,20 +451,20 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
               } else {
                 // If on the root, go to the item a page below the top. Otherwise a page below the current item.
                 let nextKey = keyboardDelegate.getKeyPageBelow(
-                  target.type === 'item'
+                  target.type === "item"
                     ? target.key
                     : keyboardDelegate.getFirstKey()
                 );
-                let dropPosition = target.type === 'item' ? target.dropPosition : 'after';
+                let dropPosition = target.type === "item" ? target.dropPosition : "after";
 
                 // If there is no next key, or we are starting on the last key, jump to the last possible position.
-                if (nextKey == null || (target.type === 'item' && target.key === keyboardDelegate.getLastKey())) {
+                if (nextKey == null || (target.type === "item" && target.key === keyboardDelegate.getLastKey())) {
                   nextKey = keyboardDelegate.getLastKey();
-                  dropPosition = 'after';
+                  dropPosition = "after";
                 }
 
                 target = {
-                  type: 'item',
+                  type: "item",
                   key: nextKey,
                   dropPosition
                 };
@@ -472,7 +472,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
                 // If the target does not accept the drop, find the next valid target.
                 // If no next valid target, find the previous valid target.
                 let operation = localState.state.getDropOperation(target, types, drag.allowedDropOperations);
-                if (operation === 'cancel') {
+                if (operation === "cancel") {
                   target = nextValidTarget(target, types, drag.allowedDropOperations, getNextTarget, false)
                     ?? nextValidTarget(target, types, drag.allowedDropOperations, getPreviousTarget, false);
                 }
@@ -482,7 +482,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
             }
             break;
           }
-          case 'PageUp': {
+          case "PageUp": {
             if (!keyboardDelegate.getKeyPageAbove) {
               break;
             }
@@ -490,22 +490,22 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
             let target = localState.state.target;
             if (!target) {
               target = nextValidTarget(null, types, drag.allowedDropOperations, getPreviousTarget);
-            } else if (target.type === 'item') {
+            } else if (target.type === "item") {
               // If at the top already, switch to the root. Otherwise navigate a page up.
               if (target.key === keyboardDelegate.getFirstKey()) {
                 target = {
-                  type: 'root'
+                  type: "root"
                 };
               } else {
                 let nextKey = keyboardDelegate.getKeyPageAbove(target.key);
                 let dropPosition = target.dropPosition;
                 if (nextKey == null) {
                   nextKey = keyboardDelegate.getFirstKey();
-                  dropPosition = 'before';
+                  dropPosition = "before";
                 }
 
                 target = {
-                  type: 'item',
+                  type: "item",
                   key: nextKey,
                   dropPosition
                 };
@@ -514,7 +514,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
               // If the target does not accept the drop, find the previous valid target.
               // If no next valid target, find the next valid target.
               let operation = localState.state.getDropOperation(target, types, drag.allowedDropOperations);
-              if (operation === 'cancel') {
+              if (operation === "cancel") {
                 target = nextValidTarget(target, types, drag.allowedDropOperations, getPreviousTarget, false)
                   ?? nextValidTarget(target, types, drag.allowedDropOperations, getNextTarget, false);
               }
@@ -534,7 +534,7 @@ export function useDroppableCollection(props: DroppableCollectionOptions, state:
       id,
       // Remove description from collection element. If dropping on the entire collection,
       // there should be a drop indicator that has this description, so no need to double announce.
-      'aria-describedby': null
+      "aria-describedby": null
     })
   };
 }

@@ -12,5 +12,5 @@
 
 /// <reference types="css-module-types" />
 
-export * from './Icon';
-export * from './UIIcon';
+export * from "./Icon";
+export * from "./UIIcon";

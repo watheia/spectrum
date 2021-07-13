@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ActionButton} from '@react-spectrum/button';
-import AlignCenter from '@spectrum-icons/workflow/AlignCenter';
-import AlignLeft from '@spectrum-icons/workflow/AlignLeft';
-import AlignRight from '@spectrum-icons/workflow/AlignRight';
-import Blower from '@spectrum-icons/workflow/Blower';
-import Book from '@spectrum-icons/workflow/Book';
-import Copy from '@spectrum-icons/workflow/Copy';
-import Cut from '@spectrum-icons/workflow/Cut';
-import {Item, Menu, MenuTrigger, Section} from '../';
-import {Keyboard, Text} from '@react-spectrum/text';
-import Paste from '@spectrum-icons/workflow/Paste';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {ActionButton} from "@react-spectrum/button";
+import AlignCenter from "@spectrum-icons/workflow/AlignCenter";
+import AlignLeft from "@spectrum-icons/workflow/AlignLeft";
+import AlignRight from "@spectrum-icons/workflow/AlignRight";
+import Blower from "@spectrum-icons/workflow/Blower";
+import Book from "@spectrum-icons/workflow/Book";
+import Copy from "@spectrum-icons/workflow/Copy";
+import Cut from "@spectrum-icons/workflow/Cut";
+import {Item, Menu, MenuTrigger, Section} from "../";
+import {Keyboard, Text} from "@react-spectrum/text";
+import Paste from "@spectrum-icons/workflow/Paste";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
 let iconMap = {
   AlignCenter,
@@ -37,56 +37,56 @@ let iconMap = {
 };
 
 let hardModeProgrammatic = [
-  {name: 'Section 1', children: [
-    {name: 'Copy', icon: 'Copy', shortcut: '⌘C'},
-    {name: 'Cut', icon: 'Cut', shortcut: '⌘X'},
-    {name: 'Paste', icon: 'Paste', shortcut: '⌘V'}
+  {name: "Section 1", children: [
+    {name: "Copy", icon: "Copy", shortcut: "⌘C"},
+    {name: "Cut", icon: "Cut", shortcut: "⌘X"},
+    {name: "Paste", icon: "Paste", shortcut: "⌘V"}
   ]},
-  {name: 'Section 2', children: [
-    {name: 'Puppy', icon: 'AlignLeft', shortcut: '⌘P'},
-    {name: 'Doggo', icon: 'AlignCenter', shortcut: '⌘D'},
-    {name: 'Floof', icon: 'AlignRight', shortcut: '⌘F'},
-    {name: 'hasChildren', children: [
-      {name: 'Thailand', icon: 'Blower', shortcut: '⌘T'},
-      {name: 'Germany', icon: 'Book', shortcut: '⌘G'}
+  {name: "Section 2", children: [
+    {name: "Puppy", icon: "AlignLeft", shortcut: "⌘P"},
+    {name: "Doggo", icon: "AlignCenter", shortcut: "⌘D"},
+    {name: "Floof", icon: "AlignRight", shortcut: "⌘F"},
+    {name: "hasChildren", children: [
+      {name: "Thailand", icon: "Blower", shortcut: "⌘T"},
+      {name: "Germany", icon: "Book", shortcut: "⌘G"}
     ]}
   ]}
 ];
 
 let flatMenu = [
-  {name: 'Aardvark'},
-  {name: 'Kangaroo'},
-  {name: 'Snake'},
-  {name: 'Danni'},
-  {name: 'Devon'},
-  {name: 'Ross'},
-  {name: 'Puppy'},
-  {name: 'Doggo'},
-  {name: 'Floof'}
+  {name: "Aardvark"},
+  {name: "Kangaroo"},
+  {name: "Snake"},
+  {name: "Danni"},
+  {name: "Devon"},
+  {name: "Ross"},
+  {name: "Puppy"},
+  {name: "Doggo"},
+  {name: "Floof"}
 ];
 
 let withSection = [
-  {name: 'Animals', children: [
-    {name: 'Aardvark'},
-    {name: 'Kangaroo'},
-    {name: 'Snake'}
+  {name: "Animals", children: [
+    {name: "Aardvark"},
+    {name: "Kangaroo"},
+    {name: "Snake"}
   ]},
-  {name: 'People', children: [
-    {name: 'Danni'},
-    {name: 'Devon'},
-    {name: 'Ross', children: [
-      {name: 'Tests', children: [
-        {name: 'blah'}
+  {name: "People", children: [
+    {name: "Danni"},
+    {name: "Devon"},
+    {name: "Ross", children: [
+      {name: "Tests", children: [
+        {name: "blah"}
       ]}
     ]}
   ]}
 ];
 
-storiesOf('MenuTrigger', module)
+storiesOf("MenuTrigger", module)
   .add(
-    'default menu (static)',
+    "default menu (static)",
     () => render(
-      <Menu onAction={action('onAction')}>
+      <Menu onAction={action("onAction")}>
         <Item>One</Item>
         <Item>Two</Item>
         <Item>Three</Item>
@@ -94,17 +94,17 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'default menu (generative)',
+    "default menu (generative)",
     () => render(
-      <Menu items={flatMenu} onAction={action('onAction')}>
+      <Menu items={flatMenu} onAction={action("onAction")}>
         {item => <Item key={item.name}>{item.name}</Item>}
       </Menu>
     )
   )
   .add(
-    'default menu w/ section (static)',
+    "default menu w/ section (static)",
     () => render(
-      <Menu onAction={action('onAction')}>
+      <Menu onAction={action("onAction")}>
         <Section title="Section 1">
           <Item>One</Item>
           <Item>Two</Item>
@@ -119,13 +119,13 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'default menu w/ section (generative)',
+    "default menu w/ section (generative)",
     () => render(defaultMenu)
   )
   .add(
-    'default menu w/ titleless sections (static)',
+    "default menu w/ titleless sections (static)",
     () => render(
-      <Menu onAction={action('onAction')}>
+      <Menu onAction={action("onAction")}>
         <Section aria-label="Section 1">
           <Item>One</Item>
           <Item>Two</Item>
@@ -140,9 +140,9 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'default menu w/ titleless sections (generative)',
+    "default menu w/ titleless sections (generative)",
     () => render(
-      <Menu items={withSection} onAction={action('onAction')}>
+      <Menu items={withSection} onAction={action("onAction")}>
         {item => (
           <Section key={item.name} items={item.children} aria-label={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -152,9 +152,9 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'single selected key (controlled, static)',
+    "single selected key (controlled, static)",
     () => render(
-      <Menu selectionMode="single" onAction={action('onAction')} selectedKeys={['2']}>
+      <Menu selectionMode="single" onAction={action("onAction")} selectedKeys={["2"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -184,13 +184,13 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'single selected key (controlled, generative)',
-    () => render(defaultMenu, {}, {selectedKeys: ['Kangaroo'], selectionMode: 'single'})
+    "single selected key (controlled, generative)",
+    () => render(defaultMenu, {}, {selectedKeys: ["Kangaroo"], selectionMode: "single"})
   )
   .add(
-    'single default selected key (uncontrolled, static)',
+    "single default selected key (uncontrolled, static)",
     () => render(
-      <Menu selectionMode="single" onAction={action('onAction')} defaultSelectedKeys={['2']}>
+      <Menu selectionMode="single" onAction={action("onAction")} defaultSelectedKeys={["2"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -220,13 +220,13 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'single default selected key (uncontrolled, generative)',
-    () => render(defaultMenu, {}, {defaultSelectedKeys: ['Kangaroo'], selectionMode: 'single'})
+    "single default selected key (uncontrolled, generative)",
+    () => render(defaultMenu, {}, {defaultSelectedKeys: ["Kangaroo"], selectionMode: "single"})
   )
   .add(
-    'multiple default selected key (controlled, static)',
+    "multiple default selected key (controlled, static)",
     () => render(
-      <Menu onAction={action('onAction')} selectionMode="multiple" selectedKeys={['2', '5']} disabledKeys={['1', '3']}>
+      <Menu onAction={action("onAction")} selectionMode="multiple" selectedKeys={["2", "5"]} disabledKeys={["1", "3"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -253,13 +253,13 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'multiple selected key (controlled, generative)',
-    () => render(defaultMenu, {}, {selectedKeys: ['Kangaroo', 'Devon'], selectionMode: 'multiple'})
+    "multiple selected key (controlled, generative)",
+    () => render(defaultMenu, {}, {selectedKeys: ["Kangaroo", "Devon"], selectionMode: "multiple"})
   )
   .add(
-    'multiple default selected key (uncontrolled, static)',
+    "multiple default selected key (uncontrolled, static)",
     () => render(
-      <Menu onAction={action('onAction')} selectionMode="multiple" defaultSelectedKeys={['2', '5']} disabledKeys={['1', '3']}>
+      <Menu onAction={action("onAction")} selectionMode="multiple" defaultSelectedKeys={["2", "5"]} disabledKeys={["1", "3"]}>
         <Section title="Section 1">
           <Item key="1">
             One
@@ -286,127 +286,127 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'multiple default selected key (uncontrolled, generative)',
-    () => render(defaultMenu, {}, {defaultSelectedKeys: ['Kangaroo', 'Devon'], selectionMode: 'multiple'})
+    "multiple default selected key (uncontrolled, generative)",
+    () => render(defaultMenu, {}, {defaultSelectedKeys: ["Kangaroo", "Devon"], selectionMode: "multiple"})
   )
   .add(
-    'Menu with autoFocus=true',
+    "Menu with autoFocus=true",
     () => render(defaultMenu, {}, {autoFocus: true})
   )
   .add(
-    'Menu with autoFocus=false',
+    "Menu with autoFocus=false",
     () => render(defaultMenu, {}, {autoFocus: false})
   )
   .add(
-    'Menu with autoFocus=true, default selected key (uncontrolled), selectionMode single',
-    () => render(defaultMenu, {}, {autoFocus: true, selectionMode: 'single', defaultSelectedKeys: ['Kangaroo']})
+    "Menu with autoFocus=true, default selected key (uncontrolled), selectionMode single",
+    () => render(defaultMenu, {}, {autoFocus: true, selectionMode: "single", defaultSelectedKeys: ["Kangaroo"]})
   )
   .add(
     'Menu with autoFocus="first"',
-    () => render(defaultMenu, {}, {autoFocus: 'first'})
+    () => render(defaultMenu, {}, {autoFocus: "first"})
   )
   .add(
     'Menu with autoFocus="last"',
-    () => render(defaultMenu, {}, {autoFocus: 'last'})
+    () => render(defaultMenu, {}, {autoFocus: "last"})
   )
   .add(
-    'Menu with keyboard selection wrapping false',
+    "Menu with keyboard selection wrapping false",
     () => render(defaultMenu, {}, {shouldFocusWrap: false})
   )
   .add(
     'align="end"',
     () => render(
-      <Menu onAction={action('onAction')}>
+      <Menu onAction={action("onAction")}>
         <Item>One</Item>
         <Item>Two</Item>
         <Item>Three</Item>
       </Menu>
-    , {align: 'end'})
+    , {align: "end"})
   )
   .add(
     'direction="top"',
-    () => render(defaultMenu, {direction: 'top'})
+    () => render(defaultMenu, {direction: "top"})
   )
   .add(
     'direction="bottom"',
-    () => render(defaultMenu, {direction: 'bottom'})
+    () => render(defaultMenu, {direction: "bottom"})
   )
   .add(
     'direction="start"',
-    () => render(defaultMenu, {direction: 'start'})
+    () => render(defaultMenu, {direction: "start"})
   )
   .add(
     'direction="start", align="end"',
-    () => render(defaultMenu, {direction: 'start', align: 'end'})
+    () => render(defaultMenu, {direction: "start", align: "end"})
   )
   .add(
     'direction="end"',
-    () => render(defaultMenu, {direction: 'end'})
+    () => render(defaultMenu, {direction: "end"})
   )
   .add(
     'direction="end", align="end"',
-    () => render(defaultMenu, {direction: 'end', align: 'end'})
+    () => render(defaultMenu, {direction: "end", align: "end"})
   )
   .add(
     'direction="left"',
-    () => render(defaultMenu, {direction: 'left'})
+    () => render(defaultMenu, {direction: "left"})
   )
   .add(
     'direction="left", align="end"',
-    () => render(defaultMenu, {direction: 'left', align: 'end'})
+    () => render(defaultMenu, {direction: "left", align: "end"})
   )
   .add(
     'direction="right"',
-    () => render(defaultMenu, {direction: 'right'})
+    () => render(defaultMenu, {direction: "right"})
   )
   .add(
     'direction="right", align="end"',
-    () => render(defaultMenu, {direction: 'right', align: 'end'})
+    () => render(defaultMenu, {direction: "right", align: "end"})
   )
   .add(
-    'shouldFlip',
+    "shouldFlip",
     () => render(defaultMenu, {shouldFlip: true})
   )
   .add(
-    'isOpen',
+    "isOpen",
     () => render(defaultMenu, {isOpen: true})
   )
   .add(
-    'defaultOpen',
+    "defaultOpen",
     () => render(defaultMenu, {defaultOpen: true})
   )
   .add(
-    'disabled button',
+    "disabled button",
     () => render(defaultMenu, {isDisabled: true})
   )
   .add(
-    'multiselect menu',
-    () => render(defaultMenu, {}, {selectionMode: 'multiple'})
+    "multiselect menu",
+    () => render(defaultMenu, {}, {selectionMode: "multiple"})
   )
   .add(
-    'no selection allowed menu',
-    () => render(defaultMenu, {}, {selectionMode: 'none'})
+    "no selection allowed menu",
+    () => render(defaultMenu, {}, {selectionMode: "none"})
   )
   .add(
-    'closeOnSelect=false',
+    "closeOnSelect=false",
     () => render(defaultMenu, {closeOnSelect: false}, {})
   )
   .add(
-    'closeOnSelect=true, multiselect menu',
-    () => render(defaultMenu, {closeOnSelect: true}, {selectionMode: 'multiple'})
+    "closeOnSelect=true, multiselect menu",
+    () => render(defaultMenu, {closeOnSelect: true}, {selectionMode: "multiple"})
   )
   .add(
-    'menu with semantic elements (static)',
+    "menu with semantic elements (static)",
     () => (
-      <div style={{display: 'flex', width: 'auto', margin: '250px 0'}}>
-        <MenuTrigger onOpenChange={action('onOpenChange')}>
+      <div style={{display: "flex", width: "auto", margin: "250px 0"}}>
+        <MenuTrigger onOpenChange={action("onOpenChange")}>
           <ActionButton
-            onPress={action('press')}
-            onPressStart={action('pressstart')}
-            onPressEnd={action('pressend')}>
+            onPress={action("press")}
+            onPressStart={action("pressstart")}
+            onPressEnd={action("pressend")}>
             Menu Button
           </ActionButton>
-          <Menu onAction={action('action')}>
+          <Menu onAction={action("action")}>
             <Section title="Section 1">
               <Item textValue="Copy">
                 <Copy size="S" />
@@ -449,9 +449,9 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'menu with semantic elements (generative)',
+    "menu with semantic elements (generative)",
     () => render(
-      <Menu items={hardModeProgrammatic} onAction={action('onAction')}>
+      <Menu items={hardModeProgrammatic} onAction={action("onAction")}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => customMenuItem(item)}
@@ -461,20 +461,20 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'menu closes on scroll',
+    "menu closes on scroll",
     () => (
-      <div style={{height: 100, display: 'flex'}}>
-        <div style={{paddingTop: 100, height: 100, overflow: 'auto', background: 'antiquewhite'}}>
+      <div style={{height: 100, display: "flex"}}>
+        <div style={{paddingTop: 100, height: 100, overflow: "auto", background: "antiquewhite"}}>
           <div style={{height: 200}}>
             <div>Scrolling here will close the Menu</div>
-            <MenuTrigger onOpenChange={action('onOpenChange')} defaultOpen>
+            <MenuTrigger onOpenChange={action("onOpenChange")} defaultOpen>
               <ActionButton
-                onPress={action('press')}
-                onPressStart={action('pressstart')}
-                onPressEnd={action('pressend')}>
+                onPress={action("press")}
+                onPressStart={action("pressstart")}
+                onPressEnd={action("pressend")}>
                 Menu Button
               </ActionButton>
-              <Menu items={withSection} onAction={action('action')}>
+              <Menu items={withSection} onAction={action("action")}>
                 {item => (
                   <Section key={item.name} items={item.children} title={item.name}>
                     {item => <Item key={item.name} childItems={item.children}>{item.name}</Item>}
@@ -484,7 +484,7 @@ storiesOf('MenuTrigger', module)
             </MenuTrigger>
           </div>
         </div>
-        <div style={{paddingTop: 100, height: 100, overflow: 'auto', flex: 1, background: 'grey'}}>
+        <div style={{paddingTop: 100, height: 100, overflow: "auto", flex: 1, background: "grey"}}>
           <div style={{height: 200}}>
             Scrolling here won't close the Menu
           </div>
@@ -493,19 +493,19 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'menu closes on blur',
+    "menu closes on blur",
     () => (
       <>
-        <div style={{display: 'flex', width: 'auto', margin: '250px 0'}}>
+        <div style={{display: "flex", width: "auto", margin: "250px 0"}}>
           <input placeholder="Shift tab here" />
-          <MenuTrigger onOpenChange={action('onOpenChange')}>
+          <MenuTrigger onOpenChange={action("onOpenChange")}>
             <ActionButton
-              onPress={action('press')}
-              onPressStart={action('pressstart')}
-              onPressEnd={action('pressend')}>
+              onPress={action("press")}
+              onPressStart={action("pressstart")}
+              onPressEnd={action("pressend")}>
               Menu Button
             </ActionButton>
-            <Menu items={withSection} onAction={action('action')} disabledKeys={['Snake', 'Ross']}>
+            <Menu items={withSection} onAction={action("action")} disabledKeys={["Snake", "Ross"]}>
               {item => (
                 <Section key={item.name} items={item.children} title={item.name}>
                   {item => <Item key={item.name} childItems={item.children}>{item.name}</Item>}
@@ -519,9 +519,9 @@ storiesOf('MenuTrigger', module)
     )
   )
   .add(
-    'with falsy key',
+    "with falsy key",
     () => render(
-      <Menu onAction={action('onAction')}>
+      <Menu onAction={action("onAction")}>
         <Item key="1">One</Item>
         <Item key="">Two</Item>
         <Item key="3">Three</Item>
@@ -543,13 +543,13 @@ let customMenuItem = (item) => {
 function render(menu, {isDisabled, ...props}: any = {}, menuProps = {}) {
   let menuRender = React.cloneElement(menu, menuProps);
   return (
-    <div style={{display: 'flex', width: 'auto', margin: '250px 0'}}>
-      <MenuTrigger onOpenChange={action('onOpenChange')} {...props}>
+    <div style={{display: "flex", width: "auto", margin: "250px 0"}}>
+      <MenuTrigger onOpenChange={action("onOpenChange")} {...props}>
         <ActionButton
           isDisabled={isDisabled}
-          onPress={action('press')}
-          onPressStart={action('pressstart')}
-          onPressEnd={action('pressend')}>
+          onPress={action("press")}
+          onPressStart={action("pressstart")}
+          onPressEnd={action("pressend")}>
           Menu Button
         </ActionButton>
         {menuRender}
@@ -559,7 +559,7 @@ function render(menu, {isDisabled, ...props}: any = {}, menuProps = {}) {
 }
 
 let defaultMenu = (
-  <Menu items={withSection} onAction={action('action')} disabledKeys={['Snake', 'Ross']}>
+  <Menu items={withSection} onAction={action("action")} disabledKeys={["Snake", "Ross"]}>
     {(item: any) => (
       <Section key={item.name} items={item.children} title={item.name}>
         {(item: any) => <Item key={item.name} childItems={item.children}>{item.name}</Item>}

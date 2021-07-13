@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {SplitViewState, SplitViewStatelyProps} from '@react-types/shared';
-import {useControlledState} from '@react-stately/utils';
-import {useRef, useState} from 'react';
+import {SplitViewState, SplitViewStatelyProps} from "@react-types/shared";
+import {useControlledState} from "@react-stately/utils";
+import {useRef, useState} from "react";
 
 const COLLAPSE_THRESHOLD = 50;
 

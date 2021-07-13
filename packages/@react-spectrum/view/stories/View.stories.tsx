@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {Button} from '@react-spectrum/button';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {View} from '../';
+import {Button} from "@react-spectrum/button";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {View} from "../";
 
-storiesOf('View', module)
+storiesOf("View", module)
   .add(
-    'name me',
+    "name me",
     () => (
-      <div style={{display: 'flex'}}>
+      <div style={{display: "flex"}}>
         <View 
           backgroundColor="negative"
           width="single-line-width"
@@ -36,6 +36,6 @@ storiesOf('View', module)
       </div>
     )
   )
-  .add('dimension functions', () => (
+  .add("dimension functions", () => (
     <View width="calc(100px + size-250)" height="single-line-height" backgroundColor="blue-400" />
   ));

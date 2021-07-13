@@ -3,21 +3,21 @@ declare namespace Intl {
   type UnicodeBCP47LocaleIdentifier = string;
 
   type RelativeTimeFormatUnit =
-    | 'year' | 'years'
-    | 'quarter' | 'quarters'
-    | 'month' | 'months'
-    | 'week' | 'weeks'
-    | 'day' | 'days'
-    | 'hour' | 'hours'
-    | 'minute' | 'minutes'
-    | 'second' | 'seconds'
+    | "year" | "years"
+    | "quarter" | "quarters"
+    | "month" | "months"
+    | "week" | "weeks"
+    | "day" | "days"
+    | "hour" | "hours"
+    | "minute" | "minutes"
+    | "second" | "seconds"
     ;
 
-  type RelativeTimeFormatLocaleMatcher = 'lookup' | 'best fit';
+  type RelativeTimeFormatLocaleMatcher = "lookup" | "best fit";
 
-  type RelativeTimeFormatNumeric = 'always' | 'auto';
+  type RelativeTimeFormatNumeric = "always" | "auto";
 
-  type RelativeTimeFormatStyle = 'long' | 'short' | 'narrow';
+  type RelativeTimeFormatStyle = "long" | "short" | "narrow";
 
   interface RelativeTimeFormatOptions {
     localeMatcher?: RelativeTimeFormatLocaleMatcher,
@@ -82,12 +82,12 @@ declare namespace Intl {
   }
 
   interface DateTimeFormatOptions {
-    dateStyle?: 'full' | 'long' | 'medium' | 'short',
-    timeStyle?: 'full' | 'long' | 'medium' | 'short',
+    dateStyle?: "full" | "long" | "medium" | "short",
+    timeStyle?: "full" | "long" | "medium" | "short",
     calendar?: string,
-    dayPeriod?: 'narrow' | 'short' | 'long',
+    dayPeriod?: "narrow" | "short" | "long",
     numberingSystem?: string,
-    hourCycle?: 'h11' | 'h12' | 'h23' | 'h24',
+    hourCycle?: "h11" | "h12" | "h23" | "h24",
     fractionalSecondDigits?: 0 | 1 | 2 | 3
   }
 }

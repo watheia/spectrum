@@ -10,31 +10,31 @@
  * governing permissions and limitations under the License.
  */
 
-import ArrowDownSmall from '@spectrum-icons/ui/ArrowDownSmall';
-import {Checkbox} from '@react-spectrum/checkbox';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {FocusRing, useFocusRing} from '@react-aria/focus';
-import {GridNode} from '@react-types/grid';
+import ArrowDownSmall from "@spectrum-icons/ui/ArrowDownSmall";
+import {Checkbox} from "@react-spectrum/checkbox";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {FocusRing, useFocusRing} from "@react-aria/focus";
+import {GridNode} from "@react-types/grid";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {layoutInfoToStyle, ScrollView, setScrollLeft, useVirtualizer, VirtualizerItem} from '@react-aria/virtualizer';
-import {mergeProps, useLayoutEffect} from '@react-aria/utils';
-import {ProgressCircle} from '@react-spectrum/progress';
-import React, {ReactElement, useCallback, useContext, useMemo, useRef} from 'react';
-import {Rect, ReusableView, useVirtualizerState} from '@react-stately/virtualizer';
-import {SpectrumColumnProps, SpectrumTableProps} from '@react-types/table';
-import styles from '@adobe/spectrum-css-temp/components/table/vars.css';
-import stylesOverrides from './table.css';
-import {TableLayout} from '@react-stately/layout';
-import {TableState, useTableState} from '@react-stately/table';
-import {Tooltip, TooltipTrigger} from '@react-spectrum/tooltip';
-import {useHover} from '@react-aria/interactions';
-import {useLocale, useMessageFormatter} from '@react-aria/i18n';
-import {usePress} from '@react-aria/interactions';
-import {useProvider, useProviderProps} from '@react-spectrum/provider';
-import {useTable, useTableCell, useTableColumnHeader, useTableHeaderRow, useTableRow, useTableRowGroup, useTableSelectAllCheckbox, useTableSelectionCheckbox} from '@react-aria/table';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import intlMessages from "../intl/*.json";
+import {layoutInfoToStyle, ScrollView, setScrollLeft, useVirtualizer, VirtualizerItem} from "@react-aria/virtualizer";
+import {mergeProps, useLayoutEffect} from "@react-aria/utils";
+import {ProgressCircle} from "@react-spectrum/progress";
+import React, {ReactElement, useCallback, useContext, useMemo, useRef} from "react";
+import {Rect, ReusableView, useVirtualizerState} from "@react-stately/virtualizer";
+import {SpectrumColumnProps, SpectrumTableProps} from "@react-types/table";
+import styles from "@adobe/spectrum-css-temp/components/table/vars.css";
+import stylesOverrides from "./table.css";
+import {TableLayout} from "@react-stately/layout";
+import {TableState, useTableState} from "@react-stately/table";
+import {Tooltip, TooltipTrigger} from "@react-spectrum/tooltip";
+import {useHover} from "@react-aria/interactions";
+import {useLocale, useMessageFormatter} from "@react-aria/i18n";
+import {usePress} from "@react-aria/interactions";
+import {useProvider, useProviderProps} from "@react-spectrum/provider";
+import {useTable, useTableCell, useTableColumnHeader, useTableHeaderRow, useTableRow, useTableRowGroup, useTableSelectAllCheckbox, useTableSelectionCheckbox} from "@react-aria/table";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 const DEFAULT_HEADER_HEIGHT = {
   medium: 34,
@@ -77,19 +77,19 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
   let formatMessage = useMessageFormatter(intlMessages);
 
   let {scale} = useProvider();
-  let density = props.density || 'regular';
+  let density = props.density || "regular";
   let layout = useMemo(() => new TableLayout({
     // If props.rowHeight is auto, then use estimated heights based on scale, otherwise use fixed heights.
-    rowHeight: props.overflowMode === 'wrap'
+    rowHeight: props.overflowMode === "wrap"
       ? null
       : ROW_HEIGHTS[density][scale],
-    estimatedRowHeight: props.overflowMode === 'wrap'
+    estimatedRowHeight: props.overflowMode === "wrap"
       ? ROW_HEIGHTS[density][scale]
       : null,
-    headingHeight: props.overflowMode === 'wrap'
+    headingHeight: props.overflowMode === "wrap"
       ? null
       : DEFAULT_HEADER_HEIGHT[scale],
-    estimatedHeadingHeight: props.overflowMode === 'wrap'
+    estimatedHeadingHeight: props.overflowMode === "wrap"
       ? DEFAULT_HEADER_HEIGHT[scale]
       : null,
     getDefaultWidth: ({hideHeader, isSelectionCell, showDivider}) => {
@@ -114,11 +114,11 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
   type View = ReusableView<GridNode<T>, unknown>;
   let renderWrapper = (parent: View, reusableView: View, children: View[], renderChildren: (views: View[]) => ReactElement[]) => {
     let style = layoutInfoToStyle(reusableView.layoutInfo, direction, parent && parent.layoutInfo);
-    if (style.overflow === 'hidden') {
-      style.overflow = 'visible'; // needed to support position: sticky
+    if (style.overflow === "hidden") {
+      style.overflow = "visible"; // needed to support position: sticky
     }
 
-    if (reusableView.viewType === 'rowgroup') {
+    if (reusableView.viewType === "rowgroup") {
       return (
         <TableRowGroup
           key={reusableView.key}
@@ -128,7 +128,7 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
       );
     }
 
-    if (reusableView.viewType === 'header') {
+    if (reusableView.viewType === "header") {
       return (
         <TableHeader
           key={reusableView.key}
@@ -138,7 +138,7 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
       );
     }
 
-    if (reusableView.viewType === 'row') {
+    if (reusableView.viewType === "row") {
       return (
         <TableRow
           key={reusableView.key}
@@ -149,7 +149,7 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
       );
     }
 
-    if (reusableView.viewType === 'headerrow') {
+    if (reusableView.viewType === "headerrow") {
       return (
         <TableHeaderRow
           key={reusableView.key}
@@ -168,11 +168,11 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
         className={
           classNames(
             styles,
-            'spectrum-Table-cellWrapper',
+            "spectrum-Table-cellWrapper",
             classNames(
               stylesOverrides,
               {
-                'react-spectrum-Table-cellWrapper': !reusableView.layoutInfo.estimatedSize
+                "react-spectrum-Table-cellWrapper": !reusableView.layoutInfo.estimatedSize
               }
             )
           )
@@ -182,20 +182,20 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
 
   let renderView = (type: string, item: GridNode<T>) => {
     switch (type) {
-      case 'header':
-      case 'rowgroup':
-      case 'section':
-      case 'row':
-      case 'headerrow':
+      case "header":
+      case "rowgroup":
+      case "section":
+      case "row":
+      case "headerrow":
         return null;
-      case 'cell': {
+      case "cell": {
         if (item.props.isSelectionCell) {
           return <TableCheckboxCell cell={item} />;
         }
 
         return <TableCell cell={item} />;
       }
-      case 'placeholder':
+      case "placeholder":
         // TODO: move to react-aria?
         return (
           <div
@@ -203,7 +203,7 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
             aria-colindex={item.index + 1}
             aria-colspan={item.colspan > 1 ? item.colspan : null} />
         );
-      case 'column':
+      case "column":
         if (item.props.isSelectionCell) {
           return <TableSelectAllCell column={item} />;
         }
@@ -218,15 +218,15 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
         }
 
         return <TableColumnHeader column={item} />;
-      case 'loader':
+      case "loader":
         return (
           <CenteredWrapper>
             <ProgressCircle
               isIndeterminate
-              aria-label={state.collection.size > 0 ? formatMessage('loadingMore') : formatMessage('loading')} />
+              aria-label={state.collection.size > 0 ? formatMessage("loadingMore") : formatMessage("loading")} />
           </CenteredWrapper>
         );
-      case 'empty': {
+      case "empty": {
         let emptyState = props.renderEmptyState ? props.renderEmptyState() : null;
         if (emptyState == null) {
           return null;
@@ -249,15 +249,15 @@ function TableView<T extends object>(props: SpectrumTableProps<T>, ref: DOMRef<H
         className={
           classNames(
             styles,
-            'spectrum-Table',
+            "spectrum-Table",
             `spectrum-Table--${density}`,
             {
-              'spectrum-Table--quiet': isQuiet,
-              'spectrum-Table--wrap': props.overflowMode === 'wrap'
+              "spectrum-Table--quiet": isQuiet,
+              "spectrum-Table--wrap": props.overflowMode === "wrap"
             },
             classNames(
               stylesOverrides,
-              'react-spectrum-Table'
+              "react-spectrum-Table"
             )
           )
         }
@@ -277,7 +277,7 @@ function TableVirtualizer({layout, collection, focusedKey, renderView, renderWra
   let headerRef = useRef<HTMLDivElement>();
   let bodyRef = useRef<HTMLDivElement>();
   let loadingState = collection.body.props.loadingState;
-  let isLoading = loadingState === 'loading' || loadingState === 'loadingMore';
+  let isLoading = loadingState === "loading" || loadingState === "loadingMore";
   let onLoadMore = collection.body.props.onLoadMore;
   let state = useVirtualizerState({
     layout,
@@ -299,7 +299,7 @@ function TableVirtualizer({layout, collection, focusedKey, renderView, renderWra
       state.virtualizer.scrollToItem(key, {
         duration: 0,
         // Prevent scrolling to the top when clicking on column headers.
-        shouldScrollY: item?.type !== 'column',
+        shouldScrollY: item?.type !== "column",
         // Offset scroll position by width of selection cell
         // (which is sticky and will overlap the cell we're scrolling to).
         offsetX: column.props.isSelectionCell
@@ -309,7 +309,7 @@ function TableVirtualizer({layout, collection, focusedKey, renderView, renderWra
     }
   }, state, domRef);
 
-  let headerHeight = layout.getLayoutInfo('header')?.rect.height || 0;
+  let headerHeight = layout.getLayoutInfo("header")?.rect.height || 0;
   let visibleRect = state.virtualizer.visibleRect;
 
   // Sync the scroll position from the table body to the header container.
@@ -342,13 +342,13 @@ function TableVirtualizer({layout, collection, focusedKey, renderView, renderWra
       ref={domRef}>
       <div
         role="presentation"
-        className={classNames(styles, 'spectrum-Table-headWrapper')}
+        className={classNames(styles, "spectrum-Table-headWrapper")}
         style={{
           width: visibleRect.width,
           height: headerHeight,
-          overflow: 'hidden',
-          position: 'relative',
-          willChange: state.isScrolling ? 'scroll-position' : '',
+          overflow: "hidden",
+          position: "relative",
+          willChange: state.isScrolling ? "scroll-position" : "",
           transition: state.isAnimating ? `none ${state.virtualizer.transitionDuration}ms` : undefined
         }}
         ref={headerRef}>
@@ -356,9 +356,9 @@ function TableVirtualizer({layout, collection, focusedKey, renderView, renderWra
       </div>
       <ScrollView
         role="presentation"
-        className={classNames(styles, 'spectrum-Table-body')}
+        className={classNames(styles, "spectrum-Table-body")}
         style={{flex: 1}}
-        innerStyle={{overflow: 'visible', transition: state.isAnimating ? `none ${state.virtualizer.transitionDuration}ms` : undefined}}
+        innerStyle={{overflow: "visible", transition: state.isAnimating ? `none ${state.virtualizer.transitionDuration}ms` : undefined}}
         ref={bodyRef}
         contentSize={state.contentSize}
         onVisibleRectChange={onVisibleRectChange}
@@ -375,7 +375,7 @@ function TableHeader({children, ...otherProps}) {
   let {rowGroupProps} = useTableRowGroup();
 
   return (
-    <div {...rowGroupProps} {...otherProps} className={classNames(styles, 'spectrum-Table-head')}>
+    <div {...rowGroupProps} {...otherProps} className={classNames(styles, "spectrum-Table-head")}>
       {children}
     </div>
   );
@@ -393,27 +393,27 @@ function TableColumnHeader({column}) {
   let {hoverProps, isHovered} = useHover({});
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...mergeProps(columnHeaderProps, hoverProps)}
         ref={ref}
         className={
           classNames(
             styles,
-            'spectrum-Table-headCell',
+            "spectrum-Table-headCell",
             {
-              'is-sortable': columnProps.allowsSorting,
-              'is-sorted-desc': state.sortDescriptor?.column === column.key && state.sortDescriptor?.direction === 'descending',
-              'is-sorted-asc': state.sortDescriptor?.column === column.key && state.sortDescriptor?.direction === 'ascending',
-              'is-hovered': isHovered,
-              'spectrum-Table-cell--hideHeader': columnProps.hideHeader
+              "is-sortable": columnProps.allowsSorting,
+              "is-sorted-desc": state.sortDescriptor?.column === column.key && state.sortDescriptor?.direction === "descending",
+              "is-sorted-asc": state.sortDescriptor?.column === column.key && state.sortDescriptor?.direction === "ascending",
+              "is-hovered": isHovered,
+              "spectrum-Table-cell--hideHeader": columnProps.hideHeader
             },
             classNames(
               stylesOverrides,
-              'react-spectrum-Table-cell',
+              "react-spectrum-Table-cell",
               {
-                'react-spectrum-Table-cell--alignCenter': columnProps.align === 'center' || column.colspan > 1,
-                'react-spectrum-Table-cell--alignEnd': columnProps.align === 'end'
+                "react-spectrum-Table-cell--alignCenter": columnProps.align === "center" || column.colspan > 1,
+                "react-spectrum-Table-cell--alignEnd": columnProps.align === "end"
               }
             )
           )
@@ -423,7 +423,7 @@ function TableColumnHeader({column}) {
           column.rendered
         }
         {columnProps.allowsSorting &&
-          <ArrowDownSmall UNSAFE_className={classNames(styles, 'spectrum-Table-sortedIcon')} />
+          <ArrowDownSmall UNSAFE_className={classNames(styles, "spectrum-Table-sortedIcon")} />
         }
 
       </div>
@@ -434,7 +434,7 @@ function TableColumnHeader({column}) {
 function TableSelectAllCell({column}) {
   let ref = useRef();
   let state = useTableContext();
-  let isSingleSelectionMode = state.selectionManager.selectionMode === 'single';
+  let isSingleSelectionMode = state.selectionManager.selectionMode === "single";
   let {columnHeaderProps} = useTableColumnHeader({
     node: column,
     isVirtualized: true
@@ -444,17 +444,17 @@ function TableSelectAllCell({column}) {
   let {hoverProps, isHovered} = useHover({});
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...mergeProps(columnHeaderProps, hoverProps)}
         ref={ref}
         className={
           classNames(
             styles,
-            'spectrum-Table-headCell',
-            'spectrum-Table-checkboxCell',
+            "spectrum-Table-headCell",
+            "spectrum-Table-checkboxCell",
             {
-              'is-hovered': isHovered
+              "is-hovered": isHovered
             }
           )
         }>
@@ -462,8 +462,8 @@ function TableSelectAllCell({column}) {
           {...checkboxProps}
           isDisabled={isSingleSelectionMode}
           isEmphasized
-          UNSAFE_style={{visibility: isSingleSelectionMode ? 'hidden' : 'visible'}}
-          UNSAFE_className={classNames(styles, 'spectrum-Table-checkbox')} />
+          UNSAFE_style={{visibility: isSingleSelectionMode ? "hidden" : "visible"}}
+          UNSAFE_className={classNames(styles, "spectrum-Table-checkbox")} />
       </div>
     </FocusRing>
   );
@@ -482,7 +482,7 @@ function TableRowGroup({children, ...otherProps}) {
 function TableRow({item, children, ...otherProps}) {
   let ref = useRef();
   let state = useTableContext();
-  let allowsSelection = state.selectionManager.selectionMode !== 'none';
+  let allowsSelection = state.selectionManager.selectionMode !== "none";
   let isDisabled = state.disabledKeys.has(item.key);
   let isSelected = state.selectionManager.isSelected(item.key);
   let {rowProps} = useTableRow({
@@ -516,14 +516,14 @@ function TableRow({item, children, ...otherProps}) {
       className={
         classNames(
           styles,
-          'spectrum-Table-row',
+          "spectrum-Table-row",
           {
-            'is-active': isPressed,
-            'is-selected': isSelected,
-            'is-focused': isFocusVisibleWithin,
-            'focus-ring': isFocusVisible,
-            'is-hovered': isHovered && allowsSelection,
-            'is-disabled': isDisabled
+            "is-active": isPressed,
+            "is-selected": isSelected,
+            "is-focused": isFocusVisibleWithin,
+            "focus-ring": isFocusVisible,
+            "is-hovered": isHovered && allowsSelection,
+            "is-disabled": isDisabled
           }
         )
       }>
@@ -556,29 +556,29 @@ function TableCheckboxCell({cell}) {
   let {checkboxProps} = useTableSelectionCheckbox({key: cell.parentKey}, state);
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...gridCellProps}
         ref={ref}
         className={
           classNames(
             styles,
-            'spectrum-Table-cell',
-            'spectrum-Table-checkboxCell',
+            "spectrum-Table-cell",
+            "spectrum-Table-checkboxCell",
             {
-              'is-disabled': isDisabled
+              "is-disabled": isDisabled
             },
             classNames(
               stylesOverrides,
-              'react-spectrum-Table-cell'
+              "react-spectrum-Table-cell"
             )
           )}>
-        {state.selectionManager.selectionMode !== 'none' &&
+        {state.selectionManager.selectionMode !== "none" &&
           <Checkbox
             {...checkboxProps}
             isEmphasized
             isDisabled={isDisabled}
-            UNSAFE_className={classNames(styles, 'spectrum-Table-checkbox')} />
+            UNSAFE_className={classNames(styles, "spectrum-Table-checkbox")} />
         }
       </div>
     </FocusRing>
@@ -596,25 +596,25 @@ function TableCell({cell}) {
   }, state, ref);
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...gridCellProps}
         ref={ref}
         className={
           classNames(
             styles,
-            'spectrum-Table-cell',
+            "spectrum-Table-cell",
             {
-              'spectrum-Table-cell--divider': columnProps.showDivider,
-              'spectrum-Table-cell--hideHeader': columnProps.hideHeader,
-              'is-disabled': isDisabled
+              "spectrum-Table-cell--divider": columnProps.showDivider,
+              "spectrum-Table-cell--hideHeader": columnProps.hideHeader,
+              "is-disabled": isDisabled
             },
             classNames(
               stylesOverrides,
-              'react-spectrum-Table-cell',
+              "react-spectrum-Table-cell",
               {
-                'react-spectrum-Table-cell--alignCenter': columnProps.align === 'center',
-                'react-spectrum-Table-cell--alignEnd': columnProps.align === 'end'
+                "react-spectrum-Table-cell--alignCenter": columnProps.align === "center",
+                "react-spectrum-Table-cell--alignEnd": columnProps.align === "end"
               }
             )
           )
@@ -623,7 +623,7 @@ function TableCell({cell}) {
           className={
             classNames(
               styles,
-              'spectrum-Table-cellContents'
+              "spectrum-Table-cellContents"
             )
         }>
           {cell.rendered}
@@ -639,7 +639,7 @@ function CenteredWrapper({children}) {
     <div
       role="row"
       aria-rowindex={state.collection.headerRows.length + state.collection.size + 1}
-      className={classNames(stylesOverrides, 'react-spectrum-Table-centeredWrapper')}>
+      className={classNames(stylesOverrides, "react-spectrum-Table-centeredWrapper")}>
       <div role="rowheader" aria-colspan={state.collection.columns.length}>
         {children}
       </div>

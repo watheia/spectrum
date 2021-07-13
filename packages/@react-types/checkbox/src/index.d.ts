@@ -23,8 +23,8 @@ import {
   StyleProps,
   Validation,
   ValueBase
-} from '@react-types/shared';
-import {ReactElement, ReactNode} from 'react';
+} from "@react-types/shared";
+import {ReactElement, ReactNode} from "react";
 
 export interface ToggleProps extends InputBase, Validation, FocusableProps {
   /**
@@ -57,7 +57,7 @@ export interface AriaToggleProps extends ToggleProps, FocusableDOMProps, AriaLab
   /**
    * Identifies the element (or elements) whose contents or presence are controlled by the current element.
    */
-  'aria-controls'?: string
+  "aria-controls"?: string
 }
 
 export interface CheckboxGroupProps extends ValueBase<string[]>, InputBase, LabelableProps {}
@@ -79,7 +79,7 @@ export interface AriaCheckboxGroupProps extends CheckboxGroupProps, DOMProps, Ar
   name?: string
 }
 
-export interface AriaCheckboxGroupItemProps extends Omit<AriaCheckboxProps, 'isSelected' | 'defaultSelected'> {
+export interface AriaCheckboxGroupItemProps extends Omit<AriaCheckboxProps, "isSelected" | "defaultSelected"> {
   value: string
 }
 

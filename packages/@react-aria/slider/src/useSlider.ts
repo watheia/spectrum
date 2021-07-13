@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaSliderProps} from '@react-types/slider';
-import {clamp, mergeProps, useGlobalListeners} from '@react-aria/utils';
-import {getSliderThumbId, sliderIds} from './utils';
-import React, {HTMLAttributes, LabelHTMLAttributes, OutputHTMLAttributes, RefObject, useRef} from 'react';
-import {setInteractionModality, useMove} from '@react-aria/interactions';
-import {SliderState} from '@react-stately/slider';
-import {useLabel} from '@react-aria/label';
-import {useLocale} from '@react-aria/i18n';
+import {AriaSliderProps} from "@react-types/slider";
+import {clamp, mergeProps, useGlobalListeners} from "@react-aria/utils";
+import {getSliderThumbId, sliderIds} from "./utils";
+import React, {HTMLAttributes, LabelHTMLAttributes, OutputHTMLAttributes, RefObject, useRef} from "react";
+import {setInteractionModality, useMove} from "@react-aria/interactions";
+import {SliderState} from "@react-stately/slider";
+import {useLabel} from "@react-aria/label";
+import {useLocale} from "@react-aria/i18n";
 
 interface SliderAria {
   /** Props for the label element. */
@@ -50,7 +50,7 @@ export function useSlider(
 ): SliderAria {
   let {labelProps, fieldProps} = useLabel(props);
 
-  let isVertical = props.orientation === 'vertical';
+  let isVertical = props.orientation === "vertical";
 
   // Attach id of the label to the state so it can be accessed by useSliderThumb.
   sliderIds.set(state, labelProps.id ?? fieldProps.id);
@@ -67,7 +67,7 @@ export function useSlider(
 
   const stateRef = useRef<SliderState>(null);
   stateRef.current = state;
-  const reverseX = direction === 'rtl';
+  const reverseX = direction === "rtl";
   const currentPosition = useRef<number>(null);
   const {moveProps} = useMove({
     onMoveStart() {
@@ -106,11 +106,11 @@ export function useSlider(
     if (trackRef.current && !props.isDisabled && state.values.every((_, i) => !state.isThumbDragging(i))) {
       let size = isVertical ? trackRef.current.offsetHeight : trackRef.current.offsetWidth;
       // Find the closest thumb
-      const trackPosition = trackRef.current.getBoundingClientRect()[isVertical ? 'top' : 'left'];
+      const trackPosition = trackRef.current.getBoundingClientRect()[isVertical ? "top" : "left"];
       const clickPosition = isVertical ? clientY : clientX;
       const offset = clickPosition - trackPosition;
       let percent = offset / size;
-      if (direction === 'rtl' || isVertical) {
+      if (direction === "rtl" || isVertical) {
         percent = 1 - percent;
       }
       let value = state.getPercentValue(percent);
@@ -145,9 +145,9 @@ export function useSlider(
         state.setThumbDragging(realTimeTrackDraggingIndex.current, true);
         state.setThumbValue(closestThumb, value);
 
-        addGlobalListener(window, 'mouseup', onUpTrack, false);
-        addGlobalListener(window, 'touchend', onUpTrack, false);
-        addGlobalListener(window, 'pointerup', onUpTrack, false);
+        addGlobalListener(window, "mouseup", onUpTrack, false);
+        addGlobalListener(window, "touchend", onUpTrack, false);
+        addGlobalListener(window, "pointerup", onUpTrack, false);
       } else {
         realTimeTrackDraggingIndex.current = null;
       }
@@ -162,9 +162,9 @@ export function useSlider(
         realTimeTrackDraggingIndex.current = null;
       }
 
-      removeGlobalListener(window, 'mouseup', onUpTrack, false);
-      removeGlobalListener(window, 'touchend', onUpTrack, false);
-      removeGlobalListener(window, 'pointerup', onUpTrack, false);
+      removeGlobalListener(window, "mouseup", onUpTrack, false);
+      removeGlobalListener(window, "touchend", onUpTrack, false);
+      removeGlobalListener(window, "pointerup", onUpTrack, false);
     }
   };
 
@@ -178,7 +178,7 @@ export function useSlider(
       // Safari does not focus <input type="range"> elements when clicking on an associated <label>,
       // so do it manually. In addition, make sure we show the focus ring.
       document.getElementById(getSliderThumbId(state, 0))?.focus();
-      setInteractionModality('keyboard');
+      setInteractionModality("keyboard");
     };
   }
 
@@ -188,7 +188,7 @@ export function useSlider(
     // all the thumb inputs in the Slider.  The label of the Slider will
     // be used to label the group.
     groupProps: {
-      role: 'group',
+      role: "group",
       ...fieldProps
     },
     trackProps: mergeProps({
@@ -199,7 +199,7 @@ export function useSlider(
         onDownTrack(e, undefined, e.clientX, e.clientY);
       },
       onPointerDown(e: React.PointerEvent<HTMLElement>) {
-        if (e.pointerType === 'mouse' && (e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey)) {
+        if (e.pointerType === "mouse" && (e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey)) {
           return;
         }
         onDownTrack(e, e.pointerId, e.clientX, e.clientY);
@@ -207,8 +207,8 @@ export function useSlider(
       onTouchStart(e: React.TouchEvent<HTMLElement>) { onDownTrack(e, e.changedTouches[0].identifier, e.changedTouches[0].clientX, e.changedTouches[0].clientY); }
     }, moveProps),
     outputProps: {
-      htmlFor: state.values.map((_, index) => getSliderThumbId(state, index)).join(' '),
-      'aria-live': 'off'
+      htmlFor: state.values.map((_, index) => getSliderThumbId(state, index)).join(" "),
+      "aria-live": "off"
     }
   };
 }

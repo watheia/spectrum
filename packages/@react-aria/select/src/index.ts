@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useSelect';
-export * from './HiddenSelect';
+export * from "./useSelect";
+export * from "./HiddenSelect";

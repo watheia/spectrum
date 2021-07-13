@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from '@testing-library/react';
-import {installPointerEvent} from '@react-spectrum/test-utils';
-import React, {useRef} from 'react';
-import {useInteractOutside} from '../';
+import {fireEvent, render} from "@testing-library/react";
+import {installPointerEvent} from "@react-spectrum/test-utils";
+import React, {useRef} from "react";
+import {useInteractOutside} from "../";
 
 function Example(props) {
   let ref = useRef();
@@ -27,65 +27,65 @@ function pointerEvent(type, opts) {
   return evt;
 }
 
-describe('useInteractOutside', function () {
+describe("useInteractOutside", function () {
   // TODO: JSDOM doesn't yet support pointer events. Once they do, convert these tests.
   // https://github.com/jsdom/jsdom/issues/2527
-  describe('pointer events', function () {
+  describe("pointer events", function () {
     installPointerEvent();
 
-    it('should fire interact outside events based on pointer events', function () {
+    it("should fire interact outside events based on pointer events", function () {
       let onInteractOutside = jest.fn();
       let res = render(
         <Example onInteractOutside={onInteractOutside} />
       );
 
-      let el = res.getByText('test');
-      fireEvent(el, pointerEvent('pointerdown'));
-      fireEvent(el, pointerEvent('pointerup'));
+      let el = res.getByText("test");
+      fireEvent(el, pointerEvent("pointerdown"));
+      fireEvent(el, pointerEvent("pointerup"));
       expect(onInteractOutside).not.toHaveBeenCalled();
 
-      fireEvent(document.body, pointerEvent('pointerdown'));
-      fireEvent(document.body, pointerEvent('pointerup'));
+      fireEvent(document.body, pointerEvent("pointerdown"));
+      fireEvent(document.body, pointerEvent("pointerup"));
       expect(onInteractOutside).toHaveBeenCalledTimes(1);
     });
 
-    it('should only listen for the left mouse button', function () {
+    it("should only listen for the left mouse button", function () {
       let onInteractOutside = jest.fn();
       render(
         <Example onInteractOutside={onInteractOutside} />
       );
 
-      fireEvent(document.body, pointerEvent('pointerdown', {button: 1}));
-      fireEvent(document.body, pointerEvent('pointerup', {button: 1}));
+      fireEvent(document.body, pointerEvent("pointerdown", {button: 1}));
+      fireEvent(document.body, pointerEvent("pointerup", {button: 1}));
       expect(onInteractOutside).not.toHaveBeenCalled();
 
-      fireEvent(document.body, pointerEvent('pointerdown', {button: 0}));
-      fireEvent(document.body, pointerEvent('pointerup', {button: 0}));
+      fireEvent(document.body, pointerEvent("pointerdown", {button: 0}));
+      fireEvent(document.body, pointerEvent("pointerup", {button: 0}));
       expect(onInteractOutside).toHaveBeenCalledTimes(1);
     });
 
-    it('should not fire interact outside if there is a pointer up event without a pointer down first', function () {
+    it("should not fire interact outside if there is a pointer up event without a pointer down first", function () {
       // Fire pointer down before component with useInteractOutside is mounted
-      fireEvent(document.body, pointerEvent('pointerdown'));
+      fireEvent(document.body, pointerEvent("pointerdown"));
 
       let onInteractOutside = jest.fn();
       render(
         <Example onInteractOutside={onInteractOutside} />
       );
 
-      fireEvent(document.body, pointerEvent('pointerup'));
+      fireEvent(document.body, pointerEvent("pointerup"));
       expect(onInteractOutside).not.toHaveBeenCalled();
     });
   });
 
-  describe('mouse events', function () {
-    it('should fire interact outside events based on mouse events', function () {
+  describe("mouse events", function () {
+    it("should fire interact outside events based on mouse events", function () {
       let onInteractOutside = jest.fn();
       let res = render(
         <Example onInteractOutside={onInteractOutside} />
       );
 
-      let el = res.getByText('test');
+      let el = res.getByText("test");
       fireEvent.mouseDown(el);
       fireEvent.mouseUp(el);
       expect(onInteractOutside).not.toHaveBeenCalled();
@@ -95,7 +95,7 @@ describe('useInteractOutside', function () {
       expect(onInteractOutside).toHaveBeenCalledTimes(1);
     });
 
-    it('should only listen for the left mouse button', function () {
+    it("should only listen for the left mouse button", function () {
       let onInteractOutside = jest.fn();
       render(
         <Example onInteractOutside={onInteractOutside} />
@@ -110,7 +110,7 @@ describe('useInteractOutside', function () {
       expect(onInteractOutside).toHaveBeenCalledTimes(1);
     });
 
-    it('should not fire interact outside if there is a mouse up event without a mouse down first', function () {
+    it("should not fire interact outside if there is a mouse up event without a mouse down first", function () {
       // Fire mouse down before component with useInteractOutside is mounted
       fireEvent.mouseDown(document.body);
 
@@ -124,14 +124,14 @@ describe('useInteractOutside', function () {
     });
   });
 
-  describe('touch events', function () {
-    it('should fire interact outside events based on mouse events', function () {
+  describe("touch events", function () {
+    it("should fire interact outside events based on mouse events", function () {
       let onInteractOutside = jest.fn();
       let res = render(
         <Example onInteractOutside={onInteractOutside} />
       );
 
-      let el = res.getByText('test');
+      let el = res.getByText("test");
       fireEvent.touchStart(el);
       fireEvent.touchEnd(el);
       expect(onInteractOutside).not.toHaveBeenCalled();
@@ -141,13 +141,13 @@ describe('useInteractOutside', function () {
       expect(onInteractOutside).toHaveBeenCalledTimes(1);
     });
 
-    it('should ignore emulated mouse events', function () {
+    it("should ignore emulated mouse events", function () {
       let onInteractOutside = jest.fn();
       let res = render(
         <Example onInteractOutside={onInteractOutside} />
       );
 
-      let el = res.getByText('test');
+      let el = res.getByText("test");
       fireEvent.touchStart(el);
       fireEvent.touchEnd(el);
       fireEvent.mouseUp(el);
@@ -159,7 +159,7 @@ describe('useInteractOutside', function () {
       expect(onInteractOutside).toHaveBeenCalledTimes(1);
     });
 
-    it('should not fire interact outside if there is a touch end event without a touch start first', function () {
+    it("should not fire interact outside if there is a touch end event without a touch start first", function () {
       // Fire mouse down before component with useInteractOutside is mounted
       fireEvent.touchStart(document.body);
 
@@ -172,19 +172,19 @@ describe('useInteractOutside', function () {
       expect(onInteractOutside).not.toHaveBeenCalled();
     });
   });
-  describe('disable interact outside events', function () {
-    it('does not handle pointer events if disabled', function () {
+  describe("disable interact outside events", function () {
+    it("does not handle pointer events if disabled", function () {
       let onInteractOutside = jest.fn();
       render(
         <Example isDisabled onInteractOutside={onInteractOutside} />
       );
 
-      fireEvent(document.body, pointerEvent('mousedown'));
-      fireEvent(document.body, pointerEvent('mouseup'));
+      fireEvent(document.body, pointerEvent("mousedown"));
+      fireEvent(document.body, pointerEvent("mouseup"));
       expect(onInteractOutside).not.toHaveBeenCalled();
     });
 
-    it('does not handle touch events if disabled', function () {
+    it("does not handle touch events if disabled", function () {
       let onInteractOutside = jest.fn();
       render(
         <Example isDisabled onInteractOutside={onInteractOutside} />
@@ -195,7 +195,7 @@ describe('useInteractOutside', function () {
       expect(onInteractOutside).not.toHaveBeenCalled();
     });
 
-    it('does not handle mouse events if disabled', function () {
+    it("does not handle mouse events if disabled", function () {
       let onInteractOutside = jest.fn();
       render(
         <Example isDisabled onInteractOutside={onInteractOutside} />

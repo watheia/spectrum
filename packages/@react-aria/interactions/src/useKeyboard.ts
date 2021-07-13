@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {createEventHandler} from './createEventHandler';
-import {HTMLAttributes} from 'react';
-import {KeyboardEvents} from '@react-types/shared';
+import {createEventHandler} from "./createEventHandler";
+import {HTMLAttributes} from "react";
+import {KeyboardEvents} from "@react-types/shared";
 
 export interface KeyboardProps extends KeyboardEvents {
   /** Whether the keyboard events should be disabled. */

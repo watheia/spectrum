@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {CalendarBase} from './CalendarBase';
-import React from 'react';
-import {SpectrumCalendarProps} from '@react-types/calendar';
-import {useCalendar} from '@react-aria/calendar';
-import {useCalendarState} from '@react-stately/calendar';
+import {CalendarBase} from "./CalendarBase";
+import React from "react";
+import {SpectrumCalendarProps} from "@react-types/calendar";
+import {useCalendar} from "@react-aria/calendar";
+import {useCalendarState} from "@react-stately/calendar";
 
 export function Calendar(props: SpectrumCalendarProps) {
   let state = useCalendarState(props);

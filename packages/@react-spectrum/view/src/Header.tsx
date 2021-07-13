@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {ClearSlots, useDOMRef, useSlotProps, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import {HeaderProps} from '@react-types/view';
-import React, {forwardRef} from 'react';
+import {ClearSlots, useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import {HeaderProps} from "@react-types/view";
+import React, {forwardRef} from "react";
 
 function Header(props: HeaderProps, ref: DOMRef) {
-  props = useSlotProps(props, 'header');
+  props = useSlotProps(props, "header");
   let {
     children,
     ...otherProps

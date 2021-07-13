@@ -10,41 +10,41 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ActionButton, Button} from '@react-spectrum/button';
-import Add from '@spectrum-icons/workflow/Add';
-import Alert from '@spectrum-icons/workflow/Alert';
-import Bell from '@spectrum-icons/workflow/Bell';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import {ComboBox, Item, Section} from '../';
-import Copy from '@spectrum-icons/workflow/Copy';
-import Draw from '@spectrum-icons/workflow/Draw';
-import {Flex} from '@react-spectrum/layout';
-import {mergeProps} from '@react-aria/utils';
-import React, {useRef, useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {Text} from '@react-spectrum/text';
-import {TextField} from '@react-spectrum/textfield';
-import {useAsyncList} from '@react-stately/data';
-import {useFilter} from '@react-aria/i18n';
-import {useListData, useTreeData} from '@react-stately/data';
+import {action} from "@storybook/addon-actions";
+import {ActionButton, Button} from "@react-spectrum/button";
+import Add from "@spectrum-icons/workflow/Add";
+import Alert from "@spectrum-icons/workflow/Alert";
+import Bell from "@spectrum-icons/workflow/Bell";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import {ComboBox, Item, Section} from "../";
+import Copy from "@spectrum-icons/workflow/Copy";
+import Draw from "@spectrum-icons/workflow/Draw";
+import {Flex} from "@react-spectrum/layout";
+import {mergeProps} from "@react-aria/utils";
+import React, {useRef, useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {Text} from "@react-spectrum/text";
+import {TextField} from "@react-spectrum/textfield";
+import {useAsyncList} from "@react-stately/data";
+import {useFilter} from "@react-aria/i18n";
+import {useListData, useTreeData} from "@react-stately/data";
 
 let items = [
-  {name: 'Aardvark', id: '1'},
-  {name: 'Kangaroo', id: '2'},
-  {name: 'Snake', id: '3'}
+  {name: "Aardvark", id: "1"},
+  {name: "Kangaroo", id: "2"},
+  {name: "Snake", id: "3"}
 ];
 
 let withSection = [
-  {name: 'Animals', id: 's1', children: [
-    {name: 'Aardvark', id: '1'},
-    {name: 'Kangaroo', id: '2'},
-    {name: 'Snake', id: '3'}
+  {name: "Animals", id: "s1", children: [
+    {name: "Aardvark", id: "1"},
+    {name: "Kangaroo", id: "2"},
+    {name: "Snake", id: "3"}
   ]},
-  {name: 'People', id: 's2', children: [
-    {name: 'Danni', id: '4'},
-    {name: 'Devon', id: '5'},
-    {name: 'Ross', id: '6'}
+  {name: "People", id: "s2", children: [
+    {name: "Danni", id: "4"},
+    {name: "Devon", id: "5"},
+    {name: "Ross", id: "6"}
   ]}
 ];
 
@@ -55,24 +55,24 @@ for (let i = 0; i < 50; i++) {
     children.push({name: `Section ${i}, Item ${j}`});
   }
 
-  lotsOfSections.push({name: 'Section ' + i, children});
+  lotsOfSections.push({name: "Section " + i, children});
 }
 
 let actions = {
-  onOpenChange: action('onOpenChange'),
-  onInputChange: action('onInputChange'),
-  onSelectionChange: action('onSelectionChange'),
-  onBlur: action('onBlur'),
-  onFocus: action('onFocus')
+  onOpenChange: action("onOpenChange"),
+  onInputChange: action("onInputChange"),
+  onSelectionChange: action("onSelectionChange"),
+  onBlur: action("onBlur"),
+  onFocus: action("onFocus")
 };
 
-storiesOf('ComboBox', module)
+storiesOf("ComboBox", module)
   .add(
-    'static items',
+    "static items",
     () => render({})
   )
   .add(
-    'dynamic items',
+    "dynamic items",
     () => (
       <ComboBox defaultItems={items} label="Combobox" {...actions}>
         {(item) => <Item>{item.name}</Item>}
@@ -80,7 +80,7 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'no items',
+    "no items",
     () => (
       <ComboBox defaultItems={[]} label="Combobox" {...actions}>
         {(item: any) => <Item>{item.name}</Item>}
@@ -88,13 +88,13 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'with mapped items (defaultItem and items undef)',
+    "with mapped items (defaultItem and items undef)",
     () => (
       <ComboBoxWithMap defaultSelectedKey="two" />
     )
   )
   .add(
-    'with sections',
+    "with sections",
     () => (
       <ComboBox defaultItems={withSection} label="Combobox" {...actions}>
         {(item) => (
@@ -106,7 +106,7 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'with many sections',
+    "with many sections",
     () => (
       <ComboBox defaultItems={lotsOfSections} label="Combobox" {...actions}>
         {(item) => (
@@ -118,7 +118,7 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'complex items',
+    "complex items",
     () => (
       <ComboBox label="Select action">
         <Item textValue="Add to queue">
@@ -148,7 +148,7 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'user provided id and label',
+    "user provided id and label",
     () => (
       <Flex direction="column" width="size-3000">
         <label id="test-label" htmlFor="test-id">Combobox</label>
@@ -164,11 +164,11 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'menuTrigger: focus',
-    () => render({menuTrigger: 'focus'})
+    "menuTrigger: focus",
+    () => render({menuTrigger: "focus"})
   )
   .add(
-    'menuTrigger: manual',
+    "menuTrigger: manual",
     () => (
       <Flex direction="column">
         <TextField label="Email" />
@@ -185,9 +185,9 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'disabled keys',
+    "disabled keys",
     () => (
-      <ComboBox defaultItems={withSection} label="Combobox" disabledKeys={['Snake', 'Ross']} {...actions}>
+      <ComboBox defaultItems={withSection} label="Combobox" disabledKeys={["Snake", "Ross"]} {...actions}>
         {(item) => (
           <Section key={item.name} items={item.children} title={item.name}>
             {(item) => <Item key={item.name}>{item.name}</Item>}
@@ -197,27 +197,27 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({isDisabled: true})
   )
   .add(
-    'isReadOnly',
-    () => render({isReadOnly: true, defaultSelectedKey: 'two'})
+    "isReadOnly",
+    () => render({isReadOnly: true, defaultSelectedKey: "two"})
   )
   .add(
-    'labelPosition: top, labelAlign: end',
-    () => render({labelAlign: 'end'})
+    "labelPosition: top, labelAlign: end",
+    () => render({labelAlign: "end"})
   )
   .add(
-    'labelPosition: side',
-    () => render({labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({labelPosition: "side"})
   )
   .add(
-    'no visible label',
+    "no visible label",
     () => (
       <ComboBox defaultItems={items} aria-label="ComboBox" {...actions}>
         {(item: any) => <Item>{item.name}</Item>}
@@ -225,7 +225,7 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'no visible label, isQuiet',
+    "no visible label, isQuiet",
     () => (
       <ComboBox defaultItems={items} aria-label="ComboBox" isQuiet {...actions}>
         {(item: any) => <Item>{item.name}</Item>}
@@ -233,49 +233,49 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'isRequired',
+    "isRequired",
     () => render({isRequired: true})
   )
   .add(
-    'isRequired, necessityIndicator: label',
-    () => render({isRequired: true, necessityIndicator: 'label'})
+    "isRequired, necessityIndicator: label",
+    () => render({isRequired: true, necessityIndicator: "label"})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid', defaultSelectedKey: 'two'})
+    "validationState: invalid",
+    () => render({validationState: "invalid", defaultSelectedKey: "two"})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid', defaultSelectedKey: 'two'})
+    "validationState: valid",
+    () => render({validationState: "valid", defaultSelectedKey: "two"})
   )
   .add(
-    'validationState: invalid, isQuiet',
-    () => render({validationState: 'invalid', isQuiet: true, defaultSelectedKey: 'two'})
+    "validationState: invalid, isQuiet",
+    () => render({validationState: "invalid", isQuiet: true, defaultSelectedKey: "two"})
   )
   .add(
-    'validationState: valid, isQuiet',
-    () => render({validationState: 'valid', isQuiet: true, defaultSelectedKey: 'two'})
+    "validationState: valid, isQuiet",
+    () => render({validationState: "valid", isQuiet: true, defaultSelectedKey: "two"})
   )
   .add(
-    'placeholder',
-    () => render({placeholder: 'Select an item...'})
+    "placeholder",
+    () => render({placeholder: "Select an item..."})
   )
   .add(
-    'autoFocus: true',
+    "autoFocus: true",
     () => render({autoFocus: true})
   )
   .add(
-    'direction: top',
-    () => render({direction: 'top'})
+    "direction: top",
+    () => render({direction: "top"})
   )
   .add(
-    'allowsCustomValue: true',
+    "allowsCustomValue: true",
     () => (
-      <CustomValueComboBox allowsCustomValue selectedKey="2" disabledKeys={['3', '6']} />
+      <CustomValueComboBox allowsCustomValue selectedKey="2" disabledKeys={["3", "6"]} />
     )
   )
   .add(
-    'customWidth',
+    "customWidth",
     () => (
       <Flex direction="column">
         <ComboBox label="Combobox" {...actions} width="size-500">
@@ -306,7 +306,7 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'no visible label, customWidth',
+    "no visible label, customWidth",
     () => (
       <Flex gap="size-300" direction="column" >
         <ComboBox {...actions} aria-label="ComboBox" width="size-500">
@@ -337,11 +337,11 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'resize',
+    "resize",
     () => <ResizeCombobox />
   )
   .add(
-    'in small div',
+    "in small div",
     () => (
       <Flex width="size-500">
         <ComboBox aria-label="ComboBox" {...actions} >
@@ -356,61 +356,61 @@ storiesOf('ComboBox', module)
     )
   )
   .add(
-    'inputValue (controlled)',
+    "inputValue (controlled)",
     () => (
-      <ControlledValueComboBox inputValue="Snake" disabledKeys={['2', '6']} />
+      <ControlledValueComboBox inputValue="Snake" disabledKeys={["2", "6"]} />
     )
   )
   .add(
-    'defaultInputValue (uncontrolled)',
-    () => render({defaultInputValue: 'Item Three', disabledKeys: ['two']})
+    "defaultInputValue (uncontrolled)",
+    () => render({defaultInputValue: "Item Three", disabledKeys: ["two"]})
   )
   .add(
-    'selectedKey (controlled)',
+    "selectedKey (controlled)",
     () => (
-      <ControlledKeyComboBox selectedKey="4" disabledKeys={['2', '6']} />
+      <ControlledKeyComboBox selectedKey="4" disabledKeys={["2", "6"]} />
     )
   )
   .add(
-    'defaultSelectedKey (uncontrolled)',
-    () => render({defaultSelectedKey: 'two', disabledKeys: ['one']})
+    "defaultSelectedKey (uncontrolled)",
+    () => render({defaultSelectedKey: "two", disabledKeys: ["one"]})
   )
   .add(
-    'inputValue and selectedKey (controlled)',
+    "inputValue and selectedKey (controlled)",
     () => (
-      <AllControlledComboBox selectedKey="2" inputValue="Kangaroo" disabledKeys={['2', '6']} />
+      <AllControlledComboBox selectedKey="2" inputValue="Kangaroo" disabledKeys={["2", "6"]} />
     )
   )
   .add(
-    'inputValue and selectedKey, allowsCustomValue (controlled)',
+    "inputValue and selectedKey, allowsCustomValue (controlled)",
     () => (
-      <AllControlledComboBox selectedKey="2" inputValue="Kangaroo" disabledKeys={['2', '6']} allowsCustomValue />
+      <AllControlledComboBox selectedKey="2" inputValue="Kangaroo" disabledKeys={["2", "6"]} allowsCustomValue />
     )
   )
   .add(
-    'defaultInputValue and defaultSelectedKey (uncontrolled)',
-    () => render({defaultInputValue: 'Item Two', defaultSelectedKey: 'two', disabledKeys: ['two']})
+    "defaultInputValue and defaultSelectedKey (uncontrolled)",
+    () => render({defaultInputValue: "Item Two", defaultSelectedKey: "two", disabledKeys: ["two"]})
   )
   .add(
-    'inputValue and defaultSelectedKey (controlled by inputvalue)',
+    "inputValue and defaultSelectedKey (controlled by inputvalue)",
     () => (
-      <ControlledValueComboBox inputValue="K" defaultSelectedKey="2" disabledKeys={['2', '6']} />
+      <ControlledValueComboBox inputValue="K" defaultSelectedKey="2" disabledKeys={["2", "6"]} />
     )
   )
   .add(
-    'defaultInputValue and selectedKey (controlled by selectedKey)',
+    "defaultInputValue and selectedKey (controlled by selectedKey)",
     () => (
-      <ControlledKeyComboBox defaultInputValue="Blah" selectedKey="2" disabledKeys={['2', '6']} />
+      <ControlledKeyComboBox defaultInputValue="Blah" selectedKey="2" disabledKeys={["2", "6"]} />
     )
   )
   .add(
-    'custom filter',
+    "custom filter",
     () => (
       <CustomFilterComboBox />
     )
   )
   .add(
-    'loadingState',
+    "loadingState",
     () => <LoadingExamples />
   )
   .add(
@@ -426,31 +426,31 @@ storiesOf('ComboBox', module)
     () => <LoadingExamples isQuiet validationState="invalid" />
   )
   .add(
-    'filtering with useListData',
+    "filtering with useListData",
     () => (
       <ListDataExample />
     )
   )
   .add(
-    'server side filtering with useAsyncList',
+    "server side filtering with useAsyncList",
     () => (
       <AsyncLoadingExample />
     )
   )
   .add(
-    'server side filtering with useAsyncList (controlled key)',
+    "server side filtering with useAsyncList (controlled key)",
     () => (
       <AsyncLoadingExampleControlledKey />
     )
   )
   .add(
-    'server side filtering with controlled key and inputValue reset if not focused',
+    "server side filtering with controlled key and inputValue reset if not focused",
     () => (
       <AsyncLoadingExampleControlledKeyWithReset />
     )
   )
   .add(
-    '2 comboboxes',
+    "2 comboboxes",
     () => (
       <Flex gap="size-100">
         <ComboBox defaultItems={items} label="Combobox1">
@@ -484,10 +484,10 @@ function LoadingExamples(props) {
 }
 
 function ListDataExample() {
-  let {contains} = useFilter({sensitivity: 'base'});
+  let {contains} = useFilter({sensitivity: "base"});
   let list = useListData({
     initialItems: items,
-    initialFilterText: 'Snake',
+    initialFilterText: "Snake",
     filter(item, text) {
       return contains(item.name, text);
     }
@@ -499,7 +499,7 @@ function ListDataExample() {
     <Flex gap="size-300" direction="column" >
       <ComboBox
         onOpenChange={(open, reason) => {
-          if (reason === 'manual' && open) {
+          if (reason === "manual" && open) {
             setShowAll(true);
           }
         }}
@@ -532,7 +532,7 @@ function AsyncLoadingExample() {
   let list = useAsyncList<StarWarsChar>({
     async load({signal, cursor, filterText}) {
       if (cursor) {
-        cursor = cursor.replace(/^http:\/\//i, 'https://');
+        cursor = cursor.replace(/^http:\/\//i, "https://");
       }
 
       // Slow down load so progress circle can appear
@@ -555,7 +555,7 @@ function AsyncLoadingExample() {
       onInputChange={list.setFilterText}
       loadingState={list.loadingState}
       onLoadMore={list.loadMore}
-      onOpenChange={action('onOpenChange')}>
+      onOpenChange={action("onOpenChange")}>
       {item => <Item key={item.name}>{item.name}</Item>}
     </ComboBox>
   );
@@ -570,7 +570,7 @@ function AsyncLoadingExampleControlledKey() {
   let list = useAsyncList<StarWarsChar>({
     async load({signal, cursor, filterText}) {
       if (cursor) {
-        cursor = cursor.replace(/^http:\/\//i, 'https://');
+        cursor = cursor.replace(/^http:\/\//i, "https://");
       }
 
       // Slow down load so progress circle can appear
@@ -584,7 +584,7 @@ function AsyncLoadingExampleControlledKey() {
         cursor: json.next
       };
     },
-    initialSelectedKeys: ['Luke Skywalker'],
+    initialSelectedKeys: ["Luke Skywalker"],
     getKey: (item) => item.name
   });
 
@@ -595,7 +595,7 @@ function AsyncLoadingExampleControlledKey() {
   };
 
   let onInputChange = (value) => {
-    if (value === '') {
+    if (value === "") {
       list.setSelectedKeys(new Set([null]));
     }
     list.setFilterText(value);
@@ -612,7 +612,7 @@ function AsyncLoadingExampleControlledKey() {
       onInputChange={onInputChange}
       loadingState={list.loadingState}
       onLoadMore={list.loadMore}
-      onOpenChange={action('onOpenChange')}>
+      onOpenChange={action("onOpenChange")}>
       {item => <Item key={item.name}>{item.name}</Item>}
     </ComboBox>
   );
@@ -627,7 +627,7 @@ function AsyncLoadingExampleControlledKeyWithReset() {
   let list = useAsyncList<StarWarsChar>({
     async load({signal, cursor, filterText, selectedKeys}) {
       if (cursor) {
-        cursor = cursor.replace(/^http:\/\//i, 'https://');
+        cursor = cursor.replace(/^http:\/\//i, "https://");
       }
 
       // Slow down load so progress circle can appear
@@ -652,7 +652,7 @@ function AsyncLoadingExampleControlledKeyWithReset() {
         filterText: selectedText ?? filterText
       };
     },
-    initialSelectedKeys: ['Luke Skywalker'],
+    initialSelectedKeys: ["Luke Skywalker"],
     getKey: (item) => item.name
   });
 
@@ -663,7 +663,7 @@ function AsyncLoadingExampleControlledKeyWithReset() {
   };
 
   let onInputChange = (value) => {
-    if (value === '') {
+    if (value === "") {
       list.setSelectedKeys(new Set([null]));
     }
     list.setFilterText(value);
@@ -681,21 +681,21 @@ function AsyncLoadingExampleControlledKeyWithReset() {
       onInputChange={onInputChange}
       loadingState={list.loadingState}
       onLoadMore={list.loadMore}
-      onOpenChange={action('onOpenChange')}>
+      onOpenChange={action("onOpenChange")}>
       {item => <Item key={item.name}>{item.name}</Item>}
     </ComboBox>
   );
 }
 
 let customFilterItems = [
-  {name: 'The first item', id: '1'},
-  {name: 'The second item', id: '2'},
-  {name: 'The third item', id: '3'}
+  {name: "The first item", id: "1"},
+  {name: "The second item", id: "2"},
+  {name: "The third item", id: "3"}
 ];
 
 let CustomFilterComboBox = (props) => {
-  let {startsWith} = useFilter({sensitivity: 'base'});
-  let [filterValue, setFilterValue] = React.useState('');
+  let {startsWith} = useFilter({sensitivity: "base"});
+  let [filterValue, setFilterValue] = React.useState("");
   let filteredItems = React.useMemo(() => customFilterItems.filter(item => startsWith(item.name, filterValue)), [props.items, filterValue, startsWith]);
 
   return (
@@ -722,7 +722,7 @@ function AllControlledComboBox(props) {
 
   let onSelectionChange = (key: React.Key) => {
     setFieldState(prevState => ({
-      inputValue: list.getItem(key)?.value.name ?? (props.allowsCustomValue ? prevState.inputValue : ''),
+      inputValue: list.getItem(key)?.value.name ?? (props.allowsCustomValue ? prevState.inputValue : ""),
       selectedKey: key
     }));
   };
@@ -730,20 +730,20 @@ function AllControlledComboBox(props) {
   let onInputChange = (value: string) => {
     setFieldState(prevState => ({
       inputValue: value,
-      selectedKey: value === '' ? null : prevState.selectedKey
+      selectedKey: value === "" ? null : prevState.selectedKey
     }));
   };
 
   let setSnake = () => {
-    setFieldState({inputValue: 'Snake', selectedKey: '3'});
+    setFieldState({inputValue: "Snake", selectedKey: "3"});
   };
 
   let setRoss = () => {
-    setFieldState({inputValue: 'Ross', selectedKey: '6'});
+    setFieldState({inputValue: "Ross", selectedKey: "6"});
   };
 
   let clearAll = () => {
-    setFieldState({inputValue: '', selectedKey: null});
+    setFieldState({inputValue: "", selectedKey: null});
   };
 
   return (
@@ -761,7 +761,7 @@ function AllControlledComboBox(props) {
           <Text>Clear key</Text>
         </Button>
       </ButtonGroup>
-      <ComboBox allowsCustomValue={props.allowsCustomValue} disabledKeys={props.disabledKeys} selectedKey={fieldState.selectedKey} inputValue={fieldState.inputValue} defaultItems={list.items} label="Combobox" onOpenChange={action('onOpenChange')} onInputChange={onInputChange} onSelectionChange={onSelectionChange} onBlur={action('onBlur')} onFocus={action('onFocus')}>
+      <ComboBox allowsCustomValue={props.allowsCustomValue} disabledKeys={props.disabledKeys} selectedKey={fieldState.selectedKey} inputValue={fieldState.inputValue} defaultItems={list.items} label="Combobox" onOpenChange={action("onOpenChange")} onInputChange={onInputChange} onSelectionChange={onSelectionChange} onBlur={action("onBlur")} onFocus={action("onFocus")}>
         {item => (
           <Section items={item.children} title={item.value.name}>
             {item => <Item>{item.value.name}</Item>}
@@ -780,11 +780,11 @@ let ControlledKeyComboBox = (props) => {
   };
 
   let setSnake = () => {
-    setSelectedKey('3');
+    setSelectedKey("3");
   };
 
   let setRoss = () => {
-    setSelectedKey('6');
+    setSelectedKey("6");
   };
 
   return (
@@ -822,14 +822,14 @@ let ControlledValueComboBox = (props) => {
   return (
     <div>
       <div>Current input value: {value}</div>
-      <ButtonGroup marginEnd="30px" UNSAFE_style={{verticalAlign: 'bottom'}}>
-        <Button variant="secondary" onPress={() => setValue('Blah')}>
+      <ButtonGroup marginEnd="30px" UNSAFE_style={{verticalAlign: "bottom"}}>
+        <Button variant="secondary" onPress={() => setValue("Blah")}>
           <Text>Blah</Text>
         </Button>
-        <Button variant="secondary" onPress={() => setValue('Kangaroo')}>
+        <Button variant="secondary" onPress={() => setValue("Kangaroo")}>
           <Text>Kangaroo</Text>
         </Button>
-        <Button variant="secondary" onPress={() => setValue('')}>
+        <Button variant="secondary" onPress={() => setValue("")}>
           <Text>Clear field</Text>
         </Button>
       </ButtonGroup>
@@ -870,7 +870,7 @@ function ResizeCombobox() {
 
   return (
     <Flex direction="column" gap="size-200" alignItems="start">
-      <div style={{width: size ? '200px' : '300px'}}>
+      <div style={{width: size ? "200px" : "300px"}}>
         <ComboBox label="Combobox" {...actions} width="100%">
           <Item key="one">Item One</Item>
           <Item key="two" textValue="Item Two">
@@ -900,16 +900,16 @@ function render(props = {}) {
 
 function ComboBoxWithMap(props) {
   let [items, setItems] = React.useState([
-    {name: 'The first item', id: 'one'},
-    {name: 'The second item', id: 'two'},
-    {name: 'The third item', id: 'three'}
+    {name: "The first item", id: "one"},
+    {name: "The second item", id: "two"},
+    {name: "The third item", id: "three"}
   ]);
 
   let onClick = () => {
     setItems([
-      {name: 'The first item new text', id: 'one'},
-      {name: 'The second item new text', id: 'two'},
-      {name: 'The third item new text', id: 'three'}
+      {name: "The first item new text", id: "one"},
+      {name: "The second item new text", id: "two"},
+      {name: "The third item new text", id: "three"}
     ]);
   };
 

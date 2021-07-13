@@ -10,33 +10,33 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonElementTypeProps, ButtonProps} from '@react-types/button';
-import {classNames, useFocusableRef, useStyleProps} from '@react-spectrum/utils';
-import CrossSmall from '@spectrum-icons/ui/CrossSmall';
-import {DOMProps, FocusableRef, StyleProps} from '@react-types/shared';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React, {ElementType} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/button/vars.css';
-import {useButton} from '@react-aria/button';
-import {useHover} from '@react-aria/interactions';
+import {AriaButtonElementTypeProps, ButtonProps} from "@react-types/button";
+import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import CrossSmall from "@spectrum-icons/ui/CrossSmall";
+import {DOMProps, FocusableRef, StyleProps} from "@react-types/shared";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React, {ElementType} from "react";
+import styles from "@adobe/spectrum-css-temp/components/button/vars.css";
+import {useButton} from "@react-aria/button";
+import {useHover} from "@react-aria/interactions";
 
-interface ClearButtonProps<T extends ElementType = 'button'> extends ButtonProps, AriaButtonElementTypeProps<T>, DOMProps, StyleProps {
+interface ClearButtonProps<T extends ElementType = "button"> extends ButtonProps, AriaButtonElementTypeProps<T>, DOMProps, StyleProps {
   focusClassName?: string,
-  variant?: 'overBackground',
+  variant?: "overBackground",
   excludeFromTabOrder?: boolean,
   preventFocus?: boolean
 }
 
 function ClearButton(props: ClearButtonProps, ref: FocusableRef<HTMLButtonElement>) {
   let {
-    children = <CrossSmall UNSAFE_className={styles['spectrum-Icon']} />,
+    children = <CrossSmall UNSAFE_className={styles["spectrum-Icon"]} />,
     focusClassName,
     variant,
     autoFocus,
     isDisabled,
     preventFocus,
-    elementType = preventFocus ? 'div' : 'button' as ElementType,
+    elementType = preventFocus ? "div" : "button" as ElementType,
     ...otherProps
   } = props;
   let domRef = useFocusableRef(ref);
@@ -53,7 +53,7 @@ function ClearButton(props: ClearButtonProps, ref: FocusableRef<HTMLButtonElemen
 
   let ElementType = elementType;
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring', focusClassName)} autoFocus={autoFocus}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring", focusClassName)} autoFocus={autoFocus}>
       <ElementType
         {...styleProps}
         {...mergeProps(buttonProps, hoverProps)}
@@ -61,12 +61,12 @@ function ClearButton(props: ClearButtonProps, ref: FocusableRef<HTMLButtonElemen
         className={
           classNames(
             styles,
-            'spectrum-ClearButton',
+            "spectrum-ClearButton",
             {
               [`spectrum-ClearButton--${variant}`]: variant,
-              'is-disabled': isDisabled,
-              'is-active': isPressed,
-              'is-hovered': isHovered
+              "is-disabled": isDisabled,
+              "is-active": isPressed,
+              "is-hovered": isHovered
             },
             styleProps.className
           )

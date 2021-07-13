@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import React, {forwardRef} from 'react';
-import {SpectrumStatusLightProps} from '@react-types/statuslight';
-import styles from '@adobe/spectrum-css-temp/components/statuslight/vars.css';
-import {useProviderProps} from '@react-spectrum/provider';
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import React, {forwardRef} from "react";
+import {SpectrumStatusLightProps} from "@react-types/statuslight";
+import styles from "@adobe/spectrum-css-temp/components/statuslight/vars.css";
+import {useProviderProps} from "@react-spectrum/provider";
 
 function StatusLight(props: SpectrumStatusLightProps, ref: DOMRef<HTMLDivElement>) {
   let {
@@ -29,12 +29,12 @@ function StatusLight(props: SpectrumStatusLightProps, ref: DOMRef<HTMLDivElement
   let domRef = useDOMRef(ref);
   let {styleProps} = useStyleProps(otherProps);
 
-  if (!children && !props['aria-label']) {
-    console.warn('If no children are provided, an aria-label must be specified');
+  if (!children && !props["aria-label"]) {
+    console.warn("If no children are provided, an aria-label must be specified");
   }
 
-  if (!role && (props['aria-label'] || props['aria-labelledby'])) {
-    console.warn('A labelled StatusLight must have a role.');
+  if (!role && (props["aria-label"] || props["aria-labelledby"])) {
+    console.warn("A labelled StatusLight must have a role.");
   }
 
   return (
@@ -44,10 +44,10 @@ function StatusLight(props: SpectrumStatusLightProps, ref: DOMRef<HTMLDivElement
       role={role}
       className={classNames(
         styles,
-        'spectrum-StatusLight',
+        "spectrum-StatusLight",
         `spectrum-StatusLight--${variant}`,
         {
-          'is-disabled': isDisabled
+          "is-disabled": isDisabled
         },
         styleProps.className
       )}

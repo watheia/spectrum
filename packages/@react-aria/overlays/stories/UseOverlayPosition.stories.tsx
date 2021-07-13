@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps} from '@react-aria/utils';
-import {Placement} from '@react-types/overlays';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {storiesOf} from '@storybook/react';
-import {useOverlayPosition, useOverlayTrigger} from '../src';
-import {useOverlayTriggerState} from '@react-stately/overlays';
+import {mergeProps} from "@react-aria/utils";
+import {Placement} from "@react-types/overlays";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {storiesOf} from "@storybook/react";
+import {useOverlayPosition, useOverlayTrigger} from "../src";
+import {useOverlayTriggerState} from "@react-stately/overlays";
 
 function Trigger(props: {
   withPortal: boolean,
@@ -29,7 +29,7 @@ function Trigger(props: {
     defaultOpen: false
   });
   const {triggerProps, overlayProps} = useOverlayTrigger({
-    type: 'menu'
+    type: "menu"
   }, state, targetRef);
   const {overlayProps: overlayPositionProps} = useOverlayPosition({
     targetRef,
@@ -46,15 +46,15 @@ function Trigger(props: {
       {...mergeProps(overlayProps, overlayPositionProps)}
       style={{
         ...overlayPositionProps.style,
-        boxShadow: '0 0 4px 0 rgba(0,0,0,0.25)',
-        backgroundColor: 'white',
-        overflow: 'auto'
+        boxShadow: "0 0 4px 0 rgba(0,0,0,0.25)",
+        backgroundColor: "white",
+        overflow: "auto"
       }}>
       <ul
         style={{
           padding: 10,
           margin: 0,
-          listStyleType: 'none'
+          listStyleType: "none"
         }}>
         <li>Hello</li>
         <li>Hello</li>
@@ -69,15 +69,15 @@ function Trigger(props: {
     overlay = ReactDOM.createPortal(overlay, document.body);
   }
   return (
-    <div style={{position: 'relative', margin: 'auto'}}>
+    <div style={{position: "relative", margin: "auto"}}>
       <button ref={targetRef} {...triggerProps} onClick={() => state.toggle()}>Trigger (open: {`${state.isOpen}`})</button>
       {state.isOpen && overlay}
     </div>
   );
 }
 
-storiesOf('UseOverlayPosition', module)
-  .add('document.body container bottom', () => <Trigger withPortal placement="bottom" />)
-  .add('document.body container top', () => <Trigger withPortal placement="top" />)
-  .add('positioned container bottom', () => <Trigger withPortal={false} placement="bottom" />)
-  .add('positioned container top', () => <Trigger withPortal={false} placement="top" />);
+storiesOf("UseOverlayPosition", module)
+  .add("document.body container bottom", () => <Trigger withPortal placement="bottom" />)
+  .add("document.body container top", () => <Trigger withPortal placement="top" />)
+  .add("positioned container bottom", () => <Trigger withPortal={false} placement="bottom" />)
+  .add("positioned container top", () => <Trigger withPortal={false} placement="top" />);

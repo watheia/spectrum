@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from '@react-types/button';
-import {AriaListBoxOptions} from '@react-aria/listbox';
-import {AriaSelectProps} from '@react-types/select';
-import {chain, filterDOMProps, mergeProps, useId} from '@react-aria/utils';
-import {FocusEvent, HTMLAttributes, RefObject, useMemo} from 'react';
-import {KeyboardDelegate} from '@react-types/shared';
-import {ListKeyboardDelegate, useTypeSelect} from '@react-aria/selection';
-import {SelectState} from '@react-stately/select';
-import {setInteractionModality} from '@react-aria/interactions';
-import {useCollator} from '@react-aria/i18n';
-import {useLabel} from '@react-aria/label';
-import {useMenuTrigger} from '@react-aria/menu';
+import {AriaButtonProps} from "@react-types/button";
+import {AriaListBoxOptions} from "@react-aria/listbox";
+import {AriaSelectProps} from "@react-types/select";
+import {chain, filterDOMProps, mergeProps, useId} from "@react-aria/utils";
+import {FocusEvent, HTMLAttributes, RefObject, useMemo} from "react";
+import {KeyboardDelegate} from "@react-types/shared";
+import {ListKeyboardDelegate, useTypeSelect} from "@react-aria/selection";
+import {SelectState} from "@react-stately/select";
+import {setInteractionModality} from "@react-aria/interactions";
+import {useCollator} from "@react-aria/i18n";
+import {useLabel} from "@react-aria/label";
+import {useMenuTrigger} from "@react-aria/menu";
 
 interface AriaSelectOptions<T> extends AriaSelectProps<T> {
   /**
@@ -59,13 +59,13 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
 
   // By default, a KeyboardDelegate is provided which uses the DOM to query layout information (e.g. for page up/page down).
   // When virtualized, the layout object will be passed in as a prop and override this.
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let delegate = useMemo(() => keyboardDelegate || new ListKeyboardDelegate(state.collection, state.disabledKeys, null, collator), [keyboardDelegate, state.collection, state.disabledKeys, collator]);
 
   let {menuTriggerProps, menuProps} = useMenuTrigger(
     {
       isDisabled,
-      type: 'listbox'
+      type: "listbox"
     },
     state,
     ref
@@ -73,7 +73,7 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
 
   let onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
-      case 'ArrowLeft': {
+      case "ArrowLeft": {
         // prevent scrolling containers
         e.preventDefault();
 
@@ -83,7 +83,7 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
         }
         break;
       }
-      case 'ArrowRight': {
+      case "ArrowRight": {
         // prevent scrolling containers
         e.preventDefault();
 
@@ -106,7 +106,7 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
 
   let {labelProps, fieldProps} = useLabel({
     ...props,
-    labelElementType: 'span'
+    labelElementType: "span"
   });
 
   typeSelectProps.onKeyDown = typeSelectProps.onKeyDownCapture;
@@ -125,7 +125,7 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
           ref.current.focus();
 
           // Show the focus ring so the user knows where focus went
-          setInteractionModality('keyboard');
+          setInteractionModality("keyboard");
         }
       }
     },
@@ -133,11 +133,11 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
       ...triggerProps,
       onKeyDown: chain(triggerProps.onKeyDown, onKeyDown, props.onKeyDown),
       onKeyUp: props.onKeyUp,
-      'aria-labelledby': [
-        triggerProps['aria-labelledby'],
-        triggerProps['aria-label'] && !triggerProps['aria-labelledby'] ? triggerProps.id : null,
+      "aria-labelledby": [
+        triggerProps["aria-labelledby"],
+        triggerProps["aria-label"] && !triggerProps["aria-labelledby"] ? triggerProps.id : null,
         valueId
-      ].filter(Boolean).join(' '),
+      ].filter(Boolean).join(" "),
       onFocus(e: FocusEvent) {
         if (state.isFocused) {
           return;
@@ -180,10 +180,10 @@ export function useSelect<T>(props: AriaSelectOptions<T>, state: SelectState<T>,
         }
         state.setFocused(false);
       },
-      'aria-labelledby': [
-        fieldProps['aria-labelledby'],
-        triggerProps['aria-label'] && !fieldProps['aria-labelledby'] ? triggerProps.id : null
-      ].filter(Boolean).join(' ')
+      "aria-labelledby": [
+        fieldProps["aria-labelledby"],
+        triggerProps["aria-label"] && !fieldProps["aria-labelledby"] ? triggerProps.id : null
+      ].filter(Boolean).join(" ")
     }
   };
 }

@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaBreadcrumbItemProps} from '@react-types/breadcrumbs';
-import {HTMLAttributes, RefObject} from 'react';
-import {useLink} from '@react-aria/link';
+import {AriaBreadcrumbItemProps} from "@react-types/breadcrumbs";
+import {HTMLAttributes, RefObject} from "react";
+import {useLink} from "@react-aria/link";
 
 interface BreadcrumbItemAria {
   /** Props for the breadcrumb item link element. */
@@ -27,8 +27,8 @@ export function useBreadcrumbItem(props: AriaBreadcrumbItemProps, ref: RefObject
   let {
     isCurrent,
     isDisabled,
-    'aria-current': ariaCurrent,
-    elementType = 'a',
+    "aria-current": ariaCurrent,
+    elementType = "a",
     ...otherProps
   } = props;
 
@@ -41,12 +41,12 @@ export function useBreadcrumbItem(props: AriaBreadcrumbItemProps, ref: RefObject
   }
 
   if (isCurrent) {
-    itemProps['aria-current'] = ariaCurrent || 'page';
+    itemProps["aria-current"] = ariaCurrent || "page";
   }
 
   return {
     itemProps: {
-      'aria-disabled': isDisabled,
+      "aria-disabled": isDisabled,
       ...itemProps
     }
   };

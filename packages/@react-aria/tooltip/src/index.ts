@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useTooltip';
-export * from './useTooltipTrigger';
+export * from "./useTooltip";
+export * from "./useTooltipTrigger";

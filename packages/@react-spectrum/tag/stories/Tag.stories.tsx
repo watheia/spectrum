@@ -10,64 +10,64 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import Camera from '@spectrum-icons/workflow/Camera';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Tag} from '../src';
+import {action} from "@storybook/addon-actions";
+import Camera from "@spectrum-icons/workflow/Camera";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Tag} from "../src";
 
-storiesOf('Tag', module)
+storiesOf("Tag", module)
   .add(
-    'default',
-    () => render({}, 'Cool tag')
+    "default",
+    () => render({}, "Cool tag")
   )
   .add(
-    'disabled',
-    () => render({isDisabled: true}, 'Cool tag')
+    "disabled",
+    () => render({isDisabled: true}, "Cool tag")
   )
   .add(
-    'icon',
+    "icon",
     () => render({
       icon: <Camera />
-    }, 'Cool tag')
+    }, "Cool tag")
   )
   .add(
-    'removable',
+    "removable",
     () => render({
-      onRemove: action('onRemove'),
+      onRemove: action("onRemove"),
       isRemovable: true
-    }, 'Cool tag')
+    }, "Cool tag")
   )
   .add(
-    'invalid',
+    "invalid",
     () => render({
-      validationState: 'invalid'
-    }, 'Cool tag')
+      validationState: "invalid"
+    }, "Cool tag")
   )
   .add(
-    'invalid, removable',
+    "invalid, removable",
     () => render({
-      validationState: 'invalid',
-      onRemove: action('onRemove'),
+      validationState: "invalid",
+      onRemove: action("onRemove"),
       isRemovable: true
-    }, 'Cool tag')
+    }, "Cool tag")
   )
   .add(
-    'icon, removable',
+    "icon, removable",
     () => render({
       icon: <Camera />,
-      onRemove: action('onRemove'),
+      onRemove: action("onRemove"),
       isRemovable: true
-    }, 'Cool tag')
+    }, "Cool tag")
   )
   .add(
-  'disabled, icon, removable',
+  "disabled, icon, removable",
   () => render({
     isDisabled: true,
     icon: <Camera />,
-    onRemove: action('onRemove'),
+    onRemove: action("onRemove"),
     isRemovable: true
-  }, 'Cool tag')
+  }, "Cool tag")
 );
 
 function render(props, childText: string) {

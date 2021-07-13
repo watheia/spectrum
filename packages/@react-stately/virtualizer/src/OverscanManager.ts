@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {Point} from './Point';
-import {Rect} from './Rect';
+import {Point} from "./Point";
+import {Rect} from "./Rect";
 
 class RollingAverage {
   private count: number = 0;

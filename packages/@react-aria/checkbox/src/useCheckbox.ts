@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaCheckboxProps} from '@react-types/checkbox';
-import {InputHTMLAttributes, RefObject, useEffect} from 'react';
-import {ToggleState} from '@react-stately/toggle';
-import {useToggle} from '@react-aria/toggle';
+import {AriaCheckboxProps} from "@react-types/checkbox";
+import {InputHTMLAttributes, RefObject, useEffect} from "react";
+import {ToggleState} from "@react-stately/toggle";
+import {useToggle} from "@react-aria/toggle";
 
 export interface CheckboxAria {
   /** Props for the input element. */
@@ -45,7 +45,7 @@ export function useCheckbox(props: AriaCheckboxProps, state: ToggleState, inputR
     inputProps: {
       ...inputProps,
       checked: isSelected,
-      'aria-checked': isIndeterminate ? 'mixed' : isSelected
+      "aria-checked": isIndeterminate ? "mixed" : isSelected
     }
   };
 }

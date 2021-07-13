@@ -6,14 +6,14 @@ const rule = {
     ) {
       context.report({
         node: node.parent,
-        message: 'Use queryByRole and toBeNull instead getByRole which takes a long time to generate an error message.',
+        message: "Use queryByRole and toBeNull instead getByRole which takes a long time to generate an error message.",
         fix: (fixer) => [
           fixer.removeRange([node.parent.start, node.start]),
           fixer.replaceText(
             node.callee.property,
-            'queryByRole'
+            "queryByRole"
           ),
-          fixer.replaceText(node.parent.parent.parent.property, 'toBeNull')
+          fixer.replaceText(node.parent.parent.parent.property, "toBeNull")
         ]
       });
     }

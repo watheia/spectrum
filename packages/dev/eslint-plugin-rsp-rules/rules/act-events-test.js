@@ -10,38 +10,38 @@
  * governing permissions and limitations under the License.
  */
 
-const path = require('path');
+const path = require("path");
 
 function inTestcaseWithoutAct(context, actLocalName) {
   let foundAct = false;
   for (let n of context.getAncestors().reverse()) {
     if (
-      n.type === 'ArrowFunctionExpression' ||
-      n.type === 'FunctionExpression'
+      n.type === "ArrowFunctionExpression" ||
+      n.type === "FunctionExpression"
     ) {
       let {parent} = n;
       if (
-        parent.type === 'CallExpression' &&
-        parent.callee.type === 'Identifier' &&
+        parent.type === "CallExpression" &&
+        parent.callee.type === "Identifier" &&
         parent.callee.name === actLocalName
       ) {
         foundAct = true;
       }
       if (
-        parent.type === 'CallExpression' &&
-        parent.callee.type === 'Identifier' &&
-        parent.callee.name === 'it'
+        parent.type === "CallExpression" &&
+        parent.callee.type === "Identifier" &&
+        parent.callee.name === "it"
       ) {
         return !foundAct;
       }
       if (
-        parent.type === 'CallExpression' &&
-        parent.callee.type === 'TaggedTemplateExpression' &&
-        parent.callee.tag.type === 'MemberExpression' &&
-        parent.callee.tag.object.type === 'Identifier' &&
-        parent.callee.tag.object.name === 'it' &&
-        parent.callee.tag.property.type === 'Identifier' &&
-        parent.callee.tag.property.name === 'each'
+        parent.type === "CallExpression" &&
+        parent.callee.type === "TaggedTemplateExpression" &&
+        parent.callee.tag.type === "MemberExpression" &&
+        parent.callee.tag.object.type === "Identifier" &&
+        parent.callee.tag.object.name === "it" &&
+        parent.callee.tag.property.type === "Identifier" &&
+        parent.callee.tag.property.name === "each"
       ) {
         return !foundAct;
       }
@@ -53,7 +53,7 @@ function inTestcaseWithoutAct(context, actLocalName) {
 function report(node, context, actLocalName) {
   context.report({
     node,
-    message: 'Should be wrapped in an act() call',
+    message: "Should be wrapped in an act() call",
     fix(fixer) {
       let parent = context.getAncestors();
       parent = parent[parent.length - 1];
@@ -66,65 +66,65 @@ function report(node, context, actLocalName) {
 }
 
 const JEST_TIMER_FUNCTIONS = [
-  'runAllImmediates',
-  'runAllTicks',
-  'runAllTimers',
-  'runOnlyPendingTimers',
-  'runTimersToTime',
-  'advanceTimersByTime',
-  'advanceTimersToNextTimer'
+  "runAllImmediates",
+  "runAllTicks",
+  "runAllTimers",
+  "runOnlyPendingTimers",
+  "runTimersToTime",
+  "advanceTimersByTime",
+  "advanceTimersToNextTimer"
 ];
 
 let rule = {
   meta: {
-    type: 'problem',
+    type: "problem",
     docs: {
-      description: 'Recommend using act wrappers when firing events',
+      description: "Recommend using act wrappers when firing events",
       recommended: false
     },
-    fixable: 'code',
+    fixable: "code",
     schema: [
       {
-        type: 'object',
+        type: "object",
         properties: {},
         additionalProperties: false
       }
     ]
   },
   create(context) {
-    if (context.getFilename().includes(path.sep + 'test' + path.sep)) {
-      let actLocalName = 'act';
+    if (context.getFilename().includes(path.sep + "test" + path.sep)) {
+      let actLocalName = "act";
       return {
         ImportSpecifier(node) {
           let {parent} = node;
           if (
-            parent.importKind === 'value' &&
+            parent.importKind === "value" &&
             parent.source &&
-            parent.source.type === 'Literal' &&
-            parent.source.value === '@testing-library/react' &&
-            node.imported.type === 'Identifier' &&
-            node.imported.name === 'act'
+            parent.source.type === "Literal" &&
+            parent.source.value === "@testing-library/react" &&
+            node.imported.type === "Identifier" &&
+            node.imported.name === "act"
           ) {
             actLocalName = node.local.name;
           }
         },
         CallExpression(node) {
           if (
-            node.callee.type === 'MemberExpression' &&
+            node.callee.type === "MemberExpression" &&
             actLocalName &&
             inTestcaseWithoutAct(context, actLocalName)
           ) {
             if (
               node.arguments.length === 0 &&
-              node.callee.property.type === 'Identifier' &&
-              (node.callee.property.name === 'focus' ||
-                node.callee.property.name === 'blur')
+              node.callee.property.type === "Identifier" &&
+              (node.callee.property.name === "focus" ||
+                node.callee.property.name === "blur")
             ) {
               report(node, context, actLocalName);
             } else if (
-              node.callee.object.type === 'Identifier' &&
-              node.callee.object.name === 'jest' &&
-              node.callee.property.type === 'Identifier' &&
+              node.callee.object.type === "Identifier" &&
+              node.callee.object.name === "jest" &&
+              node.callee.property.type === "Identifier" &&
               JEST_TIMER_FUNCTIONS.includes(node.callee.property.name)
             ) {
               report(node, context, actLocalName);

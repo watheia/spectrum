@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {PaginationProps} from '@react-types/pagination';
-import {useControlledState} from '@react-stately/utils';
-import {useRef} from 'react';
+import {PaginationProps} from "@react-types/pagination";
+import {useControlledState} from "@react-stately/utils";
+import {useRef} from "react";
 
 export interface PaginationState {
   onChange?: (val: string | number) => void,
@@ -27,15 +27,15 @@ export function usePaginationState(props: PaginationProps): PaginationState {
   let ref = useRef(value);
 
   const onPageInputChange = (value) => {
-    if (value === '' || isValidPage(props.maxValue, value)) {
-      value = value !== '' ? parseInt(value, 10) : value;
+    if (value === "" || isValidPage(props.maxValue, value)) {
+      value = value !== "" ? parseInt(value, 10) : value;
       setValue(value);
       ref.current = value;
     }
   };
 
   const onIncrement = () => {
-    let val = (value === '') ? 1 : parseInt(value, 10) + 1;
+    let val = (value === "") ? 1 : parseInt(value, 10) + 1;
     if (isValidPage(props.maxValue, val)) {
       ref.current = val;
       setValue(val);
@@ -43,7 +43,7 @@ export function usePaginationState(props: PaginationProps): PaginationState {
   };
 
   const onDecrement = () => {
-    let val = (value === '') ? 1 : parseInt(value, 10) - 1;
+    let val = (value === "") ? 1 : parseInt(value, 10) - 1;
     if (isValidPage(props.maxValue, val)) {
       ref.current = val;
       setValue(val);

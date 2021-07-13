@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useSideNavItem} from '../';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useSideNavItem} from "../";
 
-describe('useSideNavItem', function () {
+describe("useSideNavItem", function () {
   let mockState = {
     selectionManager: {
       isSelected(key) {
-        return key === 'selected';
+        return key === "selected";
       }
     },
     disabledKeys: new Set()
@@ -26,32 +26,32 @@ describe('useSideNavItem', function () {
 
   let renderSideNavItemHook = (menuProps, itemProps = {}) => {
     let item = {
-      key: '1',
+      key: "1",
       ...itemProps
     };
     let {result} = renderHook(() => useSideNavItem({...menuProps, item}, mockState));
     return result.current;
   };
 
-  it('returns default aria for navigation item', function () {
+  it("returns default aria for navigation item", function () {
     let {listItemProps, listItemLinkProps} = renderSideNavItemHook({});
     expect(listItemProps).toBeDefined();
-    expect(listItemProps.role).toBe('listitem');
+    expect(listItemProps.role).toBe("listitem");
     expect(listItemLinkProps).toBeDefined();
-    expect(listItemLinkProps.role).toBe('link');
-    expect(listItemLinkProps.target).toBe('_self');
-    expect(typeof listItemLinkProps.onFocus).toBe('function');
-    expect(listItemLinkProps['aria-current']).toBeUndefined();
+    expect(listItemLinkProps.role).toBe("link");
+    expect(listItemLinkProps.target).toBe("_self");
+    expect(typeof listItemLinkProps.onFocus).toBe("function");
+    expect(listItemLinkProps["aria-current"]).toBeUndefined();
   });
 
-  it('returns aria for selected item', function () {
-    let {listItemProps, listItemLinkProps} = renderSideNavItemHook({}, {key: 'selected'});
+  it("returns aria for selected item", function () {
+    let {listItemProps, listItemLinkProps} = renderSideNavItemHook({}, {key: "selected"});
     expect(listItemProps).toBeDefined();
-    expect(listItemProps.role).toBe('listitem');
+    expect(listItemProps.role).toBe("listitem");
     expect(listItemLinkProps).toBeDefined();
-    expect(listItemLinkProps.role).toBe('link');
-    expect(listItemLinkProps.target).toBe('_self');
-    expect(typeof listItemLinkProps.onFocus).toBe('function');
-    expect(listItemLinkProps['aria-current']).toBe('page');
+    expect(listItemLinkProps.role).toBe("link");
+    expect(listItemLinkProps.target).toBe("_self");
+    expect(typeof listItemLinkProps.onFocus).toBe("function");
+    expect(listItemLinkProps["aria-current"]).toBe("page");
   });
 });

@@ -18,9 +18,9 @@ function isStyleVisible(element: Element) {
   let {display, visibility} = element.style;
 
   let isVisible = (
-    display !== 'none' &&
-    visibility !== 'hidden' &&
-    visibility !== 'collapse'
+    display !== "none" &&
+    visibility !== "hidden" &&
+    visibility !== "collapse"
   );
 
   if (isVisible) {
@@ -28,9 +28,9 @@ function isStyleVisible(element: Element) {
     let {display: computedDisplay, visibility: computedVisibility} = getComputedStyle(element);
 
     isVisible = (
-      computedDisplay !== 'none' &&
-      computedVisibility !== 'hidden' &&
-      computedVisibility !== 'collapse'
+      computedDisplay !== "none" &&
+      computedVisibility !== "hidden" &&
+      computedVisibility !== "collapse"
     );
   }
 
@@ -39,11 +39,11 @@ function isStyleVisible(element: Element) {
 
 function isAttributeVisible(element: Element, childElement?: Element) {
   return (
-    !element.hasAttribute('hidden') &&
-    (element.nodeName === 'DETAILS' &&
+    !element.hasAttribute("hidden") &&
+    (element.nodeName === "DETAILS" &&
       childElement &&
-      childElement.nodeName !== 'SUMMARY'
-      ? element.hasAttribute('open')
+      childElement.nodeName !== "SUMMARY"
+      ? element.hasAttribute("open")
       : true)
   );
 }
@@ -56,7 +56,7 @@ function isAttributeVisible(element: Element, childElement?: Element) {
  */  
 export function isElementVisible(element: Element, childElement?: Element) {
   return (
-    element.nodeName !== '#comment' &&
+    element.nodeName !== "#comment" &&
     isStyleVisible(element) &&
     isAttributeVisible(element, childElement) &&
     (!element.parentElement || isElementVisible(element.parentElement, element))

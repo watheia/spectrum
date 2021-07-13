@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React, {useContext, useRef} from 'react';
-import {SideNavContext} from './SideNavContext';
-import {SpectrumSideNavItemProps} from '@react-types/sidenav';
-import styles from '@adobe/spectrum-css-temp/components/sidenav/vars.css';
-import {useHover} from '@react-aria/interactions';
-import {useSideNavItem} from '@react-aria/sidenav';
+import {classNames} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React, {useContext, useRef} from "react";
+import {SideNavContext} from "./SideNavContext";
+import {SpectrumSideNavItemProps} from "@react-types/sidenav";
+import styles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
+import {useHover} from "@react-aria/interactions";
+import {useSideNavItem} from "@react-aria/sidenav";
 
 export function SideNavItem<T>(props: SpectrumSideNavItemProps<T>) {
   let ref = useRef<HTMLAnchorElement>();
@@ -32,10 +32,10 @@ export function SideNavItem<T>(props: SpectrumSideNavItemProps<T>) {
 
   let className = classNames(
     styles,
-    'spectrum-SideNav-item',
+    "spectrum-SideNav-item",
     {
-      'is-selected': isSelected,
-      'is-disabled': isDisabled
+      "is-selected": isSelected,
+      "is-disabled": isDisabled
     }
   );
 
@@ -46,12 +46,12 @@ export function SideNavItem<T>(props: SpectrumSideNavItemProps<T>) {
     <div
       {...listItemProps}
       className={className} >
-      <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+      <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
         <a
           {...mergeProps(listItemLinkProps, hoverProps)}
           ref={ref}
-          className={classNames(styles, 'spectrum-SideNav-itemLink', {
-            'is-hovered': isHovered
+          className={classNames(styles, "spectrum-SideNav-itemLink", {
+            "is-hovered": isHovered
           })} >
           {rendered}
         </a>

@@ -10,41 +10,41 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useLink} from '../';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useLink} from "../";
 
-describe('useLink', function () {
+describe("useLink", function () {
   let renderLinkHook = (props) => {
     let {result} = renderHook(() => useLink(props));
     return result.current;
   };
 
-  it('handles defaults', function () {
-    let {linkProps} = renderLinkHook({children: 'Test Link'});
+  it("handles defaults", function () {
+    let {linkProps} = renderLinkHook({children: "Test Link"});
     expect(linkProps.role).toBeUndefined();
     expect(linkProps.tabIndex).toBeUndefined();
-    expect(typeof linkProps.onKeyDown).toBe('function');
+    expect(typeof linkProps.onKeyDown).toBe("function");
   });
 
-  it('handles custom element type', function () {
-    let {linkProps} = renderLinkHook({children: <div>Test Link</div>, elementType: 'div'});
-    expect(linkProps.role).toBe('link');
+  it("handles custom element type", function () {
+    let {linkProps} = renderLinkHook({children: <div>Test Link</div>, elementType: "div"});
+    expect(linkProps.role).toBe("link");
     expect(linkProps.tabIndex).toBe(0);
   });
 
-  it('handles isDisabled', function () {
-    let {linkProps} = renderLinkHook({children: 'Test Link', elementType: 'span', isDisabled: true});
-    expect(linkProps.role).toBe('link');
-    expect(linkProps['aria-disabled']).toBe(true);
+  it("handles isDisabled", function () {
+    let {linkProps} = renderLinkHook({children: "Test Link", elementType: "span", isDisabled: true});
+    expect(linkProps.role).toBe("link");
+    expect(linkProps["aria-disabled"]).toBe(true);
     expect(linkProps.tabIndex).toBeUndefined();
-    expect(typeof linkProps.onKeyDown).toBe('function');
+    expect(typeof linkProps.onKeyDown).toBe("function");
   });
 
-  it('handles onClick warning', function () {
-    let spyWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
-    let {linkProps} = renderLinkHook({children: 'Test Link', onClick: () => {}});
+  it("handles onClick warning", function () {
+    let spyWarn = jest.spyOn(console, "warn").mockImplementation(() => {});
+    let {linkProps} = renderLinkHook({children: "Test Link", onClick: () => {}});
     linkProps.onClick();
-    expect(spyWarn).toHaveBeenCalledWith('onClick is deprecated, please use onPress');
+    expect(spyWarn).toHaveBeenCalledWith("onClick is deprecated, please use onPress");
   });
 });

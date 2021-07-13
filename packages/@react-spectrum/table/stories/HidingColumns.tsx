@@ -10,27 +10,27 @@
  * governing permissions and limitations under the License.
  */
 
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from '../';
-import {Checkbox} from '@react-spectrum/checkbox';
-import {Flex} from '@react-spectrum/layout';
-import {Form} from '@react-spectrum/form';
-import React from 'react';
+import {Cell, Column, Row, TableBody, TableHeader, TableView} from "../";
+import {Checkbox} from "@react-spectrum/checkbox";
+import {Flex} from "@react-spectrum/layout";
+import {Form} from "@react-spectrum/form";
+import React from "react";
 
 let columns = [
-  {key: 'planName', title: 'Plan Name'},
-  {key: 'audienceType', title: 'Audience Type'},
-  {key: 'netBudget', title: 'Net Budget'},
-  {key: 'targetOTP', title: 'Target OTP'},
-  {key: 'reach', title: 'Reach'}
+  {key: "planName", title: "Plan Name"},
+  {key: "audienceType", title: "Audience Type"},
+  {key: "netBudget", title: "Net Budget"},
+  {key: "targetOTP", title: "Target OTP"},
+  {key: "reach", title: "Reach"}
 ];
 
 let data = [
-  {id: 1, planName: 'Plan 1: $300k, digital', audienceType: 'Strategic', netBudget: '$300,000', targetOTP: '7.4%', reach: '11.52%'},
-  {id: 2, planName: 'Plan 2: $500k, digital', audienceType: 'Strategic', netBudget: '$500,000', targetOTP: '22.5%', reach: '11.5%'},
-  {id: 3, planName: 'Plan 3: $800k, digital', audienceType: 'Strategic', netBudget: '$800,000', targetOTP: '22.5%', reach: '11.5%'},
-  {id: 4, planName: 'Plan 4: $300k, MRI', audienceType: 'Demo+strategic', netBudget: '$300,000', targetOTP: '22.5%', reach: '11.5%'},
-  {id: 5, planName: 'Plan 5: $500k, MRI', audienceType: 'Demo+strategic', netBudget: '$500,000', targetOTP: '22.5%', reach: '11.5%'},
-  {id: 6, planName: 'Plan 6: $800k, MRI', audienceType: 'Demo+strategic', netBudget: '$800,000', targetOTP: '22.5%', reach: '11.5%'}
+  {id: 1, planName: "Plan 1: $300k, digital", audienceType: "Strategic", netBudget: "$300,000", targetOTP: "7.4%", reach: "11.52%"},
+  {id: 2, planName: "Plan 2: $500k, digital", audienceType: "Strategic", netBudget: "$500,000", targetOTP: "22.5%", reach: "11.5%"},
+  {id: 3, planName: "Plan 3: $800k, digital", audienceType: "Strategic", netBudget: "$800,000", targetOTP: "22.5%", reach: "11.5%"},
+  {id: 4, planName: "Plan 4: $300k, MRI", audienceType: "Demo+strategic", netBudget: "$300,000", targetOTP: "22.5%", reach: "11.5%"},
+  {id: 5, planName: "Plan 5: $500k, MRI", audienceType: "Demo+strategic", netBudget: "$500,000", targetOTP: "22.5%", reach: "11.5%"},
+  {id: 6, planName: "Plan 6: $800k, MRI", audienceType: "Demo+strategic", netBudget: "$800,000", targetOTP: "22.5%", reach: "11.5%"}
 ];
 
 export function HidingColumns() {

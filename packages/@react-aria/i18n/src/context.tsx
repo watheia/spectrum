@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {isRTL} from './utils';
-import {Locale, useDefaultLocale} from './useDefaultLocale';
-import React, {ReactNode, useContext} from 'react';
+import {isRTL} from "./utils";
+import {Locale, useDefaultLocale} from "./useDefaultLocale";
+import React, {ReactNode, useContext} from "react";
 
 interface ProviderProps {
   /** Contents that should have the locale applied. */
@@ -32,7 +32,7 @@ export function I18nProvider(props: ProviderProps) {
 
   let value: Locale = locale ? {
     locale,
-    direction: isRTL(locale) ? 'rtl' : 'ltr'
+    direction: isRTL(locale) ? "rtl" : "ltr"
   } : defaultLocale;
 
   return (

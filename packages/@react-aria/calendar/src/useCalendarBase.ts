@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {announce} from '@react-aria/live-announcer';
-import {CalendarAria} from './types';
-import {CalendarPropsBase} from '@react-types/calendar';
-import {CalendarStateBase} from '@react-stately/calendar';
-import {DOMProps} from '@react-types/shared';
-import {filterDOMProps, mergeProps, useId, useLabels, useUpdateEffect} from '@react-aria/utils';
+import {announce} from "@react-aria/live-announcer";
+import {CalendarAria} from "./types";
+import {CalendarPropsBase} from "@react-types/calendar";
+import {CalendarStateBase} from "@react-stately/calendar";
+import {DOMProps} from "@react-types/shared";
+import {filterDOMProps, mergeProps, useId, useLabels, useUpdateEffect} from "@react-aria/utils";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {KeyboardEvent, useRef} from 'react';
-import {useDateFormatter, useLocale, useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {KeyboardEvent, useRef} from "react";
+import {useDateFormatter, useLocale, useMessageFormatter} from "@react-aria/i18n";
 
 export function useCalendarBase(props: CalendarPropsBase & DOMProps, state: CalendarStateBase, selectedDateDescription: string): CalendarAria {
   let {
@@ -29,7 +29,7 @@ export function useCalendarBase(props: CalendarPropsBase & DOMProps, state: Cale
 
   let domProps = filterDOMProps(props, {labelable: true});
   let formatMessage = useMessageFormatter(intlMessages);
-  let monthFormatter = useDateFormatter({month: 'long', year: 'numeric'});
+  let monthFormatter = useDateFormatter({month: "long", year: "numeric"});
   let calendarBody = useRef(null); // TODO: should this be in RSP?
   let calendarId = useId(props.id);
   let calendarTitleId = useId();
@@ -56,12 +56,12 @@ export function useCalendarBase(props: CalendarPropsBase & DOMProps, state: Cale
 
   let onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
-      case 'Enter':
-      case ' ':
+      case "Enter":
+      case " ":
         e.preventDefault();
         state.selectFocusedDate();
         break;
-      case 'PageUp':
+      case "PageUp":
         e.preventDefault();
         if (e.shiftKey) {
           state.focusPreviousYear();
@@ -69,7 +69,7 @@ export function useCalendarBase(props: CalendarPropsBase & DOMProps, state: Cale
           state.focusPreviousMonth();
         }
         break;
-      case 'PageDown':
+      case "PageDown":
         e.preventDefault();
         if (e.shiftKey) {
           state.focusNextYear();
@@ -77,35 +77,35 @@ export function useCalendarBase(props: CalendarPropsBase & DOMProps, state: Cale
           state.focusNextMonth();
         }
         break;
-      case 'End':
+      case "End":
         e.preventDefault();
         state.focusEndOfMonth();
         break;
-      case 'Home':
+      case "Home":
         e.preventDefault();
         state.focusStartOfMonth();
         break;
-      case 'ArrowLeft':
+      case "ArrowLeft":
         e.preventDefault();
-        if (direction === 'rtl') {
+        if (direction === "rtl") {
           state.focusNextDay();
         } else {
           state.focusPreviousDay();
         }
         break;
-      case 'ArrowUp':
+      case "ArrowUp":
         e.preventDefault();
         state.focusPreviousWeek();
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         e.preventDefault();
-        if (direction === 'rtl') {
+        if (direction === "rtl") {
           state.focusPreviousDay();
         } else {
           state.focusNextDay();
         }
         break;
-      case 'ArrowDown':
+      case "ArrowDown":
         e.preventDefault();
         state.focusNextWeek();
         break;
@@ -115,36 +115,36 @@ export function useCalendarBase(props: CalendarPropsBase & DOMProps, state: Cale
   // aria-label logic
   let labelProps = useLabels({
     id: calendarId,
-    'aria-label': props['aria-label'],
-    'aria-labelledby': `${props['aria-labelledby'] || ''} ${props['aria-label'] ? calendarId : ''} ${calendarTitleId}`
+    "aria-label": props["aria-label"],
+    "aria-labelledby": `${props["aria-labelledby"] || ""} ${props["aria-label"] ? calendarId : ""} ${calendarTitleId}`
   });
 
   return {
     calendarProps: mergeProps(domProps, {
       ...labelProps,
       id: calendarId,
-      role: 'group'
+      role: "group"
     }),
     calendarTitleProps: {
       id: calendarTitleId
     },
     nextButtonProps: {
       onPress: () => state.focusNextMonth(),
-      'aria-label': formatMessage('next'),
+      "aria-label": formatMessage("next"),
       isDisabled: props.isDisabled || state.isNextMonthInvalid()
     },
     prevButtonProps: {
       onPress: () => state.focusPreviousMonth(),
-      'aria-label': formatMessage('previous'),
+      "aria-label": formatMessage("previous"),
       isDisabled: props.isDisabled || state.isPreviousMonthInvalid()
     },
     calendarBodyProps: {
       ref: calendarBody,
-      role: 'grid',
-      'aria-readonly': isReadOnly || null,
-      'aria-disabled': isDisabled || null,
-      'aria-labelledby': labelProps['aria-labelledby'],
-      'aria-describedby': selectedDateDescription ? captionId : null,
+      role: "grid",
+      "aria-readonly": isReadOnly || null,
+      "aria-disabled": isDisabled || null,
+      "aria-labelledby": labelProps["aria-labelledby"],
+      "aria-describedby": selectedDateDescription ? captionId : null,
       onKeyDown,
       onFocus: () => state.setFocused(true),
       onBlur: () => state.setFocused(false)

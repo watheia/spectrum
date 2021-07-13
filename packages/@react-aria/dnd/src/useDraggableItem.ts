@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from '@react-types/button';
-import {DraggableCollectionState} from '@react-stately/dnd';
-import {HTMLAttributes, Key} from 'react';
+import {AriaButtonProps} from "@react-types/button";
+import {DraggableCollectionState} from "@react-stately/dnd";
+import {HTMLAttributes, Key} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useDrag} from './useDrag';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {useDrag} from "./useDrag";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 interface DraggableItemProps {
   key: Key
@@ -52,16 +52,16 @@ export function useDraggableItem(props: DraggableItemProps, state: DraggableColl
   let isSelected = state.selectionManager.isSelected(props.key);
   let message: string;
   if (isSelected && numSelectedKeys > 1) {
-    message = formatMessage('dragSelectedItems', {count: numSelectedKeys});
+    message = formatMessage("dragSelectedItems", {count: numSelectedKeys});
   } else {
-    message = formatMessage('dragItem', {itemText: item?.textValue ?? ''});
+    message = formatMessage("dragItem", {itemText: item?.textValue ?? ""});
   }
 
   return {
     dragProps,
     dragButtonProps: {
       ...dragButtonProps,
-      'aria-label': message
+      "aria-label": message
     }
   };
 }

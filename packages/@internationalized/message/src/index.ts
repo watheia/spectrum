@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './MessageDictionary';
-export * from './MessageFormatter';
+export * from "./MessageDictionary";
+export * from "./MessageFormatter";

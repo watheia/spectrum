@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {DateValue} from '@react-types/datepicker';
+import {DateValue} from "@react-types/datepicker";
 
 export function setTime(date: Date, time: Date) {
   if (!date || !time) {

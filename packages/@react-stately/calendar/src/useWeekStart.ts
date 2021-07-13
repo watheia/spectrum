@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {useLocale} from '@react-aria/i18n';
+import {useLocale} from "@react-aria/i18n";
 
 // Data from https://github.com/unicode-cldr/cldr-core/blob/master/supplemental/weekData.json
 // Locales starting on Sunday have been removed for compression.
 const data = {
-  '001': 1,
+  "001": 1,
   AD: 1,
   AE: 6,
   AF: 6,
@@ -125,5 +125,5 @@ function useRegion() {
   }
 
   // If not, just try splitting the string.
-  return locale.split('-')[1];
+  return locale.split("-")[1];
 }

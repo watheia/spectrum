@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, render} from '@testing-library/react';
-import React from 'react';
-import {Toast} from '../';
-import {triggerPress} from '@react-spectrum/test-utils';
-import {Toast as V2Toast} from '@react/react-spectrum/Toast';
+import {act, render} from "@testing-library/react";
+import React from "react";
+import {Toast} from "../";
+import {triggerPress} from "@react-spectrum/test-utils";
+import {Toast as V2Toast} from "@react/react-spectrum/Toast";
 
-let testId = 'test-id';
+let testId = "test-id";
 
 function renderComponent(Component, props, message) {
   return render(<Component {...props} data-testid={testId}>{message}</Component>);
 }
 
-describe('Toast', function () {
+describe("Toast", function () {
   let onClose = jest.fn();
   let onAction = jest.fn();
   let onRemove = jest.fn();
@@ -34,45 +34,45 @@ describe('Toast', function () {
 
   it.each`
     name           | Component    | props  | message
-    ${'Toast'}     | ${Toast}     | ${{}}  | ${'Toast time!'}
-    ${'V2Toast'}   | ${V2Toast}   | ${{}}  | ${'Toast time!'}
-  `('$name handles defaults', function ({name, Component, props, message}) {
+    ${"Toast"}     | ${Toast}     | ${{}}  | ${"Toast time!"}
+    ${"V2Toast"}   | ${V2Toast}   | ${{}}  | ${"Toast time!"}
+  `("$name handles defaults", function ({name, Component, props, message}) {
     let {getAllByRole, getByRole, getByText} = renderComponent(Component, props, message);
 
-    expect(getByRole('alert')).toBeTruthy();
+    expect(getByRole("alert")).toBeTruthy();
     expect(getByText(message)).toBeTruthy();
-    if (name === 'Toast') {
-      expect(getAllByRole('img', {hidden: true}).length).toBe(1);
+    if (name === "Toast") {
+      expect(getAllByRole("img", {hidden: true}).length).toBe(1);
     }
   });
 
   it.each`
     Name           | Component    | props                             | message
-    ${'Toast'}     | ${Toast}     | ${{UNSAFE_className: 'myClass'}}  | ${'Toast time!'}
-    ${'V2Toast'}   | ${V2Toast}   | ${{className: 'myClass'}}         | ${'Toast time!'}
-  `('$Name supports UNSAFE_className', function ({Component, props, message}) {
+    ${"Toast"}     | ${Toast}     | ${{UNSAFE_className: "myClass"}}  | ${"Toast time!"}
+    ${"V2Toast"}   | ${V2Toast}   | ${{className: "myClass"}}         | ${"Toast time!"}
+  `("$Name supports UNSAFE_className", function ({Component, props, message}) {
     let {getByTestId} = renderComponent(Component, props, message);
     let className = getByTestId(testId).className;
 
-    expect(className.includes('myClass')).toBeTruthy();
+    expect(className.includes("myClass")).toBeTruthy();
   });
 
   it.each`
     Name           | Component    | props                 | message
-    ${'Toast'}     | ${Toast}     | ${{variant: 'info'}}  | ${'Toast time!'}
-  `('$Name supports variant info', function ({Component, props, message}) {
+    ${"Toast"}     | ${Toast}     | ${{variant: "info"}}  | ${"Toast time!"}
+  `("$Name supports variant info", function ({Component, props, message}) {
     let {getAllByRole} = renderComponent(Component, props, message);
 
-    expect(getAllByRole('img', {hidden: true}).length).toBe(2); // there's one hidden and one not
+    expect(getAllByRole("img", {hidden: true}).length).toBe(2); // there's one hidden and one not
   });
 
   it.each`
     Name           | Component    | props                                    | message
-    ${'Toast'}     | ${Toast}     | ${{actionLabel: 'Undo', onRemove}}       | ${'Toast time!'}
-    ${'V2Toast'}   | ${V2Toast}   | ${{actionLabel: 'Undo', closable: true}} | ${'Toast time!'}
-  `('$Name handles action and close button clicks', function ({Component, props, message}) {
+    ${"Toast"}     | ${Toast}     | ${{actionLabel: "Undo", onRemove}}       | ${"Toast time!"}
+    ${"V2Toast"}   | ${V2Toast}   | ${{actionLabel: "Undo", closable: true}} | ${"Toast time!"}
+  `("$Name handles action and close button clicks", function ({Component, props, message}) {
     let {getAllByRole, getByText} = renderComponent(Component, {onClose, onAction, ...props}, message);
-    let button = getAllByRole('button');
+    let button = getAllByRole("button");
 
     // action button
     triggerPress(button[0]);
@@ -85,24 +85,24 @@ describe('Toast', function () {
     triggerPress(button[1]);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onAction).toHaveBeenCalledTimes(1);
-    if (name === 'Toast') {
+    if (name === "Toast") {
       expect(onRemove).toHaveBeenCalledTimes(0);
     }
   });
 
   it.each`
     Name           | Component    | props                                                          | message
-    ${'Toast'}     | ${Toast}     | ${{actionLabel: 'Undo', shouldCloseOnAction: true, onRemove}}  | ${'Toast time!'}
-    ${'V2Toast'}   | ${V2Toast}   | ${{actionLabel: 'Undo', closable: true, closeOnAction: true}}  | ${'Toast time!'}
-  `('$Name handles action and close button clicks when action closes', function ({Component, props, message}) {
+    ${"Toast"}     | ${Toast}     | ${{actionLabel: "Undo", shouldCloseOnAction: true, onRemove}}  | ${"Toast time!"}
+    ${"V2Toast"}   | ${V2Toast}   | ${{actionLabel: "Undo", closable: true, closeOnAction: true}}  | ${"Toast time!"}
+  `("$Name handles action and close button clicks when action closes", function ({Component, props, message}) {
     let {getAllByRole, getByText} = renderComponent(Component, {onClose, onAction, ...props}, message);
-    let button = getAllByRole('button');
+    let button = getAllByRole("button");
 
     // action button
     triggerPress(button[0]);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onAction).toHaveBeenCalledTimes(1);
-    if (name === 'Toast') {
+    if (name === "Toast") {
       expect(onRemove).toHaveBeenCalledTimes(1);
     }
     expect(getByText(props.actionLabel)).toBeTruthy();
@@ -111,25 +111,25 @@ describe('Toast', function () {
     triggerPress(button[1]);
     expect(onClose).toHaveBeenCalledTimes(2);
     expect(onAction).toHaveBeenCalledTimes(1);
-    if (name === 'Toast') {
+    if (name === "Toast") {
       expect(onRemove).toHaveBeenCalledTimes(2);
     }
   });
 
   it.each`
     Name           | Component    | props                                                          | message
-    ${'Toast'}     | ${Toast}     | ${{actionLabel: 'Undo', shouldCloseOnAction: true, onRemove}}  | ${'Toast time!'}
-    ${'V2Toast'}   | ${V2Toast}   | ${{actionLabel: 'Undo', closable: true, closeOnAction: true}}  | ${'Toast time!'}
-  `('$Name action button and close button are focusable', function ({Component, props, message}) {
+    ${"Toast"}     | ${Toast}     | ${{actionLabel: "Undo", shouldCloseOnAction: true, onRemove}}  | ${"Toast time!"}
+    ${"V2Toast"}   | ${V2Toast}   | ${{actionLabel: "Undo", closable: true, closeOnAction: true}}  | ${"Toast time!"}
+  `("$Name action button and close button are focusable", function ({Component, props, message}) {
     let {getAllByRole} = renderComponent(Component, {onClose, onAction, ...props}, message);
-    let button = getAllByRole('button');
+    let button = getAllByRole("button");
 
     // action button
     act(() => {button[0].focus();});
     triggerPress(document.activeElement);
     expect(onClose).toHaveBeenCalledTimes(1);
     expect(onAction).toHaveBeenCalledTimes(1);
-    if (name === 'Toast') {
+    if (name === "Toast") {
       expect(onRemove).toHaveBeenCalledTimes(1);
     }
 
@@ -138,7 +138,7 @@ describe('Toast', function () {
     triggerPress(document.activeElement);
     expect(onClose).toHaveBeenCalledTimes(2);
     expect(onAction).toHaveBeenCalledTimes(1);
-    if (name === 'Toast') {
+    if (name === "Toast") {
       expect(onRemove).toHaveBeenCalledTimes(2);
     }
   });
@@ -146,8 +146,8 @@ describe('Toast', function () {
   // New v3 functionality, omitting v2 components
   it.each`
     Name           | Component
-    ${'Toast'}     | ${Toast}
-  `('$Name will attach a ref to the toast', ({Component}) => {
+    ${"Toast"}     | ${Toast}
+  `("$Name will attach a ref to the toast", ({Component}) => {
     let ref = React.createRef();
     let toast = renderComponent(Component, {ref});
     let input = toast.getByTestId(testId);

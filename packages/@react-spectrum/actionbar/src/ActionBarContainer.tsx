@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import React from 'react';
-import {SpectrumActionBarContainerProps} from '@react-types/actionbar';
-import styles from './actionbar.css';
-import {useProviderProps} from '@react-spectrum/provider';
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import React from "react";
+import {SpectrumActionBarContainerProps} from "@react-types/actionbar";
+import styles from "./actionbar.css";
+import {useProviderProps} from "@react-spectrum/provider";
 
 function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<HTMLDivElement>) {
-  // Grabs specific props from the closest Provider (see https://spectrum-kit.vercel.app/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
+  // Grabs specific props from the closest Provider (see https://watheia.app/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
   props = useProviderProps(props);
 
   let {children} = props;
@@ -31,7 +31,7 @@ function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<
       {...filterDOMProps(props)}
       {...styleProps}
       ref={domRef}
-      className={classNames(styles, 'ActionBarContainer', styleProps.className)}>
+      className={classNames(styles, "ActionBarContainer", styleProps.className)}>
       {children}
     </div>
   );

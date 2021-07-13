@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {ClearSlots, useDOMRef, useSlotProps, useStyleProps, viewStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import React, {forwardRef} from 'react';
-import {ViewProps} from '@react-types/view';
+import {ClearSlots, useDOMRef, useSlotProps, useStyleProps, viewStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import React, {forwardRef} from "react";
+import {ViewProps} from "@react-types/view";
 
 function View(props: ViewProps, ref: DOMRef) {
   props = useSlotProps(props);
   let {
-    elementType: ElementType = 'div',
+    elementType: ElementType = "div",
     children,
     ...otherProps
   } = props;

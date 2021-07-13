@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {Indent, JoinList, Type, TypeContext, TypeParameters} from './types';
-import React from 'react';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
+import {Indent, JoinList, Type, TypeContext, TypeParameters} from "./types";
+import React from "react";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 export function FunctionAPI({function: func, links}) {
   let {name, parameters, return: returnType, typeParameters} = func;
 
   return (
     <TypeContext.Provider value={links}>
-      <code className={`${typographyStyles['spectrum-Code4']}`}>
+      <code className={`${typographyStyles["spectrum-Code4"]}`}>
         <span className="token hljs-function">{name}</span>
         <TypeParameters typeParameters={typeParameters} />
         <Indent params={parameters} open="(" close=")">
           <JoinList elements={parameters} joiner=", " />
         </Indent>
-        <span className="token punctuation">{': '}</span>
+        <span className="token punctuation">{": "}</span>
         <Type type={returnType} />
       </code>
     </TypeContext.Provider>

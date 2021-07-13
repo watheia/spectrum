@@ -10,30 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-import {Example} from '../stories/Example';
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Example} from "../stories/Example";
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('ActionBar', module)
+storiesOf("ActionBar", module)
   .add(
-    'default',
+    "default",
     () => (
       <Flex gap="size-250">
         <Example />
-        <Example defaultSelectedKeys={new Set(['Foo 1'])} />
+        <Example defaultSelectedKeys={new Set(["Foo 1"])} />
       </Flex>
     )
   )
   .add(
-    'isEmphasized',
-    () => <Example isEmphasized defaultSelectedKeys={new Set(['Foo 1'])} />
+    "isEmphasized",
+    () => <Example isEmphasized defaultSelectedKeys={new Set(["Foo 1"])} />
   )
   .add(
-    'large width',
-    () => <Example isEmphasized tableWidth={800} isQuiet defaultSelectedKeys={new Set(['Foo 1'])} />
+    "large width",
+    () => <Example isEmphasized tableWidth={800} isQuiet defaultSelectedKeys={new Set(["Foo 1"])} />
   )
   .add(
-    'collapsed icons',
-    () => <Example isEmphasized tableWidth={500} isQuiet defaultSelectedKeys={new Set(['Foo 1'])} />
+    "collapsed icons",
+    () => <Example isEmphasized tableWidth={500} isQuiet defaultSelectedKeys={new Set(["Foo 1"])} />
   );

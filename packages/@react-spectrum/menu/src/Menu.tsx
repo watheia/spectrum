@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {MenuContext} from './context';
-import {MenuItem} from './MenuItem';
-import {MenuSection} from './MenuSection';
-import {mergeProps, useSyncRef} from '@react-aria/utils';
-import React, {ReactElement, useContext} from 'react';
-import {SpectrumMenuProps} from '@react-types/menu';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {useMenu} from '@react-aria/menu';
-import {useTreeState} from '@react-stately/tree';
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {MenuContext} from "./context";
+import {MenuItem} from "./MenuItem";
+import {MenuSection} from "./MenuSection";
+import {mergeProps, useSyncRef} from "@react-aria/utils";
+import React, {ReactElement, useContext} from "react";
+import {SpectrumMenuProps} from "@react-types/menu";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {useMenu} from "@react-aria/menu";
+import {useTreeState} from "@react-stately/tree";
 
 function Menu<T extends object>(props: SpectrumMenuProps<T>, ref: DOMRef<HTMLUListElement>) {
   let contextProps = useContext(MenuContext);
@@ -42,12 +42,12 @@ function Menu<T extends object>(props: SpectrumMenuProps<T>, ref: DOMRef<HTMLULi
       className={
         classNames(
           styles,
-          'spectrum-Menu',
+          "spectrum-Menu",
           styleProps.className
         )
       }>
       {[...state.collection].map(item => {
-        if (item.type === 'section') {
+        if (item.type === "section") {
           return (
             <MenuSection
               key={item.key}

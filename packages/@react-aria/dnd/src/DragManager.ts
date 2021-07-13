@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {announce} from '@react-aria/live-announcer';
-import {ariaHideOutside} from '@react-aria/overlays';
-import {DragEndEvent, DragItem, DropActivateEvent, DropEnterEvent, DropEvent, DropExitEvent, DropItem, DropOperation, DropTarget as DroppableCollectionTarget} from '@react-types/shared';
-import {getDragModality, getTypes} from './utils';
-import {useEffect, useState} from 'react';
+import {announce} from "@react-aria/live-announcer";
+import {ariaHideOutside} from "@react-aria/overlays";
+import {DragEndEvent, DragItem, DropActivateEvent, DropEnterEvent, DropEvent, DropExitEvent, DropItem, DropOperation, DropTarget as DroppableCollectionTarget} from "@react-types/shared";
+import {getDragModality, getTypes} from "./utils";
+import {useEffect, useState} from "react";
 
 let dropTargets = new Map<Element, DropTarget>();
 let dropItems = new Map<Element, DroppableItem>();
@@ -63,14 +63,14 @@ interface DragTarget {
 
 export function beginDragging(target: DragTarget, formatMessage: (key: string) => string) {
   if (dragSession) {
-    throw new Error('Cannot begin dragging while already dragging');
+    throw new Error("Cannot begin dragging while already dragging");
   }
 
   dragSession = new DragSession(target, formatMessage);
   requestAnimationFrame(() => {
     dragSession.setup();
 
-    if (getDragModality() === 'keyboard') {
+    if (getDragModality() === "keyboard") {
       dragSession.next();
     }
   });
@@ -102,38 +102,38 @@ function endDragging() {
 }
 
 const CANCELED_EVENTS = [
-  'pointerdown',
-  'pointermove',
-  'pointerenter',
-  'pointerleave',
-  'pointerover',
-  'pointerout',
-  'pointerup',
-  'mousedown',
-  'mousemove',
-  'mouseenter',
-  'mouseleave',
-  'mouseover',
-  'mouseout',
-  'mouseup',
-  'touchstart',
-  'touchmove',
-  'touchend',
-  'keyup',
-  'focusin',
-  'focusout'
+  "pointerdown",
+  "pointermove",
+  "pointerenter",
+  "pointerleave",
+  "pointerover",
+  "pointerout",
+  "pointerup",
+  "mousedown",
+  "mousemove",
+  "mouseenter",
+  "mouseleave",
+  "mouseover",
+  "mouseout",
+  "mouseup",
+  "touchstart",
+  "touchmove",
+  "touchend",
+  "keyup",
+  "focusin",
+  "focusout"
 ];
 
 const CLICK_EVENTS = [
-  'pointerup',
-  'mouseup',
-  'touchend'
+  "pointerup",
+  "mouseup",
+  "touchend"
 ];
 
 const MESSAGES = {
-  keyboard: 'dragStartedKeyboard',
-  touch: 'dragStartedTouch',
-  virtual: 'dragStartedVirtual'
+  keyboard: "dragStartedKeyboard",
+  touch: "dragStartedTouch",
+  virtual: "dragStartedVirtual"
 };
 
 class DragSession {
@@ -159,10 +159,10 @@ class DragSession {
   }
 
   setup() {
-    document.addEventListener('keydown', this.onKeyDown, true);
-    window.addEventListener('focus', this.onFocus, true);
-    window.addEventListener('blur', this.onBlur, true);
-    document.addEventListener('click', this.onClick, true);
+    document.addEventListener("keydown", this.onKeyDown, true);
+    window.addEventListener("focus", this.onFocus, true);
+    window.addEventListener("blur", this.onBlur, true);
+    document.addEventListener("click", this.onClick, true);
 
     for (let event of CANCELED_EVENTS) {
       document.addEventListener(event, this.cancelEvent, true);
@@ -173,7 +173,7 @@ class DragSession {
       // occur inside a MutationObserver callback. If running in Node, wait until
       // the next tick to update valid drop targets.
       // See https://github.com/jsdom/jsdom/issues/3096
-      if (typeof setImmediate === 'function') {
+      if (typeof setImmediate === "function") {
         this.mutationImmediate = setImmediate(() => this.updateValidDropTargets());
       } else {
         this.updateValidDropTargets();
@@ -185,10 +185,10 @@ class DragSession {
   }
 
   teardown() {
-    document.removeEventListener('keydown', this.onKeyDown, true);
-    window.removeEventListener('focus', this.onFocus, true);
-    window.removeEventListener('blur', this.onBlur, true);
-    document.removeEventListener('click', this.onClick, true);
+    document.removeEventListener("keydown", this.onKeyDown, true);
+    window.removeEventListener("focus", this.onFocus, true);
+    window.removeEventListener("blur", this.onBlur, true);
+    document.removeEventListener("click", this.onClick, true);
 
     for (let event of CANCELED_EVENTS) {
       document.removeEventListener(event, this.cancelEvent, true);
@@ -204,12 +204,12 @@ class DragSession {
   onKeyDown(e: KeyboardEvent) {
     this.cancelEvent(e);
 
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       this.cancel();
       return;
     }
 
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       if (e.altKey) {
         this.activate();
       } else {
@@ -218,7 +218,7 @@ class DragSession {
       return;
     }
 
-    if (e.key === 'Tab' && !(e.metaKey || e.altKey || e.ctrlKey)) {
+    if (e.key === "Tab" && !(e.metaKey || e.altKey || e.ctrlKey)) {
       if (e.shiftKey) {
         this.previous();
       } else {
@@ -226,7 +226,7 @@ class DragSession {
       }
     }
 
-    if (typeof this.currentDropTarget?.onKeyDown === 'function') {
+    if (typeof this.currentDropTarget?.onKeyDown === "function") {
       this.currentDropTarget.onKeyDown(e, this.dragTarget);
     }
   }
@@ -320,8 +320,8 @@ class DragSession {
     // Find valid drop items within collections
     let types = getTypes(this.dragTarget.items);
     let validDropItems = [...dropItems.values()].filter(item => {
-      if (typeof item.getDropOperation === 'function') {
-        return item.getDropOperation(types, this.dragTarget.allowedDropOperations) !== 'cancel';
+      if (typeof item.getDropOperation === "function") {
+        return item.getDropOperation(types, this.dragTarget.allowedDropOperations) !== "cancel";
       }
 
       return true;
@@ -339,7 +339,7 @@ class DragSession {
       ...visibleDropTargets.map(target => target.element)
     ]);
 
-    this.mutationObserver.observe(document.body, {subtree: true, attributes: true, attributeFilter: ['aria-hidden']});
+    this.mutationObserver.observe(document.body, {subtree: true, attributes: true, attributeFilter: ["aria-hidden"]});
   }
 
   next() {
@@ -396,10 +396,10 @@ class DragSession {
 
   setCurrentDropTarget(dropTarget: DropTarget, item?: DroppableItem) {
     if (dropTarget !== this.currentDropTarget) {
-      if (this.currentDropTarget && typeof this.currentDropTarget.onDropExit === 'function') {
+      if (this.currentDropTarget && typeof this.currentDropTarget.onDropExit === "function") {
         let rect = this.currentDropTarget.element.getBoundingClientRect();
         this.currentDropTarget.onDropExit({
-          type: 'dropexit',
+          type: "dropexit",
           x: rect.left + (rect.width / 2),
           y: rect.top + (rect.height / 2)
         });
@@ -408,10 +408,10 @@ class DragSession {
       this.currentDropTarget = dropTarget;
 
       if (dropTarget) {
-        if (typeof dropTarget.onDropEnter === 'function') {
+        if (typeof dropTarget.onDropEnter === "function") {
           let rect = dropTarget.element.getBoundingClientRect();
           dropTarget.onDropEnter({
-            type: 'dropenter',
+            type: "dropenter",
             x: rect.left + (rect.width / 2),
             y: rect.top + (rect.height / 2)
           }, this.dragTarget);
@@ -425,7 +425,7 @@ class DragSession {
 
 
     if (item !== this.currentDropItem) {
-      if (item && typeof this.currentDropTarget.onDropTargetEnter === 'function') {
+      if (item && typeof this.currentDropTarget.onDropTargetEnter === "function") {
         this.currentDropTarget.onDropTargetEnter(item?.target);
       }
 
@@ -437,11 +437,11 @@ class DragSession {
   end() {
     this.teardown();
 
-    if (typeof this.dragTarget.onDragEnd === 'function') {
-      let target = this.currentDropTarget && this.dropOperation !== 'cancel' ? this.currentDropTarget : this.dragTarget;
+    if (typeof this.dragTarget.onDragEnd === "function") {
+      let target = this.currentDropTarget && this.dropOperation !== "cancel" ? this.currentDropTarget : this.dragTarget;
       let rect = target.element.getBoundingClientRect();
       this.dragTarget.onDragEnd({
-        type: 'dragend',
+        type: "dragend",
         x: rect.x + (rect.width / 2),
         y: rect.y + (rect.height / 2),
         dropOperation: this.dropOperation
@@ -458,7 +458,7 @@ class DragSession {
       this.dragTarget.element.focus();
     }
 
-    announce(this.formatMessage('dropCanceled'));
+    announce(this.formatMessage("dropCanceled"));
   }
 
   drop(item?: DroppableItem) {
@@ -467,10 +467,10 @@ class DragSession {
       return;
     }
 
-    if (typeof item?.getDropOperation === 'function') {
+    if (typeof item?.getDropOperation === "function") {
       let types = getTypes(this.dragTarget.items);
       this.dropOperation = item.getDropOperation(types, this.dragTarget.allowedDropOperations);
-    } else if (typeof this.currentDropTarget.getDropOperation === 'function') {
+    } else if (typeof this.currentDropTarget.getDropOperation === "function") {
       let types = getTypes(this.dragTarget.items);
       this.dropOperation = this.currentDropTarget.getDropOperation(types, this.dragTarget.allowedDropOperations);
     } else {
@@ -478,16 +478,16 @@ class DragSession {
       this.dropOperation = this.dragTarget.allowedDropOperations[0];
     }
 
-    if (typeof this.currentDropTarget.onDrop === 'function') {
+    if (typeof this.currentDropTarget.onDrop === "function") {
       let items: DropItem[] = this.dragTarget.items.map(item => ({
-        kind: 'text',
+        kind: "text",
         types: new Set(Object.keys(item)),
         getText: (type: string) => Promise.resolve(item[type])
       }));
 
       let rect = this.currentDropTarget.element.getBoundingClientRect();
       this.currentDropTarget.onDrop({
-        type: 'drop',
+        type: "drop",
         x: rect.left + (rect.width / 2),
         y: rect.top + (rect.height / 2),
         items,
@@ -496,14 +496,14 @@ class DragSession {
     }
 
     this.end();
-    announce(this.formatMessage('dropComplete'));
+    announce(this.formatMessage("dropComplete"));
   }
 
   activate() {
-    if (this.currentDropTarget && typeof this.currentDropTarget.onDropActivate === 'function') {
+    if (this.currentDropTarget && typeof this.currentDropTarget.onDropActivate === "function") {
       let rect = this.currentDropTarget.element.getBoundingClientRect();
       this.currentDropTarget.onDropActivate({
-        type: 'dropactivate',
+        type: "dropactivate",
         x: rect.left + (rect.width / 2),
         y: rect.top + (rect.height / 2)
       });
@@ -518,8 +518,8 @@ function findValidDropTargets(options: DragTarget) {
       return false;
     }
 
-    if (typeof target.getDropOperation === 'function') {
-      return target.getDropOperation(types, options.allowedDropOperations) !== 'cancel';
+    if (typeof target.getDropOperation === "function") {
+      return target.getDropOperation(types, options.allowedDropOperations) !== "cancel";
     }
 
     return true;

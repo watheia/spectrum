@@ -10,34 +10,34 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {render} from '@testing-library/react';
-import {Tooltip} from '../';
+import React from "react";
+import {render} from "@testing-library/react";
+import {Tooltip} from "../";
 
-describe('Tooltip', function () {
-  it('supports children', () => {
+describe("Tooltip", function () {
+  it("supports children", () => {
     let {getByRole} = render(<Tooltip>This is a tooltip</Tooltip>);
-    let tooltip = getByRole('tooltip');
-    expect(tooltip).toHaveAttribute('role', 'tooltip');
-    expect(tooltip).toHaveTextContent('This is a tooltip');
+    let tooltip = getByRole("tooltip");
+    expect(tooltip).toHaveAttribute("role", "tooltip");
+    expect(tooltip).toHaveTextContent("This is a tooltip");
   });
 
-  it('supports aria-label', () => {
+  it("supports aria-label", () => {
     let {getByRole} = render(<Tooltip aria-label="Tooltip" />);
-    let tooltip = getByRole('tooltip');
-    expect(tooltip).toHaveAttribute('aria-label', 'Tooltip');
+    let tooltip = getByRole("tooltip");
+    expect(tooltip).toHaveAttribute("aria-label", "Tooltip");
   });
 
-  it('supports aria-labelledby', () => {
+  it("supports aria-labelledby", () => {
     let {getByRole} = render(<Tooltip aria-labelledby="test" />);
-    let tooltip = getByRole('tooltip');
-    expect(tooltip).toHaveAttribute('aria-labelledby', 'test');
+    let tooltip = getByRole("tooltip");
+    expect(tooltip).toHaveAttribute("aria-labelledby", "test");
   });
 
-  it('supports a ref', () => {
+  it("supports a ref", () => {
     let ref = React.createRef();
     let {getByRole} = render(<Tooltip ref={ref}>This is a tooltip</Tooltip>);
-    let tooltip = getByRole('tooltip');
+    let tooltip = getByRole("tooltip");
     expect(ref.current.UNSAFE_getDOMNode()).toBe(tooltip);
   });
 });

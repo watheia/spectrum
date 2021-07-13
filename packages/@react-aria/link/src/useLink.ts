@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLinkProps} from '@react-types/link';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes, RefObject} from 'react';
-import {usePress} from '@react-aria/interactions';
+import {AriaLinkProps} from "@react-types/link";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes, RefObject} from "react";
+import {usePress} from "@react-aria/interactions";
 
 export interface AriaLinkOptions extends AriaLinkProps {
   /** Whether the link is disabled. */
@@ -39,7 +39,7 @@ export interface LinkAria {
  */
 export function useLink(props: AriaLinkOptions, ref: RefObject<HTMLElement>): LinkAria {
   let {
-    elementType = 'a',
+    elementType = "a",
     onPress,
     onPressStart,
     onPressEnd,
@@ -50,9 +50,9 @@ export function useLink(props: AriaLinkOptions, ref: RefObject<HTMLElement>): Li
   } = props;
 
   let linkProps: HTMLAttributes<HTMLElement>;
-  if (elementType !== 'a') {
+  if (elementType !== "a") {
     linkProps = {
-      role: 'link',
+      role: "link",
       tabIndex: !isDisabled ? 0 : undefined
     };
   }
@@ -65,12 +65,12 @@ export function useLink(props: AriaLinkOptions, ref: RefObject<HTMLElement>): Li
     linkProps: mergeProps(domProps, {
       ...pressProps,
       ...linkProps,
-      'aria-disabled': isDisabled || undefined,
+      "aria-disabled": isDisabled || undefined,
       onClick: (e) => {
         pressProps.onClick(e);
         if (deprecatedOnClick) {
           deprecatedOnClick(e);
-          console.warn('onClick is deprecated, please use onPress');
+          console.warn("onClick is deprecated, please use onPress");
         }
       }
     })

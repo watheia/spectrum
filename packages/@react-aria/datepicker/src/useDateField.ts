@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {DatePickerProps} from '@react-types/datepicker';
-import {DOMProps} from '@react-types/shared';
-import {filterDOMProps, useLabels} from '@react-aria/utils';
-import {HTMLAttributes, MouseEvent} from 'react';
+import {DatePickerProps} from "@react-types/datepicker";
+import {DOMProps} from "@react-types/shared";
+import {filterDOMProps, useLabels} from "@react-aria/utils";
+import {HTMLAttributes, MouseEvent} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useFocusManager} from '@react-aria/focus';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {useFocusManager} from "@react-aria/focus";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 interface DateFieldAria {
   fieldProps: HTMLAttributes<HTMLElement>,
@@ -27,7 +27,7 @@ interface DateFieldAria {
 export function useDateField(props: DatePickerProps & DOMProps): DateFieldAria {
   let domProps = filterDOMProps(props, {labelable: true});
   let formatMessage = useMessageFormatter(intlMessages);
-  let fieldProps = useLabels(props, formatMessage('date'));
+  let fieldProps = useLabels(props, formatMessage("date"));
   let focusManager = useFocusManager();
 
   // This is specifically for mouse events, not touch or keyboard.
@@ -46,7 +46,7 @@ export function useDateField(props: DatePickerProps & DOMProps): DateFieldAria {
     },
     segmentProps: {
       // Segments should be labeled by the input id if provided, otherwise the field itself
-      'aria-labelledby': fieldProps['aria-labelledby'] || fieldProps.id
+      "aria-labelledby": fieldProps["aria-labelledby"] || fieldProps.id
     }
   };
 }

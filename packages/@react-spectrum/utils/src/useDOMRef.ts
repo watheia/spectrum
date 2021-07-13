@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMRef, DOMRefValue, FocusableRef, FocusableRefValue} from '@react-types/shared';
-import {RefObject, useImperativeHandle, useMemo, useRef} from 'react';
+import {DOMRef, DOMRefValue, FocusableRef, FocusableRefValue} from "@react-types/shared";
+import {RefObject, useImperativeHandle, useMemo, useRef} from "react";
 
 export function createDOMRef<T extends HTMLElement = HTMLElement>(ref: RefObject<T>): DOMRefValue<T> {
   return {

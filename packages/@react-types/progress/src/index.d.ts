@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, LabelPosition, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {AriaLabelingProps, DOMProps, LabelPosition, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 interface ProgressBaseProps {
   /**
@@ -69,9 +69,9 @@ export interface SpectrumProgressCircleProps extends AriaProgressCircleProps, St
    * What the ProgressCircle's diameter should be.
    * @default 'M'
    */
-  size?: 'S' | 'M' | 'L',
+  size?: "S" | "M" | "L",
   /** The [visual style](https://spectrum.adobe.com/page/progress-circle/#Over-background-variant) of the ProgressCircle. */
-  variant?: 'overBackground'
+  variant?: "overBackground"
 }
 
 export interface SpectrumProgressBarBaseProps extends AriaProgressBarBaseProps, StyleProps {
@@ -79,7 +79,7 @@ export interface SpectrumProgressBarBaseProps extends AriaProgressBarBaseProps, 
    * How thick the bar should be.
    * @default 'L'
    */
-  size?: 'S' | 'L',
+  size?: "S" | "L",
   /**
    * The label's overall position relative to the element it is labeling.
    * @default 'top'
@@ -89,5 +89,5 @@ export interface SpectrumProgressBarBaseProps extends AriaProgressBarBaseProps, 
 
 export interface SpectrumProgressBarProps extends SpectrumProgressBarBaseProps, ProgressBarProps {
   /** The [visual style](https://spectrum.adobe.com/page/progress-bar/#Over-background-variant) of the ProgressBar. */
-  variant?: 'overBackground'
+  variant?: "overBackground"
 }

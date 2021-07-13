@@ -9,15 +9,15 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import {GridCollection} from '@react-stately/grid';
-import {GridNode} from '@react-types/grid';
-import {Key} from 'react';
+import {GridCollection} from "@react-stately/grid";
+import {GridNode} from "@react-types/grid";
+import {Key} from "react";
 
 interface GridCollectionOptions {
   showSelectionCheckboxes?: boolean
 }
 
-const ROW_HEADER_COLUMN_KEY = 'row-header-column-' + Math.random().toString(36).slice(2);
+const ROW_HEADER_COLUMN_KEY = "row-header-column-" + Math.random().toString(36).slice(2);
 
 function buildHeaderRows<T>(keyMap: Map<Key, GridNode<T>>, columnNodes: GridNode<T>[]): GridNode<T>[] {
   let columns = [];
@@ -78,8 +78,8 @@ function buildHeaderRows<T>(keyMap: Map<Key, GridNode<T>>, columnNodes: GridNode
         let rowLength = row.reduce((p, c) => p + c.colspan, 0);
         if (rowLength < colIndex) {
           let placeholder: GridNode<T> = {
-            type: 'placeholder',
-            key: 'placeholder-' + item.key,
+            type: "placeholder",
+            key: "placeholder-" + item.key,
             colspan: colIndex - rowLength,
             index: rowLength,
             value: null,
@@ -120,8 +120,8 @@ function buildHeaderRows<T>(keyMap: Map<Key, GridNode<T>>, columnNodes: GridNode
     let rowLength = row.reduce((p, c) => p + c.colspan, 0);
     if (rowLength < columnNodes.length) {
       let placeholder: GridNode<T> = {
-        type: 'placeholder',
-        key: 'placeholder-' + row[row.length - 1].key,
+        type: "placeholder",
+        key: "placeholder-" + row[row.length - 1].key,
         colspan: columnNodes.length - rowLength,
         index: rowLength,
         value: null,
@@ -141,8 +141,8 @@ function buildHeaderRows<T>(keyMap: Map<Key, GridNode<T>>, columnNodes: GridNode
 
   return headerRows.map((childNodes, index) => {
     let row: GridNode<T> = {
-      type: 'headerrow',
-      key: 'headerrow-' + index,
+      type: "headerrow",
+      key: "headerrow-" + index,
       index,
       value: null,
       rendered: null,
@@ -170,10 +170,10 @@ export class TableCollection<T> extends GridCollection<T> {
     // Add cell for selection checkboxes if needed.
     if (opts?.showSelectionCheckboxes) {
       let rowHeaderColumn: GridNode<T> = {
-        type: 'column',
+        type: "column",
         key: ROW_HEADER_COLUMN_KEY,
         value: null,
-        textValue: '',
+        textValue: "",
         level: 0,
         index: 0,
         hasChildNodes: false,
@@ -191,10 +191,10 @@ export class TableCollection<T> extends GridCollection<T> {
     let columnKeyMap = new Map();
     let visit = (node: GridNode<T>) => {
       switch (node.type) {
-        case 'body':
+        case "body":
           body = node;
           break;
-        case 'column':
+        case "column":
           columnKeyMap.set(node.key, node);
           if (!node.hasChildNodes) {
             columns.push(node);
@@ -204,7 +204,7 @@ export class TableCollection<T> extends GridCollection<T> {
             }
           }
           break;
-        case 'item':
+        case "item":
           rows.push(node);
           return; // do not go into childNodes
       }

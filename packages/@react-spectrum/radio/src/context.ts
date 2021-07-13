@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {RadioGroupState} from '@react-stately/radio';
-import React, {useContext} from 'react';
+import {RadioGroupState} from "@react-stately/radio";
+import React, {useContext} from "react";
 
 interface RadioGroupContext {
   isRequired?: boolean,
   isEmphasized?: boolean,
   name?: string,
-  validationState?: 'valid' | 'invalid',
+  validationState?: "valid" | "invalid",
   state: RadioGroupState
 }
 

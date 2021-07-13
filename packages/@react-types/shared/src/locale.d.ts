@@ -10,4 +10,4 @@
  * governing permissions and limitations under the License.
  */
 
-export type Direction = 'ltr' | 'rtl';
+export type Direction = "ltr" | "rtl";

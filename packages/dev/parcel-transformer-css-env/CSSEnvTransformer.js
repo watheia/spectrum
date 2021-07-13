@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-const {Transformer} = require('@parcel/plugin');
+const {Transformer} = require("@parcel/plugin");
 
 module.exports = new Transformer({
   async transform({asset, options}) {
@@ -19,11 +19,11 @@ module.exports = new Transformer({
     // the client bundle has a "browser" environment. We want them to end up resolving
     // to the same asset.
     asset.setEnvironment({
-      context: 'browser',
+      context: "browser",
       engines: {
         browsers: asset.env.engines.browsers
       },
-      minify: options.mode === 'production'
+      minify: options.mode === "production"
     });
 
     return [asset];

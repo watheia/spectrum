@@ -10,94 +10,94 @@
  * governing permissions and limitations under the License.
  */
 
-import {ColorSlider} from '../';
-import {generatePowerset} from '@react-spectrum/story-utils';
-import {Grid, repeat} from '@react-spectrum/layout';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumColorSliderProps} from '@react-types/color';
+import {ColorSlider} from "../";
+import {generatePowerset} from "@react-spectrum/story-utils";
+import {Grid, repeat} from "@react-spectrum/layout";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumColorSliderProps} from "@react-types/color";
 
 let states = [
   {isDisabled: true},
-  {label: [null, 'custom label']},
+  {label: [null, "custom label"]},
   {showValueLabel: false}
 ];
 
 let combinations = generatePowerset(states, (merged) => merged.label === null && merged.showValueLabel === false);
 
 function shortName(key, value) {
-  let returnVal = '';
+  let returnVal = "";
   switch (key) {
-    case 'isDisabled':
-      returnVal = 'disable';
+    case "isDisabled":
+      returnVal = "disable";
       break;
-    case 'label':
-      returnVal = `${value === null ? 'no label' : value}`;
+    case "label":
+      returnVal = `${value === null ? "no label" : value}`;
       break;
-    case 'orientation':
-      returnVal = 'vertical';
+    case "orientation":
+      returnVal = "vertical";
       break;
-    case 'showValueLabel':
-      returnVal = 'noValLabel';
+    case "showValueLabel":
+      returnVal = "noValLabel";
       break;
   }
   return returnVal;
 }
 
 const meta: Meta = {
-  title: 'ColorSlider'
+  title: "ColorSlider"
 };
 
 export default meta;
 
 const Template: Story<SpectrumColorSliderProps> = (args) => (
-  <Grid columns={repeat(states.length, '1fr')} autoFlow="row" gap="size-300">
+  <Grid columns={repeat(states.length, "1fr")} autoFlow="row" gap="size-300">
     {combinations.map(c => {
-      let key = Object.keys(c).map(k => shortName(k, c[k])).join(' ');
+      let key = Object.keys(c).map(k => shortName(k, c[k])).join(" ");
       if (!key) {
-        key = 'empty';
+        key = "empty";
       }
-      return <ColorSlider key={key} {...args} {...c} label={c.label === 'custom label' ? key : c.label} />;
+      return <ColorSlider key={key} {...args} {...c} label={c.label === "custom label" ? key : c.label} />;
     })}
   </Grid>
 );
 
 const VerticalTemplate: Story<SpectrumColorSliderProps> = (args) => (
-  <Grid columns={repeat(5, '1fr')} autoFlow="row" gap="size-300">
+  <Grid columns={repeat(5, "1fr")} autoFlow="row" gap="size-300">
     {combinations.map(c => {
-      let key = Object.keys(c).map(k => shortName(k, c[k])).join(' ');
+      let key = Object.keys(c).map(k => shortName(k, c[k])).join(" ");
       if (!key) {
-        key = 'empty';
+        key = "empty";
       }
-      return <ColorSlider key={key} {...args} {...c} label={c.label === 'custom label' ? key : c.label} orientation="vertical" />;
+      return <ColorSlider key={key} {...args} {...c} label={c.label === "custom label" ? key : c.label} orientation="vertical" />;
     })}
   </Grid>
 );
 
 export const PropChannelRed = Template.bind({});
-PropChannelRed.storyName = 'channel: red';
-PropChannelRed.args = {channel: 'red', defaultValue: '#7f0000'};
+PropChannelRed.storyName = "channel: red";
+PropChannelRed.args = {channel: "red", defaultValue: "#7f0000"};
 
 export const PropChannelAlpha = Template.bind({});
-PropChannelAlpha.storyName = 'channel: alpha';
-PropChannelAlpha.args = {channel: 'alpha', defaultValue: '#7f0000'};
+PropChannelAlpha.storyName = "channel: alpha";
+PropChannelAlpha.args = {channel: "alpha", defaultValue: "#7f0000"};
 
 export const PropChannelLightness = Template.bind({});
-PropChannelLightness.storyName = 'channel: lightness';
-PropChannelLightness.args = {channel: 'lightness', defaultValue: 'hsla(0, 100%, 50%, 0.5)'};
+PropChannelLightness.storyName = "channel: lightness";
+PropChannelLightness.args = {channel: "lightness", defaultValue: "hsla(0, 100%, 50%, 0.5)"};
 
 export const PropChannelBrightness = Template.bind({});
-PropChannelBrightness.storyName = 'channel: brightness';
-PropChannelBrightness.args = {channel: 'brightness', defaultValue: 'hsba(0, 100%, 50%, 0.5)'};
+PropChannelBrightness.storyName = "channel: brightness";
+PropChannelBrightness.args = {channel: "brightness", defaultValue: "hsba(0, 100%, 50%, 0.5)"};
 
 export const PropVertical = VerticalTemplate.bind({});
-PropVertical.storyName = 'orientation: vertical';
-PropVertical.args = {channel: 'red', defaultValue: '#7f0000'};
+PropVertical.storyName = "orientation: vertical";
+PropVertical.args = {channel: "red", defaultValue: "#7f0000"};
 
 export const PropCustomWidth = Template.bind({});
-PropCustomWidth.storyName = 'custom width';
-PropCustomWidth.args = {channel: 'red', defaultValue: '#7f0000', width: 'size-3600'};
+PropCustomWidth.storyName = "custom width";
+PropCustomWidth.args = {channel: "red", defaultValue: "#7f0000", width: "size-3600"};
 
 export const PropCustomHeight = VerticalTemplate.bind({});
-PropCustomHeight.storyName = 'custom height';
-PropCustomHeight.args = {channel: 'red', defaultValue: '#7f0000', height: 'size-3600'};
+PropCustomHeight.storyName = "custom height";
+PropCustomHeight.args = {channel: "red", defaultValue: "#7f0000", height: "size-3600"};

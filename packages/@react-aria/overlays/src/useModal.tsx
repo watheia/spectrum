@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import React, {AriaAttributes, HTMLAttributes, ReactNode, useContext, useEffect, useMemo, useState} from 'react';
-import ReactDOM from 'react-dom';
+import React, {AriaAttributes, HTMLAttributes, ReactNode, useContext, useEffect, useMemo, useState} from "react";
+import ReactDOM from "react-dom";
 
 interface ModalProviderProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode
@@ -77,7 +77,7 @@ export function useModalProvider(): ModalProviderAria {
   let context = useContext(Context);
   return {
     modalProviderProps: {
-      'aria-hidden': context && context.modalCount > 0 ? true : null
+      "aria-hidden": context && context.modalCount > 0 ? true : null
     }
   };
 }
@@ -125,8 +125,8 @@ export function OverlayContainer(props: OverlayContainerProps): React.ReactPorta
   let {portalContainer = document.body, ...rest} = props;
 
   React.useEffect(() => {
-    if (portalContainer.closest('[data-overlay-container]')) {
-      throw new Error('An OverlayContainer must not be inside another container. Please change the portalContainer prop.');
+    if (portalContainer.closest("[data-overlay-container]")) {
+      throw new Error("An OverlayContainer must not be inside another container. Please change the portalContainer prop.");
     }
   }, [portalContainer]);
 
@@ -136,7 +136,7 @@ export function OverlayContainer(props: OverlayContainerProps): React.ReactPorta
 
 interface ModalAriaProps extends HTMLAttributes<HTMLElement> {
   /** Data attribute marks the dom node as a modal for the aria-modal-polyfill. */
-  'data-ismodal': boolean
+  "data-ismodal": boolean
 }
 
 interface ModalOptions {
@@ -158,7 +158,7 @@ export function useModal(options?: ModalOptions): ModalAria {
   // Add aria-hidden to all parent providers on mount, and restore on unmount.
   let context = useContext(Context);
   if (!context) {
-    throw new Error('Modal is not contained within a provider');
+    throw new Error("Modal is not contained within a provider");
   }
 
   useEffect(() => {
@@ -178,7 +178,7 @@ export function useModal(options?: ModalOptions): ModalAria {
 
   return {
     modalProps: {
-      'data-ismodal': !options?.isDisabled
+      "data-ismodal": !options?.isDisabled
     }
   };
 }

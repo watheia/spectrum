@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {announce} from '@react-aria/live-announcer';
-import {AriaButtonProps} from '@react-types/button';
-import {ariaHideOutside} from '@react-aria/overlays';
-import {AriaListBoxOptions, getItemId, listData} from '@react-aria/listbox';
-import {chain, isAppleDevice, mergeProps, useLabels} from '@react-aria/utils';
-import {ComboBoxProps} from '@react-types/combobox';
-import {ComboBoxState} from '@react-stately/combobox';
-import {FocusEvent, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, RefObject, TouchEvent, useEffect, useMemo, useRef} from 'react';
-import {getItemCount} from '@react-stately/collections';
+import {announce} from "@react-aria/live-announcer";
+import {AriaButtonProps} from "@react-types/button";
+import {ariaHideOutside} from "@react-aria/overlays";
+import {AriaListBoxOptions, getItemId, listData} from "@react-aria/listbox";
+import {chain, isAppleDevice, mergeProps, useLabels} from "@react-aria/utils";
+import {ComboBoxProps} from "@react-types/combobox";
+import {ComboBoxState} from "@react-stately/combobox";
+import {FocusEvent, HTMLAttributes, InputHTMLAttributes, KeyboardEvent, RefObject, TouchEvent, useEffect, useMemo, useRef} from "react";
+import {getItemCount} from "@react-stately/collections";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {KeyboardDelegate, PressEvent} from '@react-types/shared';
-import {ListKeyboardDelegate, useSelectableCollection} from '@react-aria/selection';
-import {useMenuTrigger} from '@react-aria/menu';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {useTextField} from '@react-aria/textfield';
+import intlMessages from "../intl/*.json";
+import {KeyboardDelegate, PressEvent} from "@react-types/shared";
+import {ListKeyboardDelegate, useSelectableCollection} from "@react-aria/selection";
+import {useMenuTrigger} from "@react-aria/menu";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {useTextField} from "@react-aria/textfield";
 
 interface AriaComboBoxProps<T> extends ComboBoxProps<T> {
   /** The ref for the input element. */
@@ -72,7 +72,7 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
   let formatMessage = useMessageFormatter(intlMessages);
   let {menuTriggerProps, menuProps} = useMenuTrigger(
     {
-      type: 'listbox'
+      type: "listbox"
     },
     state,
     buttonRef
@@ -100,26 +100,26 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
   // For textfield specific keydown operations
   let onKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
-      case 'Enter':
-      case 'Tab':
+      case "Enter":
+      case "Tab":
         // Prevent form submission if menu is open since we may be selecting a option
-        if (state.isOpen && e.key === 'Enter') {
+        if (state.isOpen && e.key === "Enter") {
           e.preventDefault();
         }
 
         state.commit();
         break;
-      case 'Escape':
+      case "Escape":
         state.revert();
         break;
-      case 'ArrowDown':
-        state.open('first', 'manual');
+      case "ArrowDown":
+        state.open("first", "manual");
         break;
-      case 'ArrowUp':
-        state.open('last', 'manual');
+      case "ArrowUp":
+        state.open("last", "manual");
         break;
-      case 'ArrowLeft':
-      case 'ArrowRight':
+      case "ArrowLeft":
+      case "ArrowRight":
         state.selectionManager.setFocusedKey(null);
         break;
     }
@@ -157,35 +157,35 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
     onBlur,
     value: state.inputValue,
     onFocus,
-    autoComplete: 'off'
+    autoComplete: "off"
   }, inputRef);
 
   // Press handlers for the ComboBox button
   let onPress = (e: PressEvent) => {
-    if (e.pointerType === 'touch') {
+    if (e.pointerType === "touch") {
       // Focus the input field in case it isn't focused yet
       inputRef.current.focus();
-      state.toggle(null, 'manual');
+      state.toggle(null, "manual");
     }
   };
 
   let onPressStart = (e: PressEvent) => {
-    if (e.pointerType !== 'touch') {
+    if (e.pointerType !== "touch") {
       inputRef.current.focus();
-      state.toggle((e.pointerType === 'keyboard' || e.pointerType === 'virtual') ? 'first' : null, 'manual');
+      state.toggle((e.pointerType === "keyboard" || e.pointerType === "virtual") ? "first" : null, "manual");
     }
   };
 
   let triggerLabelProps = useLabels({
     id: menuTriggerProps.id,
-    'aria-label': formatMessage('buttonLabel'),
-    'aria-labelledby': props['aria-labelledby'] || labelProps.id
+    "aria-label": formatMessage("buttonLabel"),
+    "aria-labelledby": props["aria-labelledby"] || labelProps.id
   });
 
   let listBoxProps = useLabels({
     id: menuProps.id,
-    'aria-label': formatMessage('listboxLabel'),
-    'aria-labelledby': props['aria-labelledby'] || labelProps.id
+    "aria-label": formatMessage("listboxLabel"),
+    "aria-labelledby": props["aria-labelledby"] || labelProps.id
   });
 
   // If a touch happens on direct center of ComboBox input, might be virtual click from iPad so open ComboBox menu
@@ -211,7 +211,7 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
     if (touch.clientX === centerX && touch.clientY === centerY) {
       e.preventDefault();
       inputRef.current.focus();
-      state.toggle(null, 'manual');
+      state.toggle(null, "manual");
 
       lastEventTime.current = e.timeStamp;
     }
@@ -231,13 +231,13 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
     if (isAppleDevice() && focusedItem != null && itemKey !== lastItem.current) {
       let isSelected = state.selectionManager.isSelected(itemKey);
       let section = sectionKey != null ? state.collection.getItem(sectionKey) : null;
-      let sectionTitle = section?.['aria-label'] || (typeof section?.rendered === 'string' ? section.rendered : '') || '';
+      let sectionTitle = section?.["aria-label"] || (typeof section?.rendered === "string" ? section.rendered : "") || "";
 
-      let announcement = formatMessage('focusAnnouncement', {
+      let announcement = formatMessage("focusAnnouncement", {
         isGroupChange: section && sectionKey !== lastSection.current,
         groupTitle: sectionTitle,
         groupCount: section ? [...section.childNodes].length : 0,
-        optionText: focusedItem['aria-label'] || focusedItem.textValue || '',
+        optionText: focusedItem["aria-label"] || focusedItem.textValue || "",
         isSelected
       });
 
@@ -261,7 +261,7 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
       (state.selectionManager.focusedKey == null || isAppleDevice());
 
     if (state.isOpen && (didOpenWithoutFocusedItem || optionCount !== lastSize.current)) {
-      let announcement = formatMessage('countAnnouncement', {optionCount});
+      let announcement = formatMessage("countAnnouncement", {optionCount});
       announce(announcement);
     }
 
@@ -273,8 +273,8 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
   let lastSelectedKey = useRef(state.selectedKey);
   useEffect(() => {
     if (isAppleDevice() && state.isFocused && state.selectedItem && state.selectedKey !== lastSelectedKey.current) {
-      let optionText = state.selectedItem['aria-label'] || state.selectedItem.textValue || '';
-      let announcement = formatMessage('selectedAnnouncement', {optionText});
+      let optionText = state.selectedItem["aria-label"] || state.selectedItem.textValue || "";
+      let announcement = formatMessage("selectedAnnouncement", {optionText});
       announce(announcement);
     }
 
@@ -297,17 +297,17 @@ export function useComboBox<T>(props: AriaComboBoxProps<T>, state: ComboBoxState
       onPressStart
     },
     inputProps: mergeProps(inputProps, {
-      role: 'combobox',
-      'aria-expanded': menuTriggerProps['aria-expanded'],
-      'aria-controls': state.isOpen ? menuProps.id : undefined,
+      role: "combobox",
+      "aria-expanded": menuTriggerProps["aria-expanded"],
+      "aria-controls": state.isOpen ? menuProps.id : undefined,
       // TODO: readd proper logic for completionMode = complete (aria-autocomplete: both)
-      'aria-autocomplete': 'list',
-      'aria-activedescendant': focusedItem ? getItemId(state, focusedItem.key) : undefined,
+      "aria-autocomplete": "list",
+      "aria-activedescendant": focusedItem ? getItemId(state, focusedItem.key) : undefined,
       onTouchEnd,
       // This disable's iOS's autocorrect suggestions, since the combo box provides its own suggestions.
-      autoCorrect: 'off',
+      autoCorrect: "off",
       // This disable's the macOS Safari spell check auto corrections.
-      spellCheck: 'false'
+      spellCheck: "false"
     }),
     listBoxProps: mergeProps(menuProps, listBoxProps, {
       autoFocus: state.focusStrategy,

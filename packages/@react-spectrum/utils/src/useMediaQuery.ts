@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {useEffect, useState} from 'react';
-import {useIsSSR} from '@react-aria/ssr';
+import {useEffect, useState} from "react";
+import {useIsSSR} from "@react-aria/ssr";
 
 export function useMediaQuery(query: string) {
-  let supportsMatchMedia = typeof window !== 'undefined' && typeof window.matchMedia === 'function';
+  let supportsMatchMedia = typeof window !== "undefined" && typeof window.matchMedia === "function";
   let [matches, setMatches] = useState(() =>
     supportsMatchMedia
       ? window.matchMedia(query).matches

@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps, useSyncRef} from '@react-aria/utils';
-import React, {HTMLAttributes, MutableRefObject, RefObject, useContext} from 'react';
+import {mergeProps, useSyncRef} from "@react-aria/utils";
+import React, {HTMLAttributes, MutableRefObject, RefObject, useContext} from "react";
 
 interface DOMPropsResponderProps extends HTMLAttributes<HTMLElement> {
   ref?: RefObject<HTMLElement>

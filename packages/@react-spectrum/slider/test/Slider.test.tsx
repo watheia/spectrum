@@ -10,71 +10,71 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render} from '@testing-library/react';
-import {installMouseEvent} from '@react-spectrum/test-utils';
-import {press, testKeypresses} from './utils';
-import {Provider} from '@adobe/react-spectrum';
-import React, {useState} from 'react';
-import {Slider} from '../';
-import {theme} from '@react-spectrum/theme-default';
-import userEvent from '@testing-library/user-event';
+import {act, fireEvent, render} from "@testing-library/react";
+import {installMouseEvent} from "@react-spectrum/test-utils";
+import {press, testKeypresses} from "./utils";
+import {Provider} from "@adobe/react-spectrum";
+import React, {useState} from "react";
+import {Slider} from "../";
+import {theme} from "@react-spectrum/theme-default";
+import userEvent from "@testing-library/user-event";
 
-describe('Slider', function () {
-  it('supports aria-label', function () {
+describe("Slider", function () {
+  it("supports aria-label", function () {
     let {getByRole} = render(<Slider aria-label="The Label" />);
 
-    let group = getByRole('group');
-    expect(group).toHaveAttribute('aria-label', 'The Label');
+    let group = getByRole("group");
+    expect(group).toHaveAttribute("aria-label", "The Label");
 
     // No label/value
     expect(group.textContent).toBeFalsy();
 
-    let slider = getByRole('slider');
-    expect(slider).toHaveAttribute('aria-valuetext', '0');
+    let slider = getByRole("slider");
+    expect(slider).toHaveAttribute("aria-valuetext", "0");
   });
 
-  it('supports label', function () {
+  it("supports label", function () {
     let {getByRole} = render(<Slider label="The Label" />);
 
-    let group = getByRole('group');
-    let labelId = group.getAttribute('aria-labelledby');
-    let slider = getByRole('slider');
-    expect(slider.getAttribute('aria-labelledby')).toBe(labelId);
-    expect(slider).toHaveAttribute('aria-valuetext', '0');
+    let group = getByRole("group");
+    let labelId = group.getAttribute("aria-labelledby");
+    let slider = getByRole("slider");
+    expect(slider.getAttribute("aria-labelledby")).toBe(labelId);
+    expect(slider).toHaveAttribute("aria-valuetext", "0");
 
     let label = document.getElementById(labelId);
     expect(label).toHaveTextContent(/^The Label$/);
     // https://bugs.webkit.org/show_bug.cgi?id=172464
     // expect(label).toHaveAttribute('for', getByRole('slider').id);
-    expect(label).not.toHaveAttribute('for');
+    expect(label).not.toHaveAttribute("for");
 
     // Shows value as well
-    let output = getByRole('status');
-    expect(output).toHaveTextContent('0');
-    expect(output).toHaveAttribute('for', getByRole('slider').id);
-    expect(output).not.toHaveAttribute('aria-labelledby');
-    expect(output).toHaveAttribute('aria-live', 'off');
+    let output = getByRole("status");
+    expect(output).toHaveTextContent("0");
+    expect(output).toHaveAttribute("for", getByRole("slider").id);
+    expect(output).not.toHaveAttribute("aria-labelledby");
+    expect(output).toHaveAttribute("aria-live", "off");
   });
 
-  it('supports showValueLabel: false', function () {
+  it("supports showValueLabel: false", function () {
     let {getByRole} = render(<Slider label="The Label" showValueLabel={false} />);
-    let group = getByRole('group');
-    expect(group.textContent).toBe('The Label');
+    let group = getByRole("group");
+    expect(group.textContent).toBe("The Label");
 
-    let slider = getByRole('slider');
-    expect(slider).toHaveAttribute('aria-valuetext', '0');
-    expect(() => getByRole('status')).toThrow();
+    let slider = getByRole("slider");
+    expect(slider).toHaveAttribute("aria-valuetext", "0");
+    expect(() => getByRole("status")).toThrow();
   });
 
-  it('supports disabled', function () {
+  it("supports disabled", function () {
     let {getByRole, getAllByRole} = render(<div>
       <button>A</button>
       <Slider label="The Label" defaultValue={20} isDisabled />
       <button>B</button>
     </div>);
 
-    let slider = getByRole('slider');
-    let [buttonA, buttonB] = getAllByRole('button');
+    let slider = getByRole("slider");
+    let [buttonA, buttonB] = getAllByRole("button");
     expect(slider).toBeDisabled();
 
     userEvent.tab();
@@ -83,15 +83,15 @@ describe('Slider', function () {
     expect(document.activeElement).toBe(buttonB);
   });
 
-  it('can be focused', function () {
+  it("can be focused", function () {
     let {getByRole, getAllByRole} = render(<div>
       <button>A</button>
       <Slider label="The Label" defaultValue={20} />
       <button>B</button>
     </div>);
 
-    let slider = getByRole('slider');
-    let [buttonA, buttonB] = getAllByRole('button');
+    let slider = getByRole("slider");
+    let [buttonA, buttonB] = getAllByRole("button");
     act(() => {
       slider.focus();
     });
@@ -104,22 +104,22 @@ describe('Slider', function () {
     expect(document.activeElement).toBe(buttonA);
   });
 
-  it('supports defaultValue', function () {
+  it("supports defaultValue", function () {
     let {getByRole} = render(<Slider label="The Label" defaultValue={20} />);
 
-    let slider = getByRole('slider');
-    let output = getByRole('status');
+    let slider = getByRole("slider");
+    let output = getByRole("status");
 
-    expect(slider).toHaveProperty('value', '20');
-    expect(slider).toHaveAttribute('aria-valuetext', '20');
-    expect(output).toHaveTextContent('20');
-    fireEvent.change(slider, {target: {value: '40'}});
-    expect(slider).toHaveProperty('value', '40');
-    expect(slider).toHaveAttribute('aria-valuetext', '40');
-    expect(output).toHaveTextContent('40');
+    expect(slider).toHaveProperty("value", "20");
+    expect(slider).toHaveAttribute("aria-valuetext", "20");
+    expect(output).toHaveTextContent("20");
+    fireEvent.change(slider, {target: {value: "40"}});
+    expect(slider).toHaveProperty("value", "40");
+    expect(slider).toHaveAttribute("aria-valuetext", "40");
+    expect(output).toHaveTextContent("40");
   });
 
-  it('can be controlled', function () {
+  it("can be controlled", function () {
     let renders = [];
 
     function Test() {
@@ -131,21 +131,21 @@ describe('Slider', function () {
 
     let {getByRole} = render(<Test />);
 
-    let output = getByRole('status');
-    let slider = getByRole('slider');
+    let output = getByRole("status");
+    let slider = getByRole("slider");
 
-    expect(slider).toHaveProperty('value', '50');
-    expect(slider).toHaveAttribute('aria-valuetext', '50');
-    expect(output).toHaveTextContent('50');
-    fireEvent.change(slider, {target: {value: '55'}});
-    expect(slider).toHaveProperty('value', '55');
-    expect(slider).toHaveAttribute('aria-valuetext', '55');
-    expect(output).toHaveTextContent('55');
+    expect(slider).toHaveProperty("value", "50");
+    expect(slider).toHaveAttribute("aria-valuetext", "50");
+    expect(output).toHaveTextContent("50");
+    fireEvent.change(slider, {target: {value: "55"}});
+    expect(slider).toHaveProperty("value", "55");
+    expect(slider).toHaveAttribute("aria-valuetext", "55");
+    expect(output).toHaveTextContent("55");
 
     expect(renders).toStrictEqual([50, 55]);
   });
 
-  it('supports a custom getValueLabel', function () {
+  it("supports a custom getValueLabel", function () {
     function Test() {
       let [value, setValue] = useState(50);
       return (<Slider label="The Label" value={value} onChange={setValue} getValueLabel={value => `A${value}B`} />);
@@ -153,19 +153,19 @@ describe('Slider', function () {
 
     let {getByRole} = render(<Test />);
 
-    let output = getByRole('status');
-    let slider = getByRole('slider');
+    let output = getByRole("status");
+    let slider = getByRole("slider");
 
-    expect(output).toHaveTextContent('A50B');
+    expect(output).toHaveTextContent("A50B");
     // TODO should aria-valuetext be formatted as well?
-    expect(slider).toHaveAttribute('aria-valuetext', '50');
-    fireEvent.change(slider, {target: {value: '55'}});
-    expect(output).toHaveTextContent('A55B');
-    expect(slider).toHaveAttribute('aria-valuetext', '55');
+    expect(slider).toHaveAttribute("aria-valuetext", "50");
+    fireEvent.change(slider, {target: {value: "55"}});
+    expect(output).toHaveTextContent("A55B");
+    expect(slider).toHaveAttribute("aria-valuetext", "55");
   });
 
-  describe('formatOptions', () => {
-    it('prefixes the value with a plus sign if needed', function () {
+  describe("formatOptions", () => {
+    it("prefixes the value with a plus sign if needed", function () {
       let {getByRole} = render(
         <Slider
           label="The Label"
@@ -174,17 +174,17 @@ describe('Slider', function () {
           defaultValue={10} />
       );
 
-      let output = getByRole('status');
-      let slider = getByRole('slider');
+      let output = getByRole("status");
+      let slider = getByRole("slider");
 
-      expect(output).toHaveTextContent('+10');
-      expect(slider).toHaveAttribute('aria-valuetext', '+10');
-      fireEvent.change(slider, {target: {value: '0'}});
-      expect(output).toHaveTextContent('0');
-      expect(slider).toHaveAttribute('aria-valuetext', '0');
+      expect(output).toHaveTextContent("+10");
+      expect(slider).toHaveAttribute("aria-valuetext", "+10");
+      fireEvent.change(slider, {target: {value: "0"}});
+      expect(output).toHaveTextContent("0");
+      expect(slider).toHaveAttribute("aria-valuetext", "0");
     });
 
-    it('supports setting custom formatOptions', function () {
+    it("supports setting custom formatOptions", function () {
       let {getByRole} = render(
         <Slider
           label="The Label"
@@ -192,70 +192,70 @@ describe('Slider', function () {
           maxValue={1}
           step={0.01}
           defaultValue={0.2}
-          formatOptions={{style: 'percent'}} />
+          formatOptions={{style: "percent"}} />
       );
 
-      let output = getByRole('status');
-      let slider = getByRole('slider');
+      let output = getByRole("status");
+      let slider = getByRole("slider");
 
-      expect(output).toHaveTextContent('20%');
-      expect(slider).toHaveAttribute('aria-valuetext', '20%');
+      expect(output).toHaveTextContent("20%");
+      expect(slider).toHaveAttribute("aria-valuetext", "20%");
       fireEvent.change(slider, {target: {value: 0.5}});
-      expect(output).toHaveTextContent('50%');
-      expect(slider).toHaveAttribute('aria-valuetext', '50%');
+      expect(output).toHaveTextContent("50%");
+      expect(slider).toHaveAttribute("aria-valuetext", "50%");
     });
   });
 
-  describe('keyboard interactions', () => {
+  describe("keyboard interactions", () => {
     // Can't test arrow/page up/down, home/end arrows because they are handled by the browser and JSDOM doesn't feel like it.
 
     it.each`
       Name                                 | props                                 | commands
-      ${'(left/right arrows, ltr)'}        | ${{locale: 'de-DE'}}                  | ${[{left: press.ArrowRight, result: +1}, {left: press.ArrowLeft, result: -1}]}
-      ${'(left/right arrows, rtl)'}        | ${{locale: 'ar-AE'}}                  | ${[{left: press.ArrowRight, result: -1}, {left: press.ArrowLeft, result: +1}]}
-      ${'(left/right arrows, isDisabled)'} | ${{locale: 'de-DE', isDisabled: true}}| ${[{left: press.ArrowRight, result: 0}, {left: press.ArrowLeft, result: 0}]}
-    `('$Name moves the slider in the correct direction', function ({props, commands}) {
+      ${"(left/right arrows, ltr)"}        | ${{locale: "de-DE"}}                  | ${[{left: press.ArrowRight, result: +1}, {left: press.ArrowLeft, result: -1}]}
+      ${"(left/right arrows, rtl)"}        | ${{locale: "ar-AE"}}                  | ${[{left: press.ArrowRight, result: -1}, {left: press.ArrowLeft, result: +1}]}
+      ${"(left/right arrows, isDisabled)"} | ${{locale: "de-DE", isDisabled: true}}| ${[{left: press.ArrowRight, result: 0}, {left: press.ArrowLeft, result: 0}]}
+    `("$Name moves the slider in the correct direction", function ({props, commands}) {
       let tree = render(
         <Provider theme={theme} {...props}>
           <Slider label="Label" defaultValue={50} minValue={0} maxValue={100} />
         </Provider>
       );
-      let slider = tree.getByRole('slider');
+      let slider = tree.getByRole("slider");
       testKeypresses([slider, slider], commands);
     });
 
     it.each`
       Name                          | props                 | commands
-      ${'(left/right arrows, ltr)'} | ${{locale: 'de-DE'}}  | ${[{left: press.ArrowRight, result: +10}, {left: press.ArrowLeft, result: -10}]}
-      ${'(left/right arrows, rtl)'} | ${{locale: 'ar-AE'}}  | ${[{left: press.ArrowRight, result: -10}, {left: press.ArrowLeft, result: +10}]}
-    `('$Name respects the step size', function ({props, commands}) {
+      ${"(left/right arrows, ltr)"} | ${{locale: "de-DE"}}  | ${[{left: press.ArrowRight, result: +10}, {left: press.ArrowLeft, result: -10}]}
+      ${"(left/right arrows, rtl)"} | ${{locale: "ar-AE"}}  | ${[{left: press.ArrowRight, result: -10}, {left: press.ArrowLeft, result: +10}]}
+    `("$Name respects the step size", function ({props, commands}) {
       let tree = render(
         <Provider theme={theme} {...props}>
           <Slider label="Label" step={10} defaultValue={50} />
         </Provider>
       );
-      let slider = tree.getByRole('slider');
+      let slider = tree.getByRole("slider");
       testKeypresses([slider, slider], commands);
     });
 
     it.each`
       Name                          | props                 | commands
-      ${'(left/right arrows, ltr)'} | ${{locale: 'de-DE'}}  | ${[{left: press.ArrowLeft, result: -1}, {left: press.ArrowLeft, result: 0}]}
-      ${'(left/right arrows, rtl)'} | ${{locale: 'ar-AE'}}  | ${[{left: press.ArrowRight, result: -1}, {left: press.ArrowRight, result: 0}]}
-    `('$Name is clamped by min/max', function ({props, commands}) {
+      ${"(left/right arrows, ltr)"} | ${{locale: "de-DE"}}  | ${[{left: press.ArrowLeft, result: -1}, {left: press.ArrowLeft, result: 0}]}
+      ${"(left/right arrows, rtl)"} | ${{locale: "ar-AE"}}  | ${[{left: press.ArrowRight, result: -1}, {left: press.ArrowRight, result: 0}]}
+    `("$Name is clamped by min/max", function ({props, commands}) {
       let tree = render(
         <Provider theme={theme} {...props}>
           <Slider label="Label" minValue={-1} defaultValue={0} maxValue={1} />
         </Provider>
       );
-      let slider = tree.getByRole('slider');
+      let slider = tree.getByRole("slider");
       testKeypresses([slider, slider], commands);
     });
   });
 
-  describe('mouse interactions', () => {
+  describe("mouse interactions", () => {
     beforeAll(() => {
-      jest.spyOn(window.HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(() => 100);
+      jest.spyOn(window.HTMLElement.prototype, "offsetWidth", "get").mockImplementation(() => 100);
     });
     afterAll(() => {
       // @ts-ignore
@@ -264,7 +264,7 @@ describe('Slider', function () {
 
     installMouseEvent();
 
-    it('can click and drag handle', () => {
+    it("can click and drag handle", () => {
       let onChangeSpy = jest.fn();
       let {getByRole} = render(
         <Slider
@@ -273,7 +273,7 @@ describe('Slider', function () {
           defaultValue={50} />
       );
 
-      let slider = getByRole('slider');
+      let slider = getByRole("slider");
       let thumb = slider.parentElement;
       fireEvent.mouseDown(thumb, {clientX: 50, pageX: 50});
       expect(onChangeSpy).not.toHaveBeenCalled();
@@ -292,7 +292,7 @@ describe('Slider', function () {
       expect(onChangeSpy).toHaveBeenCalledTimes(3);
     });
 
-    it('cannot click and drag handle when disabled', () => {
+    it("cannot click and drag handle when disabled", () => {
       let onChangeSpy = jest.fn();
       let {getByRole} = render(
         <Slider
@@ -302,7 +302,7 @@ describe('Slider', function () {
           isDisabled />
       );
 
-      let slider = getByRole('slider');
+      let slider = getByRole("slider");
       let thumb = slider.parentElement;
       fireEvent.mouseDown(thumb, {clientX: 50, pageX: 50});
       expect(onChangeSpy).not.toHaveBeenCalled();
@@ -313,7 +313,7 @@ describe('Slider', function () {
       expect(onChangeSpy).not.toHaveBeenCalled();
     });
 
-    it('can click on track to move handle', () => {
+    it("can click on track to move handle", () => {
       let onChangeSpy = jest.fn();
       let {getByRole} = render(
         <Slider
@@ -322,7 +322,7 @@ describe('Slider', function () {
           defaultValue={50} />
       );
 
-      let slider = getByRole('slider');
+      let slider = getByRole("slider");
       let thumb = slider.parentElement.parentElement;
       // @ts-ignore
       let [leftTrack, rightTrack] = [...thumb.parentElement.children].filter(c => c !== thumb);
@@ -345,7 +345,7 @@ describe('Slider', function () {
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('cannot click on track to move handle when disabled', () => {
+    it("cannot click on track to move handle when disabled", () => {
       let onChangeSpy = jest.fn();
       let {getByRole} = render(
         <Slider
@@ -355,7 +355,7 @@ describe('Slider', function () {
           isDisabled />
       );
 
-      let slider = getByRole('slider');
+      let slider = getByRole("slider");
       let thumb = slider.parentElement.parentElement;
       // @ts-ignore
       let [leftTrack, rightTrack] = [...thumb.parentElement.children].filter(c => c !== thumb);
@@ -376,29 +376,29 @@ describe('Slider', function () {
       expect(onChangeSpy).not.toHaveBeenCalled();
     });
 
-    it('clicking on the label should focus the first thumb', () => {
+    it("clicking on the label should focus the first thumb", () => {
       let {getByText, getByRole} = render(
         <Slider label="The Label" />
       );
 
-      let label = getByText('The Label');
-      let thumb = getByRole('slider');
+      let label = getByText("The Label");
+      let thumb = getByRole("slider");
 
       fireEvent.click(label);
       expect(document.activeElement).toBe(thumb);
     });
   });
 
-  describe('touch interactions', () => {
+  describe("touch interactions", () => {
     beforeAll(() => {
-      jest.spyOn(window.HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(() => 100);
+      jest.spyOn(window.HTMLElement.prototype, "offsetWidth", "get").mockImplementation(() => 100);
     });
     afterAll(() => {
       // @ts-ignore
       window.HTMLElement.prototype.offsetWidth.mockReset();
     });
 
-    it('doesn\'t jump to second touch on track while already dragging', () => {
+    it("doesn't jump to second touch on track while already dragging", () => {
       let onChangeSpy = jest.fn();
       let {getByRole} = render(
         <Slider
@@ -407,7 +407,7 @@ describe('Slider', function () {
           defaultValue={50} />
       );
 
-      let slider = getByRole('slider');
+      let slider = getByRole("slider");
       let thumb = slider.parentElement.parentElement;
       // @ts-ignore
       let [, rightTrack] = [...thumb.parentElement.children].filter(c => c !== thumb);

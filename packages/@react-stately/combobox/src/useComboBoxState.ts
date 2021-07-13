@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, FocusStrategy, Node} from '@react-types/shared';
-import {ComboBoxProps, MenuTriggerAction} from '@react-types/combobox';
-import {ListCollection, useSingleSelectListState} from '@react-stately/list';
-import {SelectState} from '@react-stately/select';
-import {useControlledState} from '@react-stately/utils';
-import {useEffect, useMemo, useRef, useState} from 'react';
-import {useMenuTriggerState} from '@react-stately/menu';
+import {Collection, FocusStrategy, Node} from "@react-types/shared";
+import {ComboBoxProps, MenuTriggerAction} from "@react-types/combobox";
+import {ListCollection, useSingleSelectListState} from "@react-stately/list";
+import {SelectState} from "@react-stately/select";
+import {useControlledState} from "@react-stately/utils";
+import {useEffect, useMemo, useRef, useState} from "react";
+import {useMenuTriggerState} from "@react-stately/menu";
 
 export interface ComboBoxState<T> extends SelectState<T> {
   /** The current value of the combo box input. */
@@ -51,7 +51,7 @@ interface ComboBoxStateProps<T> extends ComboBoxProps<T> {
 export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>): ComboBoxState<T> {
   let {
     defaultFilter,
-    menuTrigger = 'input',
+    menuTrigger = "input",
     allowsEmptyCollection = false,
     allowsCustomValue,
     shouldCloseOnBlur = true
@@ -61,7 +61,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
   let [isFocused, setFocusedState] = useState(false);
   let [inputValue, setInputValue] = useControlledState(
     props.inputValue,
-    props.defaultInputValue ?? '',
+    props.defaultInputValue ?? "",
     props.onInputChange
   );
 
@@ -94,7 +94,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
   ), [collection, inputValue, defaultFilter, props.items]);
 
   // Track what action is attempting to open the menu
-  let menuOpenTrigger = useRef('focus' as MenuTriggerAction);
+  let menuOpenTrigger = useRef("focus" as MenuTriggerAction);
   let onOpenChange = (open: boolean) => {
     if (props.onOpenChange) {
       props.onOpenChange(open, open ? menuOpenTrigger.current : undefined);
@@ -103,7 +103,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
 
   let triggerState = useMenuTriggerState({...props, onOpenChange, isOpen: undefined, defaultOpen: undefined});
   let open = (focusStrategy?: FocusStrategy, trigger?: MenuTriggerAction) => {
-    let displayAllItems = (trigger === 'manual' || (trigger === 'focus' && menuTrigger === 'focus'));
+    let displayAllItems = (trigger === "manual" || (trigger === "focus" && menuTrigger === "focus"));
     // Prevent open operations from triggering if there is nothing to display
     // Also prevent open operations from triggering if items are uncontrolled but defaultItems is empty, even if displayAllItems is true.
     // This is to prevent comboboxes with empty defaultItems from opening but allow controlled items comboboxes to open even if the inital list is empty (assumption is user will provide swap the empty list with a base list via onOpenChange returning `menuTrigger` manual)
@@ -119,7 +119,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
   };
 
   let toggle = (focusStrategy?: FocusStrategy, trigger?: MenuTriggerAction) => {
-    let displayAllItems = (trigger === 'manual' || (trigger === 'focus' && menuTrigger === 'focus'));
+    let displayAllItems = (trigger === "manual" || (trigger === "focus" && menuTrigger === "focus"));
     // If the menu is closed and there is nothing to display, early return so toggle isn't called to prevent extraneous onOpenChange
     if (!(allowsEmptyCollection || filteredCollection.size > 0 || (displayAllItems && originalCollection.size > 0) || props.items) && !triggerState.isOpen) {
       return;
@@ -140,14 +140,14 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
 
   let lastValue = useRef(inputValue);
   let resetInputValue = () => {
-    let itemText = collection.getItem(selectedKey)?.textValue ?? '';
+    let itemText = collection.getItem(selectedKey)?.textValue ?? "";
     lastValue.current = itemText;
     setInputValue(itemText);
   };
 
   let isInitialRender = useRef(true);
   let lastSelectedKey = useRef(props.selectedKey ?? props.defaultSelectedKey ?? null);
-  let lastSelectedKeyText = useRef(collection.getItem(selectedKey)?.textValue ?? '');
+  let lastSelectedKeyText = useRef(collection.getItem(selectedKey)?.textValue ?? "");
   // intentional omit dependency array, want this to happen on every render
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -158,9 +158,9 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
       (filteredCollection.size > 0 || allowsEmptyCollection) &&
       !triggerState.isOpen &&
       inputValue !== lastValue.current &&
-      menuTrigger !== 'manual'
+      menuTrigger !== "manual"
     ) {
-      open(null, 'input');
+      open(null, "input");
     }
 
     // Close the menu if the collection is empty. Don't close menu if filtered collection size is 0
@@ -189,7 +189,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
 
       // Set selectedKey to null when the user clears the input.
       // If controlled, this is the application developer's responsibility.
-      if (inputValue === '' && (props.inputValue === undefined || props.selectedKey === undefined)) {
+      if (inputValue === "" && (props.inputValue === undefined || props.selectedKey === undefined)) {
         setSelectedKey(null);
       }
     }
@@ -215,7 +215,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
     // This is to handle cases where a selectedKey is specified but the items aren't available (async loading) or the selected item's text value updates.
     // Only reset if the user isn't currently within the field so we don't erroneously modify user input.
     // If inputValue is controlled, it is the user's responsibility to update the inputValue when items change.
-    let selectedItemText = collection.getItem(selectedKey)?.textValue ?? '';
+    let selectedItemText = collection.getItem(selectedKey)?.textValue ?? "";
     if (!isFocused && selectedKey != null && props.inputValue === undefined && selectedKey === lastSelectedKey.current) {
       if (lastSelectedKeyText.current !== selectedItemText) {
         lastValue.current = selectedItemText;
@@ -256,7 +256,7 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
       props.onSelectionChange(selectedKey);
 
       // Stop menu from reopening from useEffect
-      let itemText = collection.getItem(selectedKey)?.textValue ?? '';
+      let itemText = collection.getItem(selectedKey)?.textValue ?? "";
       lastValue.current = itemText;
       triggerState.close();
     } else {
@@ -285,11 +285,11 @@ export function useComboBoxState<T extends object>(props: ComboBoxStateProps<T>)
 
   let setFocused = (isFocused: boolean) => {
     if (isFocused) {
-      if (menuTrigger === 'focus') {
-        open(null, 'focus');
+      if (menuTrigger === "focus") {
+        open(null, "focus");
       }
     } else if (shouldCloseOnBlur) {
-      let itemText = collection.getItem(selectedKey)?.textValue ?? '';
+      let itemText = collection.getItem(selectedKey)?.textValue ?? "";
       if (allowsCustomValue && inputValue !== itemText) {
         commitCustomValue();
       } else {
@@ -326,12 +326,12 @@ function filterCollection<T extends object>(collection: Collection<Node<T>>, inp
 function filterNodes<T>(nodes: Iterable<Node<T>>, inputValue: string, filter: FilterFn): Iterable<Node<T>> {
   let filteredNode = [];
   for (let node of nodes) {
-    if (node.type === 'section' && node.hasChildNodes) {
+    if (node.type === "section" && node.hasChildNodes) {
       let filtered = filterNodes(node.childNodes, inputValue, filter);
       if ([...filtered].length > 0) {
         filteredNode.push({...node, childNodes: filtered});
       }
-    } else if (node.type !== 'section' && filter(node.textValue, inputValue)) {
+    } else if (node.type !== "section" && filter(node.textValue, inputValue)) {
       filteredNode.push({...node});
     }
   }

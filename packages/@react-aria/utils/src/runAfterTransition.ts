@@ -22,7 +22,7 @@ let transitionsByElement = new Map<EventTarget, Set<string>>();
 let transitionCallbacks = new Set<() => void>();
 
 function setupGlobalEvents() {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return;
   }
 
@@ -36,7 +36,7 @@ function setupGlobalEvents() {
       // The transitioncancel event must be registered on the element itself, rather than as a global
       // event. This enables us to handle when the node is deleted from the document while it is transitioning.
       // In that case, the cancel event would have nowhere to bubble to so we need to handle it directly.
-      e.target.addEventListener('transitioncancel', onTransitionEnd);
+      e.target.addEventListener("transitioncancel", onTransitionEnd);
     }
 
     transitions.add(e.propertyName);
@@ -53,7 +53,7 @@ function setupGlobalEvents() {
 
     // If empty, remove transitioncancel event, and remove the element from the list of transitioning elements.
     if (properties.size === 0) {
-      e.target.removeEventListener('transitioncancel', onTransitionEnd);
+      e.target.removeEventListener("transitioncancel", onTransitionEnd);
       transitionsByElement.delete(e.target);
     }
 
@@ -67,15 +67,15 @@ function setupGlobalEvents() {
     }
   };
 
-  document.body.addEventListener('transitionrun', onTransitionStart);
-  document.body.addEventListener('transitionend', onTransitionEnd);
+  document.body.addEventListener("transitionrun", onTransitionStart);
+  document.body.addEventListener("transitionend", onTransitionEnd);
 }
 
-if (typeof document !== 'undefined') {
-  if (document.readyState !== 'loading') {
+if (typeof document !== "undefined") {
+  if (document.readyState !== "loading") {
     setupGlobalEvents();
   } else {
-    document.addEventListener('DOMContentLoaded', setupGlobalEvents);
+    document.addEventListener("DOMContentLoaded", setupGlobalEvents);
   }
 }
 

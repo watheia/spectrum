@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, AsyncLoadable, CollectionChildren, DOMProps, LoadingState, MultipleSelection, Sortable, StyleProps} from '@react-types/shared';
-import {GridCollection, GridNode} from '@react-types/grid';
-import {Key, ReactElement, ReactNode} from 'react';
+import {AriaLabelingProps, AsyncLoadable, CollectionChildren, DOMProps, LoadingState, MultipleSelection, Sortable, StyleProps} from "@react-types/shared";
+import {GridCollection, GridNode} from "@react-types/grid";
+import {Key, ReactElement, ReactNode} from "react";
 
 export interface TableProps<T> extends MultipleSelection, Sortable {
   /** The elements that make up the table. Includes the TableHeader, TableBody, Columns, and Rows. */
@@ -26,12 +26,12 @@ export interface SpectrumTableProps<T> extends TableProps<T>, DOMProps, AriaLabe
    * Sets the amount of vertical padding within each cell.
    * @default 'regular'
    */
-  density?: 'compact' | 'regular' | 'spacious',
+  density?: "compact" | "regular" | "spacious",
   /**
    * Sets the overflow behavior for the cell contents.
    * @default 'truncate'
    */
-  overflowMode?: 'wrap' | 'truncate',
+  overflowMode?: "wrap" | "truncate",
   /** Whether the TableView should be displayed with a quiet style. */
   isQuiet?: boolean,
   /** Sets what the TableView should render when there is no content to display. */
@@ -74,7 +74,7 @@ export interface SpectrumColumnProps<T> extends ColumnProps<T> {
    * The alignment of the column's contents relative to its allotted width.
    * @default 'start'
    */
-  align?: 'start' | 'center' | 'end',
+  align?: "start" | "center" | "end",
   // /** Whether the column should stick to the viewport when scrolling. */
   // isSticky?: boolean, // shouldStick?? Not implemented yet?
   /** Whether the column should render a divider between it and the next column. */
@@ -87,7 +87,7 @@ export interface SpectrumColumnProps<T> extends ColumnProps<T> {
   hideHeader?: boolean
 }
 
-export interface TableBodyProps<T> extends Omit<AsyncLoadable, 'isLoading'> {
+export interface TableBodyProps<T> extends Omit<AsyncLoadable, "isLoading"> {
   /** The contents of the table body. Supports static items or a function for dynamic rendering. */
   children: CollectionChildren<T>,
   /** A list of row objects in the table body used when dynamically rendering rows. */

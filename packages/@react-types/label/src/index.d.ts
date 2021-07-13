@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {Alignment, DOMProps, LabelPosition, NecessityIndicator, StyleProps} from '@react-types/shared';
-import {ElementType, HTMLAttributes, ReactElement, ReactNode} from 'react';
+import {Alignment, DOMProps, LabelPosition, NecessityIndicator, StyleProps} from "@react-types/shared";
+import {ElementType, HTMLAttributes, ReactElement, ReactNode} from "react";
 
 export interface LabelProps {
   children?: ReactNode,

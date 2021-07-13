@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {AlertDialog} from '../';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {render} from '@testing-library/react';
-import {theme} from '@react-spectrum/theme-default';
-import {triggerPress} from '@react-spectrum/test-utils';
+import {AlertDialog} from "../";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {render} from "@testing-library/react";
+import {theme} from "@react-spectrum/theme-default";
+import {triggerPress} from "@react-spectrum/test-utils";
 
-describe('AlertDialog', function () {
-  it('renders alert dialog with onPrimaryAction', function () {
+describe("AlertDialog", function () {
+  it("renders alert dialog with onPrimaryAction", function () {
     let onPrimaryAction = jest.fn();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -28,16 +28,16 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let dialog = getByRole('alertdialog');
+    let dialog = getByRole("alertdialog");
     expect(document.activeElement).toBe(dialog);
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     triggerPress(button);
     expect(onPrimaryAction).toHaveBeenCalledTimes(1);
     expect(onPrimaryAction).toHaveBeenCalledWith();
   });
 
-  it('renders 2 button alert dialog with onPrimaryAction / onCancel', function () {
+  it("renders 2 button alert dialog with onPrimaryAction / onCancel", function () {
     let onCancelSpy = jest.fn();
     let onPrimaryAction = jest.fn();
     let {getByRole, getByText} = render(
@@ -48,23 +48,23 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let dialog = getByRole('alertdialog');
+    let dialog = getByRole("alertdialog");
     expect(document.activeElement).toBe(dialog);
 
-    let cancelButton = getByText('cancel');
+    let cancelButton = getByText("cancel");
     triggerPress(cancelButton);
     expect(onPrimaryAction).toHaveBeenCalledTimes(0);
     expect(onCancelSpy).toHaveBeenCalledTimes(1);
     expect(onCancelSpy).toHaveBeenCalledWith();
 
-    let confirmButton = getByText('confirm');
+    let confirmButton = getByText("confirm");
     triggerPress(confirmButton);
     expect(onPrimaryAction).toHaveBeenCalledTimes(1);
     expect(onCancelSpy).toHaveBeenCalledTimes(1);
     expect(onPrimaryAction).toHaveBeenCalledWith();
   });
 
-  it('renders a 3 button alert dialog with onPrimaryAction / onCancel', function () {
+  it("renders a 3 button alert dialog with onPrimaryAction / onCancel", function () {
     let onCancelSpy = jest.fn();
     let onPrimaryAction = jest.fn();
     let onSecondaryAction = jest.fn();
@@ -76,12 +76,12 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let dialog = getByRole('alertdialog');
+    let dialog = getByRole("alertdialog");
     expect(document.activeElement).toBe(dialog);
 
-    let confirmButton = getByText('confirm');
-    let secondaryButton = getByText('secondary');
-    let cancelButton = getByText('cancel');
+    let confirmButton = getByText("confirm");
+    let secondaryButton = getByText("secondary");
+    let cancelButton = getByText("cancel");
     triggerPress(secondaryButton);
     expect(onSecondaryAction).toHaveBeenCalledTimes(1);
     expect(onSecondaryAction).toHaveBeenLastCalledWith();
@@ -98,7 +98,7 @@ describe('AlertDialog', function () {
     expect(onCancelSpy).toHaveBeenLastCalledWith();
   });
 
-  it('disable its confirm button', function () {
+  it("disable its confirm button", function () {
     let onPrimaryAction = jest.fn();
     let {getByRole, getByText} = render(
       <Provider theme={theme}>
@@ -108,15 +108,15 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let dialog = getByRole('alertdialog');
+    let dialog = getByRole("alertdialog");
     expect(document.activeElement).toBe(dialog);
 
-    let button = getByText('confirm');
+    let button = getByText("confirm");
     triggerPress(button);
     expect(onPrimaryAction).toHaveBeenCalledTimes(0);
   });
 
-  it('autofocus its confirm button', function () {
+  it("autofocus its confirm button", function () {
     let {getByText} = render(
       <Provider theme={theme}>
         <AlertDialog variant="confirmation" title="the title" primaryActionLabel="confirm" autoFocusButton="primary">
@@ -125,11 +125,11 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let button = getByText('confirm').closest('button');
+    let button = getByText("confirm").closest("button");
     expect(document.activeElement).toBe(button);
   });
 
-  it('autofocus its cancel button', function () {
+  it("autofocus its cancel button", function () {
     let {getByText} = render(
       <Provider theme={theme}>
         <AlertDialog variant="confirmation" title="the title" primaryActionLabel="confirm" cancelLabel="cancel" autoFocusButton="cancel" >
@@ -138,11 +138,11 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let button = getByText('cancel').closest('button');
+    let button = getByText("cancel").closest("button");
     expect(document.activeElement).toBe(button);
   });
 
-  it('disable its secondary button', function () {
+  it("disable its secondary button", function () {
     let onPrimaryAction = jest.fn();
     let {getByRole, getByText} = render(
       <Provider theme={theme}>
@@ -152,15 +152,15 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let dialog = getByRole('alertdialog');
+    let dialog = getByRole("alertdialog");
     expect(document.activeElement).toBe(dialog);
 
-    let button = getByText('secondary');
+    let button = getByText("secondary");
     triggerPress(button);
     expect(onPrimaryAction).toHaveBeenCalledTimes(0);
   });
 
-  it('autofocus its secondary button', function () {
+  it("autofocus its secondary button", function () {
     let {getByText} = render(
       <Provider theme={theme}>
         <AlertDialog variant="confirmation" title="the title" primaryActionLabel="confirm" secondaryActionLabel="secondary" autoFocusButton="secondary">
@@ -169,7 +169,7 @@ describe('AlertDialog', function () {
       </Provider>
     );
 
-    let button = getByText('secondary').closest('button');
+    let button = getByText("secondary").closest("button");
     expect(document.activeElement).toBe(button);
   });
 });

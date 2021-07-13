@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {getScrollParent, isIOS, isWebKit} from '@react-aria/utils';
-import {RefObject, useCallback, useEffect, useRef} from 'react';
+import {getScrollParent, isIOS, isWebKit} from "@react-aria/utils";
+import {RefObject, useCallback, useEffect, useRef} from "react";
 
 const AUTOSCROLL_AREA_SIZE = 20;
 

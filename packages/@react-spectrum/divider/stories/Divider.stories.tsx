@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button/src';
-import {Divider} from '../';
-import Properties from '@spectrum-icons/workflow/Properties';
-import React from 'react';
-import Select from '@spectrum-icons/workflow/Select';
-import {storiesOf} from '@storybook/react';
+import {ActionButton} from "@react-spectrum/button/src";
+import {Divider} from "../";
+import Properties from "@spectrum-icons/workflow/Properties";
+import React from "react";
+import Select from "@spectrum-icons/workflow/Select";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Divider', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
-  .add('Large (Default)',
+storiesOf("Divider", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
+  .add("Large (Default)",
     () => (
       <section>
         <h1>Large</h1>
@@ -28,7 +28,7 @@ storiesOf('Divider', module)
       </section>
     )
   )
-  .add('Medium',
+  .add("Medium",
     () => (
       <section>
         <h1>Medium</h1>
@@ -37,7 +37,7 @@ storiesOf('Divider', module)
       </section>
     )
   )
-  .add('Small',
+  .add("Small",
     () => (
       <section>
         <h1>Small</h1>
@@ -46,19 +46,19 @@ storiesOf('Divider', module)
       </section>
     )
   )
-  .add('Vertical, Large (Default)',
+  .add("Vertical, Large (Default)",
     () => renderVertical()
   )
-  .add('Vertical, Medium',
-    () => renderVertical({size: 'M'})
+  .add("Vertical, Medium",
+    () => renderVertical({size: "M"})
   )
-  .add('Vertical, Small',
-    () => renderVertical({size: 'S'})
+  .add("Vertical, Small",
+    () => renderVertical({size: "S"})
   );
 
 function renderVertical(props = {}) {
   return (
-    <section style={{display: 'flex'}}>
+    <section style={{display: "flex"}}>
       <ActionButton aria-label="Properties" isQuiet><Properties /></ActionButton>
       <Divider orientation="vertical" {...props} />
       <ActionButton aria-label="Select" isQuiet><Select /></ActionButton>

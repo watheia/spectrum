@@ -1,20 +1,20 @@
-import {fireEvent, render, screen} from '@testing-library/react';
-import {installMouseEvent, installPointerEvent} from '@react-spectrum/test-utils';
-import * as React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useRef} from 'react';
-import {useSlider, useSliderThumb} from '../src';
-import {useSliderState} from '@react-stately/slider';
+import {fireEvent, render, screen} from "@testing-library/react";
+import {installMouseEvent, installPointerEvent} from "@react-spectrum/test-utils";
+import * as React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useRef} from "react";
+import {useSlider, useSliderThumb} from "../src";
+import {useSliderState} from "@react-stately/slider";
 
-describe('useSliderThumb', () => {
-  let numberFormatter = new Intl.NumberFormat('en-US', {});
-  describe('aria labels', () => {
-    it('should have the right labels with Slider-level label', () => {
+describe("useSliderThumb", () => {
+  let numberFormatter = new Intl.NumberFormat("en-US", {});
+  describe("aria labels", () => {
+    it("should have the right labels with Slider-level label", () => {
       let result = renderHook(() => {
         let trackRef = React.createRef(null);
         let inputRef = React.createRef(null);
         let sliderProps = {
-          label: 'slider',
+          label: "slider",
           defaultValue: [50],
           minValue: 10,
           maxValue: 200,
@@ -32,14 +32,14 @@ describe('useSliderThumb', () => {
 
       let {inputProps} = result.current.props;
       let labelId = result.current.labelProps.id;
-      expect(inputProps).toMatchObject({type: 'range', step: 2, value: 50, min: 10, max: 200, 'aria-labelledby': `${labelId}`});
+      expect(inputProps).toMatchObject({type: "range", step: 2, value: 50, min: 10, max: 200, "aria-labelledby": `${labelId}`});
     });
-    it('should have the right labels with Slider thumb label', () => {
+    it("should have the right labels with Slider thumb label", () => {
       let result = renderHook(() => {
         let trackRef = React.createRef(null);
         let inputRef = React.createRef(null);
         let sliderProps = {
-          'aria-label': 'slider',
+          "aria-label": "slider",
           defaultValue: [50],
           minValue: 10,
           maxValue: 200,
@@ -49,7 +49,7 @@ describe('useSliderThumb', () => {
         let {labelProps, groupProps} = useSlider(sliderProps, state, trackRef);
         let props = useSliderThumb({
           index: 0,
-          label: 'thumb',
+          label: "thumb",
           trackRef,
           inputRef
         }, state);
@@ -58,14 +58,14 @@ describe('useSliderThumb', () => {
 
       let {inputProps, labelProps} = result.current.props;
       let labelId = result.current.groupProps.id;
-      expect(inputProps).toMatchObject({type: 'range', step: 2, value: 50, min: 10, max: 200, 'aria-labelledby': `${labelId} ${labelProps.id}`, id: labelProps.htmlFor});
+      expect(inputProps).toMatchObject({type: "range", step: 2, value: 50, min: 10, max: 200, "aria-labelledby": `${labelId} ${labelProps.id}`, id: labelProps.htmlFor});
     });
-    it('should have the right labels with Slider thumb aria-label', () => {
+    it("should have the right labels with Slider thumb aria-label", () => {
       let result = renderHook(() => {
         let trackRef = React.createRef(null);
         let inputRef = React.createRef(null);
         let sliderProps = {
-          'aria-label': 'slider',
+          "aria-label": "slider",
           defaultValue: [50, 70],
           minValue: 10,
           maxValue: 200,
@@ -75,13 +75,13 @@ describe('useSliderThumb', () => {
         let {labelProps, groupProps} = useSlider(sliderProps, state, trackRef);
         let props0 = useSliderThumb({
           index: 0,
-          'aria-label': 'thumb0',
+          "aria-label": "thumb0",
           trackRef,
           inputRef
         }, state);
         let props1 = useSliderThumb({
           index: 1,
-          'aria-label': 'thumb1',
+          "aria-label": "thumb1",
           trackRef,
           inputRef
         }, state);
@@ -91,15 +91,15 @@ describe('useSliderThumb', () => {
       let {inputProps: inputProps0} = result.current.props0;
       let {inputProps: inputProps1} = result.current.props1;
       let labelId = result.current.groupProps.id;
-      expect(inputProps0).toMatchObject({type: 'range', step: 2, value: 50, min: 10, max: 70, 'aria-label': 'thumb0',  'aria-labelledby': `${labelId} ${inputProps0.id}`});
-      expect(inputProps1).toMatchObject({type: 'range', step: 2, value: 70, min: 50, max: 200, 'aria-label': 'thumb1', 'aria-labelledby': `${labelId} ${inputProps1.id}`});
+      expect(inputProps0).toMatchObject({type: "range", step: 2, value: 50, min: 10, max: 70, "aria-label": "thumb0",  "aria-labelledby": `${labelId} ${inputProps0.id}`});
+      expect(inputProps1).toMatchObject({type: "range", step: 2, value: 70, min: 50, max: 200, "aria-label": "thumb1", "aria-labelledby": `${labelId} ${inputProps1.id}`});
     });
   });
 
-  describe('interactions on thumbs, where track does not contain thumbs', () => {
+  describe("interactions on thumbs, where track does not contain thumbs", () => {
     let widthStub;
     beforeAll(() => {
-      widthStub = jest.spyOn(window.HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(() => 100);
+      widthStub = jest.spyOn(window.HTMLElement.prototype, "offsetWidth", "get").mockImplementation(() => 100);
     });
     afterAll(() => {
       widthStub.mockReset();
@@ -118,14 +118,14 @@ describe('useSliderThumb', () => {
       let {trackProps, thumbProps: commonThumbProps} = useSlider(props, state, trackRef);
       let {inputProps: input0Props, thumbProps: thumb0Props} = useSliderThumb({
         ...commonThumbProps,
-        'aria-label': 'Min',
+        "aria-label": "Min",
         index: 0,
         trackRef,
         inputRef: input0Ref
       }, state);
       let {inputProps: input1Props, thumbProps: thumb1Props} = useSliderThumb({
         ...commonThumbProps,
-        'aria-label': 'Max',
+        "aria-label": "Max",
         index: 1,
         trackRef,
         inputRef: input1Ref
@@ -143,16 +143,16 @@ describe('useSliderThumb', () => {
       );
     }
 
-    describe('using PointerEvents', () => {
+    describe("using PointerEvents", () => {
       installPointerEvent();
 
-      it('can be moved by dragging', () => {
+      it("can be moved by dragging", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<RangeExample onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10, 80]} />);
 
         // Drag thumb0
-        let thumb0 = screen.getByTestId('thumb0');
+        let thumb0 = screen.getByTestId("thumb0");
         fireEvent.pointerDown(thumb0, {clientX: 10, pageX: 10});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -178,7 +178,7 @@ describe('useSliderThumb', () => {
         onChangeEndSpy.mockClear();
 
         // Drag thumb1 past thumb0
-        let thumb1 = screen.getByTestId('thumb1');
+        let thumb1 = screen.getByTestId("thumb1");
         fireEvent.pointerDown(thumb1, {clientX: 80, pageX: 80});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -200,14 +200,14 @@ describe('useSliderThumb', () => {
         expect(stateRef.current.values).toEqual([40, 40]);
       });
     });
-    describe('using MouseEvents', () => {
-      it('can be moved by dragging', () => {
+    describe("using MouseEvents", () => {
+      it("can be moved by dragging", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<RangeExample onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10, 80]} />);
 
         // Drag thumb0
-        let thumb0 = screen.getByTestId('thumb0');
+        let thumb0 = screen.getByTestId("thumb0");
         fireEvent.mouseDown(thumb0, {clientX: 10, pageX: 10});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -233,7 +233,7 @@ describe('useSliderThumb', () => {
         onChangeEndSpy.mockClear();
 
         // Drag thumb1 past thumb0
-        let thumb1 = screen.getByTestId('thumb1');
+        let thumb1 = screen.getByTestId("thumb1");
         fireEvent.mouseDown(thumb1, {clientX: 80, pageX: 80});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -258,11 +258,11 @@ describe('useSliderThumb', () => {
 
   });
 
-  describe('interactions on thumbs, where track contains thumbs', () => {
+  describe("interactions on thumbs, where track contains thumbs", () => {
     let widthStub, heightStub;
     beforeAll(() => {
-      widthStub = jest.spyOn(window.HTMLElement.prototype, 'offsetWidth', 'get').mockImplementation(() => 100);
-      heightStub = jest.spyOn(window.HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(() => 100);
+      widthStub = jest.spyOn(window.HTMLElement.prototype, "offsetWidth", "get").mockImplementation(() => 100);
+      heightStub = jest.spyOn(window.HTMLElement.prototype, "offsetHeight", "get").mockImplementation(() => 100);
     });
     afterAll(() => {
       widthStub.mockReset();
@@ -280,7 +280,7 @@ describe('useSliderThumb', () => {
       let {trackProps} = useSlider(props, state, trackRef);
       let {inputProps, thumbProps} = useSliderThumb({
         ...props,
-        'aria-label': 'Min',
+        "aria-label": "Min",
         index: 0,
         trackRef,
         inputRef: inputRef
@@ -294,16 +294,16 @@ describe('useSliderThumb', () => {
       );
     }
 
-    describe('using PointerEvents', () => {
+    describe("using PointerEvents", () => {
       installPointerEvent();
 
-      it('can be moved by dragging', () => {
+      it("can be moved by dragging", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<Example onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10]} />);
 
         // Drag thumb
-        let thumb0 = screen.getByTestId('thumb');
+        let thumb0 = screen.getByTestId("thumb");
         fireEvent.pointerDown(thumb0, {clientX: 10, pageX: 10});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -323,14 +323,14 @@ describe('useSliderThumb', () => {
       });
     });
 
-    describe('using MouseEvents', () => {
-      it('can be moved by dragging', () => {
+    describe("using MouseEvents", () => {
+      it("can be moved by dragging", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<Example onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10]} />);
 
         // Drag thumb
-        let thumb0 = screen.getByTestId('thumb');
+        let thumb0 = screen.getByTestId("thumb");
         fireEvent.mouseDown(thumb0, {clientX: 10, pageX: 10});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -349,13 +349,13 @@ describe('useSliderThumb', () => {
         expect(onChangeEndSpy).toBeCalledTimes(1);
       });
 
-      it('can be moved by dragging (vertical)', () => {
+      it("can be moved by dragging (vertical)", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<Example onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10]} orientation="vertical" />);
 
         // Drag thumb
-        let thumb0 = screen.getByTestId('thumb');
+        let thumb0 = screen.getByTestId("thumb");
         fireEvent.mouseDown(thumb0, {clientY: 90, pageY: 90});
         expect(onChangeSpy).not.toHaveBeenCalled();
         expect(onChangeEndSpy).not.toHaveBeenCalled();
@@ -375,15 +375,15 @@ describe('useSliderThumb', () => {
       });
     });
 
-    describe('using KeyEvents', () => {
-      it('can be moved with keys', () => {
+    describe("using KeyEvents", () => {
+      it("can be moved with keys", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<Example onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10]} />);
 
         // Drag thumb
-        let thumb0 = screen.getByTestId('thumb').firstChild;
-        fireEvent.keyDown(thumb0, {key: 'ArrowRight'});
+        let thumb0 = screen.getByTestId("thumb").firstChild;
+        fireEvent.keyDown(thumb0, {key: "ArrowRight"});
         expect(onChangeSpy).toHaveBeenLastCalledWith([11]);
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
         expect(onChangeEndSpy).toHaveBeenLastCalledWith([11]);
@@ -391,23 +391,23 @@ describe('useSliderThumb', () => {
         expect(stateRef.current.values).toEqual([11]);
       });
 
-      it('can be moved with keys (vertical)', () => {
+      it("can be moved with keys (vertical)", () => {
         let onChangeSpy = jest.fn();
         let onChangeEndSpy = jest.fn();
         render(<Example onChange={onChangeSpy} onChangeEnd={onChangeEndSpy} aria-label="Slider" defaultValue={[10]} orientation="vertical" />);
 
         // Drag thumb
-        let thumb0 = screen.getByTestId('thumb').firstChild;
-        fireEvent.keyDown(thumb0, {key: 'ArrowRight'});
+        let thumb0 = screen.getByTestId("thumb").firstChild;
+        fireEvent.keyDown(thumb0, {key: "ArrowRight"});
         expect(onChangeSpy).toHaveBeenLastCalledWith([11]);
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
-        fireEvent.keyDown(thumb0, {key: 'ArrowUp'});
+        fireEvent.keyDown(thumb0, {key: "ArrowUp"});
         expect(onChangeSpy).toHaveBeenLastCalledWith([12]);
         expect(onChangeSpy).toHaveBeenCalledTimes(2);
-        fireEvent.keyDown(thumb0, {key: 'ArrowDown'});
+        fireEvent.keyDown(thumb0, {key: "ArrowDown"});
         expect(onChangeSpy).toHaveBeenLastCalledWith([11]);
         expect(onChangeSpy).toHaveBeenCalledTimes(3);
-        fireEvent.keyDown(thumb0, {key: 'ArrowLeft'});
+        fireEvent.keyDown(thumb0, {key: "ArrowLeft"});
         expect(onChangeSpy).toHaveBeenLastCalledWith([10]);
         expect(onChangeSpy).toHaveBeenCalledTimes(4);
       });

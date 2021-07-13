@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import ChevronLeftMedium from '@spectrum-icons/ui/ChevronLeftMedium';
-import ChevronRightMedium from '@spectrum-icons/ui/ChevronRightMedium';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef, Node} from '@react-types/shared';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {FocusRing} from '@react-aria/focus';
-import React, {useRef} from 'react';
-import {SpectrumAccordionProps} from '@react-types/accordion';
-import styles from '@adobe/spectrum-css-temp/components/accordion/vars.css';
-import {TreeState, useTreeState} from '@react-stately/tree';
-import {useAccordion, useAccordionItem} from '@react-aria/accordion';
-import {useHover} from '@react-aria/interactions';
-import {useLocale} from '@react-aria/i18n';
-import {useProviderProps} from '@react-spectrum/provider';
+import ChevronLeftMedium from "@spectrum-icons/ui/ChevronLeftMedium";
+import ChevronRightMedium from "@spectrum-icons/ui/ChevronRightMedium";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef, Node} from "@react-types/shared";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {FocusRing} from "@react-aria/focus";
+import React, {useRef} from "react";
+import {SpectrumAccordionProps} from "@react-types/accordion";
+import styles from "@adobe/spectrum-css-temp/components/accordion/vars.css";
+import {TreeState, useTreeState} from "@react-stately/tree";
+import {useAccordion, useAccordionItem} from "@react-aria/accordion";
+import {useHover} from "@react-aria/interactions";
+import {useLocale} from "@react-aria/i18n";
+import {useProviderProps} from "@react-spectrum/provider";
 
 
 function Accordion<T extends object>(props: SpectrumAccordionProps<T>, ref: DOMRef<HTMLDivElement>) {
@@ -39,7 +39,7 @@ function Accordion<T extends object>(props: SpectrumAccordionProps<T>, ref: DOMR
       {...accordionProps}
       {...styleProps}
       ref={domRef}
-      className={classNames(styles, 'spectrum-Accordion', styleProps.className)}>
+      className={classNames(styles, "spectrum-Accordion", styleProps.className)}>
       {[...state.collection].map(item => (
         <AccordionItem<T> key={item.key} item={item} state={state} />
       ))}
@@ -64,32 +64,32 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 
   return (
     <div
-      className={classNames(styles, 'spectrum-Accordion-item', {
-        'is-open': isOpen,
-        'is-disabled': isDisabled
+      className={classNames(styles, "spectrum-Accordion-item", {
+        "is-open": isOpen,
+        "is-disabled": isDisabled
       })}>
-      <h3 className={classNames(styles, 'spectrum-Accordion-itemHeading')}>
-        <FocusRing within focusRingClass={classNames(styles, 'focus-ring')}>
+      <h3 className={classNames(styles, "spectrum-Accordion-itemHeading")}>
+        <FocusRing within focusRingClass={classNames(styles, "focus-ring")}>
           <button
             {...mergeProps(buttonProps, hoverProps)}
             ref={ref}
-            className={classNames(styles, 'spectrum-Accordion-itemHeader', {
-              'is-hovered': isHovered
+            className={classNames(styles, "spectrum-Accordion-itemHeader", {
+              "is-hovered": isHovered
             })}>
-            {direction === 'ltr' ? (
+            {direction === "ltr" ? (
               <ChevronRightMedium
                 aria-hidden="true"
-                UNSAFE_className={classNames(styles, 'spectrum-Accordion-itemIndicator')} />
+                UNSAFE_className={classNames(styles, "spectrum-Accordion-itemIndicator")} />
               ) : (
                 <ChevronLeftMedium
                   aria-hidden="true"
-                  UNSAFE_className={classNames(styles, 'spectrum-Accordion-itemIndicator')} />
+                  UNSAFE_className={classNames(styles, "spectrum-Accordion-itemIndicator")} />
               )}
             {item.props.title}
           </button>
         </FocusRing>
       </h3>
-      <div {...regionProps} className={classNames(styles, 'spectrum-Accordion-itemContent')}>
+      <div {...regionProps} className={classNames(styles, "spectrum-Accordion-itemContent")}>
         {item.props.children}
       </div>
     </div>

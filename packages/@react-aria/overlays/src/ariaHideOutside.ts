@@ -31,7 +31,7 @@ export function ariaHideOutside(targets: HTMLElement[], root = document.body) {
     {
       acceptNode(node) {
         // If this node is a live announcer, add it to the set of nodes to keep visible.
-        if ((node instanceof HTMLElement && node.dataset.liveAnnouncer === 'true')) {
+        if ((node instanceof HTMLElement && node.dataset.liveAnnouncer === "true")) {
           visibleNodes.add(node);
         }
 
@@ -46,7 +46,7 @@ export function ariaHideOutside(targets: HTMLElement[], root = document.body) {
 
         // VoiceOver on iOS has issues hiding elements with role="row". Hide the cells inside instead.
         // https://bugs.webkit.org/show_bug.cgi?id=222623
-        if (node instanceof HTMLElement && node.getAttribute('role') === 'row') {
+        if (node instanceof HTMLElement && node.getAttribute("role") === "row") {
           return NodeFilter.FILTER_SKIP;
         }
 
@@ -65,12 +65,12 @@ export function ariaHideOutside(targets: HTMLElement[], root = document.body) {
 
     // If already aria-hidden, and the ref count is zero, then this element
     // was already hidden and there's nothing for us to do.
-    if (node.getAttribute('aria-hidden') === 'true' && refCount === 0) {
+    if (node.getAttribute("aria-hidden") === "true" && refCount === 0) {
       return;
     }
 
     if (refCount === 0) {
-      node.setAttribute('aria-hidden', 'true');
+      node.setAttribute("aria-hidden", "true");
     }
 
     hiddenNodes.add(node);
@@ -85,7 +85,7 @@ export function ariaHideOutside(targets: HTMLElement[], root = document.body) {
 
   let observer = new MutationObserver(changes => {
     for (let change of changes) {
-      if (change.type !== 'childList' || change.addedNodes.length === 0) {
+      if (change.type !== "childList" || change.addedNodes.length === 0) {
         continue;
       }
 
@@ -93,7 +93,7 @@ export function ariaHideOutside(targets: HTMLElement[], root = document.body) {
       // and not already inside a hidden node, hide all of the new children.
       if (![...visibleNodes, ...hiddenNodes].some(node => node.contains(change.target))) {
         for (let node of change.addedNodes) {
-          if ((node instanceof HTMLElement && node.dataset.liveAnnouncer === 'true')) {
+          if ((node instanceof HTMLElement && node.dataset.liveAnnouncer === "true")) {
             visibleNodes.add(node);
           } else if (node instanceof Element) {
             hide(node);
@@ -111,7 +111,7 @@ export function ariaHideOutside(targets: HTMLElement[], root = document.body) {
     for (let node of hiddenNodes) {
       let count = refCountMap.get(node);
       if (count === 1) {
-        node.removeAttribute('aria-hidden');
+        node.removeAttribute("aria-hidden");
         refCountMap.delete(node);
       } else {
         refCountMap.set(node, count - 1);

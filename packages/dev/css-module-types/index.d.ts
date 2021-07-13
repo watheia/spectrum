@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-declare module '*.css' {
+declare module "*.css" {
   interface CSSModule {
     [key: string]: string
   }

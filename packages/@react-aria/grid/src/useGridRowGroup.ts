@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {HTMLAttributes} from 'react';
+import {HTMLAttributes} from "react";
 
 interface GridRowGroupAria {
   /** Props for the row group element. */
@@ -23,7 +23,7 @@ interface GridRowGroupAria {
 export function useGridRowGroup(): GridRowGroupAria {
   return {
     rowGroupProps: {
-      role: 'rowgroup'
+      role: "rowgroup"
     }
   };
 }

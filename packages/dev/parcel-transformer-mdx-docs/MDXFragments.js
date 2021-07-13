@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-const flatMap = require('unist-util-flatmap');
+const flatMap = require("unist-util-flatmap");
 
 /**
  * Takes example code blocks in mdx files that are just React Tags and wraps all of them into
@@ -18,16 +18,16 @@ const flatMap = require('unist-util-flatmap');
  */
 const fragmentWrap = () => (tree, file) => (
   flatMap(tree, node => {
-    if (node.type === 'code') {
+    if (node.type === "code") {
       if (/^example/.test(node.meta)) {
         if (/^<(.|\n)*>$/m.test(node.value)) {
-          node.value = node.value.replace(/^(<(.|\n)*>)$/m, '<WRAPPER>\n$1\n</WRAPPER>');
+          node.value = node.value.replace(/^(<(.|\n)*>)$/m, "<WRAPPER>\n$1\n</WRAPPER>");
         }
 
         return [node];
       }
 
-      if (node.meta === 'snippet') {
+      if (node.meta === "snippet") {
         return [];
       }
     }
@@ -45,11 +45,11 @@ function match(children, i, ...texts) {
     let text = texts[t];
     let child = children[i];
 
-    if (child.type === 'element') {
+    if (child.type === "element") {
       if (child.children && child.children[0] && child.children[0].value !== text) {
         return false;
       }
-    } else if (child.type === 'text') {
+    } else if (child.type === "text") {
       if (child.value !== text) {
         return false;
       }
@@ -64,15 +64,15 @@ function match(children, i, ...texts) {
  */
 const fragmentUnWrap = () => (tree, file) => (
   flatMap(tree, node => {
-    if (node.type === 'code') {
+    if (node.type === "code") {
       if (/^example|^snippet/.test(node.meta) && node.data && node.data.hChildren) {
         let children = node.data.hChildren[0].children;
         for (let i = 0; i < children.length; i++) {
-          if (match(children, i, '<', 'WRAPPER', '>', '\n')) {
+          if (match(children, i, "<", "WRAPPER", ">", "\n")) {
             children.splice(i, 4);
           }
 
-          if (match(children, i, '\n', '<', '/', 'WRAPPER', '>')) {
+          if (match(children, i, "\n", "<", "/", "WRAPPER", ">")) {
             children.splice(i, 5);
           }
         }

@@ -10,107 +10,107 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ErrorBoundary} from '@react-spectrum/story-utils';
-import {Flex} from '@adobe/react-spectrum';
-import React from 'react';
-import {Slider} from '../';
-import {SpectrumSliderProps} from '@react-types/slider';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {ErrorBoundary} from "@react-spectrum/story-utils";
+import {Flex} from "@adobe/react-spectrum";
+import React from "react";
+import {Slider} from "../";
+import {SpectrumSliderProps} from "@react-types/slider";
+import {storiesOf} from "@storybook/react";
 
-let message = 'Your browser may not support this set of format options.';
+let message = "Your browser may not support this set of format options.";
 
-storiesOf('Slider', module)
+storiesOf("Slider", module)
   .addDecorator(story => (
     <ErrorBoundary message={message}>{story()}</ErrorBoundary>
   ))
   .add(
-    'Default',
-    () => render({'aria-label': 'Label'})
+    "Default",
+    () => render({"aria-label": "Label"})
   )
   .add(
-    'label',
-    () => render({label: 'Label'})
+    "label",
+    () => render({label: "Label"})
   )
   .add(
-    'multitouch',
+    "multitouch",
     () => (<Flex direction="column" gap="size-1000">
-      {render({label: 'Label'})}
-      {render({label: 'Label'})}
+      {render({label: "Label"})}
+      {render({label: "Label"})}
     </Flex>)
   )
   .add(
-    'isDisabled',
-    () => render({label: 'Label', defaultValue: 50, isDisabled: true})
+    "isDisabled",
+    () => render({label: "Label", defaultValue: 50, isDisabled: true})
   )
   .add(
-    'custom width',
-    () => render({label: 'Label', width: '300px'})
+    "custom width",
+    () => render({label: "Label", width: "300px"})
   )
   .add(
-    'custom width small',
-    () => render({label: 'Label', width: '30px'})
+    "custom width small",
+    () => render({label: "Label", width: "30px"})
   )
   .add(
-    'label overflow',
-    () => render({label: 'This is a rather long label for this narrow slider element.', maxValue: 1000, width: '300px'})
+    "label overflow",
+    () => render({label: "This is a rather long label for this narrow slider element.", maxValue: 1000, width: "300px"})
   )
   .add(
-    'showValueLabel: false',
-    () => render({label: 'Label', showValueLabel: false})
+    "showValueLabel: false",
+    () => render({label: "Label", showValueLabel: false})
   )
   .add(
-    'formatOptions percent',
-    () => render({label: 'Label', minValue: 0, maxValue: 1, step: 0.01, formatOptions: {style: 'percent'}})
+    "formatOptions percent",
+    () => render({label: "Label", minValue: 0, maxValue: 1, step: 0.01, formatOptions: {style: "percent"}})
   )
   .add(
-    'formatOptions centimeter',
+    "formatOptions centimeter",
     // @ts-ignore TODO why is "unit" even missing? How well is it supported?
-    () => render({label: 'Label', maxValue: 1000, formatOptions: {style: 'unit', unit: 'centimeter'}})
+    () => render({label: "Label", maxValue: 1000, formatOptions: {style: "unit", unit: "centimeter"}})
   )
   .add(
-    'custom valueLabel',
-    () => render({label: 'Label', getValueLabel: state => `A ${state} B`})
+    "custom valueLabel",
+    () => render({label: "Label", getValueLabel: state => `A ${state} B`})
   )
   .add(
-    'custom valueLabel with label overflow',
-    () => render({label: 'This is a rather long label for this narrow slider element.', getValueLabel: state => `A ${state} B`})
+    "custom valueLabel with label overflow",
+    () => render({label: "This is a rather long label for this narrow slider element.", getValueLabel: state => `A ${state} B`})
   )
   .add(
-    'labelPosition: side',
-    () => render({label: 'Label', labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({label: "Label", labelPosition: "side"})
   )
   .add(
-    'labelPosition: side, customWidth',
-    () => render({label: 'Label', labelPosition: 'side', width: '400px'})
+    "labelPosition: side, customWidth",
+    () => render({label: "Label", labelPosition: "side", width: "400px"})
   )
   .add(
-    'labelPosition: side, customWidth small',
-    () => render({label: 'Label', labelPosition: 'side', width: '30px'})
+    "labelPosition: side, customWidth small",
+    () => render({label: "Label", labelPosition: "side", width: "30px"})
   )
   .add(
-    'min/max',
-    () => render({label: 'Label', minValue: 30, maxValue: 70})
+    "min/max",
+    () => render({label: "Label", minValue: 30, maxValue: 70})
   )
   .add(
-    'step',
-    () => render({label: 'Label', minValue: 0, maxValue: 100, step: 5})
+    "step",
+    () => render({label: "Label", minValue: 0, maxValue: 100, step: 5})
   )
   .add(
-    'isFilled: true',
-    () => render({label: 'Label', isFilled: true})
+    "isFilled: true",
+    () => render({label: "Label", isFilled: true})
   )
   .add(
-    'fillOffset',
-    () => render({label: 'Exposure', isFilled: true, fillOffset: 0, defaultValue: 0, minValue: -7, maxValue: 5})
+    "fillOffset",
+    () => render({label: "Exposure", isFilled: true, fillOffset: 0, defaultValue: 0, minValue: -7, maxValue: 5})
   )
   .add(
-    'trackGradient',
-    () => render({label: 'Label', trackGradient: ['blue', 'red']})
+    "trackGradient",
+    () => render({label: "Label", trackGradient: ["blue", "red"]})
   )
   .add(
-    'trackGradient with fillOffset',
-    () => render({label: 'Label', trackGradient: ['blue', 'red'], isFilled: true, fillOffset: 50})
+    "trackGradient with fillOffset",
+    () => render({label: "Label", trackGradient: ["blue", "red"], isFilled: true, fillOffset: 50})
   );
   // .add(
   //   '* orientation: vertical',
@@ -119,7 +119,7 @@ storiesOf('Slider', module)
 
 function render(props: SpectrumSliderProps = {}) {
   if (props.onChange == null) {
-    props.onChange = action('change');
+    props.onChange = action("change");
   }
   return <Slider {...props} />;
 }

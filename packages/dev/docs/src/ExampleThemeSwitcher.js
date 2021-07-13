@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {Example} from './ThemeSwitcher';
-import {Flex} from '@react-spectrum/layout';
-import {Item, Picker} from '@react-spectrum/picker';
-import {Provider} from '@react-spectrum/provider';
-import React, {useState} from 'react';
+import {Example} from "./ThemeSwitcher";
+import {Flex} from "@react-spectrum/layout";
+import {Item, Picker} from "@react-spectrum/picker";
+import {Provider} from "@react-spectrum/provider";
+import React, {useState} from "react";
 
 export function ExampleThemeSwitcher({children}) {
   let [colorScheme, setColorScheme] = useState();

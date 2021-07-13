@@ -10,124 +10,124 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Button} from '@react-spectrum/button';
-import {Flex} from '@react-spectrum/layout';
-import {Form} from '@react-spectrum/form';
-import Info from '@spectrum-icons/workflow/Info';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {TextArea} from '../';
+import {action} from "@storybook/addon-actions";
+import {Button} from "@react-spectrum/button";
+import {Flex} from "@react-spectrum/layout";
+import {Form} from "@react-spectrum/form";
+import Info from "@spectrum-icons/workflow/Info";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {TextArea} from "../";
 
-storiesOf('TextArea', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("TextArea", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'value: Test (controlled)',
-    () => render({value: 'Test'})
+    "value: Test (controlled)",
+    () => render({value: "Test"})
   )
   .add(
-    'defaultValue: Test (uncontrolled)',
-    () => render({defaultValue: 'Test'})
+    "defaultValue: Test (uncontrolled)",
+    () => render({defaultValue: "Test"})
   )
   .add(
-    'isQuiet: true',
+    "isQuiet: true",
     () => render({isQuiet: true})
   )
   .add(
-    'isQuiet, defaultValue',
-    () => render({isQuiet: true, defaultValue: 'foo  '.repeat(10)})
+    "isQuiet, defaultValue",
+    () => render({isQuiet: true, defaultValue: "foo  ".repeat(10)})
   )
   .add(
-    'isQuiet, value',
-    () => render({isQuiet: true, value: 'foo  '.repeat(10)})
+    "isQuiet, value",
+    () => render({isQuiet: true, value: "foo  ".repeat(10)})
   )
   .add(
-    'isDisabled: true',
+    "isDisabled: true",
     () => render({isDisabled: true})
   )
   .add(
-    'isDisabled, isQuiet',
+    "isDisabled, isQuiet",
     () => render({isDisabled: true, isQuiet: true})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid'})
+    "validationState: invalid",
+    () => render({validationState: "invalid"})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid'})
+    "validationState: valid",
+    () => render({validationState: "valid"})
   )
   .add(
-    'isReadOnly: true',
+    "isReadOnly: true",
     () => render({isReadOnly: true})
   )
   .add(
-    'isReadOnly: true, value: read only value',
-    () => render({value: 'Read only value', isReadOnly: true})
+    "isReadOnly: true, value: read only value",
+    () => render({value: "Read only value", isReadOnly: true})
   )
   .add(
-    'isRequired: true',
+    "isRequired: true",
     () => render({isRequired: true})
   )
   .add(
-    'isRequired: true, necessityIndicator: label',
-    () => render({isRequired: true, necessityIndicator: 'label'})
+    "isRequired: true, necessityIndicator: label",
+    () => render({isRequired: true, necessityIndicator: "label"})
   )
   .add(
-    'isRequired: false, necessityIndicator: label',
-    () => render({isRequired: false, necessityIndicator: 'label'})
+    "isRequired: false, necessityIndicator: label",
+    () => render({isRequired: false, necessityIndicator: "label"})
   )
   .add(
-    'autoFocus: true',
+    "autoFocus: true",
     () => render({autoFocus: true})
   )
   .add(
-    'icon: Info',
+    "icon: Info",
     () => render({icon: <Info />})
   )
   .add(
-    'icon: Info, isQuiet',
+    "icon: Info, isQuiet",
     () => render({icon: <Info />, isQuiet: true})
   )
   .add(
-    'icon: Info, isDisabled',
+    "icon: Info, isDisabled",
     () => render({icon: <Info />, isDisabled: true})
   )
   .add(
-    'icon: Info, isQuiet, isDisabled',
+    "icon: Info, isQuiet, isDisabled",
     () => render({icon: <Info />, isQuiet: true, isDisabled: true})
   )
   .add(
-    'icon: Info, validationState: invalid, isQuiet',
-    () => render({icon: <Info />, validationState: 'invalid', isQuiet: true})
+    "icon: Info, validationState: invalid, isQuiet",
+    () => render({icon: <Info />, validationState: "invalid", isQuiet: true})
   )
   .add(
-    'labelAlign: end',
-    () => render({labelAlign: 'end'})
+    "labelAlign: end",
+    () => render({labelAlign: "end"})
   )
   .add(
-    'labelPosition: side',
-    () => render({labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({labelPosition: "side"})
   )
   .add(
-    'no visible label',
-    () => render({label: null, 'aria-label': 'Street address'})
+    "no visible label",
+    () => render({label: null, "aria-label": "Street address"})
   )
-  .add('custom width',
-    () => render({icon: <Info />, validationState: 'invalid', width: '300px'})
+  .add("custom width",
+    () => render({icon: <Info />, validationState: "invalid", width: "300px"})
   )
-  .add('custom width small',
-    () => render({icon: <Info />, validationState: 'invalid', width: '30px'})
+  .add("custom width small",
+    () => render({icon: <Info />, validationState: "invalid", width: "30px"})
   )
-  .add('custom width, quiet',
-    () => render({icon: <Info />, validationState: 'invalid', width: '300px', isQuiet: true})
+  .add("custom width, quiet",
+    () => render({icon: <Info />, validationState: "invalid", width: "300px", isQuiet: true})
   )
   .add(
-    'custom height with label',
+    "custom height with label",
     () => (
       <Form>
         <TextArea label="Height size-2000" height="size-2000" />
@@ -137,31 +137,31 @@ storiesOf('TextArea', module)
       </Form>
     )
   )
-  .add('controlled interactive',
+  .add("controlled interactive",
     () => <ControlledTextArea />
   )
-  .add('in flex', () => renderInFlexRowAndBlock())
-  .add('in flex validation state', () => renderInFlexRowAndBlock({validationState: 'invalid'}));
+  .add("in flex", () => renderInFlexRowAndBlock())
+  .add("in flex validation state", () => renderInFlexRowAndBlock({validationState: "invalid"}));
 
 function render(props = {}) {
   return (
     <TextArea
       label="Comments"
       placeholder="React"
-      onChange={action('change')}
-      onFocus={action('focus')}
-      onBlur={action('blur')}
+      onChange={action("change")}
+      onFocus={action("focus")}
+      onBlur={action("blur")}
       UNSAFE_className="custom_classname"
       {...props} />
   );
 }
 
 function ControlledTextArea(props) {
-  let [value, setValue] = useState('');
+  let [value, setValue] = useState("");
   return (
     <>
       <TextArea label="megatron" value={value} onChange={setValue} {...props} isQuiet />
-      <Button variant="primary" onPress={() => setValue('decepticons are evil transformers and should be kicked out of earth')}>Set Text</Button>
+      <Button variant="primary" onPress={() => setValue("decepticons are evil transformers and should be kicked out of earth")}>Set Text</Button>
     </>
   );
 }

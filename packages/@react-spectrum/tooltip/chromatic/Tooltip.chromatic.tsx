@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumTooltipProps} from '@react-types/tooltip';
-import {Tooltip} from '../';
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumTooltipProps} from "@react-types/tooltip";
+import {Tooltip} from "../";
 
 const meta: Meta<SpectrumTooltipProps> = {
-  title: 'Tooltip',
+  title: "Tooltip",
   component: Tooltip
 };
 
@@ -24,7 +24,7 @@ export default meta;
 
 
 const Template = (): Story<SpectrumTooltipProps> => (args) => (
-  <div style={{display: 'inline-block'}}>
+  <div style={{display: "inline-block"}}>
     <Tooltip
       {...args}
       isOpen>
@@ -38,19 +38,19 @@ export const Default = Template().bind({});
 Default.args = {};
 
 export const PlacementLeft = Template().bind({});
-PlacementLeft.args = {...Default.args, placement: 'left'};
+PlacementLeft.args = {...Default.args, placement: "left"};
 
 export const PlacementRight = Template().bind({});
-PlacementRight.args = {...Default.args, placement: 'right'};
+PlacementRight.args = {...Default.args, placement: "right"};
 
 export const PlacementBottom = Template().bind({});
-PlacementBottom.args = {...Default.args, placement: 'bottom'};
+PlacementBottom.args = {...Default.args, placement: "bottom"};
 
 export const Info = Template().bind({});
-Info.args = {...Default.args, variant: 'info'};
+Info.args = {...Default.args, variant: "info"};
 
 export const Positive = Template().bind({});
-Positive.args = {...Default.args, variant: 'positive'};
+Positive.args = {...Default.args, variant: "positive"};
 
 export const Negative = Template().bind({});
-Negative.args = {...Default.args, variant: 'negative'};
+Negative.args = {...Default.args, variant: "negative"};

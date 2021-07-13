@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {attachToToC} from './attachToToC';
-import {Breadcrumbs, Item} from '@react-spectrum/breadcrumbs';
-import {Content, View} from '@react-spectrum/view';
-import {Dialog, DialogTrigger} from '@react-spectrum/dialog';
-import {Divider} from '@react-spectrum/divider';
-import docsStyle from './docs.css';
-import highlightCss from './syntax-highlight.css';
-import {Pressable} from '@react-aria/interactions';
-import React, {useEffect, useRef, useState} from 'react';
-import ReactDOM from 'react-dom';
-import {ThemeProvider} from './ThemeSwitcher';
+import {attachToToC} from "./attachToToC";
+import {Breadcrumbs, Item} from "@react-spectrum/breadcrumbs";
+import {Content, View} from "@react-spectrum/view";
+import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
+import {Divider} from "@react-spectrum/divider";
+import docsStyle from "./docs.css";
+import highlightCss from "./syntax-highlight.css";
+import {Pressable} from "@react-aria/interactions";
+import React, {useEffect, useRef, useState} from "react";
+import ReactDOM from "react-dom";
+import {ThemeProvider} from "./ThemeSwitcher";
 
-let links = document.querySelectorAll('a[data-link]');
+let links = document.querySelectorAll("a[data-link]");
 for (let link of links) {
-  if (link.closest('[hidden]')) {
+  if (link.closest("[hidden]")) {
     continue;
   }
 
-  let container = document.createElement('span');
+  let container = document.createElement("span");
 
   ReactDOM.render(
     <ThemeProvider UNSAFE_className={docsStyle.inlineProvider}>
@@ -51,9 +51,9 @@ function LinkPopover({id}) {
   let [breadcrumbs, setBreadcrumbs] = useState([document.getElementById(id)]);
 
   useEffect(() => {
-    let links = ref.current.querySelectorAll('[data-link]');
+    let links = ref.current.querySelectorAll("[data-link]");
     for (let link of links) {
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
         setBreadcrumbs([...breadcrumbs, document.getElementById(link.dataset.link)]);
       });

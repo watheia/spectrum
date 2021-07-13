@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {testSSR} from '@react-spectrum/test-utils';
+import {testSSR} from "@react-spectrum/test-utils";
 
-describe('ProgressCircle SSR', function () {
-  it('should render without errors', async function () {
+describe("ProgressCircle SSR", function () {
+  it("should render without errors", async function () {
     await testSSR(__filename, `
       import {ProgressCircle} from '../';
       <ProgressCircle aria-label="progress" />

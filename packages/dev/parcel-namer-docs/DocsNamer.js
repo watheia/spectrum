@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-const {Namer} = require('@parcel/plugin');
-const path = require('path');
+const {Namer} = require("@parcel/plugin");
+const path = require("path");
 
 module.exports = new Namer({
   name({bundle, bundleGraph, options}) {
@@ -22,16 +22,16 @@ module.exports = new Namer({
       let entryFilePath = path.relative(options.projectRoot, main.filePath);
       let parts = entryFilePath.split(path.sep);
 
-      let basename = path.basename(entryFilePath, path.extname(entryFilePath)) + '.' + bundle.type;
+      let basename = path.basename(entryFilePath, path.extname(entryFilePath)) + "." + bundle.type;
 
       // For dev files, simply /PageName.html or /dir/PageName.html
-      if (parts[1] === 'dev') {
+      if (parts[1] === "dev") {
         return path.join(...parts.slice(4, -1), basename);
       }
 
       // For @namespace package files, urls will be /${namespace}/PageName.html
       return path.join(
-        parts[1].replace(/^@/, ''),
+        parts[1].replace(/^@/, ""),
         ...parts.slice(4, -1),
         basename
       );
@@ -41,7 +41,7 @@ module.exports = new Namer({
       let bundleGroupBundles = bundleGraph.getBundlesInBundleGroup(bundleGroup);
       let mainBundle =  bundleGroupBundles.find(b => b.getEntryAssets().some(a => a.id === bundleGroup.entryAssetId));
       let entry = mainBundle.getEntryAssets().find(a => a.id === bundleGroup.entryAssetId).filePath;
-      return path.basename(entry, path.extname(entry)) + '.' + bundle.hashReference + '.' + bundle.type;
+      return path.basename(entry, path.extname(entry)) + "." + bundle.hashReference + "." + bundle.type;
     } else {
       // Let the default namer handle it.
       return null;

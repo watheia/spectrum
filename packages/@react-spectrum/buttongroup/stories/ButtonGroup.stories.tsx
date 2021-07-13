@@ -10,57 +10,57 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import Bell from '@spectrum-icons/workflow/Bell';
-import {Button} from '@react-spectrum/button';
-import {ButtonGroup} from '../';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {Text} from '@react-spectrum/text';
+import {action} from "@storybook/addon-actions";
+import Bell from "@spectrum-icons/workflow/Bell";
+import {Button} from "@react-spectrum/button";
+import {ButtonGroup} from "../";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {Text} from "@react-spectrum/text";
 
-storiesOf('ButtonGroup', module)
+storiesOf("ButtonGroup", module)
   .add(
-    'default',
+    "default",
     () => render({})
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({isDisabled: true})
   )
   .add(
-    'orientation: vertical',
-    () => render({orientation: 'vertical'})
+    "orientation: vertical",
+    () => render({orientation: "vertical"})
   )
   .add(
-    'orientation: vertical, align: end',
-    () => render({orientation: 'vertical', align: 'end'})
+    "orientation: vertical, align: end",
+    () => render({orientation: "vertical", align: "end"})
   )
   .add(
-    'isDisabled, orientation: vertical',
-    () => render({isDisabled: true, orientation: 'vertical'})
+    "isDisabled, orientation: vertical",
+    () => render({isDisabled: true, orientation: "vertical"})
   )
   .add(
-    'align: end',
-    () => render({align: 'end'})
+    "align: end",
+    () => render({align: "end"})
   )
   .add(
-    'align: center',
-    () => render({align: 'center'})
+    "align: center",
+    () => render({align: "center"})
   )
   .add(
-    'align: center, orientation: vertical',
-    () => render({align: 'center', orientation: 'vertical'})
+    "align: center, orientation: vertical",
+    () => render({align: "center", orientation: "vertical"})
   )
   .add(
-    'resizeable container',
+    "resizeable container",
     () => (
-      <div style={{minWidth: '100px', padding: '10px', resize: 'horizontal', overflow: 'auto', backgroundColor: 'var(--spectrum-global-color-gray-50)'}}>
+      <div style={{minWidth: "100px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
         {render({})}
       </div>
     )
   )
   .add(
-    'constant container, changing siblings',
+    "constant container, changing siblings",
     () => (
       <ExpandingSibling />
     )
@@ -73,9 +73,9 @@ function render(props) {
 let ExpandingSibling = (props = {}) => {
   let [isExpanded, setIsExpanded] = useState(false);
   return (
-    <div style={{display: 'flex', flexWrap: 'nowrap', width: '1000px', overflow: 'hidden', padding: '10px', backgroundColor: 'var(--spectrum-global-color-gray-50)'}}>
-      <div style={{paddingRight: isExpanded ? '200px' : '10px'}}>
-        <Button variant="secondary" onPress={() => setIsExpanded(prev => !prev)}>{isExpanded ? 'Shrink' : 'Expand'}</Button>
+    <div style={{display: "flex", flexWrap: "nowrap", width: "1000px", overflow: "hidden", padding: "10px", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{paddingRight: isExpanded ? "200px" : "10px"}}>
+        <Button variant="secondary" onPress={() => setIsExpanded(prev => !prev)}>{isExpanded ? "Shrink" : "Expand"}</Button>
       </div>
       {render(props)}
     </div>
@@ -86,10 +86,10 @@ let Component = (props) => {
   let [show, setShow] = useState(false);
   return (
     <ButtonGroup maxWidth="100vw" {...props}>
-      <Button variant="primary" onPress={action('press')}>Button 1</Button>
-      <Button variant="negative" onPress={action('press')}>Button long long long name</Button>
-      <Button variant="primary" isQuiet onPress={action('press')}>Quiet button</Button>
-      <Button variant="primary" isDisabled onPress={action('press')}>Disabled button</Button>
+      <Button variant="primary" onPress={action("press")}>Button 1</Button>
+      <Button variant="negative" onPress={action("press")}>Button long long long name</Button>
+      <Button variant="primary" isQuiet onPress={action("press")}>Quiet button</Button>
+      <Button variant="primary" isDisabled onPress={action("press")}>Disabled button</Button>
       <Button variant="secondary" onPress={() => setShow(show => !show)}>
         <Bell />
         <Text>Click me to make Button larger</Text>

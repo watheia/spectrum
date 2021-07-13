@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {View} from '@react-spectrum/view';
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {View} from "@react-spectrum/view";
 
-let baseColors = ['celery', 'chartreuse', 'yellow', 'magenta', 'fuchsia', 'purple', 'indigo', 'seafoam', 'red', 'orange', 'green', 'blue'];
+let baseColors = ["celery", "chartreuse", "yellow", "magenta", "fuchsia", "purple", "indigo", "seafoam", "red", "orange", "green", "blue"];
 let colors = [];
 for (let color of baseColors) {
   for (let i = 4; i <= 7; i++) {
@@ -23,11 +23,11 @@ for (let color of baseColors) {
   }
 }
 
-storiesOf('Flex', module)
+storiesOf("Flex", module)
   // we do not care about colors for this one, knowing it lays out correctly is all
-  .addParameters({chromaticProvider: {colorSchemes: ['light']}})
+  .addParameters({chromaticProvider: {colorSchemes: ["light"]}})
   .add(
-    'Vertical stack with gap',
+    "Vertical stack with gap",
     () => (
       <Flex direction="column" width="size-2000" gap="size-100">
         <View backgroundColor="celery-600" height="size-800" />
@@ -37,7 +37,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Horizontal stack with gap',
+    "Horizontal stack with gap",
     () => (
       <Flex direction="row" height="size-800" gap="size-100">
         <View backgroundColor="celery-600" width="size-800" />
@@ -47,7 +47,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Wrapping with gap',
+    "Wrapping with gap",
     () => (
       <View maxWidth="80%" borderWidth="thin" borderColor="dark">
         <Flex direction="row" gap="size-100" wrap>
@@ -59,7 +59,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Nested flex with gap',
+    "Nested flex with gap",
     () => (
       <Flex direction="column" gap="size-150">
         <View backgroundColor="celery-600" height="size-800" />
@@ -73,7 +73,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Align center',
+    "Align center",
     () => (
       <Flex direction="row" gap="size-100" alignItems="center">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -83,7 +83,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Align end',
+    "Align end",
     () => (
       <Flex direction="row" gap="size-100" alignItems="end">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -93,7 +93,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Justify start',
+    "Justify start",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="start" width="80%">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -103,7 +103,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Justify center',
+    "Justify center",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="center" width="80%">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -113,7 +113,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Justify end',
+    "Justify end",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="end" width="80%">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -123,7 +123,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Justify space-around',
+    "Justify space-around",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="space-around" width="80%">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -133,7 +133,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Justify space-between',
+    "Justify space-between",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="space-between" width="80%">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -143,7 +143,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'Justify space-evenly',
+    "Justify space-evenly",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="space-evenly" width="80%">
         <View backgroundColor="celery-600"  width="size-800" height="size-800" />
@@ -153,7 +153,7 @@ storiesOf('Flex', module)
     )
   )
   .add(
-    'ordered',
+    "ordered",
     () => (
       <Flex direction="row" gap="size-100" justifyContent="space-evenly" width="80%">
         <View backgroundColor="celery-600" order={2} width="size-800" height="size-800" />

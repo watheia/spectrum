@@ -10,38 +10,38 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Switch} from '../';
-import {View} from '@react-spectrum/view';
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Switch} from "../";
+import {View} from "@react-spectrum/view";
 
-storiesOf('Switch', module)
+storiesOf("Switch", module)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'isDisabled: true',
+    "isDisabled: true",
     () => render({isDisabled: true})
   )
   .add(
-    'isEmphasized: true',
+    "isEmphasized: true",
     () => render({isEmphasized: true})
   )
   .add(
-    'isEmphasized: true, isDisabled: true',
+    "isEmphasized: true, isDisabled: true",
     () => render({isEmphasized: true, isDisabled: true})
   )
   .add(
-    'isReadOnly: true',
+    "isReadOnly: true",
     () => render({isReadOnly: true})
   )
   .add(
-    'custom label',
+    "custom label",
     () => renderCustomLabel()
   )
   .add(
-    'long label',
+    "long label",
     () => (
       <View width="size-2000">
         <Switch>
@@ -51,8 +51,8 @@ storiesOf('Switch', module)
     )
   )
   .add(
-    'no label',
-    () => renderNoLabel({'aria-label': 'This checkbox has no visible label'})
+    "no label",
+    () => renderNoLabel({"aria-label": "This checkbox has no visible label"})
   );
 
 // need selected + indeterminate because there is a sibling selector `checked + ...` so being careful

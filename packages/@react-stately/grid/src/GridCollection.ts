@@ -9,8 +9,8 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import {GridNode, GridRow, GridCollection as IGridCollection} from '@react-types/grid';
-import {Key} from 'react';
+import {GridNode, GridRow, GridCollection as IGridCollection} from "@react-types/grid";
+import {Key} from "react";
 
 
 interface GridCollectionOptions<T> {
@@ -43,7 +43,7 @@ export class GridCollection<T> implements IGridCollection<T> {
       let childKeys = new Set();
       let last: GridNode<T>;
       for (let child of node.childNodes) {
-        if (child.type === 'cell' && child.parentKey == null) {
+        if (child.type === "cell" && child.parentKey == null) {
           // if child is a cell parent key isn't already established by the collection, match child node to parent row
           child.parentKey = node.key;
         }
@@ -87,8 +87,8 @@ export class GridCollection<T> implements IGridCollection<T> {
     opts.items.forEach((node, i) => {
       let rowNode = {
         level: 0,
-        key: 'row-' + i,
-        type: 'row',
+        key: "row-" + i,
+        type: "row",
         value: undefined,
         hasChildNodes: true,
         childNodes: [...node.childNodes],

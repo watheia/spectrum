@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from '@testing-library/react';
-import {Pressable} from '../';
-import React from 'react';
+import {fireEvent, render} from "@testing-library/react";
+import {Pressable} from "../";
+import React from "react";
 
-describe('Pressable', function () {
+describe("Pressable", function () {
 
-  it('should apply press events to child element', function () {
+  it("should apply press events to child element", function () {
     let onPress = jest.fn();
     let {getByRole} = render(
       <Pressable onPress={onPress}>
@@ -24,7 +24,7 @@ describe('Pressable', function () {
       </Pressable>
     );
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     fireEvent.mouseDown(button);
     fireEvent.mouseUp(button);
     fireEvent.click(button);
@@ -32,7 +32,7 @@ describe('Pressable', function () {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
-  it('should should merge with existing props, not overwrite', function () {
+  it("should should merge with existing props, not overwrite", function () {
     let onPress = jest.fn();
     let onClick = jest.fn();
     let {getByRole} = render(
@@ -41,7 +41,7 @@ describe('Pressable', function () {
       </Pressable>
     );
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     fireEvent.mouseDown(button);
     fireEvent.mouseUp(button);
     fireEvent.click(button);

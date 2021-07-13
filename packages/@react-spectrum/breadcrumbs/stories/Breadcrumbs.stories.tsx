@@ -10,89 +10,89 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Breadcrumbs} from '../';
+import {action} from "@storybook/addon-actions";
+import {Breadcrumbs} from "../";
 // import {Heading} from '@react-spectrum/text';
-import {Item} from '@react-stately/collections';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Item} from "@react-stately/collections";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
 let styles = {
-  width: '100vw'
+  width: "100vw"
 };
 const CenterDecorator = storyFn => <div style={styles}><div>{storyFn()}</div></div>;
 
-storiesOf('Breadcrumbs', module)
+storiesOf("Breadcrumbs", module)
   .addDecorator(CenterDecorator)
-  .addParameters({providerSwitcher: {status: 'negative'}})
+  .addParameters({providerSwitcher: {status: "negative"}})
   .add(
-    'Default (with 3 items)',
+    "Default (with 3 items)",
     () => render()
   )
   .add(
-    'Default (with 7 items)',
+    "Default (with 7 items)",
     () => renderMany({})
   )
   .add(
-    'isMultiline',
+    "isMultiline",
     () => render({isMultiline: true})
   )
   .add(
-    'size: S',
-    () => render({size: 'S'})
+    "size: S",
+    () => render({size: "S"})
   )
   .add(
-    'size: S, isMultiline',
-    () => render({size: 'S', isMultiline: true})
+    "size: S, isMultiline",
+    () => render({size: "S", isMultiline: true})
   )
   .add(
-    'size: M',
-    () => render({size: 'M'})
+    "size: M",
+    () => render({size: "M"})
   )
   .add(
-    'size: M, isMultiline',
-    () => render({size: 'M', isMultiline: true})
+    "size: M, isMultiline",
+    () => render({size: "M", isMultiline: true})
   )
   .add(
-    'truncated',
+    "truncated",
     () => (
-      <div style={{width: '120px'}}>
+      <div style={{width: "120px"}}>
         {render({})}
       </div>
     )
   )
   .add(
-    'truncated, isMultiline',
+    "truncated, isMultiline",
     () => (
-      <div style={{width: '100px'}}>
+      <div style={{width: "100px"}}>
         {render({isMultiline: true})}
       </div>
     )
   )
   .add(
-    'many items, showRoot: true',
+    "many items, showRoot: true",
     () => renderMany({showRoot: true})
   )
   .add(
-    'many items, isMultiline',
+    "many items, isMultiline",
     () => renderMany({isMultiline: true})
   )
   .add(
-    'many items, isMultiline, showRoot: true',
-    () => renderMany({maxVisibleItems: 'auto', isMultiline: true, showRoot: true})
+    "many items, isMultiline, showRoot: true",
+    () => renderMany({maxVisibleItems: "auto", isMultiline: true, showRoot: true})
   )
   .add(
-    'isDisabled: true',
+    "isDisabled: true",
     () => render({isDisabled: true})
   )
   .add(
-    'isDisabled: true, isMultiline',
+    "isDisabled: true, isMultiline",
     () => render({isDisabled: true, isMultiline: true})
   )
   .add(
-    'resizeable',
+    "resizeable",
     () => (
-      <div style={{minWidth: '100px', width: '300px', padding: '10px', resize: 'horizontal', overflow: 'auto', backgroundColor: 'var(--spectrum-global-color-gray-50)'}}>
+      <div style={{minWidth: "100px", width: "300px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
         {renderMany({})}
       </div>
     )
@@ -122,7 +122,7 @@ storiesOf('Breadcrumbs', module)
   //   () => renderHeading({isMultiline: true, size: 'M'})
   // )
   .add(
-    'Only one item',
+    "Only one item",
     () => (
       <Breadcrumbs>
         <Item>Root</Item>
@@ -130,7 +130,7 @@ storiesOf('Breadcrumbs', module)
     )
   )
   .add(
-    'Only one item, isMultiline',
+    "Only one item, isMultiline",
     () => (
       <Breadcrumbs isMultiline>
         <Item>Root</Item>
@@ -140,7 +140,7 @@ storiesOf('Breadcrumbs', module)
 
 function render(props = {}) {
   return (
-    <Breadcrumbs {...props} onAction={action('onAction')}>
+    <Breadcrumbs {...props} onAction={action("onAction")}>
       <Item key="Folder 1">The quick brown fox jumps over</Item>
       <Item key="Folder 2">My Documents</Item>
       <Item key="Folder 3">Kangaroos jump high</Item>
@@ -168,7 +168,7 @@ function render(props = {}) {
 
 function renderMany(props = {}) {
   return (
-    <Breadcrumbs {...props} onAction={action('onAction')}>
+    <Breadcrumbs {...props} onAction={action("onAction")}>
       <Item key="Folder 1">The quick brown fox jumps over</Item>
       <Item key="Folder 2">My Documents</Item>
       <Item key="Folder 3">Kangaroos jump high</Item>

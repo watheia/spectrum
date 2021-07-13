@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {RefObject, useCallback} from 'react';
-import {ReusableView, Size} from '@react-stately/virtualizer';
-import {useLayoutEffect} from '@react-aria/utils';
+import {RefObject, useCallback} from "react";
+import {ReusableView, Size} from "@react-stately/virtualizer";
+import {useLayoutEffect} from "@react-aria/utils";
 
 interface VirtualizerItemOptions<T extends object, V> {
   reusableView: ReusableView<T, V>,
@@ -39,7 +39,7 @@ export function useVirtualizerItem<T extends object, V>(options: VirtualizerItem
 function getSize(node: HTMLElement) {
   // Reset height before measuring so we get the intrinsic size
   let height = node.style.height;
-  node.style.height = '';
+  node.style.height = "";
   let size = new Size(node.scrollWidth, node.scrollHeight);
   node.style.height = height;
   return size;

@@ -10,5 +10,5 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useControlledState';
-export * from './number';
+export * from "./useControlledState";
+export * from "./number";

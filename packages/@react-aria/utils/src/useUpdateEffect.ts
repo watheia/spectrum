@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {EffectCallback, useEffect, useRef} from 'react';
+import {EffectCallback, useEffect, useRef} from "react";
 
 // Like useEffect, but only called for updates after the initial render.
 export function useUpdateEffect(effect: EffectCallback, dependencies: any[]) {

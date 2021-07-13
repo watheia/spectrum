@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent} from '@testing-library/react';
-import React from 'react';
-import {render} from '@testing-library/react';
-import {Tag} from '../';
+import {fireEvent} from "@testing-library/react";
+import React from "react";
+import {render} from "@testing-library/react";
+import {Tag} from "../";
 
 
-describe('Tag', function () {
+describe("Tag", function () {
   let onRemoveSpy = jest.fn();
   afterEach(() => {
     onRemoveSpy.mockClear();
@@ -24,51 +24,51 @@ describe('Tag', function () {
 
   it.each`
    Name          | Component         | props
-   ${'Tag'}      | ${Tag}            | ${{}}
-  `('$Name allows custom props to be passed through to the tag', function ({Component, props}) {
+   ${"Tag"}      | ${Tag}            | ${{}}
+  `("$Name allows custom props to be passed through to the tag", function ({Component, props}) {
     let {container} = render(<Component {...props} data-foo="bar">Cool Tag</Component>);
 
     let tag = container.firstElementChild;
-    expect(tag).toHaveAttribute('data-foo', 'bar');
+    expect(tag).toHaveAttribute("data-foo", "bar");
   });
 
   it.each`
    Name         | Component         | props
-   ${'Tag'}     | ${Tag}            | ${{isRemovable: true, onRemove: onRemoveSpy}}
-  `('$Name handles appropriate key down in order to delete tag', function ({Component, props}) {
+   ${"Tag"}     | ${Tag}            | ${{isRemovable: true, onRemove: onRemoveSpy}}
+  `("$Name handles appropriate key down in order to delete tag", function ({Component, props}) {
     let {getByText} = render(<Component {...props}>Cool Tag</Component>);
 
-    let tag = getByText('Cool Tag');
+    let tag = getByText("Cool Tag");
 
-    fireEvent.keyDown(tag, {key: 'Delete', keyCode: 46});
-    expect(onRemoveSpy).toHaveBeenCalledWith('Cool Tag', expect.anything());
+    fireEvent.keyDown(tag, {key: "Delete", keyCode: 46});
+    expect(onRemoveSpy).toHaveBeenCalledWith("Cool Tag", expect.anything());
     onRemoveSpy.mockReset();
 
-    fireEvent.keyDown(tag, {key: 'Backspace', keyCode: 8});
-    expect(onRemoveSpy).toHaveBeenCalledWith('Cool Tag', expect.anything());
+    fireEvent.keyDown(tag, {key: "Backspace", keyCode: 8});
+    expect(onRemoveSpy).toHaveBeenCalledWith("Cool Tag", expect.anything());
   });
 
   it.each`
    Name          | Component         | props
-   ${'Tag'}      | ${Tag}            | ${{isDisabled: true, isRemovable: true, onRemove: onRemoveSpy}}
-  `('$Name can be disabled', function ({Component, props}) {
+   ${"Tag"}      | ${Tag}            | ${{isDisabled: true, isRemovable: true, onRemove: onRemoveSpy}}
+  `("$Name can be disabled", function ({Component, props}) {
     let {getByText} = render(<Component {...props}>Cool Tag</Component>);
 
-    let tag = getByText('Cool Tag');
+    let tag = getByText("Cool Tag");
 
-    fireEvent.keyDown(tag, {key: 'Delete'});
-    expect(onRemoveSpy).not.toHaveBeenCalledWith('Cool Tag', expect.anything());
+    fireEvent.keyDown(tag, {key: "Delete"});
+    expect(onRemoveSpy).not.toHaveBeenCalledWith("Cool Tag", expect.anything());
   });
 
   it.each`
    Name          | Component         | props
-   ${'Tag'}      | ${Tag}            | ${{validationState: 'invalid'}}
-  `('$Name can be invalid', function ({Component, props}) {
+   ${"Tag"}      | ${Tag}            | ${{validationState: "invalid"}}
+  `("$Name can be invalid", function ({Component, props}) {
     let {getByText} = render(<Component {...props}>Cool Tag</Component>);
 
-    let tag = getByText('Cool Tag');
+    let tag = getByText("Cool Tag");
     tag = tag.parentElement;
 
-    expect(tag).toHaveAttribute('aria-invalid', 'true');
+    expect(tag).toHaveAttribute("aria-invalid", "true");
   });
 });

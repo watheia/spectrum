@@ -10,30 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps} from '@react-aria/utils';
-import React from 'react';
-import {useButton} from '@react-aria/button';
-import {useDrag, useDrop} from '../';
+import {mergeProps} from "@react-aria/utils";
+import React from "react";
+import {useButton} from "@react-aria/button";
+import {useDrag, useDrop} from "../";
 
 export function Draggable(props) {
   let {dragProps, dragButtonProps, isDragging} = useDrag({
     getItems() {
       return [{
-        'text/plain': 'hello world'
+        "text/plain": "hello world"
       }];
     },
     ...props
   });
 
   let ref = React.useRef();
-  let {buttonProps} = useButton({...dragButtonProps, elementType: 'div'}, ref);
+  let {buttonProps} = useButton({...dragButtonProps, elementType: "div"}, ref);
 
   return (
     <div
       ref={ref}
       {...mergeProps(dragProps, buttonProps)}
       data-dragging={isDragging}>
-      {props.children || 'Drag me'}
+      {props.children || "Drag me"}
     </div>
   );
 }
@@ -45,14 +45,14 @@ export function Droppable(props) {
     ...props
   });
 
-  let {buttonProps} = useButton({elementType: 'div'}, ref);
+  let {buttonProps} = useButton({elementType: "div"}, ref);
 
   return (
     <div
       {...mergeProps(dropProps, buttonProps)}
       ref={ref}
       data-droptarget={isDropTarget}>
-      {props.children || 'Drop here'}
+      {props.children || "Drop here"}
     </div>
   );
 }

@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Direction} from '@react-types/shared';
-import {isRTL} from './utils';
-import {useEffect, useState} from 'react';
-import {useIsSSR} from '@react-aria/ssr';
+import {Direction} from "@react-types/shared";
+import {isRTL} from "./utils";
+import {useEffect, useState} from "react";
+import {useIsSSR} from "@react-aria/ssr";
 
 export interface Locale {
   /** The [BCP47](https://www.ietf.org/rfc/bcp/bcp47.txt) language code for the locale. */
@@ -27,10 +27,10 @@ export interface Locale {
  */
 export function getDefaultLocale(): Locale {
   // @ts-ignore
-  let locale = (typeof navigator !== 'undefined' && (navigator.language || navigator.userLanguage)) || 'en-US';
+  let locale = (typeof navigator !== "undefined" && (navigator.language || navigator.userLanguage)) || "en-US";
   return {
     locale,
-    direction: isRTL(locale) ? 'rtl' : 'ltr'
+    direction: isRTL(locale) ? "rtl" : "ltr"
   };
 }
 
@@ -53,7 +53,7 @@ export function useDefaultLocale(): Locale {
 
   useEffect(() => {
     if (listeners.size === 0) {
-      window.addEventListener('languagechange', updateLocale);
+      window.addEventListener("languagechange", updateLocale);
     }
 
     listeners.add(setDefaultLocale);
@@ -61,7 +61,7 @@ export function useDefaultLocale(): Locale {
     return () => {
       listeners.delete(setDefaultLocale);
       if (listeners.size === 0) {
-        window.removeEventListener('languagechange', updateLocale);
+        window.removeEventListener("languagechange", updateLocale);
       }
     };
   }, []);
@@ -70,8 +70,8 @@ export function useDefaultLocale(): Locale {
   // en-US. This will be updated after hydration on the client to the correct value.
   if (isSSR) {
     return {
-      locale: 'en-US',
-      direction: 'ltr'
+      locale: "en-US",
+      direction: "ltr"
     };
   }
 

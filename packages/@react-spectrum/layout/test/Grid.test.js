@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import Grid from '../';
-import React from 'react';
+import Grid from "../";
+import React from "react";
 
 // TODO: testing :)
-describe('Grid', function () {
+describe("Grid", function () {
   it.each`
     Name      | Component  | props
-    ${'Grid'} | ${Grid}    | ${{}}
-  `('$Name handles defaults', function ({Component, props}) {
+    ${"Grid"} | ${Grid}    | ${{}}
+  `("$Name handles defaults", function ({Component, props}) {
     expect(true).toBeTruthy();
   });
 });

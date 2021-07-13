@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, renderHook} from '@testing-library/react-hooks';
-import {useSliderState} from '../';
+import {act, renderHook} from "@testing-library/react-hooks";
+import {useSliderState} from "../";
 
-describe('useSliderState', () => {
-  let numberFormatter = new Intl.NumberFormat('en-US', {});
-  it('should allow setting and reading values, percentages, and labels', () => {
+describe("useSliderState", () => {
+  let numberFormatter = new Intl.NumberFormat("en-US", {});
+  it("should allow setting and reading values, percentages, and labels", () => {
     let formatOptions = {
-      style: 'currency',
-      currency: 'USD'
+      style: "currency",
+      currency: "USD"
     };
-    let numberFormatter = new Intl.NumberFormat('en-US', formatOptions);
+    let numberFormatter = new Intl.NumberFormat("en-US", formatOptions);
     let result = renderHook(() => useSliderState({
       defaultValue: [50],
       minValue: 10,
@@ -32,34 +32,34 @@ describe('useSliderState', () => {
     expect(result.current.getThumbValue(0)).toBe(50);
     expect(result.current.getThumbPercent(0)).toBe(40 / 190);
     expect(result.current.getValuePercent(50)).toBe(40 / 190);
-    expect(result.current.getThumbValueLabel(0)).toBe('$50.00');
+    expect(result.current.getThumbValueLabel(0)).toBe("$50.00");
 
     act(() => result.current.setThumbValue(0, 100));
     expect(result.current.getThumbValue(0)).toBe(100);
     expect(result.current.getThumbPercent(0)).toBe(90 / 190);
-    expect(result.current.getThumbValueLabel(0)).toBe('$100.00');
+    expect(result.current.getThumbValueLabel(0)).toBe("$100.00");
 
     act(() => result.current.setThumbValue(0, 500));
     expect(result.current.getThumbValue(0)).toBe(200);
     expect(result.current.getThumbPercent(0)).toBe(1);
-    expect(result.current.getThumbValueLabel(0)).toBe('$200.00');
+    expect(result.current.getThumbValueLabel(0)).toBe("$200.00");
 
     act(() => result.current.setThumbValue(0, 0));
     expect(result.current.getThumbValue(0)).toBe(10);
     expect(result.current.getThumbPercent(0)).toBe(0);
-    expect(result.current.getThumbValueLabel(0)).toBe('$10.00');
+    expect(result.current.getThumbValueLabel(0)).toBe("$10.00");
 
     act(() => result.current.setThumbValue(0, 7));
     expect(result.current.getThumbValue(0)).toBe(10);
     expect(result.current.getThumbPercent(0)).toBe(0);
-    expect(result.current.getThumbValueLabel(0)).toBe('$10.00');
+    expect(result.current.getThumbValueLabel(0)).toBe("$10.00");
 
     act(() => result.current.setThumbPercent(0, 0.13));
     expect(result.current.getThumbValue(0)).toBe(30);
     expect(result.current.getThumbPercent(0)).toBe(20 / 190);
   });
 
-  it('should enforce maxValue and minValue for multiple thumbs', () => {
+  it("should enforce maxValue and minValue for multiple thumbs", () => {
     let result = renderHook(() => useSliderState({
       defaultValue: [50, 70, 90],
       minValue: 10,
@@ -87,7 +87,7 @@ describe('useSliderState', () => {
     expect(result.current.getThumbMinValue(2)).toBe(90);
   });
 
-  it('should call onChange and onChangeEnd appropriately', () => {
+  it("should call onChange and onChangeEnd appropriately", () => {
     let onChangeEndSpy = jest.fn();
     let onChangeSpy = jest.fn();
     let result = renderHook(() => useSliderState({
@@ -119,7 +119,7 @@ describe('useSliderState', () => {
     expect(onChangeEndSpy).toHaveBeenLastCalledWith([65]);
   });
 
-  it('should not call onChange and onChangeEnd if not being moved', () => {
+  it("should not call onChange and onChangeEnd if not being moved", () => {
     let onChangeEndSpy = jest.fn();
     let onChangeSpy = jest.fn();
     let result = renderHook(() => useSliderState({

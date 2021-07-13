@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import AlertSmall from '@spectrum-icons/ui/AlertSmall';
-import {classNames, createDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import InfoSmall from '@spectrum-icons/ui/InfoSmall';
-import {mergeProps} from '@react-aria/utils';
-import React, {useContext, useImperativeHandle, useRef} from 'react';
-import {SpectrumTooltipProps} from '@react-types/tooltip';
-import styles from '@adobe/spectrum-css-temp/components/tooltip/vars.css';
-import SuccessSmall from '@spectrum-icons/ui/SuccessSmall';
-import {TooltipContext} from './context';
-import {useTooltip} from '@react-aria/tooltip';
+import AlertSmall from "@spectrum-icons/ui/AlertSmall";
+import {classNames, createDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import InfoSmall from "@spectrum-icons/ui/InfoSmall";
+import {mergeProps} from "@react-aria/utils";
+import React, {useContext, useImperativeHandle, useRef} from "react";
+import {SpectrumTooltipProps} from "@react-types/tooltip";
+import styles from "@adobe/spectrum-css-temp/components/tooltip/vars.css";
+import SuccessSmall from "@spectrum-icons/ui/SuccessSmall";
+import {TooltipContext} from "./context";
+import {useTooltip} from "@react-aria/tooltip";
 
 let iconMap = {
   info: InfoSmall,
@@ -34,8 +34,8 @@ function Tooltip(props: SpectrumTooltipProps, ref: DOMRef) {
   overlayRef = overlayRef || defaultRef;
   props = mergeProps(props, tooltipProviderProps);
   let {
-    variant = 'neutral',
-    placement = 'top',
+    variant = "neutral",
+    placement = "top",
     isOpen,
     showIcon,
     ...otherProps
@@ -54,22 +54,22 @@ function Tooltip(props: SpectrumTooltipProps, ref: DOMRef) {
       {...tooltipProps}
       className={classNames(
         styles,
-        'spectrum-Tooltip',
+        "spectrum-Tooltip",
         `spectrum-Tooltip--${variant}`,
         `spectrum-Tooltip--${placement}`,
         {
-          'is-open': isOpen
+          "is-open": isOpen
         },
         styleProps.className
       )}
       ref={overlayRef}>
-      {showIcon && variant !== 'neutral' && <Icon UNSAFE_className={classNames(styles, 'spectrum-Tooltip-typeIcon')} aria-hidden />}
+      {showIcon && variant !== "neutral" && <Icon UNSAFE_className={classNames(styles, "spectrum-Tooltip-typeIcon")} aria-hidden />}
       {props.children && (
-        <span className={classNames(styles, 'spectrum-Tooltip-label')}>
+        <span className={classNames(styles, "spectrum-Tooltip-label")}>
           {props.children}
         </span>
       )}
-      <span {...arrowProps} className={classNames(styles, 'spectrum-Tooltip-tip')} />
+      <span {...arrowProps} className={classNames(styles, "spectrum-Tooltip-tip")} />
     </div>
   );
 }

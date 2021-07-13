@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import React, {RefObject, useRef} from 'react';
-import {SpectrumColorFieldProps} from '@react-types/color';
-import styles from './colorfield.css';
-import {TextFieldBase} from '@react-spectrum/textfield';
-import {TextFieldRef} from '@react-types/textfield';
-import {useColorField} from '@react-aria/color';
-import {useColorFieldState} from '@react-stately/color';
-import {useProviderProps} from '@react-spectrum/provider';
+import {classNames} from "@react-spectrum/utils";
+import React, {RefObject, useRef} from "react";
+import {SpectrumColorFieldProps} from "@react-types/color";
+import styles from "./colorfield.css";
+import {TextFieldBase} from "@react-spectrum/textfield";
+import {TextFieldRef} from "@react-types/textfield";
+import {useColorField} from "@react-aria/color";
+import {useColorFieldState} from "@react-stately/color";
+import {useProviderProps} from "@react-spectrum/provider";
 
 function ColorField(props: SpectrumColorFieldProps, ref: RefObject<TextFieldRef>) {
   props = useProviderProps(props);
@@ -43,7 +43,7 @@ function ColorField(props: SpectrumColorFieldProps, ref: RefObject<TextFieldRef>
       inputRef={inputRef}
       labelProps={labelProps}
       inputProps={inputProps}
-      inputClassName={classNames(styles, 'react-spectrum-ColorField-input')} />
+      inputClassName={classNames(styles, "react-spectrum-ColorField-input")} />
   );
 }
 

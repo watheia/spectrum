@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Breadcrumbs, Item} from '../';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumBreadcrumbsProps} from '@react-types/breadcrumbs';
+import {Breadcrumbs, Item} from "../";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumBreadcrumbsProps} from "@react-types/breadcrumbs";
 
 const meta: Meta<SpectrumBreadcrumbsProps<object>> = {
-  title: 'Breadcrumbs',
+  title: "Breadcrumbs",
   component: Breadcrumbs
 };
 
@@ -43,14 +43,14 @@ export const IsMultiline = Template().bind({});
 IsMultiline.args = {isMultiline: true};
 
 export const SizeS = Template().bind({});
-SizeS.args = {size: 'S'};
+SizeS.args = {size: "S"};
 
 export const SizeM = Template().bind({});
-SizeM.args = {size: 'M'};
+SizeM.args = {size: "M"};
 
 export const Truncated = Template().bind({});
 Truncated.args = {truncated: true};
-Truncated.decorators = [(Story) => <div style={{width: '100px'}}><Story /></div>];
+Truncated.decorators = [(Story) => <div style={{width: "100px"}}><Story /></div>];
 
 export const ShowRoot = Template().bind({});
 ShowRoot.args = {showRoot: true};

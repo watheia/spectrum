@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key, useMemo, useState} from 'react';
+import {Key, useMemo, useState} from "react";
 
 interface TreeOptions<T extends object> {
   /** Initial root items in the tree. */

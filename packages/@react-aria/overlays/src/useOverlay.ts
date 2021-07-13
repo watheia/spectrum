@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {HTMLAttributes, RefObject, SyntheticEvent, useEffect} from 'react';
-import {useFocusWithin, useInteractOutside} from '@react-aria/interactions';
+import {HTMLAttributes, RefObject, SyntheticEvent, useEffect} from "react";
+import {useFocusWithin, useInteractOutside} from "@react-aria/interactions";
 
 interface OverlayProps {
   /** Whether the overlay is currently open. */
@@ -110,7 +110,7 @@ export function useOverlay(props: OverlayProps, ref: RefObject<HTMLElement>): Ov
 
   // Handle the escape key
   let onKeyDown = (e) => {
-    if (e.key === 'Escape' && !isKeyboardDismissDisabled) {
+    if (e.key === "Escape" && !isKeyboardDismissDisabled) {
       e.preventDefault();
       onHide();
     }

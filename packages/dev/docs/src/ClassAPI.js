@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {InterfaceType, TypeContext} from './types';
-import React from 'react';
+import {InterfaceType, TypeContext} from "./types";
+import React from "react";
 
 export function ClassAPI({class: c, links}) {
   return (

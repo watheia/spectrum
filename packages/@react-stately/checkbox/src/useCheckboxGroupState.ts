@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {CheckboxGroupProps} from '@react-types/checkbox';
-import {useControlledState} from '@react-stately/utils';
+import {CheckboxGroupProps} from "@react-types/checkbox";
+import {useControlledState} from "@react-stately/utils";
 
 export interface CheckboxGroupState {
   /** Current selected values. */

@@ -9,14 +9,14 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import {classNames} from '@react-spectrum/utils';
-import listStyles from './listview.css';
-import {ListViewContext} from './ListView';
-import {mergeProps} from '@react-aria/utils';
-import React, {useContext, useRef} from 'react';
-import {useFocusRing} from '@react-aria/focus';
-import {useGridCell, useGridRow} from '@react-aria/grid';
-import {useHover} from '@react-aria/interactions';
+import {classNames} from "@react-spectrum/utils";
+import listStyles from "./listview.css";
+import {ListViewContext} from "./ListView";
+import {mergeProps} from "@react-aria/utils";
+import React, {useContext, useRef} from "react";
+import {useFocusRing} from "@react-aria/focus";
+import {useGridCell, useGridRow} from "@react-aria/grid";
+import {useHover} from "@react-aria/interactions";
 
 
 export function ListViewItem(props) {
@@ -37,7 +37,7 @@ export function ListViewItem(props) {
   }, state, ref);
   let {gridCellProps} = useGridCell({
     node: item,
-    focusMode: 'cell'
+    focusMode: "cell"
   }, state, ref);
   const mergedProps = mergeProps(
     gridCellProps,
@@ -52,11 +52,11 @@ export function ListViewItem(props) {
         className={
           classNames(
             listStyles,
-            'react-spectrum-ListViewItem',
+            "react-spectrum-ListViewItem",
             {
-              'is-focused': isFocusVisibleWithin,
-              'focus-ring': isFocusVisible,
-              'is-hovered': isHovered
+              "is-focused": isFocusVisibleWithin,
+              "focus-ring": isFocusVisible,
+              "is-hovered": isHovered
             }
           )
         }

@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta, Story} from '@storybook/react';
-import {RangeSlider} from '../';
-import React from 'react';
-import {SpectrumRangeSliderProps} from '@react-types/slider';
+import {Meta, Story} from "@storybook/react";
+import {RangeSlider} from "../";
+import React from "react";
+import {SpectrumRangeSliderProps} from "@react-types/slider";
 
 const meta: Meta<SpectrumRangeSliderProps> = {
-  title: 'RangeSlider',
+  title: "RangeSlider",
   component: RangeSlider
 };
 
@@ -29,7 +29,7 @@ const Template = (): Story<SpectrumRangeSliderProps> => (args) => (
 
 
 export const Default = Template().bind({});
-Default.args = {label: 'RangeSlider label'};
+Default.args = {label: "RangeSlider label"};
 
 export const Disabled = Template().bind({});
 Disabled.args = {...Default.args, isDisabled: true};
@@ -49,4 +49,4 @@ LabelAlignEnd.args = {...Default.args, labelAlign: 'end', showValueLabel: false}
 */
 
 export const LabelAlignEnd = Template().bind({});
-LabelAlignEnd.args = {...Default.args, labelAlign: 'end'};
+LabelAlignEnd.args = {...Default.args, labelAlign: "end"};

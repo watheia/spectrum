@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from '@react-types/button';
-import {AriaSearchFieldProps} from '@react-types/searchfield';
-import {InputHTMLAttributes, LabelHTMLAttributes, RefObject} from 'react';
+import {AriaButtonProps} from "@react-types/button";
+import {AriaSearchFieldProps} from "@react-types/searchfield";
+import {InputHTMLAttributes, LabelHTMLAttributes, RefObject} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {SearchFieldState} from '@react-stately/searchfield';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {useTextField} from '@react-aria/textfield';
+import intlMessages from "../intl/*.json";
+import {SearchFieldState} from "@react-stately/searchfield";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {useTextField} from "@react-aria/textfield";
 
 interface SearchFieldAria {
   /** Props for the text field's visible label element (if any). */
@@ -44,13 +44,13 @@ export function useSearchField(
     isDisabled,
     onSubmit = () => {},
     onClear,
-    type = 'search'
+    type = "search"
   } = props;
 
   let onKeyDown = (e) => {
     const key = e.key;
 
-    if (key === 'Enter' || key === 'Escape') {
+    if (key === "Enter" || key === "Escape") {
       e.preventDefault();
     }
 
@@ -58,12 +58,12 @@ export function useSearchField(
       return;
     }
 
-    if (key === 'Enter') {
+    if (key === "Enter") {
       onSubmit(state.value);
     }
 
-    if (key === 'Escape') {
-      state.setValue('');
+    if (key === "Escape") {
+      state.setValue("");
       if (onClear) {
         onClear();
       }
@@ -71,7 +71,7 @@ export function useSearchField(
   };
 
   let onClearButtonClick = () => {
-    state.setValue('');
+    state.setValue("");
 
     if (onClear) {
       onClear();
@@ -100,7 +100,7 @@ export function useSearchField(
       defaultValue: undefined
     },
     clearButtonProps: {
-      'aria-label': formatMessage('Clear search'),
+      "aria-label": formatMessage("Clear search"),
       excludeFromTabOrder: true,
       // @ts-ignore
       preventFocusOnPress: true,

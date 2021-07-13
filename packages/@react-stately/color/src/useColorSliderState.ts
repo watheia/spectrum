@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Color, ColorSliderProps} from '@react-types/color';
-import {parseColor} from './Color';
-import {SliderState, useSliderState} from '@react-stately/slider';
-import {useControlledState} from '@react-stately/utils';
+import {Color, ColorSliderProps} from "@react-types/color";
+import {parseColor} from "./Color";
+import {SliderState, useSliderState} from "@react-stately/slider";
+import {useControlledState} from "@react-stately/utils";
 
 export interface ColorSliderState extends SliderState {
   /** The current color value represented by the color slider. */
@@ -31,7 +31,7 @@ interface ColorSliderStateOptions extends ColorSliderProps {
 }
 
 function normalizeColor(v: string | Color) {
-  if (typeof v === 'string') {
+  if (typeof v === "string") {
     return parseColor(v);
   } else {
     return v;
@@ -45,7 +45,7 @@ function normalizeColor(v: string | Color) {
 export function useColorSliderState(props: ColorSliderStateOptions): ColorSliderState {
   let {channel, value, defaultValue, onChange, locale, ...otherProps} = props;
   if (value == null && defaultValue == null) {
-    throw new Error('useColorSliderState requires a value or defaultValue');
+    throw new Error("useColorSliderState requires a value or defaultValue");
   }
 
   let [color, setColor] = useControlledState(value && normalizeColor(value), defaultValue && normalizeColor(defaultValue), onChange);
@@ -74,20 +74,20 @@ export function useColorSliderState(props: ColorSliderStateOptions): ColorSlider
     },
     getDisplayColor() {
       switch (channel) {
-        case 'hue':
-          return parseColor(`hsl(${color.getChannelValue('hue')}, 100%, 50%)`);
-        case 'lightness':
-        case 'brightness':
-        case 'saturation':
-        case 'red':
-        case 'green':
-        case 'blue':
-          return color.withChannelValue('alpha', 1);
-        case 'alpha': {
+        case "hue":
+          return parseColor(`hsl(${color.getChannelValue("hue")}, 100%, 50%)`);
+        case "lightness":
+        case "brightness":
+        case "saturation":
+        case "red":
+        case "green":
+        case "blue":
+          return color.withChannelValue("alpha", 1);
+        case "alpha": {
           return color;
         }
         default:
-          throw new Error('Unknown color channel: ' + channel);
+          throw new Error("Unknown color channel: " + channel);
       }
     },
     getThumbValueLabel() {

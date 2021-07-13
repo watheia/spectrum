@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import path from 'path';
-import React from 'react';
-import resolve from 'resolve';
-import vm from 'vm';
+import path from "path";
+import React from "react";
+import resolve from "resolve";
+import vm from "vm";
 
 export function evaluate(code, filename) {
   // Setup a context to use as the global object when evaluating code.
@@ -24,7 +24,7 @@ export function evaluate(code, filename) {
     require(id) {
       let resolved = resolve.sync(id, {
         basedir: path.dirname(filename),
-        extensions: ['.js', '.json', '.ts', '.tsx']
+        extensions: [".js", ".json", ".ts", ".tsx"]
       });
 
       return require(resolved);

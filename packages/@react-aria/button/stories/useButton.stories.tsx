@@ -10,30 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from '@react-types/button';
-import React, {useRef} from 'react';
-import {storiesOf} from '@storybook/react';
-import {useButton} from '../';
+import {AriaButtonProps} from "@react-types/button";
+import React, {useRef} from "react";
+import {storiesOf} from "@storybook/react";
+import {useButton} from "../";
 
-storiesOf('useButton', module)
+storiesOf("useButton", module)
   .add(
-    'input type button',
+    "input type button",
     () => <InputButton />
   );
 
-interface InputButtonProps extends AriaButtonProps<'input'> {
+interface InputButtonProps extends AriaButtonProps<"input"> {
   value?: string
 }
 
 function InputButton(props: InputButtonProps) {
   let {
-    value = 'Test'
+    value = "Test"
   } = props;
 
   let ref = useRef();
-  let {buttonProps, isPressed} = useButton({...props, elementType: 'input'}, ref);
+  let {buttonProps, isPressed} = useButton({...props, elementType: "input"}, ref);
 
   return (
-    <input ref={ref} value={value} style={{background: isPressed ? 'darkred' : 'red'}} {...buttonProps} />
+    <input ref={ref} value={value} style={{background: isPressed ? "darkred" : "red"}} {...buttonProps} />
   );
 }

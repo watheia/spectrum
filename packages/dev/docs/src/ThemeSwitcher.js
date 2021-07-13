@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import Light from '@spectrum-icons/workflow/Light';
-import Moon from '@spectrum-icons/workflow/Moon';
-import {Provider} from '@react-spectrum/provider';
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import styles from './docs.css';
-import {theme} from '@react-spectrum/theme-default';
+import {ActionButton} from "@react-spectrum/button";
+import Light from "@spectrum-icons/workflow/Light";
+import Moon from "@spectrum-icons/workflow/Moon";
+import {Provider} from "@react-spectrum/provider";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
+import styles from "./docs.css";
+import {theme} from "@react-spectrum/theme-default";
 
 function useCurrentColorScheme() {
-  let mq = useMemo(() => window.matchMedia('(prefers-color-scheme: dark)'), []);
-  let getCurrentColorScheme = useCallback(() => localStorage.theme || (mq.matches ? 'dark' : 'light'), [mq]);
+  let mq = useMemo(() => window.matchMedia("(prefers-color-scheme: dark)"), []);
+  let getCurrentColorScheme = useCallback(() => localStorage.theme || (mq.matches ? "dark" : "light"), [mq]);
   let [colorScheme, setColorScheme] = useState(() => getCurrentColorScheme());
 
   useEffect(() => {
@@ -29,10 +29,10 @@ function useCurrentColorScheme() {
     };
 
     mq.addListener(onChange);
-    window.addEventListener('storage', onChange);
+    window.addEventListener("storage", onChange);
     return () => {
       mq.removeListener(onChange);
-      window.removeEventListener('storage', onChange);
+      window.removeEventListener("storage", onChange);
     };
   }, [getCurrentColorScheme, mq]);
 
@@ -66,17 +66,17 @@ export function Example({children, colorScheme}) {
 export function ThemeSwitcher() {
   let colorScheme = useCurrentColorScheme();
   let onPress = () => {
-    localStorage.theme = (colorScheme === 'dark' ? 'light' : 'dark');
-    window.dispatchEvent(new Event('storage'));
+    localStorage.theme = (colorScheme === "dark" ? "light" : "dark");
+    window.dispatchEvent(new Event("storage"));
   };
-  let label = colorScheme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+  let label = colorScheme === "dark" ? "Switch to light theme" : "Switch to dark theme";
 
   return (
     <div title={label} role="presentation">
       <ActionButton
         aria-label={label}
         onPress={onPress}>
-        {colorScheme === 'dark' ? <Light /> : <Moon />}
+        {colorScheme === "dark" ? <Light /> : <Moon />}
       </ActionButton>
     </div>
   );

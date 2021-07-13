@@ -10,33 +10,33 @@
  * governing permissions and limitations under the License.
  */
 
-import {DialogContainerExample, MenuExample} from './DialogContainerExamples';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {DialogContainerExample, MenuExample} from "./DialogContainerExamples";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('DialogContainer', module)
-  .addParameters({providerSwitcher: {status: 'notice'}})
+storiesOf("DialogContainer", module)
+  .addParameters({providerSwitcher: {status: "notice"}})
   .add(
-    'default',
+    "default",
     () => <DialogContainerExample />
   )
   .add(
-    'in a menu',
+    "in a menu",
     () => <MenuExample />
   )
   .add(
-    'type: fullscreen',
+    "type: fullscreen",
     () => <MenuExample type="fullscreen" />
   )
   .add(
-    'type: fullscreenTakeover',
+    "type: fullscreenTakeover",
     () => <MenuExample type="fullscreenTakeover" />
   )
   .add(
-    'isDismissable',
+    "isDismissable",
     () => <MenuExample isDismissable />
   )
   .add(
-    'isKeyboardDismissDisabled',
+    "isKeyboardDismissDisabled",
     () => <MenuExample isKeyboardDismissDisabled />
   );

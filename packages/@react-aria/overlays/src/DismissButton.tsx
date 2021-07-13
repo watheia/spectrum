@@ -11,10 +11,10 @@
  */
 
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import React from 'react';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import intlMessages from "../intl/*.json";
+import React from "react";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 interface DismissButtonProps {
   /** Called when the dismiss button is activated. */
@@ -39,7 +39,7 @@ export function DismissButton(props: DismissButtonProps) {
     <VisuallyHidden>
       <button
         tabIndex={-1}
-        aria-label={formatMessage('dismiss')}
+        aria-label={formatMessage("dismiss")}
         onClick={onClick} />
     </VisuallyHidden>
   );

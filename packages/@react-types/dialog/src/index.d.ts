@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, StyleProps} from '@react-types/shared';
-import {OverlayTriggerProps, PositionProps} from '@react-types/overlays';
-import {ReactElement, ReactNode, RefObject} from 'react';
+import {AriaLabelingProps, DOMProps, StyleProps} from "@react-types/shared";
+import {OverlayTriggerProps, PositionProps} from "@react-types/overlays";
+import {ReactElement, ReactNode, RefObject} from "react";
 
 export type SpectrumDialogClose = (close: () => void) => ReactElement;
 
@@ -23,9 +23,9 @@ export interface SpectrumDialogTriggerProps extends OverlayTriggerProps, Positio
    * The type of Dialog that should be rendered. See the DialogTrigger [types section](#dialog-types) for an explanation on each.
    * @default 'modal'
    */
-  type?: 'modal' | 'popover' | 'tray' | 'fullscreen' | 'fullscreenTakeover',
+  type?: "modal" | "popover" | "tray" | "fullscreen" | "fullscreenTakeover",
   /** The type of Dialog that should be rendered when on a mobile device. See DialogTrigger [types section](#dialog-types) for an explanation on each. */
-  mobileType?: 'modal' | 'tray' | 'fullscreen' | 'fullscreenTakeover',
+  mobileType?: "modal" | "tray" | "fullscreen" | "fullscreenTakeover",
   /**
    * Whether a popover type Dialog's arrow should be hidden.
    */
@@ -47,7 +47,7 @@ export interface SpectrumDialogContainerProps {
    * The type of Dialog that should be rendered. See the visual options below for examples of each.
    * @default 'modal'
    */
-  type?: 'modal' | 'fullscreen' | 'fullscreenTakeover',
+  type?: "modal" | "fullscreen" | "fullscreenTakeover",
   /** Whether the Dialog is dismissable. See the [Dialog docs](Dialog.html#dismissable-dialogs) for more details. */
   isDismissable?: boolean,
   /** Whether pressing the escape key to close the dialog should be disabled. */
@@ -59,14 +59,14 @@ export interface AriaDialogProps extends DOMProps, AriaLabelingProps {
    * The accessibility role for the dialog.
    * @default 'dialog'
    */
-  role?: 'dialog' | 'alertdialog'
+  role?: "dialog" | "alertdialog"
 }
 
 export interface SpectrumDialogProps extends AriaDialogProps, StyleProps {
   /** The contents of the Dialog. */
   children: ReactNode,
   /** The size of the Dialog. Only applies to "modal" type Dialogs. */
-  size?: 'S' | 'M' | 'L',
+  size?: "S" | "M" | "L",
   /** Whether the Dialog is dismissable. See the [examples](#examples) for more details. */
   isDismissable?: boolean,
   /** Handler that is called when the 'x' button of a dismissable Dialog is clicked. */
@@ -75,7 +75,7 @@ export interface SpectrumDialogProps extends AriaDialogProps, StyleProps {
 
 export interface SpectrumAlertDialogProps extends DOMProps, StyleProps {
   /** The [visual style](https://spectrum.adobe.com/page/dialog/#Options) of the AlertDialog.  */
-  variant?: 'confirmation' | 'information' | 'destructive' | 'error' | 'warning',
+  variant?: "confirmation" | "information" | "destructive" | "error" | "warning",
   /** The title of the AlertDialog. */
   title: string,
   /** The contents of the AlertDialog. */
@@ -97,6 +97,6 @@ export interface SpectrumAlertDialogProps extends DOMProps, StyleProps {
   /** Handler that is called when the secondary button is pressed. */
   onSecondaryAction?: () => void,
   /** Button to focus by default when the dialog opens. */
-  autoFocusButton?: 'cancel' | 'primary' | 'secondary'
+  autoFocusButton?: "cancel" | "primary" | "secondary"
   // allowsKeyboardConfirmation?: boolean, // triggers primary action
 }
