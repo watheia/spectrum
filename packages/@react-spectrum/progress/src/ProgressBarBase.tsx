@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {clamp} from '@react-aria/utils';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {ProgressBarProps} from '@react-types/progress';
-import React, {CSSProperties, HTMLAttributes} from 'react';
-import {SpectrumProgressBarBaseProps} from '@react-types/progress';
-import styles from '@adobe/spectrum-css-temp/components/barloader/vars.css';
+import {clamp} from "@react-aria/utils";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {ProgressBarProps} from "@react-types/progress";
+import React, {CSSProperties, HTMLAttributes} from "react";
+import {SpectrumProgressBarBaseProps} from "@react-types/progress";
+import styles from "@adobe/spectrum-css-temp/components/barloader/vars.css";
 
 interface ProgressBarBaseProps extends SpectrumProgressBarBaseProps, ProgressBarProps {
   barClassName?: string,
@@ -30,16 +30,16 @@ function ProgressBarBase(props: ProgressBarBaseProps, ref: DOMRef<HTMLDivElement
     value = 0,
     minValue = 0,
     maxValue = 100,
-    size = 'L',
+    size = "L",
     label,
     barClassName,
     showValueLabel = !!label,
-    labelPosition = 'top',
+    labelPosition = "top",
     isIndeterminate = false,
     barProps,
     labelProps,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     ...otherProps
   } = props;
   let domRef = useDOMRef(ref);
@@ -56,7 +56,7 @@ function ProgressBarBase(props: ProgressBarBaseProps, ref: DOMRef<HTMLDivElement
   // Ideally this should be in useProgressBar, but children
   // are not supported in ProgressCircle which shares that hook...
   if (!label && !ariaLabel && !ariaLabelledby) {
-    console.warn('If you do not provide a visible label via children, you must specify an aria-label or aria-labelledby attribute for accessibility');
+    console.warn("If you do not provide a visible label via children, you must specify an aria-label or aria-labelledby attribute for accessibility");
   }
   // use inline style for fit-content because cssnano is too smart for us and will strip out the -moz prefix in css files
   return (
@@ -66,33 +66,33 @@ function ProgressBarBase(props: ProgressBarBaseProps, ref: DOMRef<HTMLDivElement
       className={
         classNames(
           styles,
-          'spectrum-BarLoader',
+          "spectrum-BarLoader",
           {
-            'spectrum-BarLoader--small': size === 'S',
-            'spectrum-BarLoader--large': size === 'L',
-            'spectrum-BarLoader--indeterminate': isIndeterminate,
-            'spectrum-BarLoader--sideLabel': labelPosition === 'side'
+            "spectrum-BarLoader--small": size === "S",
+            "spectrum-BarLoader--large": size === "L",
+            "spectrum-BarLoader--indeterminate": isIndeterminate,
+            "spectrum-BarLoader--sideLabel": labelPosition === "side"
           },
           barClassName,
           styleProps.className
         )
       }
-      style={{minWidth: '-moz-fit-content', ...styleProps.style}}>
+      style={{minWidth: "-moz-fit-content", ...styleProps.style}}>
       {label &&
         <span
           {...labelProps}
-          className={classNames(styles, 'spectrum-BarLoader-label')}>
+          className={classNames(styles, "spectrum-BarLoader-label")}>
             {label}
         </span>
       }
       {showValueLabel &&
-        <div className={classNames(styles, 'spectrum-BarLoader-percentage')}>
-          {barProps['aria-valuetext']}
+        <div className={classNames(styles, "spectrum-BarLoader-percentage")}>
+          {barProps["aria-valuetext"]}
         </div>
       }
-      <div className={classNames(styles, 'spectrum-BarLoader-track')}>
+      <div className={classNames(styles, "spectrum-BarLoader-track")}>
         <div
-          className={classNames(styles, 'spectrum-BarLoader-fill')}
+          className={classNames(styles, "spectrum-BarLoader-fill")}
           style={barStyle} />
       </div>
     </div>

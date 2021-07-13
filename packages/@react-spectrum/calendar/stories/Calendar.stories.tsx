@@ -10,46 +10,46 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {addWeeks} from 'date-fns';
-import {Calendar} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {addWeeks} from "date-fns";
+import {Calendar} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Calendar', module)
+storiesOf("Calendar", module)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'defaultValue',
+    "defaultValue",
     () => render({defaultValue: new Date(2019, 5, 5)})
   )
   .add(
-    'controlled value',
+    "controlled value",
     () => render({value: new Date(2019, 5, 5)})
   )
   .add(
-    'minValue: today, maxValue: 1 week from now',
+    "minValue: today, maxValue: 1 week from now",
     () => render({minValue: new Date(), maxValue: addWeeks(new Date(), 1)})
   )
   .add(
-    'defaultValue + minValue + maxValue',
+    "defaultValue + minValue + maxValue",
     () => render({defaultValue: new Date(2019, 5, 10), minValue: new Date(2019, 5, 5), maxValue: new Date(2019, 5, 20)})
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({defaultValue: new Date(2019, 5, 5), isDisabled: true})
   )
   .add(
-    'isReadOnly',
+    "isReadOnly",
     () => render({defaultValue: new Date(2019, 5, 5), isReadOnly: true})
   )
   .add(
-    'autoFocus',
+    "autoFocus",
     () => render({defaultValue: new Date(2019, 5, 5), autoFocus: true})
   );
 
 function render(props = {}) {
-  return <Calendar onChange={action('change')} {...props} />;
+  return <Calendar onChange={action("change")} {...props} />;
 }

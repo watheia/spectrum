@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Heading, Text} from '@react-spectrum/text';
-import {Item, TabList, TabPanels, Tabs} from '../';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumTabsProps} from '@react-types/tabs';
+import {Heading, Text} from "@react-spectrum/text";
+import {Item, TabList, TabPanels, Tabs} from "../";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumTabsProps} from "@react-types/tabs";
 
 const meta: Meta<SpectrumTabsProps<object>> = {
-  title: 'Tabs',
+  title: "Tabs",
   component: Tabs,
   parameters: {chromaticProvider: {disableAnimations: true}}
   /*
@@ -83,13 +83,13 @@ export const Quiet = Template().bind({});
 Quiet.args = {...Default.args, isQuiet: true};
 
 export const Compact = Template().bind({});
-Compact.args = {...Default.args, density: 'compact'};
+Compact.args = {...Default.args, density: "compact"};
 
 export const CompactQuiet = Template().bind({});
 CompactQuiet.args = {...Quiet.args, ...Compact.args};
 
 export const Vertical = Template().bind({});
-Vertical.args = {...Default.args, orientation: 'vertical'};
+Vertical.args = {...Default.args, orientation: "vertical"};
 
 export const VerticalQuiet = Template().bind({});
 VerticalQuiet.args = {...Vertical.args, ...Quiet.args};

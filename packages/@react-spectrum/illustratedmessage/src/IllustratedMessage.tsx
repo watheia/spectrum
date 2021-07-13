@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, SlotProvider, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import {Flex} from '@react-spectrum/layout';
-import React, {forwardRef} from 'react';
-import {SpectrumIllustratedMessageProps} from '@react-types/illustratedmessage';
-import styles from '@adobe/spectrum-css-temp/components/illustratedmessage/vars.css';
+import {classNames, SlotProvider, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import {Flex} from "@react-spectrum/layout";
+import React, {forwardRef} from "react";
+import {SpectrumIllustratedMessageProps} from "@react-types/illustratedmessage";
+import styles from "@adobe/spectrum-css-temp/components/illustratedmessage/vars.css";
 
 function IllustratedMessage(props: SpectrumIllustratedMessageProps, ref: DOMRef<HTMLDivElement>) {
   let {
@@ -25,8 +25,8 @@ function IllustratedMessage(props: SpectrumIllustratedMessageProps, ref: DOMRef<
   } = props;
 
   let {styleProps} = useStyleProps(otherProps);
-  let headingClassName = classNames(styles, 'spectrum-IllustratedMessage-heading');
-  let contentClassName = classNames(styles, 'spectrum-IllustratedMessage-description');
+  let headingClassName = classNames(styles, "spectrum-IllustratedMessage-heading");
+  let contentClassName = classNames(styles, "spectrum-IllustratedMessage-description");
 
   let slots = {
     heading: {UNSAFE_className: headingClassName},
@@ -40,7 +40,7 @@ function IllustratedMessage(props: SpectrumIllustratedMessageProps, ref: DOMRef<
       isHidden={styleProps.hidden}
       UNSAFE_className={classNames(
         styles,
-        'spectrum-IllustratedMessage',
+        "spectrum-IllustratedMessage",
         styleProps.className
       )}
       ref={ref}>

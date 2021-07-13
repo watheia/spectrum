@@ -9,17 +9,17 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import {AriaButtonProps} from '@react-types/button';
-import {classNames} from '@react-spectrum/utils';
-import {mergeProps} from '@react-aria/utils';
-import React, {useRef, useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {useButton} from '@react-aria/button';
-import {useHover} from '../';
+import {AriaButtonProps} from "@react-types/button";
+import {classNames} from "@react-spectrum/utils";
+import {mergeProps} from "@react-aria/utils";
+import React, {useRef, useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {useButton} from "@react-aria/button";
+import {useHover} from "../";
 
-storiesOf('useHover', module)
+storiesOf("useHover", module)
   .add(
-    'hover disabling',
+    "hover disabling",
     () => <App />
   );
 
@@ -54,7 +54,7 @@ function App() {
         }
       `}</style>
       <Button isDisabled={isDisabled} onPress={() => setIsDisabled(true)}>
-        {'Hover & Press'}
+        {"Hover & Press"}
       </Button>
       <button onClick={() => setIsDisabled(false)}>Reset</button>
     </>

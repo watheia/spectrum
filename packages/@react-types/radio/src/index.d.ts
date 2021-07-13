@@ -22,8 +22,8 @@ import {
   StyleProps,
   Validation,
   ValueBase
-} from '@react-types/shared';
-import {ReactElement, ReactNode} from 'react';
+} from "@react-types/shared";
+import {ReactElement, ReactNode} from "react";
 
 export interface RadioGroupProps extends ValueBase<string>, InputBase, Validation, LabelableProps {
   /**

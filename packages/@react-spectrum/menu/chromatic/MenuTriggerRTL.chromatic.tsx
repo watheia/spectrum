@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta} from '@storybook/react';
-import React from 'react';
+import {Meta} from "@storybook/react";
+import React from "react";
 
 // Open MenuTriggers behave funny if rendered off screen, especially with the offset stories
 const meta: Meta = {
-  title: 'MenuTriggerRTL',
+  title: "MenuTriggerRTL",
   parameters: {
-    chromaticProvider: {colorSchemes: ['light'], locales: ['ar-AE'], scales: ['medium'], disableAnimations: true},
+    chromaticProvider: {colorSchemes: ["light"], locales: ["ar-AE"], scales: ["medium"], disableAnimations: true},
     // chromatic needs a bit more time than disableAnimations allows
     chromatic: {delay: 2000}
   },
-  decorators: [Story => <div style={{display: 'flex', width: 'auto', margin: '250px 0'}}><Story /></div>]
+  decorators: [Story => <div style={{display: "flex", width: "auto", margin: "250px 0"}}><Story /></div>]
 };
 
 export default meta;
@@ -40,4 +40,4 @@ export {
   DirectionLeftEnd,
   DirectionRight,
   DirectionRightEnd
-} from './MenuTrigger.chromatic';
+} from "./MenuTrigger.chromatic";

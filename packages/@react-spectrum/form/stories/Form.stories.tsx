@@ -10,47 +10,47 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Button} from '@react-spectrum/button';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import {Checkbox} from '@react-spectrum/checkbox';
-import {countries, states} from './data';
-import {Flex} from '@react-spectrum/layout';
-import {Form} from '../';
-import {Item, Picker} from '@react-spectrum/picker';
-import {Radio, RadioGroup} from '@react-spectrum/radio';
-import React, {Key, useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {TextArea, TextField} from '@react-spectrum/textfield';
+import {action} from "@storybook/addon-actions";
+import {Button} from "@react-spectrum/button";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import {Checkbox} from "@react-spectrum/checkbox";
+import {countries, states} from "./data";
+import {Flex} from "@react-spectrum/layout";
+import {Form} from "../";
+import {Item, Picker} from "@react-spectrum/picker";
+import {Radio, RadioGroup} from "@react-spectrum/radio";
+import React, {Key, useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {TextArea, TextField} from "@react-spectrum/textfield";
 
-storiesOf('Form', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Form", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'Default',
+    "Default",
     () => render({})
   )
   .add(
-    'labelPosition: side',
-    () => render({labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({labelPosition: "side"})
   )
   .add(
-    'custom width',
+    "custom width",
     () => render({width: 400})
   )
   .add(
-    'custom width, labelPosition: side',
-    () => render({width: 400, labelPosition: 'side'})
+    "custom width, labelPosition: side",
+    () => render({width: 400, labelPosition: "side"})
   )
   .add(
-    'labelAlign: end',
-    () => render({width: 400, labelAlign: 'end'})
+    "labelAlign: end",
+    () => render({width: 400, labelAlign: "end"})
   )
   .add(
-    'labelPosition: side, labelAlign: end',
-    () => render({width: 400, labelPosition: 'side', labelAlign: 'end'})
+    "labelPosition: side, labelAlign: end",
+    () => render({width: 400, labelPosition: "side", labelAlign: "end"})
   )
   .add(
-    'fields next to each other',
+    "fields next to each other",
     () => (
       <Form>
         <Flex>
@@ -69,43 +69,43 @@ storiesOf('Form', module)
     )
   )
   .add(
-    'isRequired: true',
+    "isRequired: true",
     () => render({isRequired: true})
   )
   .add(
-    'isRequired: true, necessityIndicator: label',
-    () => render({isRequired: true, necessityIndicator: 'label'})
+    "isRequired: true, necessityIndicator: label",
+    () => render({isRequired: true, necessityIndicator: "label"})
   )
   .add(
-    'isRequired: false, necessityIndicator: label',
-    () => render({isRequired: false, necessityIndicator: 'label'})
+    "isRequired: false, necessityIndicator: label",
+    () => render({isRequired: false, necessityIndicator: "label"})
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({isDisabled: true})
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'isQuiet, labelPosition: side',
-    () => render({isQuiet: true, labelPosition: 'side'})
+    "isQuiet, labelPosition: side",
+    () => render({isQuiet: true, labelPosition: "side"})
   )
   .add(
-    'isEmphasized',
+    "isEmphasized",
     () => render({isEmphasized: true})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid'})
+    "validationState: invalid",
+    () => render({validationState: "invalid"})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid'})
+    "validationState: valid",
+    () => render({validationState: "valid"})
   )
   .add(
-    'form with reset',
+    "form with reset",
     () => <FormWithControls />
   );
 
@@ -142,16 +142,16 @@ function render(props: any = {}) {
 }
 
 function FormWithControls(props: any = {}) {
-  let [firstName, setFirstName] = useState('hello');
+  let [firstName, setFirstName] = useState("hello");
   let [isHunter, setIsHunter] = useState(true);
-  let [favoritePet, setFavoritePet] = useState('cats');
-  let [favoriteColor, setFavoriteColor] = useState('green' as Key);
-  let [howIFeel, setHowIFeel] = useState('I feel good, o I feel so good!');
-  let [firstName2, setFirstName2] = useState('hello');
+  let [favoritePet, setFavoritePet] = useState("cats");
+  let [favoriteColor, setFavoriteColor] = useState("green" as Key);
+  let [howIFeel, setHowIFeel] = useState("I feel good, o I feel so good!");
+  let [firstName2, setFirstName2] = useState("hello");
   let [isHunter2, setIsHunter2] = useState(true);
-  let [favoritePet2, setFavoritePet2] = useState('cats');
-  let [favoriteColor2, setFavoriteColor2] = useState('green' as Key);
-  let [howIFeel2, setHowIFeel2] = useState('I feel good, o I feel so good!');
+  let [favoritePet2, setFavoritePet2] = useState("cats");
+  let [favoriteColor2, setFavoriteColor2] = useState("green" as Key);
+  let [howIFeel2, setHowIFeel2] = useState("I feel good, o I feel so good!");
   let [preventDefault, setPreventDefault] = useState(true);
 
   return (
@@ -159,7 +159,7 @@ function FormWithControls(props: any = {}) {
       <Checkbox isSelected={preventDefault} onChange={setPreventDefault}>Prevent Default onSubmit</Checkbox>
       <Form
         onSubmit={e => {
-          action('onSubmit')(e);
+          action("onSubmit")(e);
           if (preventDefault) {
             e.preventDefault();
           }
@@ -199,7 +199,7 @@ function FormWithControls(props: any = {}) {
       </Form>
       <form
         onSubmit={e => {
-          action('onSubmit')(e);
+          action("onSubmit")(e);
           if (preventDefault) {
             e.preventDefault();
           }
@@ -232,22 +232,22 @@ function FormWithControls(props: any = {}) {
             I am a wizard! default
             <input type="checkbox" defaultChecked />
           </label>
-          <div style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
             Favorite Pet controlled
             <label>
               Dogs
-              <input type="radio" name="favorit-pet-group3" value="dogs" checked={favoritePet2 === 'dogs'} onChange={e => setFavoritePet2(e.target.value)} />
+              <input type="radio" name="favorit-pet-group3" value="dogs" checked={favoritePet2 === "dogs"} onChange={e => setFavoritePet2(e.target.value)} />
             </label>
             <label>
               Cats
-              <input type="radio" name="favorit-pet-group3" value="cats" checked={favoritePet2 === 'cats'} onChange={e => setFavoritePet2(e.target.value)} />
+              <input type="radio" name="favorit-pet-group3" value="cats" checked={favoritePet2 === "cats"} onChange={e => setFavoritePet2(e.target.value)} />
             </label>
             <label>
               Dragons
-              <input type="radio" name="favorit-pet-group3" value="dragons" checked={favoritePet2 === 'dragons'} onChange={e => setFavoritePet2(e.target.value)} />
+              <input type="radio" name="favorit-pet-group3" value="dragons" checked={favoritePet2 === "dragons"} onChange={e => setFavoritePet2(e.target.value)} />
             </label>
           </div>
-          <div style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
             Favorite Pet uncontrolled
             <label>
               Dogs
@@ -265,12 +265,12 @@ function FormWithControls(props: any = {}) {
           <label>
             Favorite Color controlled
             <select onChange={e => setFavoriteColor2(e.target.value)}>
-              <option value="red" selected={favoriteColor2 === 'red'}>Red</option>
-              <option value="orange" selected={favoriteColor2 === 'orange'}>Orange</option>
-              <option value="yellow" selected={favoriteColor2 === 'yellow'}>Yellow</option>
-              <option value="green" selected={favoriteColor2 === 'green'}>Green</option>
-              <option value="blue" selected={favoriteColor2 === 'blue'}>Blue</option>
-              <option value="purple" selected={favoriteColor2 === 'purple'}>Purple</option>
+              <option value="red" selected={favoriteColor2 === "red"}>Red</option>
+              <option value="orange" selected={favoriteColor2 === "orange"}>Orange</option>
+              <option value="yellow" selected={favoriteColor2 === "yellow"}>Yellow</option>
+              <option value="green" selected={favoriteColor2 === "green"}>Green</option>
+              <option value="blue" selected={favoriteColor2 === "blue"}>Blue</option>
+              <option value="purple" selected={favoriteColor2 === "purple"}>Purple</option>
             </select>
           </label>
           <label>

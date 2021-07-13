@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {chain} from '@react-aria/utils';
-import {DragItem, DropItem} from '@react-types/shared';
-import {HTMLAttributes, useEffect, useRef} from 'react';
-import {readFromDataTransfer, writeToDataTransfer} from './utils';
-import {useFocus} from '@react-aria/interactions';
+import {chain} from "@react-aria/utils";
+import {DragItem, DropItem} from "@react-types/shared";
+import {HTMLAttributes, useEffect, useRef} from "react";
+import {readFromDataTransfer, writeToDataTransfer} from "./utils";
+import {useFocus} from "@react-aria/interactions";
 
 interface ClipboardProps {
   getItems?: () => DragItem[],
@@ -124,12 +124,12 @@ export function useClipboard(options: ClipboardProps): ClipboardResult {
     };
 
     return chain(
-      addGlobalEventListener('beforecopy', onBeforeCopy),
-      addGlobalEventListener('copy', onCopy),
-      addGlobalEventListener('beforecut', onBeforeCut),
-      addGlobalEventListener('cut', onCut),
-      addGlobalEventListener('beforepaste', onBeforePaste),
-      addGlobalEventListener('paste', onPaste)
+      addGlobalEventListener("beforecopy", onBeforeCopy),
+      addGlobalEventListener("copy", onCopy),
+      addGlobalEventListener("beforecut", onBeforeCut),
+      addGlobalEventListener("cut", onCut),
+      addGlobalEventListener("beforepaste", onBeforePaste),
+      addGlobalEventListener("paste", onPaste)
     );
   }, []);
 

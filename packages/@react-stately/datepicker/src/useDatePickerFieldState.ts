@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {DatePickerProps, DateValue} from '@react-types/datepicker';
-import {getDate, getDaysInMonth, getHours, getMinutes, getMonth, getSeconds, getYear, setDate, setHours, setMinutes, setMonth, setSeconds, setYear} from 'date-fns';
-import parse from 'date-fns/parse';
-import {useControlledState} from '@react-stately/utils';
-import {useDateFormatter} from '@react-aria/i18n';
-import {useMemo, useState} from 'react';
+import {DatePickerProps, DateValue} from "@react-types/datepicker";
+import {getDate, getDaysInMonth, getHours, getMinutes, getMonth, getSeconds, getYear, setDate, setHours, setMinutes, setMonth, setSeconds, setYear} from "date-fns";
+import parse from "date-fns/parse";
+import {useControlledState} from "@react-stately/utils";
+import {useDateFormatter} from "@react-aria/i18n";
+import {useMemo, useState} from "react";
 
 export interface DateSegment {
   type: Intl.DateTimeFormatPartTypes,
@@ -60,7 +60,7 @@ const PAGE_STEP = {
 
 // Node seems to convert everything to lowercase...
 const TYPE_MAPPING = {
-  dayperiod: 'dayPeriod'
+  dayperiod: "dayPeriod"
 };
 
 export function useDatePickerFieldState(props: DatePickerProps): DatePickerFieldState {
@@ -160,17 +160,17 @@ function convertValue(value: DateValue | null): Date {
 function getSegmentLimits(date: Date, type: string, options: Intl.ResolvedDateTimeFormatOptions) {
   let value, minValue, maxValue;
   switch (type) {
-    case 'day':
+    case "day":
       value = getDate(date);
       minValue = 1;
       maxValue = getDaysInMonth(date);
       break;
-    case 'dayPeriod':
+    case "dayPeriod":
       value = getHours(date) >= 12 ? 12 : 0;
       minValue = 0;
       maxValue = 12;
       break;
-    case 'hour':
+    case "hour":
       value = getHours(date);
       if (options.hour12) {
         let isPM = value >= 12;
@@ -181,22 +181,22 @@ function getSegmentLimits(date: Date, type: string, options: Intl.ResolvedDateTi
         maxValue = 23;
       }
       break;
-    case 'minute':
+    case "minute":
       value = getMinutes(date);
       minValue = 0;
       maxValue = 59;
       break;
-    case 'second':
+    case "second":
       value = getSeconds(date);
       minValue = 0;
       maxValue = 59;
       break;
-    case 'month':
+    case "month":
       value = getMonth(date) + 1;
       minValue = 1;
       maxValue = 12;
       break;
-    case 'year':
+    case "year":
       value = getYear(date);
       minValue = 1;
       maxValue = 9999;
@@ -214,16 +214,16 @@ function getSegmentLimits(date: Date, type: string, options: Intl.ResolvedDateTi
 
 function add(value: Date, part: string, amount: number, options: Intl.ResolvedDateTimeFormatOptions) {
   switch (part) {
-    case 'day': {
+    case "day": {
       let day = getDate(value);
       return setDate(value, cycleValue(day, amount, 1, getDaysInMonth(value)));
     }
-    case 'dayPeriod': {
+    case "dayPeriod": {
       let hours = getHours(value);
       let isPM = hours >= 12;
       return setHours(value, isPM ? hours - 12 : hours + 12);
     }
-    case 'hour': {
+    case "hour": {
       let hours = getHours(value);
       let min = 0;
       let max = 23;
@@ -235,19 +235,19 @@ function add(value: Date, part: string, amount: number, options: Intl.ResolvedDa
       hours = cycleValue(hours, amount, min, max);
       return setHours(value, hours);
     }
-    case 'minute': {
+    case "minute": {
       let minutes = cycleValue(getMinutes(value), amount, 0, 59, true);
       return setMinutes(value, minutes);
     }
-    case 'month': {
+    case "month": {
       let months = cycleValue(getMonth(value), amount, 0, 11);
       return setMonth(value, months);
     }
-    case 'second': {
+    case "second": {
       let seconds = cycleValue(getSeconds(value), amount, 0, 59, true);
       return setSeconds(value, seconds);
     }
-    case 'year': {
+    case "year": {
       let year = cycleValue(getYear(value), amount, 1, 9999, true);
       return setYear(value, year);
     }
@@ -286,9 +286,9 @@ function cycleValue(value: number, amount: number, min: number, max: number, rou
 
 function setSegment(value: Date, part: string, segmentValue: number, options: Intl.ResolvedDateTimeFormatOptions) {
   switch (part) {
-    case 'day':
+    case "day":
       return setDate(value, segmentValue);
-    case 'dayPeriod': {
+    case "dayPeriod": {
       let hours = getHours(value);
       let wasPM = hours >= 12;
       let isPM = segmentValue >= 12;
@@ -297,7 +297,7 @@ function setSegment(value: Date, part: string, segmentValue: number, options: In
       }
       return setHours(value, wasPM ? hours - 12 : hours + 12);
     }
-    case 'hour':
+    case "hour":
       // In 12 hour time, ensure that AM/PM does not change
       if (options.hour12) {
         let hours = getHours(value);
@@ -310,13 +310,13 @@ function setSegment(value: Date, part: string, segmentValue: number, options: In
         }
       }
       return setHours(value, segmentValue);
-    case 'minute':
+    case "minute":
       return setMinutes(value, segmentValue);
-    case 'month':
+    case "month":
       return setMonth(value, segmentValue - 1);
-    case 'second':
+    case "second":
       return setSeconds(value, segmentValue);
-    case 'year':
+    case "year":
       return setYear(value, segmentValue);
   }
 }

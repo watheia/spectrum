@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, FocusStrategy, Selection as ISelection, Node, PressEvent, SelectionMode} from '@react-types/shared';
-import {Key} from 'react';
-import {MultipleSelectionManager, MultipleSelectionState} from './types';
-import {Selection} from './Selection';
+import {Collection, FocusStrategy, Selection as ISelection, Node, PressEvent, SelectionMode} from "@react-types/shared";
+import {Key} from "react";
+import {MultipleSelectionManager, MultipleSelectionState} from "./types";
+import {Selection} from "./Selection";
 
 interface SelectionManagerOptions {
   allowsCellSelection?: boolean
@@ -86,7 +86,7 @@ export class SelectionManager implements MultipleSelectionManager {
    * The currently selected keys in the collection.
    */
   get selectedKeys(): Set<Key> {
-    return this.state.selectedKeys === 'all'
+    return this.state.selectedKeys === "all"
       ? new Set(this.getSelectAllKeys())
       : this.state.selectedKeys;
   }
@@ -103,12 +103,12 @@ export class SelectionManager implements MultipleSelectionManager {
    * Returns whether a key is selected.
    */
   isSelected(key: Key) {
-    if (this.state.selectionMode === 'none') {
+    if (this.state.selectionMode === "none") {
       return false;
     }
 
     key = this.getKey(key);
-    return this.state.selectedKeys === 'all'
+    return this.state.selectedKeys === "all"
       ? !this.state.disabledKeys.has(key)
       : this.state.selectedKeys.has(key);
   }
@@ -117,7 +117,7 @@ export class SelectionManager implements MultipleSelectionManager {
    * Whether the selection is empty.
    */
   get isEmpty(): boolean {
-    return this.state.selectedKeys !== 'all' && this.state.selectedKeys.size === 0;
+    return this.state.selectedKeys !== "all" && this.state.selectedKeys.size === 0;
   }
 
   /**
@@ -128,7 +128,7 @@ export class SelectionManager implements MultipleSelectionManager {
       return false;
     }
 
-    if (this.state.selectedKeys === 'all') {
+    if (this.state.selectedKeys === "all") {
       return true;
     }
 
@@ -175,7 +175,7 @@ export class SelectionManager implements MultipleSelectionManager {
     let selection: Selection;
 
     // Only select the one key if coming from a select all.
-    if (this.state.selectedKeys === 'all') {
+    if (this.state.selectedKeys === "all") {
       selection = new Selection([toKey], toKey, toKey);
     } else {
       let selectedKeys = this.state.selectedKeys as Selection;
@@ -214,7 +214,7 @@ export class SelectionManager implements MultipleSelectionManager {
     let key = from;
     while (key) {
       let item = this.collection.getItem(key);
-      if (item && item.type === 'item' || (item.type === 'cell' && this.allowsCellSelection)) {
+      if (item && item.type === "item" || (item.type === "cell" && this.allowsCellSelection)) {
         keys.push(key);
       }
 
@@ -236,16 +236,16 @@ export class SelectionManager implements MultipleSelectionManager {
     }
 
     // If cell selection is allowed, just return the key.
-    if (item.type === 'cell' && this.allowsCellSelection) {
+    if (item.type === "cell" && this.allowsCellSelection) {
       return key;
     }
 
     // Find a parent item to select
-    while (item.type !== 'item' && item.parentKey) {
+    while (item.type !== "item" && item.parentKey) {
       item = this.collection.getItem(item.parentKey);
     }
 
-    if (!item || item.type !== 'item') {
+    if (!item || item.type !== "item") {
       return null;
     }
 
@@ -261,7 +261,7 @@ export class SelectionManager implements MultipleSelectionManager {
       return;
     }
 
-    let keys = new Selection(this.state.selectedKeys === 'all' ? this.getSelectAllKeys() : this.state.selectedKeys);
+    let keys = new Selection(this.state.selectedKeys === "all" ? this.getSelectAllKeys() : this.state.selectedKeys);
     if (keys.has(key)) {
       keys.delete(key);
       // TODO: move anchor to last selected key...
@@ -295,7 +295,7 @@ export class SelectionManager implements MultipleSelectionManager {
    * Replaces the selection with the given keys.
    */
   setSelectedKeys(keys: Iterable<Key>) {
-    if (this.selectionMode === 'none') {
+    if (this.selectionMode === "none") {
       return;
     }
 
@@ -304,7 +304,7 @@ export class SelectionManager implements MultipleSelectionManager {
       key = this.getKey(key);
       if (key != null) {
         selection.add(key);
-        if (this.selectionMode === 'single') {
+        if (this.selectionMode === "single") {
           break;
         }
       }
@@ -319,12 +319,12 @@ export class SelectionManager implements MultipleSelectionManager {
       while (key) {
         if (!this.state.disabledKeys.has(key)) {
           let item = this.collection.getItem(key);
-          if (item.type === 'item') {
+          if (item.type === "item") {
             keys.push(key);
           }
 
           // Add child keys. If cell selection is allowed, then include item children too.
-          if (item.hasChildNodes && (this.allowsCellSelection || item.type !== 'item')) {
+          if (item.hasChildNodes && (this.allowsCellSelection || item.type !== "item")) {
             addKeys([...item.childNodes][0].key);
           }
         }
@@ -341,8 +341,8 @@ export class SelectionManager implements MultipleSelectionManager {
    * Selects all items in the collection.
    */
   selectAll() {
-    if (this.selectionMode === 'multiple') {
-      this.state.setSelectedKeys('all');
+    if (this.selectionMode === "multiple") {
+      this.state.setSelectedKeys("all");
     }
   }
 
@@ -350,7 +350,7 @@ export class SelectionManager implements MultipleSelectionManager {
    * Removes all keys from the selection.
    */
   clearSelection() {
-    if (!this.disallowEmptySelection && (this.state.selectedKeys === 'all' || this.state.selectedKeys.size > 0)) {
+    if (!this.disallowEmptySelection && (this.state.selectedKeys === "all" || this.state.selectedKeys.size > 0)) {
       this.state.setSelectedKeys(new Selection());
     }
   }
@@ -367,11 +367,11 @@ export class SelectionManager implements MultipleSelectionManager {
   }
 
   select(key: Key, e?: PressEvent | PointerEvent) {
-    if (this.selectionMode === 'none') {
+    if (this.selectionMode === "none") {
       return;
     }
 
-    if (this.selectionMode === 'single') {
+    if (this.selectionMode === "single") {
       if (this.isSelected(key) && !this.disallowEmptySelection) {
         this.toggleSelection(key);
       } else {

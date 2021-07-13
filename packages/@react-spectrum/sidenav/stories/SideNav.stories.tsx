@@ -10,77 +10,77 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Item, Section} from '@react-spectrum/tree';
-import React from 'react';
-import {SideNav} from '../';
-import snStyles from './SideNav.css';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {Item, Section} from "@react-spectrum/tree";
+import React from "react";
+import {SideNav} from "../";
+import snStyles from "./SideNav.css";
+import {storiesOf} from "@storybook/react";
 
 let flatItems = [
-  {name: 'Aardvark'},
-  {name: 'Kangaroo'},
-  {name: 'Snake'}
+  {name: "Aardvark"},
+  {name: "Kangaroo"},
+  {name: "Snake"}
 ];
 
 let withSection = [
-  {name: 'Animals', children: [
-    {name: 'Aardvark'},
-    {name: 'Kangaroo'},
-    {name: 'Snake'}
+  {name: "Animals", children: [
+    {name: "Aardvark"},
+    {name: "Kangaroo"},
+    {name: "Snake"}
   ]},
-  {name: 'People', children: [
-    {name: 'Danni'},
-    {name: 'Devon'},
-    {name: 'Ross'}
+  {name: "People", children: [
+    {name: "Danni"},
+    {name: "Devon"},
+    {name: "Ross"}
   ]}
 ];
 
-storiesOf('SideNav', module)
+storiesOf("SideNav", module)
   .add(
-    'Default',
+    "Default",
     () => (
-      <SideNav items={flatItems} UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelectionChange')}>
+      <SideNav items={flatItems} UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelectionChange")}>
         {item => <Item key={item.name}>{item.name}</Item>}
       </SideNav>
     )
   )
   .add(
-    'with default selected item',
+    "with default selected item",
     () => (
-      <SideNav selectionMode="single" defaultSelectedKeys={['Kangaroo']} items={flatItems} UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelectionChange')}>
+      <SideNav selectionMode="single" defaultSelectedKeys={["Kangaroo"]} items={flatItems} UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelectionChange")}>
         {item => <Item key={item.name}>{item.name}</Item>}
       </SideNav>
     )
   )
   .add(
-    'with selected item (controlled)',
+    "with selected item (controlled)",
     () => (
-      <SideNav selectionMode="single" selectedKeys={['Kangaroo']} items={flatItems} UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelectionChange')}>
+      <SideNav selectionMode="single" selectedKeys={["Kangaroo"]} items={flatItems} UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelectionChange")}>
         {item => <Item key={item.name}>{item.name}</Item>}
       </SideNav>
     )
   )
   .add(
-    'with disabled items',
+    "with disabled items",
     () => (
-      <SideNav selectionMode="single" disabledKeys={['Kangaroo']} UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelectionChange')} items={flatItems}>
+      <SideNav selectionMode="single" disabledKeys={["Kangaroo"]} UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelectionChange")} items={flatItems}>
         {item => <Item key={item.name}>{item.name}</Item>}
       </SideNav>
     )
   )
   .add(
-    'with keyboard selection wrapping',
+    "with keyboard selection wrapping",
     () => (
-      <SideNav selectionMode="single" items={flatItems} UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelectionChange')} shouldFocusWrap>
+      <SideNav selectionMode="single" items={flatItems} UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelectionChange")} shouldFocusWrap>
         {item => <Item key={item.name}>{item.name}</Item>}
       </SideNav>
     )
   )
   .add(
-    'Default with sections',
+    "Default with sections",
     () => (
-      <SideNav UNSAFE_className={snStyles['storybook-SideNav']} items={withSection} onSelectionChange={action('onSelectionChange')}>
+      <SideNav UNSAFE_className={snStyles["storybook-SideNav"]} items={withSection} onSelectionChange={action("onSelectionChange")}>
         {item => (
           <Section key={item.name} items={item.children} title={item.name}>
             {item => <Item key={item.name}>{item.name}</Item>}
@@ -90,9 +90,9 @@ storiesOf('SideNav', module)
     )
   )
   .add(
-    'Static',
+    "Static",
     () => (
-      <SideNav UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelectionChange')}>
+      <SideNav UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelectionChange")}>
         <Item>Foo</Item>
         <Item>Bar</Item>
         <Item>Bob</Item>
@@ -101,9 +101,9 @@ storiesOf('SideNav', module)
     )
   )
   .add(
-    'Static with sections',
+    "Static with sections",
     () => (
-      <SideNav UNSAFE_className={snStyles['storybook-SideNav']} onSelectionChange={action('onSelect')}>
+      <SideNav UNSAFE_className={snStyles["storybook-SideNav"]} onSelectionChange={action("onSelect")}>
         <Section title="Section 1">
           <Item>Foo 1</Item>
           <Item>Bar 1</Item>

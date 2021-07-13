@@ -10,43 +10,43 @@
  * governing permissions and limitations under the License.
  */
 
-import AlertMedium from '@spectrum-icons/ui/AlertMedium';
-import {AriaButtonProps} from '@react-types/button';
-import buttonStyles from '@adobe/spectrum-css-temp/components/button/vars.css';
-import CheckmarkMedium from '@spectrum-icons/ui/CheckmarkMedium';
-import ChevronDownMedium from '@spectrum-icons/ui/ChevronDownMedium';
-import {classNames, unwrapDOMRef} from '@react-spectrum/utils';
-import {ClearButton} from '@react-spectrum/button';
-import {ComboBoxState, useComboBoxState} from '@react-stately/combobox';
-import comboboxStyles from './combobox.css';
-import {DismissButton} from '@react-aria/overlays';
-import {Field} from '@react-spectrum/label';
-import {FocusableRef, FocusableRefValue, ValidationState} from '@react-types/shared';
-import {FocusRing, FocusScope} from '@react-aria/focus';
-import {focusSafely} from '@react-aria/focus';
+import AlertMedium from "@spectrum-icons/ui/AlertMedium";
+import {AriaButtonProps} from "@react-types/button";
+import buttonStyles from "@adobe/spectrum-css-temp/components/button/vars.css";
+import CheckmarkMedium from "@spectrum-icons/ui/CheckmarkMedium";
+import ChevronDownMedium from "@spectrum-icons/ui/ChevronDownMedium";
+import {classNames, unwrapDOMRef} from "@react-spectrum/utils";
+import {ClearButton} from "@react-spectrum/button";
+import {ComboBoxState, useComboBoxState} from "@react-stately/combobox";
+import comboboxStyles from "./combobox.css";
+import {DismissButton} from "@react-aria/overlays";
+import {Field} from "@react-spectrum/label";
+import {FocusableRef, FocusableRefValue, ValidationState} from "@react-types/shared";
+import {FocusRing, FocusScope} from "@react-aria/focus";
+import {focusSafely} from "@react-aria/focus";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import labelStyles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
-import {ListBoxBase, useListBoxLayout} from '@react-spectrum/listbox';
-import {mergeProps, useId} from '@react-aria/utils';
-import {ProgressCircle} from '@react-spectrum/progress';
-import React, {HTMLAttributes, ReactElement, ReactNode, RefObject, useCallback, useEffect, useRef, useState} from 'react';
-import searchStyles from '@adobe/spectrum-css-temp/components/search/vars.css';
-import {setInteractionModality, useHover} from '@react-aria/interactions';
-import {SpectrumComboBoxProps} from '@react-types/combobox';
-import styles from '@adobe/spectrum-css-temp/components/inputgroup/vars.css';
-import {TextFieldBase} from '@react-spectrum/textfield';
-import textfieldStyles from '@adobe/spectrum-css-temp/components/textfield/vars.css';
-import {Tray} from '@react-spectrum/overlays';
-import {useButton} from '@react-aria/button';
-import {useComboBox} from '@react-aria/combobox';
-import {useDialog} from '@react-aria/dialog';
-import {useFilter} from '@react-aria/i18n';
-import {useFocusableRef} from '@react-spectrum/utils';
-import {useLabel} from '@react-aria/label';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {useOverlayTrigger} from '@react-aria/overlays';
-import {useProviderProps} from '@react-spectrum/provider';
+import intlMessages from "../intl/*.json";
+import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
+import {ListBoxBase, useListBoxLayout} from "@react-spectrum/listbox";
+import {mergeProps, useId} from "@react-aria/utils";
+import {ProgressCircle} from "@react-spectrum/progress";
+import React, {HTMLAttributes, ReactElement, ReactNode, RefObject, useCallback, useEffect, useRef, useState} from "react";
+import searchStyles from "@adobe/spectrum-css-temp/components/search/vars.css";
+import {setInteractionModality, useHover} from "@react-aria/interactions";
+import {SpectrumComboBoxProps} from "@react-types/combobox";
+import styles from "@adobe/spectrum-css-temp/components/inputgroup/vars.css";
+import {TextFieldBase} from "@react-spectrum/textfield";
+import textfieldStyles from "@adobe/spectrum-css-temp/components/textfield/vars.css";
+import {Tray} from "@react-spectrum/overlays";
+import {useButton} from "@react-aria/button";
+import {useComboBox} from "@react-aria/combobox";
+import {useDialog} from "@react-aria/dialog";
+import {useFilter} from "@react-aria/i18n";
+import {useFocusableRef} from "@react-spectrum/utils";
+import {useLabel} from "@react-aria/label";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {useOverlayTrigger} from "@react-aria/overlays";
+import {useProviderProps} from "@react-spectrum/provider";
 
 export const MobileComboBox = React.forwardRef(function MobileComboBox<T extends object>(props: SpectrumComboBoxProps<T>, ref: FocusableRef<HTMLElement>) {
   props = useProviderProps(props);
@@ -58,7 +58,7 @@ export const MobileComboBox = React.forwardRef(function MobileComboBox<T extends
     isReadOnly
   } = props;
 
-  let {contains} = useFilter({sensitivity: 'base'});
+  let {contains} = useFilter({sensitivity: "base"});
   let state = useComboBoxState({
     ...props,
     defaultFilter: contains,
@@ -71,18 +71,18 @@ export const MobileComboBox = React.forwardRef(function MobileComboBox<T extends
 
   let buttonRef = useRef<HTMLElement>();
   let domRef = useFocusableRef(ref, buttonRef);
-  let {triggerProps, overlayProps} = useOverlayTrigger({type: 'listbox'}, state, buttonRef);
+  let {triggerProps, overlayProps} = useOverlayTrigger({type: "listbox"}, state, buttonRef);
 
   let {labelProps, fieldProps} = useLabel({
     ...props,
-    labelElementType: 'span'
+    labelElementType: "span"
   });
 
   // Focus the button and show focus ring when clicking on the label
   labelProps.onClick = () => {
     if (!props.isDisabled) {
       buttonRef.current.focus();
-      setInteractionModality('keyboard');
+      setInteractionModality("keyboard");
     }
   };
 
@@ -103,8 +103,8 @@ export const MobileComboBox = React.forwardRef(function MobileComboBox<T extends
           isDisabled={isDisabled}
           isPlaceholder={!state.inputValue}
           validationState={validationState}
-          onPress={() => !isReadOnly && state.open(null, 'manual')}>
-          {state.inputValue || props.placeholder || ''}
+          onPress={() => !isReadOnly && state.open(null, "manual")}>
+          {state.inputValue || props.placeholder || ""}
         </ComboBoxButton>
       </Field>
       <Tray isOpen={state.isOpen} onClose={onClose} isFixedHeight isNonModal {...overlayProps}>
@@ -141,17 +141,17 @@ const ComboBoxButton = React.forwardRef(function ComboBoxButton(props: ComboBoxB
   let formatMessage = useMessageFormatter(intlMessages);
   let valueId = useId();
   let invalidId = useId();
-  let validationIcon = validationState === 'invalid'
-    ? <AlertMedium id={invalidId} aria-label={formatMessage('invalid')} />
+  let validationIcon = validationState === "invalid"
+    ? <AlertMedium id={invalidId} aria-label={formatMessage("invalid")} />
     : <CheckmarkMedium />;
 
   let validation = React.cloneElement(validationIcon, {
     UNSAFE_className: classNames(
       textfieldStyles,
-      'spectrum-Textfield-validationIcon',
+      "spectrum-Textfield-validationIcon",
       classNames(
         styles,
-        'spectrum-InputGroup-input-validationIcon'
+        "spectrum-InputGroup-input-validationIcon"
       )
     )
   });
@@ -159,37 +159,37 @@ const ComboBoxButton = React.forwardRef(function ComboBoxButton(props: ComboBoxB
   let {hoverProps, isHovered} = useHover({});
   let {buttonProps, isPressed} = useButton({
     ...props,
-    'aria-labelledby': [
-      props['aria-labelledby'],
-      props['aria-label'] && !props['aria-labelledby'] ? props.id : null,
+    "aria-labelledby": [
+      props["aria-labelledby"],
+      props["aria-label"] && !props["aria-labelledby"] ? props.id : null,
       valueId,
-      validationState === 'invalid' ? invalidId : null
-    ].filter(Boolean).join(' '),
-    elementType: 'div'
+      validationState === "invalid" ? invalidId : null
+    ].filter(Boolean).join(" "),
+    elementType: "div"
   }, ref);
 
   return (
     <FocusRing
-      focusClass={classNames(styles, 'is-focused')}
-      focusRingClass={classNames(styles, 'focus-ring')}>
+      focusClass={classNames(styles, "is-focused")}
+      focusRingClass={classNames(styles, "focus-ring")}>
       <div
         {...mergeProps(hoverProps, buttonProps)}
         aria-haspopup="dialog"
         ref={ref as RefObject<HTMLDivElement>}
-        style={{...style, outline: 'none'}}
+        style={{...style, outline: "none"}}
         className={
           classNames(
             styles,
-            'spectrum-InputGroup',
+            "spectrum-InputGroup",
             {
-              'spectrum-InputGroup--quiet': isQuiet,
-              'is-disabled': isDisabled,
-              'spectrum-InputGroup--invalid': validationState === 'invalid',
-              'is-hovered': isHovered
+              "spectrum-InputGroup--quiet": isQuiet,
+              "is-disabled": isDisabled,
+              "spectrum-InputGroup--invalid": validationState === "invalid",
+              "is-hovered": isHovered
             },
             classNames(
               comboboxStyles,
-              'mobile-combobox'
+              "mobile-combobox"
             ),
             className
           )
@@ -198,15 +198,15 @@ const ComboBoxButton = React.forwardRef(function ComboBoxButton(props: ComboBoxB
           className={
             classNames(
               textfieldStyles,
-              'spectrum-Textfield',
+              "spectrum-Textfield",
               {
-                'spectrum-Textfield--invalid': validationState === 'invalid',
-                'spectrum-Textfield--valid': validationState === 'valid',
-                'spectrum-Textfield--quiet': isQuiet
+                "spectrum-Textfield--invalid": validationState === "invalid",
+                "spectrum-Textfield--valid": validationState === "valid",
+                "spectrum-Textfield--quiet": isQuiet
               },
               classNames(
                 styles,
-                'spectrum-InputGroup-field'
+                "spectrum-InputGroup-field"
               )
             )
           }>
@@ -214,20 +214,20 @@ const ComboBoxButton = React.forwardRef(function ComboBoxButton(props: ComboBoxB
             className={
               classNames(
                 textfieldStyles,
-                'spectrum-Textfield-input',
+                "spectrum-Textfield-input",
                 {
-                  'is-hovered': isHovered,
-                  'is-placeholder': isPlaceholder,
-                  'is-disabled': isDisabled
+                  "is-hovered": isHovered,
+                  "is-placeholder": isPlaceholder,
+                  "is-disabled": isDisabled
                 },
                 classNames(
                   styles,
-                  'spectrum-InputGroup-input',
-                  classNames(labelStyles, 'spectrum-Field-field')
+                  "spectrum-InputGroup-input",
+                  classNames(labelStyles, "spectrum-Field-field")
                 ),
                 classNames(
                   comboboxStyles,
-                  'mobile-input'
+                  "mobile-input"
                 )
               )
             }>
@@ -236,7 +236,7 @@ const ComboBoxButton = React.forwardRef(function ComboBoxButton(props: ComboBoxB
               className={
                 classNames(
                   comboboxStyles,
-                  'mobile-value'
+                  "mobile-value"
                 )
               }>
               {children}
@@ -248,21 +248,21 @@ const ComboBoxButton = React.forwardRef(function ComboBoxButton(props: ComboBoxB
           className={
             classNames(
               buttonStyles,
-              'spectrum-FieldButton',
+              "spectrum-FieldButton",
               {
-                'spectrum-FieldButton--quiet': isQuiet,
-                'is-active': isPressed,
-                'is-disabled': isDisabled,
-                'spectrum-FieldButton--invalid': validationState === 'invalid',
-                'is-hovered': isHovered
+                "spectrum-FieldButton--quiet": isQuiet,
+                "is-active": isPressed,
+                "is-disabled": isDisabled,
+                "spectrum-FieldButton--invalid": validationState === "invalid",
+                "is-hovered": isHovered
               },
               classNames(
                 styles,
-                'spectrum-FieldButton'
+                "spectrum-FieldButton"
               )
             )
           }>
-          <ChevronDownMedium UNSAFE_className={classNames(styles, 'spectrum-Dropdown-chevron')} />
+          <ChevronDownMedium UNSAFE_className={classNames(styles, "spectrum-Dropdown-chevron")} />
         </div>
       </div>
     </FocusRing>
@@ -325,7 +325,7 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
   }, []);
 
   let {dialogProps} = useDialog({
-    'aria-labelledby': useId(labelProps.id)
+    "aria-labelledby": useId(labelProps.id)
   }, popoverRef);
 
   // Override the role of the input to "searchbox" instead of "combobox".
@@ -333,23 +333,23 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
   // VoiceOver on iOS reads "double tap to collapse" when focused on the input rather than
   // "double tap to edit text", as with a textbox or searchbox. We'd like double tapping to
   // open the virtual keyboard rather than closing the tray.
-  inputProps.role = 'searchbox';
-  inputProps['aria-haspopup'] = 'listbox';
+  inputProps.role = "searchbox";
+  inputProps["aria-haspopup"] = "listbox";
   delete inputProps.onTouchEnd;
 
   let clearButton = (
     <ClearButton
       preventFocus
-      aria-label={formatMessage('clear')}
+      aria-label={formatMessage("clear")}
       excludeFromTabOrder
       onPress={() => {
-        state.setInputValue('');
+        state.setInputValue("");
         inputRef.current.focus();
       }}
       UNSAFE_className={
         classNames(
           searchStyles,
-          'spectrum-ClearButton'
+          "spectrum-ClearButton"
         )
       }
       isDisabled={isDisabled} />
@@ -357,15 +357,15 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
 
   let loadingCircle = (
     <ProgressCircle
-      aria-label={formatMessage('loading')}
+      aria-label={formatMessage("loading")}
       size="S"
       isIndeterminate
       UNSAFE_className={classNames(
         searchStyles,
-        'spectrum-Search-circleLoader',
+        "spectrum-Search-circleLoader",
         classNames(
           textfieldStyles,
-          'spectrum-Textfield-circleLoader'
+          "spectrum-Textfield-circleLoader"
         )
       )} />
   );
@@ -393,7 +393,7 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
   let inputValue = inputProps.value;
   let lastInputValue = useRef(inputValue);
   useEffect(() => {
-    if (loadingState === 'filtering' && !showLoading) {
+    if (loadingState === "filtering" && !showLoading) {
       if (timeout.current === null) {
         timeout.current = setTimeout(() => {
           setShowLoading(true);
@@ -407,7 +407,7 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
           setShowLoading(true);
         }, 500);
       }
-    } else if (loadingState !== 'filtering') {
+    } else if (loadingState !== "filtering") {
       // If loading is no longer happening, clear any timers and hide the loading circle
       setShowLoading(false);
       clearTimeout(timeout.current);
@@ -419,7 +419,7 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
 
   let onKeyDown = (e) => {
     // Close virtual keyboard if user hits Enter w/o any focused options
-    if (e.key === 'Enter' && state.selectionManager.focusedKey == null) {
+    if (e.key === "Enter" && state.selectionManager.focusedKey == null) {
       popoverRef.current.focus();
     } else {
       inputProps.onKeyDown(e);
@@ -434,7 +434,7 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
         className={
           classNames(
             comboboxStyles,
-            'tray-dialog'
+            "tray-dialog"
           )
         }>
         <DismissButton onDismiss={onClose} />
@@ -444,25 +444,25 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
           inputProps={{...inputProps, onKeyDown}}
           inputRef={inputRef}
           isDisabled={isDisabled}
-          isLoading={showLoading && loadingState === 'filtering'}
+          isLoading={showLoading && loadingState === "filtering"}
           loadingIndicator={loadingState != null && loadingCircle}
           validationState={validationState}
-          wrapperChildren={(state.inputValue !== '' || loadingState === 'filtering' || validationState != null) && !props.isReadOnly && clearButton}
+          wrapperChildren={(state.inputValue !== "" || loadingState === "filtering" || validationState != null) && !props.isReadOnly && clearButton}
           UNSAFE_className={
             classNames(
               searchStyles,
-              'spectrum-Search',
-              'spectrum-Textfield',
-              'spectrum-Search--loadable',
+              "spectrum-Search",
+              "spectrum-Textfield",
+              "spectrum-Search--loadable",
               {
-                'spectrum-Search--invalid': validationState === 'invalid',
-                'spectrum-Search--valid': validationState === 'valid'
+                "spectrum-Search--invalid": validationState === "invalid",
+                "spectrum-Search--valid": validationState === "valid"
               },
               classNames(
                 comboboxStyles,
-                'tray-textfield',
+                "tray-textfield",
                 {
-                  'has-label': !!props.label
+                  "has-label": !!props.label
                 }
               )
             )
@@ -470,17 +470,17 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
           inputClassName={
             classNames(
               comboboxStyles,
-              'tray-textfield-input',
+              "tray-textfield-input",
               classNames(
                 searchStyles,
-                'spectrum-Search-input'
+                "spectrum-Search-input"
               )
             )
           }
           validationIconClassName={
             classNames(
               searchStyles,
-              'spectrum-Search-validationIcon'
+              "spectrum-Search-validationIcon"
             )
           } />
         <ListBoxBase
@@ -492,21 +492,21 @@ function ComboBoxTray(props: ComboBoxTrayProps) {
           layout={layout}
           state={state}
           shouldUseVirtualFocus
-          renderEmptyState={() => loadingState !== 'loading' && (
-            <span className={classNames(comboboxStyles, 'no-results')}>
-              {formatMessage('noResults')}
+          renderEmptyState={() => loadingState !== "loading" && (
+            <span className={classNames(comboboxStyles, "no-results")}>
+              {formatMessage("noResults")}
             </span>
           )}
           UNSAFE_className={
             classNames(
               comboboxStyles,
-              'tray-listbox'
+              "tray-listbox"
             )
           }
           ref={listBoxRef}
           onScroll={onScroll}
           onLoadMore={onLoadMore}
-          isLoading={loadingState === 'loading' || loadingState === 'loadingMore'} />
+          isLoading={loadingState === "loading" || loadingState === "loadingMore"} />
         <DismissButton onDismiss={onClose} />
       </div>
     </FocusScope>

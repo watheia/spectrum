@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta, Story} from '@storybook/react';
-import {ProgressCircle} from '../';
-import React, {CSSProperties} from 'react';
-import {SpectrumProgressCircleProps} from '@react-types/progress';
+import {Meta, Story} from "@storybook/react";
+import {ProgressCircle} from "../";
+import React, {CSSProperties} from "react";
+import {SpectrumProgressCircleProps} from "@react-types/progress";
 
 const meta: Meta<SpectrumProgressCircleProps> = {
-  title: 'ProgressCircle',
+  title: "ProgressCircle",
   component: ProgressCircle
 };
 
 export default meta;
 
 const grayedBoxStyle: CSSProperties = {
-  width: '250px',
-  height: '60px',
-  backgroundColor: 'rgba(0,0,0,0.4)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
+  width: "250px",
+  height: "60px",
+  backgroundColor: "rgba(0,0,0,0.4)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
 };
 
 const Template = (): Story<SpectrumProgressCircleProps> => (args) => (
@@ -37,16 +37,16 @@ const Template = (): Story<SpectrumProgressCircleProps> => (args) => (
 
 
 export const Default = Template().bind({});
-Default.args = {label: 'Progress label', value: 50};
+Default.args = {label: "Progress label", value: 50};
 
 export const SizeS = Template().bind({});
-SizeS.args = {...Default.args, size: 'S'};
+SizeS.args = {...Default.args, size: "S"};
 
 export const SizeL = Template().bind({});
-SizeL.args = {...Default.args, size: 'L'};
+SizeL.args = {...Default.args, size: "L"};
 
 export const OverBackground = Template().bind({});
-OverBackground.args = {...Default.args, variant: 'overBackground'};
+OverBackground.args = {...Default.args, variant: "overBackground"};
 OverBackground.decorators = [(Story) => <div style={grayedBoxStyle}><Story /></div>];
 
 export const Value0 = Template().bind({});

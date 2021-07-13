@@ -15,14 +15,14 @@ let formatterCache = new Map<string, Intl.NumberFormat>();
 let supportsSignDisplay = false;
 try {
   // @ts-ignore
-  supportsSignDisplay = (new Intl.NumberFormat('de-DE', {signDisplay: 'exceptZero'})).resolvedOptions().signDisplay === 'exceptZero';
+  supportsSignDisplay = (new Intl.NumberFormat("de-DE", {signDisplay: "exceptZero"})).resolvedOptions().signDisplay === "exceptZero";
   // eslint-disable-next-line no-empty
 } catch (e) {}
 
 let supportsUnit = false;
 try {
   // @ts-ignore
-  supportsUnit = (new Intl.NumberFormat('de-DE', {style: 'unit', unit: 'degree'})).resolvedOptions().style === 'unit';
+  supportsUnit = (new Intl.NumberFormat("de-DE", {style: "unit", unit: "degree"})).resolvedOptions().style === "unit";
   // eslint-disable-next-line no-empty
 } catch (e) {}
 
@@ -32,10 +32,10 @@ try {
 const UNITS = {
   degree: {
     narrow: {
-      default: '°',
-      'ja-JP': ' 度',
-      'zh-TW': '度',
-      'sl-SI': ' °'
+      default: "°",
+      "ja-JP": " 度",
+      "zh-TW": "度",
+      "sl-SI": " °"
       // Arabic?? But Safari already doesn't use Arabic digits so might be ok...
       // https://bugs.webkit.org/show_bug.cgi?id=218139
     }
@@ -60,15 +60,15 @@ export class NumberFormatter implements Intl.NumberFormat {
   }
 
   format(value: number): string {
-    let res = '';
+    let res = "";
     if (!supportsSignDisplay && this.options.signDisplay != null) {
       res = numberFormatSignDisplayPolyfill(this.numberFormatter, this.options.signDisplay, value);
     } else {
       res = this.numberFormatter.format(value);
     }
 
-    if (this.options.style === 'unit' && !supportsUnit) {
-      let {unit, unitDisplay = 'short', locale} = this.resolvedOptions();
+    if (this.options.style === "unit" && !supportsUnit) {
+      let {unit, unitDisplay = "short", locale} = this.resolvedOptions();
       let values = UNITS[unit]?.[unitDisplay];
       res += values[locale] || values.default;
     }
@@ -88,8 +88,8 @@ export class NumberFormatter implements Intl.NumberFormat {
       options = {...options, signDisplay: this.options.signDisplay};
     }
 
-    if (!supportsUnit && this.options.style === 'unit') {
-      options = {...options, style: 'unit', unit: this.options.unit, unitDisplay: this.options.unitDisplay};
+    if (!supportsUnit && this.options.style === "unit") {
+      options = {...options, style: "unit", unit: this.options.unit, unitDisplay: this.options.unitDisplay};
     }
 
     return options;
@@ -98,22 +98,22 @@ export class NumberFormatter implements Intl.NumberFormat {
 
 function getCachedNumberFormatter(locale: string, options: NumberFormatOptions = {}): Intl.NumberFormat {
   let {numberingSystem} = options;
-  if (numberingSystem && locale.indexOf('-u-nu-') === -1) {
+  if (numberingSystem && locale.indexOf("-u-nu-") === -1) {
     locale = `${locale}-u-nu-${numberingSystem}`;
   }
 
-  if (options.style === 'unit' && !supportsUnit) {
-    let {unit, unitDisplay = 'short'} = options;
+  if (options.style === "unit" && !supportsUnit) {
+    let {unit, unitDisplay = "short"} = options;
     if (!unit) {
       throw new Error('unit option must be provided with style: "unit"');
     }
     if (!UNITS[unit]?.[unitDisplay]) {
       throw new Error(`Unsupported unit ${unit} with unitDisplay = ${unitDisplay}`);
     }
-    options = {...options, style: 'decimal'};
+    options = {...options, style: "decimal"};
   }
 
-  let cacheKey = locale + (options ? Object.entries(options).sort((a, b) => a[0] < b[0] ? -1 : 1).join() : '');
+  let cacheKey = locale + (options ? Object.entries(options).sort((a, b) => a[0] < b[0] ? -1 : 1).join() : "");
   if (formatterCache.has(cacheKey)) {
     return formatterCache.get(cacheKey);
   }
@@ -125,15 +125,15 @@ function getCachedNumberFormatter(locale: string, options: NumberFormatOptions =
 
 /** @private - exported for tests */
 export function numberFormatSignDisplayPolyfill(numberFormat: Intl.NumberFormat, signDisplay: string, num: number) {
-  if (signDisplay === 'auto') {
+  if (signDisplay === "auto") {
     return numberFormat.format(num);
-  } else if (signDisplay === 'never') {
+  } else if (signDisplay === "never") {
     return numberFormat.format(Math.abs(num));
   } else {
     let needsPositiveSign = false;
-    if (signDisplay === 'always') {
+    if (signDisplay === "always") {
       needsPositiveSign = num > 0 || Object.is(num, 0);
-    } else if (signDisplay === 'exceptZero') {
+    } else if (signDisplay === "exceptZero") {
       if (Object.is(num, -0) || Object.is(num, 0)) {
         num = Math.abs(num);
       } else {
@@ -145,11 +145,11 @@ export function numberFormatSignDisplayPolyfill(numberFormat: Intl.NumberFormat,
       let negative = numberFormat.format(-num);
       let noSign = numberFormat.format(num);
       // ignore RTL/LTR marker character
-      let minus = negative.replace(noSign, '').replace(/\u200e|\u061C/, '');
+      let minus = negative.replace(noSign, "").replace(/\u200e|\u061C/, "");
       if ([...minus].length !== 1) {
-        console.warn('@react-aria/i18n polyfill for NumberFormat signDisplay: Unsupported case');
+        console.warn("@react-aria/i18n polyfill for NumberFormat signDisplay: Unsupported case");
       }
-      let positive = negative.replace(noSign, '!!!').replace(minus, '+').replace('!!!', noSign);
+      let positive = negative.replace(noSign, "!!!").replace(minus, "+").replace("!!!", noSign);
       return positive;
     } else {
       return numberFormat.format(num);

@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-const {Packager} = require('@parcel/plugin');
-const v8 = require('v8');
+const {Packager} = require("@parcel/plugin");
+const v8 = require("v8");
 
 module.exports = new Packager({
   async package({bundle, bundleGraph, options}) {
@@ -47,7 +47,7 @@ module.exports = new Packager({
         let {asset: resolvedAsset, exportSymbol} = bundleGraph.resolveSymbol(asset, exported);
         let processed = resolvedAsset.id === asset.id ? obj : processAsset(resolvedAsset);
 
-        if (exportSymbol === '*') {
+        if (exportSymbol === "*") {
           Object.assign(res, processed);
         } else {
           // Re-exported with different name (e.g. export {useGridCell as useTableCell})
@@ -63,8 +63,8 @@ module.exports = new Packager({
 
       let deps = bundleGraph.getDependencies(asset);
       for (let dep of deps) {
-        let wildcard = dep.symbols.get('*');
-        if (wildcard && wildcard.local === '*') {
+        let wildcard = dep.symbols.get("*");
+        if (wildcard && wildcard.local === "*") {
           let resolved = bundleGraph.getDependencyResolution(dep, bundle);
           Object.assign(res, processAsset(resolved));
         }
@@ -76,7 +76,7 @@ module.exports = new Packager({
       let paramStack = [];
       let keyStack = [];
       return walk(obj, (t, k, recurse) => {
-        if (t && t.type === 'reference') {
+        if (t && t.type === "reference") {
           let dep = bundleGraph.getDependencies(asset).find(d => d.moduleSpecifier === t.specifier);
           let res = bundleGraph.getDependencyResolution(dep, bundle);
           let result = res ? processAsset(res)[t.imported] : null;
@@ -84,18 +84,18 @@ module.exports = new Packager({
             t = result;
           } else {
             return {
-              type: 'identifier',
+              type: "identifier",
               name: t.local
             };
           }
         }
 
-        if (t && t.type === 'application') {
+        if (t && t.type === "application") {
           application = recurse(t.typeParameters);
         }
 
         let hasParams = false;
-        if (t && (t.type === 'alias' || t.type === 'interface') && t.typeParameters && application) {
+        if (t && (t.type === "alias" || t.type === "interface") && t.typeParameters && application) {
           let params = Object.assign({}, paramStack[paramStack.length - 1]);
           t.typeParameters.forEach((p, i) => {
             let v = application[i] || p.default;
@@ -115,29 +115,29 @@ module.exports = new Packager({
         }
 
         let params = paramStack[paramStack.length - 1];
-        if (t && t.type === 'application') {
+        if (t && t.type === "application") {
           application = null;
-          if (t.base && t.base.type !== 'identifier' && t.base.type !== 'link') {
+          if (t.base && t.base.type !== "identifier" && t.base.type !== "link") {
             return t.base;
           }
         }
 
-        if (t && t.type === 'identifier' && t.name === 'Omit' && application) {
+        if (t && t.type === "identifier" && t.name === "Omit" && application) {
           return omit(application[0], application[1]);
         }
 
-        if (t && t.type === 'identifier' && params && params[t.name]) {
+        if (t && t.type === "identifier" && params && params[t.name]) {
           return params[t.name];
         }
 
-        if (t && t.type === 'interface') {
+        if (t && t.type === "interface") {
           let merged = mergeInterface(t);
           if (!nodes[t.id]) {
             nodes[t.id] = merged;
           }
 
           // Return merged interface if the parent is a component or an interface we're extending.
-          if (!k || k === 'props' || k === 'extends') {
+          if (!k || k === "props" || k === "extends") {
             return merged;
           }
 
@@ -145,20 +145,20 @@ module.exports = new Packager({
           // check one level above. If that was a component or extended interface, return the
           // merged interface.
           let lastKey = keyStack[keyStack.length - 1];
-          if (k === 'base' && (lastKey === 'props' || lastKey === 'extends')) {
+          if (k === "base" && (lastKey === "props" || lastKey === "extends")) {
             return merged;
           }
 
           // Otherwise return a type link.
           return {
-            type: 'link',
+            type: "link",
             id: t.id
           };
         }
 
-        if (t && t.type === 'alias') {
+        if (t && t.type === "alias") {
           let lastKey = keyStack[keyStack.length - 1];
-          if (k === 'base' && (lastKey === 'props' || lastKey === 'extends')) {
+          if (k === "base" && (lastKey === "props" || lastKey === "extends")) {
             return t.value;
           }
 
@@ -167,7 +167,7 @@ module.exports = new Packager({
           }
 
           return {
-            type: 'link',
+            type: "link",
             id: t.id
           };
         }
@@ -182,7 +182,7 @@ module.exports = new Packager({
     function walkLinks(obj) {
       walk(obj, (t, k, recurse) => {
         // don't follow the link if it's already in links, that's circular
-        if (t && t.type === 'link' && !links[t.id]) {
+        if (t && t.type === "link" && !links[t.id]) {
           links[t.id] = nodes[t.id];
           walkLinks(nodes[t.id]);
         }
@@ -208,7 +208,7 @@ function walk(obj, fn) {
     let recurse = (obj) => {
       if (circular.has(obj)) {
         return {
-          type: 'link',
+          type: "link",
           id: obj.id
         };
       }
@@ -216,7 +216,7 @@ function walk(obj, fn) {
         let resultArray = [];
         obj.forEach((item, i) => resultArray[i] = visit(item, fn, k));
         return resultArray;
-      } else if (obj && typeof obj === 'object') {
+      } else if (obj && typeof obj === "object") {
         circular.add(obj);
         let res = {};
         for (let key in obj) {
@@ -242,7 +242,7 @@ function walk(obj, fn) {
 
 function mergeInterface(obj) {
   let properties = {};
-  if (obj.type === 'interface') {
+  if (obj.type === "interface") {
     merge(properties, obj.properties);
 
     for (let ext of obj.extends) {
@@ -251,7 +251,7 @@ function mergeInterface(obj) {
   }
 
   return {
-    type: 'interface',
+    type: "interface",
     id: obj.id,
     name: obj.name,
     properties,
@@ -270,13 +270,13 @@ function merge(a, b) {
 }
 
 function omit(obj, toOmit) {
-  if (obj.type === 'interface' || obj.type === 'object') {
+  if (obj.type === "interface" || obj.type === "object") {
     let keys = new Set();
-    if (toOmit.type === 'string' && toOmit.value) {
+    if (toOmit.type === "string" && toOmit.value) {
       keys.add(toOmit.value);
-    } else if (toOmit.type === 'union') {
+    } else if (toOmit.type === "union") {
       for (let e of toOmit.elements) {
-        if (e.type === 'string' && e.value) {
+        if (e.type === "string" && e.value) {
           keys.add(e.value);
         }
       }

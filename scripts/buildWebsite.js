@@ -30,7 +30,7 @@ async function build() {
 
   // Generate a package.json containing just what we need to build the website
   let pkg = {
-    name: 'rsp-website',
+    name: 'case-studies',
     version: '0.0.0',
     private: true,
     workspaces: [
@@ -56,11 +56,14 @@ async function build() {
     }
   };
 
+  console.info("Using package", pkg);
+
   // Add dependencies on each published package to the package.json, and
   // copy the docs from the current package into the temp dir.
   let packagesDir = path.join(__dirname, '..', 'packages');
   let packages = glob.sync('*/*/package.json', {cwd: packagesDir});
   for (let p of packages) {
+    console.info(`Loading package from ${p}`);
     let json = JSON.parse(fs.readFileSync(path.join(packagesDir, p), 'utf8'));
     if (!json.private && json.name !== '@adobe/react-spectrum') {
       let docsDir = path.join(packagesDir, path.dirname(p), 'docs');

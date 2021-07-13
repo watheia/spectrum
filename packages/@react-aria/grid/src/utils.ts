@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import type {GridCollection} from '@react-types/grid';
-import type {GridState} from '@react-stately/grid';
-import type {KeyboardDelegate} from '@react-types/shared';
+import type {GridCollection} from "@react-types/grid";
+import type {GridState} from "@react-stately/grid";
+import type {KeyboardDelegate} from "@react-types/shared";
 
 // Used to share keyboard delegate between useGrid and useGridCell
 export const gridKeyboardDelegates = new WeakMap<GridState<unknown, GridCollection<unknown>>, KeyboardDelegate>();

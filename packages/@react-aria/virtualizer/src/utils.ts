@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {Direction} from '@react-types/shared';
+import {Direction} from "@react-types/shared";
 
 export type RTLOffsetType =
-  | 'negative'
-  | 'positive-descending'
-  | 'positive-ascending';
+  | "negative"
+  | "positive-descending"
+  | "positive-ascending";
 
 let cachedRTLResult: RTLOffsetType | null = null;
 
@@ -32,30 +32,30 @@ let cachedRTLResult: RTLOffsetType | null = null;
 // If it does not match, then we can assume a non-standard RTL scroll implementation.
 export function getRTLOffsetType(recalculate: boolean = false): RTLOffsetType {
   if (cachedRTLResult === null || recalculate) {
-    const outerDiv = document.createElement('div');
+    const outerDiv = document.createElement("div");
     const outerStyle = outerDiv.style;
-    outerStyle.width = '50px';
-    outerStyle.height = '50px';
-    outerStyle.overflow = 'scroll';
-    outerStyle.direction = 'rtl';
+    outerStyle.width = "50px";
+    outerStyle.height = "50px";
+    outerStyle.overflow = "scroll";
+    outerStyle.direction = "rtl";
 
-    const innerDiv = document.createElement('div');
+    const innerDiv = document.createElement("div");
     const innerStyle = innerDiv.style;
-    innerStyle.width = '100px';
-    innerStyle.height = '100px';
+    innerStyle.width = "100px";
+    innerStyle.height = "100px";
 
     outerDiv.appendChild(innerDiv);
 
     document.body.appendChild(outerDiv);
 
     if (outerDiv.scrollLeft > 0) {
-      cachedRTLResult = 'positive-descending';
+      cachedRTLResult = "positive-descending";
     } else {
       outerDiv.scrollLeft = 1;
       if (outerDiv.scrollLeft === 0) {
-        cachedRTLResult = 'negative';
+        cachedRTLResult = "negative";
       } else {
-        cachedRTLResult = 'positive-ascending';
+        cachedRTLResult = "positive-ascending";
       }
     }
 
@@ -72,13 +72,13 @@ export function getScrollLeft(node: HTMLElement, direction: Direction): number {
 
   // scrollLeft in rtl locales differs across browsers, so normalize.
   // See comment by getRTLOffsetType below for details.
-  if (direction === 'rtl') {
+  if (direction === "rtl") {
     let {scrollWidth, clientWidth} = node;
     switch (getRTLOffsetType()) {
-      case 'negative':
+      case "negative":
         scrollLeft = -scrollLeft;
         break;
-      case 'positive-descending':
+      case "positive-descending":
         scrollLeft = scrollWidth - clientWidth - scrollLeft;
         break;
     }
@@ -88,12 +88,12 @@ export function getScrollLeft(node: HTMLElement, direction: Direction): number {
 }
 
 export function setScrollLeft(node: HTMLElement, direction: Direction, scrollLeft: number) {
-  if (direction === 'rtl') {
+  if (direction === "rtl") {
     switch (getRTLOffsetType()) {
-      case 'negative':
+      case "negative":
         scrollLeft = -scrollLeft;
         break;
-      case 'positive-ascending':
+      case "positive-ascending":
         break;
       default: {
         const {clientWidth, scrollWidth} = node;

@@ -10,30 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-import Asterisk from '@spectrum-icons/ui/Asterisk';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
+import Asterisk from "@spectrum-icons/ui/Asterisk";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import React from 'react';
-import {SpectrumLabelProps} from '@react-types/label';
-import styles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {useProviderProps} from '@react-spectrum/provider';
+import intlMessages from "../intl/*.json";
+import React from "react";
+import {SpectrumLabelProps} from "@react-types/label";
+import styles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {useProviderProps} from "@react-spectrum/provider";
 
 function Label(props: SpectrumLabelProps, ref: DOMRef<HTMLLabelElement>) {
   props = useProviderProps(props);
   let {
     children,
-    labelPosition = 'top',
-    labelAlign = labelPosition === 'side' ? 'start' : null,
+    labelPosition = "top",
+    labelAlign = labelPosition === "side" ? "start" : null,
     isRequired,
-    necessityIndicator = isRequired != null ? 'icon' : null,
+    necessityIndicator = isRequired != null ? "icon" : null,
     includeNecessityIndicatorInAccessibilityName = false,
     htmlFor,
     for: labelFor,
-    elementType: ElementType = 'label',
+    elementType: ElementType = "label",
     onClick,
     ...otherProps
   } = props;
@@ -42,19 +42,19 @@ function Label(props: SpectrumLabelProps, ref: DOMRef<HTMLLabelElement>) {
   let {styleProps} = useStyleProps(otherProps);
 
   let formatMessage = useMessageFormatter(intlMessages);
-  let necessityLabel = isRequired ? formatMessage('(required)') : formatMessage('(optional)');
+  let necessityLabel = isRequired ? formatMessage("(required)") : formatMessage("(optional)");
   let icon = (
     <Asterisk
-      UNSAFE_className={classNames(styles, 'spectrum-FieldLabel-requiredIcon')}
-      aria-label={includeNecessityIndicatorInAccessibilityName ? formatMessage('(required)') : undefined} />
+      UNSAFE_className={classNames(styles, "spectrum-FieldLabel-requiredIcon")}
+      aria-label={includeNecessityIndicatorInAccessibilityName ? formatMessage("(required)") : undefined} />
   );
 
   let labelClassNames = classNames(
     styles,
-    'spectrum-FieldLabel',
+    "spectrum-FieldLabel",
     {
-      'spectrum-FieldLabel--positionSide': labelPosition === 'side',
-      'spectrum-FieldLabel--alignEnd': labelAlign === 'end'
+      "spectrum-FieldLabel--positionSide": labelPosition === "side",
+      "spectrum-FieldLabel--alignEnd": labelAlign === "end"
     },
     styleProps.className
   );
@@ -66,14 +66,14 @@ function Label(props: SpectrumLabelProps, ref: DOMRef<HTMLLabelElement>) {
       onClick={onClick}
       ref={domRef}
       className={labelClassNames}
-      htmlFor={ElementType === 'label' ? labelFor || htmlFor : undefined}>
+      htmlFor={ElementType === "label" ? labelFor || htmlFor : undefined}>
       {children}
-      {(necessityIndicator === 'label' || (necessityIndicator === 'icon' && isRequired)) && ' \u200b'}
+      {(necessityIndicator === "label" || (necessityIndicator === "icon" && isRequired)) && " \u200b"}
       {/* necessityLabel is hidden to screen readers if the field is required because
         * aria-required is set on the field in that case. That will already be announced,
         * so no need to duplicate it here. If optional, we do want it to be announced here. */}
-      {necessityIndicator === 'label' && <span aria-hidden={!includeNecessityIndicatorInAccessibilityName ? isRequired : undefined}>{necessityLabel}</span>}
-      {necessityIndicator === 'icon' && isRequired && icon}
+      {necessityIndicator === "label" && <span aria-hidden={!includeNecessityIndicatorInAccessibilityName ? isRequired : undefined}>{necessityLabel}</span>}
+      {necessityIndicator === "icon" && isRequired && icon}
     </ElementType>
   );
 }

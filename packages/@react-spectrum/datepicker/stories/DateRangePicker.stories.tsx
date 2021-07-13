@@ -10,42 +10,42 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {DateRangePicker} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {DateRangePicker} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
 const BlockDecorator = storyFn => <div>{storyFn()}</div>;
 
-storiesOf('DateRangePicker', module)
+storiesOf("DateRangePicker", module)
   .addDecorator(BlockDecorator)
   .add(
-    'default',
+    "default",
     () => render()
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'defaultValue',
+    "defaultValue",
     () => render({defaultValue: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'controlled value',
+    "controlled value",
     () => render({value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'custom date format',
+    "custom date format",
     () => render({
       formatOptions: {
           // weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
         // hour12: false,
         // // timeZoneName: 'short',
         // // timeZone: 'America/New_York'
@@ -54,39 +54,39 @@ storiesOf('DateRangePicker', module)
     })
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({isDisabled: true, value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'isQuiet, isDisabled',
+    "isQuiet, isDisabled",
     () => render({isQuiet: true, isDisabled: true, value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'isReadOnly',
+    "isReadOnly",
     () => render({isReadOnly: true, value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'isRequired',
+    "isRequired",
     () => render({isRequired: true})
   )
   .add(
-    'autoFocus',
+    "autoFocus",
     () => render({autoFocus: true})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid', value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
+    "validationState: invalid",
+    () => render({validationState: "invalid", value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid', value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
+    "validationState: valid",
+    () => render({validationState: "valid", value: {start: new Date(2020, 2, 3), end: new Date(2020, 5, 4)}})
   )
   .add(
-    'minDate: 2010/1/1, maxDate: 2020/1/1',
+    "minDate: 2010/1/1, maxDate: 2020/1/1",
     () => render({minValue: new Date(2010, 1, 1), maxValue: new Date(2020, 1, 1)})
   )
   .add(
-    'placeholderDate: 1980/1/1',
+    "placeholderDate: 1980/1/1",
     () => render({placeholderDate: new Date(1980, 0, 1)})
   );
 
@@ -94,7 +94,7 @@ function render(props = {}) {
   return (
     <div>
       <DateRangePicker
-        onChange={action('change')}
+        onChange={action("change")}
         {...props} />
     </div>
   );

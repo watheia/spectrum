@@ -10,54 +10,54 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {StatusLight} from '../';
-import {storiesOf} from '@storybook/react';
+import React from "react";
+import {StatusLight} from "../";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('StatusLight', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("StatusLight", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'variant: celery',
-    () => render({variant: 'celery'})
+    "variant: celery",
+    () => render({variant: "celery"})
   ).add(
-    'variant: yellow',
-    () => render({variant: 'yellow'})
+    "variant: yellow",
+    () => render({variant: "yellow"})
   ).add(
-    'variant: fuchsia',
-    () => render({variant: 'fuchsia'})
+    "variant: fuchsia",
+    () => render({variant: "fuchsia"})
   ).add(
-    'variant: indigo',
-    () => render({variant: 'indigo'})
+    "variant: indigo",
+    () => render({variant: "indigo"})
   ).add(
-    'variant: seafoam',
-    () => render({variant: 'seafoam'})
+    "variant: seafoam",
+    () => render({variant: "seafoam"})
   ).add(
-    'variant: chartreuse',
-    () => render({variant: 'chartreuse'})
+    "variant: chartreuse",
+    () => render({variant: "chartreuse"})
   ).add(
-    'variant: magenta',
-    () => render({variant: 'magenta'})
+    "variant: magenta",
+    () => render({variant: "magenta"})
   ).add(
-    'variant: purple',
-    () => render({variant: 'purple'})
+    "variant: purple",
+    () => render({variant: "purple"})
   ).add(
-    'variant: neutral',
-    () => render({variant: 'neutral'})
+    "variant: neutral",
+    () => render({variant: "neutral"})
   ).add(
-    'variant: info',
-    () => render({variant: 'info'})
+    "variant: info",
+    () => render({variant: "info"})
   ).add(
-    'variant: positive',
-    () => render({variant: 'positive'})
+    "variant: positive",
+    () => render({variant: "positive"})
   ).add(
-    'variant: notice',
-    () => render({variant: 'notice'})
+    "variant: notice",
+    () => render({variant: "notice"})
   ).add(
-    'variant: negative',
-    () => render({variant: 'negative'})
+    "variant: negative",
+    () => render({variant: "negative"})
   ).add(
-    'isDisabled: true',
-    () => render({variant: 'positive', isDisabled: true})
+    "isDisabled: true",
+    () => render({variant: "positive", isDisabled: true})
   );
 
 function render(props: any = {}) {

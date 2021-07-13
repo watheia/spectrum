@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {focusSafely} from '@react-aria/focus';
-import {HTMLAttributes, Key, RefObject, useEffect} from 'react';
-import {MultipleSelectionManager} from '@react-stately/selection';
-import {PressEvent} from '@react-types/shared';
-import {PressProps} from '@react-aria/interactions';
+import {focusSafely} from "@react-aria/focus";
+import {HTMLAttributes, Key, RefObject, useEffect} from "react";
+import {MultipleSelectionManager} from "@react-stately/selection";
+import {PressEvent} from "@react-types/shared";
+import {PressProps} from "@react-aria/interactions";
 
 interface SelectableItemOptions {
   /**
@@ -86,7 +86,7 @@ export function useSelectableItem(options: SelectableItemOptions): SelectableIte
   // Set tabIndex to 0 if the element is focused, or -1 otherwise so that only the last focused
   // item is tabbable.  If using virtual focus, don't set a tabIndex at all so that VoiceOver
   // on iOS 14 doesn't try to move real DOM focus to the item anyway.
-  let itemProps: SelectableItemAria['itemProps'] = {};
+  let itemProps: SelectableItemAria["itemProps"] = {};
   if (!shouldUseVirtualFocus) {
     itemProps = {
       tabIndex: isFocused ? 0 : -1,
@@ -107,33 +107,33 @@ export function useSelectableItem(options: SelectableItemOptions): SelectableIte
   // For keyboard events, selection still occurs on key down.
   if (shouldSelectOnPressUp) {
     itemProps.onPressStart = (e) => {
-      if (e.pointerType === 'keyboard') {
+      if (e.pointerType === "keyboard") {
         onSelect(e);
       }
     };
 
     itemProps.onPressUp = (e) => {
-      if (e.pointerType !== 'keyboard') {
+      if (e.pointerType !== "keyboard") {
         onSelect(e);
       }
     };
   } else {
     // On touch, it feels strange to select on touch down, so we special case this.
     itemProps.onPressStart = (e) => {
-      if (e.pointerType !== 'touch') {
+      if (e.pointerType !== "touch") {
         onSelect(e);
       }
     };
 
     itemProps.onPress = (e) => {
-      if (e.pointerType === 'touch') {
+      if (e.pointerType === "touch") {
         onSelect(e);
       }
     };
   }
 
   if (!isVirtualized) {
-    itemProps['data-key'] = key;
+    itemProps["data-key"] = key;
   }
 
   return {

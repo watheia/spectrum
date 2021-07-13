@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar';
-import {HTMLAttributes, RefObject, useEffect} from 'react';
+import {CalendarState, RangeCalendarState} from "@react-stately/calendar";
+import {HTMLAttributes, RefObject, useEffect} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {isSameDay, isToday} from 'date-fns';
-import {PressProps, usePress} from '@react-aria/interactions';
-import {useDateFormatter, useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {isSameDay, isToday} from "date-fns";
+import {PressProps, usePress} from "@react-aria/interactions";
+import {useDateFormatter, useMessageFormatter} from "@react-aria/i18n";
 
 export interface AriaCalendarCellProps {
   date: Date
@@ -30,7 +30,7 @@ interface CalendarCellAria {
 export function useCalendarCell(props: AriaCalendarCellProps, state: CalendarState | RangeCalendarState, ref: RefObject<HTMLElement>): CalendarCellAria {
   let {date} = props;
   let formatMessage = useMessageFormatter(intlMessages);
-  let dateFormatter = useDateFormatter({weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'});
+  let dateFormatter = useDateFormatter({weekday: "long", day: "numeric", month: "long", year: "numeric"});
   let isSelected = state.isSelected(date);
   let isFocused = state.isCellFocused(date);
   let isDisabled = state.isCellDisabled(date);
@@ -39,27 +39,27 @@ export function useCalendarCell(props: AriaCalendarCellProps, state: CalendarSta
   let label = dateFormatter.format(date);
   if (isToday(date)) {
     // If date is today, set appropriate string depending on selected state:
-    label = formatMessage(isSelected ? 'todayDateSelected' : 'todayDate', {
+    label = formatMessage(isSelected ? "todayDateSelected" : "todayDate", {
       date
     });
   } else if (isSelected) {
     // If date is selected but not today:
-    label = formatMessage('dateSelected', {
+    label = formatMessage("dateSelected", {
       date
     });
   }
 
   // When a cell is focused and this is a range calendar, add a prompt to help
   // screenreader users know that they are in a range selection mode.
-  if ('anchorDate' in state && isFocused && !state.isReadOnly) {
-    let rangeSelectionPrompt = '';
+  if ("anchorDate" in state && isFocused && !state.isReadOnly) {
+    let rangeSelectionPrompt = "";
 
     // If selection has started add "click to finish selecting range"
     if (state.anchorDate) {
-      rangeSelectionPrompt = formatMessage('finishRangeSelectionPrompt');
+      rangeSelectionPrompt = formatMessage("finishRangeSelectionPrompt");
     // Otherwise, add "click to start selecting range" prompt
     } else {
-      rangeSelectionPrompt = formatMessage('startRangeSelectionPrompt');
+      rangeSelectionPrompt = formatMessage("startRangeSelectionPrompt");
     }
 
     // Append to aria-label
@@ -78,7 +78,7 @@ export function useCalendarCell(props: AriaCalendarCellProps, state: CalendarSta
   });
 
   let onMouseEnter = () => {
-    if ('highlightDate' in state) {
+    if ("highlightDate" in state) {
       state.highlightDate(date);
     }
   };
@@ -98,9 +98,9 @@ export function useCalendarCell(props: AriaCalendarCellProps, state: CalendarSta
   return {
     cellProps: {
       onMouseEnter: isDisabled ? null : onMouseEnter,
-      role: 'gridcell',
-      'aria-disabled': isDisabled || null,
-      'aria-selected': isSelected
+      role: "gridcell",
+      "aria-disabled": isDisabled || null,
+      "aria-selected": isSelected
     },
     buttonProps: {
       ...pressProps,
@@ -110,9 +110,9 @@ export function useCalendarCell(props: AriaCalendarCellProps, state: CalendarSta
         }
       },
       tabIndex,
-      role: 'button',
-      'aria-disabled': isDisabled || null,
-      'aria-label': label
+      role: "button",
+      "aria-disabled": isDisabled || null,
+      "aria-label": label
     }
   };
 }

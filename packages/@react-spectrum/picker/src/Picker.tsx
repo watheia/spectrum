@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import AlertMedium from '@spectrum-icons/ui/AlertMedium';
-import ChevronDownMedium from '@spectrum-icons/ui/ChevronDownMedium';
+import AlertMedium from "@spectrum-icons/ui/AlertMedium";
+import ChevronDownMedium from "@spectrum-icons/ui/ChevronDownMedium";
 import {
   classNames,
   dimensionValue,
@@ -20,30 +20,30 @@ import {
   useIsMobileDevice,
   useStyleProps,
   useUnwrapDOMRef
-} from '@react-spectrum/utils';
-import {DismissButton, useOverlayPosition} from '@react-aria/overlays';
-import {DOMRef, DOMRefValue, FocusableRefValue, LabelPosition} from '@react-types/shared';
-import {FieldButton} from '@react-spectrum/button';
-import {FocusScope} from '@react-aria/focus';
-import {HiddenSelect, useSelect} from '@react-aria/select';
+} from "@react-spectrum/utils";
+import {DismissButton, useOverlayPosition} from "@react-aria/overlays";
+import {DOMRef, DOMRefValue, FocusableRefValue, LabelPosition} from "@react-types/shared";
+import {FieldButton} from "@react-spectrum/button";
+import {FocusScope} from "@react-aria/focus";
+import {HiddenSelect, useSelect} from "@react-aria/select";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {Label} from '@react-spectrum/label';
-import labelStyles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
-import {ListBoxBase, useListBoxLayout} from '@react-spectrum/listbox';
-import {mergeProps, useLayoutEffect, useResizeObserver} from '@react-aria/utils';
-import {Placement} from '@react-types/overlays';
-import {Popover, Tray} from '@react-spectrum/overlays';
-import {PressResponder, useHover} from '@react-aria/interactions';
-import {ProgressCircle} from '@react-spectrum/progress';
-import React, {ReactElement, useCallback, useRef, useState} from 'react';
-import {SpectrumPickerProps} from '@react-types/select';
-import styles from '@adobe/spectrum-css-temp/components/dropdown/vars.css';
-import {Text} from '@react-spectrum/text';
-import {useFormProps} from '@react-spectrum/form';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {useProvider, useProviderProps} from '@react-spectrum/provider';
-import {useSelectState} from '@react-stately/select';
+import intlMessages from "../intl/*.json";
+import {Label} from "@react-spectrum/label";
+import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
+import {ListBoxBase, useListBoxLayout} from "@react-spectrum/listbox";
+import {mergeProps, useLayoutEffect, useResizeObserver} from "@react-aria/utils";
+import {Placement} from "@react-types/overlays";
+import {Popover, Tray} from "@react-spectrum/overlays";
+import {PressResponder, useHover} from "@react-aria/interactions";
+import {ProgressCircle} from "@react-spectrum/progress";
+import React, {ReactElement, useCallback, useRef, useState} from "react";
+import {SpectrumPickerProps} from "@react-types/select";
+import styles from "@adobe/spectrum-css-temp/components/dropdown/vars.css";
+import {Text} from "@react-spectrum/text";
+import {useFormProps} from "@react-spectrum/form";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {useProvider, useProviderProps} from "@react-spectrum/provider";
+import {useSelectState} from "@react-stately/select";
 
 function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -51,14 +51,14 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
   let formatMessage = useMessageFormatter(intlMessages);
   let {
     isDisabled,
-    direction = 'bottom',
-    align = 'start',
+    direction = "bottom",
+    align = "start",
     shouldFlip = true,
-    placeholder = formatMessage('placeholder'),
+    placeholder = formatMessage("placeholder"),
     validationState,
     isQuiet,
     label,
-    labelPosition = 'top' as LabelPosition,
+    labelPosition = "top" as LabelPosition,
     labelAlign,
     isRequired,
     necessityIndicator,
@@ -126,9 +126,9 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
         focusOnPointerEnter
         layout={layout}
         state={state}
-        width={isMobile ? '100%' : undefined}
+        width={isMobile ? "100%" : undefined}
         // Set max height: inherit so Tray scrolling works
-        UNSAFE_style={{maxHeight: 'inherit'}}
+        UNSAFE_style={{maxHeight: "inherit"}}
         isLoading={isLoadingMore}
         onLoadMore={props.onLoadMore} />
       <DismissButton onDismiss={() => state.close()} />
@@ -175,7 +175,7 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
       <Popover
         isOpen={state.isOpen}
         UNSAFE_style={style}
-        UNSAFE_className={classNames(styles, 'spectrum-Dropdown-popover', {'spectrum-Dropdown-popover--quiet': isQuiet})}
+        UNSAFE_className={classNames(styles, "spectrum-Dropdown-popover", {"spectrum-Dropdown-popover--quiet": isQuiet})}
         ref={popoverRef}
         placement={placement}
         hideArrow
@@ -187,7 +187,7 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
   }
 
   let contents = state.selectedItem ? state.selectedItem.rendered : placeholder;
-  if (typeof contents === 'string') {
+  if (typeof contents === "string") {
     contents = <Text>{contents}</Text>;
   }
 
@@ -196,11 +196,11 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
       className={
         classNames(
           styles,
-          'spectrum-Dropdown',
+          "spectrum-Dropdown",
           {
-            'is-invalid': validationState === 'invalid',
-            'is-disabled': isDisabled,
-            'spectrum-Dropdown--quiet': isQuiet
+            "is-invalid": validationState === "invalid",
+            "is-disabled": isDisabled,
+            "spectrum-Dropdown--quiet": isQuiet
           }
         )
       }>
@@ -218,16 +218,16 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
           isDisabled={isDisabled}
           validationState={validationState}
           autoFocus={autoFocus}
-          UNSAFE_className={classNames(styles, 'spectrum-Dropdown-trigger', {'is-hovered': isHovered})}>
+          UNSAFE_className={classNames(styles, "spectrum-Dropdown-trigger", {"is-hovered": isHovered})}>
           <SlotProvider
             slots={{
-              icon: {UNSAFE_className: classNames(styles, 'spectrum-Icon'), size: 'S'},
+              icon: {UNSAFE_className: classNames(styles, "spectrum-Icon"), size: "S"},
               text: {
                 ...valueProps,
                 UNSAFE_className: classNames(
                   styles,
-                  'spectrum-Dropdown-label',
-                  {'is-placeholder': !state.selectedItem}
+                  "spectrum-Dropdown-label",
+                  {"is-placeholder": !state.selectedItem}
                 )
               },
               description: {
@@ -240,13 +240,13 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
             <ProgressCircle
               isIndeterminate
               size="S"
-              aria-label={formatMessage('loading')}
-              UNSAFE_className={classNames(styles, 'spectrum-Dropdown-progressCircle')} />
+              aria-label={formatMessage("loading")}
+              UNSAFE_className={classNames(styles, "spectrum-Dropdown-progressCircle")} />
           }
-          {validationState === 'invalid' && !isLoadingInitial &&
-            <AlertMedium UNSAFE_className={classNames(styles, 'spectrum-Dropdown-invalidIcon')} />
+          {validationState === "invalid" && !isLoadingInitial &&
+            <AlertMedium UNSAFE_className={classNames(styles, "spectrum-Dropdown-invalidIcon")} />
           }
-          <ChevronDownMedium UNSAFE_className={classNames(styles, 'spectrum-Dropdown-chevron')} />
+          <ChevronDownMedium UNSAFE_className={classNames(styles, "spectrum-Dropdown-chevron")} />
         </FieldButton>
       </PressResponder>
       {state.collection.size === 0 ? null : overlay}
@@ -256,24 +256,24 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
   if (label) {
     let labelWrapperClass = classNames(
       labelStyles,
-      'spectrum-Field',
+      "spectrum-Field",
       {
-        'spectrum-Field--positionTop': labelPosition === 'top',
-        'spectrum-Field--positionSide': labelPosition === 'side'
+        "spectrum-Field--positionTop": labelPosition === "top",
+        "spectrum-Field--positionSide": labelPosition === "side"
       },
       classNames(
         styles,
-        'spectrum-Field',
+        "spectrum-Field",
         {
-          'spectrum-Dropdown-fieldWrapper--quiet': isQuiet,
-          'spectrum-Dropdown-fieldWrapper--positionSide': labelPosition === 'side'
+          "spectrum-Dropdown-fieldWrapper--quiet": isQuiet,
+          "spectrum-Dropdown-fieldWrapper--positionSide": labelPosition === "side"
         }
       ),
       styleProps.className
     );
 
     picker = React.cloneElement(picker, mergeProps(picker.props, {
-      className: classNames(labelStyles, 'spectrum-Field-field')
+      className: classNames(labelStyles, "spectrum-Field-field")
     }));
 
     return (

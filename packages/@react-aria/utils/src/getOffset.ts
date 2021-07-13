@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-export function getOffset(element, reverse, orientation = 'horizontal') {
+export function getOffset(element, reverse, orientation = "horizontal") {
   let rect = element.getBoundingClientRect();
   if (reverse) {
-    return orientation === 'horizontal' ? rect.right : rect.bottom;
+    return orientation === "horizontal" ? rect.right : rect.bottom;
   }
-  return orientation === 'horizontal' ? rect.left : rect.top;
+  return orientation === "horizontal" ? rect.left : rect.top;
 }

@@ -11,26 +11,26 @@
  */
 
 export class DataTransferItem {
-  constructor(type, data, kind = 'string') {
+  constructor(type, data, kind = "string") {
     this.kind = kind;
     this.type = type;
     this._data = data;
   }
 
   getAsString(callback) {
-    if (this.kind === 'string') {
+    if (this.kind === "string") {
       callback(this._data);
     }
   }
 
   getAsFile() {
-    if (this.kind === 'file' && this._data instanceof FileSystemFileEntry) {
+    if (this.kind === "file" && this._data instanceof FileSystemFileEntry) {
       return this._data._file;
     }
   }
 
   webkitGetAsEntry() {
-    if (this.kind === 'file') {
+    if (this.kind === "file") {
       return this._data;
     }
   }
@@ -81,10 +81,10 @@ export class DataTransferItemList {
 
   add(data, type) {
     if (data instanceof File) {
-      this._items.push(new DataTransferItem(data.type, new FileSystemFileEntry(data), 'file'));
+      this._items.push(new DataTransferItem(data.type, new FileSystemFileEntry(data), "file"));
     } else if (data instanceof FileSystemDirectoryEntry) {
       // Not supported in the real API but used for mocking...
-      this._items.push(new DataTransferItem('', data, 'file'));
+      this._items.push(new DataTransferItem("", data, "file"));
     } else {
       this._items.push(new DataTransferItem(type, data));
     }
@@ -98,8 +98,8 @@ export class DataTransferItemList {
 export class DataTransfer {
   constructor() {
     this.items = new DataTransferItemList();
-    this.dropEffect = 'none';
-    this.effectAllowed = 'all';
+    this.dropEffect = "none";
+    this.effectAllowed = "all";
   }
 
   setDragImage(dragImage, x, y) {
@@ -109,8 +109,8 @@ export class DataTransfer {
   get types() {
     let types = new Set();
     for (let item of this.items) {
-      if (item.kind === 'file') {
-        types.add('Files');
+      if (item.kind === "file") {
+        types.add("Files");
       } else {
         types.add(item.type);
       }
@@ -119,11 +119,11 @@ export class DataTransfer {
   }
 
   get files() {
-    return this.items._items.filter(item => item.kind === 'file').map(item => item.getAsFile());
+    return this.items._items.filter(item => item.kind === "file").map(item => item.getAsFile());
   }
 
   getData(type) {
-    return this.items._items.find(item => item.kind === 'string' && item.type === type)?._data;
+    return this.items._items.find(item => item.kind === "string" && item.type === type)?._data;
   }
 }
 

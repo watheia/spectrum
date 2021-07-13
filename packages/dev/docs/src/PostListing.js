@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import clsx from 'clsx';
-import docStyles from '@react-spectrum/docs/src/docs.css';
-import {getAnchorProps} from './utils';
-import linkStyle from '@adobe/spectrum-css-temp/components/link/vars.css';
-import {PageContext, renderHTMLfromMarkdown, Time} from '@react-spectrum/docs';
-import React from 'react';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
+import clsx from "clsx";
+import docStyles from "@react-spectrum/docs/src/docs.css";
+import {getAnchorProps} from "./utils";
+import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
+import {PageContext, renderHTMLfromMarkdown, Time} from "@react-spectrum/docs";
+import React from "react";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 export function PostListing({type}) {
   let {pages} = React.useContext(PageContext);
   let blogPages = pages
-    .filter(page => page.name.startsWith(type) && !page.name.endsWith('index.html'))
+    .filter(page => page.name.startsWith(type) && !page.name.endsWith("index.html"))
     .sort((a, b) => a.date < b.date ? 1 : -1);
 
   return (
@@ -32,16 +32,16 @@ export function PostListing({type}) {
 }
 
 function BlogPost({name, title, url, description, date, author}) {
-  let authorParts = (author || '').match(/^\[(.*?)\]\((.*?)\)$/) || [''];
+  let authorParts = (author || "").match(/^\[(.*?)\]\((.*?)\)$/) || [""];
 
   return (
-    <article className={clsx(typographyStyles['spectrum-Typography'], docStyles.blogArticle)}>
+    <article className={clsx(typographyStyles["spectrum-Typography"], docStyles.blogArticle)}>
       <header className={docStyles.blogHeader}>
-        <h2 className={typographyStyles['spectrum-Heading3']}><a href={url} className={linkStyle['spectrum-Link']}>{title}</a></h2>
-        {author && <address className={typographyStyles['spectrum-Body4']}>By <a rel="author" href={authorParts[2]} className={clsx(linkStyle['spectrum-Link'], linkStyle['spectrum-Link--secondary'], docStyles.link)} {...getAnchorProps(authorParts[2])}>{authorParts[1]}</a></address>}
+        <h2 className={typographyStyles["spectrum-Heading3"]}><a href={url} className={linkStyle["spectrum-Link"]}>{title}</a></h2>
+        {author && <address className={typographyStyles["spectrum-Body4"]}>By <a rel="author" href={authorParts[2]} className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} {...getAnchorProps(authorParts[2])}>{authorParts[1]}</a></address>}
         <Time date={date} />
       </header>
-      <p className={typographyStyles['spectrum-Body3']}>
+      <p className={typographyStyles["spectrum-Body3"]}>
         {renderHTMLfromMarkdown(description)}
       </p>
     </article>

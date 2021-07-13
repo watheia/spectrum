@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent} from '@testing-library/react';
+import {act, fireEvent} from "@testing-library/react";
 
 function pressKeyOnButton(key, button) {
   fireEvent.keyDown(button, {key});
 }
 export const press = {
-  ArrowRight: (button: HTMLElement) => pressKeyOnButton('ArrowRight', button),
-  ArrowLeft: (button: HTMLElement) => pressKeyOnButton('ArrowLeft', button),
-  Home: (button: HTMLElement) => pressKeyOnButton('Home', button),
-  End: (button: HTMLElement) => pressKeyOnButton('End', button)
+  ArrowRight: (button: HTMLElement) => pressKeyOnButton("ArrowRight", button),
+  ArrowLeft: (button: HTMLElement) => pressKeyOnButton("ArrowLeft", button),
+  Home: (button: HTMLElement) => pressKeyOnButton("Home", button),
+  End: (button: HTMLElement) => pressKeyOnButton("End", button)
 };
 
 export function testKeypresses([sliderLeft, sliderRight], commands: any[]) {
@@ -31,12 +31,12 @@ export function testKeypresses([sliderLeft, sliderRight], commands: any[]) {
     act(() => {slider.focus();});
     c(slider);
 
-    if (typeof result === 'string') {
+    if (typeof result === "string") {
       // absolute
-      expect(slider).toHaveProperty('value', result);
+      expect(slider).toHaveProperty("value", result);
     } else  {
       // number, relative
-      expect(slider).toHaveProperty('value', String(oldValue + result));
+      expect(slider).toHaveProperty("value", String(oldValue + result));
     }
   }
 }

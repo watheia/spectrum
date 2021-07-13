@@ -10,55 +10,55 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useButton} from '../';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useButton} from "../";
 
-describe('useButton tests', function () {
-  it('handles defaults', function () {
+describe("useButton tests", function () {
+  it("handles defaults", function () {
     let props = {};
     let {result} = renderHook(() => useButton(props));
-    expect(typeof result.current.buttonProps.onClick).toBe('function');
+    expect(typeof result.current.buttonProps.onClick).toBe("function");
   });
-  it('handles elements other than button', function () {
-    let props = {elementType: 'a'};
+  it("handles elements other than button", function () {
+    let props = {elementType: "a"};
     let {result} = renderHook(() => useButton(props));
-    expect(result.current.buttonProps.role).toBe('button');
+    expect(result.current.buttonProps.role).toBe("button");
     expect(result.current.buttonProps.tabIndex).toBe(0);
-    expect(result.current.buttonProps['aria-disabled']).toBeUndefined();
+    expect(result.current.buttonProps["aria-disabled"]).toBeUndefined();
     expect(result.current.buttonProps.href).toBeUndefined();
-    expect(typeof result.current.buttonProps.onKeyDown).toBe('function');
+    expect(typeof result.current.buttonProps.onKeyDown).toBe("function");
     expect(result.current.buttonProps.rel).toBeUndefined();
   });
-  it('handles elements other than button disabled', function () {
-    let props = {elementType: 'a', isDisabled: true};
+  it("handles elements other than button disabled", function () {
+    let props = {elementType: "a", isDisabled: true};
     let {result} = renderHook(() => useButton(props));
-    expect(result.current.buttonProps.role).toBe('button');
+    expect(result.current.buttonProps.role).toBe("button");
     expect(result.current.buttonProps.tabIndex).toBeUndefined();
-    expect(result.current.buttonProps['aria-disabled']).toBeTruthy();
+    expect(result.current.buttonProps["aria-disabled"]).toBeTruthy();
     expect(result.current.buttonProps.href).toBeUndefined();
-    expect(typeof result.current.buttonProps.onKeyDown).toBe('function');
+    expect(typeof result.current.buttonProps.onKeyDown).toBe("function");
     expect(result.current.buttonProps.rel).toBeUndefined();
   });
-  it('handles the rel attribute on anchors', function () {
-    let props = {elementType: 'a', rel: 'noopener noreferrer'};
+  it("handles the rel attribute on anchors", function () {
+    let props = {elementType: "a", rel: "noopener noreferrer"};
     let {result} = renderHook(() => useButton(props));
-    expect(result.current.buttonProps.rel).toBe('noopener noreferrer');
+    expect(result.current.buttonProps.rel).toBe("noopener noreferrer");
   });
-  it('handles the rel attribute as a string on anchors', function () {
-    let props = {elementType: 'a', rel: 'search'};
+  it("handles the rel attribute as a string on anchors", function () {
+    let props = {elementType: "a", rel: "search"};
     let {result} = renderHook(() => useButton(props));
-    expect(result.current.buttonProps.rel).toBe('search');
+    expect(result.current.buttonProps.rel).toBe("search");
   });
-  it('handles input elements', function () {
-    let props = {elementType: 'input', isDisabled: true};
+  it("handles input elements", function () {
+    let props = {elementType: "input", isDisabled: true};
     let {result} = renderHook(() => useButton(props));
-    expect(result.current.buttonProps.role).toBe('button');
+    expect(result.current.buttonProps.role).toBe("button");
     expect(result.current.buttonProps.tabIndex).toBeUndefined();
-    expect(result.current.buttonProps['aria-disabled']).toBeUndefined();
+    expect(result.current.buttonProps["aria-disabled"]).toBeUndefined();
     expect(result.current.buttonProps.disabled).toBeTruthy();
     expect(result.current.buttonProps.href).toBeUndefined();
-    expect(typeof result.current.buttonProps.onKeyDown).toBe('function');
+    expect(typeof result.current.buttonProps.onKeyDown).toBe("function");
     expect(result.current.buttonProps.rel).toBeUndefined();
   });
 });

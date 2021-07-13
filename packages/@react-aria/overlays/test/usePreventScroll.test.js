@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {render} from '@testing-library/react';
-import {usePreventScroll} from '..';
+import React from "react";
+import {render} from "@testing-library/react";
+import {usePreventScroll} from "..";
 
 function Example(props) {
   usePreventScroll(props);
@@ -21,40 +21,40 @@ function Example(props) {
   );
 }
 
-describe('usePreventScroll', function () {
-  it('should set overflow: hidden on the body on mount and remove on unmount', function () {
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+describe("usePreventScroll", function () {
+  it("should set overflow: hidden on the body on mount and remove on unmount", function () {
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
 
     let res = render(<Example />);
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
 
     res.unmount();
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
   });
 
-  it('should work with nested modals', function () {
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+  it("should work with nested modals", function () {
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
 
     let one = render(<Example />);
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
 
     let two = render(<Example />);
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
 
     two.unmount();
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
 
     one.unmount();
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
   });
 
-  it('should remove overflow: hidden when isDisabled option is true', function () {
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+  it("should remove overflow: hidden when isDisabled option is true", function () {
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
 
     let res = render(<Example />);
-    expect(document.documentElement).toHaveStyle('overflow: hidden');
+    expect(document.documentElement).toHaveStyle("overflow: hidden");
 
     res.rerender(<Example isDisabled />);
-    expect(document.documentElement).not.toHaveStyle('overflow: hidden');
+    expect(document.documentElement).not.toHaveStyle("overflow: hidden");
   });
 });

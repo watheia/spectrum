@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, SlotProvider, useFocusableRef, useStyleProps} from '@react-spectrum/utils';
-import {FocusableRef} from '@react-types/shared';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React from 'react';
-import {SpectrumToggleButtonProps} from '@react-types/button';
-import styles from '@adobe/spectrum-css-temp/components/button/vars.css';
-import {Text} from '@react-spectrum/text';
-import {useHover} from '@react-aria/interactions';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useToggleButton} from '@react-aria/button';
-import {useToggleState} from '@react-stately/toggle';
+import {classNames, SlotProvider, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import {FocusableRef} from "@react-types/shared";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React from "react";
+import {SpectrumToggleButtonProps} from "@react-types/button";
+import styles from "@adobe/spectrum-css-temp/components/button/vars.css";
+import {Text} from "@react-spectrum/text";
+import {useHover} from "@react-aria/interactions";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useToggleButton} from "@react-aria/button";
+import {useToggleState} from "@react-stately/toggle";
 
 function ToggleButton(props: SpectrumToggleButtonProps, ref: FocusableRef<HTMLButtonElement>) {
   props = useProviderProps(props);
@@ -43,7 +43,7 @@ function ToggleButton(props: SpectrumToggleButtonProps, ref: FocusableRef<HTMLBu
   let isTextOnly = React.Children.toArray(props.children).every(c => !React.isValidElement(c));
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')} autoFocus={autoFocus}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")} autoFocus={autoFocus}>
       <button
         {...styleProps}
         {...mergeProps(buttonProps, hoverProps)}
@@ -51,17 +51,17 @@ function ToggleButton(props: SpectrumToggleButtonProps, ref: FocusableRef<HTMLBu
         className={
           classNames(
             styles,
-            'spectrum-ActionButton',
+            "spectrum-ActionButton",
             {
-              'spectrum-ActionButton--quiet': isQuiet,
-              'spectrum-ActionButton--emphasized': isEmphasized,
-              'spectrum-ActionButton--staticColor': !!staticColor,
-              'spectrum-ActionButton--staticWhite': staticColor === 'white',
-              'spectrum-ActionButton--staticBlack': staticColor === 'black',
-              'is-active': isPressed,
-              'is-disabled': isDisabled,
-              'is-hovered': isHovered,
-              'is-selected': state.isSelected
+              "spectrum-ActionButton--quiet": isQuiet,
+              "spectrum-ActionButton--emphasized": isEmphasized,
+              "spectrum-ActionButton--staticColor": !!staticColor,
+              "spectrum-ActionButton--staticWhite": staticColor === "white",
+              "spectrum-ActionButton--staticBlack": staticColor === "black",
+              "is-active": isPressed,
+              "is-disabled": isDisabled,
+              "is-hovered": isHovered,
+              "is-selected": state.isSelected
             },
             styleProps.className
           )
@@ -69,14 +69,14 @@ function ToggleButton(props: SpectrumToggleButtonProps, ref: FocusableRef<HTMLBu
         <SlotProvider
           slots={{
             icon: {
-              size: 'S',
-              UNSAFE_className: classNames(styles, 'spectrum-Icon')
+              size: "S",
+              UNSAFE_className: classNames(styles, "spectrum-Icon")
             },
             text: {
-              UNSAFE_className: classNames(styles, 'spectrum-ActionButton-label')
+              UNSAFE_className: classNames(styles, "spectrum-ActionButton-label")
             }
           }}>
-          {typeof children === 'string' || isTextOnly
+          {typeof children === "string" || isTextOnly
             ? <Text>{children}</Text>
             : children}
         </SlotProvider>

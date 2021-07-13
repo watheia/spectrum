@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {getOffset} from './getOffset';
-import {Orientation} from '@react-types/shared';
-import React, {HTMLAttributes, MutableRefObject, useRef} from 'react';
+import {getOffset} from "./getOffset";
+import {Orientation} from "@react-types/shared";
+import React, {HTMLAttributes, MutableRefObject, useRef} from "react";
 
 interface UseDrag1DProps {
   containerRef: MutableRefObject<HTMLElement>,
@@ -39,9 +39,9 @@ const draggingElements: HTMLElement[] = [];
 // It can also handle either a vertical or horizontal movement, but not both at the same time
 
 export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
-  console.warn('useDrag1D is deprecated, please use `useMove` instead https://spectrum-kit.vercel.app/react-aria/useMove.html');
+  console.warn("useDrag1D is deprecated, please use `useMove` instead https://watheia.app/react-aria/useMove.html");
   let {containerRef, reverse, orientation, onHover, onDrag, onPositionChange, onIncrement, onDecrement, onIncrementToMax, onDecrementToMin, onCollapseToggle} = props;
-  let getPosition = (e) => orientation === 'horizontal' ? e.clientX : e.clientY;
+  let getPosition = (e) => orientation === "horizontal" ? e.clientX : e.clientY;
   let getNextOffset = (e: MouseEvent) => {
     let containerOffset = getOffset(containerRef.current, reverse, orientation);
     let mouseOffset = getPosition(e);
@@ -89,8 +89,8 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
     }
 
     draggingElements.splice(draggingElements.indexOf(target), 1);
-    window.removeEventListener('mouseup', onMouseUp, false);
-    window.removeEventListener('mousemove', onMouseDragged, false);
+    window.removeEventListener("mouseup", onMouseUp, false);
+    window.removeEventListener("mousemove", onMouseDragged, false);
   };
 
   let onMouseDown = (e: React.MouseEvent<HTMLElement>) => {
@@ -101,8 +101,8 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
       return;
     }
     draggingElements.push(target);
-    window.addEventListener('mousemove', onMouseDragged, false);
-    window.addEventListener('mouseup', onMouseUp, false);
+    window.addEventListener("mousemove", onMouseDragged, false);
+    window.addEventListener("mouseup", onMouseUp, false);
   };
 
   let onMouseEnter = () => {
@@ -119,9 +119,9 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
 
   let onKeyDown = (e) => {
     switch (e.key) {
-      case 'Left':
-      case 'ArrowLeft':
-        if (orientation === 'horizontal') {
+      case "Left":
+      case "ArrowLeft":
+        if (orientation === "horizontal") {
           e.preventDefault();
           if (onDecrement && !reverse) {
             onDecrement();
@@ -130,9 +130,9 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
           }
         }
         break;
-      case 'Up':
-      case 'ArrowUp':
-        if (orientation === 'vertical') {
+      case "Up":
+      case "ArrowUp":
+        if (orientation === "vertical") {
           e.preventDefault();
           if (onDecrement && !reverse) {
             onDecrement();
@@ -141,9 +141,9 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
           }
         }
         break;
-      case 'Right':
-      case 'ArrowRight':
-        if (orientation === 'horizontal') {
+      case "Right":
+      case "ArrowRight":
+        if (orientation === "horizontal") {
           e.preventDefault();
           if (onIncrement && !reverse) {
             onIncrement();
@@ -152,9 +152,9 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
           }
         }
         break;
-      case 'Down':
-      case 'ArrowDown':
-        if (orientation === 'vertical') {
+      case "Down":
+      case "ArrowDown":
+        if (orientation === "vertical") {
           e.preventDefault();
           if (onIncrement && !reverse) {
             onIncrement();
@@ -163,19 +163,19 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
           }
         }
         break;
-      case 'Home':
+      case "Home":
         e.preventDefault();
         if (onDecrementToMin) {
           onDecrementToMin();
         }
         break;
-      case 'End':
+      case "End":
         e.preventDefault();
         if (onIncrementToMax) {
           onIncrementToMax();
         }
         break;
-      case 'Enter':
+      case "Enter":
         e.preventDefault();
         if (onCollapseToggle) {
           onCollapseToggle();

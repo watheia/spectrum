@@ -10,33 +10,33 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useSlotProps, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import React from 'react';
-import {SpectrumDividerProps} from '@react-types/divider';
-import styles from '@adobe/spectrum-css-temp/components/rule/vars.css';
-import {useSeparator} from '@react-aria/separator';
+import {classNames, useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import React from "react";
+import {SpectrumDividerProps} from "@react-types/divider";
+import styles from "@adobe/spectrum-css-temp/components/rule/vars.css";
+import {useSeparator} from "@react-aria/separator";
 
 let sizeMap = {
-  S: 'small',
-  M: 'medium',
-  L: 'large'
+  S: "small",
+  M: "medium",
+  L: "large"
 };
 
 function Divider(props: SpectrumDividerProps, ref: DOMRef) {
-  props = useSlotProps(props, 'divider');
+  props = useSlotProps(props, "divider");
   let {
-    size = 'L',
-    orientation = 'horizontal',
+    size = "L",
+    orientation = "horizontal",
     ...otherProps
   } = props;
   let domRef = useDOMRef(ref);
   let {styleProps} = useStyleProps(otherProps);
   let weight = sizeMap[size];
 
-  let Element = 'hr';
-  if (orientation === 'vertical') {
-    Element = 'div';
+  let Element = "hr";
+  if (orientation === "vertical") {
+    Element = "div";
   }
 
   let {separatorProps} = useSeparator({
@@ -50,11 +50,11 @@ function Divider(props: SpectrumDividerProps, ref: DOMRef) {
       className={
         classNames(
           styles,
-          'spectrum-Rule',
+          "spectrum-Rule",
           `spectrum-Rule--${weight}`,
           {
-            'spectrum-Rule--vertical': orientation === 'vertical',
-            'spectrum-Rule--horizontal': orientation === 'horizontal'
+            "spectrum-Rule--vertical": orientation === "vertical",
+            "spectrum-Rule--horizontal": orientation === "horizontal"
           },
           styleProps.className
         )

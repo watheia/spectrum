@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, RangeValue, StyleProps, ValueBase} from '@react-types/shared';
+import {DOMProps, RangeValue, StyleProps, ValueBase} from "@react-types/shared";
 
 export type DateValue = string | number | Date;
 export interface CalendarPropsBase {

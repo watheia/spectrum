@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, FocusStrategy, Node, StyleProps} from '@react-types/shared';
-import {AriaListBoxOptions, useListBox} from '@react-aria/listbox';
-import {classNames, useStyleProps} from '@react-spectrum/utils';
+import {AriaLabelingProps, DOMProps, FocusStrategy, Node, StyleProps} from "@react-types/shared";
+import {AriaListBoxOptions, useListBox} from "@react-aria/listbox";
+import {classNames, useStyleProps} from "@react-spectrum/utils";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {ListBoxContext} from './ListBoxContext';
-import {ListBoxOption} from './ListBoxOption';
-import {ListBoxSection} from './ListBoxSection';
-import {ListLayout} from '@react-stately/layout';
-import {ListState} from '@react-stately/list';
-import {mergeProps} from '@react-aria/utils';
-import {ProgressCircle} from '@react-spectrum/progress';
-import React, {HTMLAttributes, ReactElement, ReactNode, RefObject, useMemo} from 'react';
-import {ReusableView} from '@react-stately/virtualizer';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {useCollator, useMessageFormatter} from '@react-aria/i18n';
-import {useProvider} from '@react-spectrum/provider';
-import {Virtualizer, VirtualizerItem} from '@react-aria/virtualizer';
+import intlMessages from "../intl/*.json";
+import {ListBoxContext} from "./ListBoxContext";
+import {ListBoxOption} from "./ListBoxOption";
+import {ListBoxSection} from "./ListBoxSection";
+import {ListLayout} from "@react-stately/layout";
+import {ListState} from "@react-stately/list";
+import {mergeProps} from "@react-aria/utils";
+import {ProgressCircle} from "@react-spectrum/progress";
+import React, {HTMLAttributes, ReactElement, ReactNode, RefObject, useMemo} from "react";
+import {ReusableView} from "@react-stately/virtualizer";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {useCollator, useMessageFormatter} from "@react-aria/i18n";
+import {useProvider} from "@react-spectrum/provider";
+import {Virtualizer, VirtualizerItem} from "@react-aria/virtualizer";
 
 interface ListBoxBaseProps<T> extends AriaListBoxOptions<T>, DOMProps, AriaLabelingProps, StyleProps {
   layout: ListLayout<T>,
@@ -49,14 +49,14 @@ interface ListBoxBaseProps<T> extends AriaListBoxOptions<T>, DOMProps, AriaLabel
 /** @private */
 export function useListBoxLayout<T>(state: ListState<T>) {
   let {scale} = useProvider();
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let layout = useMemo(() =>
     new ListLayout<T>({
-      estimatedRowHeight: scale === 'large' ? 48 : 32,
-      estimatedHeadingHeight: scale === 'large' ? 33 : 26,
-      padding: scale === 'large' ? 5 : 4, // TODO: get from DNA
+      estimatedRowHeight: scale === "large" ? 48 : 32,
+      estimatedHeadingHeight: scale === "large" ? 33 : 26,
+      padding: scale === "large" ? 5 : 4, // TODO: get from DNA
       loaderHeight: 40,
-      placeholderHeight: scale === 'large' ? 48 : 32,
+      placeholderHeight: scale === "large" ? 48 : 32,
       collator
     })
   , [collator, scale]);
@@ -84,13 +84,13 @@ function ListBoxBase<T>(props: ListBoxBaseProps<T>, ref: RefObject<HTMLDivElemen
   // The header is extracted from the children so it can receive ARIA labeling properties.
   type View = ReusableView<Node<T>, unknown>;
   let renderWrapper = (parent: View, reusableView: View, children: View[], renderChildren: (views: View[]) => ReactElement[]) => {
-    if (reusableView.viewType === 'section') {
+    if (reusableView.viewType === "section") {
       return (
         <ListBoxSection
           key={reusableView.key}
           reusableView={reusableView}
-          header={children.find(c => c.viewType === 'header')}>
-          {renderChildren(children.filter(c => c.viewType === 'item'))}
+          header={children.find(c => c.viewType === "header")}>
+          {renderChildren(children.filter(c => c.viewType === "item"))}
         </ListBoxSection>
       );
     }
@@ -115,7 +115,7 @@ function ListBoxBase<T>(props: ListBoxBaseProps<T>, ref: RefObject<HTMLDivElemen
         className={
           classNames(
             styles,
-            'spectrum-Menu',
+            "spectrum-Menu",
             styleProps.className
           )
         }
@@ -128,7 +128,7 @@ function ListBoxBase<T>(props: ListBoxBaseProps<T>, ref: RefObject<HTMLDivElemen
         shouldUseVirtualFocus={shouldUseVirtualFocus}
         onScroll={onScroll}>
         {(type, item: Node<T>) => {
-          if (type === 'item') {
+          if (type === "item") {
             return (
               <ListBoxOption
                 item={item}
@@ -136,19 +136,19 @@ function ListBoxBase<T>(props: ListBoxBaseProps<T>, ref: RefObject<HTMLDivElemen
                 shouldFocusOnHover={focusOnPointerEnter}
                 shouldUseVirtualFocus={shouldUseVirtualFocus} />
             );
-          } else if (type === 'loader') {
+          } else if (type === "loader") {
             return (
               // aria-selected isn't needed here since this option is not selectable.
               // eslint-disable-next-line jsx-a11y/role-has-required-aria-props
-              <div role="option" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%'}}>
+              <div role="option" style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%"}}>
                 <ProgressCircle
                   isIndeterminate
                   size="S"
-                  aria-label={state.collection.size > 0 ? formatMessage('loadingMore') : formatMessage('loading')}
-                  UNSAFE_className={classNames(styles, 'spectrum-Dropdown-progressCircle')} />
+                  aria-label={state.collection.size > 0 ? formatMessage("loadingMore") : formatMessage("loading")}
+                  UNSAFE_className={classNames(styles, "spectrum-Dropdown-progressCircle")} />
               </div>
             );
-          } else if (type === 'placeholder') {
+          } else if (type === "placeholder") {
             let emptyState = props.renderEmptyState ? props.renderEmptyState() : null;
             if (emptyState == null) {
               return null;

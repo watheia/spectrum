@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {HTMLAttributes, Key, KeyboardEvent, useRef} from 'react';
-import {KeyboardDelegate} from '@react-types/shared';
-import {MultipleSelectionManager} from '@react-stately/selection';
+import {HTMLAttributes, Key, KeyboardEvent, useRef} from "react";
+import {KeyboardDelegate} from "@react-types/shared";
+import {MultipleSelectionManager} from "@react-stately/selection";
 
 interface TypeSelectOptions {
   /**
@@ -42,7 +42,7 @@ interface TypeSelectAria {
 export function useTypeSelect(options: TypeSelectOptions): TypeSelectAria {
   let {keyboardDelegate, selectionManager, onTypeSelect} = options;
   let state = useRef({
-    search: '',
+    search: "",
     timeout: null
   }).current;
 
@@ -56,9 +56,9 @@ export function useTypeSelect(options: TypeSelectOptions): TypeSelectAria {
     // When we time out, the search term becomes empty, hence the check on length.
     // Trimming is to account for the case of pressing the Spacebar more than once,
     // which should cycle through the selection/deselection of the focused item.
-    if (character === ' ' && state.search.trim().length > 0) {
+    if (character === " " && state.search.trim().length > 0) {
       e.preventDefault();
-      if (!('continuePropagation' in e)) {
+      if (!("continuePropagation" in e)) {
         e.stopPropagation();
       }
     }
@@ -83,7 +83,7 @@ export function useTypeSelect(options: TypeSelectOptions): TypeSelectAria {
 
     clearTimeout(state.timeout);
     state.timeout = setTimeout(() => {
-      state.search = '';
+      state.search = "";
     }, 500);
   };
 
@@ -105,5 +105,5 @@ function getStringForKey(key: string) {
     return key;
   }
 
-  return '';
+  return "";
 }

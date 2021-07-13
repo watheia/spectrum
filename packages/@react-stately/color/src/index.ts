@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './Color';
-export * from './useColorSliderState';
-export * from './useColorWheelState';
-export * from './useColorFieldState';
+export * from "./Color";
+export * from "./useColorSliderState";
+export * from "./useColorWheelState";
+export * from "./useColorFieldState";

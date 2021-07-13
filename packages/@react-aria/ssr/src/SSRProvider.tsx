@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import React, {ReactNode, useContext, useLayoutEffect, useMemo, useState} from 'react';
+import React, {ReactNode, useContext, useLayoutEffect, useMemo, useState} from "react";
 
 // To support SSR, the auto incrementing id counter is stored in a context. This allows
 // it to be reset on every request to ensure the client and server are consistent.
@@ -60,7 +60,7 @@ export function SSRProvider(props: SSRProviderProps): JSX.Element {
 }
 
 let canUseDOM = Boolean(
-  typeof window !== 'undefined' &&
+  typeof window !== "undefined" &&
   window.document &&
   window.document.createElement
 );
@@ -72,7 +72,7 @@ export function useSSRSafeId(defaultId?: string): string {
   // If we are rendering in a non-DOM environment, and there's no SSRProvider,
   // provide a warning to hint to the developer to add one.
   if (ctx === defaultContext && !canUseDOM) {
-    console.warn('When server rendering, you must wrap your application in an <SSRProvider> to ensure consistent ids are generated between the client and server.');
+    console.warn("When server rendering, you must wrap your application in an <SSRProvider> to ensure consistent ids are generated between the client and server.");
   }
 
   return useMemo(() => defaultId || `react-aria-${ctx.prefix}-${++ctx.current}`, [defaultId]);
@@ -90,7 +90,7 @@ export function useIsSSR(): boolean {
 
   // If on the client, and the component was initially server rendered,
   // then schedule a layout effect to update the component after hydration.
-  if (typeof window !== 'undefined' && isInSSRContext) {
+  if (typeof window !== "undefined" && isInSSRContext) {
     // This if statement technically breaks the rules of hooks, but is safe
     // because the condition never changes after mounting.
     // eslint-disable-next-line react-hooks/rules-of-hooks

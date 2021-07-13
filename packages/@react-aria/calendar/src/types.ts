@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from '@react-types/button';
-import {HTMLAttributes, RefObject} from 'react';
+import {AriaButtonProps} from "@react-types/button";
+import {HTMLAttributes, RefObject} from "react";
 
 type DOMProps = HTMLAttributes<HTMLElement>;
 export interface CalendarAria {

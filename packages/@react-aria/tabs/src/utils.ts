@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key} from 'react';
-import {TabListState} from '@react-stately/tabs';
+import {Key} from "react";
+import {TabListState} from "@react-stately/tabs";
 
 export const tabsIds = new WeakMap<TabListState<unknown>, string>();
 
 export function generateId<T>(state: TabListState<T>, key: Key, role: string) {
-  if (typeof key === 'string') {
-    key = key.replace(/\s+/g, '');
+  if (typeof key === "string") {
+    key = key.replace(/\s+/g, "");
   }
 
   let baseId = tabsIds.get(state);

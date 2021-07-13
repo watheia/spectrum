@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {BackgroundColorValue, BorderColorValue, BorderRadiusValue, BorderSizeValue, DimensionValue} from './dna';
-import {CSSProperties} from 'react';
+import {BackgroundColorValue, BorderColorValue, BorderRadiusValue, BorderSizeValue, DimensionValue} from "./dna";
+import {CSSProperties} from "react";
 
 type ResponsiveProp<T> = {
   base?: T,
@@ -70,9 +70,9 @@ export interface StyleProps {
   /** When used in a flex layout, specifies the initial main size of the element. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis). */
   flexBasis?: Responsive<number | string>,
   /** Specifies how the element is justified inside a flex or grid container. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self). */
-  justifySelf?: Responsive<'auto' | 'normal' | 'start' | 'end' | 'flex-start' | 'flex-end' | 'self-start' | 'self-end' | 'center' | 'left' | 'right' | 'stretch'>, // ...
+  justifySelf?: Responsive<"auto" | "normal" | "start" | "end" | "flex-start" | "flex-end" | "self-start" | "self-end" | "center" | "left" | "right" | "stretch">, // ...
   /** Overrides the `alignItems` property of a flex or grid container. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-self). */
-  alignSelf?: Responsive<'auto' | 'normal' | 'start' | 'end' | 'center' | 'flex-start' | 'flex-end' | 'self-start' | 'self-end' | 'stretch'>,
+  alignSelf?: Responsive<"auto" | "normal" | "start" | "end" | "center" | "flex-start" | "flex-end" | "self-start" | "self-end" | "stretch">,
   /** The layout order for the element within a flex or grid container. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/order). */
   order?: Responsive<number>,
 
@@ -92,7 +92,7 @@ export interface StyleProps {
   gridRowEnd?: Responsive<string>,
 
   /** Specifies how the element is positioned. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/position). */
-  position?: Responsive<'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'>,
+  position?: Responsive<"static" | "relative" | "absolute" | "fixed" | "sticky">,
   /** The stacking order for the element. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index). */
   zIndex?: Responsive<number>,
   /** The top position for the element. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/top). */
@@ -196,17 +196,17 @@ export interface BoxAlignmentStyleProps {
    * The distribution of space around items along the main axis. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content).
    * @default 'stretch'
    */
-  justifyContent?: Responsive<'start' | 'end' | 'center' | 'left' | 'right' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch' | 'baseline' | 'first baseline' | 'last baseline' | 'safe center' | 'unsafe center'>,
+  justifyContent?: Responsive<"start" | "end" | "center" | "left" | "right" | "space-between" | "space-around" | "space-evenly" | "stretch" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center">,
   /**
    * The distribution of space around child items along the cross axis. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-content).
    * @default 'start'
    */
-  alignContent?: Responsive<'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'stretch' | 'baseline' | 'first baseline' | 'last baseline' | 'safe center' | 'unsafe center'>,
+  alignContent?: Responsive<"start" | "end" | "center" | "space-between" | "space-around" | "space-evenly" | "stretch" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center">,
   /**
    * The alignment of children within their container. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items).
    * @default 'stretch'
    */
-  alignItems?: Responsive<'start' | 'end' | 'center' | 'stretch' | 'self-start' | 'self-end' | 'baseline' | 'first baseline' | 'last baseline' | 'safe center' | 'unsafe center'>,
+  alignItems?: Responsive<"start" | "end" | "center" | "stretch" | "self-start" | "self-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center">,
   /** The space to display between both rows and columns. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/gap). */
   gap?: Responsive<DimensionValue>,
   /** The space to display between columns. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap). */
@@ -220,12 +220,12 @@ export interface FlexStyleProps extends BoxAlignmentStyleProps, StyleProps {
    * The direction in which to layout children. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction).
    * @default 'row'
    */
-  direction?: Responsive<'row' | 'column' | 'row-reverse' | 'column-reverse'>,
+  direction?: Responsive<"row" | "column" | "row-reverse" | "column-reverse">,
   /**
    * Whether to wrap items onto multiple lines. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap).
    * @default false
    */
-  wrap?: Responsive<boolean | 'wrap' | 'nowrap' | 'wrap-reverse'>
+  wrap?: Responsive<boolean | "wrap" | "nowrap" | "wrap-reverse">
 }
 
 export interface GridStyleProps extends BoxAlignmentStyleProps, StyleProps {
@@ -240,7 +240,7 @@ export interface GridStyleProps extends BoxAlignmentStyleProps, StyleProps {
   /** Defines the size of implicitly generated rows. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-rows). */
   autoRows?: Responsive<DimensionValue>,
   /** Controls how auto-placed items are flowed into the grid. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow). */
-  autoFlow?: Responsive<'row' | 'column' | 'row dense' | 'column dense'>,
+  autoFlow?: Responsive<"row" | "column" | "row dense" | "column dense">,
   /** Defines the default `justifySelf` for all items in the grid. See [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items). */
-  justifyItems?: Responsive<'auto' | 'normal' | 'start' | 'end' | 'center' | 'left' | 'right' | 'stretch' | 'self-start' | 'self-end' | 'baseline' | 'first baseline' | 'last baseline' | 'safe center' | 'unsafe center' | 'legacy right' | 'legacy left' | 'legacy center'>
+  justifyItems?: Responsive<"auto" | "normal" | "start" | "end" | "center" | "left" | "right" | "stretch" | "self-start" | "self-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center" | "legacy right" | "legacy left" | "legacy center">
 }

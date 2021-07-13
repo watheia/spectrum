@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {CheckboxGroupContext} from './context';
-import CheckmarkSmall from '@spectrum-icons/ui/CheckmarkSmall';
-import {classNames, useFocusableRef, useStyleProps} from '@react-spectrum/utils';
-import DashSmall from '@spectrum-icons/ui/DashSmall';
-import {FocusableRef} from '@react-types/shared';
-import {FocusRing} from '@react-aria/focus';
-import React, {forwardRef, useContext, useRef} from 'react';
-import {SpectrumCheckboxProps} from '@react-types/checkbox';
-import styles from '@adobe/spectrum-css-temp/components/checkbox/vars.css';
-import {useCheckbox, useCheckboxGroupItem} from '@react-aria/checkbox';
-import {useHover} from '@react-aria/interactions';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useToggleState} from '@react-stately/toggle';
+import {CheckboxGroupContext} from "./context";
+import CheckmarkSmall from "@spectrum-icons/ui/CheckmarkSmall";
+import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import DashSmall from "@spectrum-icons/ui/DashSmall";
+import {FocusableRef} from "@react-types/shared";
+import {FocusRing} from "@react-aria/focus";
+import React, {forwardRef, useContext, useRef} from "react";
+import {SpectrumCheckboxProps} from "@react-types/checkbox";
+import styles from "@adobe/spectrum-css-temp/components/checkbox/vars.css";
+import {useCheckbox, useCheckboxGroupItem} from "@react-aria/checkbox";
+import {useHover} from "@react-aria/interactions";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useToggleState} from "@react-stately/toggle";
 
 function Checkbox(props: SpectrumCheckboxProps, ref: FocusableRef<HTMLLabelElement>) {
   let originalProps = props;
@@ -62,17 +62,17 @@ function Checkbox(props: SpectrumCheckboxProps, ref: FocusableRef<HTMLLabelEleme
     : useCheckbox(props, useToggleState(props), inputRef);
 
   let markIcon = isIndeterminate
-    ? <DashSmall UNSAFE_className={classNames(styles, 'spectrum-Checkbox-partialCheckmark')} />
-    : <CheckmarkSmall UNSAFE_className={classNames(styles, 'spectrum-Checkbox-checkmark')} />;
+    ? <DashSmall UNSAFE_className={classNames(styles, "spectrum-Checkbox-partialCheckmark")} />
+    : <CheckmarkSmall UNSAFE_className={classNames(styles, "spectrum-Checkbox-checkmark")} />;
 
   if (groupState) {
-    for (let key of ['isSelected', 'defaultSelected', 'isEmphasized']) {
+    for (let key of ["isSelected", "defaultSelected", "isEmphasized"]) {
       if (originalProps[key] != null) {
         console.warn(`${key} is unsupported on individual <Checkbox> elements within a <CheckboxGroup>. Please apply these props to the group instead.`);
       }
     }
     if (props.value == null) {
-      console.warn('A <Checkbox> element within a <CheckboxGroup> requires a `value` property.');
+      console.warn("A <Checkbox> element within a <CheckboxGroup> requires a `value` property.");
     }
   }
 
@@ -84,27 +84,27 @@ function Checkbox(props: SpectrumCheckboxProps, ref: FocusableRef<HTMLLabelEleme
       className={
         classNames(
           styles,
-          'spectrum-Checkbox',
+          "spectrum-Checkbox",
           {
-            'is-checked': inputProps.checked,
-            'is-indeterminate': isIndeterminate,
-            'spectrum-Checkbox--quiet': !isEmphasized,
-            'is-invalid': validationState === 'invalid',
-            'is-disabled': isDisabled,
-            'is-hovered': isHovered
+            "is-checked": inputProps.checked,
+            "is-indeterminate": isIndeterminate,
+            "spectrum-Checkbox--quiet": !isEmphasized,
+            "is-invalid": validationState === "invalid",
+            "is-disabled": isDisabled,
+            "is-hovered": isHovered
           },
           styleProps.className
         )
       }>
-      <FocusRing focusRingClass={classNames(styles, 'focus-ring')} autoFocus={autoFocus}>
+      <FocusRing focusRingClass={classNames(styles, "focus-ring")} autoFocus={autoFocus}>
         <input
           {...inputProps}
           ref={inputRef}
-          className={classNames(styles, 'spectrum-Checkbox-input')} />
+          className={classNames(styles, "spectrum-Checkbox-input")} />
       </FocusRing>
-      <span className={classNames(styles, 'spectrum-Checkbox-box')}>{markIcon}</span>
+      <span className={classNames(styles, "spectrum-Checkbox-box")}>{markIcon}</span>
       {children && (
-        <span className={classNames(styles, 'spectrum-Checkbox-label')}>
+        <span className={classNames(styles, "spectrum-Checkbox-label")}>
           {children}
         </span>
       )}

@@ -10,85 +10,85 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {DatePicker} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {DatePicker} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
 const BlockDecorator = storyFn => <div>{storyFn()}</div>;
 
-storiesOf('DatePicker', module)
+storiesOf("DatePicker", module)
   .addDecorator(BlockDecorator)
   .add(
-    'default',
+    "default",
     () => render()
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'defaultValue',
+    "defaultValue",
     () => render({defaultValue: new Date(2020, 2, 3)})
   )
   .add(
-    'controlled value',
+    "controlled value",
     () => render({value: new Date(2020, 2, 3)})
   )
   .add(
-    'custom date format',
+    "custom date format",
     () => render({
       formatOptions: {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        second: 'numeric'
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric"
       }
     })
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({isDisabled: true, value: new Date(2020, 2, 3)})
   )
   .add(
-    'isQuiet, isDisabled',
+    "isQuiet, isDisabled",
     () => render({isQuiet: true, isDisabled: true, value: new Date(2020, 2, 3)})
   )
   .add(
-    'isReadOnly',
+    "isReadOnly",
     () => render({isReadOnly: true, value: new Date(2020, 2, 3)})
   )
   .add(
-    'isRequired',
+    "isRequired",
     () => render({isRequired: true})
   )
   .add(
-    'autoFocus',
+    "autoFocus",
     () => render({autoFocus: true})
   )
   .add(
-    'validationState: invalid',
-    () => render({validationState: 'invalid', value: new Date(2020, 2, 3)})
+    "validationState: invalid",
+    () => render({validationState: "invalid", value: new Date(2020, 2, 3)})
   )
   .add(
-    'validationState: valid',
-    () => render({validationState: 'valid', value: new Date(2020, 2, 3)})
+    "validationState: valid",
+    () => render({validationState: "valid", value: new Date(2020, 2, 3)})
   )
   .add(
-    'minDate: 2010/1/1, maxDate: 2020/1/1',
+    "minDate: 2010/1/1, maxDate: 2020/1/1",
     () => render({minValue: new Date(2010, 0, 1), maxValue: new Date(2020, 0, 1)})
   )
   .add(
-    'placeholderDate: 1980/1/1',
+    "placeholderDate: 1980/1/1",
     () => render({placeholderDate: new Date(1980, 0, 1)})
   );
 
 function render(props = {}) {
   return (
     <DatePicker
-      onChange={action('change')}
+      onChange={action("change")}
       {...props} />
   );
 }

@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {FocusableDOMProps, FocusableProps} from '@react-types/shared';
-import {mergeProps, useSyncRef} from '@react-aria/utils';
-import React, {HTMLAttributes, MutableRefObject, ReactNode, RefObject, useContext, useEffect} from 'react';
-import {useFocus, useKeyboard} from '@react-aria/interactions';
+import {FocusableDOMProps, FocusableProps} from "@react-types/shared";
+import {mergeProps, useSyncRef} from "@react-aria/utils";
+import React, {HTMLAttributes, MutableRefObject, ReactNode, RefObject, useContext, useEffect} from "react";
+import {useFocus, useKeyboard} from "@react-aria/interactions";
 
 interface FocusableOptions extends FocusableProps, FocusableDOMProps {
   /** Whether focus should be disabled. */

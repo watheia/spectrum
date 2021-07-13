@@ -12,4 +12,4 @@
 
 /// <reference types="intl-types-extension" />
 
-export * from './useNumberField';
+export * from "./useNumberField";

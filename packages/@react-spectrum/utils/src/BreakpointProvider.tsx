@@ -1,5 +1,5 @@
-import React, {ReactNode, useContext, useEffect, useState} from 'react';
-import {useIsSSR} from '@react-aria/ssr';
+import React, {ReactNode, useContext, useEffect, useState} from "react";
+import {useIsSSR} from "@react-aria/ssr";
 
 interface Breakpoints {
   S?: number,
@@ -13,7 +13,7 @@ interface BreakpointContext {
 }
 
 const Context = React.createContext<BreakpointContext>(null);
-Context.displayName = 'BreakpointContext';
+Context.displayName = "BreakpointContext";
 
 interface BreakpointProviderProps {
   children?: ReactNode,
@@ -37,7 +37,7 @@ export function useMatchedBreakpoints(breakpoints: Breakpoints): string[] {
   let entries = Object.entries(breakpoints).sort(([, valueA], [, valueB]) => valueB - valueA);
   let breakpointQueries = entries.map(([, value]) => `(min-width: ${value}px)`);
 
-  let supportsMatchMedia = typeof window !== 'undefined' && typeof window.matchMedia === 'function';
+  let supportsMatchMedia = typeof window !== "undefined" && typeof window.matchMedia === "function";
   let getBreakpointHandler = () => {
     let matched = [];
     for (let i in breakpointQueries) {
@@ -46,14 +46,14 @@ export function useMatchedBreakpoints(breakpoints: Breakpoints): string[] {
         matched.push(entries[i][0]);
       }
     }
-    matched.push('base');
+    matched.push("base");
     return matched;
   };
 
   let [breakpoint, setBreakpoint] = useState(() =>
     supportsMatchMedia
       ? getBreakpointHandler()
-      : ['base']
+      : ["base"]
   );
 
   useEffect(() => {
@@ -65,16 +65,16 @@ export function useMatchedBreakpoints(breakpoints: Breakpoints): string[] {
       setBreakpoint(getBreakpointHandler());
     };
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
   }, [supportsMatchMedia]);
 
   // If in SSR, the media query should never match. Once the page hydrates,
   // this will update and the real value will be returned.
   let isSSR = useIsSSR();
-  return isSSR ? ['base'] : breakpoint;
+  return isSSR ? ["base"] : breakpoint;
 }
 
 export function useBreakpoint(): BreakpointContext {

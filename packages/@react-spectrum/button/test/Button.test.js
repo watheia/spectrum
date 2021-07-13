@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton, Button, ClearButton, LogicButton} from '../';
-import {fireEvent, render} from '@testing-library/react';
-import React from 'react';
-import {triggerPress} from '@react-spectrum/test-utils';
-import V2Button from '@react/react-spectrum/Button';
+import {ActionButton, Button, ClearButton, LogicButton} from "../";
+import {fireEvent, render} from "@testing-library/react";
+import React from "react";
+import {triggerPress} from "@react-spectrum/test-utils";
+import V2Button from "@react/react-spectrum/Button";
 
 /**
  * Logic Button has no tests outside of this file because functionally it is identical
@@ -22,7 +22,7 @@ import V2Button from '@react/react-spectrum/Button';
  * testing that, these are all the tests we need to cover Logic Button.
  */
 
-describe('Button', function () {
+describe("Button", function () {
   let onPressSpy = jest.fn();
 
   afterEach(() => {
@@ -31,57 +31,57 @@ describe('Button', function () {
 
   it.each`
     Name              | Component      | props
-    ${'ActionButton'} | ${ActionButton}| ${{onPress: onPressSpy}}
-    ${'Button'}       | ${Button}      | ${{onPress: onPressSpy}}
-    ${'LogicButton'}  | ${LogicButton} | ${{onPress: onPressSpy}}
-    ${'V2Button'}     | ${V2Button}    | ${{onClick: onPressSpy}}
-  `('$Name handles defaults', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}| ${{onPress: onPressSpy}}
+    ${"Button"}       | ${Button}      | ${{onPress: onPressSpy}}
+    ${"LogicButton"}  | ${LogicButton} | ${{onPress: onPressSpy}}
+    ${"V2Button"}     | ${V2Button}    | ${{onClick: onPressSpy}}
+  `("$Name handles defaults", function ({Component, props}) {
     let {getByRole, getByText} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     triggerPress(button);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
 
-    let text = getByText('Click Me');
+    let text = getByText("Click Me");
     expect(text).not.toBeNull();
   });
 
   it.each`
     Name              | Component
-    ${'ActionButton'} | ${ActionButton}
-    ${'Button'}       | ${Button}
-    ${'ClearButton'}  | ${ClearButton}
-    ${'LogicButton'}  | ${LogicButton}
-    ${'V2Button'}     | ${V2Button}
-  `('$Name allows custom props to be passed through to the button', function ({Component}) {
+    ${"ActionButton"} | ${ActionButton}
+    ${"Button"}       | ${Button}
+    ${"ClearButton"}  | ${ClearButton}
+    ${"LogicButton"}  | ${LogicButton}
+    ${"V2Button"}     | ${V2Button}
+  `("$Name allows custom props to be passed through to the button", function ({Component}) {
     let {getByRole} = render(<Component data-foo="bar">Click Me</Component>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('data-foo', 'bar');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("data-foo", "bar");
   });
 
   it.each`
     Name              | Component
-    ${'ActionButton'} | ${ActionButton}
-    ${'Button'}       | ${Button}
-    ${'ClearButton'}  | ${ClearButton}
-    ${'LogicButton'}  | ${LogicButton}
-    ${'V2Button'}     | ${V2Button}
-  `('$Name supports aria-label', function ({Component}) {
+    ${"ActionButton"} | ${ActionButton}
+    ${"Button"}       | ${Button}
+    ${"ClearButton"}  | ${ClearButton}
+    ${"LogicButton"}  | ${LogicButton}
+    ${"V2Button"}     | ${V2Button}
+  `("$Name supports aria-label", function ({Component}) {
     let {getByRole} = render(<Component aria-label="Test" />);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-label', 'Test');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-label", "Test");
   });
 
   it.each`
     Name              | Component
-    ${'ActionButton'} | ${ActionButton}
-    ${'Button'}       | ${Button}
-    ${'ClearButton'}  | ${ClearButton}
-    ${'LogicButton'}  | ${LogicButton}
-    ${'V2Button'}     | ${V2Button}
-  `('$Name supports aria-labelledby', function ({Component}) {
+    ${"ActionButton"} | ${ActionButton}
+    ${"Button"}       | ${Button}
+    ${"ClearButton"}  | ${ClearButton}
+    ${"LogicButton"}  | ${LogicButton}
+    ${"V2Button"}     | ${V2Button}
+  `("$Name supports aria-labelledby", function ({Component}) {
     let {getByRole} = render(
       <>
         <span id="test">Test</span>
@@ -89,18 +89,18 @@ describe('Button', function () {
       </>
     );
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-labelledby', 'test');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-labelledby", "test");
   });
 
   it.each`
     Name              | Component
-    ${'ActionButton'} | ${ActionButton}
-    ${'Button'}       | ${Button}
-    ${'ClearButton'}  | ${ClearButton}
-    ${'LogicButton'}  | ${LogicButton}
-    ${'V2Button'}     | ${V2Button}
-  `('$Name supports aria-describedby', function ({Component}) {
+    ${"ActionButton"} | ${ActionButton}
+    ${"Button"}       | ${Button}
+    ${"ClearButton"}  | ${ClearButton}
+    ${"LogicButton"}  | ${LogicButton}
+    ${"V2Button"}     | ${V2Button}
+  `("$Name supports aria-describedby", function ({Component}) {
     let {getByRole} = render(
       <>
         <span id="test">Test</span>
@@ -108,94 +108,94 @@ describe('Button', function () {
       </>
     );
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-describedby', 'test');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-describedby", "test");
   });
 
   it.each`
     Name              | Component         | props
-    ${'ActionButton'} | ${ActionButton}   | ${{UNSAFE_className: 'x-men-first-class'}}
-    ${'Button'}       | ${Button}         | ${{UNSAFE_className: 'x-men-first-class'}}
-    ${'ClearButton'}  | ${ClearButton}    | ${{UNSAFE_className: 'x-men-first-class'}}
-    ${'LogicButton'}  | ${LogicButton}    | ${{UNSAFE_className: 'x-men-first-class'}}
-    ${'V2Button'}     | ${V2Button}       | ${{className: 'x-men-first-class'}}
-  `('$Name allows a custom classname on the button', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}   | ${{UNSAFE_className: "x-men-first-class"}}
+    ${"Button"}       | ${Button}         | ${{UNSAFE_className: "x-men-first-class"}}
+    ${"ClearButton"}  | ${ClearButton}    | ${{UNSAFE_className: "x-men-first-class"}}
+    ${"LogicButton"}  | ${LogicButton}    | ${{UNSAFE_className: "x-men-first-class"}}
+    ${"V2Button"}     | ${V2Button}       | ${{className: "x-men-first-class"}}
+  `("$Name allows a custom classname on the button", function ({Component, props}) {
     let {getByRole} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button');
-    expect(button.getAttribute('class')).toEqual(expect.stringContaining('x-men-first-class'));
+    let button = getByRole("button");
+    expect(button.getAttribute("class")).toEqual(expect.stringContaining("x-men-first-class"));
   });
 
   it.each`
     Name              | Component
-    ${'ActionButton'} | ${ActionButton}
-    ${'Button'}       | ${Button}
-    ${'ClearButton'}  | ${ClearButton}
-    ${'LogicButton'}  | ${LogicButton}
-    ${'V2Button'}     | ${V2Button}
-  `('$Name handles deprecated onClick', function ({Component}) {
-    let spyWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    ${"ActionButton"} | ${ActionButton}
+    ${"Button"}       | ${Button}
+    ${"ClearButton"}  | ${ClearButton}
+    ${"LogicButton"}  | ${LogicButton}
+    ${"V2Button"}     | ${V2Button}
+  `("$Name handles deprecated onClick", function ({Component}) {
+    let spyWarn = jest.spyOn(console, "warn").mockImplementation(() => {});
     let {getByRole} = render(<Component onClick={onPressSpy}>Click Me</Component>);
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     triggerPress(button);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
     if (Component === Button) {
-      expect(spyWarn).toHaveBeenCalledWith('onClick is deprecated, please use onPress');
+      expect(spyWarn).toHaveBeenCalledWith("onClick is deprecated, please use onPress");
     }
   });
 
   it.each`
     Name              | Component      | props
-    ${'ActionButton'} | ${ActionButton}| ${{onPress: onPressSpy, elementType: 'a'}}
-    ${'Button'}       | ${Button}      | ${{onPress: onPressSpy, elementType: 'a'}}
-    ${'LogicButton'}  | ${LogicButton} | ${{onPress: onPressSpy, elementType: 'a'}}
-    ${'V2Button'}     | ${V2Button}    | ${{onClick: onPressSpy, element: 'a'}}
-  `('$Name can have elementType=a', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}| ${{onPress: onPressSpy, elementType: "a"}}
+    ${"Button"}       | ${Button}      | ${{onPress: onPressSpy, elementType: "a"}}
+    ${"LogicButton"}  | ${LogicButton} | ${{onPress: onPressSpy, elementType: "a"}}
+    ${"V2Button"}     | ${V2Button}    | ${{onClick: onPressSpy, element: "a"}}
+  `("$Name can have elementType=a", function ({Component, props}) {
     let {getByRole} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('tabindex', '0');
-    expect(button).not.toHaveAttribute('type', 'button');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("tabindex", "0");
+    expect(button).not.toHaveAttribute("type", "button");
     triggerPress(button);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
 
-    fireEvent.keyDown(button, {key: 'Enter', code: 13});
-    fireEvent.keyUp(button, {key: 'Enter', code: 13});
+    fireEvent.keyDown(button, {key: "Enter", code: 13});
+    fireEvent.keyUp(button, {key: "Enter", code: 13});
     expect(onPressSpy).toHaveBeenCalledTimes(2);
 
-    fireEvent.keyDown(button, {key: ' ', code: 32});
-    fireEvent.keyUp(button, {key: ' ', code: 32});
+    fireEvent.keyDown(button, {key: " ", code: 32});
+    fireEvent.keyUp(button, {key: " ", code: 32});
     expect(onPressSpy).toHaveBeenCalledTimes(3);
   });
 
   it.each`
     Name              | Component      | props
-    ${'ActionButton'} | ${ActionButton}| ${{onPress: onPressSpy, elementType: 'a', href: '#only-hash-in-jsdom'}}
-    ${'Button'}       | ${Button}      | ${{onPress: onPressSpy, elementType: 'a', href: '#only-hash-in-jsdom'}}
-    ${'LogicButton'}  | ${LogicButton} | ${{onPress: onPressSpy, elementType: 'a', href: '#only-hash-in-jsdom'}}
-    ${'V2Button'}     | ${V2Button}    | ${{onClick: onPressSpy, element: 'a', href: '#only-hash-in-jsdom'}}
-  `('$Name can have elementType=a with an href', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}| ${{onPress: onPressSpy, elementType: "a", href: "#only-hash-in-jsdom"}}
+    ${"Button"}       | ${Button}      | ${{onPress: onPressSpy, elementType: "a", href: "#only-hash-in-jsdom"}}
+    ${"LogicButton"}  | ${LogicButton} | ${{onPress: onPressSpy, elementType: "a", href: "#only-hash-in-jsdom"}}
+    ${"V2Button"}     | ${V2Button}    | ${{onClick: onPressSpy, element: "a", href: "#only-hash-in-jsdom"}}
+  `("$Name can have elementType=a with an href", function ({Component, props}) {
     let {getByRole} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('tabindex', '0');
-    expect(button).toHaveAttribute('href', '#only-hash-in-jsdom');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("tabindex", "0");
+    expect(button).toHaveAttribute("href", "#only-hash-in-jsdom");
     triggerPress(button);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
   });
 
   it.each`
     Name              | Component      | props
-    ${'ActionButton'} | ${ActionButton}| ${{onPress: onPressSpy, isDisabled: true}}
-    ${'Button'}       | ${Button}      | ${{onPress: onPressSpy, isDisabled: true}}
-    ${'ClearButton'}  | ${ClearButton} | ${{onPress: onPressSpy, isDisabled: true}}
-    ${'LogicButton'}  | ${LogicButton} | ${{onPress: onPressSpy, isDisabled: true}}
-    ${'V2Button'}     | ${V2Button}    | ${{onClick: onPressSpy, disabled: true}}
-  `('$Name does not respond when disabled', function ({Component, props}) {
+    ${"ActionButton"} | ${ActionButton}| ${{onPress: onPressSpy, isDisabled: true}}
+    ${"Button"}       | ${Button}      | ${{onPress: onPressSpy, isDisabled: true}}
+    ${"ClearButton"}  | ${ClearButton} | ${{onPress: onPressSpy, isDisabled: true}}
+    ${"LogicButton"}  | ${LogicButton} | ${{onPress: onPressSpy, isDisabled: true}}
+    ${"V2Button"}     | ${V2Button}    | ${{onClick: onPressSpy, disabled: true}}
+  `("$Name does not respond when disabled", function ({Component, props}) {
     let {getByRole} = render(<Component {...props}>Click Me</Component>);
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     triggerPress(button);
     expect(button).toBeDisabled();
     expect(onPressSpy).not.toHaveBeenCalled();
@@ -210,13 +210,13 @@ describe('Button', function () {
 
   it.each`
     Name                | Component
-    ${'ActionButton'}   | ${ActionButton}
-    ${'Button'}         | ${Button}
-    ${'LogicButton'}    | ${LogicButton}
-  `('$Name supports autoFocus', function ({Component}) {
+    ${"ActionButton"}   | ${ActionButton}
+    ${"Button"}         | ${Button}
+    ${"LogicButton"}    | ${LogicButton}
+  `("$Name supports autoFocus", function ({Component}) {
     let {getByRole} = render(<Component autoFocus>Click Me</Component>);
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     expect(document.activeElement).toBe(button);
   });
 });

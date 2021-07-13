@@ -10,56 +10,56 @@
  * governing permissions and limitations under the License.
  */
 
-import {Radio, RadioGroup} from '../src';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {View} from '@react-spectrum/view';
+import {Radio, RadioGroup} from "../src";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {View} from "@react-spectrum/view";
 
-storiesOf('RadioGroup', module)
+storiesOf("RadioGroup", module)
   .add(
-    'controlled: dragons',
-    () => render({value: 'dragons'})
+    "controlled: dragons",
+    () => render({value: "dragons"})
   )
   .add(
-    'labelAlign: end',
-    () => renderLabelPositions({labelAlign: 'end', value: 'dragons'})
+    "labelAlign: end",
+    () => renderLabelPositions({labelAlign: "end", value: "dragons"})
   )
   .add(
-    'labelPosition: side',
-    () => renderLabelPositions({labelPosition: 'side', value: 'dragons'})
+    "labelPosition: side",
+    () => renderLabelPositions({labelPosition: "side", value: "dragons"})
   )
   .add(
-    'labelPosition: side, labelAlign: end',
-    () => renderLabelPositions({labelPosition: 'side', labelAlign: 'end', value: 'dragons'})
+    "labelPosition: side, labelAlign: end",
+    () => renderLabelPositions({labelPosition: "side", labelAlign: "end", value: "dragons"})
   )
   .add(
-    'isDisabled',
-    () => render({isDisabled: true, value: 'dragons'})
+    "isDisabled",
+    () => render({isDisabled: true, value: "dragons"})
   )
   // don't need to test singular disabled, unit tests should catch that
   .add(
-    'isRequired',
-    () => render({isRequired: true, value: 'dragons'})
+    "isRequired",
+    () => render({isRequired: true, value: "dragons"})
   )
   .add(
-    'isReadOnly',
-    () => render({isReadOnly: true, value: 'dragons'})
+    "isReadOnly",
+    () => render({isReadOnly: true, value: "dragons"})
   )
   .add(
-    'isEmphasized',
-    () => render({isEmphasized: true, value: 'dragons'})
+    "isEmphasized",
+    () => render({isEmphasized: true, value: "dragons"})
   )
   .add(
     'validationState: "invalid"',
-    () => render({validationState: 'invalid', value: 'dragons'})
+    () => render({validationState: "invalid", value: "dragons"})
   )
   .add(
-    'no visible label',
-    () => render({label: null, 'aria-label': 'Favorite pet', value: 'dragons'})
+    "no visible label",
+    () => render({label: null, "aria-label": "Favorite pet", value: "dragons"})
   )
   .add(
-    'long radio label',
-    () => renderLongLabel({value: 'dragons'})
+    "long radio label",
+    () => renderLongLabel({value: "dragons"})
   );
 
 // do not supply a name, let it be uniquely generated, otherwise controlled won't work when many are rendered to the chromatic story

@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import React from 'react';
-import {SliderProps, SliderThumbProps} from '@react-types/slider';
-import {SliderState, useSliderState} from '@react-stately/slider';
-import styles from './story-slider.css';
-import {useNumberFormatter} from '@react-aria/i18n';
-import {useSlider, useSliderThumb} from '@react-aria/slider';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import {classNames} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import React from "react";
+import {SliderProps, SliderThumbProps} from "@react-types/slider";
+import {SliderState, useSliderState} from "@react-stately/slider";
+import styles from "./story-slider.css";
+import {useNumberFormatter} from "@react-aria/i18n";
+import {useSlider, useSliderThumb} from "@react-aria/slider";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 
 interface StoryMultiSliderProps extends SliderProps {
@@ -40,7 +40,7 @@ export function StoryMultiSlider(props: StoryMultiSliderProps) {
 
   const numThumbs = React.Children.count(children);
   if (numThumbs !== state.values.length) {
-    throw new Error('You must have the same number of StoryThumb as the number of values in `defaultValue` or `value`.');
+    throw new Error("You must have the same number of StoryThumb as the number of values in `defaultValue` or `value`.");
   }
 
   return (
@@ -73,7 +73,7 @@ export function StoryMultiSlider(props: StoryMultiSliderProps) {
 }
 
 
-interface StoryThumbProps extends Omit<SliderThumbProps, 'index'> {
+interface StoryThumbProps extends Omit<SliderThumbProps, "index"> {
 }
 
 interface SliderStateContext {
@@ -85,7 +85,7 @@ interface SliderStateContext {
 
 export function StoryThumb(props: StoryThumbProps) {
   if (!(props as any).__context) {
-    throw new Error('Cannot use StoryThumb outside of a StoryMultiSlider!');
+    throw new Error("Cannot use StoryThumb outside of a StoryMultiSlider!");
   }
 
   const {label, isDisabled} = props;
@@ -104,9 +104,9 @@ export function StoryThumb(props: StoryThumbProps) {
     <FocusRing within focusRingClass={styles.thumbFocusVisible} focusClass={styles.thumbFocused}>
       <div
         {...thumbProps}
-        className={classNames(styles, 'thumb', 'thumbHandle', {thumbDisabled: isDisabled})}
+        className={classNames(styles, "thumb", "thumbHandle", {thumbDisabled: isDisabled})}
         style={{
-          'left': `${state.getThumbPercent(index) * 100}%`
+          "left": `${state.getThumbPercent(index) * 100}%`
         }}>
         <VisuallyHidden isFocusable><input className={styles.input} ref={inputRef} {...inputProps} /></VisuallyHidden>
         {label && <label {...labelProps}>{label}</label>}

@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, StyleProps} from '@react-types/shared';
+import {DOMProps, StyleProps} from "@react-types/shared";
 
 export interface ImageProps {
   /**

@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from '@react-types/button';
-import {DragEndEvent, DragItem, DragMoveEvent, DragStartEvent, DropOperation, PressEvent} from '@react-types/shared';
-import {DragEvent, HTMLAttributes, useRef, useState} from 'react';
-import * as DragManager from './DragManager';
-import {DROP_EFFECT_TO_DROP_OPERATION, DROP_OPERATION, EFFECT_ALLOWED} from './constants';
+import {AriaButtonProps} from "@react-types/button";
+import {DragEndEvent, DragItem, DragMoveEvent, DragStartEvent, DropOperation, PressEvent} from "@react-types/shared";
+import {DragEvent, HTMLAttributes, useRef, useState} from "react";
+import * as DragManager from "./DragManager";
+import {DROP_EFFECT_TO_DROP_OPERATION, DROP_OPERATION, EFFECT_ALLOWED} from "./constants";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import ReactDOM from 'react-dom';
-import {useDescription} from '@react-aria/utils';
-import {useDragModality} from './utils';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {writeToDataTransfer} from './utils';
+import intlMessages from "../intl/*.json";
+import ReactDOM from "react-dom";
+import {useDescription} from "@react-aria/utils";
+import {useDragModality} from "./utils";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {writeToDataTransfer} from "./utils";
 
 interface DragOptions {
   onDragStart?: (e: DragStartEvent) => void,
@@ -40,16 +40,16 @@ interface DragResult {
 
 const MESSAGES = {
   keyboard: {
-    start: 'dragDescriptionKeyboard',
-    end: 'endDragKeyboard'
+    start: "dragDescriptionKeyboard",
+    end: "endDragKeyboard"
   },
   touch: {
-    start: 'dragDescriptionTouch',
-    end: 'endDragTouch'
+    start: "dragDescriptionTouch",
+    end: "endDragTouch"
   },
   virtual: {
-    start: 'dragDescriptionVirtual',
-    end: 'endDragVirtual'
+    start: "dragDescriptionVirtual",
+    end: "endDragVirtual"
   }
 };
 
@@ -67,27 +67,27 @@ export function useDrag(options: DragOptions): DragResult {
     let items = options.getItems();
     writeToDataTransfer(e.dataTransfer, items);
 
-    if (typeof options.getAllowedDropOperations === 'function') {
+    if (typeof options.getAllowedDropOperations === "function") {
       let allowedOperations = options.getAllowedDropOperations();
       let allowed = DROP_OPERATION.none;
       for (let operation of allowedOperations) {
         allowed |= DROP_OPERATION[operation] || DROP_OPERATION.none;
       }
 
-      e.dataTransfer.effectAllowed = EFFECT_ALLOWED[allowed] || 'none';
+      e.dataTransfer.effectAllowed = EFFECT_ALLOWED[allowed] || "none";
     }
 
     // If there is a renderPreview function, use it to render a custom preview image that will
     // appear under the pointer while dragging. If not, the element itself is dragged by the browser.
-    if (typeof options.renderPreview === 'function') {
+    if (typeof options.renderPreview === "function") {
       let preview = options.renderPreview(items);
       if (preview) {
         // Create an off-screen div to render the preview into.
-        let node = document.createElement('div');
-        node.style.zIndex = '-100';
-        node.style.position = 'absolute';
-        node.style.top = '0';
-        node.style.left = '-100000px';
+        let node = document.createElement("div");
+        node.style.zIndex = "-100";
+        node.style.position = "absolute";
+        node.style.top = "0";
+        node.style.left = "-100000px";
         document.body.appendChild(node);
 
         // Call renderPreview to get a JSX element, and render it into the div with React DOM.
@@ -114,9 +114,9 @@ export function useDrag(options: DragOptions): DragResult {
       }
     }
 
-    if (typeof options.onDragStart === 'function') {
+    if (typeof options.onDragStart === "function") {
       options.onDragStart({
-        type: 'dragstart',
+        type: "dragstart",
         x: e.clientX,
         y: e.clientY
       });
@@ -137,9 +137,9 @@ export function useDrag(options: DragOptions): DragResult {
       return;
     }
 
-    if (typeof options.onDragMove === 'function') {
+    if (typeof options.onDragMove === "function") {
       options.onDragMove({
-        type: 'dragmove',
+        type: "dragmove",
         x: e.clientX,
         y: e.clientY
       });
@@ -150,9 +150,9 @@ export function useDrag(options: DragOptions): DragResult {
   };
 
   let onDragEnd = (e: DragEvent) => {
-    if (typeof options.onDragEnd === 'function') {
+    if (typeof options.onDragEnd === "function") {
       options.onDragEnd({
-        type: 'dragend',
+        type: "dragend",
         x: e.clientX,
         y: e.clientY,
         dropOperation: DROP_EFFECT_TO_DROP_OPERATION[e.dataTransfer.dropEffect]
@@ -163,14 +163,14 @@ export function useDrag(options: DragOptions): DragResult {
   };
 
   let onPress = (e: PressEvent) => {
-    if (e.pointerType !== 'keyboard' && e.pointerType !== 'virtual') {
+    if (e.pointerType !== "keyboard" && e.pointerType !== "virtual") {
       return;
     }
 
-    if (typeof state.options.onDragStart === 'function') {
+    if (typeof state.options.onDragStart === "function") {
       let rect = (e.target as HTMLElement).getBoundingClientRect();
       state.options.onDragStart({
-        type: 'dragstart',
+        type: "dragstart",
         x: rect.x + (rect.width / 2),
         y: rect.y + (rect.height / 2)
       });
@@ -179,12 +179,12 @@ export function useDrag(options: DragOptions): DragResult {
     DragManager.beginDragging({
       element: e.target as HTMLElement,
       items: state.options.getItems(),
-      allowedDropOperations: typeof state.options.getAllowedDropOperations === 'function'
+      allowedDropOperations: typeof state.options.getAllowedDropOperations === "function"
         ? state.options.getAllowedDropOperations()
-        : ['move', 'copy', 'link'],
+        : ["move", "copy", "link"],
       onDragEnd(e) {
         setDragging(false);
-        if (typeof state.options.onDragEnd === 'function') {
+        if (typeof state.options.onDragEnd === "function") {
           state.options.onDragEnd(e);
         }
       }
@@ -200,7 +200,7 @@ export function useDrag(options: DragOptions): DragResult {
 
   return {
     dragProps: {
-      draggable: 'true',
+      draggable: "true",
       onDragStart,
       onDrag,
       onDragEnd

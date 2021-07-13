@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {mergeProps, useLayoutEffect} from '@react-aria/utils';
-import {Overlay} from './Overlay';
-import overrideStyles from './overlays.css';
-import {PlacementAxis, PopoverProps} from '@react-types/overlays';
-import React, {forwardRef, HTMLAttributes, ReactNode, RefObject, useRef, useState} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/popover/vars.css';
-import {useModal, useOverlay} from '@react-aria/overlays';
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {mergeProps, useLayoutEffect} from "@react-aria/utils";
+import {Overlay} from "./Overlay";
+import overrideStyles from "./overlays.css";
+import {PlacementAxis, PopoverProps} from "@react-types/overlays";
+import React, {forwardRef, HTMLAttributes, ReactNode, RefObject, useRef, useState} from "react";
+import styles from "@adobe/spectrum-css-temp/components/popover/vars.css";
+import {useModal, useOverlay} from "@react-aria/overlays";
 
 interface PopoverWrapperProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode,
@@ -41,10 +41,10 @@ interface PopoverWrapperProps extends HTMLAttributes<HTMLElement> {
  * See bottom of file for more explanation.
  */
 let arrowPlacement = {
-  left: 'right',
-  right: 'right',
-  top: 'bottom',
-  bottom: 'bottom'
+  left: "right",
+  right: "right",
+  top: "bottom",
+  bottom: "bottom"
 };
 
 function Popover(props: PopoverProps, ref: DOMRef<HTMLDivElement>) {
@@ -85,7 +85,7 @@ function Popover(props: PopoverProps, ref: DOMRef<HTMLDivElement>) {
 const PopoverWrapper = forwardRef((props: PopoverWrapperProps, ref: RefObject<HTMLDivElement>) => {
   let {
     children,
-    placement = 'bottom',
+    placement = "bottom",
     arrowProps,
     isOpen,
     hideArrow,
@@ -110,16 +110,16 @@ const PopoverWrapper = forwardRef((props: PopoverWrapperProps, ref: RefObject<HT
       className={
         classNames(
           styles,
-          'spectrum-Popover',
+          "spectrum-Popover",
           `spectrum-Popover--${placement}`,
           {
-            'spectrum-Popover--withTip': !hideArrow,
-            'is-open': isOpen
+            "spectrum-Popover--withTip": !hideArrow,
+            "is-open": isOpen
           },
           classNames(
             overrideStyles,
-            'spectrum-Popover',
-            'react-spectrum-Popover'
+            "spectrum-Popover",
+            "react-spectrum-Popover"
           ),
           otherProps.className
         )
@@ -144,21 +144,21 @@ function Arrow(props) {
   useLayoutEffect(() => {
     if (ref.current) {
       let spectrumTipWidth = window.getComputedStyle(ref.current)
-        .getPropertyValue('--spectrum-popover-tip-size');
-      if (spectrumTipWidth !== '') {
+        .getPropertyValue("--spectrum-popover-tip-size");
+      if (spectrumTipWidth !== "") {
         setSize(parseInt(spectrumTipWidth, 10) / 2);
       }
 
       let spectrumBorderWidth = window.getComputedStyle(ref.current)
-        .getPropertyValue('--spectrum-popover-tip-borderWidth');
-      if (spectrumBorderWidth !== '') {
+        .getPropertyValue("--spectrum-popover-tip-borderWidth");
+      if (spectrumBorderWidth !== "") {
         setBorderWidth(parseInt(spectrumBorderWidth, 10));
       }
     }
   }, [ref]);
 
-  let landscape = props.direction === 'top' || props.direction === 'bottom';
-  let mirror = props.direction === 'left' || props.direction === 'top';
+  let landscape = props.direction === "top" || props.direction === "bottom";
+  let mirror = props.direction === "left" || props.direction === "top";
 
   let borderDiagonal = borderWidth * ROOT_2;
   let halfBorderDiagonal = borderDiagonal / 2;
@@ -174,13 +174,13 @@ function Arrow(props) {
   let secondaryEnd = secondary - halfBorderDiagonal;
 
   let pathData = landscape ? [
-    'M', secondaryStart, primaryStart,
-    'L', secondaryMiddle, primaryEnd,
-    'L', secondaryEnd, primaryStart
+    "M", secondaryStart, primaryStart,
+    "L", secondaryMiddle, primaryEnd,
+    "L", secondaryEnd, primaryStart
   ] : [
-    'M', primaryStart, secondaryStart,
-    'L', primaryEnd, secondaryMiddle,
-    'L', primaryStart, secondaryEnd
+    "M", primaryStart, secondaryStart,
+    "L", primaryEnd, secondaryMiddle,
+    "L", primaryStart, secondaryEnd
   ];
   let arrowProps = props.arrowProps;
 
@@ -191,10 +191,10 @@ function Arrow(props) {
       width={Math.ceil(landscape ? secondary : primary)}
       height={Math.ceil(landscape ? primary : secondary)}
       style={props.style}
-      className={classNames(styles, 'spectrum-Popover-tip')}
+      className={classNames(styles, "spectrum-Popover-tip")}
       ref={ref}
       {...arrowProps}>
-      <path className={classNames(styles, 'spectrum-Popover-tip-triangle')} d={pathData.join(' ')} />
+      <path className={classNames(styles, "spectrum-Popover-tip-triangle")} d={pathData.join(" ")} />
     </svg>
   );
 }

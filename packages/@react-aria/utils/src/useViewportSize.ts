@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {useEffect, useState} from 'react';
+import {useEffect, useState} from "react";
 
 interface ViewportSize {
   width: number,
@@ -18,7 +18,7 @@ interface ViewportSize {
 }
 
 // @ts-ignore
-let visualViewport = typeof window !== 'undefined' && window.visualViewport;
+let visualViewport = typeof window !== "undefined" && window.visualViewport;
 
 export function useViewportSize(): ViewportSize {
   let [size, setSize] = useState(() => getViewportSize());
@@ -36,16 +36,16 @@ export function useViewportSize(): ViewportSize {
     };
 
     if (!visualViewport) {
-      window.addEventListener('resize', onResize);
+      window.addEventListener("resize", onResize);
     } else {
-      visualViewport.addEventListener('resize', onResize);
+      visualViewport.addEventListener("resize", onResize);
     }
 
     return () => {
       if (!visualViewport) {
-        window.removeEventListener('resize', onResize);
+        window.removeEventListener("resize", onResize);
       } else {
-        visualViewport.removeEventListener('resize', onResize);
+        visualViewport.removeEventListener("resize", onResize);
       }
     };
   }, []);

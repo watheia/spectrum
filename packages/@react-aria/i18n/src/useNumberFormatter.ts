@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {NumberFormatOptions, NumberFormatter} from '@internationalized/number';
-import {useLocale} from './context';
-import {useMemo} from 'react';
+import {NumberFormatOptions, NumberFormatter} from "@internationalized/number";
+import {useLocale} from "./context";
+import {useMemo} from "react";
 
 /**
  * Provides localized number formatting for the current locale. Automatically updates when the locale changes,

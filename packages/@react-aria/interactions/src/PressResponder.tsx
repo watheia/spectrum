@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps, useSyncRef} from '@react-aria/utils';
-import {PressProps} from './usePress';
-import {PressResponderContext} from './context';
-import React, {ReactNode, RefObject, useContext, useEffect, useRef} from 'react';
+import {mergeProps, useSyncRef} from "@react-aria/utils";
+import {PressProps} from "./usePress";
+import {PressResponderContext} from "./context";
+import React, {ReactNode, RefObject, useContext, useEffect, useRef} from "react";
 
 interface PressResponderProps extends PressProps {
   children: ReactNode
@@ -38,8 +38,8 @@ export const PressResponder = React.forwardRef(({children, ...props}: PressRespo
   useEffect(() => {
     if (!isRegistered.current) {
       console.warn(
-        'A PressResponder was rendered without a pressable child. ' +
-        'Either call the usePress hook, or wrap your DOM node with <Pressable> component.'
+        "A PressResponder was rendered without a pressable child. " +
+        "Either call the usePress hook, or wrap your DOM node with <Pressable> component."
       );
     }
   }, []);

@@ -26,9 +26,9 @@ import {
   StyleProps,
   TextInputBase,
   Validation
-} from '@react-types/shared';
+} from "@react-types/shared";
 
-export interface SelectProps<T> extends CollectionBase<T>, AsyncLoadable, Omit<InputBase, 'isReadOnly'>, Validation, LabelableProps, TextInputBase, SingleSelection, FocusableProps {
+export interface SelectProps<T> extends CollectionBase<T>, AsyncLoadable, Omit<InputBase, "isReadOnly">, Validation, LabelableProps, TextInputBase, SingleSelection, FocusableProps {
   /** Sets the open state of the menu. */
   isOpen?: boolean,
   /** Sets the default open state of the menu. */
@@ -60,7 +60,7 @@ export interface SpectrumPickerProps<T> extends AriaSelectProps<T>, SpectrumLabe
    * Direction the menu will render relative to the Picker.
    * @default 'bottom'
    */
-  direction?: 'bottom' | 'top',
+  direction?: "bottom" | "top",
   /** Width of the menu. */
   menuWidth?: DimensionValue,
   /** Whether the element should receive focus on render. */

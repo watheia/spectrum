@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta} from '@storybook/react';
+import {Meta} from "@storybook/react";
 
 // Original ComboBox chromatic story was too large to be processed
 const meta: Meta = {
-  title: 'ComboBoxRTL',
+  title: "ComboBoxRTL",
   parameters: {
-    chromaticProvider: {colorSchemes: ['light', 'dark', 'lightest', 'darkest'], locales: ['ar-AE'], scales: ['medium', 'large']}
+    chromaticProvider: {colorSchemes: ["light", "dark", "lightest", "darkest"], locales: ["ar-AE"], scales: ["medium", "large"]}
   }
 };
 
 export default meta;
 
-export {PropDefaults, PropSelectedKey, PropInputValue, PropAriaLabelled, PropLabelEnd, PropLabelSide, PropCustomWidth} from './ComboBox.chromatic';
+export {PropDefaults, PropSelectedKey, PropInputValue, PropAriaLabelled, PropLabelEnd, PropLabelSide, PropCustomWidth} from "./ComboBox.chromatic";

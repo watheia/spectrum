@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import intlMessages from '../intl';
-import {PaginationState} from '@react-stately/pagination';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl";
+import {PaginationState} from "@react-stately/pagination";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 interface PaginationAriaProps {
   value?: any,
@@ -39,16 +39,16 @@ export function usePagination(props: PaginationAriaProps, state: PaginationState
 
   let onKeyDown = (e) => {
     switch (e.key) {
-      case 'ArrowUp':
-      case 'Up':
+      case "ArrowUp":
+      case "Up":
         state.onIncrement();
         break;
-      case 'ArrowDown':
-      case 'Down':
+      case "ArrowDown":
+      case "Down":
         state.onDecrement();
         break;
-      case 'Enter':
-      case ' ':
+      case "Enter":
+      case " ":
         break;
       default:
     }
@@ -57,12 +57,12 @@ export function usePagination(props: PaginationAriaProps, state: PaginationState
   return {
     prevButtonProps: {
       ...props,
-      'aria-label': formatMessage('previous'),
+      "aria-label": formatMessage("previous"),
       onPress: onPrevious
     },
     nextButtonProps: {
       ...props,
-      'aria-label': formatMessage('next'),
+      "aria-label": formatMessage("next"),
       onPress: onNext
     },
     textProps: {

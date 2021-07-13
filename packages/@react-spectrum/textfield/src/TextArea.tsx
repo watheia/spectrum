@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {chain, useLayoutEffect} from '@react-aria/utils';
-import React, {RefObject, useCallback, useRef} from 'react';
-import {SpectrumTextFieldProps, TextFieldRef} from '@react-types/textfield';
-import {TextFieldBase} from './TextFieldBase';
-import {useControlledState} from '@react-stately/utils';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useTextField} from '@react-aria/textfield';
+import {chain, useLayoutEffect} from "@react-aria/utils";
+import React, {RefObject, useCallback, useRef} from "react";
+import {SpectrumTextFieldProps, TextFieldRef} from "@react-types/textfield";
+import {TextFieldBase} from "./TextFieldBase";
+import {useControlledState} from "@react-stately/utils";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useTextField} from "@react-aria/textfield";
 
 function TextArea(props: SpectrumTextFieldProps, ref: RefObject<TextFieldRef>) {
   props = useProviderProps(props);
@@ -38,8 +38,8 @@ function TextArea(props: SpectrumTextFieldProps, ref: RefObject<TextFieldRef>) {
     if (isQuiet) {
       let input = inputRef.current;
       let prevAlignment = input.style.alignSelf;
-      input.style.alignSelf = 'start';
-      input.style.height = 'auto';
+      input.style.alignSelf = "start";
+      input.style.height = "auto";
       input.style.height = `${input.scrollHeight}px`;
       input.style.alignSelf = prevAlignment;
     }
@@ -55,7 +55,7 @@ function TextArea(props: SpectrumTextFieldProps, ref: RefObject<TextFieldRef>) {
   let {labelProps, inputProps} = useTextField({
     ...props,
     onChange: chain(onChange, setInputValue),
-    inputElementType: 'textarea'
+    inputElementType: "textarea"
   }, inputRef);
 
   return (

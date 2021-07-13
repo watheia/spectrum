@@ -14,7 +14,7 @@ export function walk(obj, fn, k = null) {
   let recurse = (obj) => {
     if (Array.isArray(obj)) {
       return obj.map((item, i) => walk(item, fn, k));
-    } else if (obj && typeof obj === 'object') {
+    } else if (obj && typeof obj === "object") {
       let res = {};
       for (let key in obj) {
         res[key] = walk(obj[key], fn, key);
@@ -30,7 +30,7 @@ export function walk(obj, fn, k = null) {
 export function getUsedLinks(obj, links, usedLinks = {}) {
   walk(obj, (t, k, recurse) => {
     // don't follow the link if it's already in links, that's circular
-    if (t && t.type === 'link' && !usedLinks[t.id]) {
+    if (t && t.type === "link" && !usedLinks[t.id]) {
       usedLinks[t.id] = links[t.id];
       getUsedLinks(links[t.id], links, usedLinks);
     }
@@ -50,5 +50,5 @@ export function getAnchorProps(href) {
     return {};
   }
 
-  return {target: '_blank', rel: 'noreferrer'};
+  return {target: "_blank", rel: "noreferrer"};
 }

@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {CollectionBase, DOMProps, Expandable, StyleProps} from '@react-types/shared';
+import {CollectionBase, DOMProps, Expandable, StyleProps} from "@react-types/shared";
 
 interface AccordionProps<T> extends CollectionBase<T>, Expandable {}
 

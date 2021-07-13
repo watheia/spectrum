@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps} from '@react-types/shared';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes, useState} from 'react';
-import {useFocusWithin} from '@react-aria/interactions';
+import {DOMProps} from "@react-types/shared";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes, useState} from "react";
+import {useFocusWithin} from "@react-aria/interactions";
 
 interface AriaTagGroupProps extends DOMProps {
   isDisabled?: boolean,
   isReadOnly?: boolean, // removes close button
-  validationState?: 'valid' | 'invalid'
+  validationState?: "valid" | "invalid"
 }
 
 interface TagGroupAria {
@@ -35,11 +35,11 @@ export function useTagGroup(props: AriaTagGroupProps): TagGroupAria {
   let domProps = filterDOMProps(props);
   return {
     tagGroupProps: mergeProps(domProps, {
-      role: 'grid',
-      'aria-atomic': false,
-      'aria-relevant': 'additions',
-      'aria-live': isFocusWithin ? 'polite' : 'off',
-      'aria-disabled': isDisabled,
+      role: "grid",
+      "aria-atomic": false,
+      "aria-relevant": "additions",
+      "aria-live": isFocusWithin ? "polite" : "off",
+      "aria-disabled": isDisabled,
       ...focusWithinProps
     })
   };

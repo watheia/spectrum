@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {ariaHideOutside} from '../src';
-import React from 'react';
-import {render, waitFor} from '@testing-library/react';
+import {ariaHideOutside} from "../src";
+import React from "react";
+import {render, waitFor} from "@testing-library/react";
 
-describe('ariaHideOutside', function () {
-  it('should hide everything except the provided element [button]', function () {
+describe("ariaHideOutside", function () {
+  it("should hide everything except the provided element [button]", function () {
     let {getByRole, getAllByRole} = render(
       <>
         <input type="checkbox" />
@@ -24,29 +24,29 @@ describe('ariaHideOutside', function () {
       </>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    let button = getByRole('button');
+    let checkboxes = getAllByRole("checkbox");
+    let button = getByRole("button");
 
     let revert = ariaHideOutside([button]);
 
-    expect(checkboxes[0]).toHaveAttribute('aria-hidden', 'true');
-    expect(checkboxes[1]).toHaveAttribute('aria-hidden', 'true');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0]).toHaveAttribute("aria-hidden", "true");
+    expect(checkboxes[1]).toHaveAttribute("aria-hidden", "true");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert();
 
-    expect(checkboxes[0]).not.toHaveAttribute('aria-hidden');
-    expect(checkboxes[1]).not.toHaveAttribute('aria-hidden');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0]).not.toHaveAttribute("aria-hidden");
+    expect(checkboxes[1]).not.toHaveAttribute("aria-hidden");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
   });
 
-  it('should hide everything except multiple elements', function () {
+  it("should hide everything except multiple elements", function () {
     let {getByRole, getAllByRole} = render(
       <>
         <input type="checkbox" />
@@ -55,29 +55,29 @@ describe('ariaHideOutside', function () {
       </>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    let button = getByRole('button');
+    let checkboxes = getAllByRole("checkbox");
+    let button = getByRole("button");
 
     let revert = ariaHideOutside(checkboxes);
 
-    expect(checkboxes[0]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(checkboxes[1]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(button).toHaveAttribute('aria-hidden');
+    expect(checkboxes[0]).not.toHaveAttribute("aria-hidden", "true");
+    expect(checkboxes[1]).not.toHaveAttribute("aria-hidden", "true");
+    expect(button).toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getByRole('button')).toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getByRole("button")).toThrow();
 
     revert();
 
-    expect(checkboxes[0]).not.toHaveAttribute('aria-hidden');
-    expect(checkboxes[1]).not.toHaveAttribute('aria-hidden');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0]).not.toHaveAttribute("aria-hidden");
+    expect(checkboxes[1]).not.toHaveAttribute("aria-hidden");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
   });
 
-  it('should not traverse into an already hidden container', function () {
+  it("should not traverse into an already hidden container", function () {
     let {getByRole, getAllByRole} = render(
       <>
         <div>
@@ -88,29 +88,29 @@ describe('ariaHideOutside', function () {
       </>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    let button = getByRole('button');
+    let checkboxes = getAllByRole("checkbox");
+    let button = getByRole("button");
 
     let revert = ariaHideOutside([button]);
 
-    expect(checkboxes[0].parentElement).toHaveAttribute('aria-hidden', 'true');
-    expect(checkboxes[1]).toHaveAttribute('aria-hidden', 'true');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0].parentElement).toHaveAttribute("aria-hidden", "true");
+    expect(checkboxes[1]).toHaveAttribute("aria-hidden", "true");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert();
 
-    expect(checkboxes[0].parentElement).not.toHaveAttribute('aria-hidden');
-    expect(checkboxes[1]).not.toHaveAttribute('aria-hidden');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0].parentElement).not.toHaveAttribute("aria-hidden");
+    expect(checkboxes[1]).not.toHaveAttribute("aria-hidden");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
   });
 
-  it('should not overwrite an existing aria-hidden prop', function () {
+  it("should not overwrite an existing aria-hidden prop", function () {
     let {getByRole, getAllByRole} = render(
       <>
         <input type="checkbox" aria-hidden="true" />
@@ -119,30 +119,30 @@ describe('ariaHideOutside', function () {
       </>
     );
 
-    let checkboxes = getAllByRole('checkbox');
-    let button = getByRole('button');
+    let checkboxes = getAllByRole("checkbox");
+    let button = getByRole("button");
 
     let revert = ariaHideOutside([button]);
 
     expect(checkboxes).toHaveLength(1);
-    expect(checkboxes[0]).toHaveAttribute('aria-hidden', 'true');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0]).toHaveAttribute("aria-hidden", "true");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert();
 
-    checkboxes = getAllByRole('checkbox');
+    checkboxes = getAllByRole("checkbox");
     expect(checkboxes).toHaveLength(1);
-    expect(checkboxes[0]).not.toHaveAttribute('aria-hidden');
-    expect(button).not.toHaveAttribute('aria-hidden');
+    expect(checkboxes[0]).not.toHaveAttribute("aria-hidden");
+    expect(button).not.toHaveAttribute("aria-hidden");
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
   });
 
-  it('should handle when a new element is added outside while active', async function () {
+  it("should handle when a new element is added outside while active", async function () {
     let Test = props => (
       <>
         {props.show && <input type="checkbox" />}
@@ -153,23 +153,23 @@ describe('ariaHideOutside', function () {
 
     let {getByRole, getAllByRole, rerender} = render(<Test />);
 
-    let button = getByRole('button');
-    expect(() => getAllByRole('checkbox')).toThrow();
+    let button = getByRole("button");
+    expect(() => getAllByRole("checkbox")).toThrow();
 
     let revert = ariaHideOutside([button]);
 
     rerender(<Test show />);
 
     // MutationObserver is async
-    await waitFor(() => expect(() => getAllByRole('checkbox')).toThrow());
-    expect(() => getByRole('button')).not.toThrow();
+    await waitFor(() => expect(() => getAllByRole("checkbox")).toThrow());
+    expect(() => getByRole("button")).not.toThrow();
 
     revert();
 
-    expect(getAllByRole('checkbox')).toHaveLength(2);
+    expect(getAllByRole("checkbox")).toHaveLength(2);
   });
 
-  it('should handle when a new element is added to an already hidden container', async function () {
+  it("should handle when a new element is added to an already hidden container", async function () {
     let Test = props => (
       <>
         <div data-testid="test">
@@ -182,31 +182,31 @@ describe('ariaHideOutside', function () {
 
     let {getByRole, getAllByRole, getByTestId, rerender} = render(<Test />);
 
-    let button = getByRole('button');
-    let test = getByTestId('test');
-    expect(() => getAllByRole('checkbox')).toThrow();
+    let button = getByRole("button");
+    let test = getByTestId("test");
+    expect(() => getAllByRole("checkbox")).toThrow();
 
     let revert = ariaHideOutside([button]);
 
-    expect(test).toHaveAttribute('aria-hidden');
+    expect(test).toHaveAttribute("aria-hidden");
 
     rerender(<Test show />);
 
     // MutationObserver is async
-    await waitFor(() => expect(() => getAllByRole('checkbox')).toThrow());
-    expect(() => getByRole('button')).not.toThrow();
+    await waitFor(() => expect(() => getAllByRole("checkbox")).toThrow());
+    expect(() => getByRole("button")).not.toThrow();
 
-    let checkboxes = getAllByRole('checkbox', {hidden: true});
-    expect(test).toHaveAttribute('aria-hidden');
-    expect(checkboxes[0]).not.toHaveAttribute('aria-hidden');
-    expect(checkboxes[1]).toHaveAttribute('aria-hidden', 'true');
+    let checkboxes = getAllByRole("checkbox", {hidden: true});
+    expect(test).toHaveAttribute("aria-hidden");
+    expect(checkboxes[0]).not.toHaveAttribute("aria-hidden");
+    expect(checkboxes[1]).toHaveAttribute("aria-hidden", "true");
 
     revert();
 
-    expect(getAllByRole('checkbox')).toHaveLength(2);
+    expect(getAllByRole("checkbox")).toHaveLength(2);
   });
 
-  it('should handle when a new element is added inside a target element', async function () {
+  it("should handle when a new element is added inside a target element", async function () {
     let Test = props => (
       <>
         <input type="checkbox" />
@@ -220,32 +220,32 @@ describe('ariaHideOutside', function () {
 
     let {getByRole, getAllByRole, getByTestId, rerender} = render(<Test />);
 
-    let test = getByTestId('test');
+    let test = getByTestId("test");
     let revert = ariaHideOutside([test]);
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getByRole('radio')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
-    expect(() => getByTestId('test')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getByRole("radio")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
+    expect(() => getByTestId("test")).not.toThrow();
 
     rerender(<Test show />);
 
     // Wait for mutation observer tick
     await Promise.resolve();
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
-    expect(() => getByTestId('test')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
+    expect(() => getByTestId("test")).not.toThrow();
 
     revert();
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
-    expect(() => getByTestId('test')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
+    expect(() => getByTestId("test")).not.toThrow();
   });
 
-  it('work when called multiple times', function () {
+  it("work when called multiple times", function () {
     let {getByRole, getAllByRole} = render(
       <>
         <input type="checkbox" />
@@ -256,35 +256,35 @@ describe('ariaHideOutside', function () {
       </>
     );
 
-    let radios = getAllByRole('radio');
-    let button = getByRole('button');
+    let radios = getAllByRole("radio");
+    let button = getByRole("button");
 
     let revert1 = ariaHideOutside([button, ...radios]);
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getAllByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getAllByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     let revert2 = ariaHideOutside([button]);
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getAllByRole('radio')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getAllByRole("radio")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert2();
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getAllByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getAllByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert1();
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getAllByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getAllByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
   });
 
-  it('work when called multiple times and restored out of order', function () {
+  it("work when called multiple times and restored out of order", function () {
     let {getByRole, getAllByRole} = render(
       <>
         <input type="checkbox" />
@@ -295,35 +295,35 @@ describe('ariaHideOutside', function () {
       </>
     );
 
-    let radios = getAllByRole('radio');
-    let button = getByRole('button');
+    let radios = getAllByRole("radio");
+    let button = getByRole("button");
 
     let revert1 = ariaHideOutside([button, ...radios]);
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getAllByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getAllByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     let revert2 = ariaHideOutside([button]);
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getAllByRole('radio')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getAllByRole("radio")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert1();
 
-    expect(() => getAllByRole('checkbox')).toThrow();
-    expect(() => getAllByRole('radio')).toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).toThrow();
+    expect(() => getAllByRole("radio")).toThrow();
+    expect(() => getByRole("button")).not.toThrow();
 
     revert2();
 
-    expect(() => getAllByRole('checkbox')).not.toThrow();
-    expect(() => getAllByRole('radio')).not.toThrow();
-    expect(() => getByRole('button')).not.toThrow();
+    expect(() => getAllByRole("checkbox")).not.toThrow();
+    expect(() => getAllByRole("radio")).not.toThrow();
+    expect(() => getByRole("button")).not.toThrow();
   });
 
-  it('should hide everything except the provided element [row]', function () {
+  it("should hide everything except the provided element [row]", function () {
     let {getAllByRole} = render(
       <div role="grid">
         <div role="row">
@@ -335,21 +335,21 @@ describe('ariaHideOutside', function () {
       </div>
     );
 
-    let cells = getAllByRole('gridcell');
-    let rows = getAllByRole('row');
+    let cells = getAllByRole("gridcell");
+    let rows = getAllByRole("row");
 
     let revert = ariaHideOutside([rows[1]]);
 
-    expect(rows[0]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(cells[0]).toHaveAttribute('aria-hidden', 'true');
-    expect(rows[1]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(cells[1]).not.toHaveAttribute('aria-hidden', 'true');
+    expect(rows[0]).not.toHaveAttribute("aria-hidden", "true");
+    expect(cells[0]).toHaveAttribute("aria-hidden", "true");
+    expect(rows[1]).not.toHaveAttribute("aria-hidden", "true");
+    expect(cells[1]).not.toHaveAttribute("aria-hidden", "true");
 
     revert();
 
-    expect(rows[0]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(cells[0]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(rows[1]).not.toHaveAttribute('aria-hidden', 'true');
-    expect(cells[1]).not.toHaveAttribute('aria-hidden', 'true');
+    expect(rows[0]).not.toHaveAttribute("aria-hidden", "true");
+    expect(cells[0]).not.toHaveAttribute("aria-hidden", "true");
+    expect(rows[1]).not.toHaveAttribute("aria-hidden", "true");
+    expect(cells[1]).not.toHaveAttribute("aria-hidden", "true");
   });
 });

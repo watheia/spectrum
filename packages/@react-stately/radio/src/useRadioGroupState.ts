@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {RadioGroupProps} from '@react-types/radio';
-import {useControlledState} from '@react-stately/utils';
-import {useMemo, useState} from 'react';
+import {RadioGroupProps} from "@react-types/radio";
+import {useControlledState} from "@react-stately/utils";
+import {useMemo, useState} from "react";
 
 export interface RadioGroupState {
   /**

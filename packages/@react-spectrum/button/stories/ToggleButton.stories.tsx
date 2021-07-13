@@ -10,46 +10,46 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import Add from '@spectrum-icons/workflow/Add';
-import {Flex, Text, View} from '@adobe/react-spectrum';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {ToggleButton} from '../';
+import {action} from "@storybook/addon-actions";
+import Add from "@spectrum-icons/workflow/Add";
+import {Flex, Text, View} from "@adobe/react-spectrum";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {ToggleButton} from "../";
 
-storiesOf('Button/ToggleButton', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Button/ToggleButton", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'default',
+    "default",
     () => render()
   ).add(
-    'emphasized',
+    "emphasized",
     () => render({isEmphasized: true})
   ).add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   ).add(
-    'isQuiet & emphasized',
+    "isQuiet & emphasized",
     () => render({isEmphasized: true, isQuiet: true})
   )
   .add(
-    'staticColor: white',
+    "staticColor: white",
     () => (
       <View backgroundColor="static-seafoam-600" padding="size-1000">
         <Flex direction="column" rowGap="size-150">
-          {render({staticColor: 'white'})}
-          {render({staticColor: 'white', isQuiet: true})}
+          {render({staticColor: "white"})}
+          {render({staticColor: "white", isQuiet: true})}
         </Flex>
       </View>
     )
   )
   .add(
-    'staticColor: black',
+    "staticColor: black",
     () => (
       <View backgroundColor="static-yellow-400" padding="size-1000">
         <Flex direction="column" rowGap="size-150">
-          {render({staticColor: 'black'})}
-          {render({staticColor: 'black', isQuiet: true})}
+          {render({staticColor: "black"})}
+          {render({staticColor: "black", isQuiet: true})}
         </Flex>
       </View>
     )
@@ -57,11 +57,11 @@ storiesOf('Button/ToggleButton', module)
 
 function render(props = {}) {
   return (<Flex gap="size-100">
-    <ToggleButton onChange={action('change')} onPress={action('press')} {...props}>
+    <ToggleButton onChange={action("change")} onPress={action("press")} {...props}>
       <Add />
       <Text>Default</Text>
     </ToggleButton>
-    <ToggleButton onChange={action('change')} onPress={action('press')} defaultSelected {...props}>
+    <ToggleButton onChange={action("change")} onPress={action("press")} defaultSelected {...props}>
       <Add />
       <Text>Selected</Text>
     </ToggleButton>

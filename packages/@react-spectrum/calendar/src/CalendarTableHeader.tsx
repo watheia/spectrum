@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import React from 'react';
-import styles from '@adobe/spectrum-css-temp/components/calendar/vars.css';
-import {useDateFormatter} from '@react-aria/i18n';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import {classNames} from "@react-spectrum/utils";
+import React from "react";
+import styles from "@adobe/spectrum-css-temp/components/calendar/vars.css";
+import {useDateFormatter} from "@react-aria/i18n";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 interface CalendarTableHeaderProps {
   weekDays: Array<Date>
 }
 
 export function CalendarTableHeader({weekDays}: CalendarTableHeaderProps) {
-  let dayFormatter = useDateFormatter({weekday: 'narrow'});
-  let dayFormatterLong = useDateFormatter({weekday: 'long'});
+  let dayFormatter = useDateFormatter({weekday: "narrow"});
+  let dayFormatterLong = useDateFormatter({weekday: "long"});
   return (
     <thead>
       <tr>
@@ -33,10 +33,10 @@ export function CalendarTableHeader({weekDays}: CalendarTableHeaderProps) {
             return (
               <th
                 key={index}
-                className={classNames(styles, 'spectrum-Calendar-tableCell')}>
+                className={classNames(styles, "spectrum-Calendar-tableCell")}>
                 {/* Make sure screen readers read the full day name, but we show an abbreviation visually. */}
                 <VisuallyHidden>{dayLong}</VisuallyHidden>
-                <span aria-hidden="true" className={classNames(styles, 'spectrum-Calendar-dayOfWeek')}>
+                <span aria-hidden="true" className={classNames(styles, "spectrum-Calendar-dayOfWeek")}>
                   {day}
                 </span>
               </th>

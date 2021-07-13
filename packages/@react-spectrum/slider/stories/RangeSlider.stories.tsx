@@ -10,73 +10,73 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ErrorBoundary} from '@react-spectrum/story-utils';
-import {RangeSlider} from '../';
-import React from 'react';
-import {SpectrumRangeSliderProps} from '@react-types/slider';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {ErrorBoundary} from "@react-spectrum/story-utils";
+import {RangeSlider} from "../";
+import React from "react";
+import {SpectrumRangeSliderProps} from "@react-types/slider";
+import {storiesOf} from "@storybook/react";
 
-let message = 'Your browser may not support this set of format options.';
+let message = "Your browser may not support this set of format options.";
 
-storiesOf('Slider/RangeSlider', module)
+storiesOf("Slider/RangeSlider", module)
   .addDecorator(story => (
     <ErrorBoundary message={message}>{story()}</ErrorBoundary>
   ))
   .add(
-    'Default',
-    () => render({'aria-label': 'Label'})
+    "Default",
+    () => render({"aria-label": "Label"})
   )
   .add(
-    'label',
-    () => render({label: 'Label'})
+    "label",
+    () => render({label: "Label"})
   )
   .add(
-    'isDisabled',
-    () => render({label: 'Label', defaultValue: {start: 30, end: 70}, isDisabled: true})
+    "isDisabled",
+    () => render({label: "Label", defaultValue: {start: 30, end: 70}, isDisabled: true})
   )
   .add(
-    'custom width',
-    () => render({label: 'Label', width: '300px'})
+    "custom width",
+    () => render({label: "Label", width: "300px"})
   )
   .add(
-    'label overflow',
-    () => render({label: 'This is a rather long label for this narrow slider element.', maxValue: 1000, width: '300px'})
+    "label overflow",
+    () => render({label: "This is a rather long label for this narrow slider element.", maxValue: 1000, width: "300px"})
   )
   .add(
-    'showValueLabel: false',
-    () => render({label: 'Label', showValueLabel: false})
+    "showValueLabel: false",
+    () => render({label: "Label", showValueLabel: false})
   )
   .add(
-    'formatOptions percent',
-    () => render({label: 'Label', minValue: 0, maxValue: 1, step: 0.01, formatOptions: {style: 'percent'}})
+    "formatOptions percent",
+    () => render({label: "Label", minValue: 0, maxValue: 1, step: 0.01, formatOptions: {style: "percent"}})
   )
   .add(
-    'formatOptions centimeter',
+    "formatOptions centimeter",
     // @ts-ignore TODO why is "unit" even missing? How well is it supported?
-    () => render({label: 'Label', maxValue: 1000, formatOptions: {style: 'unit', unit: 'centimeter'}})
+    () => render({label: "Label", maxValue: 1000, formatOptions: {style: "unit", unit: "centimeter"}})
   )
   .add(
-    'custom valueLabel',
-    () => render({label: 'Label', getValueLabel: (value) => `${value.start} <-> ${value.end}`})
+    "custom valueLabel",
+    () => render({label: "Label", getValueLabel: (value) => `${value.start} <-> ${value.end}`})
   )
   .add(
-    'custom valueLabel with label overflow',
-    () => render({label: 'This is a rather long label for this narrow slider element.', getValueLabel: (value) => `${value.start} <-> ${value.end}`})
+    "custom valueLabel with label overflow",
+    () => render({label: "This is a rather long label for this narrow slider element.", getValueLabel: (value) => `${value.start} <-> ${value.end}`})
   )
   .add(
-    'labelPosition: side',
-    () => render({label: 'Label', labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({label: "Label", labelPosition: "side"})
   )
   .add(
-    'min/max',
-    () => render({label: 'Label', minValue: 30, maxValue: 70})
+    "min/max",
+    () => render({label: "Label", minValue: 30, maxValue: 70})
   );
 
 function render(props: SpectrumRangeSliderProps = {}) {
   if (props.onChange == null) {
     props.onChange = (v) => {
-      action('change')(v.start, v.end);
+      action("change")(v.start, v.end);
     };
   }
   return  <RangeSlider {...props} />;

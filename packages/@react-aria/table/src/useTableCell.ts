@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {getCellId} from './utils';
-import {GridNode} from '@react-types/grid';
-import {HTMLAttributes, RefObject} from 'react';
-import {TableState} from '@react-stately/table';
-import {useGridCell} from '@react-aria/grid';
+import {getCellId} from "./utils";
+import {GridNode} from "@react-types/grid";
+import {HTMLAttributes, RefObject} from "react";
+import {TableState} from "@react-stately/table";
+import {useGridCell} from "@react-aria/grid";
 
 interface TableCellProps {
   /** An object representing the table cell. Contains all the relevant information that makes up the row header. */
@@ -39,7 +39,7 @@ export function useTableCell<T>(props: TableCellProps, state: TableState<T>, ref
 
   let columnKey = props.node.column.key;
   if (state.collection.rowHeaderColumnKeys.has(columnKey)) {
-    gridCellProps.role = 'rowheader';
+    gridCellProps.role = "rowheader";
     gridCellProps.id = getCellId(state, props.node.parentKey, columnKey);
   }
 

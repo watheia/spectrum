@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {SingleSelectListState, useSingleSelectListState} from '@react-stately/list';
-import {TabListProps} from '@react-types/tabs';
-import {useEffect} from 'react';
+import {SingleSelectListState, useSingleSelectListState} from "@react-stately/list";
+import {TabListProps} from "@react-types/tabs";
+import {useEffect} from "react";
 
 
 export interface TabListState<T> extends SingleSelectListState<T> {}

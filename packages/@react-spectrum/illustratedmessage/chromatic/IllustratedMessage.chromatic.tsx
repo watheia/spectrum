@@ -10,26 +10,26 @@
  * governing permissions and limitations under the License.
  */
 
-import {Content} from '@react-spectrum/view';
-import {Heading} from '@react-spectrum/text';
-import {IllustratedMessage} from '../';
-import NotFound from '@spectrum-icons/illustrations/src/NotFound';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Content} from "@react-spectrum/view";
+import {Heading} from "@react-spectrum/text";
+import {IllustratedMessage} from "../";
+import NotFound from "@spectrum-icons/illustrations/src/NotFound";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('IllustratedMessage', module)
+storiesOf("IllustratedMessage", module)
   .add(
-    'Not found',
+    "Not found",
     () => render({
-      heading: 'Error 404: Page not found.',
-      description: 'This page isn’t available. Try checking the URL or visit a different page.',
+      heading: "Error 404: Page not found.",
+      description: "This page isn’t available. Try checking the URL or visit a different page.",
       illustration: <NotFound />
     })
   )
   // don't need to test the other illustrations, they are svg's, so unless their definition changes
   // they probably won't change other than color/position, in which case, one is enough to catch that
   .add(
-    'No heading or description',
+    "No heading or description",
     () => render({illustration: <NotFound aria-label="No Results" />})
   );
 

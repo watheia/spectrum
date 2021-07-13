@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {RangeValue} from '@react-types/shared';
+import {RangeValue} from "@react-types/shared";
 
 export interface CalendarStateBase {
   isDisabled: boolean,

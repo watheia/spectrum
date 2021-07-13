@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {render} from '@testing-library/react';
-import {View} from '../';
+import React from "react";
+import {render} from "@testing-library/react";
+import {View} from "../";
 
-describe('View', function () {
-  it('renders', function () {
+describe("View", function () {
+  it("renders", function () {
     render(<View />);
     expect(true).toBeTruthy();
   });

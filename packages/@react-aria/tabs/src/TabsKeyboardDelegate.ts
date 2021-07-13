@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, Direction, KeyboardDelegate, Orientation} from '@react-types/shared';
-import {Key} from 'react';
+import {Collection, Direction, KeyboardDelegate, Orientation} from "@react-types/shared";
+import {Key} from "react";
 
 export class TabsKeyboardDelegate<T> implements KeyboardDelegate {
   private collection: Collection<T>;
@@ -21,7 +21,7 @@ export class TabsKeyboardDelegate<T> implements KeyboardDelegate {
 
   constructor(collection: Collection<T>, direction: Direction, orientation: Orientation, disabledKeys: Set<Key> = new Set()) {
     this.collection = collection;
-    this.flipDirection = direction === 'rtl' && orientation === 'horizontal';
+    this.flipDirection = direction === "rtl" && orientation === "horizontal";
     this.orientation = orientation;
     this.disabledKeys = disabledKeys;
   }
@@ -30,7 +30,7 @@ export class TabsKeyboardDelegate<T> implements KeyboardDelegate {
     if (this.flipDirection) {
       return this.getNextKey(key);
     } else {
-      if (this.orientation === 'horizontal') {
+      if (this.orientation === "horizontal") {
         return this.getPreviousKey(key);
       }
       return null;
@@ -41,7 +41,7 @@ export class TabsKeyboardDelegate<T> implements KeyboardDelegate {
     if (this.flipDirection) {
       return this.getPreviousKey(key);
     } else {
-      if (this.orientation === 'horizontal') {
+      if (this.orientation === "horizontal") {
         return this.getNextKey(key);
       }
       return null;
@@ -49,14 +49,14 @@ export class TabsKeyboardDelegate<T> implements KeyboardDelegate {
   }
 
   getKeyAbove(key: Key) {
-    if (this.orientation === 'vertical') {
+    if (this.orientation === "vertical") {
       return this.getPreviousKey(key);
     }
     return null;
   }
 
   getKeyBelow(key: Key) {
-    if (this.orientation === 'vertical') {
+    if (this.orientation === "vertical") {
       return this.getNextKey(key);
     }
     return null;

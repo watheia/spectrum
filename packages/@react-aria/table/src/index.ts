@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './useTable';
-export * from './useTableColumnHeader';
-export * from './useTableRow';
-export * from './useTableHeaderRow';
-export * from './useTableCell';
-export * from './useTableSelectionCheckbox';
+export * from "./useTable";
+export * from "./useTableColumnHeader";
+export * from "./useTableRow";
+export * from "./useTableHeaderRow";
+export * from "./useTableCell";
+export * from "./useTableSelectionCheckbox";
 
-export {useGridRowGroup as useTableRowGroup} from '@react-aria/grid';
+export {useGridRowGroup as useTableRowGroup} from "@react-aria/grid";

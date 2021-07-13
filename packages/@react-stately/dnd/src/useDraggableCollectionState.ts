@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, DragEndEvent, DraggableCollectionProps, DragItem, DragMoveEvent, DragStartEvent, Node} from '@react-types/shared';
-import {Key, useState} from 'react';
-import {MultipleSelectionManager} from '@react-stately/selection';
+import {Collection, DragEndEvent, DraggableCollectionProps, DragItem, DragMoveEvent, DragStartEvent, Node} from "@react-types/shared";
+import {Key, useState} from "react";
+import {MultipleSelectionManager} from "@react-stately/selection";
 
 interface DraggableCollectionOptions extends DraggableCollectionProps {
   collection: Collection<Node<unknown>>,
@@ -58,7 +58,7 @@ export function useDraggableCollectionState(props: DraggableCollectionOptions): 
       return props.getItems(getKeys(key));
     },
     renderPreview(key) {
-      if (typeof props.renderPreview === 'function') {
+      if (typeof props.renderPreview === "function") {
         return props.renderPreview(getKeys(key), key);
       }
 
@@ -68,7 +68,7 @@ export function useDraggableCollectionState(props: DraggableCollectionOptions): 
       let keys = getKeys(key);
       setDraggingKeys(keys);
 
-      if (typeof props.onDragStart === 'function') {
+      if (typeof props.onDragStart === "function") {
         props.onDragStart({
           ...event,
           keys
@@ -76,7 +76,7 @@ export function useDraggableCollectionState(props: DraggableCollectionOptions): 
       }
     },
     moveDrag(event) {
-      if (typeof props.onDragMove === 'function') {
+      if (typeof props.onDragMove === "function") {
         props.onDragMove({
           ...event,
           keys: draggingKeys
@@ -84,7 +84,7 @@ export function useDraggableCollectionState(props: DraggableCollectionOptions): 
       }
     },
     endDrag(event) {
-      if (typeof props.onDragEnd === 'function') {
+      if (typeof props.onDragEnd === "function") {
         props.onDragEnd({
           ...event,
           keys: draggingKeys

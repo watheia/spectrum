@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {chain} from './chain';
-import clsx from 'clsx';
-import {mergeIds} from './useId';
+import {chain} from "./chain";
+import clsx from "clsx";
+import {mergeIds} from "./useId";
 
 interface Props {
   [key: string]: any
@@ -37,25 +37,25 @@ export function mergeProps<T extends Props[]>(...args: T): UnionToIntersection<T
       // Chain events
       if (
         /^on[A-Z]/.test(key) &&
-        typeof result[key] === 'function' &&
-        typeof props[key] === 'function'
+        typeof result[key] === "function" &&
+        typeof props[key] === "function"
       ) {
         result[key] = chain(result[key], props[key]);
 
         // Merge classnames, sometimes classNames are empty string which eval to false, so we just need to do a type check
       } else if (
-        key === 'className' &&
-        typeof result.className === 'string' &&
-        typeof props.className === 'string'
+        key === "className" &&
+        typeof result.className === "string" &&
+        typeof props.className === "string"
       ) {
         result[key] = clsx(result.className, props.className);
       } else if (
-        key === 'UNSAFE_className' &&
-        typeof result.UNSAFE_className === 'string' &&
-        typeof props.UNSAFE_className === 'string'
+        key === "UNSAFE_className" &&
+        typeof result.UNSAFE_className === "string" &&
+        typeof props.UNSAFE_className === "string"
       ) {
         result[key] = clsx(result.UNSAFE_className, props.UNSAFE_className);
-      } else if (key === 'id' && result.id && props.id) {
+      } else if (key === "id" && result.id && props.id) {
         result.id = mergeIds(result.id, props.id);
         // Override others
       } else {

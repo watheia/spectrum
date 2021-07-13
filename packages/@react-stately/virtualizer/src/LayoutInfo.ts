@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key} from 'react';
-import {Rect} from './Rect';
+import {Key} from "react";
+import {Rect} from "./Rect";
 
 /**
  * Instances of this lightweight class are created by {@link Layout} subclasses

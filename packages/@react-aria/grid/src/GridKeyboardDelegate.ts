@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Direction, KeyboardDelegate, Node} from '@react-types/shared';
-import {GridCollection} from '@react-types/grid';
-import {Key, RefObject} from 'react';
-import {Layout, Rect} from '@react-stately/virtualizer';
+import {Direction, KeyboardDelegate, Node} from "@react-types/shared";
+import {GridCollection} from "@react-types/grid";
+import {Key, RefObject} from "react";
+import {Layout, Rect} from "@react-stately/virtualizer";
 
 export interface GridKeyboardDelegateOptions<T, C> {
   collection: C,
@@ -22,7 +22,7 @@ export interface GridKeyboardDelegateOptions<T, C> {
   direction: Direction,
   collator?: Intl.Collator,
   layout?: Layout<Node<T>>,
-  focusMode?: 'row' | 'cell'
+  focusMode?: "row" | "cell"
 }
 
 export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements KeyboardDelegate {
@@ -41,15 +41,15 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     this.direction = options.direction;
     this.collator = options.collator;
     this.layout = options.layout;
-    this.focusMode = options.focusMode || 'row';
+    this.focusMode = options.focusMode || "row";
   }
 
   protected isCell(node: Node<T>) {
-    return node.type === 'cell';
+    return node.type === "cell";
   }
 
   protected isRow(node: Node<T>) {
-    return node.type === 'row' || node.type === 'item';
+    return node.type === "row" || node.type === "item";
   }
 
   protected findPreviousKey(fromKey?: Key, pred?: (item: Node<T>) => boolean) {
@@ -103,7 +103,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
       }
 
       // Otherwise, focus the next row
-      if (this.focusMode === 'row') {
+      if (this.focusMode === "row") {
         return key;
       }
     }
@@ -130,7 +130,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
       }
 
       // Otherwise, focus the previous row
-      if (this.focusMode === 'row') {
+      if (this.focusMode === "row") {
         return key;
       }
     }
@@ -145,7 +145,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     // If focus is on a row, focus the first child cell.
     if (this.isRow(item)) {
       let children = [...item.childNodes];
-      return this.direction === 'rtl'
+      return this.direction === "rtl"
         ? children[children.length - 1].key
         : children[0].key;
     }
@@ -155,7 +155,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     if (this.isCell(item)) {
       let parent = this.collection.getItem(item.parentKey);
       let children = [...parent.childNodes];
-      let next = this.direction === 'rtl'
+      let next = this.direction === "rtl"
         ? children[item.index - 1]
         : children[item.index + 1];
 
@@ -164,11 +164,11 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
       }
 
       // focus row only if focusMode is set to row
-      if (this.focusMode === 'row') {
+      if (this.focusMode === "row") {
         return item.parentKey;
       }
 
-      return this.direction === 'rtl' ? this.getFirstKey(key) : this.getLastKey(key);
+      return this.direction === "rtl" ? this.getFirstKey(key) : this.getLastKey(key);
     }
   }
 
@@ -181,7 +181,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     // If focus is on a row, focus the last child cell.
     if (this.isRow(item)) {
       let children = [...item.childNodes];
-      return this.direction === 'rtl'
+      return this.direction === "rtl"
         ? children[0].key
         : children[children.length - 1].key;
     }
@@ -191,7 +191,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     if (this.isCell(item)) {
       let parent = this.collection.getItem(item.parentKey);
       let children = [...parent.childNodes];
-      let prev = this.direction === 'rtl'
+      let prev = this.direction === "rtl"
         ? children[item.index + 1]
         : children[item.index - 1];
 
@@ -200,11 +200,11 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
       }
 
       // focus row only if focusMode is set to row
-      if (this.focusMode === 'row') {
+      if (this.focusMode === "row") {
         return item.parentKey;
       }
 
-      return this.direction === 'rtl' ? this.getLastKey(key) : this.getFirstKey(key);
+      return this.direction === "rtl" ? this.getLastKey(key) : this.getFirstKey(key);
     }
   }
 
@@ -228,7 +228,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     key = this.findNextKey();
 
     // If global flag is set (or if focus mode is cell), focus the first cell in the first row.
-    if ((key != null && item && this.isCell(item) && global) || this.focusMode === 'cell') {
+    if ((key != null && item && this.isCell(item) && global) || this.focusMode === "cell") {
       let item = this.collection.getItem(key);
       key = [...item.childNodes][0].key;
     }
@@ -258,7 +258,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
     key = this.findPreviousKey();
 
     // If global flag is set (or if focus mode is cell), focus the last cell in the last row.
-    if ((key != null && item && this.isCell(item) && global) || this.focusMode === 'cell') {
+    if ((key != null && item && this.isCell(item) && global) || this.focusMode === "cell") {
       let item = this.collection.getItem(key);
       let children = [...item.childNodes];
       key = children[children.length - 1].key;
@@ -349,7 +349,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
 
     // If the starting key is a cell, search from its parent row.
     let startItem = collection.getItem(key);
-    if (startItem.type === 'cell') {
+    if (startItem.type === "cell") {
       key = startItem.parentKey;
     }
 
@@ -361,7 +361,7 @@ export class GridKeyboardDelegate<T, C extends GridCollection<T>> implements Key
       if (item.textValue) {
         let substring = item.textValue.slice(0, search.length);
         if (this.collator.compare(substring, search) === 0) {
-          if (this.isRow(item) && this.focusMode === 'cell') {
+          if (this.isRow(item) && this.focusMode === "cell") {
             return [...item.childNodes][0].key;
           }
 

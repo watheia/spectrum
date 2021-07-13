@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaProgressBarProps} from '@react-types/progress';
-import {clamp, filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes} from 'react';
-import {useLabel} from '@react-aria/label';
-import {useNumberFormatter} from '@react-aria/i18n';
+import {AriaProgressBarProps} from "@react-types/progress";
+import {clamp, filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes} from "react";
+import {useLabel} from "@react-aria/label";
+import {useNumberFormatter} from "@react-aria/i18n";
 
 interface ProgressBarAria {
   /** Props for the progress bar container element. */
@@ -36,7 +36,7 @@ export function useProgressBar(props: AriaProgressBarProps): ProgressBarAria {
     valueLabel,
     isIndeterminate,
     formatOptions = {
-      style: 'percent'
+      style: "percent"
     }
   } = props;
 
@@ -45,7 +45,7 @@ export function useProgressBar(props: AriaProgressBarProps): ProgressBarAria {
     ...props,
     // Progress bar is not an HTML input element so it
     // shouldn't be labeled by a <label> element.
-    labelElementType: 'span'
+    labelElementType: "span"
   });
 
   value = clamp(value, minValue, maxValue);
@@ -53,18 +53,18 @@ export function useProgressBar(props: AriaProgressBarProps): ProgressBarAria {
   let formatter = useNumberFormatter(formatOptions);
 
   if (!isIndeterminate && !valueLabel) {
-    let valueToFormat = formatOptions.style === 'percent' ? percentage : value;
+    let valueToFormat = formatOptions.style === "percent" ? percentage : value;
     valueLabel = formatter.format(valueToFormat);
   }
 
   return {
     progressBarProps: mergeProps(domProps, {
       ...fieldProps,
-      'aria-valuenow': isIndeterminate ? undefined : value,
-      'aria-valuemin': minValue,
-      'aria-valuemax': maxValue,
-      'aria-valuetext': isIndeterminate ? undefined : valueLabel as string,
-      role: 'progressbar'
+      "aria-valuenow": isIndeterminate ? undefined : value,
+      "aria-valuemin": minValue,
+      "aria-valuemax": maxValue,
+      "aria-valuetext": isIndeterminate ? undefined : valueLabel as string,
+      role: "progressbar"
     }),
     labelProps
   };

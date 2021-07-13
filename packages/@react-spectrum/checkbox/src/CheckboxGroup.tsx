@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {CheckboxGroupContext} from './context';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef, LabelPosition} from '@react-types/shared';
-import {Label} from '@react-spectrum/label';
-import labelStyles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
-import {Provider, useProviderProps} from '@react-spectrum/provider';
-import React from 'react';
-import {SpectrumCheckboxGroupProps} from '@react-types/checkbox';
-import styles from '@adobe/spectrum-css-temp/components/fieldgroup/vars.css';
-import {useCheckboxGroup} from '@react-aria/checkbox';
-import {useCheckboxGroupState} from '@react-stately/checkbox';
-import {useFormProps} from '@react-spectrum/form';
+import {CheckboxGroupContext} from "./context";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef, LabelPosition} from "@react-types/shared";
+import {Label} from "@react-spectrum/label";
+import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
+import {Provider, useProviderProps} from "@react-spectrum/provider";
+import React from "react";
+import {SpectrumCheckboxGroupProps} from "@react-types/checkbox";
+import styles from "@adobe/spectrum-css-temp/components/fieldgroup/vars.css";
+import {useCheckboxGroup} from "@react-aria/checkbox";
+import {useCheckboxGroupState} from "@react-stately/checkbox";
+import {useFormProps} from "@react-spectrum/form";
 
 function CheckboxGroup(props: SpectrumCheckboxGroupProps, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -31,10 +31,10 @@ function CheckboxGroup(props: SpectrumCheckboxGroupProps, ref: DOMRef<HTMLDivEle
     isRequired,
     necessityIndicator,
     label,
-    labelPosition = 'top' as LabelPosition,
+    labelPosition = "top" as LabelPosition,
     labelAlign,
     children,
-    orientation = 'vertical',
+    orientation = "vertical",
     validationState,
     ...otherProps
   } = props;
@@ -50,14 +50,14 @@ function CheckboxGroup(props: SpectrumCheckboxGroupProps, ref: DOMRef<HTMLDivEle
       className={
         classNames(
           styles,
-          'spectrum-FieldGroup',
+          "spectrum-FieldGroup",
           {
-            'spectrum-FieldGroup--positionSide': labelPosition === 'side'
+            "spectrum-FieldGroup--positionSide": labelPosition === "side"
           },
           // This is so checkbox group works inside a <Form>
           classNames(
             labelStyles,
-            'spectrum-Field'
+            "spectrum-Field"
           ),
           styleProps.className
         )
@@ -80,9 +80,9 @@ function CheckboxGroup(props: SpectrumCheckboxGroupProps, ref: DOMRef<HTMLDivEle
         className={
           classNames(
             styles,
-            'spectrum-FieldGroup-group',
+            "spectrum-FieldGroup-group",
             {
-              'spectrum-FieldGroup-group--horizontal': orientation === 'horizontal'
+              "spectrum-FieldGroup-group--horizontal": orientation === "horizontal"
             }
           )
         }>

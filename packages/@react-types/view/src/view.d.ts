@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, ViewStyleProps} from '@react-types/shared';
-import {JSXElementConstructor, ReactNode} from 'react';
+import {DOMProps, ViewStyleProps} from "@react-types/shared";
+import {JSXElementConstructor, ReactNode} from "react";
 
 export interface ViewProps extends ViewStyleProps, DOMProps {
   /**

@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {disableTextSelection, restoreTextSelection}  from './textSelection';
-import {MoveEvents, PointerType} from '@react-types/shared';
-import React, {HTMLAttributes, useMemo, useRef} from 'react';
-import {useGlobalListeners} from '@react-aria/utils';
+import {disableTextSelection, restoreTextSelection}  from "./textSelection";
+import {MoveEvents, PointerType} from "@react-types/shared";
+import React, {HTMLAttributes, useMemo, useRef} from "react";
+import {useGlobalListeners} from "@react-aria/utils";
 
 interface MoveResult {
   /** Props to spread on the target element. */
@@ -51,12 +51,12 @@ export function useMove(props: MoveEvents): MoveResult {
       if (!state.current.didMove) {
         state.current.didMove = true;
         onMoveStart?.({
-          type: 'movestart',
+          type: "movestart",
           pointerType
         });
       }
       onMove({
-        type: 'move',
+        type: "move",
         pointerType,
         deltaX: deltaX,
         deltaY: deltaY
@@ -66,24 +66,24 @@ export function useMove(props: MoveEvents): MoveResult {
       restoreTextSelection();
       if (state.current.didMove) {
         onMoveEnd?.({
-          type: 'moveend',
+          type: "moveend",
           pointerType
         });
       }
     };
 
-    if (typeof PointerEvent === 'undefined') {
+    if (typeof PointerEvent === "undefined") {
       let onMouseMove = (e: MouseEvent) => {
         if (e.button === 0) {
-          move('mouse', e.pageX - state.current.lastPosition.pageX, e.pageY - state.current.lastPosition.pageY);
+          move("mouse", e.pageX - state.current.lastPosition.pageX, e.pageY - state.current.lastPosition.pageY);
           state.current.lastPosition = {pageX: e.pageX, pageY: e.pageY};
         }
       };
       let onMouseUp = (e: MouseEvent) => {
         if (e.button === 0) {
-          end('mouse');
-          removeGlobalListener(window, 'mousemove', onMouseMove, false);
-          removeGlobalListener(window, 'mouseup', onMouseUp, false);
+          end("mouse");
+          removeGlobalListener(window, "mousemove", onMouseMove, false);
+          removeGlobalListener(window, "mouseup", onMouseUp, false);
         }
       };
       moveProps.onMouseDown = (e: React.MouseEvent) => {
@@ -92,8 +92,8 @@ export function useMove(props: MoveEvents): MoveResult {
           e.stopPropagation();
           e.preventDefault();
           state.current.lastPosition = {pageX: e.pageX, pageY: e.pageY};
-          addGlobalListener(window, 'mousemove', onMouseMove, false);
-          addGlobalListener(window, 'mouseup', onMouseUp, false);
+          addGlobalListener(window, "mousemove", onMouseMove, false);
+          addGlobalListener(window, "mouseup", onMouseUp, false);
         }
       };
 
@@ -102,7 +102,7 @@ export function useMove(props: MoveEvents): MoveResult {
         let touch = [...e.changedTouches].findIndex(({identifier}) => identifier === state.current.id);
         if (touch >= 0) {
           let {pageX, pageY} = e.changedTouches[touch];
-          move('touch', pageX - state.current.lastPosition.pageX, pageY - state.current.lastPosition.pageY);
+          move("touch", pageX - state.current.lastPosition.pageX, pageY - state.current.lastPosition.pageY);
           state.current.lastPosition = {pageX, pageY};
         }
       };
@@ -110,11 +110,11 @@ export function useMove(props: MoveEvents): MoveResult {
         // @ts-ignore
         let touch = [...e.changedTouches].findIndex(({identifier}) => identifier === state.current.id);
         if (touch >= 0) {
-          end('touch');
+          end("touch");
           state.current.id = null;
-          removeGlobalListener(window, 'touchmove', onTouchMove);
-          removeGlobalListener(window, 'touchend', onTouchEnd);
-          removeGlobalListener(window, 'touchcancel', onTouchEnd);
+          removeGlobalListener(window, "touchmove", onTouchMove);
+          removeGlobalListener(window, "touchend", onTouchEnd);
+          removeGlobalListener(window, "touchcancel", onTouchEnd);
         }
       };
       moveProps.onTouchStart = (e: React.TouchEvent) => {
@@ -128,15 +128,15 @@ export function useMove(props: MoveEvents): MoveResult {
         e.preventDefault();
         state.current.lastPosition = {pageX, pageY};
         state.current.id = identifier;
-        addGlobalListener(window, 'touchmove', onTouchMove, false);
-        addGlobalListener(window, 'touchend', onTouchEnd, false);
-        addGlobalListener(window, 'touchcancel', onTouchEnd, false);
+        addGlobalListener(window, "touchmove", onTouchMove, false);
+        addGlobalListener(window, "touchend", onTouchEnd, false);
+        addGlobalListener(window, "touchcancel", onTouchEnd, false);
       };
     } else {
       let onPointerMove = (e: PointerEvent) => {
         if (e.pointerId === state.current.id) {
           // @ts-ignore
-          let pointerType: PointerType = e.pointerType || 'mouse';
+          let pointerType: PointerType = e.pointerType || "mouse";
 
           // Problems with PointerEvent#movementX/movementY:
           // 1. it is always 0 on macOS Safari.
@@ -149,12 +149,12 @@ export function useMove(props: MoveEvents): MoveResult {
       let onPointerUp = (e: PointerEvent) => {
         if (e.pointerId === state.current.id) {
             // @ts-ignore
-          let pointerType: PointerType = e.pointerType || 'mouse';
+          let pointerType: PointerType = e.pointerType || "mouse";
           end(pointerType);
           state.current.id = null;
-          removeGlobalListener(window, 'pointermove', onPointerMove, false);
-          removeGlobalListener(window, 'pointerup', onPointerUp, false);
-          removeGlobalListener(window, 'pointercancel', onPointerUp, false);
+          removeGlobalListener(window, "pointermove", onPointerMove, false);
+          removeGlobalListener(window, "pointerup", onPointerUp, false);
+          removeGlobalListener(window, "pointercancel", onPointerUp, false);
         }
       };
 
@@ -165,41 +165,41 @@ export function useMove(props: MoveEvents): MoveResult {
           e.preventDefault();
           state.current.lastPosition = {pageX: e.pageX, pageY: e.pageY};
           state.current.id = e.pointerId;
-          addGlobalListener(window, 'pointermove', onPointerMove, false);
-          addGlobalListener(window, 'pointerup', onPointerUp, false);
-          addGlobalListener(window, 'pointercancel', onPointerUp, false);
+          addGlobalListener(window, "pointermove", onPointerMove, false);
+          addGlobalListener(window, "pointerup", onPointerUp, false);
+          addGlobalListener(window, "pointercancel", onPointerUp, false);
         }
       };
     }
 
     let triggerKeyboardMove = (deltaX: number, deltaY: number) => {
       start();
-      move('keyboard', deltaX, deltaY);
-      end('keyboard');
+      move("keyboard", deltaX, deltaY);
+      end("keyboard");
     };
 
     moveProps.onKeyDown = (e) => {
       switch (e.key) {
-        case 'Left':
-        case 'ArrowLeft':
+        case "Left":
+        case "ArrowLeft":
           e.preventDefault();
           e.stopPropagation();
           triggerKeyboardMove(-1, 0);
           break;
-        case 'Right':
-        case 'ArrowRight':
+        case "Right":
+        case "ArrowRight":
           e.preventDefault();
           e.stopPropagation();
           triggerKeyboardMove(1, 0);
           break;
-        case 'Up':
-        case 'ArrowUp':
+        case "Up":
+        case "ArrowUp":
           e.preventDefault();
           e.stopPropagation();
           triggerKeyboardMove(0, -1);
           break;
-        case 'Down':
-        case 'ArrowDown':
+        case "Down":
+        case "ArrowDown":
           e.preventDefault();
           e.stopPropagation();
           triggerKeyboardMove(0, 1);

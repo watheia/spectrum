@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {DOMProps, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 export interface ToastOptions extends DOMProps, StyleProps {
   actionLabel?: ReactNode,
@@ -23,7 +23,7 @@ export interface ToastOptions extends DOMProps, StyleProps {
 
 export interface ToastProps extends ToastOptions {
   children?: ReactNode,
-  variant?: 'positive' | 'negative' | 'info',
+  variant?: "positive" | "negative" | "info",
   toastKey?: string,
   timer?: any
 }

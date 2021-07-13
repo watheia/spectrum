@@ -11,13 +11,13 @@
  */
 
 // Can't `import` babel, have to require?
-const babel = require('@babel/core');
-import {evaluate} from './ssrUtils';
-import http from 'http';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {SSRProvider} from '@react-aria/ssr';
-import util from 'util';
+const babel = require("@babel/core");
+import {evaluate} from "./ssrUtils";
+import http from "http";
+import React from "react";
+import ReactDOM from "react-dom";
+import {SSRProvider} from "@react-aria/ssr";
+import util from "util";
 
 export async function testSSR(filename, source) {
   // Transform the code with babel so JSX becomes JS.
@@ -26,20 +26,20 @@ export async function testSSR(filename, source) {
   // Send the HTML along with the source code to the worker to be hydrated in a DOM environment.
   return new Promise((resolve, reject) => {
     let req = http.request({
-      hostname: 'localhost',
+      hostname: "localhost",
       port: 18235,
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       }
     }, res => {
-      let body = '';
-      res.setEncoding('utf8');
-      res.on('data', (chunk) => {
+      let body = "";
+      res.setEncoding("utf8");
+      res.on("data", (chunk) => {
         body += chunk;
       });
 
-      res.on('end', () => {
+      res.on("end", () => {
         if (res.statusCode !== 200) {
           let data = JSON.parse(body);
           reject(new Error(data.errors[0]));
@@ -55,7 +55,7 @@ export async function testSSR(filename, source) {
         // Evaluate the code to get a React element, and hydrate into the dom.
         try {
           document.body.innerHTML = `<div id="root">${body}</div>`;
-          let container = document.querySelector('#root');
+          let container = document.querySelector("#root");
           let element = evaluate(source, filename);
           ReactDOM.hydrate(<SSRProvider>{element}</SSRProvider>, container);
         } catch (err) {

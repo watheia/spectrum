@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, KeyboardDelegate, Node} from '@react-types/shared';
-import {InvalidationContext, Layout, LayoutInfo, Rect, Size} from '@react-stately/virtualizer';
-import {Key} from 'react';
+import {Collection, KeyboardDelegate, Node} from "@react-types/shared";
+import {InvalidationContext, Layout, LayoutInfo, Rect, Size} from "@react-stately/virtualizer";
+import {Key} from "react";
 // import { DragTarget, DropTarget, DropPosition } from '@react-types/shared';
 
 export type ListLayoutOptions<T> = {
@@ -145,8 +145,8 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     if (this.isLoading) {
       let rect = new Rect(0, y, this.virtualizer.visibleRect.width,
         this.loaderHeight ?? this.virtualizer.visibleRect.height);
-      let loader = new LayoutInfo('loader', 'loader', rect);
-      this.layoutInfos.set('loader', loader);
+      let loader = new LayoutInfo("loader", "loader", rect);
+      this.layoutInfos.set("loader", loader);
       nodes.push({layoutInfo: loader});
       y = loader.rect.maxY;
     }
@@ -154,8 +154,8 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     if (nodes.length === 0) {
       let rect = new Rect(0, y, this.virtualizer.visibleRect.width,
         this.placeholderHeight ?? this.virtualizer.visibleRect.height);
-      let placeholder = new LayoutInfo('placeholder', 'placeholder', rect);
-      this.layoutInfos.set('placeholder', placeholder);
+      let placeholder = new LayoutInfo("placeholder", "placeholder", rect);
+      this.layoutInfos.set("placeholder", placeholder);
       nodes.push({layoutInfo: placeholder});
       y = placeholder.rect.maxY;
     }
@@ -220,9 +220,9 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
 
   buildNode(node: Node<T>, x: number, y: number): LayoutNode {
     switch (node.type) {
-      case 'section':
+      case "section":
         return this.buildSection(node, x, y);
-      case 'item':
+      case "item":
         return this.buildItem(node, x, y);
     }
   }
@@ -254,7 +254,7 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     }
 
     let headerRect = new Rect(0, y, width, rectHeight);
-    let header = new LayoutInfo('header', node.key + ':header', headerRect);
+    let header = new LayoutInfo("header", node.key + ":header", headerRect);
     header.estimatedSize = isEstimated;
     header.parentKey = node.key;
     y += header.rect.height;
@@ -305,7 +305,7 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
       rectHeight = DEFAULT_HEIGHT;
     }
 
-    if (typeof this.indentationForItem === 'function') {
+    if (typeof this.indentationForItem === "function") {
       x += this.indentationForItem(this.collection, node.key) || 0;
     }
 
@@ -371,7 +371,7 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     key = collection.getKeyBefore(key);
     while (key != null) {
       let item = collection.getItem(key);
-      if (item.type === 'item' && !this.disabledKeys.has(item.key)) {
+      if (item.type === "item" && !this.disabledKeys.has(item.key)) {
         return key;
       }
 
@@ -385,7 +385,7 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     key = collection.getKeyAfter(key);
     while (key != null) {
       let item = collection.getItem(key);
-      if (item.type === 'item' && !this.disabledKeys.has(item.key)) {
+      if (item.type === "item" && !this.disabledKeys.has(item.key)) {
         return key;
       }
 
@@ -434,7 +434,7 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     let key = collection.getFirstKey();
     while (key != null) {
       let item = collection.getItem(key);
-      if (item.type === 'item' && !this.disabledKeys.has(item.key)) {
+      if (item.type === "item" && !this.disabledKeys.has(item.key)) {
         return key;
       }
 
@@ -447,7 +447,7 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
     let key = collection.getLastKey();
     while (key != null) {
       let item = collection.getItem(key);
-      if (item.type === 'item' && !this.disabledKeys.has(item.key)) {
+      if (item.type === "item" && !this.disabledKeys.has(item.key)) {
         return key;
       }
 
@@ -503,13 +503,13 @@ export class ListLayout<T> extends Layout<Node<T>> implements KeyboardDelegate {
 
   getInitialLayoutInfo(layoutInfo: LayoutInfo) {
     layoutInfo.opacity = 0;
-    layoutInfo.transform = 'scale3d(0.8, 0.8, 0.8)';
+    layoutInfo.transform = "scale3d(0.8, 0.8, 0.8)";
     return layoutInfo;
   }
 
   getFinalLayoutInfo(layoutInfo: LayoutInfo) {
     layoutInfo.opacity = 0;
-    layoutInfo.transform = 'scale3d(0.8, 0.8, 0.8)';
+    layoutInfo.transform = "scale3d(0.8, 0.8, 0.8)";
     return layoutInfo;
   }
 }

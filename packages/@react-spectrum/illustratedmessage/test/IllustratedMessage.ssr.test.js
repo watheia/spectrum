@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {testSSR} from '@react-spectrum/test-utils';
+import {testSSR} from "@react-spectrum/test-utils";
 
-describe('IllustratedMessage SSR', function () {
+describe("IllustratedMessage SSR", function () {
 
-  it('should render without errors', async function () {
+  it("should render without errors", async function () {
     await testSSR(__filename, `
       import {Heading} from '@react-spectrum/text';
       import {IllustratedMessage} from '../';

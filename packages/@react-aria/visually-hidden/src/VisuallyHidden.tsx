@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps} from '@react-aria/utils';
-import React, {CSSProperties, HTMLAttributes, JSXElementConstructor, ReactNode, useMemo, useState} from 'react';
-import {useFocus} from '@react-aria/interactions';
+import {mergeProps} from "@react-aria/utils";
+import React, {CSSProperties, HTMLAttributes, JSXElementConstructor, ReactNode, useMemo, useState} from "react";
+import {useFocus} from "@react-aria/interactions";
 
 interface VisuallyHiddenProps extends HTMLAttributes<HTMLElement> {
   /** The content to visually hide. */
@@ -30,15 +30,15 @@ interface VisuallyHiddenProps extends HTMLAttributes<HTMLElement> {
 
 const styles: CSSProperties = {
   border: 0,
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
+  clip: "rect(0 0 0 0)",
+  clipPath: "inset(50%)",
   height: 1,
-  margin: '0 -1px -1px 0',
-  overflow: 'hidden',
+  margin: "0 -1px -1px 0",
+  overflow: "hidden",
   padding: 0,
-  position: 'absolute',
+  position: "absolute",
   width: 1,
-  whiteSpace: 'nowrap'
+  whiteSpace: "nowrap"
 };
 
 interface VisuallyHiddenAria {
@@ -86,7 +86,7 @@ export function useVisuallyHidden(props: VisuallyHiddenProps = {}): VisuallyHidd
  */
 export function VisuallyHidden(props: VisuallyHiddenProps) {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  let {children, elementType: Element = 'div', isFocusable, style, ...otherProps} = props;
+  let {children, elementType: Element = "div", isFocusable, style, ...otherProps} = props;
   let {visuallyHiddenProps} = useVisuallyHidden(props);
 
   return (

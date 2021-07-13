@@ -11,20 +11,20 @@
  */
 
 
-import badgeStyles from '@adobe/spectrum-css-temp/components/label/vars.css';
-import clsx from 'clsx';
-import React from 'react';
+import badgeStyles from "@adobe/spectrum-css-temp/components/label/vars.css";
+import clsx from "clsx";
+import React from "react";
 
 export function VersionBadge(props) {
   let {
-    version = '',
-    size = 'small'
+    version = "",
+    size = "small"
   } = props;
 
   let versionMap = {
-    'alpha': 'spectrum-Label--blue',
-    'beta': 'spectrum-Label--blue',
-    'rc': 'spectrum-Label--green'
+    "alpha": "spectrum-Label--blue",
+    "beta": "spectrum-Label--blue",
+    "rc": "spectrum-Label--green"
   };
 
   let preRelease = version.match(/(alpha)|(beta)|(rc)/);
@@ -35,6 +35,6 @@ export function VersionBadge(props) {
   }
 
   return (
-    <span className={clsx(badgeStyles['spectrum-Label'], badgeStyles[sizeClass], badgeStyles[versionMap[preRelease[0]]])}>{preRelease[0]}</span>
+    <span className={clsx(badgeStyles["spectrum-Label"], badgeStyles[sizeClass], badgeStyles[versionMap[preRelease[0]]])}>{preRelease[0]}</span>
   );
 }

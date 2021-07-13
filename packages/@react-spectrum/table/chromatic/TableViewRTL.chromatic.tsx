@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta} from '@storybook/react';
+import {Meta} from "@storybook/react";
 
 // Original Table story wasn't performant with so many tables, so split off RTL into its own story
 const meta: Meta = {
-  title: 'TableViewRTL',
+  title: "TableViewRTL",
   parameters: {
-    chromaticProvider: {colorSchemes: ['light'], locales: ['ar-AE'], scales: ['medium'], disableAnimations: true},
+    chromaticProvider: {colorSchemes: ["light"], locales: ["ar-AE"], scales: ["medium"], disableAnimations: true},
     // large delay with the layout since there are so many tables
     chromatic: {delay: 2000}
   }
@@ -32,4 +32,4 @@ export {
   HiddenColumns,
   NestedColumns,
   Empty
-} from './TableView.chromatic';
+} from "./TableView.chromatic";

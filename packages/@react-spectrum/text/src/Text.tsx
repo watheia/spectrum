@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import React, {forwardRef} from 'react';
-import {TextProps} from '@react-types/text';
-import {useDOMRef, useSlotProps, useStyleProps} from '@react-spectrum/utils';
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import React, {forwardRef} from "react";
+import {TextProps} from "@react-types/text";
+import {useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
 
 function Text(props: TextProps, ref: DOMRef) {
-  props = useSlotProps(props, 'text');
+  props = useSlotProps(props, "text");
   let {
     children,
     ...otherProps

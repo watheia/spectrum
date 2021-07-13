@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps} from '@react-types/shared';
-import {useLayoutEffect, useState} from 'react';
+import {AriaLabelingProps} from "@react-types/shared";
+import {useLayoutEffect, useState} from "react";
 
 let descriptionId = 0;
 const descriptionNodes = new Map<string, {refCount: number, element: HTMLElement}>();
@@ -29,9 +29,9 @@ export function useDescription(description: string): AriaLabelingProps {
       let id = `react-aria-description-${descriptionId++}`;
       setId(id);
 
-      let node = document.createElement('div');
+      let node = document.createElement("div");
       node.id = id;
-      node.style.display = 'none';
+      node.style.display = "none";
       node.textContent = description;
       document.body.appendChild(node);
       desc = {refCount: 0, element: node};
@@ -50,6 +50,6 @@ export function useDescription(description: string): AriaLabelingProps {
   }, [description]);
 
   return {
-    'aria-describedby': description ? id : undefined
+    "aria-describedby": description ? id : undefined
   };
 }

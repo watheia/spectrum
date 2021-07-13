@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {GridCollection} from '@react-types/grid';
-import {GridState} from '@react-stately/grid';
-import {HTMLAttributes, RefObject} from 'react';
-import {Node} from '@react-types/shared';
-import {usePress} from '@react-aria/interactions';
-import {useSelectableItem} from '@react-aria/selection';
+import {GridCollection} from "@react-types/grid";
+import {GridState} from "@react-stately/grid";
+import {HTMLAttributes, RefObject} from "react";
+import {Node} from "@react-types/shared";
+import {usePress} from "@react-aria/interactions";
+import {useSelectableItem} from "@react-aria/selection";
 
 export interface GridRowProps<T> {
   /** An object representing the grid row. Contains all the relevant information that makes up the grid row. */
@@ -58,13 +58,13 @@ export function useGridRow<T, C extends GridCollection<T>, S extends GridState<T
   let {pressProps} = usePress({...itemProps, isDisabled});
 
   let rowProps: HTMLAttributes<HTMLElement> = {
-    role: 'row',
-    'aria-selected': isSelected,
+    role: "row",
+    "aria-selected": isSelected,
     ...pressProps
   };
 
   if (isVirtualized) {
-    rowProps['aria-rowindex'] = node.index + 1; // aria-rowindex is 1 based
+    rowProps["aria-rowindex"] = node.index + 1; // aria-rowindex is 1 based
   }
 
   return {

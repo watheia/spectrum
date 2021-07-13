@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import React, {ReactNode, RefObject} from 'react';
-import {SelectState} from '@react-stately/select';
-import {useInteractionModality} from '@react-aria/interactions';
-import {useVisuallyHidden} from '@react-aria/visually-hidden';
+import React, {ReactNode, RefObject} from "react";
+import {SelectState} from "@react-stately/select";
+import {useInteractionModality} from "@react-aria/interactions";
+import {useVisuallyHidden} from "@react-aria/visually-hidden";
 
 interface AriaHiddenSelectProps {
   /** The text label for the select. */
@@ -65,10 +65,10 @@ export function useHiddenSelect<T>(props: AriaHiddenSelectProps, state: SelectSt
   return {
     containerProps: {
       ...visuallyHiddenProps,
-      'aria-hidden': true
+      "aria-hidden": true
     },
     inputProps: {
-      type: 'text',
+      type: "text",
       tabIndex: modality == null || state.isFocused || state.isOpen ? -1 : 0,
       style: {fontSize: 16},
       onFocus: () => triggerRef.current.focus(),
@@ -79,7 +79,7 @@ export function useHiddenSelect<T>(props: AriaHiddenSelectProps, state: SelectSt
       disabled: isDisabled,
       name,
       size: state.collection.size,
-      value: state.selectedKey ?? '',
+      value: state.selectedKey ?? "",
       onChange: (e: React.ChangeEvent<HTMLSelectElement>) => state.setSelectedKey(e.target.value)
     }
   };
@@ -106,7 +106,7 @@ export function HiddenSelect<T>(props: HiddenSelectProps<T>) {
             <option />
             {[...state.collection.getKeys()].map(key => {
               let item = state.collection.getItem(key);
-              if (item.type === 'item') {
+              if (item.type === "item") {
                 return (
                   <option
                     key={item.key}

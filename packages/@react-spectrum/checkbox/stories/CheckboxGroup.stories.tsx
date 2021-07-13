@@ -10,102 +10,102 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Checkbox, CheckboxGroup} from '../';
-import React from 'react';
-import {SpectrumCheckboxGroupProps} from '@react-types/checkbox';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {Checkbox, CheckboxGroup} from "../";
+import React from "react";
+import {SpectrumCheckboxGroupProps} from "@react-types/checkbox";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('CheckboxGroup', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("CheckboxGroup", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'defaultValue: dragons',
-    () => render({defaultValue: ['dragons']})
+    "defaultValue: dragons",
+    () => render({defaultValue: ["dragons"]})
   )
   .add(
-    'controlled: dragons',
-    () => render({value: ['dragons']})
+    "controlled: dragons",
+    () => render({value: ["dragons"]})
   )
   .add(
-    'labelPosition: side',
-    () => render({labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({labelPosition: "side"})
   )
   .add(
-    'labelAlign: end',
-    () => render({labelAlign: 'end'})
+    "labelAlign: end",
+    () => render({labelAlign: "end"})
   )
   .add(
-    'horizontal',
-    () => render({orientation: 'horizontal'})
+    "horizontal",
+    () => render({orientation: "horizontal"})
   )
   .add(
-    'horizontal, labelPosition: side',
-    () => render({orientation: 'horizontal', labelPosition: 'side'})
+    "horizontal, labelPosition: side",
+    () => render({orientation: "horizontal", labelPosition: "side"})
   )
   .add(
-    'horizontal, labelAlign: end',
-    () => render({orientation: 'horizontal', labelAlign: 'end'})
+    "horizontal, labelAlign: end",
+    () => render({orientation: "horizontal", labelAlign: "end"})
   )
   .add(
-    'isDisabled',
+    "isDisabled",
     () => render({isDisabled: true})
   )
   .add(
-    'isDisabled on one checkbox',
+    "isDisabled on one checkbox",
     () => render({}, [{}, {isDisabled: true}, {}])
   )
   .add(
-    'isDisabled on one checkbox horizontal',
-    () => render({orientation: 'horizontal'}, [{}, {isDisabled: true}, {}])
+    "isDisabled on one checkbox horizontal",
+    () => render({orientation: "horizontal"}, [{}, {isDisabled: true}, {}])
   )
   .add(
-    'isRequired',
+    "isRequired",
     () => render({isRequired: true})
   )
   .add(
-    'isRequired, necessityIndicator: label',
-    () => render({isRequired: true, necessityIndicator: 'label'})
+    "isRequired, necessityIndicator: label",
+    () => render({isRequired: true, necessityIndicator: "label"})
   )
   .add(
-    'necessityIndicator: label, labelPosition: side',
-    () => render({necessityIndicator: 'label', labelPosition: 'side'})
+    "necessityIndicator: label, labelPosition: side",
+    () => render({necessityIndicator: "label", labelPosition: "side"})
   )
   .add(
-    'isReadOnly',
+    "isReadOnly",
     () => render({isReadOnly: true})
   )
   .add(
-    'isEmphasized',
+    "isEmphasized",
     () => render({isEmphasized: true})
   )
   .add(
     'validationState: "invalid"',
-    () => render({validationState: 'invalid'})
+    () => render({validationState: "invalid"})
   )
   .add(
     'validationState: "invalid" on one checkbox',
-    () => render({}, [{}, {validationState: 'invalid'}, {}])
+    () => render({}, [{}, {validationState: "invalid"}, {}])
   )
   .add(
-    'no visible label',
-    () => render({label: null, 'aria-label': 'Pets'})
+    "no visible label",
+    () => render({label: null, "aria-label": "Pets"})
   )
   .add(
-    'autoFocus on one checkbox',
+    "autoFocus on one checkbox",
     () => render({}, [{}, {autoFocus: true}, {}])
   )
   .add(
-    'form name',
-    () => render({name: 'pets'})
+    "form name",
+    () => render({name: "pets"})
   );
 
-function render(props: Omit<SpectrumCheckboxGroupProps, 'children'> = {}, checkboxProps: any[] = []) {
+function render(props: Omit<SpectrumCheckboxGroupProps, "children"> = {}, checkboxProps: any[] = []) {
   return (
-    <CheckboxGroup label="Pets" {...props} onChange={action('onChange')}>
+    <CheckboxGroup label="Pets" {...props} onChange={action("onChange")}>
       <Checkbox value="dogs" {...checkboxProps[0]}>Dogs</Checkbox>
       <Checkbox value="cats" {...checkboxProps[1]}>Cats</Checkbox>
       <Checkbox value="dragons" {...checkboxProps[2]}>Dragons</Checkbox>

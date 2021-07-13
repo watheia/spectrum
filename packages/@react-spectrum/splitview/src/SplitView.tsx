@@ -10,30 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from '@react-spectrum/utils';
-import {DOMProps, SplitViewProps, StyleProps} from '@react-types/shared';
-import React, {useRef} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/splitview/vars.css';
-import {useSplitView} from '@react-aria/splitview';
-import {useSplitViewState} from '@react-stately/splitview';
-import './SplitView.css';
+import {classNames, useStyleProps} from "@react-spectrum/utils";
+import {DOMProps, SplitViewProps, StyleProps} from "@react-types/shared";
+import React, {useRef} from "react";
+import styles from "@adobe/spectrum-css-temp/components/splitview/vars.css";
+import {useSplitView} from "@react-aria/splitview";
+import {useSplitViewState} from "@react-stately/splitview";
+import "./SplitView.css";
 
 
 const ORIENTATIONS = {
-  horizontal: 'width',
-  vertical: 'height'
+  horizontal: "width",
+  vertical: "height"
 };
 
 const CURSORS = {
   horizontal: {
-    default: 'ew-resize',
-    min: ['e-resize', 'w-resize'],
-    max: ['w-resize', 'e-resize']
+    default: "ew-resize",
+    min: ["e-resize", "w-resize"],
+    max: ["w-resize", "e-resize"]
   },
   vertical: {
-    default: 'ns-resize',
-    min: ['s-resize', 'n-resize'],
-    max: ['n-resize', 's-resize']
+    default: "ns-resize",
+    min: ["s-resize", "n-resize"],
+    max: ["n-resize", "s-resize"]
   }
 };
 
@@ -41,7 +41,7 @@ interface SpectrumSplitViewProps extends SplitViewProps, DOMProps, StyleProps {}
 
 export function SplitView(props: SpectrumSplitViewProps) {
   let {
-    orientation = 'horizontal' as 'horizontal',
+    orientation = "horizontal" as "horizontal",
     allowsResizing = true,
     primaryPane = 0 as 0,
     primaryMinSize = 304,
@@ -100,7 +100,7 @@ export function SplitView(props: SpectrumSplitViewProps) {
   let primary = (
     <div
       {...primaryPaneProps}
-      className={classNames(styles, 'spectrum-SplitView-pane')}
+      className={classNames(styles, "spectrum-SplitView-pane")}
       style={primaryStyle}>
       {children[primaryPane]}
     </div>
@@ -108,7 +108,7 @@ export function SplitView(props: SpectrumSplitViewProps) {
 
   let secondary = (
     <div
-      className={classNames(styles, 'spectrum-SplitView-pane')}
+      className={classNames(styles, "spectrum-SplitView-pane")}
       style={{flex: 1}}>
       {children[secondaryPane]}
     </div>
@@ -119,22 +119,22 @@ export function SplitView(props: SpectrumSplitViewProps) {
       {...containerProps}
       {...styleProps}
       ref={containerRef}
-      className={classNames(styles, 'spectrum-SplitView', `spectrum-SplitView--${orientation}`, styleProps.className)}>
+      className={classNames(styles, "spectrum-SplitView", `spectrum-SplitView--${orientation}`, styleProps.className)}>
       {primaryPane === 0 ? primary : secondary}
       <div
         {...handleProps}
         className={classNames(styles,
-          'spectrum-SplitView-splitter',
+          "spectrum-SplitView-splitter",
           `react-spectrum-SplitView--${orientation}`,
           {
-            'is-draggable': allowsResizing,
-            'is-hovered': handle.hovered,
-            'is-active': handle.dragging,
-            'is-collapsed-start': handle.offset === 0 && primaryPane === 0,
-            'is-collapsed-end': handle.offset === 0 && primaryPane === 1
+            "is-draggable": allowsResizing,
+            "is-hovered": handle.hovered,
+            "is-active": handle.dragging,
+            "is-collapsed-start": handle.offset === 0 && primaryPane === 0,
+            "is-collapsed-end": handle.offset === 0 && primaryPane === 1
           }
         )}>
-        {allowsResizing ? <div className={classNames(styles, 'spectrum-SplitView-gripper')} /> : null}
+        {allowsResizing ? <div className={classNames(styles, "spectrum-SplitView-gripper")} /> : null}
       </div>
       {primaryPane === 1 ? primary : secondary}
     </div>

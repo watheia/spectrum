@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '../';
-import Add from '@spectrum-icons/workflow/Add';
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Text} from '@react-spectrum/text';
-import {View} from '@react-spectrum/view';
+import {ActionButton} from "../";
+import Add from "@spectrum-icons/workflow/Add";
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Text} from "@react-spectrum/text";
+import {View} from "@react-spectrum/view";
 
-storiesOf('Button/ActionButton', module)
+storiesOf("Button/ActionButton", module)
   .add(
-    'text',
+    "text",
     () => (
       <Flex gap="size-100">
         <ActionButton>
@@ -36,7 +36,7 @@ storiesOf('Button/ActionButton', module)
     )
   )
   .add(
-    'icon + text',
+    "icon + text",
     () => (
       <Flex gap="size-100">
         <ActionButton>
@@ -55,7 +55,7 @@ storiesOf('Button/ActionButton', module)
     )
   )
   .add(
-    'icon only',
+    "icon only",
     () => (
       <Flex gap="size-100">
         <ActionButton>
@@ -71,7 +71,7 @@ storiesOf('Button/ActionButton', module)
     )
   )
   .add(
-    'staticColor: white',
+    "staticColor: white",
     () => (
       <View backgroundColor="static-seafoam-600" padding="size-1000">
         <Flex direction="column" rowGap="size-150">
@@ -92,7 +92,7 @@ storiesOf('Button/ActionButton', module)
     )
   )
   .add(
-    'staticColor: black',
+    "staticColor: black",
     () => (
       <View backgroundColor="static-yellow-400" padding="size-1000">
         <Flex direction="column" rowGap="size-150">

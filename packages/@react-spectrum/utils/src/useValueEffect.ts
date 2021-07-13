@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {Dispatch, useCallback, useRef, useState} from 'react';
-import {useLayoutEffect} from '@react-aria/utils';
+import {Dispatch, useCallback, useRef, useState} from "react";
+import {useLayoutEffect} from "@react-aria/utils";
 
 type SetValueAction = () => Generator<any, void, unknown>;
 

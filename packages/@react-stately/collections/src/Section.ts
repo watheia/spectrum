@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {PartialNode} from './types';
-import React, {ReactElement} from 'react';
-import {SectionProps} from '@react-types/shared';
+import {PartialNode} from "./types";
+import React, {ReactElement} from "react";
+import {SectionProps} from "@react-types/shared";
 
 function Section<T>(props: SectionProps<T>): ReactElement { // eslint-disable-line @typescript-eslint/no-unused-vars
   return null;
@@ -21,19 +21,19 @@ function Section<T>(props: SectionProps<T>): ReactElement { // eslint-disable-li
 Section.getCollectionNode = function* getCollectionNode<T>(props: SectionProps<T>): Generator<PartialNode<T>> {
   let {children, title, items} = props;
   yield {
-    type: 'section',
+    type: "section",
     hasChildNodes: true,
     rendered: title,
-    'aria-label': props['aria-label'],
+    "aria-label": props["aria-label"],
     *childNodes() {
-      if (typeof children === 'function') {
+      if (typeof children === "function") {
         if (!items) {
-          throw new Error('props.children was a function but props.items is missing');
+          throw new Error("props.children was a function but props.items is missing");
         }
     
         for (let item of items) {
           yield {
-            type: 'item',
+            type: "item",
             value: item,
             renderer: children
           };
@@ -42,7 +42,7 @@ Section.getCollectionNode = function* getCollectionNode<T>(props: SectionProps<T
         let items: PartialNode<T>[] = [];
         React.Children.forEach(children, child => {
           items.push({
-            type: 'item',
+            type: "item",
             element: child
           });
         });

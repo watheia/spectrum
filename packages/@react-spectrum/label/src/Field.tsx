@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from '@react-spectrum/utils';
-import {Label} from './Label';
-import labelStyles from '@adobe/spectrum-css-temp/components/fieldlabel/vars.css';
-import {mergeProps} from '@react-aria/utils';
-import React, {RefObject} from 'react';
-import {SpectrumFieldProps} from '@react-types/label';
+import {classNames, useStyleProps} from "@react-spectrum/utils";
+import {Label} from "./Label";
+import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
+import {mergeProps} from "@react-aria/utils";
+import React, {RefObject} from "react";
+import {SpectrumFieldProps} from "@react-types/label";
 
 function Field(props: SpectrumFieldProps, ref: RefObject<HTMLElement>) {
   let {
     label,
-    labelPosition = 'top',
+    labelPosition = "top",
     labelAlign,
     isRequired,
     necessityIndicator,
@@ -37,10 +37,10 @@ function Field(props: SpectrumFieldProps, ref: RefObject<HTMLElement>) {
   if (label) {
     let labelWrapperClass = classNames(
       labelStyles,
-      'spectrum-Field',
+      "spectrum-Field",
       {
-        'spectrum-Field--positionTop': labelPosition === 'top',
-        'spectrum-Field--positionSide': labelPosition === 'side'
+        "spectrum-Field--positionTop": labelPosition === "top",
+        "spectrum-Field--positionSide": labelPosition === "side"
       },
       styleProps.className,
       wrapperClassName
@@ -49,7 +49,7 @@ function Field(props: SpectrumFieldProps, ref: RefObject<HTMLElement>) {
     children = React.cloneElement(children, mergeProps(children.props, {
       className: classNames(
         labelStyles,
-        'spectrum-Field-field'
+        "spectrum-Field-field"
       )
     }));
 

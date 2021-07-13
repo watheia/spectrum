@@ -1,31 +1,31 @@
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from '@react-spectrum/table';
-import React, {useState} from 'react';
-import {SearchField} from '@react-spectrum/searchfield';
-import {storiesOf} from '@storybook/react';
+import {Cell, Column, Row, TableBody, TableHeader, TableView} from "@react-spectrum/table";
+import React, {useState} from "react";
+import {SearchField} from "@react-spectrum/searchfield";
+import {storiesOf} from "@storybook/react";
 
 
 let manyColumns = [];
 for (let i = 0; i < 100; i++) {
   manyColumns.push(
     i === 0
-      ? {name: 'Column name', key: 'C0'}
-      : {name: 'Column ' + i, key: 'C' + i}
+      ? {name: "Column name", key: "C0"}
+      : {name: "Column " + i, key: "C" + i}
   );
 }
 
 let manyRows = [];
 for (let i = 0; i < 1000; i++) {
-  let row = {key: 'R' + i};
+  let row = {key: "R" + i};
   for (let j = 0; j < 100; j++) {
-    row['C' + j] = j === 0 ? `Row ${i}` : `${i}, ${j}`;
+    row["C" + j] = j === 0 ? `Row ${i}` : `${i}, ${j}`;
   }
 
   manyRows.push(row);
 }
 
-storiesOf('useFocusRing', module)
+storiesOf("useFocusRing", module)
   .add(
-    'search + tableview',
+    "search + tableview",
     () => (
       <SearchExample />
     )
@@ -39,7 +39,7 @@ function SearchExample() {
       <SearchField
         onChange={(value) => {
           const newItems = manyRows.filter((item) =>
-            item['C0'].toLowerCase().includes(value.toLowerCase())
+            item["C0"].toLowerCase().includes(value.toLowerCase())
           );
           setItems(newItems);
         }} />

@@ -9,31 +9,31 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import {AriaLabelingProps, CollectionBase, DOMProps, DOMRef, StyleProps} from '@react-types/shared';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {GridCollection, useGridState} from '@react-stately/grid';
-import {GridKeyboardDelegate, useGrid} from '@react-aria/grid';
+import {AriaLabelingProps, CollectionBase, DOMProps, DOMRef, StyleProps} from "@react-types/shared";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {GridCollection, useGridState} from "@react-stately/grid";
+import {GridKeyboardDelegate, useGrid} from "@react-aria/grid";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {ListLayout} from '@react-stately/layout';
-import {ListState, useListState} from '@react-stately/list';
-import listStyles from './listview.css';
-import {ListViewItem} from './ListViewItem';
-import {ProgressCircle} from '@react-spectrum/progress';
-import React, {ReactElement, useContext, useMemo} from 'react';
-import {useCollator, useLocale, useMessageFormatter} from '@react-aria/i18n';
-import {useProvider} from '@react-spectrum/provider';
-import {Virtualizer} from '@react-aria/virtualizer';
+import intlMessages from "../intl/*.json";
+import {ListLayout} from "@react-stately/layout";
+import {ListState, useListState} from "@react-stately/list";
+import listStyles from "./listview.css";
+import {ListViewItem} from "./ListViewItem";
+import {ProgressCircle} from "@react-spectrum/progress";
+import React, {ReactElement, useContext, useMemo} from "react";
+import {useCollator, useLocale, useMessageFormatter} from "@react-aria/i18n";
+import {useProvider} from "@react-spectrum/provider";
+import {Virtualizer} from "@react-aria/virtualizer";
 
 
 export const ListViewContext = React.createContext(null);
 
 export function useListLayout<T>(state: ListState<T>) {
   let {scale} = useProvider();
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let layout = useMemo(() =>
       new ListLayout<T>({
-        estimatedRowHeight: scale === 'large' ? 48 : 32,
+        estimatedRowHeight: scale === "large" ? 48 : 32,
         padding: 0,
         collator
       })
@@ -60,15 +60,15 @@ function ListView<T extends object>(props: ListViewProps<T>, ref: DOMRef<HTMLDiv
 
   let {styleProps} = useStyleProps(props);
   let {direction} = useLocale();
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let gridCollection = useMemo(() => new GridCollection({
     columnCount: 1,
     items: [...collection].map(item => ({
-      type: 'item',
+      type: "item",
       childNodes: [{
         ...item,
         index: 0,
-        type: 'cell'
+        type: "cell"
       }]
     }))
   }), [collection]);
@@ -83,7 +83,7 @@ function ListView<T extends object>(props: ListViewProps<T>, ref: DOMRef<HTMLDiv
     ref: domRef,
     direction,
     collator,
-    focusMode: 'cell'
+    focusMode: "cell"
   }), [state, domRef, direction, collator]);
   let {gridProps} = useGrid({
     ...props,
@@ -106,7 +106,7 @@ function ListView<T extends object>(props: ListViewProps<T>, ref: DOMRef<HTMLDiv
         className={
           classNames(
             listStyles,
-            'react-spectrum-ListView',
+            "react-spectrum-ListView",
             styleProps.className
           )
         }
@@ -114,19 +114,19 @@ function ListView<T extends object>(props: ListViewProps<T>, ref: DOMRef<HTMLDiv
         collection={collection}
         transitionDuration={transitionDuration}>
         {(type, item) => {
-          if (type === 'item') {
+          if (type === "item") {
             return (
               <ListViewItem item={item} />
             );
-          } else if (type === 'loader') {
+          } else if (type === "loader") {
             return (
               <CenteredWrapper>
                 <ProgressCircle
                   isIndeterminate
-                  aria-label={state.collection.size > 0 ? formatMessage('loadingMore') : formatMessage('loading')} />
+                  aria-label={state.collection.size > 0 ? formatMessage("loadingMore") : formatMessage("loading")} />
               </CenteredWrapper>
             );
-          } else if (type === 'placeholder') {
+          } else if (type === "placeholder") {
             let emptyState = props.renderEmptyState ? props.renderEmptyState() : null;
             if (emptyState == null) {
               return null;
@@ -152,7 +152,7 @@ function CenteredWrapper({children}) {
     <div
       role="row"
       aria-rowindex={state.collection.size + 1}
-      className={classNames(listStyles, 'react-spectrum-ListView-centeredWrapper')}>
+      className={classNames(listStyles, "react-spectrum-ListView-centeredWrapper")}>
       <div role="gridcell">
         {children}
       </div>

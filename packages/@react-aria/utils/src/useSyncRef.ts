@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {MutableRefObject, RefObject} from 'react';
-import {useLayoutEffect} from './';
+import {MutableRefObject, RefObject} from "react";
+import {useLayoutEffect} from "./";
 
 interface ContextValue<T> {
   ref?: MutableRefObject<T>

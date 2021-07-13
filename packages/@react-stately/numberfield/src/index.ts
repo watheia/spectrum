@@ -12,4 +12,4 @@
 
 /// <reference types="intl-types-extension" />
 
-export * from './useNumberFieldState';
+export * from "./useNumberFieldState";

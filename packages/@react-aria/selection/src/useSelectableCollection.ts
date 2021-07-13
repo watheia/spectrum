@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {FocusEvent, HTMLAttributes, Key, KeyboardEvent, RefObject, useEffect} from 'react';
-import {focusSafely, getFocusableTreeWalker} from '@react-aria/focus';
-import {FocusStrategy, KeyboardDelegate} from '@react-types/shared';
-import {focusWithoutScrolling, isMac, mergeProps} from '@react-aria/utils';
-import {MultipleSelectionManager} from '@react-stately/selection';
-import {useLocale} from '@react-aria/i18n';
-import {useTypeSelect} from './useTypeSelect';
+import {FocusEvent, HTMLAttributes, Key, KeyboardEvent, RefObject, useEffect} from "react";
+import {focusSafely, getFocusableTreeWalker} from "@react-aria/focus";
+import {FocusStrategy, KeyboardDelegate} from "@react-types/shared";
+import {focusWithoutScrolling, isMac, mergeProps} from "@react-aria/utils";
+import {MultipleSelectionManager} from "@react-stately/selection";
+import {useLocale} from "@react-aria/i18n";
+import {useTypeSelect} from "./useTypeSelect";
 
 function isCtrlKeyPressed(e: KeyboardEvent) {
   if (isMac()) {
@@ -115,7 +115,7 @@ export function useSelectableCollection(options: SelectableCollectionOptions): S
       if (key != null) {
         manager.setFocusedKey(key, childFocus);
 
-        if (e.shiftKey && manager.selectionMode === 'multiple') {
+        if (e.shiftKey && manager.selectionMode === "multiple") {
           manager.extendSelection(key);
         } else if (selectOnFocus) {
           manager.replaceSelection(key);
@@ -124,7 +124,7 @@ export function useSelectableCollection(options: SelectableCollectionOptions): S
     };
 
     switch (e.key) {
-      case 'ArrowDown': {
+      case "ArrowDown": {
         if (delegate.getKeyBelow) {
           e.preventDefault();
           let nextKey = manager.focusedKey != null
@@ -137,7 +137,7 @@ export function useSelectableCollection(options: SelectableCollectionOptions): S
         }
         break;
       }
-      case 'ArrowUp': {
+      case "ArrowUp": {
         if (delegate.getKeyAbove) {
           e.preventDefault();
           let nextKey = manager.focusedKey != null
@@ -150,73 +150,73 @@ export function useSelectableCollection(options: SelectableCollectionOptions): S
         }
         break;
       }
-      case 'ArrowLeft': {
+      case "ArrowLeft": {
         if (delegate.getKeyLeftOf) {
           e.preventDefault();
           let nextKey = delegate.getKeyLeftOf(manager.focusedKey);
-          navigateToKey(nextKey, direction === 'rtl' ? 'first' : 'last');
+          navigateToKey(nextKey, direction === "rtl" ? "first" : "last");
         }
         break;
       }
-      case 'ArrowRight': {
+      case "ArrowRight": {
         if (delegate.getKeyRightOf) {
           e.preventDefault();
           let nextKey = delegate.getKeyRightOf(manager.focusedKey);
-          navigateToKey(nextKey, direction === 'rtl' ? 'last' : 'first');
+          navigateToKey(nextKey, direction === "rtl" ? "last" : "first");
         }
         break;
       }
-      case 'Home':
+      case "Home":
         if (delegate.getFirstKey) {
           e.preventDefault();
           let firstKey = delegate.getFirstKey(manager.focusedKey, isCtrlKeyPressed(e));
           manager.setFocusedKey(firstKey);
-          if (isCtrlKeyPressed(e) && e.shiftKey && manager.selectionMode === 'multiple') {
+          if (isCtrlKeyPressed(e) && e.shiftKey && manager.selectionMode === "multiple") {
             manager.extendSelection(firstKey);
           } else if (selectOnFocus) {
             manager.replaceSelection(firstKey);
           }
         }
         break;
-      case 'End':
+      case "End":
         if (delegate.getLastKey) {
           e.preventDefault();
           let lastKey = delegate.getLastKey(manager.focusedKey, isCtrlKeyPressed(e));
           manager.setFocusedKey(lastKey);
-          if (isCtrlKeyPressed(e) && e.shiftKey && manager.selectionMode === 'multiple') {
+          if (isCtrlKeyPressed(e) && e.shiftKey && manager.selectionMode === "multiple") {
             manager.extendSelection(lastKey);
           } else if (selectOnFocus) {
             manager.replaceSelection(lastKey);
           }
         }
         break;
-      case 'PageDown':
+      case "PageDown":
         if (delegate.getKeyPageBelow) {
           e.preventDefault();
           let nextKey = delegate.getKeyPageBelow(manager.focusedKey);
           navigateToKey(nextKey);
         }
         break;
-      case 'PageUp':
+      case "PageUp":
         if (delegate.getKeyPageAbove) {
           e.preventDefault();
           let nextKey = delegate.getKeyPageAbove(manager.focusedKey);
           navigateToKey(nextKey);
         }
         break;
-      case 'a':
-        if (isCtrlKeyPressed(e) && manager.selectionMode === 'multiple' && disallowSelectAll !== true) {
+      case "a":
+        if (isCtrlKeyPressed(e) && manager.selectionMode === "multiple" && disallowSelectAll !== true) {
           e.preventDefault();
           manager.selectAll();
         }
         break;
-      case 'Escape':
+      case "Escape":
         e.preventDefault();
         if (!disallowEmptySelection) {
           manager.clearSelection();
         }
         break;
-      case 'Tab': {
+      case "Tab": {
         if (!allowsTabNavigation) {
           // There may be elements that are "tabbable" inside a collection (e.g. in a grid cell).
           // However, collections should be treated as a single tab stop, with arrow key navigation internally.
@@ -289,9 +289,9 @@ export function useSelectableCollection(options: SelectableCollectionOptions): S
       let focusedKey = null;
 
       // Check focus strategy to determine which item to focus
-      if (autoFocus === 'first') {
+      if (autoFocus === "first") {
         focusedKey = delegate.getFirstKey();
-      } if (autoFocus === 'last') {
+      } if (autoFocus === "last") {
         focusedKey = delegate.getLastKey();
       }
 

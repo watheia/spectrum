@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMProps, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {DOMProps, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 export interface SpectrumStatusLightProps extends DOMProps, StyleProps {
   /** The content to display as the label. */
@@ -20,7 +20,7 @@ export interface SpectrumStatusLightProps extends DOMProps, StyleProps {
    * The variant changes the color of the status light.
    * When status lights have a semantic meaning, they should use the variant for semantic colors.
    */
-  variant: 'positive' | 'negative' | 'notice' | 'info' | 'neutral' | 'celery' | 'chartreuse' | 'yellow' | 'magenta' | 'fuchsia' | 'purple' | 'indigo' | 'seafoam',
+  variant: "positive" | "negative" | "notice" | "info" | "neutral" | "celery" | "chartreuse" | "yellow" | "magenta" | "fuchsia" | "purple" | "indigo" | "seafoam",
   /** Whether the status light is disabled. */
   isDisabled?: boolean,
   /**
@@ -28,5 +28,5 @@ export interface SpectrumStatusLightProps extends DOMProps, StyleProps {
    * can change at runtime, and no more than one status light will update simultaneously.
    * For cases where multiple statuses can change at the same time, use a Toast instead.
    */
-  role?: 'status'
+  role?: "status"
 }

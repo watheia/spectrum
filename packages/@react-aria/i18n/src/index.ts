@@ -12,9 +12,9 @@
 
 /// <reference types="intl-types-extension" />
 
-export * from './context';
-export * from './useMessageFormatter';
-export * from './useDateFormatter';
-export * from './useNumberFormatter';
-export * from './useCollator';
-export * from './useFilter';
+export * from "./context";
+export * from "./useMessageFormatter";
+export * from "./useDateFormatter";
+export * from "./useNumberFormatter";
+export * from "./useCollator";
+export * from "./useFilter";

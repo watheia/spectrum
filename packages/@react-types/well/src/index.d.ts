@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {AriaLabelingProps, DOMProps, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 export interface SpectrumWellProps extends DOMProps, AriaLabelingProps, StyleProps {
   /**
@@ -23,5 +23,5 @@ export interface SpectrumWellProps extends DOMProps, AriaLabelingProps, StylePro
    * is important enough to be included in the page table of contents, and `'group'` otherwise.
    * If a role is provided, then an aria-label or aria-labelledby must also be provided.
    */
-  role?: 'region' | 'group'
+  role?: "region" | "group"
 }

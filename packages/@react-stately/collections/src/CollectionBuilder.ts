@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {CollectionBase, CollectionElement, Node} from '@react-types/shared';
-import {PartialNode} from './types';
-import React, {Key, ReactElement} from 'react';
+import {CollectionBase, CollectionElement, Node} from "@react-types/shared";
+import {PartialNode} from "./types";
+import React, {Key, ReactElement} from "react";
 
 interface CollectionBuilderState {
   renderer?: (value: any) => ReactElement
@@ -30,9 +30,9 @@ export class CollectionBuilder<T extends object> {
   private *iterateCollection(props: CollectionBase<T>) {
     let {children, items} = props;
 
-    if (typeof children === 'function') {
+    if (typeof children === "function") {
       if (!items) {
-        throw new Error('props.children was a function but props.items is missing');
+        throw new Error("props.children was a function but props.items is missing");
       }
 
       for (let item of props.items) {
@@ -66,7 +66,7 @@ export class CollectionBuilder<T extends object> {
       return item.key;
     }
 
-    if (partialNode.type === 'cell' && partialNode.key != null) {
+    if (partialNode.type === "cell" && partialNode.key != null) {
       return `${parentKey}${partialNode.key}`;
     }
 
@@ -74,7 +74,7 @@ export class CollectionBuilder<T extends object> {
     if (v != null) {
       let key = v.key ?? v.id;
       if (key == null) {
-        throw new Error('No key found for item');
+        throw new Error("No key found for item");
       }
 
       return key;
@@ -108,8 +108,8 @@ export class CollectionBuilder<T extends object> {
     // Call this function to get a partial node, and recursively build a full node from there.
     if (React.isValidElement(element)) {
       let type = element.type as any;
-      if (typeof type !== 'function' || typeof type.getCollectionNode !== 'function') {
-        let name = typeof element.type === 'function' ? element.type.name : element.type;
+      if (typeof type !== "function" || typeof type.getCollectionNode !== "function") {
+        let name = typeof element.type === "function" ? element.type.name : element.type;
         throw new Error(`Unknown element <${name}> in collection.`);
       }
 
@@ -174,7 +174,7 @@ export class CollectionBuilder<T extends object> {
       index: partialNode.index,
       rendered: partialNode.rendered,
       textValue: partialNode.textValue,
-      'aria-label': partialNode['aria-label'],
+      "aria-label": partialNode["aria-label"],
       wrapper: partialNode.wrapper,
       shouldInvalidate: partialNode.shouldInvalidate,
       hasChildNodes: partialNode.hasChildNodes,

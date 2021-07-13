@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps} from '@react-types/shared';
-import {HTMLAttributes} from 'react';
+import {AriaLabelingProps, DOMProps} from "@react-types/shared";
+import {HTMLAttributes} from "react";
 
 const DOMPropNames = new Set([
-  'id'
+  "id"
 ]);
 
 const labelablePropNames = new Set([
-  'aria-label',
-  'aria-labelledby',
-  'aria-describedby',
-  'aria-details'
+  "aria-label",
+  "aria-labelledby",
+  "aria-describedby",
+  "aria-details"
 ]);
 
 interface Options {

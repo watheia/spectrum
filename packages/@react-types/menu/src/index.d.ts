@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Alignment, AriaLabelingProps, CollectionBase, DOMProps, FocusStrategy, MultipleSelection, StyleProps} from '@react-types/shared';
-import {Key, ReactElement} from 'react';
-import {OverlayTriggerProps} from '@react-types/overlays';
+import {Alignment, AriaLabelingProps, CollectionBase, DOMProps, FocusStrategy, MultipleSelection, StyleProps} from "@react-types/shared";
+import {Key, ReactElement} from "react";
+import {OverlayTriggerProps} from "@react-types/overlays";
 
 export interface MenuTriggerProps extends OverlayTriggerProps {
   // trigger?: 'press' | 'longPress',
@@ -25,7 +25,7 @@ export interface MenuTriggerProps extends OverlayTriggerProps {
    * Where the Menu opens relative to its trigger.
    * @default 'bottom'
    */
-  direction?: 'bottom' | 'top' | 'left' | 'right' | 'start' | 'end',
+  direction?: "bottom" | "top" | "left" | "right" | "start" | "end",
   /**
    * Whether the Menu closes when a selection is made.
    * @default true

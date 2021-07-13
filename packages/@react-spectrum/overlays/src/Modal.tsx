@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {mergeProps, useViewportSize} from '@react-aria/utils';
-import {ModalProps} from '@react-types/overlays';
-import modalStyles from '@adobe/spectrum-css-temp/components/modal/vars.css';
-import {Overlay} from './Overlay';
-import overrideStyles from './overlays.css';
-import React, {forwardRef, HTMLAttributes, ReactNode, RefObject} from 'react';
-import {Underlay} from './Underlay';
-import {useModal, useOverlay, usePreventScroll} from '@react-aria/overlays';
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {mergeProps, useViewportSize} from "@react-aria/utils";
+import {ModalProps} from "@react-types/overlays";
+import modalStyles from "@adobe/spectrum-css-temp/components/modal/vars.css";
+import {Overlay} from "./Overlay";
+import overrideStyles from "./overlays.css";
+import React, {forwardRef, HTMLAttributes, ReactNode, RefObject} from "react";
+import {Underlay} from "./Underlay";
+import {useModal, useOverlay, usePreventScroll} from "@react-aria/overlays";
 
 interface ModalWrapperProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode,
   isOpen?: boolean,
   onClose?: () => void,
-  type?: 'modal' | 'fullscreen' | 'fullscreenTakeover',
+  type?: "modal" | "fullscreen" | "fullscreenTakeover",
   overlayProps: HTMLAttributes<HTMLElement>
 }
 
@@ -52,8 +52,8 @@ function Modal(props: ModalProps, ref: DOMRef<HTMLDivElement>) {
 }
 
 let typeMap = {
-  fullscreen: 'fullscreen',
-  fullscreenTakeover: 'fullscreenTakeover'
+  fullscreen: "fullscreen",
+  fullscreenTakeover: "fullscreenTakeover"
 };
 
 let ModalWrapper = forwardRef(function (props: ModalWrapperProps, ref: RefObject<HTMLDivElement>) {
@@ -66,24 +66,24 @@ let ModalWrapper = forwardRef(function (props: ModalWrapperProps, ref: RefObject
 
   let wrapperClassName = classNames(
     modalStyles,
-    'spectrum-Modal-wrapper',
+    "spectrum-Modal-wrapper",
     classNames(
       overrideStyles,
-      'spectrum-Modal-wrapper',
-      'react-spectrum-Modal-wrapper'
+      "spectrum-Modal-wrapper",
+      "react-spectrum-Modal-wrapper"
     )
   );
 
   let modalClassName = classNames(
     modalStyles,
-    'spectrum-Modal',
+    "spectrum-Modal",
     {
-      'is-open': isOpen
+      "is-open": isOpen
     },
     classNames(
       overrideStyles,
-      'spectrum-Modal',
-      'react-spectrum-Modal'
+      "spectrum-Modal",
+      "react-spectrum-Modal"
     ),
     {[`spectrum-Modal--${typeVariant}`]: typeVariant},
     otherProps.className
@@ -91,7 +91,7 @@ let ModalWrapper = forwardRef(function (props: ModalWrapperProps, ref: RefObject
 
   let viewport = useViewportSize();
   let style: any = {
-    '--spectrum-visual-viewport-height': viewport.height + 'px'
+    "--spectrum-visual-viewport-height": viewport.height + "px"
   };
 
   return (

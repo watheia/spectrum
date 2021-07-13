@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Point} from './Point';
-import {Size} from './Size';
+import {Point} from "./Point";
+import {Size} from "./Size";
 
-export type RectCorner = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
+export type RectCorner = "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
 
 /**
  * Represents a rectangle.
@@ -126,7 +126,7 @@ export class Rect {
    * @param rect - The rectangle to check.
    */
   getCornerInRect(rect: Rect): RectCorner | null {
-    for (let key of ['topLeft', 'topRight', 'bottomLeft', 'bottomRight']) {
+    for (let key of ["topLeft", "topRight", "bottomLeft", "bottomRight"]) {
       if (rect.containsPoint(this[key])) {
         return key as RectCorner;
       }

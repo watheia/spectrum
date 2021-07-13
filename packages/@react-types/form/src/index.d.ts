@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, SpectrumLabelableProps, StyleProps, ValidationState} from '@react-types/shared';
-import {FormEventHandler, ReactElement} from 'react';
+import {AriaLabelingProps, DOMProps, SpectrumLabelableProps, StyleProps, ValidationState} from "@react-types/shared";
+import {FormEventHandler, ReactElement} from "react";
 
 export interface SpectrumFormProps extends DOMProps, AriaLabelingProps, StyleProps, SpectrumLabelableProps {
   /** The contents of the Form. */
@@ -38,15 +38,15 @@ export interface SpectrumFormProps extends DOMProps, AriaLabelingProps, StylePro
   /**
    * The enctype attribute specifies how the form-data should be encoded when submitting it to the server.
    */
-  encType?: 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain',
+  encType?: "application/x-www-form-urlencoded" | "multipart/form-data" | "text/plain",
   /**
    * The form-data can be sent as URL variables (with method="get") or as HTTP post transaction (with method="post").
    */
-  method?: 'get' | 'post',
+  method?: "get" | "post",
   /**
    * The target attribute specifies a name or a keyword that indicates where to display the response that is received after submitting the form.
    */
-  target?: '_blank' | '_self' | '_parent' | '_top',
+  target?: "_blank" | "_self" | "_parent" | "_top",
   /**
    * Fired on form submission.
    */

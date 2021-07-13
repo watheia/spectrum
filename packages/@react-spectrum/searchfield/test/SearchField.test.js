@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render, within} from '@testing-library/react';
-import Checkmark from '@spectrum-icons/workflow/Checkmark';
-import React from 'react';
-import {SearchField} from '../';
-import {triggerPress} from '@react-spectrum/test-utils';
-import userEvent from '@testing-library/user-event';
-import V2SearchField from '@react/react-spectrum/Search';
+import {act, fireEvent, render, within} from "@testing-library/react";
+import Checkmark from "@spectrum-icons/workflow/Checkmark";
+import React from "react";
+import {SearchField} from "../";
+import {triggerPress} from "@react-spectrum/test-utils";
+import userEvent from "@testing-library/user-event";
+import V2SearchField from "@react/react-spectrum/Search";
 
-let testId = 'test-id';
-let inputText = 'blah';
+let testId = "test-id";
+let inputText = "blah";
 
 function renderComponent(Component, props) {
   return render(<Component aria-label="the label" {...props} data-testid={testId} />);
@@ -30,7 +30,7 @@ function renderComponent(Component, props) {
 // 2. "An update to ForwardRef inside a test was not wrapped in act(...)". See https://github.com/testing-library/react-testing-library/issues/281
 // 3. Various warnings about componentWillReceiveProps and componentDidUpdate. Prob a TODO to update v2 components so we don't use these renamed/deprecated lifecycle methods
 
-describe('Search', () => {
+describe("Search", () => {
   let onChange = jest.fn();
   let onFocus = jest.fn();
   let onSubmit = jest.fn();
@@ -45,54 +45,54 @@ describe('Search', () => {
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-    ${'v2 SearchField'} | ${V2SearchField}
-  `('$Name default behavior check', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+    ${"v2 SearchField"} | ${V2SearchField}
+  `("$Name default behavior check", ({Component}) => {
     let tree = renderComponent(Component);
     let outerDiv = tree.container;
     expect(outerDiv).toBeTruthy();
 
     let input = within(outerDiv).getByTestId(testId);
-    expect(input).toHaveAttribute('type', 'search');
+    expect(input).toHaveAttribute("type", "search");
 
-    let clearButton = within(outerDiv).queryByRole('button');
+    let clearButton = within(outerDiv).queryByRole("button");
     expect(clearButton).toBeNull();
   });
 
   // omitting v2 because the v3 icon we use doesn't accept className, only UNSAFE_className
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name should support custom icons', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name should support custom icons", ({Component}) => {
     let icon = <Checkmark data-testid="testicon" />;
     let tree = renderComponent(Component, {icon});
-    expect(tree.getByTestId('testicon')).toBeTruthy();
+    expect(tree.getByTestId("testicon")).toBeTruthy();
   });
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-    ${'v2 SearchField'} | ${V2SearchField}
-  `('$Name should support no icons', ({Component}) => {
-    let tree = renderComponent(Component, {icon: ''});
-    expect(tree.queryByTestId('searchicon')).toBeNull();
+    ${"v3 SearchField"} | ${SearchField}
+    ${"v2 SearchField"} | ${V2SearchField}
+  `("$Name should support no icons", ({Component}) => {
+    let tree = renderComponent(Component, {icon: ""});
+    expect(tree.queryByTestId("searchicon")).toBeNull();
   });
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name should display the clear button icon only if text is present', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name should display the clear button icon only if text is present", ({Component}) => {
     let tree = renderComponent(Component, {defaultValue: inputText});
-    let clearButton = tree.getByLabelText('Clear search');
+    let clearButton = tree.getByLabelText("Clear search");
     expect(clearButton).toBeTruthy();
 
     let input = tree.getByTestId(testId);
-    fireEvent.change(input, {target: {value: ''}});
-    clearButton = tree.queryByLabelText('Clear search');
+    fireEvent.change(input, {target: {value: ""}});
+    clearButton = tree.queryByLabelText("Clear search");
     expect(clearButton).toBeNull();
 
-    userEvent.type(input, 'bleh');
-    clearButton = tree.queryByLabelText('Clear search');
+    userEvent.type(input, "bleh");
+    clearButton = tree.queryByLabelText("Clear search");
     expect(clearButton).toBeTruthy();
   });
 
@@ -100,33 +100,33 @@ describe('Search', () => {
   // which v2 searchfield handleTextKeyDown relies on
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name submits the textfield value when enter is pressed', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name submits the textfield value when enter is pressed", ({Component}) => {
     let tree = renderComponent(Component, {defaultValue: inputText, onSubmit});
     let input = tree.getByTestId(testId);
-    fireEvent.keyDown(input, {key: 'Enter', code: 13, charCode: 13});
+    fireEvent.keyDown(input, {key: "Enter", code: 13, charCode: 13});
     expect(onSubmit).toBeCalledTimes(1);
     expect(onSubmit).toHaveBeenLastCalledWith(inputText);
 
     act(() => {
-      fireEvent.change(input, {target: {value: ''}});
+      fireEvent.change(input, {target: {value: ""}});
     });
     act(() => {
-      fireEvent.keyDown(input, {key: 'Enter', code: 13, charCode: 13});
+      fireEvent.keyDown(input, {key: "Enter", code: 13, charCode: 13});
     });
     expect(onSubmit).toBeCalledTimes(2);
-    expect(onSubmit).toHaveBeenLastCalledWith('');
+    expect(onSubmit).toHaveBeenLastCalledWith("");
   });
 
   // Omitting v2 searchfield because fireEvent.keyDown seems bugged, doesn't actually propagate the key code
   // which v2 searchfield handleTextKeyDown relies on
   it.each`
     Name                | Component        | props
-    ${'v3 SearchField'} | ${SearchField}   | ${{isDisabled: true}}
-  `('$Name doesn\'t submit the textfield value when enter is pressed but field is disabled', ({Component, props}) => {
+    ${"v3 SearchField"} | ${SearchField}   | ${{isDisabled: true}}
+  `("$Name doesn't submit the textfield value when enter is pressed but field is disabled", ({Component, props}) => {
     let tree = renderComponent(Component, {defaultValue: inputText, onSubmit, ...props});
     let input = tree.getByTestId(testId);
-    fireEvent.keyDown(input, {key: 'Enter', code: 13, charCode: 13});
+    fireEvent.keyDown(input, {key: "Enter", code: 13, charCode: 13});
     expect(onSubmit).toBeCalledTimes(0);
   });
 
@@ -134,15 +134,15 @@ describe('Search', () => {
   // which v2 searchfield handleTextKeyDown relies on
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name clears the input field if the escape key is pressed and the field is uncontrolled', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name clears the input field if the escape key is pressed and the field is uncontrolled", ({Component}) => {
     let tree = renderComponent(Component, {defaultValue: inputText, onChange, onClear});
     let input = tree.getByTestId(testId);
     expect(input.value).toBe(inputText);
-    fireEvent.keyDown(input, {key: 'Escape', code: 27, charCode: 27});
+    fireEvent.keyDown(input, {key: "Escape", code: 27, charCode: 27});
     expect(onChange).toBeCalledTimes(1);
-    expect(onChange).toHaveBeenLastCalledWith('');
-    expect(input.value).toBe('');
+    expect(onChange).toHaveBeenLastCalledWith("");
+    expect(input.value).toBe("");
     expect(document.activeElement).toBe(document.body);
 
     // onClear was added in v3
@@ -156,14 +156,14 @@ describe('Search', () => {
   // which v2 searchfield handleTextKeyDown relies on
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name doesn\'t clear the input field if the escape key is pressed and the field is controlled', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name doesn't clear the input field if the escape key is pressed and the field is controlled", ({Component}) => {
     let tree = renderComponent(Component, {value: inputText, onChange, onClear});
     let input = tree.getByTestId(testId);
     expect(input.value).toBe(inputText);
-    fireEvent.keyDown(input, {key: 'Escape', code: 27, charCode: 27});
+    fireEvent.keyDown(input, {key: "Escape", code: 27, charCode: 27});
     expect(onChange).toBeCalledTimes(1);
-    expect(onChange).toHaveBeenLastCalledWith('');
+    expect(onChange).toHaveBeenLastCalledWith("");
     expect(input.value).toBe(inputText);
     expect(document.activeElement).toBe(document.body);
 
@@ -176,12 +176,12 @@ describe('Search', () => {
   // which v2 searchfield handleTextKeyDown relies on
   it.each`
     Name                | Component        | props
-    ${'v3 SearchField'} | ${SearchField}   | ${{isDisabled: true}}
-  `('$Name doesn\'t clear the input field if the escape key is pressed and the field is disabled', ({Component, props}) => {
+    ${"v3 SearchField"} | ${SearchField}   | ${{isDisabled: true}}
+  `("$Name doesn't clear the input field if the escape key is pressed and the field is disabled", ({Component, props}) => {
     let tree = renderComponent(Component, {defaultValue: inputText, onChange, onClear, ...props});
     let input = tree.getByTestId(testId);
     expect(input.value).toBe(inputText);
-    fireEvent.keyDown(input, {key: 'Escape', code: 27, charCode: 27});
+    fireEvent.keyDown(input, {key: "Escape", code: 27, charCode: 27});
     expect(onChange).toBeCalledTimes(0);
     expect(input.value).toBe(inputText);
 
@@ -191,22 +191,22 @@ describe('Search', () => {
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name clears the input field if the clear button is pressed and the field is uncontrolled', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name clears the input field if the clear button is pressed and the field is uncontrolled", ({Component}) => {
     let tree = renderComponent(Component, {defaultValue: inputText, onChange, onClear});
     let input = tree.getByTestId(testId);
-    let clearButton = tree.getByLabelText('Clear search');
+    let clearButton = tree.getByLabelText("Clear search");
     expect(input.value).toBe(inputText);
     triggerPress(clearButton);
     expect(onChange).toBeCalledTimes(1);
 
     if (Component === SearchField) {
-      expect(onChange).toHaveBeenLastCalledWith('');
+      expect(onChange).toHaveBeenLastCalledWith("");
     } else {
-      expect(onChange).toHaveBeenLastCalledWith('', expect.anything(), {'from': 'clearButton'});
+      expect(onChange).toHaveBeenLastCalledWith("", expect.anything(), {"from": "clearButton"});
     }
 
-    expect(input.value).toBe('');
+    expect(input.value).toBe("");
     expect(document.activeElement).toBe(input);
 
     // onClear was added in v3
@@ -218,20 +218,20 @@ describe('Search', () => {
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-    ${'v2 SearchField'} | ${V2SearchField}
-  `('$Name doesn\'t clear the input field if the clear button is pressed and the field is controlled', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+    ${"v2 SearchField"} | ${V2SearchField}
+  `("$Name doesn't clear the input field if the clear button is pressed and the field is controlled", ({Component}) => {
     let tree = renderComponent(Component, {value: inputText, onChange, onClear});
     let input = tree.getByTestId(testId);
-    let clearButton = tree.getByLabelText('Clear search');
+    let clearButton = tree.getByLabelText("Clear search");
     expect(input.value).toBe(inputText);
     userEvent.click(clearButton);
     expect(onChange).toBeCalledTimes(1);
 
     if (Component === SearchField) {
-      expect(onChange).toHaveBeenLastCalledWith('');
+      expect(onChange).toHaveBeenLastCalledWith("");
     } else {
-      expect(onChange).toHaveBeenLastCalledWith('', expect.anything(), {'from': 'clearButton'});
+      expect(onChange).toHaveBeenLastCalledWith("", expect.anything(), {"from": "clearButton"});
     }
 
     expect(input.value).toBe(inputText);
@@ -246,11 +246,11 @@ describe('Search', () => {
 
   it.each`
     Name                | Component        | props
-    ${'v3 SearchField'} | ${SearchField}   | ${{isDisabled: true}}
-  `('$Name doesn\'t clear the input field if the clear button is pressed and the field is disabled', ({Component, props}) => {
+    ${"v3 SearchField"} | ${SearchField}   | ${{isDisabled: true}}
+  `("$Name doesn't clear the input field if the clear button is pressed and the field is disabled", ({Component, props}) => {
     let tree = renderComponent(Component, {defaultValue: inputText, onChange, onClear, ...props});
     let input = tree.getByTestId(testId);
-    let clearButton = tree.getByLabelText('Clear search');
+    let clearButton = tree.getByLabelText("Clear search");
     expect(input.value).toBe(inputText);
     userEvent.click(clearButton);
     expect(onChange).toBeCalledTimes(0);
@@ -262,26 +262,26 @@ describe('Search', () => {
     }
   });
 
-  it('SearchField doesn\'t show clear button if isReadOnly is true', () => {
-    let tree = renderComponent(SearchField, {isReadOnly: true, value: 'puppy'});
-    let clearButton = tree.queryByLabelText('Clear search');
+  it("SearchField doesn't show clear button if isReadOnly is true", () => {
+    let tree = renderComponent(SearchField, {isReadOnly: true, value: "puppy"});
+    let clearButton = tree.queryByLabelText("Clear search");
     expect(clearButton).toBe(null);
   });
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-    ${'v2 SearchField'} | ${V2SearchField}
-  `('$Name should support aria-label', ({Component}) => {
-    let tree = renderComponent(Component, {'aria-label': 'Test'});
-    expect(tree.getByRole('searchbox')).toHaveAttribute('aria-label', 'Test');
+    ${"v3 SearchField"} | ${SearchField}
+    ${"v2 SearchField"} | ${V2SearchField}
+  `("$Name should support aria-label", ({Component}) => {
+    let tree = renderComponent(Component, {"aria-label": "Test"});
+    expect(tree.getByRole("searchbox")).toHaveAttribute("aria-label", "Test");
   });
 
   it.each`
     Name                | Component
-    ${'v3 SearchField'} | ${SearchField}
-  `('$Name should support excludeFromTabOrder', ({Component}) => {
+    ${"v3 SearchField"} | ${SearchField}
+  `("$Name should support excludeFromTabOrder", ({Component}) => {
     let tree = renderComponent(Component, {excludeFromTabOrder: true});
-    expect(tree.getByRole('searchbox')).toHaveAttribute('tabIndex', '-1');
+    expect(tree.getByRole("searchbox")).toHaveAttribute("tabIndex", "-1");
   });
 });

@@ -10,58 +10,58 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {render} from '@testing-library/react';
-import {ToggleButton} from '../';
-import {triggerPress} from '@react-spectrum/test-utils';
+import React from "react";
+import {render} from "@testing-library/react";
+import {ToggleButton} from "../";
+import {triggerPress} from "@react-spectrum/test-utils";
 
-describe('ToggleButton', function () {
-  it('handles defaults', function () {
+describe("ToggleButton", function () {
+  it("handles defaults", function () {
     let onPress = jest.fn();
     let onChange = jest.fn();
     let {getByRole} = render(<ToggleButton onPress={onPress} onChange={onChange}>Click Me</ToggleButton>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-pressed', 'false');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-pressed", "false");
 
     triggerPress(button);
     expect(onPress).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith(true);
-    expect(button).toHaveAttribute('aria-pressed', 'true');
+    expect(button).toHaveAttribute("aria-pressed", "true");
   });
 
-  it('supports defaultSelected', function () {
+  it("supports defaultSelected", function () {
     let onPress = jest.fn();
     let onChange = jest.fn();
     let {getByRole} = render(<ToggleButton defaultSelected onPress={onPress} onChange={onChange}>Click Me</ToggleButton>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-pressed', 'true');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-pressed", "true");
 
     triggerPress(button);
     expect(onPress).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith(false);
-    expect(button).toHaveAttribute('aria-pressed', 'false');
+    expect(button).toHaveAttribute("aria-pressed", "false");
   });
 
-  it('supports isSelected', function () {
+  it("supports isSelected", function () {
     let onPress = jest.fn();
     let onChange = jest.fn();
     let {getByRole} = render(<ToggleButton isSelected onPress={onPress} onChange={onChange}>Click Me</ToggleButton>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('aria-pressed', 'true');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("aria-pressed", "true");
 
     triggerPress(button);
     expect(onPress).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith(false);
-    expect(button).toHaveAttribute('aria-pressed', 'true');
+    expect(button).toHaveAttribute("aria-pressed", "true");
   });
 
-  it('allows custom props to be passed through to the button', function () {
+  it("allows custom props to be passed through to the button", function () {
     let {getByRole} = render(<ToggleButton data-foo="bar">Click Me</ToggleButton>);
 
-    let button = getByRole('button');
-    expect(button).toHaveAttribute('data-foo', 'bar');
+    let button = getByRole("button");
+    expect(button).toHaveAttribute("data-foo", "bar");
   });
 });

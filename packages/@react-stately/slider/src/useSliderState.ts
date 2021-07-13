@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {clamp, snapValueToStep} from '@react-aria/utils';
-import {SliderProps} from '@react-types/slider';
-import {useControlledState} from '@react-stately/utils';
-import {useRef, useState} from 'react';
+import {clamp, snapValueToStep} from "@react-aria/utils";
+import {SliderProps} from "@react-types/slider";
+import {useControlledState} from "@react-stately/utils";
+import {useRef, useState} from "react";
 
 export interface SliderState {
   /**

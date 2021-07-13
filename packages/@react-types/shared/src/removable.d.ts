@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {SyntheticEvent} from 'react';
+import {SyntheticEvent} from "react";
 
 export interface Removable<T, R> {
   isRemovable?: boolean,

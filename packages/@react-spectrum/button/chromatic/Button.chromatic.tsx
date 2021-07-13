@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import Bell from '@spectrum-icons/workflow/Bell';
-import {Button} from '../';
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Text} from '@react-spectrum/text';
+import Bell from "@spectrum-icons/workflow/Bell";
+import {Button} from "../";
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Text} from "@react-spectrum/text";
 
-storiesOf('Button', module)
+storiesOf("Button", module)
   .add(
-    'variant: cta',
-    () => render({variant: 'cta'})
+    "variant: cta",
+    () => render({variant: "cta"})
   )
   .add(
-    'with icon',
+    "with icon",
     () => (
       <Flex gap="size-200">
         <Button variant="primary">
@@ -46,7 +46,7 @@ storiesOf('Button', module)
     )
   )
   .add(
-    'double text node',
+    "double text node",
     () => (
       <Flex gap="size-200">
         <Button
@@ -67,28 +67,28 @@ storiesOf('Button', module)
     )
   )
   .add(
-    'variant: overBackground',
+    "variant: overBackground",
     () => (
-      <div style={{backgroundColor: 'rgb(15, 121, 125)', color: 'rgb(15, 121, 125)', padding: '15px 20px', display: 'inline-block'}}>
-        {render({variant: 'overBackground'})}
+      <div style={{backgroundColor: "rgb(15, 121, 125)", color: "rgb(15, 121, 125)", padding: "15px 20px", display: "inline-block"}}>
+        {render({variant: "overBackground"})}
       </div>
     )
   )
   .add(
-    'variant: primary',
-    () => render({variant: 'primary'})
+    "variant: primary",
+    () => render({variant: "primary"})
   )
   .add(
-    'variant: secondary',
-    () => render({variant: 'secondary'})
+    "variant: secondary",
+    () => render({variant: "secondary"})
   )
   .add(
-    'variant: negative',
-    () => render({variant: 'negative'})
+    "variant: negative",
+    () => render({variant: "negative"})
   )
   .add(
-    'element: a',
-    () => render({elementType: 'a', variant: 'primary'})
+    "element: a",
+    () => render({elementType: "a", variant: "primary"})
   );
 
 function render(props: any = {}) {
@@ -103,7 +103,7 @@ function render(props: any = {}) {
         {...props}>
         Disabled
       </Button>
-      {props.variant !== 'cta' && (
+      {props.variant !== "cta" && (
       <Button
         isQuiet
         {...props}>

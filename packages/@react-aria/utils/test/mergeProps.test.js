@@ -10,27 +10,27 @@
  * governing permissions and limitations under the License.
  */
 
-import clsx from 'clsx';
-import {mergeIds} from '../src/useId';
-import {mergeProps} from '../';
+import clsx from "clsx";
+import {mergeIds} from "../src/useId";
+import {mergeProps} from "../";
 
 
-describe('mergeProps', function () {
-  it('handles one argument', function () {
+describe("mergeProps", function () {
+  it("handles one argument", function () {
     let onClick = () => {};
-    let className = 'primary';
-    let id = 'test_id';
+    let className = "primary";
+    let id = "test_id";
     let mergedProps = mergeProps({onClick, className, id});
     expect(mergedProps.onClick).toBe(onClick);
     expect(mergedProps.className).toBe(className);
     expect(mergedProps.id).toBe(id);
   });
 
-  it('combines callbacks', function () {
+  it("combines callbacks", function () {
     let mockFn = jest.fn();
-    let message1 = 'click1';
-    let message2 = 'click2';
-    let message3 = 'click3';
+    let message1 = "click1";
+    let message2 = "click2";
+    let message3 = "click3";
     let mergedProps = mergeProps(
       {onClick: () => mockFn(message1)},
       {onClick: () => mockFn(message2)},
@@ -43,12 +43,12 @@ describe('mergeProps', function () {
     expect(mockFn).toHaveBeenCalledTimes(3);
   });
 
-  it('merges props with different keys', function () {
+  it("merges props with different keys", function () {
     let mockFn = jest.fn();
-    let click1 = 'click1';
-    let click2 = 'click2';
-    let hover = 'hover';
-    let focus = 'focus';
+    let click1 = "click1";
+    let click2 = "click2";
+    let hover = "hover";
+    let focus = "focus";
     let margin = 2;
     const mergedProps = mergeProps(
       {onClick: () => mockFn(click1)},
@@ -67,19 +67,19 @@ describe('mergeProps', function () {
     expect(mergedProps.styles.margin).toBe(margin);
   });
 
-  it('combines classNames', function () {
-    let className1 = 'primary';
-    let className2 = 'hover';
-    let className3 = 'focus';
+  it("combines classNames", function () {
+    let className1 = "primary";
+    let className2 = "hover";
+    let className3 = "focus";
     let mergedProps = mergeProps({className: className1}, {className: className2}, {className: className3});
     let mergedClassNames = clsx(className1, className2, className3);
     expect(mergedProps.className).toBe(mergedClassNames);
   });
 
-  it('combines ids', function () {
-    let id1 = 'id1';
-    let id2 = 'id2';
-    let id3 = 'id3';
+  it("combines ids", function () {
+    let id1 = "id1";
+    let id2 = "id2";
+    let id3 = "id3";
     let mergedProps = mergeProps({id: id1}, {id: id2}, {id: id3});
     let mergedIds = mergeIds(mergeIds(id1, id2), id3);
     expect(mergedProps.id).toBe(mergedIds);

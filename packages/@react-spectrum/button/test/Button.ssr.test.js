@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {testSSR} from '@react-spectrum/test-utils';
+import {testSSR} from "@react-spectrum/test-utils";
 
-describe('Button SSR', function () {
+describe("Button SSR", function () {
   it.each`
     Name              | props
-    ${'ActionButton'} | ${{}}
-    ${'Button'}       | ${{}}
-    ${'FieldButton'}  | ${{}}
-    ${'LogicButton'}  | ${{}}
-  `('$Name should render without errors', async function ({Name, props}) {
+    ${"ActionButton"} | ${{}}
+    ${"Button"}       | ${{}}
+    ${"FieldButton"}  | ${{}}
+    ${"LogicButton"}  | ${{}}
+  `("$Name should render without errors", async function ({Name, props}) {
     await testSSR(__filename, `
       import {${Name}} from '../';
       <${Name}>Button</${Name}>

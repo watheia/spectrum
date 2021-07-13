@@ -1,6 +1,6 @@
-import {HTMLAttributes, useState} from 'react';
-import {isFocusVisible, useFocus, useFocusVisibleListener, useFocusWithin} from '@react-aria/interactions';
-import {useRef} from 'react';
+import {HTMLAttributes, useState} from "react";
+import {isFocusVisible, useFocus, useFocusVisibleListener, useFocusWithin} from "@react-aria/interactions";
+import {useRef} from "react";
 
 interface FocusRingProps {
   /**

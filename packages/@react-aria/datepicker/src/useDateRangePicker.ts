@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {DateRangePickerProps} from '@react-types/datepicker';
-import {DateRangePickerState} from '@react-stately/datepicker';
-import {DOMProps} from '@react-types/shared';
-import {HTMLAttributes} from 'react';
+import {DateRangePickerProps} from "@react-types/datepicker";
+import {DateRangePickerState} from "@react-stately/datepicker";
+import {DOMProps} from "@react-types/shared";
+import {HTMLAttributes} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useDatePicker} from './useDatePicker';
-import {useLabels} from '@react-aria/utils';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {useDatePicker} from "./useDatePicker";
+import {useLabels} from "@react-aria/utils";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 interface DateRangePickerAria {
   comboboxProps: HTMLAttributes<HTMLElement>,
   startFieldProps: HTMLAttributes<HTMLElement>,
   endFieldProps: HTMLAttributes<HTMLElement>,
   buttonProps: HTMLAttributes<HTMLElement>,
-  dialogProps: HTMLAttributes<HTMLElement> & {role?: 'dialog' | 'alertdialog'}
+  dialogProps: HTMLAttributes<HTMLElement> & {role?: "dialog" | "alertdialog"}
 }
 
 export function useDateRangePicker(props: DateRangePickerProps & DOMProps, state: DateRangePickerState): DateRangePickerAria {
@@ -33,17 +33,17 @@ export function useDateRangePicker(props: DateRangePickerProps & DOMProps, state
   // @ts-ignore
   let {comboboxProps, buttonProps, fieldProps, dialogProps} = useDatePicker({
     ...props,
-    ...useLabels(props, formatMessage('dateRange'))
+    ...useLabels(props, formatMessage("dateRange"))
   }, state);
 
   let startFieldProps = useLabels({
-    'aria-label': formatMessage('startDate'),
-    'aria-labelledby': fieldProps['aria-labelledby']
+    "aria-label": formatMessage("startDate"),
+    "aria-labelledby": fieldProps["aria-labelledby"]
   });
 
   let endFieldProps = useLabels({
-    'aria-label': formatMessage('endDate'),
-    'aria-labelledby': fieldProps['aria-labelledby']
+    "aria-label": formatMessage("endDate"),
+    "aria-labelledby": fieldProps["aria-labelledby"]
   });
 
   return {

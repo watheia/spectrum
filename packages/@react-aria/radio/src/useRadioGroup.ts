@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaRadioGroupProps} from '@react-types/radio';
-import {filterDOMProps, mergeProps, useId} from '@react-aria/utils';
-import {getFocusableTreeWalker} from '@react-aria/focus';
-import {HTMLAttributes} from 'react';
-import {radioGroupNames} from './utils';
-import {RadioGroupState} from '@react-stately/radio';
-import {useFocusWithin} from '@react-aria/interactions';
-import {useLabel} from '@react-aria/label';
-import {useLocale} from '@react-aria/i18n';
+import {AriaRadioGroupProps} from "@react-types/radio";
+import {filterDOMProps, mergeProps, useId} from "@react-aria/utils";
+import {getFocusableTreeWalker} from "@react-aria/focus";
+import {HTMLAttributes} from "react";
+import {radioGroupNames} from "./utils";
+import {RadioGroupState} from "@react-stately/radio";
+import {useFocusWithin} from "@react-aria/interactions";
+import {useLabel} from "@react-aria/label";
+import {useLocale} from "@react-aria/i18n";
 
 interface RadioGroupAria {
   /** Props for the radio group wrapper element. */
@@ -40,7 +40,7 @@ export function useRadioGroup(props: AriaRadioGroupProps, state: RadioGroupState
     isReadOnly,
     isRequired,
     isDisabled,
-    orientation = 'vertical'
+    orientation = "vertical"
   } = props;
   let {direction} = useLocale();
 
@@ -48,7 +48,7 @@ export function useRadioGroup(props: AriaRadioGroupProps, state: RadioGroupState
     ...props,
     // Radio group is not an HTML input element so it
     // shouldn't be labeled by a <label> element.
-    labelElementType: 'span'
+    labelElementType: "span"
   });
 
   let domProps = filterDOMProps(props, {labelable: true});
@@ -67,25 +67,25 @@ export function useRadioGroup(props: AriaRadioGroupProps, state: RadioGroupState
   let onKeyDown = (e) => {
     let nextDir;
     switch (e.key) {
-      case 'ArrowRight':
-        if (direction === 'rtl' && orientation !== 'vertical') {
-          nextDir = 'prev';
+      case "ArrowRight":
+        if (direction === "rtl" && orientation !== "vertical") {
+          nextDir = "prev";
         } else {
-          nextDir = 'next';
+          nextDir = "next";
         }
         break;
-      case 'ArrowLeft':
-        if (direction === 'rtl' && orientation !== 'vertical') {
-          nextDir = 'next';
+      case "ArrowLeft":
+        if (direction === "rtl" && orientation !== "vertical") {
+          nextDir = "next";
         } else {
-          nextDir = 'prev';
+          nextDir = "prev";
         }
         break;
-      case 'ArrowDown':
-        nextDir = 'next';
+      case "ArrowDown":
+        nextDir = "next";
         break;
-      case 'ArrowUp':
-        nextDir = 'prev';
+      case "ArrowUp":
+        nextDir = "prev";
         break;
       default:
         return;
@@ -93,7 +93,7 @@ export function useRadioGroup(props: AriaRadioGroupProps, state: RadioGroupState
     e.preventDefault();
     let walker = getFocusableTreeWalker(e.currentTarget, {from: e.target});
     let nextElem;
-    if (nextDir === 'next') {
+    if (nextDir === "next") {
       nextElem = walker.nextNode();
       if (!nextElem) {
         walker.currentNode = e.currentTarget;
@@ -119,14 +119,14 @@ export function useRadioGroup(props: AriaRadioGroupProps, state: RadioGroupState
   return {
     radioGroupProps: mergeProps(domProps, {
       // https://www.w3.org/TR/wai-aria-1.2/#radiogroup
-      role: 'radiogroup',
+      role: "radiogroup",
       onKeyDown,
-      'aria-invalid': validationState === 'invalid' || undefined,
-      'aria-errormessage': props['aria-errormessage'],
-      'aria-readonly': isReadOnly || undefined,
-      'aria-required': isRequired || undefined,
-      'aria-disabled': isDisabled || undefined,
-      'aria-orientation': orientation,
+      "aria-invalid": validationState === "invalid" || undefined,
+      "aria-errormessage": props["aria-errormessage"],
+      "aria-readonly": isReadOnly || undefined,
+      "aria-required": isRequired || undefined,
+      "aria-disabled": isDisabled || undefined,
+      "aria-orientation": orientation,
       ...fieldProps,
       ...focusWithinProps
     }),

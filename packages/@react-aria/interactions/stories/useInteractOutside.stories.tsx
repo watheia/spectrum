@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import React, {useEffect, useRef} from 'react';
-import {useInteractOutside, usePress} from '../';
+import {action} from "@storybook/addon-actions";
+import React, {useEffect, useRef} from "react";
+import {useInteractOutside, usePress} from "../";
 
 export default {
-  title: 'useInteractOutside'
+  title: "useInteractOutside"
 };
 
 export const OutsideBody = () => <Demo />;
@@ -25,18 +25,18 @@ export const ClickingButtonShouldFireOnInteractOutside = () => <App />;
 
 function Demo() {
   let ref = useRef();
-  let onInteractOutside = action('outside');
+  let onInteractOutside = action("outside");
   useInteractOutside({ref, onInteractOutside});
-  return <div ref={ref} style={{marginInlineStart: '50px', marginBlockStart: '50px'}}>Click anywhere but this text</div>;
+  return <div ref={ref} style={{marginInlineStart: "50px", marginBlockStart: "50px"}}>Click anywhere but this text</div>;
 }
 
 function BodyStyler(props) {
   useEffect(() => {
-    let story: HTMLElement = document.querySelector('.react-spectrum-story');
+    let story: HTMLElement = document.querySelector(".react-spectrum-story");
     let prev = {body: {height: document.body.style.height, width: document.body.style.width}, story: {minHeight: story.style.minHeight}};
-    document.body.style.height = 'fit-content';
-    document.body.style.width = 'fit-content';
-    story.style.minHeight = 'initial';
+    document.body.style.height = "fit-content";
+    document.body.style.width = "fit-content";
+    story.style.minHeight = "initial";
     return () => {
       document.body.style.height = prev.body.height;
       document.body.style.width = prev.body.width;
@@ -63,7 +63,7 @@ function App() {
 
   useInteractOutside({
     // Clicking on "My Button" should fire this callback
-    onInteractOutside: action('clicked outside of orange div'),
+    onInteractOutside: action("clicked outside of orange div"),
     ref
   });
 
@@ -73,9 +73,9 @@ function App() {
       <div
         ref={ref}
         style={{
-          width: '100px',
-          height: '100px',
-          background: 'orange'
+          width: "100px",
+          height: "100px",
+          background: "orange"
         }} />
       <MyButton />
     </div>

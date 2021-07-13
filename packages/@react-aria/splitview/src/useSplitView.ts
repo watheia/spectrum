@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {HTMLAttributes, useEffect, useRef} from 'react';
-import {mergeProps} from '@react-aria/utils';
-import {SplitViewAriaProps, SplitViewHandleState, SplitViewState} from '@react-types/shared';
-import {useHover, useKeyboard, useMove} from '@react-aria/interactions';
-import {useId} from '@react-aria/utils';
+import {HTMLAttributes, useEffect, useRef} from "react";
+import {mergeProps} from "@react-aria/utils";
+import {SplitViewAriaProps, SplitViewHandleState, SplitViewState} from "@react-types/shared";
+import {useHover, useKeyboard, useMove} from "@react-aria/interactions";
+import {useId} from "@react-aria/utils";
 
 interface AriaSplitViewProps {
   containerProps: HTMLAttributes<HTMLElement>,
@@ -31,7 +31,7 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
     primaryMaxSize = Infinity,
     secondaryMinSize = 304,
     secondaryMaxSize = Infinity,
-    orientation = 'horizontal' as 'horizontal',
+    orientation = "horizontal" as "horizontal",
     allowsResizing = true
   } = props;
   let {containerState, handleState} = state;
@@ -41,7 +41,7 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
 
   useEffect(() => {
     let getSize = () => {
-      if (orientation === 'horizontal') {
+      if (orientation === "horizontal") {
         return containerRef.current.offsetWidth;
       }
       return containerRef.current.offsetHeight;
@@ -54,10 +54,10 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
       containerState.setMaxPos(Math.min(primaryMaxSize, size.current - secondaryMinSize));
     };
 
-    window.addEventListener('resize', resize, false);
+    window.addEventListener("resize", resize, false);
     resize();
     return () => {
-      window.removeEventListener('resize', resize, false);
+      window.removeEventListener("resize", resize, false);
     };
   }, [containerRef, containerState, primaryMinSize, primaryMaxSize, secondaryMinSize, secondaryMaxSize, orientation, size]);
 
@@ -85,12 +85,12 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
         currentPosition.current = handleState.offset;
       }
 
-      let delta = orientation === 'horizontal' ? deltaX : deltaY;
+      let delta = orientation === "horizontal" ? deltaX : deltaY;
       if (reverse) {
         delta *= -1;
       }
 
-      if (pointerType === 'keyboard') {
+      if (pointerType === "keyboard") {
         if (delta > 0) {
           handleState.increment();
         } else if (delta < 0) {
@@ -116,15 +116,15 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
   let {keyboardProps} = useKeyboard({
     isDisabled: !allowsResizing,
     onKeyDown({key}) {
-      if (key === 'Home') {
+      if (key === "Home") {
         handleState.setDragging(true);
         handleState.decrementToMin();
         handleState.setDragging(false);
-      } else if (key === 'End') {
+      } else if (key === "End") {
         handleState.setDragging(true);
         handleState.incrementToMax();
         handleState.setDragging(false);
-      } else if (key === 'Enter') {
+      } else if (key === "Enter") {
         handleState.collapseToggle();
       }
     }
@@ -133,13 +133,13 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
   // TODO should `handleState.setDragging` be set on press or on the first move?
   let onStart = () => {
     handleState.setDragging(true);
-    document.addEventListener('mouseup', onEnd, false);
-    document.addEventListener('touchend', onEnd, false);
+    document.addEventListener("mouseup", onEnd, false);
+    document.addEventListener("touchend", onEnd, false);
   };
   let onEnd = () => {
     handleState.setDragging(false);
-    document.removeEventListener('mouseup', onEnd, false);
-    document.removeEventListener('touchend', onEnd, false);
+    document.removeEventListener("mouseup", onEnd, false);
+    document.removeEventListener("touchend", onEnd, false);
   };
 
   return {
@@ -148,13 +148,13 @@ export function useSplitView(props: SplitViewAriaProps, state: SplitViewState): 
     },
     handleProps: {
       tabIndex: allowsResizing ? 0 : undefined,
-      'aria-valuenow': ariaValueNow,
-      'aria-valuemin': ariaValueMin,
-      'aria-valuemax': ariaValueMax,
-      'aria-label': props['aria-label'],
-      'aria-labelledby': props['aria-labelledby'],
-      role: 'separator',
-      'aria-controls': id,
+      "aria-valuenow": ariaValueNow,
+      "aria-valuemin": ariaValueMin,
+      "aria-valuemax": ariaValueMax,
+      "aria-label": props["aria-label"],
+      "aria-labelledby": props["aria-labelledby"],
+      role: "separator",
+      "aria-controls": id,
       ...(allowsResizing && mergeProps({
         onMouseDown: onStart,
         onTouchStart: onStart

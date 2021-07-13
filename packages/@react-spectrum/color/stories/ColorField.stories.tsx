@@ -10,121 +10,121 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Color} from '@react-types/color';
-import {ColorField} from '../';
-import {Flex} from '@react-spectrum/layout';
-import React, {useState} from 'react';
-import {storiesOf} from '@storybook/react';
-import {useId} from '@react-aria/utils';
-import {View} from '@react-spectrum/view';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import {action} from "@storybook/addon-actions";
+import {Color} from "@react-types/color";
+import {ColorField} from "../";
+import {Flex} from "@react-spectrum/layout";
+import React, {useState} from "react";
+import {storiesOf} from "@storybook/react";
+import {useId} from "@react-aria/utils";
+import {View} from "@react-spectrum/view";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
-storiesOf('ColorField', module)
+storiesOf("ColorField", module)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'has default value',
-    () => render({defaultValue: '#abcdef'})
+    "has default value",
+    () => render({defaultValue: "#abcdef"})
   )
   .add(
-    'value',
+    "value",
     () => render({
-      value: '#FF00AA',
-      onChange: action('change')
+      value: "#FF00AA",
+      onChange: action("change")
     })
   )
   .add(
-    'isQuiet',
+    "isQuiet",
     () => render({isQuiet: true})
   )
   .add(
-    'isReadOnly',
-    () => render({isReadOnly: true, defaultValue: '#abcdef'})
+    "isReadOnly",
+    () => render({isReadOnly: true, defaultValue: "#abcdef"})
   )
   .add(
-    'isDisabled',
-    () => render({isDisabled: true, defaultValue: '#abcdef'})
+    "isDisabled",
+    () => render({isDisabled: true, defaultValue: "#abcdef"})
   )
   .add(
-    'validationState valid',
-    () => render({validationState: 'valid'})
+    "validationState valid",
+    () => render({validationState: "valid"})
   )
   .add(
-    'validationState invalid',
-    () => render({validationState: 'invalid'})
+    "validationState invalid",
+    () => render({validationState: "invalid"})
   )
   .add(
-    'required, label, optional',
+    "required, label, optional",
     () => (
       <Flex direction="column" gap="size-100">
-        {render({isRequired: 'true'})}
-        {render({isRequired: 'true', necessityIndicator: 'label'})}
-        {render({necessityIndicator: 'label'})}
+        {render({isRequired: "true"})}
+        {render({isRequired: "true", necessityIndicator: "label"})}
+        {render({necessityIndicator: "label"})}
       </Flex>
     )
   )
   .add(
-    'with placeholder',
-    () => render({placeholder: 'Enter a hex color'})
+    "with placeholder",
+    () => render({placeholder: "Enter a hex color"})
   )
   .add(
-    'step = 16',
+    "step = 16",
     () => render({step: 16})
   )
   .add(
-    'controlled value',
+    "controlled value",
     () => (
       <ControlledColorField
         value="#FF00AA"
-        onChange={action('change')} />
+        onChange={action("change")} />
     )
   )
   .add(
-    'autofocus',
+    "autofocus",
     () => render({autoFocus: true})
   )
   .add(
-    'placeholder',
-    () => render({placeholder: '#e73623'})
+    "placeholder",
+    () => render({placeholder: "#e73623"})
   )
   .add(
-    'label side',
-    () => render({labelPosition: 'side'})
+    "label side",
+    () => render({labelPosition: "side"})
   )
   .add(
-    'no visible label',
-    () => renderNoLabel({isRequired: true, 'aria-label': 'Primary Color'})
+    "no visible label",
+    () => renderNoLabel({isRequired: true, "aria-label": "Primary Color"})
   )
   .add(
-    'aria-labelledby',
+    "aria-labelledby",
     () => (
       <>
         <label htmlFor="colorfield" id="label">Primary Color</label>
-        {renderNoLabel({isRequired: true, id: 'colorfield', 'aria-labelledby': 'label'})}
+        {renderNoLabel({isRequired: true, id: "colorfield", "aria-labelledby": "label"})}
       </>
     )
   )
   .add(
-    'custom width',
-    () => render({width: 'size-3000'})
+    "custom width",
+    () => render({width: "size-3000"})
   )
   .add(
-    'custom width no visible label',
-    () => renderNoLabel({width: 'size-3000', isRequired: true, 'aria-label': 'Primary Color'})
+    "custom width no visible label",
+    () => renderNoLabel({width: "size-3000", isRequired: true, "aria-label": "Primary Color"})
   )
   .add(
-    'custom width, labelPosition=side',
-    () => render({width: 'size-3000', labelPosition: 'side'})
+    "custom width, labelPosition=side",
+    () => render({width: "size-3000", labelPosition: "side"})
   )
   .add(
-    'custom width, 10px for min-width',
+    "custom width, 10px for min-width",
     () => (
       <Flex direction="column" gap="size-100">
-        {render({width: '10px'})}
-        <div style={{width: '10px'}}>
+        {render({width: "10px"})}
+        <div style={{width: "10px"}}>
           {render()}
         </div>
       </Flex>
@@ -137,7 +137,7 @@ function ControlledColorField(props: any = {}) {
     setColor(color);
     if (props.onChange) { props.onChange(color); }
   };
-  let style = color ? {backgroundColor: color.toString('rgb')} : {};
+  let style = color ? {backgroundColor: color.toString("rgb")} : {};
   let id = useId();
   return (
     <Flex direction="row" gap="size-100" alignItems="end">
@@ -149,7 +149,7 @@ function ControlledColorField(props: any = {}) {
       <View width="size-400" height="size-400" UNSAFE_style={style}>
         <VisuallyHidden>
           <output htmlFor={id} aria-live="off">
-            {color ? color.toString('hex') : ''}
+            {color ? color.toString("hex") : ""}
           </output>
         </VisuallyHidden>
       </View>
@@ -161,13 +161,13 @@ function render(props: any = {}) {
   return (
     <ColorField
       label="Primary Color"
-      onChange={action('change')}
+      onChange={action("change")}
       {...props} />
   );
 }
 
 function renderNoLabel(props: any = {}) {
   return (
-    <ColorField {...props} onChange={action('onChange')} />
+    <ColorField {...props} onChange={action("onChange")} />
   );
 }

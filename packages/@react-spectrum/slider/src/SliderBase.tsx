@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useFocusableRef, useStyleProps} from '@react-spectrum/utils';
-import {FocusableRef} from '@react-types/shared';
-import React, {CSSProperties, ReactNode, RefObject, useRef} from 'react';
-import {SliderState, useSliderState} from '@react-stately/slider';
-import {SpectrumBarSliderBase} from '@react-types/slider';
-import styles from '@adobe/spectrum-css-temp/components/slider/vars.css';
-import {useNumberFormatter} from '@react-aria/i18n';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useSlider} from '@react-aria/slider';
+import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import {FocusableRef} from "@react-types/shared";
+import React, {CSSProperties, ReactNode, RefObject, useRef} from "react";
+import {SliderState, useSliderState} from "@react-stately/slider";
+import {SpectrumBarSliderBase} from "@react-types/slider";
+import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
+import {useNumberFormatter} from "@react-aria/i18n";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useSlider} from "@react-aria/slider";
 
 export interface SliderBaseChildArguments {
   inputRef: RefObject<HTMLInputElement>,
@@ -39,7 +39,7 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
     children,
     classes,
     style,
-    labelPosition = 'top',
+    labelPosition = "top",
     getValueLabel,
     showValueLabel = !!props.label,
     formatOptions,
@@ -54,16 +54,16 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
   let alwaysDisplaySign = Math.abs(Math.sign(minValue) - Math.sign(maxValue)) === 2;
   if (alwaysDisplaySign) {
     if (formatOptions != null) {
-      if (!('signDisplay' in formatOptions)) {
+      if (!("signDisplay" in formatOptions)) {
         formatOptions = {
           ...formatOptions,
           // @ts-ignore
-          signDisplay: 'exceptZero'
+          signDisplay: "exceptZero"
         };
       }
     } else {
       // @ts-ignore
-      formatOptions = {signDisplay: 'exceptZero'};
+      formatOptions = {signDisplay: "exceptZero"};
     }
   }
 
@@ -85,10 +85,10 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
   let inputRef = useRef();
   let domRef = useFocusableRef(ref, inputRef);
 
-  let displayValue = '';
+  let displayValue = "";
   let maxLabelLength = undefined;
 
-  if (typeof getValueLabel === 'function') {
+  if (typeof getValueLabel === "function") {
     displayValue = getValueLabel(state.values);
     switch (state.values.length) {
       case 1:
@@ -107,7 +107,7 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
         );
         break;
       default:
-        throw new Error('Only sliders with 1 or 2 handles are supported!');
+        throw new Error("Only sliders with 1 or 2 handles are supported!");
     }
   } else {
     maxLabelLength = Math.max([...formatter.format(minValue)].length, [...formatter.format(maxValue)].length);
@@ -126,13 +126,13 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
         );
         break;
       default:
-        throw new Error('Only sliders with 1 or 2 handles are supported!');
+        throw new Error("Only sliders with 1 or 2 handles are supported!");
     }
   }
 
   let labelNode = (
     <label
-      className={classNames(styles, 'spectrum-Slider-label')}
+      className={classNames(styles, "spectrum-Slider-label")}
       {...labelProps}>
       {props.label}
     </label>
@@ -141,7 +141,7 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
   let valueNode = (
     <output
       {...outputProps}
-      className={classNames(styles, 'spectrum-Slider-value')}
+      className={classNames(styles, "spectrum-Slider-value")}
       style={maxLabelLength && {width: `${maxLabelLength}ch`, minWidth: `${maxLabelLength}ch`}}>
       {displayValue}
     </output>
@@ -151,11 +151,11 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
     <div
       ref={domRef}
       className={classNames(styles,
-        'spectrum-Slider',
+        "spectrum-Slider",
         {
-          'spectrum-Slider--positionTop': labelPosition === 'top',
-          'spectrum-Slider--positionSide': labelPosition === 'side',
-          'is-disabled': isDisabled
+          "spectrum-Slider--positionTop": labelPosition === "top",
+          "spectrum-Slider--positionSide": labelPosition === "side",
+          "is-disabled": isDisabled
         },
         classes,
         styleProps.className)}
@@ -165,20 +165,20 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
       }}
       {...groupProps}>
       {(props.label) &&
-        <div className={classNames(styles, 'spectrum-Slider-labelContainer')} role="presentation">
+        <div className={classNames(styles, "spectrum-Slider-labelContainer")} role="presentation">
           {props.label && labelNode}
-          {labelPosition === 'top' && showValueLabel && valueNode}
+          {labelPosition === "top" && showValueLabel && valueNode}
         </div>
       }
-      <div className={classNames(styles, 'spectrum-Slider-controls')} ref={trackRef} {...trackProps} role="presentation">
+      <div className={classNames(styles, "spectrum-Slider-controls")} ref={trackRef} {...trackProps} role="presentation">
         {children({
           trackRef,
           inputRef,
           state
         })}
       </div>
-      {labelPosition === 'side' &&
-        <div className={classNames(styles, 'spectrum-Slider-valueLabelContainer')} role="presentation">
+      {labelPosition === "side" &&
+        <div className={classNames(styles, "spectrum-Slider-valueLabelContainer")} role="presentation">
           {showValueLabel && valueNode}
         </div>
       }

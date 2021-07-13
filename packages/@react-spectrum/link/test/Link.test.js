@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from '@testing-library/react';
-import {Link} from '../';
-import React from 'react';
-import V2Link from '@react/react-spectrum/Link';
+import {fireEvent, render} from "@testing-library/react";
+import {Link} from "../";
+import React from "react";
+import V2Link from "@react/react-spectrum/Link";
 
 // Triggers a "press" event on an element.
 // TODO: import from somewhere more common
@@ -23,7 +23,7 @@ export function triggerPress(element) {
   fireEvent.click(element);
 }
 
-describe('Link', function () {
+describe("Link", function () {
   let onPressSpy = jest.fn();
 
   afterEach(() => {
@@ -32,12 +32,12 @@ describe('Link', function () {
 
   it.each`
     Name        | Component | props
-    ${'Link'}   | ${Link}   | ${{onPress: onPressSpy}}
-    ${'V2Link'} | ${V2Link} | ${{onClick: onPressSpy}}
-  `('$Name handles defaults', function ({Component, props}) {
+    ${"Link"}   | ${Link}   | ${{onPress: onPressSpy}}
+    ${"V2Link"} | ${V2Link} | ${{onClick: onPressSpy}}
+  `("$Name handles defaults", function ({Component, props}) {
     let {getByText} = render(<Component {...props} >Click me</Component>);
 
-    let link = getByText('Click me');
+    let link = getByText("Click me");
     expect(link).not.toBeNull();
 
     triggerPress(link);
@@ -46,51 +46,51 @@ describe('Link', function () {
 
   it.each`
     Name        | Component | props
-    ${'Link'}   | ${Link}   | ${{UNSAFE_className: 'test-class'}}
-    ${'V2Link'} | ${V2Link} | ${{className: 'test-class'}}
-  `('$Name supports UNSAFE_className', function ({Component, props}) {
+    ${"Link"}   | ${Link}   | ${{UNSAFE_className: "test-class"}}
+    ${"V2Link"} | ${V2Link} | ${{className: "test-class"}}
+  `("$Name supports UNSAFE_className", function ({Component, props}) {
     let {getByText} = render(<Component {...props} >Click me</Component>);
-    let link = getByText('Click me');
-    expect(link).toHaveAttribute('class', expect.stringContaining('test-class'));
+    let link = getByText("Click me");
+    expect(link).toHaveAttribute("class", expect.stringContaining("test-class"));
   });
 
   // New v3 functionality, omitting v2 component
   // V3 will clone custom child element and map the class/event handlers
-  it('Wraps string to span', () => {
+  it("Wraps string to span", () => {
     let {getByRole} = render(<Link >Click me</Link>);
-    let link = getByRole('link');
+    let link = getByRole("link");
     expect(link).toBeDefined();
-    expect(link.nodeName).toBe('SPAN');
-    expect(link).toHaveAttribute('tabIndex', '0');
+    expect(link.nodeName).toBe("SPAN");
+    expect(link).toHaveAttribute("tabIndex", "0");
   });
 
-  it('Wraps custom child element', () => {
+  it("Wraps custom child element", () => {
     let {getByRole} = render(
       <Link UNSAFE_className="test-class" onPress={onPressSpy} >
         <a href="#only-hash-in-jsdom" >Click me </a>
       </Link>
     );
-    let link = getByRole('link');
+    let link = getByRole("link");
     expect(link).toBeDefined();
-    expect(link.nodeName).toBe('A');
-    expect(link).toHaveAttribute('class', expect.stringContaining('test-class'));
-    expect(link).toHaveAttribute('href', '#only-hash-in-jsdom');
+    expect(link.nodeName).toBe("A");
+    expect(link).toHaveAttribute("class", expect.stringContaining("test-class"));
+    expect(link).toHaveAttribute("href", "#only-hash-in-jsdom");
     triggerPress(link);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('Handles deprecated onClick', () => {
-    let spyWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+  it("Handles deprecated onClick", () => {
+    let spyWarn = jest.spyOn(console, "warn").mockImplementation(() => {});
     let {getByRole} = render(<Link onClick={onPressSpy} >Click me</Link>);
-    let link = getByRole('link');
+    let link = getByRole("link");
     triggerPress(link);
     expect(onPressSpy).toHaveBeenCalledTimes(1);
-    expect(spyWarn).toHaveBeenCalledWith('onClick is deprecated, please use onPress');
+    expect(spyWarn).toHaveBeenCalledWith("onClick is deprecated, please use onPress");
   });
 
-  it('supports custom data attributes', () => {
+  it("supports custom data attributes", () => {
     let {getByRole} = render(<Link data-testid="test">Click me</Link>);
-    let link = getByRole('link');
-    expect(link).toHaveAttribute('data-testid', 'test');
+    let link = getByRole("link");
+    expect(link).toHaveAttribute("data-testid", "test");
   });
 });

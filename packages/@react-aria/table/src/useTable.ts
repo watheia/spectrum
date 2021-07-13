@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {GridAria, GridProps, useGrid} from '@react-aria/grid';
-import {gridIds} from './utils';
-import {Layout} from '@react-stately/virtualizer';
-import {Node} from '@react-types/shared';
-import {RefObject, useMemo} from 'react';
-import {TableKeyboardDelegate} from './TableKeyboardDelegate';
-import {TableState} from '@react-stately/table';
-import {useCollator, useLocale} from '@react-aria/i18n';
-import {useId} from '@react-aria/utils';
+import {GridAria, GridProps, useGrid} from "@react-aria/grid";
+import {gridIds} from "./utils";
+import {Layout} from "@react-stately/virtualizer";
+import {Node} from "@react-types/shared";
+import {RefObject, useMemo} from "react";
+import {TableKeyboardDelegate} from "./TableKeyboardDelegate";
+import {TableState} from "@react-stately/table";
+import {useCollator, useLocale} from "@react-aria/i18n";
+import {useId} from "@react-aria/utils";
 
 interface TableProps<T> extends GridProps {
   /** The layout object for the table. Computes what content is visible and how to position and style them. */
@@ -42,7 +42,7 @@ export function useTable<T>(props: TableProps<T>, state: TableState<T>, ref: Ref
 
   // By default, a KeyboardDelegate is provided which uses the DOM to query layout information (e.g. for page up/page down).
   // When virtualized, the layout object will be passed in as a prop and override this.
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let {direction} = useLocale();
   let delegate = useMemo(() => keyboardDelegate || new TableKeyboardDelegate({
     collection: state.collection,
@@ -83,16 +83,16 @@ export function useTable<T>(props: TableProps<T>, state: TableState<T>, ref: Ref
           }
         }
 
-        return text.join(' ');
+        return text.join(" ");
       }
 
-      return '';
+      return "";
     }
   }, state, ref);
 
   // Override to include header rows
   if (isVirtualized) {
-    gridProps['aria-rowcount'] = state.collection.size + state.collection.headerRows.length;
+    gridProps["aria-rowcount"] = state.collection.size + state.collection.headerRows.length;
   }
 
   return {

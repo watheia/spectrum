@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, renderHook} from '@testing-library/react-hooks';
-import {useSearchFieldState} from '../';
+import {act, renderHook} from "@testing-library/react-hooks";
+import {useSearchFieldState} from "../";
 
-describe('useSearchFieldState', () => {
+describe("useSearchFieldState", () => {
   let onChange = jest.fn();
-  let newValue = 'newValue';
+  let newValue = "newValue";
 
   afterEach(() => {
     onChange.mockClear();
   });
 
-  it('should be controlled if props.value is defined', () => {
+  it("should be controlled if props.value is defined", () => {
     let props = {
-      value: 'blah',
+      value: "blah",
       onChange
     };
     let {result} = renderHook(() => useSearchFieldState(props));
@@ -34,9 +34,9 @@ describe('useSearchFieldState', () => {
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('should start with value = props.defaultValue if props.value is not defined and props.defaultValue is defined', () => {
+  it("should start with value = props.defaultValue if props.value is not defined and props.defaultValue is defined", () => {
     let props = {
-      defaultValue: 'blah',
+      defaultValue: "blah",
       onChange
     };
     let {result} = renderHook(() => useSearchFieldState(props));
@@ -51,13 +51,13 @@ describe('useSearchFieldState', () => {
       onChange
     };
     let {result} = renderHook(() => useSearchFieldState(props));
-    expect(result.current.value).toBe('');
+    expect(result.current.value).toBe("");
     act(() => result.current.setValue(newValue));
     expect(result.current.value).toBe(newValue);
     expect(onChange).toHaveBeenCalledTimes(1);
   });
 
-  it('should convert numeric values to strings (uncontrolled)', () => {
+  it("should convert numeric values to strings (uncontrolled)", () => {
     let props = {
       defaultValue: 13
     };
@@ -66,16 +66,16 @@ describe('useSearchFieldState', () => {
     expect(result.current.value).toBe(props.defaultValue.toString());
   });
 
-  it('should convert an array of string values to a string (uncontrolled)', () => {
+  it("should convert an array of string values to a string (uncontrolled)", () => {
     let props = {
-      defaultValue: ['hi', 'this', 'is', 'me']
+      defaultValue: ["hi", "this", "is", "me"]
     };
 
     let {result} = renderHook(() => useSearchFieldState(props));
     expect(result.current.value).toBe(props.defaultValue.toString());
   });
 
-  it('should convert numeric values to strings (controlled)', () => {
+  it("should convert numeric values to strings (controlled)", () => {
     let props = {
       value: 13
     };
@@ -84,9 +84,9 @@ describe('useSearchFieldState', () => {
     expect(result.current.value).toBe(props.value.toString());
   });
 
-  it('should convert an array of string values to a string (controlled)', () => {
+  it("should convert an array of string values to a string (controlled)", () => {
     let props = {
-      value: ['hi', 'this', 'is', 'me']
+      value: ["hi", "this", "is", "me"]
     };
 
     let {result} = renderHook(() => useSearchFieldState(props));

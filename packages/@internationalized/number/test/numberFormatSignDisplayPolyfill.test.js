@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {numberFormatSignDisplayPolyfill} from '../src/NumberFormatter';
+import {numberFormatSignDisplayPolyfill} from "../src/NumberFormatter";
 
 function verify(locale, options, signDisplay, v) {
   let a = new Intl.NumberFormat(locale, options);
@@ -19,13 +19,13 @@ function verify(locale, options, signDisplay, v) {
   expect(b.format(v)).toBe(numberFormatSignDisplayPolyfill(a, signDisplay, v));
 }
 
-let signDisplayValues = ['always', 'auto', 'never', 'exceptZero'];
-let localeValues = ['de-DE', 'ar-AE', 'fa', 'he-IL'];
-let optionsValues = [{}, {style: 'unit', unit: 'celsius'}, {style: 'currency', currency: 'USD', currencyDisplay: 'name'}];
+let signDisplayValues = ["always", "auto", "never", "exceptZero"];
+let localeValues = ["de-DE", "ar-AE", "fa", "he-IL"];
+let optionsValues = [{}, {style: "unit", unit: "celsius"}, {style: "currency", currency: "USD", currencyDisplay: "name"}];
 let numValues = [-123, -1, -0, 0, +0, 1, 123];
-let numValueNames = ['-123', '-1', '-0', '0', '+0', '1', '123'];
+let numValueNames = ["-123", "-1", "-0", "0", "+0", "1", "123"];
 
-describe('numberFormatSignDisplayPolyfill', () => {
+describe("numberFormatSignDisplayPolyfill", () => {
   for (let signDisplay of signDisplayValues) {
     for (let locale of localeValues) {
       for (let options of optionsValues) {

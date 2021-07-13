@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import ChevronLeftMedium from '@spectrum-icons/ui/ChevronLeftMedium';
-import ChevronRightMedium from '@spectrum-icons/ui/ChevronRightMedium';
-import {classNames} from '@react-spectrum/utils';
-import intlMessages from '../intl';
-import {PaginationBase} from '@react-types/pagination';
-import React from 'react';
-import styles from '@adobe/spectrum-css-temp/components/pagination/vars.css';
-import {TextField} from '@react-spectrum/textfield';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
-import {useMessageFormatter} from '@react-aria/i18n';
-import {usePagination} from '@react-aria/pagination';
-import {usePaginationState} from '@react-stately/pagination';
-import {useProviderProps} from '@react-spectrum/provider';
+import {ActionButton} from "@react-spectrum/button";
+import ChevronLeftMedium from "@spectrum-icons/ui/ChevronLeftMedium";
+import ChevronRightMedium from "@spectrum-icons/ui/ChevronRightMedium";
+import {classNames} from "@react-spectrum/utils";
+import intlMessages from "../intl";
+import {PaginationBase} from "@react-types/pagination";
+import React from "react";
+import styles from "@adobe/spectrum-css-temp/components/pagination/vars.css";
+import {TextField} from "@react-spectrum/textfield";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import {useMessageFormatter} from "@react-aria/i18n";
+import {usePagination} from "@react-aria/pagination";
+import {usePaginationState} from "@react-stately/pagination";
+import {useProviderProps} from "@react-spectrum/provider";
 
 export function PaginationInput(props: PaginationBase) {
   props = Object.assign({}, {defaultValue: 1}, props);
@@ -35,7 +35,7 @@ export function PaginationInput(props: PaginationBase) {
 
   return (
     <nav
-      className={classNames(styles, 'spectrum-Pagination', 'spectrum-Pagination--explicit')}>
+      className={classNames(styles, "spectrum-Pagination", "spectrum-Pagination--explicit")}>
       <ActionButton
         {...prevButtonProps}
         isQuiet>
@@ -45,10 +45,10 @@ export function PaginationInput(props: PaginationBase) {
         {...textProps}
         value={state.value}
         onChange={state.onChange}
-        UNSAFE_className={classNames(styles, 'spectrum-Pagination-input')} />
+        UNSAFE_className={classNames(styles, "spectrum-Pagination-input")} />
       <span
-        className={classNames(typographyStyles, 'spectrum-Body--secondary', classNames(styles, 'spectrum-Pagination-counter'))}>
-        {formatMessage('page_count', {n: maxValue})}
+        className={classNames(typographyStyles, "spectrum-Body--secondary", classNames(styles, "spectrum-Pagination-counter"))}>
+        {formatMessage("page_count", {n: maxValue})}
       </span>
       <ActionButton
         {...nextButtonProps}

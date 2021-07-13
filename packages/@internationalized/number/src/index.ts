@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-export type {NumberFormatOptions} from './NumberFormatter';
+export type {NumberFormatOptions} from "./NumberFormatter";
 
-export {NumberFormatter} from './NumberFormatter';
-export {NumberParser} from './NumberParser';
+export {NumberFormatter} from "./NumberFormatter";
+export {NumberParser} from "./NumberParser";

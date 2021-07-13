@@ -10,4 +10,4 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './SSRProvider';
+export * from "./SSRProvider";

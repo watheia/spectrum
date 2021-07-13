@@ -10,21 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {CalendarAria} from '@react-aria/calendar';
-import {CalendarPropsBase} from '@react-types/calendar';
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar';
-import {CalendarTableBody} from './CalendarTableBody';
-import {CalendarTableHeader} from './CalendarTableHeader';
-import ChevronLeft from '@spectrum-icons/ui/ChevronLeftLarge';
-import ChevronRight from '@spectrum-icons/ui/ChevronRightLarge';
-import {classNames, useStyleProps} from '@react-spectrum/utils';
-import {DOMProps, StyleProps} from '@react-types/shared';
-import React from 'react';
-import styles from '@adobe/spectrum-css-temp/components/calendar/vars.css';
-import {useDateFormatter, useLocale} from '@react-aria/i18n';
-import {useProviderProps} from '@react-spectrum/provider';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import {ActionButton} from "@react-spectrum/button";
+import {CalendarAria} from "@react-aria/calendar";
+import {CalendarPropsBase} from "@react-types/calendar";
+import {CalendarState, RangeCalendarState} from "@react-stately/calendar";
+import {CalendarTableBody} from "./CalendarTableBody";
+import {CalendarTableHeader} from "./CalendarTableHeader";
+import ChevronLeft from "@spectrum-icons/ui/ChevronLeftLarge";
+import ChevronRight from "@spectrum-icons/ui/ChevronRightLarge";
+import {classNames, useStyleProps} from "@react-spectrum/utils";
+import {DOMProps, StyleProps} from "@react-types/shared";
+import React from "react";
+import styles from "@adobe/spectrum-css-temp/components/calendar/vars.css";
+import {useDateFormatter, useLocale} from "@react-aria/i18n";
+import {useProviderProps} from "@react-spectrum/provider";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 interface CalendarBaseProps extends CalendarPropsBase, DOMProps, StyleProps {
   state: CalendarState | RangeCalendarState,
@@ -38,7 +38,7 @@ export function CalendarBase(props: CalendarBaseProps) {
     aria,
     ...otherProps
   } = props;
-  let monthDateFormatter = useDateFormatter({month: 'long', year: 'numeric'});
+  let monthDateFormatter = useDateFormatter({month: "long", year: "numeric"});
   let {
     calendarProps,
     calendarTitleProps,
@@ -56,32 +56,32 @@ export function CalendarBase(props: CalendarBaseProps) {
       {...calendarProps}
       className={
         classNames(styles,
-          'spectrum-Calendar',
+          "spectrum-Calendar",
           styleProps.className
         )
       }>
-      <div className={classNames(styles, 'spectrum-Calendar-header')}>
+      <div className={classNames(styles, "spectrum-Calendar-header")}>
         <h2
           {...calendarTitleProps}
-          className={classNames(styles, 'spectrum-Calendar-title')}>
+          className={classNames(styles, "spectrum-Calendar-title")}>
           {monthDateFormatter.format(state.currentMonth)}
         </h2>
         <ActionButton
           {...prevButtonProps}
-          UNSAFE_className={classNames(styles, 'spectrum-Calendar-prevMonth')}
+          UNSAFE_className={classNames(styles, "spectrum-Calendar-prevMonth")}
           isQuiet>
-          {direction === 'rtl' ? <ChevronRight /> : <ChevronLeft />}
+          {direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
         </ActionButton>
         <ActionButton
           {...nextButtonProps}
-          UNSAFE_className={classNames(styles, 'spectrum-Calendar-nextMonth')}
+          UNSAFE_className={classNames(styles, "spectrum-Calendar-nextMonth")}
           isQuiet>
-          {direction === 'rtl' ? <ChevronLeft /> : <ChevronRight />}
+          {direction === "rtl" ? <ChevronLeft /> : <ChevronRight />}
         </ActionButton>
       </div>
       <table
         {...calendarBodyProps}
-        className={classNames(styles, 'spectrum-Calendar-body', 'spectrum-Calendar-table')}>
+        className={classNames(styles, "spectrum-Calendar-body", "spectrum-Calendar-table")}>
         <VisuallyHidden elementType="caption" {...captionProps} />
         <CalendarTableHeader weekDays={state.weekDays} />
         <CalendarTableBody state={state} />

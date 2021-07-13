@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AsyncLoadable, CollectionBase, DOMProps, FocusableProps, InputBase, LabelableProps, LoadingState, SingleSelection, SpectrumLabelableProps, StyleProps, TextInputBase, Validation} from '@react-types/shared';
+import {AsyncLoadable, CollectionBase, DOMProps, FocusableProps, InputBase, LabelableProps, LoadingState, SingleSelection, SpectrumLabelableProps, StyleProps, TextInputBase, Validation} from "@react-types/shared";
 
-export type MenuTriggerAction = 'focus' | 'input' | 'manual';
+export type MenuTriggerAction = "focus" | "input" | "manual";
 
 export interface ComboBoxProps<T> extends CollectionBase<T>, SingleSelection, InputBase, TextInputBase, DOMProps, Validation, FocusableProps, LabelableProps {
   /** The list of ComboBox items (uncontrolled). */
@@ -41,7 +41,7 @@ export interface ComboBoxProps<T> extends CollectionBase<T>, SingleSelection, In
   menuTrigger?: MenuTriggerAction
 }
 
-export interface SpectrumComboBoxProps<T> extends Omit<ComboBoxProps<T>, 'menuTrigger'>, SpectrumLabelableProps, StyleProps, Omit<AsyncLoadable, 'isLoading'> {
+export interface SpectrumComboBoxProps<T> extends Omit<ComboBoxProps<T>, "menuTrigger">, SpectrumLabelableProps, StyleProps, Omit<AsyncLoadable, "isLoading"> {
   /**
    * The interaction required to display the ComboBox menu. Note that this prop has no effect on the mobile ComboBox experience.
    * @default 'input'
@@ -53,7 +53,7 @@ export interface SpectrumComboBoxProps<T> extends Omit<ComboBoxProps<T>, 'menuTr
    * Direction the menu will render relative to the ComboBox.
    * @default 'bottom'
    */
-  direction?: 'bottom' | 'top',
+  direction?: "bottom" | "top",
   /** The current loading state of the ComboBox. Determines whether or not the progress circle should be shown. */
   loadingState?: LoadingState,
   /**

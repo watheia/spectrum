@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Color} from '@react-types/color';
-import {parseColor} from './Color';
-import {useMemo} from 'react';
+import {Color} from "@react-types/color";
+import {parseColor} from "./Color";
+import {useMemo} from "react";
 
 export function useColor(value: string | Color) {
   return useMemo(() => {
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       try {
         return parseColor(value);
       } catch (err) {

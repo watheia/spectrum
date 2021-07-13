@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useSlotProps, useStyleProps} from '@react-spectrum/utils';
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import React from 'react';
-import {SpectrumImageProps} from '@react-types/image';
-import {useProviderProps} from '@react-spectrum/provider';
+import {classNames, useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import React from "react";
+import {SpectrumImageProps} from "@react-types/image";
+import {useProviderProps} from "@react-spectrum/provider";
 
 // incomplete component for show right now
 
 function Image(props: SpectrumImageProps, ref: DOMRef<HTMLDivElement>) {
-  props = useSlotProps(props, 'image');
+  props = useSlotProps(props, "image");
   let {
     objectFit,
     src,
@@ -32,9 +32,9 @@ function Image(props: SpectrumImageProps, ref: DOMRef<HTMLDivElement>) {
 
   if (alt == null) {
     console.warn(
-      'The `alt` prop was not provided to an image. ' +
+      "The `alt` prop was not provided to an image. " +
       'Add `alt` text for screen readers, or set `alt=""` prop to indicate that the image ' +
-      'is decorative or redundant with displayed text and should not be annouced by screen readers.'
+      "is decorative or redundant with displayed text and should not be annouced by screen readers."
     );
   }
 
@@ -45,13 +45,13 @@ function Image(props: SpectrumImageProps, ref: DOMRef<HTMLDivElement>) {
       className={classNames({}, styleProps.className)}
       style={{
         ...styleProps.style,
-        overflow: 'hidden'
+        overflow: "hidden"
       }}
       ref={domRef}>
       <img
         src={src}
         alt={alt}
-        style={{objectFit, height: '100%', width: '100%'}} />
+        style={{objectFit, height: "100%", width: "100%"}} />
     </div>
   );
 }

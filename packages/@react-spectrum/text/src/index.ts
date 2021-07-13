@@ -12,6 +12,6 @@
 
 /// <reference types="css-module-types" />
 
-export * from './Text';
-export * from './Heading';
-export * from './Keyboard';
+export * from "./Text";
+export * from "./Heading";
+export * from "./Keyboard";

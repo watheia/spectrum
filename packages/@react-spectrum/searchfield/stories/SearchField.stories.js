@@ -10,121 +10,121 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import Refresh from '@spectrum-icons/workflow/Refresh';
-import {SearchField} from '../';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import Refresh from "@spectrum-icons/workflow/Refresh";
+import {SearchField} from "../";
+import {storiesOf} from "@storybook/react";
 
 const info = 'A containing element with `role="search"` has been added to define a **search** landmark region.';
 
-storiesOf('SearchField', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("SearchField", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'Default',
+    "Default",
     () => renderSearchLandmark(render()),
     {info}
   )
   .add(
-    'defaultValue (uncontrolled)',
-    () => renderSearchLandmark(render({defaultValue: 'React'})),
+    "defaultValue (uncontrolled)",
+    () => renderSearchLandmark(render({defaultValue: "React"})),
     {info}
   )
   .add(
-    'value (controlled)',
-    () => renderSearchLandmark(render({value: 'React'})),
+    "value (controlled)",
+    () => renderSearchLandmark(render({value: "React"})),
     {info}
   )
   .add(
-    'isQuiet: true',
+    "isQuiet: true",
     () => renderSearchLandmark(render({isQuiet: true})),
     {info}
   )
   .add(
-    'isDisabled: true',
-    () => renderSearchLandmark(render({defaultValue: 'React', isDisabled: true})),
+    "isDisabled: true",
+    () => renderSearchLandmark(render({defaultValue: "React", isDisabled: true})),
     {info}
   )
   .add(
-    'isQuiet, isDisabled',
-    () => renderSearchLandmark(render({defaultValue: 'React', isQuiet: true, isDisabled: true})),
+    "isQuiet, isDisabled",
+    () => renderSearchLandmark(render({defaultValue: "React", isQuiet: true, isDisabled: true})),
     {info}
   )
   .add(
-    'isReadOnly',
-    () => renderSearchLandmark(render({defaultValue: 'React', isReadOnly: true})),
+    "isReadOnly",
+    () => renderSearchLandmark(render({defaultValue: "React", isReadOnly: true})),
     {info}
   )
   .add(
-    'isRequired: true',
+    "isRequired: true",
     () => render({isRequired: true})
   )
   .add(
-    'isRequired: true, necessityIndicator: label',
-    () => render({isRequired: true, necessityIndicator: 'label'})
+    "isRequired: true, necessityIndicator: label",
+    () => render({isRequired: true, necessityIndicator: "label"})
   )
   .add(
-    'isRequired: false, necessityIndicator: label',
-    () => render({isRequired: false, necessityIndicator: 'label'})
+    "isRequired: false, necessityIndicator: label",
+    () => render({isRequired: false, necessityIndicator: "label"})
   )
   .add(
-    'icon: refresh',
-    () => renderSearchLandmark(render({defaultValue: 'React', icon: <Refresh />})),
+    "icon: refresh",
+    () => renderSearchLandmark(render({defaultValue: "React", icon: <Refresh />})),
     {info}
   )
   .add(
-    'isQuiet, icon: refresh',
-    () => renderSearchLandmark(render({defaultValue: 'React', icon: <Refresh />, isQuiet: true})),
+    "isQuiet, icon: refresh",
+    () => renderSearchLandmark(render({defaultValue: "React", icon: <Refresh />, isQuiet: true})),
     {info}
   )
   .add(
-    'validationState=invalid',
-    () => renderSearchLandmark(render({defaultValue: 'React', validationState: 'invalid'})),
+    "validationState=invalid",
+    () => renderSearchLandmark(render({defaultValue: "React", validationState: "invalid"})),
     {info}
   )
   .add(
-    'validationState=valid',
-    () => renderSearchLandmark(render({defaultValue: 'React', validationState: 'valid'})),
+    "validationState=valid",
+    () => renderSearchLandmark(render({defaultValue: "React", validationState: "valid"})),
     {info}
   )
   .add(
-    'onClear',
-    () => renderSearchLandmark(render({onClear: action('clear')})),
+    "onClear",
+    () => renderSearchLandmark(render({onClear: action("clear")})),
     {info}
   )
   .add(
-    'autoFocus',
+    "autoFocus",
     () => renderSearchLandmark(render({autoFocus: true})),
     {info}
   )
   .add(
-    'labelAlign: end',
-    () => render({labelAlign: 'end'})
+    "labelAlign: end",
+    () => render({labelAlign: "end"})
   )
   .add(
-    'labelPosition: side',
-    () => render({labelPosition: 'side'})
+    "labelPosition: side",
+    () => render({labelPosition: "side"})
   )
   .add(
-    'no visible label',
-    () => render({label: null, 'aria-label': 'Street address'})
+    "no visible label",
+    () => render({label: null, "aria-label": "Street address"})
   )
-  .add('custom width',
+  .add("custom width",
     () => render({width: 300})
   )
-  .add('custom width, quiet',
+  .add("custom width, quiet",
     () => render({width: 300, isQuiet: true})
   )
-  .add('custom width, labelPosition: side',
-    () => render({width: 300, labelPosition: 'side'})
+  .add("custom width, labelPosition: side",
+    () => render({width: 300, labelPosition: "side"})
   )
-  .add('custom width and narrow container',
+  .add("custom width and narrow container",
     () => (
       <Flex direction="column" width="30px">
-        {render({defaultValue: 'React', validationState: 'valid'})}
-        {render({defaultValue: 'React', width: 30})}
-        {render({defaultValue: 'React', width: 30, validationState: 'valid'})}
+        {render({defaultValue: "React", validationState: "valid"})}
+        {render({defaultValue: "React", width: 30})}
+        {render({defaultValue: "React", width: 30, validationState: "valid"})}
       </Flex>
     )
   );
@@ -140,7 +140,7 @@ function render(props = {}) {
       label="Search"
       placeholder="Enter text"
       {...props}
-      onChange={action('change')}
-      onSubmit={action('submit')} />
+      onChange={action("change")}
+      onSubmit={action("submit")} />
   );
 }

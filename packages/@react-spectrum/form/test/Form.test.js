@@ -10,29 +10,29 @@
  * governing permissions and limitations under the License.
  */
 
-import {Button} from '@react-spectrum/button';
-import {Form} from '../';
-import {Item, Picker} from '@react-spectrum/picker';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {render} from '@testing-library/react';
-import {TextField} from '@react-spectrum/textfield';
-import {theme} from '@react-spectrum/theme-default';
-import userEvent from '@testing-library/user-event';
+import {Button} from "@react-spectrum/button";
+import {Form} from "../";
+import {Item, Picker} from "@react-spectrum/picker";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {render} from "@testing-library/react";
+import {TextField} from "@react-spectrum/textfield";
+import {theme} from "@react-spectrum/theme-default";
+import userEvent from "@testing-library/user-event";
 
-describe('Form', function () {
-  it('should render a form', () => {
+describe("Form", function () {
+  it("should render a form", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Form aria-label="Home" />
       </Provider>
     );
 
-    let form = getByRole('form');
+    let form = getByRole("form");
     expect(form).toBeTruthy();
   });
 
-  it('should render children inside the form', () => {
+  it("should render children inside the form", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Form aria-label="Home">
@@ -41,11 +41,11 @@ describe('Form', function () {
       </Provider>
     );
 
-    let button = getByRole('button');
+    let button = getByRole("button");
     expect(button).toBeTruthy();
   });
 
-  it('should attach a optional user provided ref to the form', () => {
+  it("should attach a optional user provided ref to the form", () => {
     let ref = React.createRef();
     let {getByRole} = render(
       <Provider theme={theme}>
@@ -53,12 +53,12 @@ describe('Form', function () {
       </Provider>
     );
 
-    let form = getByRole('form');
+    let form = getByRole("form");
     expect(form).toBe(ref.current.UNSAFE_getDOMNode());
   });
 
-  it('should context props should be overridden by child', () => {
-    let testId = 'tfid4';
+  it("should context props should be overridden by child", () => {
+    let testId = "tfid4";
     let tree = render(
       <Provider theme={theme}>
         <Form necessityIndicator={undefined}>
@@ -68,13 +68,13 @@ describe('Form', function () {
     );
 
     let input = tree.getByTestId(testId);
-    let labelId = input.getAttribute('aria-labelledby');
+    let labelId = input.getAttribute("aria-labelledby");
     expect(labelId).toBeDefined();
     let label = document.getElementById(labelId);
-    expect(label).toHaveTextContent('A text field ​(optional)');
+    expect(label).toHaveTextContent("A text field ​(optional)");
   });
 
-  it('supports form attributes', () => {
+  it("supports form attributes", () => {
     let onSubmit = jest.fn().mockImplementation(e => e.preventDefault());
     let {getByLabelText, getByRole} = render(
       <Provider theme={theme}>
@@ -91,29 +91,29 @@ describe('Form', function () {
       </Provider>
     );
 
-    let form = getByRole('form');
-    expect(form).toHaveAttribute('action', '/action_page.php');
-    expect(form).toHaveAttribute('method', 'get');
-    expect(form).toHaveAttribute('target', '_self');
-    expect(form).toHaveAttribute('encType', 'text/plain');
-    expect(form).toHaveAttribute('autoComplete', 'on');
-    let submit = getByLabelText('Submit');
+    let form = getByRole("form");
+    expect(form).toHaveAttribute("action", "/action_page.php");
+    expect(form).toHaveAttribute("method", "get");
+    expect(form).toHaveAttribute("target", "_self");
+    expect(form).toHaveAttribute("encType", "text/plain");
+    expect(form).toHaveAttribute("autoComplete", "on");
+    let submit = getByLabelText("Submit");
     userEvent.click(submit);
     expect(onSubmit).toHaveBeenCalled();
   });
 
-  it('supports aria-label', () => {
+  it("supports aria-label", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Form aria-label="Test" />
       </Provider>
     );
 
-    let form = getByRole('form');
-    expect(form).toHaveAttribute('aria-label', 'Test');
+    let form = getByRole("form");
+    expect(form).toHaveAttribute("aria-label", "Test");
   });
 
-  it('supports aria-labelledby', () => {
+  it("supports aria-labelledby", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <span id="test">Test</span>
@@ -121,11 +121,11 @@ describe('Form', function () {
       </Provider>
     );
 
-    let form = getByRole('form');
-    expect(form).toHaveAttribute('aria-labelledby', 'test');
+    let form = getByRole("form");
+    expect(form).toHaveAttribute("aria-labelledby", "test");
   });
 
-  it('supports aria-describedby', () => {
+  it("supports aria-describedby", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <span id="test">Test</span>
@@ -133,23 +133,23 @@ describe('Form', function () {
       </Provider>
     );
 
-    let form = getByRole('form');
-    expect(form).toHaveAttribute('aria-describedby', 'test');
+    let form = getByRole("form");
+    expect(form).toHaveAttribute("aria-describedby", "test");
   });
 
-  it('supports custom data attributes', () => {
+  it("supports custom data attributes", () => {
     let {getByRole} = render(
       <Provider theme={theme}>
         <Form aria-label="Test" data-testid="test" />
       </Provider>
     );
 
-    let form = getByRole('form');
-    expect(form).toHaveAttribute('data-testid', 'test');
+    let form = getByRole("form");
+    expect(form).toHaveAttribute("data-testid", "test");
   });
 
-  describe('values', () => {
-    it('default value of a picker is empty', () => {
+  describe("values", () => {
+    it("default value of a picker is empty", () => {
       let {getByRole} = render(
         <Provider theme={theme}>
           <Form aria-label="Test">
@@ -162,11 +162,11 @@ describe('Form', function () {
         </Provider>
       );
 
-      let form = getByRole('form');
-      expect(form.elements['picker'].value).toEqual('');
+      let form = getByRole("form");
+      expect(form.elements["picker"].value).toEqual("");
     });
 
-    it('value of a picker can be set', () => {
+    it("value of a picker can be set", () => {
       let {getByRole} = render(
         <Provider theme={theme}>
           <Form aria-label="Test">
@@ -179,8 +179,8 @@ describe('Form', function () {
         </Provider>
       );
 
-      let form = getByRole('form');
-      expect(form.elements['picker'].value).toEqual('one');
+      let form = getByRole("form");
+      expect(form.elements["picker"].value).toEqual("one");
     });
   });
 });

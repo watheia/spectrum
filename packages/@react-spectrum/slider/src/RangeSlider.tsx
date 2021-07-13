@@ -10,21 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from '@react-spectrum/utils';
-import {FocusableRef} from '@react-types/shared';
+import {classNames} from "@react-spectrum/utils";
+import {FocusableRef} from "@react-types/shared";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import React from 'react';
-import {SliderBase, SliderBaseChildArguments, SliderBaseProps} from './SliderBase';
-import {SliderThumb} from './SliderThumb';
-import {SpectrumRangeSliderProps} from '@react-types/slider';
-import styles from '@adobe/spectrum-css-temp/components/slider/vars.css';
-import {useLocale, useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import React from "react";
+import {SliderBase, SliderBaseChildArguments, SliderBaseProps} from "./SliderBase";
+import {SliderThumb} from "./SliderThumb";
+import {SpectrumRangeSliderProps} from "@react-types/slider";
+import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
+import {useLocale, useMessageFormatter} from "@react-aria/i18n";
 
 function RangeSlider(props: SpectrumRangeSliderProps, ref: FocusableRef<HTMLDivElement>) {
   let {onChange, onChangeEnd, value, defaultValue, getValueLabel, ...otherProps} = props;
 
-  let baseProps: Omit<SliderBaseProps<number[]>, 'children'> = {
+  let baseProps: Omit<SliderBaseProps<number[]>, "children"> = {
     ...otherProps,
     value: value != null ? [value.start, value.end] : undefined,
     defaultValue: defaultValue != null
@@ -44,35 +44,35 @@ function RangeSlider(props: SpectrumRangeSliderProps, ref: FocusableRef<HTMLDivE
   let {direction} = useLocale();
 
   return (
-    <SliderBase {...baseProps} classes={'spectrum-Slider--range'} ref={ref}>
+    <SliderBase {...baseProps} classes={"spectrum-Slider--range"} ref={ref}>
       {({trackRef, inputRef, state}: SliderBaseChildArguments) => {
-        let cssDirection = direction === 'rtl' ? 'right' : 'left';
+        let cssDirection = direction === "rtl" ? "right" : "left";
         return (
           <>
             <div
-              className={classNames(styles, 'spectrum-Slider-track')}
+              className={classNames(styles, "spectrum-Slider-track")}
               style={{width: `${state.getThumbPercent(0) * 100}%`}} />
             <SliderThumb
               index={0}
-              aria-label={formatter('minimum')}
+              aria-label={formatter("minimum")}
               isDisabled={props.isDisabled}
               trackRef={trackRef}
               inputRef={inputRef}
               state={state} />
             <div
-              className={classNames(styles, 'spectrum-Slider-track')}
+              className={classNames(styles, "spectrum-Slider-track")}
               style={{
                 [cssDirection]: `${state.getThumbPercent(0) * 100}%`,
                 width: `${Math.abs(state.getThumbPercent(0) - state.getThumbPercent(1)) * 100}%`
               }} />
             <SliderThumb
               index={1}
-              aria-label={formatter('maximum')}
+              aria-label={formatter("maximum")}
               isDisabled={props.isDisabled}
               trackRef={trackRef}
               state={state} />
             <div
-              className={classNames(styles, 'spectrum-Slider-track')}
+              className={classNames(styles, "spectrum-Slider-track")}
               style={{
                 width: `${(1 - state.getThumbPercent(1)) * 100}%`
               }} />

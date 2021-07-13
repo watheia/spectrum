@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaCheckboxGroupItemProps} from '@react-types/checkbox';
-import {CheckboxAria, useCheckbox} from './useCheckbox';
-import {checkboxGroupNames} from './utils';
-import {CheckboxGroupState} from '@react-stately/checkbox';
-import {RefObject} from 'react';
-import {useToggleState} from '@react-stately/toggle';
+import {AriaCheckboxGroupItemProps} from "@react-types/checkbox";
+import {CheckboxAria, useCheckbox} from "./useCheckbox";
+import {checkboxGroupNames} from "./utils";
+import {CheckboxGroupState} from "@react-stately/checkbox";
+import {RefObject} from "react";
+import {useToggleState} from "@react-stately/toggle";
 
 /**
  * Provides the behavior and accessibility implementation for a checkbox component contained within a checkbox group.

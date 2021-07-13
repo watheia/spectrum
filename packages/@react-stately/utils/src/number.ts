@@ -36,7 +36,7 @@ export function snapValueToStep(value: number, min: number, max: number, step: n
 
   // correct floating point behavior by rounding to step precision
   let string = step.toString();
-  let index = string.indexOf('.');
+  let index = string.indexOf(".");
   let precision = index >= 0 ? string.length - index : 0;
 
   if (precision > 0) {

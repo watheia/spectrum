@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, FocusStrategy, KeyboardDelegate, Node} from '@react-types/shared';
-import {HTMLAttributes, Key, RefObject, useEffect, useMemo} from 'react';
-import {ListKeyboardDelegate} from './ListKeyboardDelegate';
-import {MultipleSelectionManager} from '@react-stately/selection';
-import {useCollator} from '@react-aria/i18n';
-import {useSelectableCollection} from './useSelectableCollection';
+import {Collection, FocusStrategy, KeyboardDelegate, Node} from "@react-types/shared";
+import {HTMLAttributes, Key, RefObject, useEffect, useMemo} from "react";
+import {ListKeyboardDelegate} from "./ListKeyboardDelegate";
+import {MultipleSelectionManager} from "@react-stately/selection";
+import {useCollator} from "@react-aria/i18n";
+import {useSelectableCollection} from "./useSelectableCollection";
 
 interface SelectableListOptions {
   /**
@@ -106,7 +106,7 @@ export function useSelectableList(props: SelectableListOptions): SelectableListA
 
   // By default, a KeyboardDelegate is provided which uses the DOM to query layout information (e.g. for page up/page down).
   // When virtualized, the layout object will be passed in as a prop and override this.
-  let collator = useCollator({usage: 'search', sensitivity: 'base'});
+  let collator = useCollator({usage: "search", sensitivity: "base"});
   let delegate = useMemo(() => keyboardDelegate || new ListKeyboardDelegate(collection, disabledKeys, ref, collator), [keyboardDelegate, collection, disabledKeys, ref, collator]);
 
   // If not virtualized, scroll the focused element into view when the focusedKey changes.
@@ -144,8 +144,8 @@ export function useSelectableList(props: SelectableListOptions): SelectableListA
  * but doesn't affect parents above `scrollView`.
  */
 function scrollIntoView(scrollView: HTMLElement, element: HTMLElement) {
-  let offsetX = relativeOffset(scrollView, element, 'left');
-  let offsetY = relativeOffset(scrollView, element, 'top');
+  let offsetX = relativeOffset(scrollView, element, "left");
+  let offsetY = relativeOffset(scrollView, element, "top");
   let width = element.offsetWidth;
   let height = element.offsetHeight;
   let x = scrollView.scrollLeft;
@@ -172,8 +172,8 @@ function scrollIntoView(scrollView: HTMLElement, element: HTMLElement) {
  * Computes the offset left or top from child to ancestor by accumulating
  * offsetLeft or offsetTop through intervening offsetParents.
  */
-function relativeOffset(ancestor: HTMLElement, child: HTMLElement, axis: 'left'|'top') {
-  const prop = axis === 'left' ? 'offsetLeft' : 'offsetTop';
+function relativeOffset(ancestor: HTMLElement, child: HTMLElement, axis: "left"|"top") {
+  const prop = axis === "left" ? "offsetLeft" : "offsetTop";
   let sum = 0;
   while (child.offsetParent) {
     sum += child[prop];

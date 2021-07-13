@@ -10,29 +10,29 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton, Button} from '@react-spectrum/button';
-import {ActionGroup} from '@react-spectrum/actiongroup';
-import Add from '@spectrum-icons/workflow/Add';
-import {AlertDialog, Dialog, DialogContainer, useDialogContainer} from '@react-spectrum/dialog';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from '../';
-import {Content} from '@react-spectrum/view';
-import Delete from '@spectrum-icons/workflow/Delete';
-import {Divider} from '@react-spectrum/divider';
-import {Flex} from '@react-spectrum/layout';
-import {Form} from '@react-spectrum/form';
-import {Heading} from '@react-spectrum/text';
-import {Item, Menu, MenuTrigger} from '@react-spectrum/menu';
-import More from '@spectrum-icons/workflow/More';
-import React, {useState} from 'react';
-import {TextField} from '@react-spectrum/textfield';
-import {useListData} from '@react-stately/data';
+import {ActionButton, Button} from "@react-spectrum/button";
+import {ActionGroup} from "@react-spectrum/actiongroup";
+import Add from "@spectrum-icons/workflow/Add";
+import {AlertDialog, Dialog, DialogContainer, useDialogContainer} from "@react-spectrum/dialog";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import {Cell, Column, Row, TableBody, TableHeader, TableView} from "../";
+import {Content} from "@react-spectrum/view";
+import Delete from "@spectrum-icons/workflow/Delete";
+import {Divider} from "@react-spectrum/divider";
+import {Flex} from "@react-spectrum/layout";
+import {Form} from "@react-spectrum/form";
+import {Heading} from "@react-spectrum/text";
+import {Item, Menu, MenuTrigger} from "@react-spectrum/menu";
+import More from "@spectrum-icons/workflow/More";
+import React, {useState} from "react";
+import {TextField} from "@react-spectrum/textfield";
+import {useListData} from "@react-stately/data";
 
 export function CRUDExample() {
   let list = useListData({
     initialItems: [
-      {id: 1, firstName: 'Sam', lastName: 'Smith', birthday: 'May 3'},
-      {id: 2, firstName: 'Julia', lastName: 'Jones', birthday: 'February 10'}
+      {id: 1, firstName: "Sam", lastName: "Smith", birthday: "May 3"},
+      {id: 2, firstName: "Julia", lastName: "Jones", birthday: "February 10"}
     ]
   });
 
@@ -41,7 +41,7 @@ export function CRUDExample() {
     list.prepend({...item, id: Date.now()});
   };
 
-  let selectedCount = list.selectedKeys === 'all' ? list.items.length : list.selectedKeys.size;
+  let selectedCount = list.selectedKeys === "all" ? list.items.length : list.selectedKeys.size;
 
   return (
     <Flex direction="column">
@@ -63,7 +63,7 @@ export function CRUDExample() {
             (<Row>
               {column =>
                 (<Cell>
-                  {column === 'actions'
+                  {column === "actions"
                     ? <MenuTrigger align="end">
                       <ActionButton isQuiet aria-label="Actions"><More /></ActionButton>
                       <Menu onAction={action => setDialog({action, item})}>
@@ -80,17 +80,17 @@ export function CRUDExample() {
         </TableBody>
       </TableView>
       <DialogContainer onDismiss={() => setDialog(null)}>
-        {dialog?.action === 'add' &&
+        {dialog?.action === "add" &&
           <EditDialog
             item={null}
             onConfirm={createItem} />
         }
-        {dialog?.action === 'edit' &&
+        {dialog?.action === "edit" &&
           <EditDialog
             item={dialog.item}
             onConfirm={item => list.update(dialog.item.id, item)} />
         }
-        {dialog?.action === 'delete' &&
+        {dialog?.action === "delete" &&
           <AlertDialog
             title="Delete"
             variant="destructive"
@@ -99,13 +99,13 @@ export function CRUDExample() {
             Are you sure you want to delete {dialog.item.firstName} {dialog.item.lastName}?
           </AlertDialog>
         }
-        {dialog?.action === 'bulk-delete' &&
+        {dialog?.action === "bulk-delete" &&
           <AlertDialog
             title="Delete"
             variant="destructive"
             primaryActionLabel="Delete"
             onPrimaryAction={() => list.removeSelectedItems()}>
-            Are you sure you want to delete {selectedCount === 1 ? '1 item' : `${selectedCount} items`}?
+            Are you sure you want to delete {selectedCount === 1 ? "1 item" : `${selectedCount} items`}?
           </AlertDialog>
         }
       </DialogContainer>
@@ -116,15 +116,15 @@ export function CRUDExample() {
 function EditDialog({item, onConfirm}) {
   let dialog = useDialogContainer();
   let [state, setState] = useState({
-    firstName: '',
-    lastName: '',
-    birthday: '',
+    firstName: "",
+    lastName: "",
+    birthday: "",
     ...item
   });
 
   return (
     <Dialog>
-      <Heading>{!item ? 'Create item' : 'Edit item'}</Heading>
+      <Heading>{!item ? "Create item" : "Edit item"}</Heading>
       <Divider />
       <Content>
         <Form labelPosition="side" width="100%">
@@ -135,7 +135,7 @@ function EditDialog({item, onConfirm}) {
       </Content>
       <ButtonGroup>
         <Button variant="secondary" onPress={dialog.dismiss}>Cancel</Button>
-        <Button variant="cta" onPress={() => {dialog.dismiss(); onConfirm(state);}}>{!item ? 'Create' : 'Save'}</Button>
+        <Button variant="cta" onPress={() => {dialog.dismiss(); onConfirm(state);}}>{!item ? "Create" : "Save"}</Button>
       </ButtonGroup>
     </Dialog>
   );

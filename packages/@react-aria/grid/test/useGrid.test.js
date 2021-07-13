@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render} from '@testing-library/react';
-import {Grid} from '../stories/example';
-import {Item} from '@react-stately/collections';
-import React from 'react';
-import {Switch} from '@react-spectrum/switch';
-import userEvent from '@testing-library/user-event';
+import {act, fireEvent, render} from "@testing-library/react";
+import {Grid} from "../stories/example";
+import {Item} from "@react-stately/collections";
+import React from "react";
+import {Switch} from "@react-spectrum/switch";
+import userEvent from "@testing-library/user-event";
 
 function renderGrid(props = {}) {
   return render(
@@ -37,112 +37,112 @@ function renderGrid(props = {}) {
   );
 }
 
-describe('useGrid', () => {
-  it('gridFocusMode = row, cellFocusMode = cell', () => {
-    let tree = renderGrid({gridFocusMode: 'row', cellFocusMode: 'cell'});
+describe("useGrid", () => {
+  it("gridFocusMode = row, cellFocusMode = cell", () => {
+    let tree = renderGrid({gridFocusMode: "row", cellFocusMode: "cell"});
 
     userEvent.tab();
-    expect(document.activeElement).toBe(tree.getAllByRole('row')[0]);
+    expect(document.activeElement).toBe(tree.getAllByRole("row")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('gridcell')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("gridcell")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('row')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("row")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('gridcell')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("gridcell")[0]);
 
-    act(() => tree.getAllByRole('switch')[1].focus());
+    act(() => tree.getAllByRole("switch")[1].focus());
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('gridcell')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("gridcell")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('row')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("row")[0]);
   });
 
-  it('gridFocusMode = row, cellFocusMode = child', () => {
-    let tree = renderGrid({gridFocusMode: 'row', cellFocusMode: 'child'});
+  it("gridFocusMode = row, cellFocusMode = child", () => {
+    let tree = renderGrid({gridFocusMode: "row", cellFocusMode: "child"});
 
     userEvent.tab();
-    expect(document.activeElement).toBe(tree.getAllByRole('row')[0]);
+    expect(document.activeElement).toBe(tree.getAllByRole("row")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('row')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("row")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('row')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("row")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
   });
 
-  it('gridFocusMode = cell, cellFocusMode = child', () => {
-    let tree = renderGrid({gridFocusMode: 'cell', cellFocusMode: 'child'});
+  it("gridFocusMode = cell, cellFocusMode = child", () => {
+    let tree = renderGrid({gridFocusMode: "cell", cellFocusMode: "child"});
 
     userEvent.tab();
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
   });
 
-  it('gridFocusMode = cell, cellFocusMode = cell', () => {
-    let tree = renderGrid({gridFocusMode: 'cell', cellFocusMode: 'cell'});
+  it("gridFocusMode = cell, cellFocusMode = cell", () => {
+    let tree = renderGrid({gridFocusMode: "cell", cellFocusMode: "cell"});
 
     userEvent.tab();
-    expect(document.activeElement).toBe(tree.getAllByRole('gridcell')[0]);
+    expect(document.activeElement).toBe(tree.getAllByRole("gridcell")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowRight'});
-    expect(document.activeElement).toBe(tree.getAllByRole('gridcell')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowRight"});
+    expect(document.activeElement).toBe(tree.getAllByRole("gridcell")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[1]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[1]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('switch')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("switch")[0]);
 
-    fireEvent.keyDown(document.activeElement, {key: 'ArrowLeft'});
-    expect(document.activeElement).toBe(tree.getAllByRole('gridcell')[0]);
+    fireEvent.keyDown(document.activeElement, {key: "ArrowLeft"});
+    expect(document.activeElement).toBe(tree.getAllByRole("gridcell")[0]);
   });
 });

@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {Accordion, Item} from '../src';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Accordion, Item} from "../src";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Accordion', module)
+storiesOf("Accordion", module)
   .add(
-    'default',
+    "default",
     () => render({})
   )
   .add(
-    'disabledKeys: files, shared',
-    () => render({disabledKeys: ['files', 'shared']})
+    "disabledKeys: files, shared",
+    () => render({disabledKeys: ["files", "shared"]})
   )
-  .add('defaultExpandedKeys: files', () => render({
-    defaultExpandedKeys: ['files']
+  .add("defaultExpandedKeys: files", () => render({
+    defaultExpandedKeys: ["files"]
   }))
-  .add('disabledKeys: files, shared, defaultExpandedKeys: files', () => render({
-    defaultExpandedKeys: ['files'],
-    disabledKeys: ['files', 'shared']
+  .add("disabledKeys: files, shared, defaultExpandedKeys: files", () => render({
+    defaultExpandedKeys: ["files"],
+    disabledKeys: ["files", "shared"]
   }));
 
 function render(props = {}) {

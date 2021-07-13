@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {DialogContext} from './context';
-import {Modal} from '@react-spectrum/overlays';
-import React, {ReactElement, useRef} from 'react';
-import {SpectrumDialogContainerProps} from '@react-types/dialog';
+import {DialogContext} from "./context";
+import {Modal} from "@react-spectrum/overlays";
+import React, {ReactElement, useRef} from "react";
+import {SpectrumDialogContainerProps} from "@react-types/dialog";
 
 /**
  * A DialogContainer accepts a single Dialog as a child, and manages showing and hiding
@@ -23,7 +23,7 @@ import {SpectrumDialogContainerProps} from '@react-types/dialog';
 export function DialogContainer(props: SpectrumDialogContainerProps) {
   let {
     children,
-    type = 'modal',
+    type = "modal",
     onDismiss,
     isDismissable,
     isKeyboardDismissDisabled
@@ -31,7 +31,7 @@ export function DialogContainer(props: SpectrumDialogContainerProps) {
 
   let childArray = React.Children.toArray(children);
   if (childArray.length > 1) {
-    throw new Error('Only a single child can be passed to DialogContainer.');
+    throw new Error("Only a single child can be passed to DialogContainer.");
   }
 
   let lastChild = useRef<ReactElement>(null);

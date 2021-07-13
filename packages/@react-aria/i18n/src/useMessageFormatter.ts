@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {LocalizedStrings, MessageDictionary, MessageFormatter} from '@internationalized/message';
-import {useCallback, useMemo} from 'react';
-import {useLocale} from './context';
+import {LocalizedStrings, MessageDictionary, MessageFormatter} from "@internationalized/message";
+import {useCallback, useMemo} from "react";
+import {useLocale} from "./context";
 
 type FormatMessage = (key: string, variables?: {[key: string]: any}) => string;
 

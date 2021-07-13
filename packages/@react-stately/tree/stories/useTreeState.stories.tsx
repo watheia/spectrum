@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {Item} from '@react-stately/collections';
-import {Node} from '@react-types/shared';
-import React, {Key, useMemo, useRef} from 'react';
-import {TreeCollection} from '../src/TreeCollection';
-import {usePress} from '@react-aria/interactions';
-import {useSelectableCollection, useSelectableItem} from '@react-aria/selection';
-import {useTreeState} from '../';
+import {Item} from "@react-stately/collections";
+import {Node} from "@react-types/shared";
+import React, {Key, useMemo, useRef} from "react";
+import {TreeCollection} from "../src/TreeCollection";
+import {usePress} from "@react-aria/interactions";
+import {useSelectableCollection, useSelectableItem} from "@react-aria/selection";
+import {useTreeState} from "../";
 
 export default {
-  title: 'useTreeState'
+  title: "useTreeState"
 };
 
 export const KeyboardNavigation = () => <TreeExample />;
@@ -122,7 +122,7 @@ class TreeKeyboardDelegate<T> {
   disabledKeys: Set<Key>;
 
   constructor(collection, disabledKeys) {
-    this.collator = new Intl.Collator('en');
+    this.collator = new Intl.Collator("en");
     this.collection = collection;
     this.disabledKeys = disabledKeys;
   }
@@ -134,7 +134,7 @@ class TreeKeyboardDelegate<T> {
     while (keyBefore !== null) {
       let item = collection.getItem(keyBefore);
 
-      if (item?.type === 'item' && !disabledKeys.has(item.key)) {
+      if (item?.type === "item" && !disabledKeys.has(item.key)) {
         return keyBefore;
       }
 
@@ -151,7 +151,7 @@ class TreeKeyboardDelegate<T> {
     while (keyBelow !== null) {
       let item = collection.getItem(keyBelow);
 
-      if (item?.type === 'item' && !disabledKeys.has(item.key)) {
+      if (item?.type === "item" && !disabledKeys.has(item.key)) {
         return keyBelow;
       }
 
@@ -168,7 +168,7 @@ class TreeKeyboardDelegate<T> {
     while (key !== null) {
       let item = collection.getItem(key);
 
-      if (item?.type === 'item' && !disabledKeys.has(item.key)) {
+      if (item?.type === "item" && !disabledKeys.has(item.key)) {
         return key;
       }
 
@@ -185,7 +185,7 @@ class TreeKeyboardDelegate<T> {
     while (key !== null) {
       let item = collection.getItem(key);
 
-      if (item?.type === 'item' && !disabledKeys.has(item.key)) {
+      if (item?.type === "item" && !disabledKeys.has(item.key)) {
         return key;
       }
 

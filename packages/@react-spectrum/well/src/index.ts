@@ -12,4 +12,4 @@
 
 /// <reference types="css-module-types" />
 
-export * from './Well';
+export * from "./Well";

@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {AnchorHTMLAttributes, HTMLAttributes, RefObject} from 'react';
-import {SpectrumSideNavItemProps} from '@react-types/sidenav';
-import {TreeState} from '@react-stately/tree';
-import {usePress} from '@react-aria/interactions';
-import {useSelectableItem} from '@react-aria/selection';
+import {AnchorHTMLAttributes, HTMLAttributes, RefObject} from "react";
+import {SpectrumSideNavItemProps} from "@react-types/sidenav";
+import {TreeState} from "@react-stately/tree";
+import {usePress} from "@react-aria/interactions";
+import {useSelectableItem} from "@react-aria/selection";
 
 interface SideNavItemAria {
   listItemProps: HTMLAttributes<HTMLDivElement>,
@@ -24,7 +24,7 @@ interface SideNavItemAria {
 export function useSideNavItem<T>(props: SpectrumSideNavItemProps<T>, state: TreeState<T>, ref: RefObject<HTMLAnchorElement | null>): SideNavItemAria {
   let {
     item,
-    'aria-current': ariaCurrent
+    "aria-current": ariaCurrent
   } = props;
 
   let {itemProps} = useSelectableItem({
@@ -39,13 +39,13 @@ export function useSideNavItem<T>(props: SpectrumSideNavItemProps<T>, state: Tre
 
   return {
     listItemProps: {
-      role: 'listitem'
+      role: "listitem"
     },
     listItemLinkProps: {
-      role: 'link',
-      target: '_self',
-      'aria-disabled': isDisabled,
-      'aria-current': isSelected ? ariaCurrent || 'page' : undefined,
+      role: "link",
+      target: "_self",
+      "aria-disabled": isDisabled,
+      "aria-current": isSelected ? ariaCurrent || "page" : undefined,
       ...pressProps
     }
   };

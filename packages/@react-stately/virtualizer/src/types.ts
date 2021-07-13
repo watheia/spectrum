@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection} from '@react-types/shared';
-import {Key} from 'react';
-import {Layout} from './Layout';
-import {LayoutInfo} from './LayoutInfo';
-import {Rect, RectCorner} from './Rect';
-import {ReusableView} from './ReusableView';
-import {Size} from './Size';
-import {Transaction} from './Transaction';
+import {Collection} from "@react-types/shared";
+import {Key} from "react";
+import {Layout} from "./Layout";
+import {LayoutInfo} from "./LayoutInfo";
+import {Rect, RectCorner} from "./Rect";
+import {ReusableView} from "./ReusableView";
+import {Size} from "./Size";
+import {Transaction} from "./Transaction";
 
 export interface InvalidationContext<T extends object, V> {
   contentChanged?: boolean,

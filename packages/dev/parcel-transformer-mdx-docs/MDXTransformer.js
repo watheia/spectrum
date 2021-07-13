@@ -10,26 +10,26 @@
  * governing permissions and limitations under the License.
  */
 
-const {Transformer} = require('@parcel/plugin');
-const mdx = require('@mdx-js/mdx');
-const flatMap = require('unist-util-flatmap');
-const treeSitter = require('remark-tree-sitter');
-const {fragmentUnWrap, fragmentWrap} = require('./MDXFragments');
-const frontmatter = require('remark-frontmatter');
-const slug = require('remark-slug');
-const util = require('mdast-util-toc');
-const yaml = require('js-yaml');
-const prettier = require('prettier');
-const {parse} = require('@babel/parser');
-const traverse = require('@babel/traverse').default;
-const t = require('@babel/types');
+const {Transformer} = require("@parcel/plugin");
+const mdx = require("@mdx-js/mdx");
+const flatMap = require("unist-util-flatmap");
+const treeSitter = require("remark-tree-sitter");
+const {fragmentUnWrap, fragmentWrap} = require("./MDXFragments");
+const frontmatter = require("remark-frontmatter");
+const slug = require("remark-slug");
+const util = require("mdast-util-toc");
+const yaml = require("js-yaml");
+const prettier = require("prettier");
+const {parse} = require("@babel/parser");
+const traverse = require("@babel/traverse").default;
+const t = require("@babel/types");
 
 const IMPORT_MAPPINGS = {
-  '@react-spectrum/theme-default': {
-    theme: 'defaultTheme'
+  "@react-spectrum/theme-default": {
+    theme: "defaultTheme"
   },
-  '@react-spectrum/theme-dark': {
-    theme: 'darkTheme'
+  "@react-spectrum/theme-dark": {
+    theme: "darkTheme"
   }
 };
 
@@ -38,34 +38,34 @@ module.exports = new Transformer({
     let exampleCode = [];
     let assetPackage = await asset.getPackage();
     let preReleaseParts = assetPackage.version.match(/(alpha)|(beta)|(rc)/);
-    let preRelease = preReleaseParts ? preReleaseParts[0] : '';
+    let preRelease = preReleaseParts ? preReleaseParts[0] : "";
     const extractExamples = () => (tree, file) => (
       flatMap(tree, node => {
-        if (node.type === 'code') {
-          let [meta, ...options] = (node.meta || '').split(' ');
-          if (meta === 'import') {
+        if (node.type === "code") {
+          let [meta, ...options] = (node.meta || "").split(" ");
+          if (meta === "import") {
             exampleCode.push(node.value);
             node.meta = null;
             return [];
           }
 
-          if (meta === 'example' || meta === 'snippet') {
+          if (meta === "example" || meta === "snippet") {
             let id = `example-${exampleCode.length}`;
 
             // TODO: Parsing code with regex is bad. Replace with babel transform or something.
             let code = node.value;
             code = code.replace(/import ((?:.|\n)*?) from (['"].*?['"]);?/g, (m) => {
               exampleCode.push(m);
-              return '';
+              return "";
             });
 
-            let provider = 'ExampleProvider';
-            if (options.includes('themeSwitcher=true')) {
+            let provider = "ExampleProvider";
+            if (options.includes("themeSwitcher=true")) {
               exampleCode.push('import {ExampleThemeSwitcher} from "@react-spectrum/docs/src/ExampleThemeSwitcher";\n');
-              provider = 'ExampleThemeSwitcher';
+              provider = "ExampleThemeSwitcher";
             }
 
-            if (!options.includes('render=false')) {
+            if (!options.includes("render=false")) {
               if (/^\s*function (.|\n)*}\s*$/.test(code)) {
                 let name = code.match(/^\s*function (.*?)\s*\(/)[1];
                 code = `${code}\nReactDOM.render(<${provider}><${name} /></${provider}>, document.getElementById("${id}"));`;
@@ -74,22 +74,22 @@ module.exports = new Transformer({
               }
             }
 
-            if (!options.includes('export=true')) {
+            if (!options.includes("export=true")) {
               code = `(function() {\n${code}\n})();`;
             }
 
             exampleCode.push(code);
 
-            if (options.includes('render=false')) {
+            if (options.includes("render=false")) {
               node.meta = null;
               return transformExample(node, preRelease);
             }
 
-            if (meta === 'snippet') {
+            if (meta === "snippet") {
               node.meta = null;
               return [
                 {
-                  type: 'jsx',
+                  type: "jsx",
                   value: `<div id="${id}" />`
                 }
               ];
@@ -97,24 +97,24 @@ module.exports = new Transformer({
 
             // We'd like to exclude certain sections of the code from being rendered on the page, but they need to be there to actually
             // execute. So, you can wrap that section in a ///- begin collapse -/// ... ///- end collapse -/// block to mark it.
-            node.value = node.value.replace(/\n*\/\/\/- begin collapse -\/\/\/(.|\n)*?\/\/\/- end collapse -\/\/\//g, () => '').trim();
-            node.meta = 'example';
+            node.value = node.value.replace(/\n*\/\/\/- begin collapse -\/\/\/(.|\n)*?\/\/\/- end collapse -\/\/\//g, () => "").trim();
+            node.meta = "example";
 
             return [
               ...transformExample(node, preRelease),
               {
-                type: 'jsx',
+                type: "jsx",
                 value: `<div id="${id}" />`
               }
             ];
           }
 
-          if (node.lang === 'css') {
+          if (node.lang === "css") {
             return [
               ...responsiveCode(node),
               {
-                type: 'jsx',
-                value: '<style>{`' + node.value + '`}</style>'
+                type: "jsx",
+                value: "<style>{`" + node.value + "`}</style>"
               }
             ];
           }
@@ -127,13 +127,13 @@ module.exports = new Transformer({
     );
 
     let toc = [];
-    let title = '';
-    let category = '';
+    let title = "";
+    let category = "";
     let keywords = [];
-    let description = '';
-    let date = '';
-    let author = '';
-    let image = '';
+    let description = "";
+    let date = "";
+    let author = "";
+    let image = "";
     let order;
     const extractToc = (options) => {
       const settings = options || {};
@@ -155,15 +155,15 @@ module.exports = new Transformer({
          */
         function treeConverter(tree, first = false) {
           let newTree = {};
-          if (tree.type === 'list') {
+          if (tree.type === "list") {
             return tree.children.map(treeNode => treeConverter(treeNode));
-          } else if (tree.type === 'listItem') {
+          } else if (tree.type === "listItem") {
             let [name, nodes] = tree.children;
             newTree.children = [];
             if (nodes) {
               newTree.children = treeConverter(nodes);
             }
-            newTree.id = name.children[0].url.split('#').pop();
+            newTree.id = name.children[0].url.split("#").pop();
             newTree.textContent = name.children[0].children[0].value;
           }
           return newTree;
@@ -177,16 +177,16 @@ module.exports = new Transformer({
         }
 
         // Piggy back here to grab additional metadata.
-        let metadata = node.children.find(c => c.type === 'yaml');
+        let metadata = node.children.find(c => c.type === "yaml");
         if (metadata) {
           let yamlData = yaml.safeLoad(metadata.value);
           // title defined in yaml data will override
           title = yamlData.title || title;
-          category = yamlData.category || '';
+          category = yamlData.category || "";
           keywords = yamlData.keywords || [];
-          description = yamlData.description || '';
-          date = yamlData.date || '';
-          author = yamlData.author || '';
+          description = yamlData.description || "";
+          date = yamlData.date || "";
+          author = yamlData.author || "";
           order = yamlData.order;
           if (yamlData.image) {
             image = asset.addDependency({
@@ -210,8 +210,8 @@ module.exports = new Transformer({
     function wrapExamples() {
       return (tree) => (
         flatMap(tree, node => {
-          if (node.tagName === 'pre' && node.children && node.children.length > 0 && node.children[0].tagName === 'code' && node.children[0].properties.metastring) {
-            node.properties.className = node.children[0].properties.metastring.split(' ');
+          if (node.tagName === "pre" && node.children && node.children.length > 0 && node.children[0].tagName === "code" && node.children[0].properties.metastring) {
+            node.properties.className = node.children[0].properties.metastring.split(" ");
           }
 
           return [node];
@@ -225,13 +225,13 @@ module.exports = new Transformer({
         extractToc,
         extractExamples,
         fragmentWrap,
-        [frontmatter, {type: 'yaml', anywhere: true, marker: '-'}],
+        [frontmatter, {type: "yaml", anywhere: true, marker: "-"}],
         [
           treeSitter,
           {
             grammarPackages: [
-              '@atom-languages/language-typescript',
-              '@atom-languages/language-css'
+              "@atom-languages/language-typescript",
+              "@atom-languages/language-css"
             ]
           }
         ],
@@ -242,7 +242,7 @@ module.exports = new Transformer({
       ]
     });
 
-    asset.type = 'jsx';
+    asset.type = "jsx";
     asset.setCode(`/* @jsx mdx */
     import React from 'react';
     import { mdx } from '@mdx-js/react'
@@ -263,9 +263,9 @@ module.exports = new Transformer({
 
     // Generate the client bundle. We always need the client script,
     // and the docs script when there's a TOC or an example on the page.
-    let clientBundle = 'import \'@react-spectrum/docs/src/client\';\n';
+    let clientBundle = "import '@react-spectrum/docs/src/client';\n";
     if (toc.length || exampleCode.length > 0) {
-      clientBundle += 'import \'@react-spectrum/docs/src/docs\';\n';
+      clientBundle += "import '@react-spectrum/docs/src/docs';\n";
     }
 
     // Add example code collected from the MDX.
@@ -273,7 +273,7 @@ module.exports = new Transformer({
       clientBundle += `import React from 'react';
 import ReactDOM from 'react-dom';
 import {Example as ExampleProvider} from '@react-spectrum/docs/src/ThemeSwitcher';
-${exampleCode.join('\n')}
+${exampleCode.join("\n")}
 export default {};
 `;
     }
@@ -281,16 +281,16 @@ export default {};
     let assets = [
       asset,
       {
-        type: 'jsx',
+        type: "jsx",
         content: clientBundle,
-        uniqueKey: 'client',
+        uniqueKey: "client",
         isSplittable: true,
         env: {
           // We have to override all of the environment options to ensure this doesn't inherit
           // anything from the parent asset, whose environment is set below.
-          context: 'browser',
+          context: "browser",
           engines: asset.env.engines,
-          outputFormat: asset.env.scopeHoist ? 'esmodule' : 'global',
+          outputFormat: asset.env.scopeHoist ? "esmodule" : "global",
           includeNodeModules: asset.env.includeNodeModules,
           scopeHoist: asset.env.scopeHoist,
           minify: asset.env.minify
@@ -304,29 +304,29 @@ export default {};
     // Add a dependency on the client bundle. It should not inherit its entry status from the page,
     // and should always be placed in a separate bundle.
     asset.addDependency({
-      moduleSpecifier: 'client',
+      moduleSpecifier: "client",
       isEntry: false,
       isIsolated: true
     });
 
     // Override the environment of the page bundle. It will run in node as part of the SSG optimizer.
     asset.setEnvironment({
-      context: 'node',
+      context: "node",
       engines: {
         node: process.versions.node,
         browsers: asset.env.engines.browsers
       },
-      outputFormat: 'commonjs',
+      outputFormat: "commonjs",
       includeNodeModules: {
         // These don't need to be bundled.
         react: false,
-        'react-dom': false,
-        'intl-messageformat': false,
-        'globals-docs': false,
+        "react-dom": false,
+        "intl-messageformat": false,
+        "globals-docs": false,
         lowlight: false,
         scheduler: false,
-        'markdown-to-jsx': false,
-        'prop-types': false
+        "markdown-to-jsx": false,
+        "prop-types": false
       },
       scopeHoist: false,
       minify: false
@@ -337,29 +337,29 @@ export default {};
 });
 
 function transformExample(node, preRelease) {
-  if (node.lang !== 'tsx') {
+  if (node.lang !== "tsx") {
     return responsiveCode(node);
   }
 
   if (/^<(.|\n)*>$/m.test(node.value)) {
-    node.value = node.value.replace(/^(<(.|\n)*>)$/m, '<WRAPPER>$1</WRAPPER>');
+    node.value = node.value.replace(/^(<(.|\n)*>)$/m, "<WRAPPER>$1</WRAPPER>");
   }
 
   let ast = parse(node.value, {
-    sourceType: 'module',
-    plugins: ['jsx', 'typescript']
+    sourceType: "module",
+    plugins: ["jsx", "typescript"]
   });
 
   /* Replace individual package imports in the code
    * with monorepo imports if building for production and not a pre-release
    */
-  if (process.env.DOCS_ENV === 'production' && !preRelease) {
+  if (process.env.DOCS_ENV === "production" && !preRelease) {
     let specifiers = [];
     let last;
 
     traverse(ast, {
       ImportDeclaration(path) {
-        if (path.node.source.value.startsWith('@react-spectrum') && !(node.meta && node.meta.split(' ').includes('keepIndividualImports'))) {
+        if (path.node.source.value.startsWith("@react-spectrum") && !(node.meta && node.meta.split(" ").includes("keepIndividualImports"))) {
           let mapping = IMPORT_MAPPINGS[path.node.source.value];
           for (let specifier of path.node.specifiers) {
             let mapped = mapping && mapping[specifier.imported.name];
@@ -381,7 +381,7 @@ function transformExample(node, preRelease) {
       Program: {
         exit(path) {
           if (specifiers.length > 0) {
-            let literal =  t.stringLiteral('@adobe/react-spectrum');
+            let literal =  t.stringLiteral("@adobe/react-spectrum");
             literal.raw = "'@adobe/react-spectrum'";
 
             let decl = t.importDeclaration(
@@ -393,7 +393,7 @@ function transformExample(node, preRelease) {
             decl.start = last.start;
             decl.end = last.end;
 
-            path.unshiftContainer('body', [decl]);
+            path.unshiftContainer("body", [decl]);
           }
         }
       }
@@ -410,19 +410,19 @@ function responsiveCode(node, ast) {
 
   let large = {
     ...node,
-    meta: node.meta ? `${node.meta} large` : 'large',
+    meta: node.meta ? `${node.meta} large` : "large",
     value: formatCode(node, node.value, ast, 80)
   };
 
   let medium = {
     ...node,
-    meta: node.meta ? `${node.meta} medium` : 'medium',
+    meta: node.meta ? `${node.meta} medium` : "medium",
     value: formatCode(node, large.value, ast, 60)
   };
 
   let small = {
     ...node,
-    meta: node.meta ? `${node.meta} small` : 'small',
+    meta: node.meta ? `${node.meta} small` : "small",
     value: formatCode(node, medium.value, ast, 25)
   };
 
@@ -434,11 +434,11 @@ function responsiveCode(node, ast) {
 }
 
 function formatCode(node, code, ast, printWidth = 80) {
-  if (!ast && code.split('\n').every(line => line.length <= printWidth)) {
+  if (!ast && code.split("\n").every(line => line.length <= printWidth)) {
     return code;
   }
 
-  let parser = node.lang === 'css' ? 'css' : 'babel-ts';
+  let parser = node.lang === "css" ? "css" : "babel-ts";
   if (ast) {
     parser = () => ast;
   }
@@ -448,11 +448,11 @@ function formatCode(node, code, ast, printWidth = 80) {
     singleQuote: true,
     jsxBracketSameLine: true,
     bracketSpacing: false,
-    trailingComma: 'none',
+    trailingComma: "none",
     printWidth
   });
 
   return res.replace(/^<WRAPPER>((?:.|\n)*)<\/WRAPPER>;?\s*$/m, (str, contents) =>
-    contents.replace(/^\s{2}/gm, '').trim()
+    contents.replace(/^\s{2}/gm, "").trim()
   );
 }

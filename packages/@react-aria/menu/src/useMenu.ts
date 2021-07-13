@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaMenuProps} from '@react-types/menu';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes, RefObject} from 'react';
-import {KeyboardDelegate} from '@react-types/shared';
-import {TreeState} from '@react-stately/tree';
-import {useSelectableList} from '@react-aria/selection';
+import {AriaMenuProps} from "@react-types/menu";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes, RefObject} from "react";
+import {KeyboardDelegate} from "@react-types/shared";
+import {TreeState} from "@react-stately/tree";
+import {useSelectableList} from "@react-aria/selection";
 
 interface MenuAria {
   /** Props for the menu element. */
@@ -45,8 +45,8 @@ export function useMenu<T>(props: AriaMenuOptions<T>, state: TreeState<T>, ref: 
     ...otherProps
   } = props;
 
-  if (!props['aria-label'] && !props['aria-labelledby']) {
-    console.warn('An aria-label or aria-labelledby prop is required for accessibility.');
+  if (!props["aria-label"] && !props["aria-labelledby"]) {
+    console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
   }
 
   let domProps = filterDOMProps(props, {labelable: true});
@@ -61,7 +61,7 @@ export function useMenu<T>(props: AriaMenuOptions<T>, state: TreeState<T>, ref: 
 
   return {
     menuProps: mergeProps(domProps, {
-      role: 'menu',
+      role: "menu",
       ...listProps
     })
   };

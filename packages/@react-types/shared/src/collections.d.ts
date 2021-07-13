@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key, ReactElement, ReactNode} from 'react';
+import {Key, ReactElement, ReactNode} from "react";
 
 export interface ItemProps<T> {
   /** Rendered contents of the item or child items. */
@@ -20,7 +20,7 @@ export interface ItemProps<T> {
   /** A string representation of the item's contents, used for features like typeahead. */
   textValue?: string,
   /** An accessibility label for this item. */
-  'aria-label'?: string,
+  "aria-label"?: string,
   /** A list of child item objects. Used for dynamic collections. */
   childItems?: Iterable<T>,
   /** Whether this item has children, even if not loaded yet. */
@@ -29,7 +29,7 @@ export interface ItemProps<T> {
 
 export type ItemElement<T> = ReactElement<ItemProps<T>>;
 export type ItemRenderer<T> = (item: T) => ItemElement<T>;
-export type LoadingState = 'loading' | 'sorting' | 'loadingMore' | 'error' | 'idle' | 'filtering';
+export type LoadingState = "loading" | "sorting" | "loadingMore" | "error" | "idle" | "filtering";
 
 export interface AsyncLoadable {
   /** Whether the items are currently loading. */
@@ -42,7 +42,7 @@ export interface SectionProps<T> {
   /** Rendered contents of the section, e.g. a header. */
   title?: ReactNode,
   /** An accessibility label for the section. */
-  'aria-label'?: string,
+  "aria-label"?: string,
   /** Static child items or a function to render children. */
   children: ItemElement<T> | ItemElement<T>[] | ItemRenderer<T>,
   /** Item objects in the section. */
@@ -85,7 +85,7 @@ export interface SortDescriptor {
   direction?: SortDirection
 }
 
-export type SortDirection = 'ascending' | 'descending';
+export type SortDirection = "ascending" | "descending";
 
 export interface KeyboardDelegate {
   /** Returns the key visually below the given one, or `null` for none. */
@@ -161,7 +161,7 @@ export interface Node<T> {
   /** A string value for this node, used for features like typeahead. */
   textValue: string,
   /** An accessibility label for this node. */
-  'aria-label'?: string,
+  "aria-label"?: string,
   /** The index of this node within its parent. */
   index?: number,
   /** A function that should be called to wrap the rendered node. */

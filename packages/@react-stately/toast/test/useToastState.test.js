@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, renderHook} from '@testing-library/react-hooks';
-import {useToastState} from '../';
+import {act, renderHook} from "@testing-library/react-hooks";
+import {useToastState} from "../";
 
-describe('useToastState', () => {
-  let toastKey = 'toast1';
+describe("useToastState", () => {
+  let toastKey = "toast1";
   let newValue = [{
-    content: 'Toast Message',
+    content: "Toast Message",
     props: {timeout: 0, toastKey}
   }];
 
-  it('should be able to update via setToasts', () => {
+  it("should be able to update via setToasts", () => {
     let {result} = renderHook(() => useToastState());
     expect(result.current.toasts).toStrictEqual([]);
 
@@ -28,7 +28,7 @@ describe('useToastState', () => {
     expect(result.current.toasts).toStrictEqual(newValue);
   });
 
-  it('should add a new toast via onAdd', () => {
+  it("should add a new toast via onAdd", () => {
     let {result} = renderHook(() => useToastState());
     expect(result.current.toasts).toStrictEqual([]);
 
@@ -36,10 +36,10 @@ describe('useToastState', () => {
     expect(result.current.toasts).toStrictEqual([{...newValue[0], timer: undefined}]);
   });
 
-  it('should be able to add multiple toasts', () => {
+  it("should be able to add multiple toasts", () => {
     let secondToast = {
-      content: 'Second Toast',
-      props: {variant: 'info', timeout: 0}
+      content: "Second Toast",
+      props: {variant: "info", timeout: 0}
     };
     let {result} = renderHook(() => useToastState());
     expect(result.current.toasts).toStrictEqual([]);
@@ -53,7 +53,7 @@ describe('useToastState', () => {
     expect(result.current.toasts[1]).toStrictEqual({...secondToast, timer: undefined});
   });
 
-  it('should remove a toast via onRemove', () => {
+  it("should remove a toast via onRemove", () => {
     let {result} = renderHook(() => useToastState({value: newValue}));
     expect(result.current.toasts).toStrictEqual(newValue);
 
@@ -61,18 +61,18 @@ describe('useToastState', () => {
     expect(result.current.toasts).toStrictEqual([]);
   });
 
-  it('onRemove should remove a toast by toastKey', () => {
-    let toast1Key = 'toast1';
-    let toast2Key = 'toast2';
-    let toast3Key = 'toast3';
+  it("onRemove should remove a toast by toastKey", () => {
+    let toast1Key = "toast1";
+    let toast2Key = "toast2";
+    let toast3Key = "toast3";
     let threeToasts = [{
-      content: 'Toast One',
+      content: "Toast One",
       props: {timeout: 0, toastKey: toast1Key}
     }, {
-      content: 'Toast Two',
+      content: "Toast Two",
       props: {timeout: 0, toastKey: toast2Key}
     }, {
-      content: 'Toast Three',
+      content: "Toast Three",
       props: {timeout: 0, toastKey: toast3Key}
     }];
 
@@ -86,11 +86,11 @@ describe('useToastState', () => {
     expect(result.current.toasts[1].props.toastKey).toEqual(toast3Key);
   });
 
-  it('should call onRemove via onAdd', async () => {
+  it("should call onRemove via onAdd", async () => {
     jest.useFakeTimers();
     let timeoutToast = {
-      content: 'Timeout Toast',
-      props: {variant: 'info', timeout: 1}
+      content: "Timeout Toast",
+      props: {variant: "info", timeout: 1}
     };
     let {result} = renderHook(() => useToastState());
     expect(result.current.toasts.length).toEqual(0);
@@ -103,17 +103,17 @@ describe('useToastState', () => {
     expect(result.current.toasts.length).toEqual(0);
   });
 
-  describe('timers', () => {
+  describe("timers", () => {
     beforeEach(() => {
       jest.useFakeTimers();
     });
     afterEach(() => {
       jest.useRealTimers();
     });
-    it('should not call onRemove via onAdd when there is an actionLabel', async () => {
+    it("should not call onRemove via onAdd when there is an actionLabel", async () => {
       let timeoutToast = {
-        content: 'Action Toast',
-        props: {variant: 'info', timeout: 1, actionLabel: 'Undo'}
+        content: "Action Toast",
+        props: {variant: "info", timeout: 1, actionLabel: "Undo"}
       };
       let {result} = renderHook(() => useToastState());
       expect(result.current.toasts.length).toEqual(0);

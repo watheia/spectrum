@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {HTMLAttributes, Key, RefObject, useEffect, useRef} from 'react';
-import {ListState} from '@react-stately/list';
-import {mergeProps} from '@react-aria/utils';
-import {PressProps} from '@react-aria/interactions';
+import {HTMLAttributes, Key, RefObject, useEffect, useRef} from "react";
+import {ListState} from "@react-stately/list";
+import {mergeProps} from "@react-aria/utils";
+import {PressProps} from "@react-aria/interactions";
 
 interface ActionGroupItemProps {
   key: Key
@@ -24,9 +24,9 @@ interface ActionGroupItemAria {
 }
 
 const BUTTON_ROLES = {
-  'none': null,
-  'single': 'radio',
-  'multiple': 'checkbox'
+  "none": null,
+  "single": "radio",
+  "multiple": "checkbox"
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,9 +36,9 @@ export function useActionGroupItem<T>(props: ActionGroupItemProps, state: ListSt
     role: BUTTON_ROLES[selectionMode]
   };
 
-  if (selectionMode !== 'none') {
+  if (selectionMode !== "none") {
     let isSelected = state.selectionManager.isSelected(props.key);
-    buttonProps['aria-checked'] = isSelected;
+    buttonProps["aria-checked"] = isSelected;
   }
 
   let isFocused = props.key === state.selectionManager.focusedKey;

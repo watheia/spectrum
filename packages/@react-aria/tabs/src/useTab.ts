@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaTabProps} from '@react-types/tabs';
-import {generateId} from './utils';
-import {HTMLAttributes, RefObject} from 'react';
-import {TabListState} from '@react-stately/tabs';
-import {usePress} from '@react-aria/interactions';
-import {useSelectableItem} from '@react-aria/selection';
+import {AriaTabProps} from "@react-types/tabs";
+import {generateId} from "./utils";
+import {HTMLAttributes, RefObject} from "react";
+import {TabListState} from "@react-stately/tabs";
+import {usePress} from "@react-aria/interactions";
+import {useSelectableItem} from "@react-aria/selection";
 
 interface TabAria {
   /** Props for the tab element. */
@@ -44,19 +44,19 @@ export function useTab<T>(
   let isDisabled = propsDisabled || state.disabledKeys.has(key);
 
   let {pressProps} = usePress({...itemProps, isDisabled});
-  let tabId = generateId(state, key, 'tab');
-  let tabPanelId = generateId(state, key, 'tabpanel');
+  let tabId = generateId(state, key, "tab");
+  let tabPanelId = generateId(state, key, "tabpanel");
   let {tabIndex} = pressProps;
 
   return {
     tabProps: {
       ...pressProps,
       id: tabId,
-      'aria-selected': isSelected,
-      'aria-disabled': isDisabled || undefined,
-      'aria-controls': isSelected ? tabPanelId : undefined,
+      "aria-selected": isSelected,
+      "aria-disabled": isDisabled || undefined,
+      "aria-controls": isSelected ? tabPanelId : undefined,
       tabIndex: isDisabled ? undefined : tabIndex,
-      role: 'tab'
+      role: "tab"
     }
   };
 }

@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key, useMemo, useState} from 'react';
-import {Selection} from '@react-types/shared';
+import {Key, useMemo, useState} from "react";
+import {Selection} from "@react-types/shared";
 
 interface ListOptions<T> {
   /** Initial items in the list. */
   initialItems?: T[],
   /** The keys for the initially selected items. */
-  initialSelectedKeys?: 'all' | Iterable<Key>,
+  initialSelectedKeys?: "all" | Iterable<Key>,
   /** The initial text to filter the list by. */
   initialFilterText?: string,
   /** A function that returns a unique key for an item object. */
@@ -138,13 +138,13 @@ export function useListData<T>(options: ListOptions<T>): ListData<T> {
     initialSelectedKeys,
     getKey = (item: any) => item.id || item.key,
     filter,
-    initialFilterText = ''
+    initialFilterText = ""
   } = options;
 
   // Store both items and filteredItems in state so we can go back to the unfiltered list
   let [state, setState] = useState<ListState<T>>({
     items: initialItems,
-    selectedKeys: initialSelectedKeys === 'all' ? 'all' : new Set(initialSelectedKeys || []),
+    selectedKeys: initialSelectedKeys === "all" ? "all" : new Set(initialSelectedKeys || []),
     filterText: initialFilterText
   });
 
@@ -162,7 +162,7 @@ export function useListData<T>(options: ListOptions<T>): ListData<T> {
   };
 }
 
-export function createListActions<T>(opts: ListOptions<T>, dispatch: (updater: (state: ListState<T>) => ListState<T>) => void): Omit<ListData<T>, 'items' | 'selectedKeys' | 'getItem' | 'filterText'> {
+export function createListActions<T>(opts: ListOptions<T>, dispatch: (updater: (state: ListState<T>) => ListState<T>) => void): Omit<ListData<T>, "items" | "selectedKeys" | "getItem" | "filterText"> {
   let {getKey} = opts;
   return {
     setSelectedKeys(selectedKeys: Selection) {
@@ -225,7 +225,7 @@ export function createListActions<T>(opts: ListOptions<T>, dispatch: (updater: (
     },
     removeSelectedItems() {
       dispatch(state => {
-        if (state.selectedKeys === 'all') {
+        if (state.selectedKeys === "all") {
           return {
             ...state,
             items: [],

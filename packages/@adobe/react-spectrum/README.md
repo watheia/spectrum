@@ -1,4 +1,4 @@
-# [React Spectrum](https://spectrum-kit.vercel.app/react-spectrum/index.html)
+# [React Spectrum](https://watheia.app/react-spectrum/index.html)
 
 A React implementation of Spectrum, Adobe’s design system.
 
@@ -11,7 +11,7 @@ A React implementation of Spectrum, Adobe’s design system.
 
 ## Getting started
 
-The easiest way to start building a React Spectrum application is by following our [getting started](https://spectrum-kit.vercel.app/react-spectrum/getting-started.html) guide. It walks through all of the steps needed to install the components from npm, set up build tooling, and create your first application.
+The easiest way to start building a React Spectrum application is by following our [getting started](https://watheia.app/react-spectrum/getting-started.html) guide. It walks through all of the steps needed to install the components from npm, set up build tooling, and create your first application.
 
 ### Example
 
@@ -37,4 +37,4 @@ function App() {
 ## Learn more
 
 React Spectrum is part of a family of libraries that help you build adaptive, accessible, and robust user experiences.
-Learn more about [React Aria](https://spectrum-kit.vercel.app/react-aria/index.html) and [React Stately](https://spectrum-kit.vercel.app/react-stately/index.html) if you'd like to build you own component library from scratch on [our website](https://spectrum-kit.vercel.app/index.html).
+Learn more about [React Aria](https://watheia.app/react-aria/index.html) and [React Stately](https://watheia.app/react-stately/index.html) if you'd like to build you own component library from scratch on [our website](https://watheia.app/index.html).

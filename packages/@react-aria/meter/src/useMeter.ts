@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaMeterProps} from '@react-types/meter';
-import {HTMLAttributes} from 'react';
-import {useProgressBar} from '@react-aria/progress';
+import {AriaMeterProps} from "@react-types/meter";
+import {HTMLAttributes} from "react";
+import {useProgressBar} from "@react-aria/progress";
 
 interface MeterAria {
   /** Props for the meter container element. */
@@ -36,7 +36,7 @@ export function useMeter(props: AriaMeterProps): MeterAria {
       // does not support meter at all. Safari 13+ seems to support meter properly.
       // https://bugs.chromium.org/p/chromium/issues/detail?id=944542
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1460378
-      role: 'meter progressbar'
+      role: "meter progressbar"
     },
     labelProps
   };

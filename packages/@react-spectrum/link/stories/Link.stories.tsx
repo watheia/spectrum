@@ -10,48 +10,48 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {Link} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {action} from "@storybook/addon-actions";
+import {Link} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Link', module)
-  .addParameters({providerSwitcher: {status: 'notice'}})
+storiesOf("Link", module)
+  .addParameters({providerSwitcher: {status: "notice"}})
   .add(
-    'Default',
-    () => render({onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "Default",
+    () => render({onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   )
   .add(
-    'variant: secondary',
-    () => render({variant: 'secondary', onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "variant: secondary",
+    () => render({variant: "secondary", onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   )
   .add(
-    'variant: overBackground',
+    "variant: overBackground",
     () => (
-      <div style={{backgroundColor: 'rgb(15, 121, 125)', color: 'rgb(15, 121, 125)', padding: '15px 20px', display: 'inline-block'}}>
-        {render({variant: 'overBackground', onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})}
+      <div style={{backgroundColor: "rgb(15, 121, 125)", color: "rgb(15, 121, 125)", padding: "15px 20px", display: "inline-block"}}>
+        {render({variant: "overBackground", onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})}
       </div>
     )
   )
   .add(
-    'isQuiet: true',
-    () => render({isQuiet: true, onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "isQuiet: true",
+    () => render({isQuiet: true, onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   )
   .add(
-    'isQuiet: true, variant: secondary',
-    () => render({isQuiet: true, variant: 'secondary', onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "isQuiet: true, variant: secondary",
+    () => render({isQuiet: true, variant: "secondary", onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   )
   .add(
-    'children: a',
-    () => renderWithChildren({onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "children: a",
+    () => renderWithChildren({onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   )
   .add(
-    'onPress',
-    () => render({onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "onPress",
+    () => render({onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   )
   .add(
-    'onClick',
-    () => render({onClick: action('deprecatedOnClick'), onPress: action('press'), onPressStart: action('pressstart'), onPressEnd: action('pressend')})
+    "onClick",
+    () => render({onClick: action("deprecatedOnClick"), onPress: action("press"), onPressStart: action("pressstart"), onPressEnd: action("pressend")})
   );
 
 function render(props = {}) {

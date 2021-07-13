@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, StyleProps} from '@react-types/shared';
-import {classNames, useSlotProps, useStyleProps} from '@react-spectrum/utils';
-import {filterDOMProps} from '@react-aria/utils';
-import React, {ReactElement} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/icon/vars.css';
-import {useProvider} from '@react-spectrum/provider';
+import {AriaLabelingProps, DOMProps, StyleProps} from "@react-types/shared";
+import {classNames, useSlotProps, useStyleProps} from "@react-spectrum/utils";
+import {filterDOMProps} from "@react-aria/utils";
+import React, {ReactElement} from "react";
+import styles from "@adobe/spectrum-css-temp/components/icon/vars.css";
+import {useProvider} from "@react-spectrum/provider";
 
 interface IconProps extends DOMProps, AriaLabelingProps, StyleProps {
   children: ReactElement,
@@ -23,25 +23,25 @@ interface IconProps extends DOMProps, AriaLabelingProps, StyleProps {
   /**
    * Indicates whether the element is exposed to an accessibility API.
    */
-  'aria-hidden'?: boolean | 'false' | 'true'
+  "aria-hidden"?: boolean | "false" | "true"
 }
 
-export type UIIconPropsWithoutChildren = Omit<IconProps, 'children'>;
+export type UIIconPropsWithoutChildren = Omit<IconProps, "children">;
 
 export function UIIcon(props: IconProps) {
-  props = useSlotProps(props, 'icon');
+  props = useSlotProps(props, "icon");
   let {
     children,
-    'aria-label': ariaLabel,
-    'aria-hidden': ariaHidden,
+    "aria-label": ariaLabel,
+    "aria-hidden": ariaHidden,
     ...otherProps
   } = props;
 
   let {styleProps} = useStyleProps(otherProps);
   let provider = useProvider();
-  let scale = 'M';
+  let scale = "M";
   if (provider !== null) {
-    scale = provider.scale === 'large' ? 'L' : 'M';
+    scale = provider.scale === "large" ? "L" : "M";
   }
 
   if (!ariaHidden) {
@@ -52,16 +52,16 @@ export function UIIcon(props: IconProps) {
     ...filterDOMProps(otherProps),
     ...styleProps,
     scale,
-    focusable: 'false',
-    'aria-label': ariaLabel,
-    'aria-hidden': (ariaLabel ? (ariaHidden || undefined) : true),
-    role: 'img',
+    focusable: "false",
+    "aria-label": ariaLabel,
+    "aria-hidden": (ariaLabel ? (ariaHidden || undefined) : true),
+    role: "img",
     className: classNames(
       styles,
       children.props.className,
-      'spectrum-Icon',
+      "spectrum-Icon",
       {
-        [`spectrum-UIIcon-${children.type['displayName']}`]: children.type['displayName']
+        [`spectrum-UIIcon-${children.type["displayName"]}`]: children.type["displayName"]
       },
       styleProps.className)
   });

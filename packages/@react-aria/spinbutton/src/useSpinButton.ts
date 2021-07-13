@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {announce} from '@react-aria/live-announcer';
-import {AriaButtonProps} from '@react-types/button';
-import {HTMLAttributes, useCallback, useEffect, useRef} from 'react';
-import {InputBase, RangeInputBase, Validation, ValueBase} from '@react-types/shared';
+import {announce} from "@react-aria/live-announcer";
+import {AriaButtonProps} from "@react-types/button";
+import {HTMLAttributes, useCallback, useEffect, useRef} from "react";
+import {InputBase, RangeInputBase, Validation, ValueBase} from "@react-types/shared";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 
 export interface SpinButtonProps extends InputBase, Validation, ValueBase<number>, RangeInputBase<number> {
@@ -69,41 +69,41 @@ export function useSpinButton(
     }
 
     switch (e.key) {
-      case 'PageUp':
+      case "PageUp":
         if (onIncrementPage) {
           e.preventDefault();
           onIncrementPage();
           break;
         }
       // fallthrough!
-      case 'ArrowUp':
-      case 'Up':
+      case "ArrowUp":
+      case "Up":
         if (onIncrement) {
           e.preventDefault();
           onIncrement();
         }
         break;
-      case 'PageDown':
+      case "PageDown":
         if (onDecrementPage) {
           e.preventDefault();
           onDecrementPage();
           break;
         }
       // fallthrough
-      case 'ArrowDown':
-      case 'Down':
+      case "ArrowDown":
+      case "Down":
         if (onDecrement) {
           e.preventDefault();
           onDecrement();
         }
         break;
-      case 'Home':
+      case "Home":
         if (onDecrementToMin) {
           e.preventDefault();
           onDecrementToMin();
         }
         break;
-      case 'End':
+      case "End":
         if (onIncrementToMax) {
           e.preventDefault();
           onIncrementToMax();
@@ -125,11 +125,11 @@ export function useSpinButton(
   // This ensures that macOS VoiceOver announces it as "minus" even with other characters between the minus sign
   // and the number (e.g. currency symbol). Otherwise it announces nothing because it assumes the character is a hyphen.
   // In addition, replace the empty string with the word "Empty" so that iOS VoiceOver does not read "50%" for an empty field.
-  textValue = textValue === '' ? formatMessage('Empty') : (textValue || `${value}`).replace('-', '\u2212');
+  textValue = textValue === "" ? formatMessage("Empty") : (textValue || `${value}`).replace("-", "\u2212");
 
   useEffect(() => {
     if (isFocused.current) {
-      announce(textValue, 'assertive');
+      announce(textValue, "assertive");
     }
   }, [textValue]);
 
@@ -169,14 +169,14 @@ export function useSpinButton(
 
   return {
     spinButtonProps: {
-      role: 'spinbutton',
-      'aria-valuenow': !isNaN(value) ? value : null,
-      'aria-valuetext': textValue,
-      'aria-valuemin': minValue,
-      'aria-valuemax': maxValue,
-      'aria-disabled': isDisabled || null,
-      'aria-readonly': isReadOnly || null,
-      'aria-required': isRequired || null,
+      role: "spinbutton",
+      "aria-valuenow": !isNaN(value) ? value : null,
+      "aria-valuetext": textValue,
+      "aria-valuemin": minValue,
+      "aria-valuemax": maxValue,
+      "aria-disabled": isDisabled || null,
+      "aria-readonly": isReadOnly || null,
+      "aria-required": isRequired || null,
       onKeyDown,
       onFocus,
       onBlur

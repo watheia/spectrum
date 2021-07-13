@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from '@react-spectrum/layout';
-import {LogicButton} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Flex} from "@react-spectrum/layout";
+import {LogicButton} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
-storiesOf('Button/LogicButton', module)
+storiesOf("Button/LogicButton", module)
   .add(
-    'logic variant: and',
-    () => render({variant: 'and', label: 'and'})
+    "logic variant: and",
+    () => render({variant: "and", label: "and"})
   )
   .add(
-    'logic variant: or',
-    () => render({variant: 'or', label: 'or'})
+    "logic variant: or",
+    () => render({variant: "or", label: "or"})
   );
 
 function render(props: any = {}) {

@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMRef} from '@react-types/shared';
-import {ListBoxBase, useListBoxLayout} from './ListBoxBase';
-import React, {ReactElement} from 'react';
-import {SpectrumListBoxProps} from '@react-types/listbox';
-import {useDOMRef} from '@react-spectrum/utils';
-import {useListState} from '@react-stately/list';
+import {DOMRef} from "@react-types/shared";
+import {ListBoxBase, useListBoxLayout} from "./ListBoxBase";
+import React, {ReactElement} from "react";
+import {SpectrumListBoxProps} from "@react-types/listbox";
+import {useDOMRef} from "@react-spectrum/utils";
+import {useListState} from "@react-stately/list";
 
 function ListBox<T extends object>(props: SpectrumListBoxProps<T>, ref: DOMRef<HTMLDivElement>) {
   let state = useListState(props);

@@ -10,79 +10,79 @@
  * governing permissions and limitations under the License.
  */
 
-import {Content} from '@react-spectrum/view';
-import Error from '@spectrum-icons/illustrations/src/Error';
-import {Heading} from '@react-spectrum/text';
-import {IllustratedMessage} from '../';
-import {Link} from '@react-spectrum/link';
-import NoSearchResults from '@spectrum-icons/illustrations/src/NoSearchResults';
-import NotFound from '@spectrum-icons/illustrations/src/NotFound';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import Timeout from '@spectrum-icons/illustrations/Timeout';
-import Unauthorized from '@spectrum-icons/illustrations/Unauthorized';
-import Unavailable from '@spectrum-icons/illustrations/Unavailable';
-import Upload from '@spectrum-icons/illustrations/Upload';
+import {Content} from "@react-spectrum/view";
+import Error from "@spectrum-icons/illustrations/src/Error";
+import {Heading} from "@react-spectrum/text";
+import {IllustratedMessage} from "../";
+import {Link} from "@react-spectrum/link";
+import NoSearchResults from "@spectrum-icons/illustrations/src/NoSearchResults";
+import NotFound from "@spectrum-icons/illustrations/src/NotFound";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import Timeout from "@spectrum-icons/illustrations/Timeout";
+import Unauthorized from "@spectrum-icons/illustrations/Unauthorized";
+import Unavailable from "@spectrum-icons/illustrations/Unavailable";
+import Upload from "@spectrum-icons/illustrations/Upload";
 
-storiesOf('IllustratedMessage', module)
+storiesOf("IllustratedMessage", module)
   .add(
-    'Not found',
+    "Not found",
     () => render({
-      heading: 'Error 404: Page not found',
-      description: 'This page isn’t available. Try checking the URL or visit a different page.',
+      heading: "Error 404: Page not found",
+      description: "This page isn’t available. Try checking the URL or visit a different page.",
       illustration: <NotFound />
     })
   )
   .add(
-    'No search results',
+    "No search results",
     () => render({
-      heading: 'No matching results',
-      description: 'Try another search.',
+      heading: "No matching results",
+      description: "Try another search.",
       illustration: <NoSearchResults />
     })
   )
   .add(
-    'Unauthorized',
+    "Unauthorized",
     () => render({
-      heading: 'Error 401: Unauthorized',
-      description: 'You don’t have access to this page. Try checking the URL or visit a different page.',
+      heading: "Error 401: Unauthorized",
+      description: "You don’t have access to this page. Try checking the URL or visit a different page.",
       illustration: <Unauthorized />
     })
   )
   .add(
-    'Error',
+    "Error",
     () => render({
-      heading: 'Error 500: Internal Server Error',
-      description: 'This page isn’t available right now. Try visiting this page again later.',
+      heading: "Error 500: Internal Server Error",
+      description: "This page isn’t available right now. Try visiting this page again later.",
       illustration: <Error />
     })
   )
   .add(
-    'Unavailable',
+    "Unavailable",
     () => render({
-      heading: 'Error 503: Service Unavailable',
-      description: 'This page isn’t available right now. Try visiting this page again later.',
+      heading: "Error 503: Service Unavailable",
+      description: "This page isn’t available right now. Try visiting this page again later.",
       illustration: <Unavailable />
     })
   )
   .add(
-    'Timeout',
+    "Timeout",
     () => render({
-      heading: 'Error 504: Gateway Timeout',
-      description: 'This page isn’t available right now. Try visiting this page again later.',
+      heading: "Error 504: Gateway Timeout",
+      description: "This page isn’t available right now. Try visiting this page again later.",
       illustration: <Timeout />
     })
   )
   .add(
-    'Upload',
+    "Upload",
     () => render({
-      heading: 'Drag and drop your file',
+      heading: "Drag and drop your file",
       description: <><Link>Select a file</Link> from your computer<br />or <Link>search Adobe Stock</Link>.</>,
       illustration: <Upload />
     })
   )
   .add(
-    'No heading or description',
+    "No heading or description",
     () => render({illustration: <NotFound aria-label="No Results" />})
   );
 

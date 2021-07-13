@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, dimensionValue, useFocusableRef, useStyleProps} from '@react-spectrum/utils';
-import {ColorThumb} from './ColorThumb';
-import {FocusableRef} from '@react-types/shared';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {SpectrumColorWheelProps} from '@react-types/color';
-import styles from '@adobe/spectrum-css-temp/components/colorwheel/vars.css';
-import {useColorWheel} from '@react-aria/color';
-import {useColorWheelState} from '@react-stately/color';
-import {useFocusRing} from '@react-aria/focus';
-import {useProviderProps} from '@react-spectrum/provider';
-import {useResizeObserver} from '@react-aria/utils';
+import {classNames, dimensionValue, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import {ColorThumb} from "./ColorThumb";
+import {FocusableRef} from "@react-types/shared";
+import React, {useCallback, useEffect, useRef, useState} from "react";
+import {SpectrumColorWheelProps} from "@react-types/color";
+import styles from "@adobe/spectrum-css-temp/components/colorwheel/vars.css";
+import {useColorWheel} from "@react-aria/color";
+import {useColorWheelState} from "@react-stately/color";
+import {useFocusRing} from "@react-aria/focus";
+import {useProviderProps} from "@react-spectrum/provider";
+import {useResizeObserver} from "@react-aria/utils";
 
 const WHEEL_THICKNESS = 24;
 
@@ -41,7 +41,7 @@ function ColorWheel(props: SpectrumColorWheelProps, ref: FocusableRef<HTMLDivEle
     if (containerRef.current) {
       setWheelRadius(containerRef.current.offsetWidth / 2);
       let thickness = window.getComputedStyle(containerRef.current)
-        .getPropertyValue('--spectrum-colorwheel-track-thickness');
+        .getPropertyValue("--spectrum-colorwheel-track-thickness");
       if (thickness) {
         setWheelThickness(parseInt(thickness, 10));
       }
@@ -75,9 +75,9 @@ function ColorWheel(props: SpectrumColorWheelProps, ref: FocusableRef<HTMLDivEle
       className={
         classNames(
           styles,
-          'spectrum-ColorWheel',
+          "spectrum-ColorWheel",
           {
-            'is-disabled': isDisabled
+            "is-disabled": isDisabled
           },
           styleProps.className
         )
@@ -87,18 +87,18 @@ function ColorWheel(props: SpectrumColorWheelProps, ref: FocusableRef<HTMLDivEle
         ...styleProps.style,
         // Workaround around https://github.com/adobe/spectrum-css/issues/1032
         // @ts-ignore
-        'width': size,
-        'height': size
+        "width": size,
+        "height": size
       }}>
-      <div {...trackProps} className={classNames(styles, 'spectrum-ColorWheel-gradient')} />
+      <div {...trackProps} className={classNames(styles, "spectrum-ColorWheel-gradient")} />
       <ColorThumb
         value={state.getDisplayColor()}
         isFocused={isFocusVisible}
         isDisabled={isDisabled}
         isDragging={state.isDragging}
-        className={classNames(styles, 'spectrum-ColorWheel-handle')}
+        className={classNames(styles, "spectrum-ColorWheel-handle")}
         {...thumbProps}>
-        <input {...focusProps} className={classNames(styles, 'spectrum-ColorWheel-slider')} {...inputProps} ref={inputRef} />
+        <input {...focusProps} className={classNames(styles, "spectrum-ColorWheel-slider")} {...inputProps} ref={inputRef} />
       </ColorThumb>
     </div>
   );

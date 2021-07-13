@@ -10,34 +10,34 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import {classNames, SlotProvider, unwrapDOMRef, useDOMRef, useHasChild, useStyleProps} from '@react-spectrum/utils';
-import CrossLarge from '@spectrum-icons/ui/CrossLarge';
-import {DialogContext, DialogContextValue} from './context';
-import {DismissButton} from '@react-aria/overlays';
-import {DOMRef} from '@react-types/shared';
-import {FocusScope} from '@react-aria/focus';
-import {Grid} from '@react-spectrum/layout';
+import {ActionButton} from "@react-spectrum/button";
+import {classNames, SlotProvider, unwrapDOMRef, useDOMRef, useHasChild, useStyleProps} from "@react-spectrum/utils";
+import CrossLarge from "@spectrum-icons/ui/CrossLarge";
+import {DialogContext, DialogContextValue} from "./context";
+import {DismissButton} from "@react-aria/overlays";
+import {DOMRef} from "@react-types/shared";
+import {FocusScope} from "@react-aria/focus";
+import {Grid} from "@react-spectrum/layout";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {mergeProps} from '@react-aria/utils';
-import React, {useContext, useRef} from 'react';
-import {SpectrumDialogProps} from '@react-types/dialog';
-import styles from '@adobe/spectrum-css-temp/components/dialog/vars.css';
-import {useDialog} from '@react-aria/dialog';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {mergeProps} from "@react-aria/utils";
+import React, {useContext, useRef} from "react";
+import {SpectrumDialogProps} from "@react-types/dialog";
+import styles from "@adobe/spectrum-css-temp/components/dialog/vars.css";
+import {useDialog} from "@react-aria/dialog";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 let sizeMap = {
-  S: 'small',
-  M: 'medium',
-  L: 'large',
-  fullscreen: 'fullscreen',
-  fullscreenTakeover: 'fullscreenTakeover'
+  S: "small",
+  M: "medium",
+  L: "large",
+  fullscreen: "fullscreen",
+  fullscreenTakeover: "fullscreenTakeover"
 };
 
 function Dialog(props: SpectrumDialogProps, ref: DOMRef) {
   let {
-    type = 'modal',
+    type = "modal",
     ...contextProps
   } = useContext(DialogContext) || {} as DialogContextValue;
   let {
@@ -50,31 +50,31 @@ function Dialog(props: SpectrumDialogProps, ref: DOMRef) {
   let formatMessage = useMessageFormatter(intlMessages);
   let {styleProps} = useStyleProps(otherProps);
 
-  size = type === 'popover' ? (size || 'S') : (size || 'L');
+  size = type === "popover" ? (size || "S") : (size || "L");
 
   let domRef = useDOMRef(ref);
   let gridRef = useRef();
   let sizeVariant = sizeMap[type] || sizeMap[size];
   let {dialogProps, titleProps} = useDialog(mergeProps(contextProps, props), domRef);
 
-  let hasHeader = useHasChild(`.${styles['spectrum-Dialog-header']}`, unwrapDOMRef(gridRef));
-  let hasFooter = useHasChild(`.${styles['spectrum-Dialog-footer']}`, unwrapDOMRef(gridRef));
+  let hasHeader = useHasChild(`.${styles["spectrum-Dialog-header"]}`, unwrapDOMRef(gridRef));
+  let hasFooter = useHasChild(`.${styles["spectrum-Dialog-footer"]}`, unwrapDOMRef(gridRef));
 
   let slots = {
-    hero: {UNSAFE_className: styles['spectrum-Dialog-hero']},
-    header: {UNSAFE_className: styles['spectrum-Dialog-header']},
-    heading: {UNSAFE_className: classNames(styles, 'spectrum-Dialog-heading', {'spectrum-Dialog-heading--noHeader': !hasHeader}), ...titleProps},
-    typeIcon: {UNSAFE_className: styles['spectrum-Dialog-typeIcon']},
-    divider: {UNSAFE_className: styles['spectrum-Dialog-divider'], size: 'M'},
-    content: {UNSAFE_className: styles['spectrum-Dialog-content']},
-    footer: {UNSAFE_className: styles['spectrum-Dialog-footer']},
-    buttonGroup: {UNSAFE_className: classNames(styles, 'spectrum-Dialog-buttonGroup', {'spectrum-Dialog-buttonGroup--noFooter': !hasFooter}), align: 'end'}
+    hero: {UNSAFE_className: styles["spectrum-Dialog-hero"]},
+    header: {UNSAFE_className: styles["spectrum-Dialog-header"]},
+    heading: {UNSAFE_className: classNames(styles, "spectrum-Dialog-heading", {"spectrum-Dialog-heading--noHeader": !hasHeader}), ...titleProps},
+    typeIcon: {UNSAFE_className: styles["spectrum-Dialog-typeIcon"]},
+    divider: {UNSAFE_className: styles["spectrum-Dialog-divider"], size: "M"},
+    content: {UNSAFE_className: styles["spectrum-Dialog-content"]},
+    footer: {UNSAFE_className: styles["spectrum-Dialog-footer"]},
+    buttonGroup: {UNSAFE_className: classNames(styles, "spectrum-Dialog-buttonGroup", {"spectrum-Dialog-buttonGroup--noFooter": !hasFooter}), align: "end"}
   };
 
   // If rendered in a popover or tray there won't be a visible dismiss button,
   // so we render a hidden one for screen readers.
   let dismissButton: JSX.Element;
-  if (type === 'popover' || type === 'tray') {
+  if (type === "popover" || type === "tray") {
     dismissButton = <DismissButton onDismiss={onDismiss} />;
   }
 
@@ -85,23 +85,23 @@ function Dialog(props: SpectrumDialogProps, ref: DOMRef) {
         {...dialogProps}
         className={classNames(
           styles,
-          'spectrum-Dialog',
+          "spectrum-Dialog",
           {
             [`spectrum-Dialog--${sizeVariant}`]: sizeVariant,
-            'spectrum-Dialog--dismissable': isDismissable
+            "spectrum-Dialog--dismissable": isDismissable
           },
           styleProps.className
         )}
         ref={domRef}>
-        <Grid ref={gridRef} UNSAFE_className={styles['spectrum-Dialog-grid']}>
+        <Grid ref={gridRef} UNSAFE_className={styles["spectrum-Dialog-grid"]}>
           <SlotProvider slots={slots}>
             {children}
           </SlotProvider>
           {isDismissable &&
             <ActionButton
-              UNSAFE_className={styles['spectrum-Dialog-closeButton']}
+              UNSAFE_className={styles["spectrum-Dialog-closeButton"]}
               isQuiet
-              aria-label={formatMessage('dismiss')}
+              aria-label={formatMessage("dismiss")}
               onPress={onDismiss}>
               <CrossLarge />
             </ActionButton>

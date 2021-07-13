@@ -10,52 +10,52 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, render} from '@testing-library/react';
-import React from 'react';
-import {useFocus} from '../';
+import {act, render} from "@testing-library/react";
+import React from "react";
+import {useFocus} from "../";
 
 function Example(props) {
   let {focusProps} = useFocus(props);
   return <div tabIndex={-1} {...focusProps} data-testid="example">{props.children}</div>;
 }
 
-describe('useFocus', function () {
-  it('handles focus events on the immediate target', function () {
+describe("useFocus", function () {
+  it("handles focus events on the immediate target", function () {
     let events = [];
     let addEvent = (e) => events.push({type: e.type, target: e.target});
     let tree = render(
       <Example
         onFocus={addEvent}
         onBlur={addEvent}
-        onFocusChange={isFocused => events.push({type: 'focuschange', isFocused})} />
+        onFocusChange={isFocused => events.push({type: "focuschange", isFocused})} />
     );
 
-    let el = tree.getByTestId('example');
+    let el = tree.getByTestId("example");
     act(() => {el.focus();});
     act(() => {el.blur();});
 
     expect(events).toEqual([
-      {type: 'focus', target: el},
-      {type: 'focuschange', isFocused: true},
-      {type: 'blur', target: el},
-      {type: 'focuschange', isFocused: false}
+      {type: "focus", target: el},
+      {type: "focuschange", isFocused: true},
+      {type: "blur", target: el},
+      {type: "focuschange", isFocused: false}
     ]);
   });
 
-  it('does not handle focus events on children', function () {
+  it("does not handle focus events on children", function () {
     let events = [];
     let addEvent = (e) => events.push({type: e.type, target: e.target});
     let tree = render(
       <Example
         onFocus={addEvent}
         onBlur={addEvent}
-        onFocusChange={isFocused => events.push({type: 'focuschange', isFocused})}>
+        onFocusChange={isFocused => events.push({type: "focuschange", isFocused})}>
         <div data-testid="child" tabIndex={-1} />
       </Example>
     );
 
-    let el = tree.getByTestId('example');
-    let child = tree.getByTestId('child');
+    let el = tree.getByTestId("example");
+    let child = tree.getByTestId("child");
     act(() => {child.focus();});
     act(() => {child.blur();});
 
@@ -65,14 +65,14 @@ describe('useFocus', function () {
     act(() => {child.focus();});
 
     expect(events).toEqual([
-      {type: 'focus', target: el},
-      {type: 'focuschange', isFocused: true},
-      {type: 'blur', target: el},
-      {type: 'focuschange', isFocused: false}
+      {type: "focus", target: el},
+      {type: "focuschange", isFocused: true},
+      {type: "blur", target: el},
+      {type: "focuschange", isFocused: false}
     ]);
   });
 
-  it('does not handle focus events if disabled', function () {
+  it("does not handle focus events if disabled", function () {
     let events = [];
     let addEvent = (e) => events.push({type: e.type, target: e.target});
     let tree = render(
@@ -80,17 +80,17 @@ describe('useFocus', function () {
         isDisabled
         onFocus={addEvent}
         onBlur={addEvent}
-        onFocusChange={isFocused => events.push({type: 'focuschange', isFocused})} />
+        onFocusChange={isFocused => events.push({type: "focuschange", isFocused})} />
     );
 
-    let el = tree.getByTestId('example');
+    let el = tree.getByTestId("example");
     act(() => {el.focus();});
     act(() => {el.blur();});
 
     expect(events).toEqual([]);
   });
 
-  it('events do not bubble when stopPropagation is called', function () {
+  it("events do not bubble when stopPropagation is called", function () {
     let onWrapperFocus = jest.fn();
     let onWrapperBlur = jest.fn();
     let onInnerFocus = jest.fn(e => e.stopPropagation());
@@ -103,7 +103,7 @@ describe('useFocus', function () {
       </div>
     );
 
-    let el = tree.getByTestId('example');
+    let el = tree.getByTestId("example");
     act(() => {el.focus();});
     act(() => {el.blur();});
 
@@ -113,7 +113,7 @@ describe('useFocus', function () {
     expect(onWrapperBlur).not.toHaveBeenCalled();
   });
 
-  it('events bubble by default', function () {
+  it("events bubble by default", function () {
     let onWrapperFocus = jest.fn();
     let onWrapperBlur = jest.fn();
     let onInnerFocus = jest.fn();
@@ -126,7 +126,7 @@ describe('useFocus', function () {
       </div>
     );
 
-    let el = tree.getByTestId('example');
+    let el = tree.getByTestId("example");
     act(() => {el.focus();});
     act(() => {el.blur();});
 

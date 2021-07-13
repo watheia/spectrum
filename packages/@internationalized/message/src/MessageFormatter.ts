@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {FormatXMLElementFn, PrimitiveType} from 'intl-messageformat/src/formatters';
-import IntlMessageFormat from 'intl-messageformat';
-import {MessageDictionary} from './MessageDictionary';
+import {FormatXMLElementFn, PrimitiveType} from "intl-messageformat/src/formatters";
+import IntlMessageFormat from "intl-messageformat";
+import {MessageDictionary} from "./MessageDictionary";
 
 /**
  * Formats ICU Message strings to create localized strings from a MessageDictionary.

@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection} from '@react-types/shared';
-import {Key, useCallback, useEffect, useMemo, useState} from 'react';
-import {Layout} from './Layout';
-import {Rect} from './Rect';
-import {ReusableView} from './ReusableView';
-import {Size} from './Size';
-import {useLayoutEffect} from '@react-aria/utils';
-import {Virtualizer} from './Virtualizer';
+import {Collection} from "@react-types/shared";
+import {Key, useCallback, useEffect, useMemo, useState} from "react";
+import {Layout} from "./Layout";
+import {Rect} from "./Rect";
+import {ReusableView} from "./ReusableView";
+import {Size} from "./Size";
+import {useLayoutEffect} from "@react-aria/utils";
+import {Virtualizer} from "./Virtualizer";
 
 interface VirtualizerProps<T extends object, V, W> {
   renderView(type: string, content: T): V,

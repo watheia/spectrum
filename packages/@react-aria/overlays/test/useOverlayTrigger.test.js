@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from '@testing-library/react';
-import React, {useRef} from 'react';
-import {useOverlayPosition, useOverlayTrigger} from '../';
-import {useOverlayTriggerState} from '@react-stately/overlays';
+import {fireEvent, render} from "@testing-library/react";
+import React, {useRef} from "react";
+import {useOverlayPosition, useOverlayTrigger} from "../";
+import {useOverlayTriggerState} from "@react-stately/overlays";
 
 function Example(props) {
   let ref = useRef();
@@ -26,11 +26,11 @@ function Example(props) {
     containerRef,
     overlayRef
   });
-  return <div ref={ref} data-testid={props['data-testid'] || 'test'}>{props.children}</div>;
+  return <div ref={ref} data-testid={props["data-testid"] || "test"}>{props.children}</div>;
 }
 
-describe('useOverlayTrigger', function () {
-  it('should close the overlay when the trigger scrolls with useOverlayPosition for backward compatibility', function () {
+describe("useOverlayTrigger", function () {
+  it("should close the overlay when the trigger scrolls with useOverlayPosition for backward compatibility", function () {
     let onOpenChange = jest.fn();
     let res = render(
       <div data-testid="scrollable">
@@ -38,13 +38,13 @@ describe('useOverlayTrigger', function () {
       </div>
     );
 
-    let scrollable = res.getByTestId('scrollable');
+    let scrollable = res.getByTestId("scrollable");
     fireEvent.scroll(scrollable);
     expect(onOpenChange).toHaveBeenCalledTimes(1);
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
 
-  it('should not close the overlay when an adjacent scrollable region scrolls with useOverlayPosition for backward compatibility', function () {
+  it("should not close the overlay when an adjacent scrollable region scrolls with useOverlayPosition for backward compatibility", function () {
     let onOpenChange = jest.fn();
     let res = render(
       <div>
@@ -53,12 +53,12 @@ describe('useOverlayTrigger', function () {
       </div>
     );
 
-    let scrollable = res.getByTestId('scrollable');
+    let scrollable = res.getByTestId("scrollable");
     fireEvent.scroll(scrollable);
     expect(onOpenChange).not.toHaveBeenCalled();
   });
 
-  it('should close the overlay when the body scrolls  with useOverlayPosition for backward compatibility', function () {
+  it("should close the overlay when the body scrolls  with useOverlayPosition for backward compatibility", function () {
     let onOpenChange = jest.fn();
     render(<Example isOpen onOpenChange={onOpenChange} />);
 

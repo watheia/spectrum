@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {FocusableProvider} from '@react-aria/focus';
-import {Overlay} from '@react-spectrum/overlays';
-import React, {ReactElement, useRef} from 'react';
-import {SpectrumTooltipTriggerProps} from '@react-types/tooltip';
-import {TooltipContext} from './context';
-import {useOverlayPosition} from '@react-aria/overlays';
-import {useTooltipTrigger} from '@react-aria/tooltip';
-import {useTooltipTriggerState} from '@react-stately/tooltip';
+import {FocusableProvider} from "@react-aria/focus";
+import {Overlay} from "@react-spectrum/overlays";
+import React, {ReactElement, useRef} from "react";
+import {SpectrumTooltipTriggerProps} from "@react-types/tooltip";
+import {TooltipContext} from "./context";
+import {useOverlayPosition} from "@react-aria/overlays";
+import {useTooltipTrigger} from "@react-aria/tooltip";
+import {useTooltipTriggerState} from "@react-stately/tooltip";
 
 const DEFAULT_OFFSET = -1; // Offset needed to reach 4px/5px (med/large) distance between tooltip and trigger button
 const DEFAULT_CROSS_OFFSET = 0;
@@ -44,7 +44,7 @@ function TooltipTrigger(props: SpectrumTooltipTriggerProps) {
   }, state, tooltipTriggerRef);
 
   let {overlayProps, arrowProps, placement} = useOverlayPosition({
-    placement: props.placement || 'top',
+    placement: props.placement || "top",
     targetRef: tooltipTriggerRef,
     overlayRef,
     offset,

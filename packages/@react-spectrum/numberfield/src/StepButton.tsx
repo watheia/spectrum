@@ -10,23 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
-import Add from '@spectrum-icons/workflow/Add';
-import {AriaButtonProps} from '@react-types/button';
-import ChevronDownSmall from '@spectrum-icons/ui/ChevronDownSmall';
-import ChevronUpSmall from '@spectrum-icons/ui/ChevronUpSmall';
-import {classNames} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {mergeProps} from '@react-aria/utils';
-import React, {RefObject} from 'react';
-import Remove from '@spectrum-icons/workflow/Remove';
-import stepperStyle from '@adobe/spectrum-css-temp/components/stepper/vars.css';
-import {useButton} from '@react-aria/button';
-import {useHover} from '@react-aria/interactions';
-import {useProvider, useProviderProps} from '@react-spectrum/provider';
+import Add from "@spectrum-icons/workflow/Add";
+import {AriaButtonProps} from "@react-types/button";
+import ChevronDownSmall from "@spectrum-icons/ui/ChevronDownSmall";
+import ChevronUpSmall from "@spectrum-icons/ui/ChevronUpSmall";
+import {classNames} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {mergeProps} from "@react-aria/utils";
+import React, {RefObject} from "react";
+import Remove from "@spectrum-icons/workflow/Remove";
+import stepperStyle from "@adobe/spectrum-css-temp/components/stepper/vars.css";
+import {useButton} from "@react-aria/button";
+import {useHover} from "@react-aria/interactions";
+import {useProvider, useProviderProps} from "@react-spectrum/provider";
 
 interface StepButtonProps extends AriaButtonProps {
   isQuiet: boolean,
-  direction: 'up' | 'down'
+  direction: "up" | "down"
 }
 
 function StepButton(props: StepButtonProps, ref: RefObject<HTMLDivElement>) {
@@ -37,38 +37,38 @@ function StepButton(props: StepButtonProps, ref: RefObject<HTMLDivElement>) {
    * Must use div for now because Safari pointer event bugs on disabled form elements.
    * Link https://bugs.webkit.org/show_bug.cgi?id=219188.
    */
-  let {buttonProps, isPressed} = useButton({...props, elementType: 'div'}, ref);
+  let {buttonProps, isPressed} = useButton({...props, elementType: "div"}, ref);
   let {hoverProps, isHovered} = useHover(props);
   return (
-    <FocusRing focusRingClass={classNames(stepperStyle, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(stepperStyle, "focus-ring")}>
       <div
         className={
           classNames(
             stepperStyle,
-            'spectrum-Stepper-button',
+            "spectrum-Stepper-button",
             {
-              'spectrum-Stepper-button--stepUp': direction === 'up',
-              'spectrum-Stepper-button--stepDown': direction === 'down',
-              'spectrum-Stepper-button--isQuiet': isQuiet,
-              'is-hovered': isHovered,
-              'is-active': isPressed,
-              'is-disabled': isDisabled
+              "spectrum-Stepper-button--stepUp": direction === "up",
+              "spectrum-Stepper-button--stepDown": direction === "down",
+              "spectrum-Stepper-button--isQuiet": isQuiet,
+              "is-hovered": isHovered,
+              "is-active": isPressed,
+              "is-disabled": isDisabled
             }
           )
         }
         {...mergeProps(hoverProps, buttonProps)}
         ref={ref}>
-        {direction === 'up' && scale === 'large' &&
-          <Add UNSAFE_className={classNames(stepperStyle, 'spectrum-Stepper-button-icon', 'spectrum-Stepper-stepUpIcon')} size="S" />
+        {direction === "up" && scale === "large" &&
+          <Add UNSAFE_className={classNames(stepperStyle, "spectrum-Stepper-button-icon", "spectrum-Stepper-stepUpIcon")} size="S" />
         }
-        {direction === 'up' && scale === 'medium' &&
-          <ChevronUpSmall UNSAFE_className={classNames(stepperStyle, 'spectrum-Stepper-button-icon', 'spectrum-Stepper-stepUpIcon')} />
+        {direction === "up" && scale === "medium" &&
+          <ChevronUpSmall UNSAFE_className={classNames(stepperStyle, "spectrum-Stepper-button-icon", "spectrum-Stepper-stepUpIcon")} />
         }
-        {direction === 'down' && scale === 'large' &&
-          <Remove UNSAFE_className={classNames(stepperStyle, 'spectrum-Stepper-button-icon', 'spectrum-Stepper-stepDownIcon')} size="S" />
+        {direction === "down" && scale === "large" &&
+          <Remove UNSAFE_className={classNames(stepperStyle, "spectrum-Stepper-button-icon", "spectrum-Stepper-stepDownIcon")} size="S" />
         }
-        {direction === 'down' && scale === 'medium' &&
-          <ChevronDownSmall UNSAFE_className={classNames(stepperStyle, 'spectrum-Stepper-button-icon', 'spectrum-Stepper-stepDownIcon')} />
+        {direction === "down" && scale === "medium" &&
+          <ChevronDownSmall UNSAFE_className={classNames(stepperStyle, "spectrum-Stepper-button-icon", "spectrum-Stepper-stepDownIcon")} />
         }
       </div>
     </FocusRing>

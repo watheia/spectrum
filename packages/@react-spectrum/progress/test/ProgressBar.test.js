@@ -10,92 +10,92 @@
  * governing permissions and limitations under the License.
  */
 
-import {ProgressBar} from '../';
-import React from 'react';
-import {render} from '@testing-library/react';
-import V2ProgressBar from '@react/react-spectrum/Progress';
+import {ProgressBar} from "../";
+import React from "react";
+import {render} from "@testing-library/react";
+import V2ProgressBar from "@react/react-spectrum/Progress";
 
 
-describe('ProgressBar', function () {
+describe("ProgressBar", function () {
   it.each`
     Name               | Component
-    ${'ProgressBar'}   | ${ProgressBar}
-    ${'V2ProgressBar'} | ${V2ProgressBar}
-  `('$Name handles defaults', function ({Component}) {
+    ${"ProgressBar"}   | ${ProgressBar}
+    ${"V2ProgressBar"} | ${V2ProgressBar}
+  `("$Name handles defaults", function ({Component}) {
     let {getByRole} = render(<Component label="Progress Bar" />);
-    let progressBar = getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuemin', '0');
-    expect(progressBar).toHaveAttribute('aria-valuemax', '100');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '0');
-    expect(progressBar).toHaveAttribute('aria-valuetext', '0%');
+    let progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuemin", "0");
+    expect(progressBar).toHaveAttribute("aria-valuemax", "100");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+    expect(progressBar).toHaveAttribute("aria-valuetext", "0%");
 
-    let labelId = progressBar.getAttribute('aria-labelledby');
+    let labelId = progressBar.getAttribute("aria-labelledby");
     expect(labelId).toBeDefined();
     let label = document.getElementById(labelId);
-    expect(label).toHaveTextContent('Progress Bar');
+    expect(label).toHaveTextContent("Progress Bar");
   });
 
   it.each`
     Name               | Component        | props
-    ${'ProgressBar'}   | ${ProgressBar}   | ${{value: 30}}
-    ${'V2ProgressBar'} | ${V2ProgressBar} | ${{value: 30}}
-  `('$Name update all fileds by value', function ({Component, props}) {
+    ${"ProgressBar"}   | ${ProgressBar}   | ${{value: 30}}
+    ${"V2ProgressBar"} | ${V2ProgressBar} | ${{value: 30}}
+  `("$Name update all fileds by value", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} label="Progress Bar" />);
-    let progressBar = getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuemin', '0');
-    expect(progressBar).toHaveAttribute('aria-valuemax', '100');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '30');
-    expect(progressBar).toHaveAttribute('aria-valuetext', '30%');
+    let progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuemin", "0");
+    expect(progressBar).toHaveAttribute("aria-valuemax", "100");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "30");
+    expect(progressBar).toHaveAttribute("aria-valuetext", "30%");
   });
 
   it.each`
     Name               | Component        | props
-    ${'ProgressBar'}   | ${ProgressBar}   | ${{value: -1}}
-    ${'V2ProgressBar'} | ${V2ProgressBar} | ${{value: -1}}
-  `('$Name clamps values to 0', function ({Component, props}) {
+    ${"ProgressBar"}   | ${ProgressBar}   | ${{value: -1}}
+    ${"V2ProgressBar"} | ${V2ProgressBar} | ${{value: -1}}
+  `("$Name clamps values to 0", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} label="Progress Bar" />);
-    let progressBar = getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '0');
-    expect(progressBar).toHaveAttribute('aria-valuetext', '0%');
+    let progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+    expect(progressBar).toHaveAttribute("aria-valuetext", "0%");
   });
 
   it.each`
     Name               | Component        | props
-    ${'ProgressBar'}   | ${ProgressBar}   | ${{value: 1000}}
-    ${'V2ProgressBar'} | ${V2ProgressBar} | ${{value: 1000}}
-  `('$Name clamps values to 100', function ({Component, props}) {
+    ${"ProgressBar"}   | ${ProgressBar}   | ${{value: 1000}}
+    ${"V2ProgressBar"} | ${V2ProgressBar} | ${{value: 1000}}
+  `("$Name clamps values to 100", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} label="Progress Bar" />);
-    let progressBar = getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '100');
-    expect(progressBar).toHaveAttribute('aria-valuetext', '100%');
+    let progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "100");
+    expect(progressBar).toHaveAttribute("aria-valuetext", "100%");
   });
 
   it.each`
     Name               | Component        | props
-    ${'ProgressBar'}   | ${ProgressBar}   | ${{size: 'S', UNSAFE_className: 'testClass'}}
-    ${'V2ProgressBar'} | ${V2ProgressBar} | ${{size: 'S', className: 'testClass'}}
-  `('$Name supports UNSAFE_className', function ({Component, props}) {
+    ${"ProgressBar"}   | ${ProgressBar}   | ${{size: "S", UNSAFE_className: "testClass"}}
+    ${"V2ProgressBar"} | ${V2ProgressBar} | ${{size: "S", className: "testClass"}}
+  `("$Name supports UNSAFE_className", function ({Component, props}) {
     let {getByRole} = render(<Component {...props} label="Progress Bar" />);
-    let progressBar = getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('class', expect.stringContaining('testClass'));
+    let progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("class", expect.stringContaining("testClass"));
   });
 
-  it('Can handle negative values', () => {
+  it("Can handle negative values", () => {
     let {getByRole} = render(<ProgressBar value={0} minValue={-5} maxValue={5} label="Progress Bar" />);
-    let progressBar = getByRole('progressbar');
-    expect(progressBar).toHaveAttribute('aria-valuenow', '0');
-    expect(progressBar).toHaveAttribute('aria-valuetext', '50%');
+    let progressBar = getByRole("progressbar");
+    expect(progressBar).toHaveAttribute("aria-valuenow", "0");
+    expect(progressBar).toHaveAttribute("aria-valuetext", "50%");
   });
 
-  it('warns user if no aria-label is provided', () => {
-    let spyWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+  it("warns user if no aria-label is provided", () => {
+    let spyWarn = jest.spyOn(console, "warn").mockImplementation(() => {});
     render(<ProgressBar value={25} />);
-    expect(spyWarn).toHaveBeenCalledWith('If you do not provide a visible label via children, you must specify an aria-label or aria-labelledby attribute for accessibility');
+    expect(spyWarn).toHaveBeenCalledWith("If you do not provide a visible label via children, you must specify an aria-label or aria-labelledby attribute for accessibility");
   });
 
-  it('supports custom DOM props', function () {
+  it("supports custom DOM props", function () {
     let {getByTestId} = render(<ProgressBar label="Meter" data-testid="test" />);
-    let progressBar = getByTestId('test');
+    let progressBar = getByTestId("test");
     expect(progressBar).toBeInTheDocument();
   });
 });

@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {RefObject, useCallback, useEffect} from 'react';
-import {ScrollEvents} from '@react-types/shared';
+import {RefObject, useCallback, useEffect} from "react";
+import {ScrollEvents} from "@react-types/shared";
 
 export interface ScrollWheelProps extends ScrollEvents {
   /** Whether the scroll listener should be disabled. */
@@ -41,10 +41,10 @@ export function useScrollWheel(props: ScrollWheelProps, ref: RefObject<HTMLEleme
     if (isDisabled) {
       return;
     }
-    elem.addEventListener('wheel', onScrollHandler);
+    elem.addEventListener("wheel", onScrollHandler);
 
     return () => {
-      elem.removeEventListener('wheel', onScrollHandler);
+      elem.removeEventListener("wheel", onScrollHandler);
     };
   }, [onScrollHandler, ref, isDisabled]);
 }

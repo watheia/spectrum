@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {DatePickerProps} from '@react-types/datepicker';
-import {isInvalid, setTime} from './utils';
-import {useControlledState} from '@react-stately/utils';
-import {useState} from 'react';
-import {ValidationState} from '@react-types/shared';
+import {DatePickerProps} from "@react-types/datepicker";
+import {isInvalid, setTime} from "./utils";
+import {useControlledState} from "@react-stately/utils";
+import {useState} from "react";
+import {ValidationState} from "@react-types/shared";
 
 export interface DatePickerState {
   value: Date,
@@ -40,7 +40,7 @@ export function useDatePickerState(props: DatePickerProps): DatePickerState {
   };
   
   let validationState: ValidationState = props.validationState || 
-    (isInvalid(dateValue, props.minValue, props.maxValue) ? 'invalid' : null);
+    (isInvalid(dateValue, props.minValue, props.maxValue) ? "invalid" : null);
 
   return {
     value: dateValue,

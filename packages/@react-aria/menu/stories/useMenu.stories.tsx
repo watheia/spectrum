@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {DismissButton, useOverlay} from '@react-aria/overlays';
-import {FocusScope} from '@react-aria/focus';
-import {Item} from '@react-stately/collections';
-import {mergeProps} from '@react-aria/utils';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {useButton} from '@react-aria/button';
-import {useFocus, useInteractOutside} from '@react-aria/interactions';
-import {useMenu, useMenuItem, useMenuTrigger} from '@react-aria/menu';
-import {useMenuTriggerState} from '@react-stately/menu';
-import {useTreeState} from '@react-stately/tree';
+import {action} from "@storybook/addon-actions";
+import {DismissButton, useOverlay} from "@react-aria/overlays";
+import {FocusScope} from "@react-aria/focus";
+import {Item} from "@react-stately/collections";
+import {mergeProps} from "@react-aria/utils";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {useButton} from "@react-aria/button";
+import {useFocus, useInteractOutside} from "@react-aria/interactions";
+import {useMenu, useMenuItem, useMenuTrigger} from "@react-aria/menu";
+import {useMenuTriggerState} from "@react-stately/menu";
+import {useTreeState} from "@react-stately/tree";
 
 
-storiesOf('useMenu', module)
-  .add('double menu fires onInteractOutside',
+storiesOf("useMenu", module)
+  .add("double menu fires onInteractOutside",
     () => (
       <div>
         <div>This should just be there to show that onInteractOutside fires when clicking on another trigger.</div>
@@ -57,7 +57,7 @@ function MenuButton(props) {
   let {buttonProps} = useButton(menuTriggerProps, ref);
 
   return (
-    <div style={{position: 'relative', display: 'inline-block'}}>
+    <div style={{position: "relative", display: "inline-block"}}>
       <button {...buttonProps} ref={ref} style={{height: 30, fontSize: 14}}>
         {props.label}
         <span aria-hidden="true" style={{paddingLeft: 5}}>
@@ -77,7 +77,7 @@ function MenuButton(props) {
 
 function MenuPopup(props) {
   // Create menu state based on the incoming props
-  let state = useTreeState({...props, selectionMode: 'none'});
+  let state = useTreeState({...props, selectionMode: "none"});
 
   // Get props for the menu element
   let ref = React.useRef();
@@ -87,7 +87,7 @@ function MenuPopup(props) {
   // e.g. blur, clicking outside, or pressing the escape key.
   let overlayRef = React.useRef();
   // before useOverlay so this action will get called
-  useInteractOutside({ref: overlayRef, onInteractOutside: action('onInteractOutside')});
+  useInteractOutside({ref: overlayRef, onInteractOutside: action("onInteractOutside")});
   let {overlayProps} = useOverlay(
     {
       onClose: props.onClose,
@@ -110,13 +110,13 @@ function MenuPopup(props) {
           {...mergeProps(menuProps, props.domProps)}
           ref={ref}
           style={{
-            position: 'absolute',
-            width: '100%',
-            margin: '4px 0 0 0',
+            position: "absolute",
+            width: "100%",
+            margin: "4px 0 0 0",
             padding: 0,
-            listStyle: 'none',
-            border: '1px solid gray',
-            background: 'lightgray'
+            listStyle: "none",
+            border: "1px solid gray",
+            background: "lightgray"
           }}>
           {[...state.collection].map((item) => (
             <MenuItem
@@ -157,11 +157,11 @@ function MenuItem({item, state, onAction, onClose}) {
       {...mergeProps(menuItemProps, focusProps)}
       ref={ref}
       style={{
-        background: isFocused ? 'gray' : 'transparent',
-        color: isFocused ? 'white' : 'black',
-        padding: '2px 5px',
-        outline: 'none',
-        cursor: 'pointer'
+        background: isFocused ? "gray" : "transparent",
+        color: isFocused ? "white" : "black",
+        padding: "2px 5px",
+        outline: "none",
+        cursor: "pointer"
       }}>
       {item.rendered}
     </li>

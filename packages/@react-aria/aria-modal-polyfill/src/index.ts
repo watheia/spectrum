@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {hideOthers} from 'aria-hidden';
+import {hideOthers} from "aria-hidden";
 
 type Revert = () => void;
 
 /**
  * Acts as a polyfill for `aria-modal` by watching for added modals and hiding any surrounding DOM elements with `aria-hidden`.
  */
-export function watchModals(selector:string = 'body'): Revert {
+export function watchModals(selector:string = "body"): Revert {
   /**
    * Listen for additions to the child list of the selected element (defaults to body). This is where providers render modal portals.
    * When one is added, see if there is a modal inside it, if there is, then hide everything else from screen readers.
@@ -33,7 +33,7 @@ export function watchModals(selector:string = 'body'): Revert {
 
   let observer = new MutationObserver((mutationRecord) => {
     for (let mutation of mutationRecord) {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
         let addNode: Element = (Array.from(mutation.addedNodes).find((node: any) => node.querySelector?.('[aria-modal="true"], [data-ismodal="true"]')) as HTMLElement);
         if (addNode) {
           modalContainers.push(addNode);
@@ -41,7 +41,7 @@ export function watchModals(selector:string = 'body'): Revert {
           undo?.();
           undo = hideOthers(modal);
         }
-      } else if (mutation.type === 'childList' && mutation.removedNodes.length > 0) {
+      } else if (mutation.type === "childList" && mutation.removedNodes.length > 0) {
         let removedNodes = Array.from(mutation.removedNodes);
         let nodeIndexRemove = modalContainers.findIndex(container => removedNodes.includes(container));
         if (nodeIndexRemove >= 0) {

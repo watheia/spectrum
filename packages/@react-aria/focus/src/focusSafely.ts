@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {focusWithoutScrolling, runAfterTransition} from '@react-aria/utils';
-import {getInteractionModality} from '@react-aria/interactions';
+import {focusWithoutScrolling, runAfterTransition} from "@react-aria/utils";
+import {getInteractionModality} from "@react-aria/interactions";
 
 /**
  * A utility function that focuses an element while avoiding undesired side effects such
@@ -23,7 +23,7 @@ export function focusSafely(element: HTMLElement) {
   // the page before shifting focus. This avoids issues with VoiceOver on iOS
   // causing the page to scroll when moving focus if the element is transitioning
   // from off the screen.
-  if (getInteractionModality() === 'virtual') {
+  if (getInteractionModality() === "virtual") {
     let lastFocusedElement = document.activeElement;
     runAfterTransition(() => {
       // If focus did not move and the element is still in the document, focus it.

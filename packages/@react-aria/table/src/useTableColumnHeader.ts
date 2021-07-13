@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {getColumnHeaderId} from './utils';
-import {GridNode} from '@react-types/grid';
-import {HTMLAttributes, RefObject} from 'react';
-import {mergeProps} from '@react-aria/utils';
-import {TableState} from '@react-stately/table';
-import {useFocusable} from '@react-aria/focus';
-import {useGridCell} from '@react-aria/grid';
-import {usePress} from '@react-aria/interactions';
+import {getColumnHeaderId} from "./utils";
+import {GridNode} from "@react-types/grid";
+import {HTMLAttributes, RefObject} from "react";
+import {mergeProps} from "@react-aria/utils";
+import {TableState} from "@react-stately/table";
+import {useFocusable} from "@react-aria/focus";
+import {useGridCell} from "@react-aria/grid";
+import {usePress} from "@react-aria/interactions";
 
 
 interface ColumnHeaderProps {
@@ -42,7 +42,7 @@ export function useTableColumnHeader<T>(props: ColumnHeaderProps, state: TableSt
   let {node} = props;
   let {gridCellProps} = useGridCell(props, state, ref);
 
-  let isSelectionCellDisabled = node.props.isSelectionCell && state.selectionManager.selectionMode === 'single';
+  let isSelectionCellDisabled = node.props.isSelectionCell && state.selectionManager.selectionMode === "single";
   let {pressProps} = usePress({
     isDisabled: !node.props.allowsSorting || isSelectionCellDisabled,
     onPress() {
@@ -52,19 +52,19 @@ export function useTableColumnHeader<T>(props: ColumnHeaderProps, state: TableSt
 
   // Needed to pick up the focusable context, enabling things like Tooltips for example
   let {focusableProps} = useFocusable({}, ref);
-  let ariaSort: HTMLAttributes<HTMLElement>['aria-sort'] = null;
+  let ariaSort: HTMLAttributes<HTMLElement>["aria-sort"] = null;
   if (node.props.allowsSorting) {
-    ariaSort = state.sortDescriptor?.column === node.key ? state.sortDescriptor.direction : 'none';
+    ariaSort = state.sortDescriptor?.column === node.key ? state.sortDescriptor.direction : "none";
   }
 
   return {
     columnHeaderProps: {
       ...mergeProps(gridCellProps, pressProps, focusableProps),
-      role: 'columnheader',
+      role: "columnheader",
       id: getColumnHeaderId(state, node.key),
-      'aria-colspan': node.colspan && node.colspan > 1 ? node.colspan : null,
-      'aria-sort': ariaSort,
-      'aria-disabled': isSelectionCellDisabled || undefined
+      "aria-colspan": node.colspan && node.colspan > 1 ? node.colspan : null,
+      "aria-sort": ariaSort,
+      "aria-disabled": isSelectionCellDisabled || undefined
     }
   };
 }

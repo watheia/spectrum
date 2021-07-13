@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumWellProps} from '@react-types/well';
-import {Well} from '../';
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumWellProps} from "@react-types/well";
+import {Well} from "../";
 
 const meta: Meta<SpectrumWellProps> = {
-  title: 'Well',
+  title: "Well",
   component: Well
 };
 

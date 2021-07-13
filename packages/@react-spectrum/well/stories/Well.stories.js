@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Well} from '../';
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Well} from "../";
 
-storiesOf('Well', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Well", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .add(
-    'Default',
+    "Default",
     () => render()
   );
 

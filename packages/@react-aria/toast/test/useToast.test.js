@@ -11,14 +11,14 @@
  */
 
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {theme} from '@react-spectrum/theme-default';
-import {useToast} from '../';
+import intlMessages from "../intl/*.json";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {theme} from "@react-spectrum/theme-default";
+import {useToast} from "../";
 
-describe('useToast', () => {
+describe("useToast", () => {
   let onClose = jest.fn();
   let onAction = jest.fn();
   let onRemove = jest.fn();
@@ -33,31 +33,31 @@ describe('useToast', () => {
     return result.current;
   };
 
-  it('handles defaults', function () {
+  it("handles defaults", function () {
     let {actionButtonProps, closeButtonProps, iconProps, toastProps} = renderToastHook({}, {onRemove});
 
-    expect(toastProps.role).toBe('alert');
-    expect(iconProps['aria-label']).toBe(undefined);
-    expect(typeof actionButtonProps.onPress).toBe('function');
-    expect(closeButtonProps['aria-label']).toBe('Close');
-    expect(typeof closeButtonProps.onPress).toBe('function');
+    expect(toastProps.role).toBe("alert");
+    expect(iconProps["aria-label"]).toBe(undefined);
+    expect(typeof actionButtonProps.onPress).toBe("function");
+    expect(closeButtonProps["aria-label"]).toBe("Close");
+    expect(typeof closeButtonProps.onPress).toBe("function");
   });
 
-  it('variant sets icon aria-label property', function () {
-    let {iconProps} = renderToastHook({variant: 'info'}, {onRemove});
+  it("variant sets icon aria-label property", function () {
+    let {iconProps} = renderToastHook({variant: "info"}, {onRemove});
 
-    expect(iconProps['aria-label']).toBe('Info');
+    expect(iconProps["aria-label"]).toBe("Info");
   });
 
-  it('with a localized aria-label', () => {
-    let locale = 'de-DE';
+  it("with a localized aria-label", () => {
+    let locale = "de-DE";
     let wrapper = ({children}) => <Provider locale={locale} theme={theme}>{children}</Provider>;
-    let expectedIntl = intlMessages[locale]['info'];
-    let {iconProps} = renderToastHook({variant: 'info'}, {onRemove}, wrapper);
-    expect(iconProps['aria-label']).toBe(expectedIntl);
+    let expectedIntl = intlMessages[locale]["info"];
+    let {iconProps} = renderToastHook({variant: "info"}, {onRemove}, wrapper);
+    expect(iconProps["aria-label"]).toBe(expectedIntl);
   });
 
-  it('handles onClose', function () {
+  it("handles onClose", function () {
     let {closeButtonProps} = renderToastHook({onClose}, {onRemove});
     closeButtonProps.onPress();
 
@@ -65,7 +65,7 @@ describe('useToast', () => {
     expect(onRemove).toHaveBeenCalledTimes(1);
   });
 
-  it('handles shouldCloseOnAction', function () {
+  it("handles shouldCloseOnAction", function () {
     let {actionButtonProps} = renderToastHook({onClose, onAction, shouldCloseOnAction: true}, {onRemove});
     actionButtonProps.onPress();
 
@@ -74,11 +74,11 @@ describe('useToast', () => {
     expect(onRemove).toHaveBeenCalledTimes(1);
   });
 
-  it('onRemove is called with toastKey', function () {
-    let {closeButtonProps} = renderToastHook({toastKey: 'key1'}, {onRemove});
+  it("onRemove is called with toastKey", function () {
+    let {closeButtonProps} = renderToastHook({toastKey: "key1"}, {onRemove});
     closeButtonProps.onPress();
 
     expect(onRemove).toHaveBeenCalledTimes(1);
-    expect(onRemove).toHaveBeenLastCalledWith('key1');
+    expect(onRemove).toHaveBeenLastCalledWith("key1");
   });
 });

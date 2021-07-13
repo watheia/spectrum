@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from '@react-spectrum/layout';
-import js from 'highlight.js/lib/languages/javascript';
-import Lowlight from 'react-lowlight';
-import React from 'react';
-import {ResourceCard} from './ResourceCard';
-import styles from './headerInfo.css';
-import typographyStyles from '@adobe/spectrum-css-temp/components/typography/vars.css';
+import {Flex} from "@react-spectrum/layout";
+import js from "highlight.js/lib/languages/javascript";
+import Lowlight from "react-lowlight";
+import React from "react";
+import {ResourceCard} from "./ResourceCard";
+import styles from "./headerInfo.css";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
-Lowlight.registerLanguage('js', js);
+Lowlight.registerLanguage("js", js);
 
 export function HeaderInfo(props) {
   let {
@@ -29,27 +29,27 @@ export function HeaderInfo(props) {
 
   let preRelease = packageData.version.match(/(alpha)|(beta)|(rc)/);
   let importName = packageData.name;
-  if (importName.startsWith('@react-spectrum') && process.env.DOCS_ENV === 'production' && !preRelease) {
-    importName = '@adobe/react-spectrum';
+  if (importName.startsWith("@react-spectrum") && process.env.DOCS_ENV === "production" && !preRelease) {
+    importName = "@adobe/react-spectrum";
   }
 
   return (
     <>
-      <table className={styles['headerInfo']}>
+      <table className={styles["headerInfo"]}>
         <tbody>
           <tr>
-            <th className={typographyStyles['spectrum-Body--secondary']}>install</th>
-            <td className={typographyStyles['spectrum-Body4']}><code className={typographyStyles['spectrum-Code4']}>yarn add {importName}</code></td>
+            <th className={typographyStyles["spectrum-Body--secondary"]}>install</th>
+            <td className={typographyStyles["spectrum-Body4"]}><code className={typographyStyles["spectrum-Code4"]}>yarn add {importName}</code></td>
           </tr>
           <tr>
-            <th className={typographyStyles['spectrum-Body--secondary']}>version</th>
-            <td className={typographyStyles['spectrum-Body4']}>{packageData.version}</td>
+            <th className={typographyStyles["spectrum-Body--secondary"]}>version</th>
+            <td className={typographyStyles["spectrum-Body4"]}>{packageData.version}</td>
           </tr>
           {componentNames &&
             <tr>
-              <th className={typographyStyles['spectrum-Body--secondary']}>usage</th>
-              <td className={typographyStyles['spectrum-Body4']}>
-                <Lowlight language="js" value={`import {${componentNames.join(', ')}} from '${importName}'`} inline className={typographyStyles['spectrum-Code4']} />
+              <th className={typographyStyles["spectrum-Body--secondary"]}>usage</th>
+              <td className={typographyStyles["spectrum-Body4"]}>
+                <Lowlight language="js" value={`import {${componentNames.join(", ")}} from '${importName}'`} inline className={typographyStyles["spectrum-Code4"]} />
               </td>
             </tr>
           }

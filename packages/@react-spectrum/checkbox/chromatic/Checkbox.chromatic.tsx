@@ -10,46 +10,46 @@
  * governing permissions and limitations under the License.
  */
 
-import {Checkbox} from '../';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {View} from '@react-spectrum/view';
+import {Checkbox} from "../";
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {View} from "@react-spectrum/view";
 
-storiesOf('Checkbox', module)
+storiesOf("Checkbox", module)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
     'validationState: "invalid"',
-    () => render({validationState: 'invalid'})
+    () => render({validationState: "invalid"})
   )
   .add(
-    'isDisabled: true',
+    "isDisabled: true",
     () => render({isDisabled: true})
   )
   .add(
-    'isEmphasized: true',
+    "isEmphasized: true",
     () => render({isEmphasized: true})
   )
   .add(
     'isEmphasized: true, validationState: "invalid"',
-    () => render({isEmphasized: true, validationState: 'invalid'})
+    () => render({isEmphasized: true, validationState: "invalid"})
   )
   .add(
-    'isEmphasized: true, isDisabled: true',
+    "isEmphasized: true, isDisabled: true",
     () => render({isEmphasized: true, isDisabled: true})
   )
   .add(
-    'isReadOnly: true',
+    "isReadOnly: true",
     () => render({isReadOnly: true})
   )
   .add(
-    'custom label',
+    "custom label",
     () => renderCustomLabel()
   )
   .add(
-    'long label',
+    "long label",
     () => (
       <View width="size-2000">
         <Checkbox>
@@ -59,8 +59,8 @@ storiesOf('Checkbox', module)
     )
   )
   .add(
-    'no label',
-    () => renderNoLabel({'aria-label': 'This checkbox has no visible label'})
+    "no label",
+    () => renderNoLabel({"aria-label": "This checkbox has no visible label"})
   );
 
 // need selected + indeterminate because there is a sibling selector `checked + ...` so being careful

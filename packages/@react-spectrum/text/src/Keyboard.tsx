@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps} from '@react-aria/utils';
-import {KeyboardProps} from '@react-types/text';
-import React, {forwardRef} from 'react';
-import {useDOMRef, useSlotProps, useStyleProps} from '@react-spectrum/utils';
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps} from "@react-aria/utils";
+import {KeyboardProps} from "@react-types/text";
+import React, {forwardRef} from "react";
+import {useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
 
 function Keyboard(props: KeyboardProps, ref: DOMRef) {
-  props = useSlotProps(props, 'keyboard');
+  props = useSlotProps(props, "keyboard");
   let {
     children,
     ...otherProps

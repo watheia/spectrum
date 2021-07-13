@@ -15,8 +15,8 @@ import {
   MutableRefObject,
   ReactElement,
   SetStateAction
-} from 'react';
-import {Orientation} from './orientation';
+} from "react";
+import {Orientation} from "./orientation";
 
 export interface SplitViewStatelyProps {
   allowsCollapsing?: boolean,
@@ -61,8 +61,8 @@ export interface SplitViewAriaProps {
   primaryMaxSize?: number,
   secondaryMinSize?: number,
   secondaryMaxSize?: number,
-  'aria-label'?: string,
-  'aria-labelledby'?: string,
+  "aria-label"?: string,
+  "aria-labelledby"?: string,
   containerRef?: MutableRefObject<HTMLDivElement>
 }
 

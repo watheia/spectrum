@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-export * from './content';
-export * from './header';
-export * from './footer';
-export * from './view';
+export * from "./content";
+export * from "./header";
+export * from "./footer";
+export * from "./view";

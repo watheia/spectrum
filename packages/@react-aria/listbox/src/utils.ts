@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {Key} from 'react';
-import {ListState} from '@react-stately/list';
+import {Key} from "react";
+import {ListState} from "@react-stately/list";
 
 interface ListData {
   id: string,
@@ -24,18 +24,18 @@ interface ListData {
 export const listData = new WeakMap<ListState<unknown>, ListData>();
 
 function normalizeKey(key: Key): string {
-  if (typeof key === 'string') {
-    return key.replace(/\s*/g, '');
+  if (typeof key === "string") {
+    return key.replace(/\s*/g, "");
   }
 
-  return '' + key;
+  return "" + key;
 }
 
 export function getItemId<T>(state: ListState<T>, itemKey: Key): string {
   let data = listData.get(state);
 
   if (!data) {
-    throw new Error('Unknown list');
+    throw new Error("Unknown list");
   }
 
   return `${data.id}-option-${normalizeKey(itemKey)}`;

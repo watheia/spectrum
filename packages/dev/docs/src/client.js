@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from '@react-spectrum/button';
-import docsStyle from './docs.css';
-import {listen} from 'quicklink';
-import React, {useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
-import ShowMenu from '@spectrum-icons/workflow/ShowMenu';
-import {ThemeSwitcher} from './ThemeSwitcher';
-import {watchModals} from '@react-aria/aria-modal-polyfill';
+import {ActionButton} from "@react-spectrum/button";
+import docsStyle from "./docs.css";
+import {listen} from "quicklink";
+import React, {useEffect, useState} from "react";
+import ReactDOM from "react-dom";
+import ShowMenu from "@spectrum-icons/workflow/ShowMenu";
+import {ThemeSwitcher} from "./ThemeSwitcher";
+import {watchModals} from "@react-aria/aria-modal-polyfill";
 
-window.addEventListener('load', () => listen());
-window.addEventListener('load', () => watchModals());
+window.addEventListener("load", () => listen());
+window.addEventListener("load", () => watchModals());
 
-let title = document.querySelector('h1');
+let title = document.querySelector("h1");
 
 // Size the title to fit the available space.
 function updateTitleFontSize() {
@@ -32,82 +32,82 @@ function updateTitleFontSize() {
   let maxFontSize = Math.min(58, Math.round(window.innerWidth * 0.1));
   if (fontSize > maxFontSize) {
     fontSize = maxFontSize;
-    title.style.fontSize = maxFontSize + 'px';
+    title.style.fontSize = maxFontSize + "px";
   }
 
   // If the font size is less than the maximum font size,
   // increase the font size until it overflows.
   while (fontSize < maxFontSize && title.scrollWidth <= title.clientWidth) {
     fontSize++;
-    title.style.fontSize = fontSize + 'px';
+    title.style.fontSize = fontSize + "px";
   }
 
   // Reduce the font size until it doesn't overflow.
   while (title.scrollWidth > title.clientWidth) {
     fontSize--;
-    title.style.fontSize = fontSize + 'px';
+    title.style.fontSize = fontSize + "px";
   }
 }
 
 updateTitleFontSize();
 
 // Use ResizeObserver where available to detect size changes not related to window resizing, e.g. font loading.
-if (typeof ResizeObserver !== 'undefined') {
+if (typeof ResizeObserver !== "undefined") {
   let observer = new ResizeObserver(() => {
     // Avoid updating the layout during the resize event and creating circular notifications.
     requestAnimationFrame(updateTitleFontSize);
   });
   observer.observe(title);
 } else {
-  window.addEventListener('resize', updateTitleFontSize);
+  window.addEventListener("resize", updateTitleFontSize);
 }
 
 function Hamburger() {
   let [isPressed, setIsPressed] = useState(false);
 
   let onPress = (event) => {
-    let nav = document.querySelector('.' + docsStyle.nav);
-    let main = document.querySelector('main');
+    let nav = document.querySelector("." + docsStyle.nav);
+    let main = document.querySelector("main");
     let themeSwitcher = event.target.parentElement.nextElementSibling;
 
     nav.classList.toggle(docsStyle.visible);
 
     if (nav.classList.contains(docsStyle.visible)) {
       setIsPressed(true);
-      main.setAttribute('aria-hidden', 'true');
-      themeSwitcher.setAttribute('aria-hidden', 'true');
-      themeSwitcher.querySelector('button').tabIndex = -1;
+      main.setAttribute("aria-hidden", "true");
+      themeSwitcher.setAttribute("aria-hidden", "true");
+      themeSwitcher.querySelector("button").tabIndex = -1;
       nav.tabIndex = -1;
       nav.focus();
     } else {
       setIsPressed(false);
-      main.removeAttribute('aria-hidden');
-      themeSwitcher.removeAttribute('aria-hidden');
-      themeSwitcher.querySelector('button').removeAttribute('tabindex');
-      nav.removeAttribute('tabindex');
+      main.removeAttribute("aria-hidden");
+      themeSwitcher.removeAttribute("aria-hidden");
+      themeSwitcher.querySelector("button").removeAttribute("tabindex");
+      nav.removeAttribute("tabindex");
     }
   };
 
   useEffect(() => {
-    let mediaQueryList = window.matchMedia('(max-width: 1020px)');
-    let nav = document.querySelector('.' + docsStyle.nav);
-    let main = document.querySelector('main');
-    let hamburgerButton = document.querySelector('.' + docsStyle.hamburgerButton);
+    let mediaQueryList = window.matchMedia("(max-width: 1020px)");
+    let nav = document.querySelector("." + docsStyle.nav);
+    let main = document.querySelector("main");
+    let hamburgerButton = document.querySelector("." + docsStyle.hamburgerButton);
     let themeSwitcher = hamburgerButton.nextElementSibling;
 
     /* remove visible className and aria-attributes that make nav behave as a modal */
     let removeVisible = (isNotResponsive = false) => {
-      hamburgerButton.setAttribute('aria-pressed', 'false');
+      hamburgerButton.setAttribute("aria-pressed", "false");
 
       if (nav.contains(document.activeElement) && !isNotResponsive) {
         hamburgerButton.focus();
       }
 
       nav.classList.remove(docsStyle.visible);
-      main.removeAttribute('aria-hidden');
-      themeSwitcher.removeAttribute('aria-hidden');
-      themeSwitcher.querySelector('button').removeAttribute('tabindex');
-      nav.removeAttribute('tabindex');
+      main.removeAttribute("aria-hidden");
+      themeSwitcher.removeAttribute("aria-hidden");
+      themeSwitcher.querySelector("button").removeAttribute("tabindex");
+      nav.removeAttribute("tabindex");
     };
 
     /* collapse nav when underlying content is clicked */
@@ -123,7 +123,7 @@ function Hamburger() {
     /* trap keyboard focus within expanded nav */
     let onKeydownTab = (event) => {
       if (event.keyCode === 9 && nav.classList.contains(docsStyle.visible)) {
-        let tabbables = nav.querySelectorAll('button, a[href]');
+        let tabbables = nav.querySelectorAll("button, a[href]");
         let first = tabbables[0];
         let last = tabbables[tabbables.length - 1];
 
@@ -144,24 +144,24 @@ function Hamburger() {
       }
     };
 
-    main.addEventListener('click', onClick);
-    document.addEventListener('keydown', onKeydownEsc);
-    nav.addEventListener('keydown', onKeydownTab);
+    main.addEventListener("click", onClick);
+    document.addEventListener("keydown", onKeydownEsc);
+    nav.addEventListener("keydown", onKeydownTab);
 
-    let useEventListener = typeof mediaQueryList.addEventListener === 'function';
+    let useEventListener = typeof mediaQueryList.addEventListener === "function";
     if (useEventListener) {
-      mediaQueryList.addEventListener('change', mediaQueryTest);
+      mediaQueryList.addEventListener("change", mediaQueryTest);
     } else {
       mediaQueryList.addListener(mediaQueryTest);
     }
 
     return () => {
-      main.removeEventListener('click', onClick);
-      document.removeEventListener('keydown', onKeydownEsc);
-      nav.removeEventListener('keydown', onKeydownTab);
+      main.removeEventListener("click", onClick);
+      document.removeEventListener("keydown", onKeydownEsc);
+      nav.removeEventListener("keydown", onKeydownTab);
 
       if (useEventListener) {
-        mediaQueryList.removeEventListener('change', mediaQueryTest);
+        mediaQueryList.removeEventListener("change", mediaQueryTest);
       } else {
         mediaQueryList.removeListener(mediaQueryTest);
       }
@@ -180,40 +180,40 @@ function Hamburger() {
 ReactDOM.render(<>
   <Hamburger />
   <ThemeSwitcher />
-</>, document.querySelector('.' + docsStyle.pageHeader));
+</>, document.querySelector("." + docsStyle.pageHeader));
 
-document.addEventListener('mousedown', (e) => {
+document.addEventListener("mousedown", (e) => {
   // Prevent focusing on links to other pages with the mouse to avoid flash of focus ring during navigation.
-  let link = e.target.closest('a');
+  let link = e.target.closest("a");
   if (link && (link.host !== location.host || link.pathname !== location.pathname)) {
     e.preventDefault();
   }
 
   // Add mouse focus class to summary elements on mouse down to prevent native browser focus from showing.
-  if (e.target.tagName === 'SUMMARY') {
+  if (e.target.tagName === "SUMMARY") {
     e.target.classList.add(docsStyle.mouseFocus);
   }
 });
 
 // Remove mouse focus class on blur of a summary element.
-document.addEventListener('blur', (e) => {
-  if (e.target.tagName === 'SUMMARY') {
+document.addEventListener("blur", (e) => {
+  if (e.target.tagName === "SUMMARY") {
     e.target.classList.remove(docsStyle.mouseFocus);
   }
 }, true);
 
-let sidebar = document.querySelector('.' + docsStyle.nav);
-let lastSelectedItem = sessionStorage.getItem('sidebarSelectedItem');
-let lastScrollPosition = sessionStorage.getItem('sidebarScrollPosition');
+let sidebar = document.querySelector("." + docsStyle.nav);
+let lastSelectedItem = sessionStorage.getItem("sidebarSelectedItem");
+let lastScrollPosition = sessionStorage.getItem("sidebarScrollPosition");
 
 // If we have a recorded scroll position, and the last selected item is in the sidebar
 // (e.g. we're in the same category), then restore the scroll position.
-if (lastSelectedItem && lastScrollPosition && [...sidebar.querySelectorAll('a')].some(a => a.pathname === lastSelectedItem)) {
+if (lastSelectedItem && lastScrollPosition && [...sidebar.querySelectorAll("a")].some(a => a.pathname === lastSelectedItem)) {
   sidebar.scrollTop = parseInt(lastScrollPosition, 10);
 }
 
 // Save scroll position of the sidebar when we're about to navigate
-window.addEventListener('pagehide', () => {
-  sessionStorage.setItem('sidebarSelectedItem', location.pathname);
-  sessionStorage.setItem('sidebarScrollPosition', sidebar.scrollTop);
+window.addEventListener("pagehide", () => {
+  sessionStorage.setItem("sidebarSelectedItem", location.pathname);
+  sessionStorage.setItem("sidebarScrollPosition", sidebar.scrollTop);
 });

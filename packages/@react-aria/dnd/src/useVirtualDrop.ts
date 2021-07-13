@@ -10,29 +10,29 @@
  * governing permissions and limitations under the License.
  */
 
-import * as DragManager from './DragManager';
-import {HTMLAttributes} from 'react';
+import * as DragManager from "./DragManager";
+import {HTMLAttributes} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {useDescription} from '@react-aria/utils';
-import {useDragModality} from './utils';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import {useDescription} from "@react-aria/utils";
+import {useDragModality} from "./utils";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 interface VirtualDropResult {
   dropProps: HTMLAttributes<HTMLElement>
 }
 
 const MESSAGES = {
-  keyboard: 'dropDescriptionKeyboard',
-  touch: 'dropDescriptionTouch',
-  virtual: 'dropDescriptionVirtual'
+  keyboard: "dropDescriptionKeyboard",
+  touch: "dropDescriptionTouch",
+  virtual: "dropDescriptionVirtual"
 };
 
 export function useVirtualDrop(): VirtualDropResult {
   let formatMessage = useMessageFormatter(intlMessages);
   let modality = useDragModality();
   let dragSession = DragManager.useDragSession();
-  let descriptionProps = useDescription(dragSession ? formatMessage(MESSAGES[modality]) : '');
+  let descriptionProps = useDescription(dragSession ? formatMessage(MESSAGES[modality]) : "");
 
   return {
     dropProps: {

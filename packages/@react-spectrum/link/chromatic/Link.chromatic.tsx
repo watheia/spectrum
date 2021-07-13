@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Link} from '../';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumLinkProps} from '@react-types/link';
+import {Link} from "../";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumLinkProps} from "@react-types/link";
 
 const meta: Meta<SpectrumLinkProps> = {
-  title: 'Link',
+  title: "Link",
   component: Link
 };
 
@@ -34,7 +34,7 @@ export const Default = Template().bind({});
 Default.args = {};
 
 export const Secondary = Template().bind({});
-Secondary.args = {variant: 'secondary'};
+Secondary.args = {variant: "secondary"};
 
 export const Quiet = Template().bind({});
 Quiet.args = {isQuiet: true};

@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from '@react-spectrum/layout';
-import React from 'react';
-import {SpectrumStatusLightProps} from '@react-types/statuslight';
-import {StatusLight} from '../';
-import {storiesOf} from '@storybook/react';
-import {View} from '@react-spectrum/view';
+import {Flex} from "@react-spectrum/layout";
+import React from "react";
+import {SpectrumStatusLightProps} from "@react-types/statuslight";
+import {StatusLight} from "../";
+import {storiesOf} from "@storybook/react";
+import {View} from "@react-spectrum/view";
 
-let variants = ['celery', 'yellow', 'fuchsia', 'indigo', 'seafoam', 'chartreuse', 'magenta', 'purple', 'neutral', 'info', 'positive', 'notice', 'negative', 'positive'];
+let variants = ["celery", "yellow", "fuchsia", "indigo", "seafoam", "chartreuse", "magenta", "purple", "neutral", "info", "positive", "notice", "negative", "positive"];
 
-storiesOf('StatusLight', module)
+storiesOf("StatusLight", module)
   .add(
-    'all variants',
+    "all variants",
     () => render()
   )
   .add(
-    'multiline',
+    "multiline",
     () => (
       <View width="size-3000">
         <StatusLight variant="celery">Super long status light label. Sample text. Arma virumque cano, Troiae qui primus ab oris.</StatusLight>
@@ -36,7 +36,7 @@ storiesOf('StatusLight', module)
 function render() {
   return (
     <Flex wrap>
-      {variants.map((variant: SpectrumStatusLightProps['variant']) => (
+      {variants.map((variant: SpectrumStatusLightProps["variant"]) => (
         <>
           <StatusLight variant={variant}>Status light {variant}</StatusLight>
           <StatusLight variant={variant} isDisabled>Disabled {variant}</StatusLight>

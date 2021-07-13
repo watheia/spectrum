@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-const {Optimizer} = require('@parcel/plugin');
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const requireFromString = require('require-from-string');
-const {blobToString, urlJoin} = require('@parcel/utils');
+const {Optimizer} = require("@parcel/plugin");
+const React = require("react");
+const ReactDOMServer = require("react-dom/server");
+const requireFromString = require("require-from-string");
+const {blobToString, urlJoin} = require("@parcel/utils");
 
 module.exports = new Optimizer({
   async optimize({bundle, bundleGraph, contents, map}) {
@@ -51,11 +51,11 @@ module.exports = new Optimizer({
     let name = rename(bundle);
     let code = ReactDOMServer.renderToStaticMarkup(
       React.createElement(Component, {
-        scripts: bundles.filter(b => b.type === 'js' && !b.isInline).map(b => ({
-          type: b.env.outputFormat === 'esmodule' ? 'module' : undefined,
+        scripts: bundles.filter(b => b.type === "js" && !b.isInline).map(b => ({
+          type: b.env.outputFormat === "esmodule" ? "module" : undefined,
           url: urlJoin(b.target.publicUrl, b.name)
         })),
-        styles: bundles.filter(b => b.type === 'css').map(b => ({
+        styles: bundles.filter(b => b.type === "css").map(b => ({
           url: urlJoin(b.target.publicUrl, b.name)
         })),
         pages,
@@ -78,29 +78,29 @@ module.exports = new Optimizer({
     );
 
     return {
-      type: 'html',
-      contents: '<!doctype html>' + code
+      type: "html",
+      contents: "<!doctype html>" + code
     };
   }
 });
 
 function rename(bundle) {
-  return bundle.name.slice(0, -bundle.type.length) + 'html';
+  return bundle.name.slice(0, -bundle.type.length) + "html";
 }
 
 function getImageURL(image, bundleGraph, bundle) {
   if (!image) {
-    return '';
+    return "";
   }
 
   let dep = bundle.getMainEntry().getDependencies().find(d => d.id === image);
   if (!dep) {
-    return '';
+    return "";
   }
 
   let resolved = bundleGraph.getReferencedBundle(dep, bundle);
   if (!resolved) {
-    return '';
+    return "";
   }
 
   return resolved.name;

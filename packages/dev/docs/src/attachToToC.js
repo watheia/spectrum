@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import sideNavStyles from '@adobe/spectrum-css-temp/components/sidenav/vars.css';
+import sideNavStyles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
 
 export function attachToToC() {
-  let tocLinks = document.querySelectorAll('#toc a');
+  let tocLinks = document.querySelectorAll("#toc a");
   let headers = [];
   for (let link of tocLinks) {
-    let headerId = link.href.split('#').pop();
+    let headerId = link.href.split("#").pop();
     let header = document.getElementById(headerId);
     headers.push({link, header});
   }
@@ -27,18 +27,18 @@ export function attachToToC() {
       // right now it's impossible to select the last section if the last two heights combined are smaller than the viewport height
       headers.some((header, i) => {
         if ((header.header.offsetTop + header.header.getBoundingClientRect().height) > document.documentElement.scrollTop) {
-          let currentSelection = document.querySelectorAll(`#toc .${sideNavStyles['is-selected']}`);
+          let currentSelection = document.querySelectorAll(`#toc .${sideNavStyles["is-selected"]}`);
           if (currentSelection) {
             currentSelection.forEach(node => {
-              node.classList.remove(sideNavStyles['is-selected']);
-              const link = node.querySelector('[aria-current]');
+              node.classList.remove(sideNavStyles["is-selected"]);
+              const link = node.querySelector("[aria-current]");
               if (link) {
-                link.removeAttribute('aria-current');
+                link.removeAttribute("aria-current");
               }
             });
           }
-          header.link.parentElement.classList.add(sideNavStyles['is-selected']);
-          header.link.setAttribute('aria-current', 'location');
+          header.link.parentElement.classList.add(sideNavStyles["is-selected"]);
+          header.link.setAttribute("aria-current", "location");
           return true;
         }
       });
@@ -47,5 +47,5 @@ export function attachToToC() {
 
   updateToc();
 
-  document.addEventListener('scroll', updateToc);
+  document.addEventListener("scroll", updateToc);
 }

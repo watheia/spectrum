@@ -10,37 +10,37 @@
  * governing permissions and limitations under the License.
  */
 
-import {DatePickerFieldState, DateSegment} from '@react-stately/datepicker';
-import {DatePickerProps} from '@react-types/datepicker';
-import {DOMProps} from '@react-types/shared';
-import {HTMLAttributes, MouseEvent, useState} from 'react';
+import {DatePickerFieldState, DateSegment} from "@react-stately/datepicker";
+import {DatePickerProps} from "@react-types/datepicker";
+import {DOMProps} from "@react-types/shared";
+import {HTMLAttributes, MouseEvent, useState} from "react";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import {mergeProps, useId} from '@react-aria/utils';
-import {useDateFormatter, useLocale, useMessageFormatter} from '@react-aria/i18n';
-import {useFocusManager} from '@react-aria/focus';
-import {useSpinButton} from '@react-aria/spinbutton';
+import intlMessages from "../intl/*.json";
+import {mergeProps, useId} from "@react-aria/utils";
+import {useDateFormatter, useLocale, useMessageFormatter} from "@react-aria/i18n";
+import {useFocusManager} from "@react-aria/focus";
+import {useSpinButton} from "@react-aria/spinbutton";
 
 interface DateSegmentAria {
   segmentProps: HTMLAttributes<HTMLDivElement>
 }
 
 export function useDateSegment(props: DatePickerProps & DOMProps, segment: DateSegment, state: DatePickerFieldState): DateSegmentAria {
-  let [enteredKeys, setEnteredKeys] = useState('');
+  let [enteredKeys, setEnteredKeys] = useState("");
   let {direction} = useLocale();
   let messageFormatter = useMessageFormatter(intlMessages);
   let focusManager = useFocusManager();
 
   let textValue = segment.text;
-  let monthDateFormatter = useDateFormatter({month: 'long'});
+  let monthDateFormatter = useDateFormatter({month: "long"});
   let hourDateFormatter = useDateFormatter({
-    hour: 'numeric',
+    hour: "numeric",
     hour12: state.dateFormatter.resolvedOptions().hour12
   });
 
-  if (segment.type === 'month') {
+  if (segment.type === "month") {
     textValue = monthDateFormatter.format(state.value);
-  } else if (segment.type === 'hour' || segment.type === 'dayPeriod') {
+  } else if (segment.type === "hour" || segment.type === "dayPeriod") {
     textValue = hourDateFormatter.format(state.value);
   }
 
@@ -66,32 +66,32 @@ export function useDateSegment(props: DatePickerProps & DOMProps, segment: DateS
     }
 
     switch (e.key) {
-      case 'ArrowLeft':
+      case "ArrowLeft":
         e.preventDefault();
-        if (direction === 'rtl') {
+        if (direction === "rtl") {
           focusManager.focusNext();
         } else {
           focusManager.focusPrevious();
         }
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         e.preventDefault();
-        if (direction === 'rtl') {
+        if (direction === "rtl") {
           focusManager.focusPrevious();
         } else {
           focusManager.focusNext();
         }
         break;
-      case 'Enter':
+      case "Enter":
         e.preventDefault();
         if (segment.isPlaceholder && !props.isReadOnly) {
           state.confirmPlaceholder(segment.type);
         }
         focusManager.focusNext();
         break;
-      case 'Tab':
+      case "Tab":
         break;
-      case 'Backspace': {
+      case "Backspace": {
         e.preventDefault();
         if (isNumeric(segment.text) && !props.isReadOnly) {
           let newValue = segment.text.slice(0, -1);
@@ -113,28 +113,28 @@ export function useDateSegment(props: DatePickerProps & DOMProps, segment: DateS
     let newValue = enteredKeys + key;
 
     switch (segment.type) {
-      case 'dayPeriod':
+      case "dayPeriod":
         // TODO: internationalize
-        if (key === 'a') {
-          state.setSegment('dayPeriod', 0);
-        } else if (key === 'p') {
-          state.setSegment('dayPeriod', 12);
+        if (key === "a") {
+          state.setSegment("dayPeriod", 0);
+        } else if (key === "p") {
+          state.setSegment("dayPeriod", 12);
         }
         focusManager.focusNext();
         break;
-      case 'day':
-      case 'hour':
-      case 'minute':
-      case 'second':
-      case 'month':
-      case 'year': {
+      case "day":
+      case "hour":
+      case "minute":
+      case "second":
+      case "month":
+      case "year": {
         if (!isNumeric(newValue)) {
           return;
         }
 
         let numberValue = parseNumber(newValue);
         let segmentValue = numberValue;
-        if (segment.type === 'hour' && state.dateFormatter.resolvedOptions().hour12 && numberValue === 12) {
+        if (segment.type === "hour" && state.dateFormatter.resolvedOptions().hour12 && numberValue === 12) {
           segmentValue = 0;
         } else if (numberValue > segment.maxValue) {
           segmentValue = parseNumber(key);
@@ -142,8 +142,8 @@ export function useDateSegment(props: DatePickerProps & DOMProps, segment: DateS
 
         state.setSegment(segment.type, segmentValue);
 
-        if (Number(numberValue + '0') > segment.maxValue) {
-          setEnteredKeys('');
+        if (Number(numberValue + "0") > segment.maxValue) {
+          setEnteredKeys("");
           focusManager.focusNext();
         } else {
           setEnteredKeys(newValue);
@@ -154,15 +154,15 @@ export function useDateSegment(props: DatePickerProps & DOMProps, segment: DateS
   };
 
   let onFocus = () => {
-    setEnteredKeys('');
+    setEnteredKeys("");
   };
 
   let id = useId(props.id);
   return {
     segmentProps: mergeProps(spinButtonProps, {
       id,
-      'aria-label': messageFormatter(segment.type),
-      'aria-labelledby': `${props['aria-labelledby']} ${id}`,
+      "aria-label": messageFormatter(segment.type),
+      "aria-labelledby": `${props["aria-labelledby"]} ${id}`,
       tabIndex: props.isDisabled ? undefined : 0,
       onKeyDown,
       onFocus,

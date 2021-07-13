@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {DateRange, DateRangePickerProps, DateValue} from '@react-types/datepicker';
-import {isInvalid, setTime} from './utils';
-import {RangeValue, ValidationState} from '@react-types/shared';
-import {useControlledState} from '@react-stately/utils';
-import {useState} from 'react';
+import {DateRange, DateRangePickerProps, DateValue} from "@react-types/datepicker";
+import {isInvalid, setTime} from "./utils";
+import {RangeValue, ValidationState} from "@react-types/shared";
+import {useControlledState} from "@react-stately/utils";
+import {useState} from "react";
 
 export interface DateRangePickerState {
   value: DateRange,
@@ -55,7 +55,7 @@ export function useDateRangePickerState(props: DateRangePickerProps): DateRangeP
       isInvalid(value.start, props.minValue, props.maxValue) || 
       isInvalid(value.end, props.minValue, props.maxValue) ||
       (value.end != null && value.start != null && value.end < value.start)
-    ) ? 'invalid' : null);
+    ) ? "invalid" : null);
 
   return {
     value,

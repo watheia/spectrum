@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import CheckmarkMedium from '@spectrum-icons/ui/CheckmarkMedium';
-import {classNames, SlotProvider} from '@react-spectrum/utils';
-import {FocusRing} from '@react-aria/focus';
-import {Grid} from '@react-spectrum/layout';
-import {mergeProps} from '@react-aria/utils';
-import {Node} from '@react-types/shared';
-import React, {Key, useRef} from 'react';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {Text} from '@react-spectrum/text';
-import {TreeState} from '@react-stately/tree';
-import {useHover} from '@react-aria/interactions';
-import {useMenuContext} from './context';
-import {useMenuItem} from '@react-aria/menu';
+import CheckmarkMedium from "@spectrum-icons/ui/CheckmarkMedium";
+import {classNames, SlotProvider} from "@react-spectrum/utils";
+import {FocusRing} from "@react-aria/focus";
+import {Grid} from "@react-spectrum/layout";
+import {mergeProps} from "@react-aria/utils";
+import {Node} from "@react-types/shared";
+import React, {Key, useRef} from "react";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {Text} from "@react-spectrum/text";
+import {TreeState} from "@react-stately/tree";
+import {useHover} from "@react-aria/interactions";
+import {useMenuContext} from "./context";
+import {useMenuItem} from "@react-aria/menu";
 
 interface MenuItemProps<T> {
   item: Node<T>,
@@ -58,7 +58,7 @@ export function MenuItem<T>(props: MenuItemProps<T>) {
     {
       isSelected,
       isDisabled,
-      'aria-label': item['aria-label'],
+      "aria-label": item["aria-label"],
       key,
       onClose,
       closeOnSelect,
@@ -70,39 +70,39 @@ export function MenuItem<T>(props: MenuItemProps<T>) {
   );
   let {hoverProps, isHovered} = useHover({isDisabled});
 
-  let contents = typeof rendered === 'string'
+  let contents = typeof rendered === "string"
     ? <Text>{rendered}</Text>
     : rendered;
 
   return (
-    <FocusRing focusRingClass={classNames(styles, 'focus-ring')}>
+    <FocusRing focusRingClass={classNames(styles, "focus-ring")}>
       <li
         {...mergeProps(menuItemProps, hoverProps)}
         ref={ref}
         className={classNames(
           styles,
-          'spectrum-Menu-item',
+          "spectrum-Menu-item",
           {
-            'is-disabled': isDisabled,
-            'is-selected': isSelected,
-            'is-selectable': state.selectionManager.selectionMode !== 'none',
-            'is-hovered': isHovered
+            "is-disabled": isDisabled,
+            "is-selected": isSelected,
+            "is-selectable": state.selectionManager.selectionMode !== "none",
+            "is-hovered": isHovered
           }
         )}>
         <Grid
           UNSAFE_className={
             classNames(
               styles,
-              'spectrum-Menu-itemGrid'
+              "spectrum-Menu-itemGrid"
             )
           }>
           <SlotProvider
             slots={{
-              text: {UNSAFE_className: styles['spectrum-Menu-itemLabel'], ...labelProps},
-              end: {UNSAFE_className: styles['spectrum-Menu-end'], ...descriptionProps},
-              icon: {UNSAFE_className: styles['spectrum-Menu-icon'], size: 'S'},
-              description: {UNSAFE_className: styles['spectrum-Menu-description'], ...descriptionProps},
-              keyboard: {UNSAFE_className: styles['spectrum-Menu-keyboard'], ...keyboardShortcutProps}
+              text: {UNSAFE_className: styles["spectrum-Menu-itemLabel"], ...labelProps},
+              end: {UNSAFE_className: styles["spectrum-Menu-end"], ...descriptionProps},
+              icon: {UNSAFE_className: styles["spectrum-Menu-icon"], size: "S"},
+              description: {UNSAFE_className: styles["spectrum-Menu-description"], ...descriptionProps},
+              keyboard: {UNSAFE_className: styles["spectrum-Menu-keyboard"], ...keyboardShortcutProps}
             }}>
             {contents}
             {isSelected &&
@@ -111,7 +111,7 @@ export function MenuItem<T>(props: MenuItemProps<T>) {
                 UNSAFE_className={
                       classNames(
                         styles,
-                        'spectrum-Menu-checkmark'
+                        "spectrum-Menu-checkmark"
                       )
                     } />
                 }

@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {ComboBox, Item} from '../';
-import {generatePowerset} from '@react-spectrum/story-utils';
-import {Grid, repeat} from '@react-spectrum/layout';
-import {Meta, Story} from '@storybook/react';
-import React from 'react';
-import {SpectrumComboBoxProps} from '@react-types/combobox';
+import {ComboBox, Item} from "../";
+import {generatePowerset} from "@react-spectrum/story-utils";
+import {Grid, repeat} from "@react-spectrum/layout";
+import {Meta, Story} from "@storybook/react";
+import React from "react";
+import {SpectrumComboBoxProps} from "@react-types/combobox";
 
 // Skipping focus styles because don't have a way of applying it via classnames
 // No controlled open state also means no menu
@@ -23,63 +23,63 @@ let states = [
   {isQuiet: true},
   {isReadOnly: true},
   {isDisabled: true},
-  {validationState: ['valid', 'invalid']},
+  {validationState: ["valid", "invalid"]},
   {isRequired: true},
-  {necessityIndicator: 'label'}
+  {necessityIndicator: "label"}
 ];
 
 let combinations = generatePowerset(states);
 
 function shortName(key, value) {
-  let returnVal = '';
+  let returnVal = "";
   switch (key) {
-    case 'isQuiet':
-      returnVal = 'quiet';
+    case "isQuiet":
+      returnVal = "quiet";
       break;
-    case 'isReadOnly':
-      returnVal = 'ro';
+    case "isReadOnly":
+      returnVal = "ro";
       break;
-    case 'isDisabled':
-      returnVal = 'disable';
+    case "isDisabled":
+      returnVal = "disable";
       break;
-    case 'validationState':
+    case "validationState":
       returnVal = `vs ${value}`;
       break;
-    case 'isRequired':
-      returnVal = 'req';
+    case "isRequired":
+      returnVal = "req";
       break;
-    case 'necessityIndicator':
-      returnVal = 'necInd=label';
+    case "necessityIndicator":
+      returnVal = "necInd=label";
       break;
   }
   return returnVal;
 }
 
 const meta: Meta<SpectrumComboBoxProps<object>> = {
-  title: 'ComboBox',
+  title: "ComboBox",
   parameters: {
-    chromaticProvider: {colorSchemes: ['light', 'dark', 'lightest', 'darkest'], locales: ['en-US'], scales: ['medium', 'large']}
+    chromaticProvider: {colorSchemes: ["light", "dark", "lightest", "darkest"], locales: ["en-US"], scales: ["medium", "large"]}
   }
 };
 
 export default meta;
 
 let items = [
-  {name: 'Aardvark', id: '1'},
-  {name: 'Kangaroo', id: '2'},
-  {name: 'Snake', id: '3'}
+  {name: "Aardvark", id: "1"},
+  {name: "Kangaroo", id: "2"},
+  {name: "Snake", id: "3"}
 ];
 
 const Template: Story<SpectrumComboBoxProps<object>> = (args) => (
-  <Grid columns={repeat(4, '1fr')} autoFlow="row" gap="size-200">
+  <Grid columns={repeat(4, "1fr")} autoFlow="row" gap="size-200">
     {combinations.map(c => {
-      let key = Object.keys(c).map(k => shortName(k, c[k])).join(' ');
+      let key = Object.keys(c).map(k => shortName(k, c[k])).join(" ");
       if (!key) {
-        key = 'empty';
+        key = "empty";
       }
 
       return (
-        <ComboBox key={key} {...args} {...c} label={args['aria-label'] ? undefined : key} defaultItems={items}>
+        <ComboBox key={key} {...args} {...c} label={args["aria-label"] ? undefined : key} defaultItems={items}>
           {(item: any) => <Item>{item.name}</Item>}
         </ComboBox>
       );
@@ -89,11 +89,11 @@ const Template: Story<SpectrumComboBoxProps<object>> = (args) => (
 
 // Chromatic can't handle the size of the side label story so removed some extraneous props that don't matter for side label case.
 const TemplateSideLabel: Story<SpectrumComboBoxProps<object>> = (args) => (
-  <Grid columns={repeat(2, '1fr')} autoFlow="row" gap="size-200" width={800}>
+  <Grid columns={repeat(2, "1fr")} autoFlow="row" gap="size-200" width={800}>
     {combinations.filter(combo => !(combo.isReadOnly || combo.isDisabled)).map(c => {
-      let key = Object.keys(c).map(k => shortName(k, c[k])).join(' ');
+      let key = Object.keys(c).map(k => shortName(k, c[k])).join(" ");
       if (!key) {
-        key = 'empty';
+        key = "empty";
       }
 
       return (
@@ -106,29 +106,29 @@ const TemplateSideLabel: Story<SpectrumComboBoxProps<object>> = (args) => (
 );
 
 export const PropDefaults = Template.bind({});
-PropDefaults.storyName = 'default';
+PropDefaults.storyName = "default";
 PropDefaults.args = {};
 
 export const PropSelectedKey = Template.bind({});
-PropSelectedKey.storyName = 'selectedKey: 2';
-PropSelectedKey.args = {selectedKey: '2'};
+PropSelectedKey.storyName = "selectedKey: 2";
+PropSelectedKey.args = {selectedKey: "2"};
 
 export const PropInputValue = Template.bind({});
-PropInputValue.storyName = 'inputValue: Blah';
-PropInputValue.args = {inputValue: 'Blah'};
+PropInputValue.storyName = "inputValue: Blah";
+PropInputValue.args = {inputValue: "Blah"};
 
 export const PropAriaLabelled = Template.bind({});
-PropAriaLabelled.storyName = 'aria-label';
-PropAriaLabelled.args = {'aria-label': 'Label'};
+PropAriaLabelled.storyName = "aria-label";
+PropAriaLabelled.args = {"aria-label": "Label"};
 
 export const PropLabelEnd = Template.bind({});
-PropLabelEnd.storyName = 'label end';
-PropLabelEnd.args = {...PropDefaults.args, labelAlign: 'end'};
+PropLabelEnd.storyName = "label end";
+PropLabelEnd.args = {...PropDefaults.args, labelAlign: "end"};
 
 export const PropLabelSide = TemplateSideLabel.bind({});
-PropLabelSide.storyName = 'label side';
-PropLabelSide.args = {...PropDefaults.args, labelPosition: 'side'};
+PropLabelSide.storyName = "label side";
+PropLabelSide.args = {...PropDefaults.args, labelPosition: "side"};
 
 export const PropCustomWidth = Template.bind({});
-PropCustomWidth.storyName = 'custom width';
-PropCustomWidth.args = {...PropDefaults.args, width: 'size-1600'};
+PropCustomWidth.storyName = "custom width";
+PropCustomWidth.args = {...PropDefaults.args, width: "size-1600"};

@@ -10,73 +10,73 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from '@storybook/addon-actions';
-import {ActionButton, Button} from '@react-spectrum/button';
-import Add from '@spectrum-icons/workflow/Add';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from '../';
-import {Content} from '@react-spectrum/view';
-import {CRUDExample} from './CRUDExample';
-import Delete from '@spectrum-icons/workflow/Delete';
-import {Dialog, DialogTrigger} from '@react-spectrum/dialog';
-import {Divider} from '@react-spectrum/divider';
-import {Flex} from '@react-spectrum/layout';
-import {Heading} from '@react-spectrum/text';
-import {HidingColumns} from './HidingColumns';
-import {IllustratedMessage} from '@react-spectrum/illustratedmessage';
-import {Link} from '@react-spectrum/link';
-import {Radio, RadioGroup} from '@react-spectrum/radio';
-import React, {Key, useState} from 'react';
-import {SearchField} from '@react-spectrum/searchfield';
-import {SelectionMode} from '@react-types/shared';
-import {storiesOf} from '@storybook/react';
-import {Switch} from '@react-spectrum/switch';
-import {TextField} from '@react-spectrum/textfield';
-import {useAsyncList} from '@react-stately/data';
-import {useFilter} from '@react-aria/i18n';
-import {View} from '@react-spectrum/view';
+import {action} from "@storybook/addon-actions";
+import {ActionButton, Button} from "@react-spectrum/button";
+import Add from "@spectrum-icons/workflow/Add";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import {Cell, Column, Row, TableBody, TableHeader, TableView} from "../";
+import {Content} from "@react-spectrum/view";
+import {CRUDExample} from "./CRUDExample";
+import Delete from "@spectrum-icons/workflow/Delete";
+import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
+import {Divider} from "@react-spectrum/divider";
+import {Flex} from "@react-spectrum/layout";
+import {Heading} from "@react-spectrum/text";
+import {HidingColumns} from "./HidingColumns";
+import {IllustratedMessage} from "@react-spectrum/illustratedmessage";
+import {Link} from "@react-spectrum/link";
+import {Radio, RadioGroup} from "@react-spectrum/radio";
+import React, {Key, useState} from "react";
+import {SearchField} from "@react-spectrum/searchfield";
+import {SelectionMode} from "@react-types/shared";
+import {storiesOf} from "@storybook/react";
+import {Switch} from "@react-spectrum/switch";
+import {TextField} from "@react-spectrum/textfield";
+import {useAsyncList} from "@react-stately/data";
+import {useFilter} from "@react-aria/i18n";
+import {View} from "@react-spectrum/view";
 
 let columns = [
-  {name: 'Foo', key: 'foo'},
-  {name: 'Bar', key: 'bar'},
-  {name: 'Baz', key: 'baz'}
+  {name: "Foo", key: "foo"},
+  {name: "Bar", key: "bar"},
+  {name: "Baz", key: "baz"}
 ];
 
 let nestedColumns = [
-  {name: 'Test', key: 'test'},
-  {name: 'Tiered One Header', key: 'tier1', children: [
-    {name: 'Tier Two Header A', key: 'tier2a', children: [
-      {name: 'Foo', key: 'foo'},
-      {name: 'Bar', key: 'bar'}
+  {name: "Test", key: "test"},
+  {name: "Tiered One Header", key: "tier1", children: [
+    {name: "Tier Two Header A", key: "tier2a", children: [
+      {name: "Foo", key: "foo"},
+      {name: "Bar", key: "bar"}
     ]},
-    {name: 'Yay', key: 'yay'},
-    {name: 'Tier Two Header B', key: 'tier2b', children: [
-      {name: 'Baz', key: 'baz'}
+    {name: "Yay", key: "yay"},
+    {name: "Tier Two Header B", key: "tier2b", children: [
+      {name: "Baz", key: "baz"}
     ]}
   ]}
 ];
 
 let items = [
-  {test: 'Test 1', foo: 'Foo 1', bar: 'Bar 1', yay: 'Yay 1', baz: 'Baz 1'},
-  {test: 'Test 2', foo: 'Foo 2', bar: 'Bar 2', yay: 'Yay 2', baz: 'Baz 2'},
-  {test: 'Test 1', foo: 'Foo 3', bar: 'Bar 1', yay: 'Yay 1', baz: 'Baz 1'},
-  {test: 'Test 2', foo: 'Foo 4', bar: 'Bar 2', yay: 'Yay 2', baz: 'Baz 2'},
-  {test: 'Test 1', foo: 'Foo 5', bar: 'Bar 1', yay: 'Yay 1', baz: 'Baz 1'},
-  {test: 'Test 2', foo: 'Foo 6', bar: 'Bar 2', yay: 'Yay 2', baz: 'Baz 2'},
-  {test: 'Test 1', foo: 'Foo 7', bar: 'Bar 1', yay: 'Yay 1', baz: 'Baz 1'},
-  {test: 'Test 2', foo: 'Foo 8', bar: 'Bar 2', yay: 'Yay 2', baz: 'Baz 2'}
+  {test: "Test 1", foo: "Foo 1", bar: "Bar 1", yay: "Yay 1", baz: "Baz 1"},
+  {test: "Test 2", foo: "Foo 2", bar: "Bar 2", yay: "Yay 2", baz: "Baz 2"},
+  {test: "Test 1", foo: "Foo 3", bar: "Bar 1", yay: "Yay 1", baz: "Baz 1"},
+  {test: "Test 2", foo: "Foo 4", bar: "Bar 2", yay: "Yay 2", baz: "Baz 2"},
+  {test: "Test 1", foo: "Foo 5", bar: "Bar 1", yay: "Yay 1", baz: "Baz 1"},
+  {test: "Test 2", foo: "Foo 6", bar: "Bar 2", yay: "Yay 2", baz: "Baz 2"},
+  {test: "Test 1", foo: "Foo 7", bar: "Bar 1", yay: "Yay 1", baz: "Baz 1"},
+  {test: "Test 2", foo: "Foo 8", bar: "Bar 2", yay: "Yay 2", baz: "Baz 2"}
 ];
 
 let manyColunns = [];
 for (let i = 0; i < 100; i++) {
-  manyColunns.push({name: 'Column ' + i, key: 'C' + i});
+  manyColunns.push({name: "Column " + i, key: "C" + i});
 }
 
 let manyRows = [];
 for (let i = 0; i < 1000; i++) {
-  let row = {key: 'R' + i};
+  let row = {key: "R" + i};
   for (let j = 0; j < 100; j++) {
-    row['C' + j] = `${i}, ${j}`;
+    row["C" + j] = `${i}, ${j}`;
   }
 
   manyRows.push(row);
@@ -94,10 +94,10 @@ function renderEmptyState() {
   );
 }
 
-let onSelectionChange = action('onSelectionChange');
-storiesOf('TableView', module)
+let onSelectionChange = action("onSelectionChange");
+storiesOf("TableView", module)
   .add(
-    'static',
+    "static",
     () => (
       <TableView aria-label="TableView with static contents" width={300} height={200}>
         <TableHeader>
@@ -121,7 +121,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'static with selection',
+    "static with selection",
     () => (
       <TableView aria-label="TableView with static contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader>
@@ -145,7 +145,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic',
+    "dynamic",
     () => (
       <TableView aria-label="TableView with dynamic contents" width={300} height={200}>
         <TableHeader columns={columns}>
@@ -162,7 +162,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic with selection',
+    "dynamic with selection",
     () => (
       <TableView aria-label="TableView with dynamic contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={columns}>
@@ -179,7 +179,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic with single selection',
+    "dynamic with single selection",
     () => (
       <TableView aria-label="TableView with dynamic contents" selectionMode="single" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={columns}>
@@ -196,9 +196,9 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic with disabled, single selection',
+    "dynamic with disabled, single selection",
     () => (
-      <TableView disabledKeys={['Foo 1', 'Foo 3']} aria-label="TableView with dynamic contents" selectionMode="single" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
+      <TableView disabledKeys={["Foo 1", "Foo 3"]} aria-label="TableView with dynamic contents" selectionMode="single" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={columns}>
           {column => <Column>{column.name}</Column>}
         </TableHeader>
@@ -213,9 +213,9 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic with disabled, multiple selection',
+    "dynamic with disabled, multiple selection",
     () => (
-      <TableView disabledKeys={['Foo 1', 'Foo 3']} aria-label="TableView with dynamic contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
+      <TableView disabledKeys={["Foo 1", "Foo 3"]} aria-label="TableView with dynamic contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={columns}>
           {column => <Column>{column.name}</Column>}
         </TableHeader>
@@ -230,9 +230,9 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic with disabled, multiple selection, quiet',
+    "dynamic with disabled, multiple selection, quiet",
     () => (
-      <TableView isQuiet disabledKeys={['Foo 1', 'Foo 3']} aria-label="TableView with dynamic contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
+      <TableView isQuiet disabledKeys={["Foo 1", "Foo 3"]} aria-label="TableView with dynamic contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={columns}>
           {column => <Column>{column.name}</Column>}
         </TableHeader>
@@ -248,13 +248,13 @@ storiesOf('TableView', module)
   )
   .add(
     // For testing https://github.com/watheia/rsp-kit/issues/1885
-    'swap selection mode',
+    "swap selection mode",
     () => (
       <ChangableSelectionMode />
     )
   )
   .add(
-    'static with nested columns',
+    "static with nested columns",
     () => (
       <TableView aria-label="TableView with nested columns" selectionMode="multiple" width={500} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader>
@@ -285,7 +285,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'dynamic with nested columns',
+    "dynamic with nested columns",
     () => (
       <TableView aria-label="TableView with nested columns" selectionMode="multiple" width={700} height={300} overflowMode="wrap" onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={nestedColumns}>
@@ -304,7 +304,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'focusable cells',
+    "focusable cells",
     () => (
       <Flex direction="column">
         <input placeholder="Focusable before" />
@@ -337,7 +337,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'many columns and rows',
+    "many columns and rows",
     () => (
       <TableView aria-label="TableView with many columns and rows" selectionMode="multiple" width={700} height={500} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={manyColunns}>
@@ -357,7 +357,7 @@ storiesOf('TableView', module)
     {chromatic: {disable: true}}
   )
   .add(
-    'isQuiet, many columns and rows',
+    "isQuiet, many columns and rows",
     () => (
       <TableView aria-label="Quiet TableView with many columns and rows" selectionMode="multiple" width={700} height={500} isQuiet onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader columns={manyColunns}>
@@ -377,7 +377,7 @@ storiesOf('TableView', module)
     {chromatic: {disable: true}}
   )
   .add(
-    'column widths and dividers',
+    "column widths and dividers",
     () => (
       <TableView aria-label="TableView with column widths and dividers" selectionMode="multiple" width={500} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader>
@@ -401,7 +401,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'isQuiet, column widths and dividers',
+    "isQuiet, column widths and dividers",
     () => (
       <TableView aria-label="Quiet TableView with column widths and dividers" selectionMode="multiple" width={500} height={200} isQuiet onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader>
@@ -545,7 +545,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'custom isRowHeader labeling',
+    "custom isRowHeader labeling",
     () => (
       <TableView aria-label="TableView with custom row header labeling" selectionMode="multiple" width={500} height={200} isQuiet onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader>
@@ -569,19 +569,19 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'CRUD',
+    "CRUD",
     () => (
       <CRUDExample />
     )
   )
   .add(
-    'hiding columns',
+    "hiding columns",
     () => (
       <HidingColumns />
     )
   )
   .add(
-    'isLoading',
+    "isLoading",
     () => (
       <TableView aria-label="TableView loading" width={700} height={200}>
         <TableHeader columns={manyColunns}>
@@ -600,7 +600,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'isLoading more',
+    "isLoading more",
     () => (
       <TableView aria-label="TableView loading more" width={700} height={200}>
         <TableHeader columns={columns}>
@@ -619,7 +619,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'filtering',
+    "filtering",
     () => (
       <TableView aria-label="Table filtering" width={700} height={200}>
         <TableHeader columns={columns}>
@@ -638,7 +638,7 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'renderEmptyState',
+    "renderEmptyState",
     () => (
       <TableView aria-label="TableView with empty state" width={700} height={400} isQuiet renderEmptyState={renderEmptyState}>
         <TableHeader columns={manyColunns}>
@@ -653,12 +653,12 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'async loading',
+    "async loading",
     () => <AsyncLoadingExample />,
     {chromatic: {disable: true}}
   )
   .add(
-    'hideHeader',
+    "hideHeader",
     () => (
       <TableView
         aria-label="TableView with static contents"
@@ -773,22 +773,22 @@ storiesOf('TableView', module)
     )
   )
   .add(
-    'async client side filter loading',
+    "async client side filter loading",
     () => <ProjectListTable />,
     {chromatic: {disable: true}}
   )
   .add(
-    'async server side filter loading',
+    "async server side filter loading",
     () => <AsyncServerFilterTable />,
     {chromatic: {disable: true}}
   )
   .add(
-    'loads more on scroll when contentSize.height < rect.height * 2',
+    "loads more on scroll when contentSize.height < rect.height * 2",
     () => <AsyncServerFilterTable height={500} />,
     {chromatic: {disable: true}}
   )
   .add(
-    'with dialog trigger',
+    "with dialog trigger",
     () => (
       <TableView aria-label="TableView with static contents" selectionMode="multiple" width={300} height={200} onSelectionChange={s => onSelectionChange([...s])}>
         <TableHeader>
@@ -836,9 +836,9 @@ function AsyncLoadingExample() {
   let list = useAsyncList<Item>({
     getKey: (item) => item.data.id,
     async load({signal, cursor}) {
-      let url = new URL('https://www.reddit.com/r/news.json');
+      let url = new URL("https://www.reddit.com/r/news.json");
       if (cursor) {
-        url.searchParams.append('after', cursor);
+        url.searchParams.append("after", cursor);
       }
 
       let res = await fetch(url.toString(), {signal});
@@ -849,7 +849,7 @@ function AsyncLoadingExample() {
       return {
         items: items.slice().sort((a, b) => {
           let cmp = a.data[sortDescriptor.column] < b.data[sortDescriptor.column] ? -1 : 1;
-          if (sortDescriptor.direction === 'descending') {
+          if (sortDescriptor.direction === "descending") {
             cmp *= -1;
           }
           return cmp;
@@ -872,7 +872,7 @@ function AsyncLoadingExample() {
           {item =>
             (<Row key={item.data.id}>
               {key =>
-                key === 'title'
+                key === "title"
                   ? <Cell textValue={item.data.title}><Link isQuiet><a href={item.data.url} target="_blank">{item.data.title}</a></Link></Cell>
                   : <Cell>{item.data[key]}</Cell>
               }
@@ -886,47 +886,47 @@ function AsyncLoadingExample() {
 
 let COLUMNS = [
   {
-    name: 'Name',
-    key: 'name',
+    name: "Name",
+    key: "name",
     minWidth: 200
   },
   {
-    name: 'Owner',
-    key: 'ownerName'
+    name: "Owner",
+    key: "ownerName"
   }
 ];
 
 async function getCollectionItems(): Promise<any> {
   const result = [
     {
-      id: 'xx',
-      name: 'abc',
-      ownerName: 'xx'
+      id: "xx",
+      name: "abc",
+      ownerName: "xx"
     },
     {
-      id: 'aa',
-      name: 'efg',
-      ownerName: 'aa'
+      id: "aa",
+      name: "efg",
+      ownerName: "aa"
     },
     {
-      id: 'yy',
-      name: 'abcd',
-      ownerName: 'yy'
+      id: "yy",
+      name: "abcd",
+      ownerName: "yy"
     },
     {
-      id: 'bb',
-      name: 'efgh',
-      ownerName: 'bb'
+      id: "bb",
+      name: "efgh",
+      ownerName: "bb"
     },
     {
-      id: 'zz',
-      name: 'abce',
-      ownerName: 'zz'
+      id: "zz",
+      name: "abce",
+      ownerName: "zz"
     },
     {
-      id: 'cc',
-      name: 'efgi',
-      ownerName: 'cc'
+      id: "cc",
+      name: "efgi",
+      ownerName: "cc"
     }
   ];
   return new Promise((resolve) => {
@@ -943,8 +943,8 @@ function ProjectListTable() {
     ownerName: string
   }
 
-  let {contains} = useFilter({sensitivity: 'base'});
-  let [filterText, setFilterText] = React.useState('');
+  let {contains} = useFilter({sensitivity: "base"});
+  let [filterText, setFilterText] = React.useState("");
   let list = useAsyncList<Item>({
     async load() {
       let projects = await getCollectionItems();
@@ -959,18 +959,18 @@ function ProjectListTable() {
   return (
     <>
       <SearchField
-        marginStart={'size-200'}
-        marginBottom={'size-200'}
-        marginTop={'size-200'}
-        width={'size-3600'}
-        aria-label={'Search by name'}
-        placeholder={'Search by name'}
+        marginStart={"size-200"}
+        marginBottom={"size-200"}
+        marginTop={"size-200"}
+        width={"size-3600"}
+        aria-label={"Search by name"}
+        placeholder={"Search by name"}
         value={filterText}
         onChange={(onChange)} />
       <View flexGrow={1} height={700} overflow="hidden">
         <TableView
-          aria-label={'Project list'}
-          height={'100%'}
+          aria-label={"Project list"}
+          height={"100%"}
           isQuiet
           sortDescriptor={list.sortDescriptor}
           onSortChange={list.sort}>
@@ -1002,17 +1002,17 @@ function AsyncServerFilterTable(props) {
 
   let columns = [
     {
-      name: 'Name',
-      key: 'name',
+      name: "Name",
+      key: "name",
       minWidth: 200
     },
     {
-      name: 'Height',
-      key: 'height'
+      name: "Height",
+      key: "height"
     },
     {
-      name: 'Mass',
-      key: 'mass'
+      name: "Mass",
+      key: "mass"
     }
   ];
 
@@ -1020,7 +1020,7 @@ function AsyncServerFilterTable(props) {
     getKey: (item) => item.name,
     async load({signal, cursor, filterText}) {
       if (cursor) {
-        cursor = cursor.replace(/^http:\/\//i, 'https://');
+        cursor = cursor.replace(/^http:\/\//i, "https://");
       }
 
       let res = await fetch(cursor || `https://swapi.dev/api/people/?search=${filterText}`, {signal});
@@ -1040,16 +1040,16 @@ function AsyncServerFilterTable(props) {
   return (
     <div>
       <SearchField
-        marginStart={'size-200'}
-        marginBottom={'size-200'}
-        marginTop={'size-200'}
-        width={'size-3600'}
-        aria-label={'Search by name'}
-        placeholder={'Search by name'}
+        marginStart={"size-200"}
+        marginBottom={"size-200"}
+        marginTop={"size-200"}
+        width={"size-3600"}
+        aria-label={"Search by name"}
+        placeholder={"Search by name"}
         defaultValue={list.filterText}
         onChange={(onChange)} />
       <TableView
-        aria-label={'Star Wars Characters'}
+        aria-label={"Star Wars Characters"}
         height={200}
         width={600}
         isQuiet
@@ -1076,8 +1076,8 @@ function AsyncServerFilterTable(props) {
 }
 
 function ChangableSelectionMode() {
-  let [selectionMode, setSelectionMode] = useState('none' as SelectionMode);
-  let [selectedKeys, setSelectedKeys] = React.useState(new Set([]) as 'all' | Iterable<Key>);
+  let [selectionMode, setSelectionMode] = useState("none" as SelectionMode);
+  let [selectedKeys, setSelectedKeys] = React.useState(new Set([]) as "all" | Iterable<Key>);
 
   return (
     <Flex direction="column" flexGrow={1} maxWidth="size-6000">

@@ -10,23 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
-import _clsx from 'clsx';
+import _clsx from "clsx";
 
 export let shouldKeepSpectrumClassNames = false;
 
 export function keepSpectrumClassNames() {
   shouldKeepSpectrumClassNames = true;
   console.warn(
-    'Legacy spectrum-prefixed class names enabled for backward compatibility. ' +
-    'We recommend replacing instances of CSS overrides targeting spectrum selectors ' +
-    'in your app with custom class names of your own, and disabling this flag.'
+    "Legacy spectrum-prefixed class names enabled for backward compatibility. " +
+    "We recommend replacing instances of CSS overrides targeting spectrum selectors " +
+    "in your app with custom class names of your own, and disabling this flag."
   );
 }
 
 export function classNames(cssModule: {[key: string]: string}, ...values: Array<string | Object>): string {
   let classes = [];
   for (let value of values) {
-    if (typeof value === 'object' && value) {
+    if (typeof value === "object" && value) {
       let mapped = {};
       for (let key in value) {
         if (cssModule[key]) {
@@ -39,7 +39,7 @@ export function classNames(cssModule: {[key: string]: string}, ...values: Array<
       }
 
       classes.push(mapped);
-    } else if (typeof value === 'string') {
+    } else if (typeof value === "string") {
       if (cssModule[value]) {
         classes.push(cssModule[value]);
       }

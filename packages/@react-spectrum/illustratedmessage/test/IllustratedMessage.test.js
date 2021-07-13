@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {Content} from '@react-spectrum/view';
-import {Heading} from '@react-spectrum/text';
-import {IllustratedMessage} from '../';
-import React from 'react';
-import {render} from '@testing-library/react';
-import V2IllustratedMessage from '@react/react-spectrum/IllustratedMessage';
+import {Content} from "@react-spectrum/view";
+import {Heading} from "@react-spectrum/text";
+import {IllustratedMessage} from "../";
+import React from "react";
+import {render} from "@testing-library/react";
+import V2IllustratedMessage from "@react/react-spectrum/IllustratedMessage";
 
-let dataTestId = 'IMsvg1';
+let dataTestId = "IMsvg1";
 
 function Image(props) {
   return (<svg {...props} data-testid={dataTestId}><path /></svg>);
@@ -43,40 +43,40 @@ function renderIllustratedMessage(Component, props) {
   }
 }
 
-describe('IllustratedMessage', function () {
+describe("IllustratedMessage", function () {
   it.each`
     Name                       | Component               | props
-    ${'IllustratedMessage'}    | ${IllustratedMessage}   | ${{heading: 'foo', description: 'bar', illustration: <Image />}}
-    ${'V2IllustratedMessage'}  | ${V2IllustratedMessage} | ${{heading: 'foo', description: 'bar', illustration: <Image />}}
-  `('$Name should render all parts of an IllustratedMessage', function ({Component, props}) {
+    ${"IllustratedMessage"}    | ${IllustratedMessage}   | ${{heading: "foo", description: "bar", illustration: <Image />}}
+    ${"V2IllustratedMessage"}  | ${V2IllustratedMessage} | ${{heading: "foo", description: "bar", illustration: <Image />}}
+  `("$Name should render all parts of an IllustratedMessage", function ({Component, props}) {
     let {getByTestId, getByText} = renderIllustratedMessage(Component, props);
 
     getByTestId(dataTestId);
-    getByText('foo');
-    getByText('bar');
+    getByText("foo");
+    getByText("bar");
   });
 
   it.each`
     Name                       | Component               | props
-    ${'IllustratedMessage'}    | ${IllustratedMessage}   | ${{illustration: <Image />}}
-    ${'V2IllustratedMessage'}  | ${V2IllustratedMessage} | ${{illustration: <Image />}}
-  `('$Name should render only an svg', function ({Component, props}) {
+    ${"IllustratedMessage"}    | ${IllustratedMessage}   | ${{illustration: <Image />}}
+    ${"V2IllustratedMessage"}  | ${V2IllustratedMessage} | ${{illustration: <Image />}}
+  `("$Name should render only an svg", function ({Component, props}) {
     let {queryAllByText, getByTestId} = renderIllustratedMessage(Component, props);
 
     getByTestId(dataTestId);
-    expect(queryAllByText('foo').length).toBe(0);
-    expect(queryAllByText('bar').length).toBe(0);
+    expect(queryAllByText("foo").length).toBe(0);
+    expect(queryAllByText("bar").length).toBe(0);
   });
 
   it.each`
     Name                       | Component               | props
-    ${'IllustratedMessage'}    | ${IllustratedMessage}   | ${{heading: 'foo', description: 'bar'}}
-    ${'V2IllustratedMessage'}  | ${V2IllustratedMessage} | ${{heading: 'foo', description: 'bar'}}
-  `('$Name should render heading and description without an svg', function ({Component, props}) {
+    ${"IllustratedMessage"}    | ${IllustratedMessage}   | ${{heading: "foo", description: "bar"}}
+    ${"V2IllustratedMessage"}  | ${V2IllustratedMessage} | ${{heading: "foo", description: "bar"}}
+  `("$Name should render heading and description without an svg", function ({Component, props}) {
     let {queryAllByTestId, getByText} = renderIllustratedMessage(Component, props);
 
     expect(queryAllByTestId(dataTestId).length).toBe(0);
-    getByText('foo');
-    getByText('bar');
+    getByText("foo");
+    getByText("bar");
   });
 });

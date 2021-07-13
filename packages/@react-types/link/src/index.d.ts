@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, PressEvents, StyleProps} from '@react-types/shared';
-import {ReactNode} from 'react';
+import {AriaLabelingProps, PressEvents, StyleProps} from "@react-types/shared";
+import {ReactNode} from "react";
 
 export interface LinkProps extends PressEvents {}
 
@@ -24,7 +24,7 @@ export interface SpectrumLinkProps extends AriaLinkProps, StyleProps {
    * The [visual style](https://spectrum.adobe.com/page/link/#Options) of the link.
    * @default 'primary'
    */
-  variant?: 'primary' | 'secondary' | 'overBackground',
+  variant?: "primary" | "secondary" | "overBackground",
   /** Whether the link should be displayed with a quiet style. */
   isQuiet?: boolean
 }

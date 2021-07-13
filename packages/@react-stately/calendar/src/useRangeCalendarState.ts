@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {DateValue} from '@react-types/datepicker';
-import {endOfDay, startOfDay} from 'date-fns';
-import {RangeCalendarProps} from '@react-types/calendar';
-import {RangeCalendarState} from './types';
-import {RangeValue} from '@react-types/shared';
-import {useCalendarState} from './useCalendarState';
-import {useControlledState} from '@react-stately/utils';
-import {useState} from 'react';
+import {DateValue} from "@react-types/datepicker";
+import {endOfDay, startOfDay} from "date-fns";
+import {RangeCalendarProps} from "@react-types/calendar";
+import {RangeCalendarState} from "./types";
+import {RangeValue} from "@react-types/shared";
+import {useCalendarState} from "./useCalendarState";
+import {useControlledState} from "@react-stately/utils";
+import {useState} from "react";
 
 export function useRangeCalendarState(props: RangeCalendarProps): RangeCalendarState {
   let {value: valueProp, defaultValue, onChange, ...calendarProps} = props;

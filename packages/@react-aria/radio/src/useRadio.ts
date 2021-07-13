@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaRadioProps} from '@react-types/radio';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {InputHTMLAttributes, RefObject} from 'react';
-import {radioGroupNames} from './utils';
-import {RadioGroupState} from '@react-stately/radio';
-import {useFocusable} from '@react-aria/focus';
-import {usePress} from '@react-aria/interactions';
+import {AriaRadioProps} from "@react-types/radio";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {InputHTMLAttributes, RefObject} from "react";
+import {radioGroupNames} from "./utils";
+import {RadioGroupState} from "@react-stately/radio";
+import {useFocusable} from "@react-aria/focus";
+import {usePress} from "@react-aria/interactions";
 
 interface RadioAriaProps extends AriaRadioProps {
   /**
@@ -46,8 +46,8 @@ export function useRadio(props: RadioAriaProps, state: RadioGroupState, ref: Ref
     value,
     isRequired,
     children,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby
   } = props;
 
   const isDisabled = props.isDisabled || state.isDisabled;
@@ -58,7 +58,7 @@ export function useRadio(props: RadioAriaProps, state: RadioGroupState, ref: Ref
   let hasChildren = children != null;
   let hasAriaLabel = ariaLabel != null || ariaLabelledby != null;
   if (!hasChildren && !hasAriaLabel) {
-    console.warn('If you do not provide children, you must specify an aria-label for accessibility');
+    console.warn("If you do not provide children, you must specify an aria-label for accessibility");
   }
 
   let checked = state.selectedValue === value;
@@ -85,11 +85,11 @@ export function useRadio(props: RadioAriaProps, state: RadioGroupState, ref: Ref
   return {
     inputProps: mergeProps(domProps, {
       ...interactions,
-      type: 'radio',
+      type: "radio",
       name: radioGroupNames.get(state),
       tabIndex,
       disabled: isDisabled,
-      'aria-readonly': isReadOnly || undefined,
+      "aria-readonly": isReadOnly || undefined,
       required: isRequired,
       checked,
       value,

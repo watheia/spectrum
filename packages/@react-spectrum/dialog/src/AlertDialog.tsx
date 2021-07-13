@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
-import AlertMedium from '@spectrum-icons/ui/AlertMedium';
-import {Button} from '@react-spectrum/button';
-import {ButtonGroup} from '@react-spectrum/buttongroup';
-import {chain} from '@react-aria/utils';
-import {classNames, useStyleProps} from '@react-spectrum/utils';
-import {Content} from '@react-spectrum/view';
-import {Dialog} from './Dialog';
-import {DialogContext, DialogContextValue} from './context';
-import {Divider} from '@react-spectrum/divider';
-import {DOMRef} from '@react-types/shared';
-import {Heading} from '@react-spectrum/text';
+import AlertMedium from "@spectrum-icons/ui/AlertMedium";
+import {Button} from "@react-spectrum/button";
+import {ButtonGroup} from "@react-spectrum/buttongroup";
+import {chain} from "@react-aria/utils";
+import {classNames, useStyleProps} from "@react-spectrum/utils";
+import {Content} from "@react-spectrum/view";
+import {Dialog} from "./Dialog";
+import {DialogContext, DialogContextValue} from "./context";
+import {Divider} from "@react-spectrum/divider";
+import {DOMRef} from "@react-types/shared";
+import {Heading} from "@react-spectrum/text";
 // @ts-ignore
-import intlMessages from '../intl/*.json';
-import React, {forwardRef, useContext} from 'react';
-import {SpectrumAlertDialogProps} from '@react-types/dialog';
-import {SpectrumButtonProps} from '@react-types/button';
-import styles from '@adobe/spectrum-css-temp/components/dialog/vars.css';
-import {useMessageFormatter} from '@react-aria/i18n';
+import intlMessages from "../intl/*.json";
+import React, {forwardRef, useContext} from "react";
+import {SpectrumAlertDialogProps} from "@react-types/dialog";
+import {SpectrumButtonProps} from "@react-types/button";
+import styles from "@adobe/spectrum-css-temp/components/dialog/vars.css";
+import {useMessageFormatter} from "@react-aria/i18n";
 
 /**
  * AlertDialogs are a specific type of Dialog. They display important information that users need to acknowledge.
@@ -55,12 +55,12 @@ function AlertDialog(props: SpectrumAlertDialogProps, ref: DOMRef) {
   let {styleProps} = useStyleProps(otherProps);
   let formatMessage = useMessageFormatter(intlMessages);
 
-  let confirmVariant: SpectrumButtonProps['variant'] = 'primary';
+  let confirmVariant: SpectrumButtonProps["variant"] = "primary";
   if (variant) {
-    if (variant === 'confirmation') {
-      confirmVariant = 'cta';
-    } else if (variant === 'destructive') {
-      confirmVariant = 'negative';
+    if (variant === "confirmation") {
+      confirmVariant = "cta";
+    } else if (variant === "destructive") {
+      confirmVariant = "negative";
     }
   }
 
@@ -73,10 +73,10 @@ function AlertDialog(props: SpectrumAlertDialogProps, ref: DOMRef) {
       role="alertdialog"
       ref={ref}>
       <Heading>{title}</Heading>
-      {(variant === 'error' || variant === 'warning') &&
+      {(variant === "error" || variant === "warning") &&
         <AlertMedium
           slot="typeIcon"
-          aria-label={formatMessage('alert')} />
+          aria-label={formatMessage("alert")} />
       }
       <Divider />
       <Content>{children}</Content>
@@ -85,7 +85,7 @@ function AlertDialog(props: SpectrumAlertDialogProps, ref: DOMRef) {
           <Button
             variant="secondary"
             onPress={() => chain(onClose(), onCancel())}
-            autoFocus={autoFocusButton === 'cancel'}>
+            autoFocus={autoFocusButton === "cancel"}>
             {cancelLabel}
           </Button>
         }
@@ -94,7 +94,7 @@ function AlertDialog(props: SpectrumAlertDialogProps, ref: DOMRef) {
             variant="secondary"
             onPress={() => chain(onClose(), onSecondaryAction())}
             isDisabled={isSecondaryActionDisabled}
-            autoFocus={autoFocusButton === 'secondary'}>
+            autoFocus={autoFocusButton === "secondary"}>
             {secondaryActionLabel}
           </Button>
         }
@@ -102,7 +102,7 @@ function AlertDialog(props: SpectrumAlertDialogProps, ref: DOMRef) {
           variant={confirmVariant}
           onPress={() => chain(onClose(), onPrimaryAction())}
           isDisabled={isPrimaryActionDisabled}
-          autoFocus={autoFocusButton === 'primary'}>
+          autoFocus={autoFocusButton === "primary"}>
           {primaryActionLabel}
         </Button>
       </ButtonGroup>

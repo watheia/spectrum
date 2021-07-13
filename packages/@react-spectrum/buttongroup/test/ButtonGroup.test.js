@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, render, within} from '@testing-library/react';
-import {Button} from '@react-spectrum/button';
-import {ButtonGroup} from '../';
-import {Provider} from '@react-spectrum/provider';
-import React, {useEffect, useRef} from 'react';
-import {theme} from '@react-spectrum/theme-default';
-import {triggerPress} from '@react-spectrum/test-utils';
+import {act, render, within} from "@testing-library/react";
+import {Button} from "@react-spectrum/button";
+import {ButtonGroup} from "../";
+import {Provider} from "@react-spectrum/provider";
+import React, {useEffect, useRef} from "react";
+import {theme} from "@react-spectrum/theme-default";
+import {triggerPress} from "@react-spectrum/test-utils";
 
-let buttonGroupId = 'button-group';
+let buttonGroupId = "button-group";
 let onPressSpy1 = jest.fn();
 let onPressSpy2 = jest.fn();
 let onPressSpy3 = jest.fn();
@@ -41,22 +41,22 @@ function renderComponent(Component, props = {}) {
   );
 }
 
-describe('ButtonGroup', function () {
+describe("ButtonGroup", function () {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
   it.each`
     Name               | Component        | props
-    ${'ButtonGroup'}   | ${ButtonGroup}   | ${{}}
-  `('$Name renders multiple buttons', function ({Component, props}) {
+    ${"ButtonGroup"}   | ${ButtonGroup}   | ${{}}
+  `("$Name renders multiple buttons", function ({Component, props}) {
     let tree = renderComponent(Component, props);
     let buttonGroup = tree.getByTestId(buttonGroupId);
     expect(buttonGroup).toBeTruthy();
 
-    let button1 = within(buttonGroup).getByText('Button1');
-    let button2 = within(buttonGroup).getByText('Button2');
-    let button3 = within(buttonGroup).getByText('Button3');
+    let button1 = within(buttonGroup).getByText("Button1");
+    let button2 = within(buttonGroup).getByText("Button2");
+    let button3 = within(buttonGroup).getByText("Button3");
 
     expect(button1).toBeTruthy();
     expect(button2).toBeTruthy();
@@ -73,18 +73,18 @@ describe('ButtonGroup', function () {
 
   it.each`
     Name               | Component        | props
-    ${'ButtonGroup'}   | ${ButtonGroup}   | ${{UNSAFE_className: 'custom class'}}
-  `('$Name supports UNSAFE_className', function ({Component, props}) {
+    ${"ButtonGroup"}   | ${ButtonGroup}   | ${{UNSAFE_className: "custom class"}}
+  `("$Name supports UNSAFE_className", function ({Component, props}) {
     let tree = renderComponent(Component, props);
     let buttonGroup = tree.getByTestId(buttonGroupId);
     expect(buttonGroup).toBeTruthy();
-    expect(buttonGroup).toHaveAttribute('class', expect.stringContaining('custom class'));
+    expect(buttonGroup).toHaveAttribute("class", expect.stringContaining("custom class"));
   });
 
   it.each`
     Name               | Component        | props
-    ${'ButtonGroup'}   | ${ButtonGroup}   | ${{}}
-  `('$Name supports attaching a ref to the button group', function ({Component}) {
+    ${"ButtonGroup"}   | ${ButtonGroup}   | ${{}}
+  `("$Name supports attaching a ref to the button group", function ({Component}) {
     let ref = React.createRef();
     let tree = renderComponent(Component, {ref});
     let buttonGroup = tree.getByTestId(buttonGroupId);
@@ -93,15 +93,15 @@ describe('ButtonGroup', function () {
 
   it.each`
     Name               | Component        | props
-    ${'ButtonGroup'}   | ${ButtonGroup}   | ${{isDisabled: true}}
-  `('$Name supports disabling all buttons within via isDisabled', function ({Component, props}) {
+    ${"ButtonGroup"}   | ${ButtonGroup}   | ${{isDisabled: true}}
+  `("$Name supports disabling all buttons within via isDisabled", function ({Component, props}) {
     let tree = renderComponent(Component, props);
     let buttonGroup = tree.getByTestId(buttonGroupId);
     expect(buttonGroup).toBeTruthy();
 
-    let button1 = within(buttonGroup).getByText('Button1');
-    let button2 = within(buttonGroup).getByText('Button2');
-    let button3 = within(buttonGroup).getByText('Button3');
+    let button1 = within(buttonGroup).getByText("Button1");
+    let button2 = within(buttonGroup).getByText("Button2");
+    let button3 = within(buttonGroup).getByText("Button3");
 
     triggerPress(button1);
     triggerPress(button2);
@@ -115,37 +115,37 @@ describe('ButtonGroup', function () {
   // TODO: Retool this one to check for aria-orientation when ButtonGroup is finalized
   it.each`
     Name               | Component        | props
-    ${'ButtonGroup'}   | ${ButtonGroup}   | ${{orientation: 'vertical'}}
-  `('$Name supports vertical orientation', function ({Component, props}) {
+    ${"ButtonGroup"}   | ${ButtonGroup}   | ${{orientation: "vertical"}}
+  `("$Name supports vertical orientation", function ({Component, props}) {
     let tree = renderComponent(Component, props);
     let buttonGroup = tree.getByTestId(buttonGroupId);
     expect(buttonGroup).toBeTruthy();
-    expect(buttonGroup).toHaveAttribute('class', expect.stringContaining('spectrum-ButtonGroup--vertical'));
+    expect(buttonGroup).toHaveAttribute("class", expect.stringContaining("spectrum-ButtonGroup--vertical"));
   });
 
-  describe('resizing', () => {
-    it('goes vertical if there is not enough room after buttongroup gets a new size', () => {
+  describe("resizing", () => {
+    it("goes vertical if there is not enough room after buttongroup gets a new size", () => {
       let setUp = ({buttonGroup, button1, button2, button3}) => {
         // can't do anything about first render, so this starts with the resize
-        jest.spyOn(buttonGroup, 'offsetWidth', 'get').mockImplementationOnce(() => 88).mockImplementation(() => 90);
-        jest.spyOn(button1, 'offsetLeft', 'get').mockImplementation(() => 0);
-        jest.spyOn(button1, 'offsetWidth', 'get').mockImplementation(() => 30);
-        jest.spyOn(button2, 'offsetLeft', 'get').mockImplementation(() => 30);
-        jest.spyOn(button2, 'offsetWidth', 'get').mockImplementation(() => 30);
-        jest.spyOn(button3, 'offsetLeft', 'get').mockImplementation(() => 60);
-        jest.spyOn(button3, 'offsetWidth', 'get').mockImplementation(() => 30);
+        jest.spyOn(buttonGroup, "offsetWidth", "get").mockImplementationOnce(() => 88).mockImplementation(() => 90);
+        jest.spyOn(button1, "offsetLeft", "get").mockImplementation(() => 0);
+        jest.spyOn(button1, "offsetWidth", "get").mockImplementation(() => 30);
+        jest.spyOn(button2, "offsetLeft", "get").mockImplementation(() => 30);
+        jest.spyOn(button2, "offsetWidth", "get").mockImplementation(() => 30);
+        jest.spyOn(button3, "offsetLeft", "get").mockImplementation(() => 60);
+        jest.spyOn(button3, "offsetWidth", "get").mockImplementation(() => 30);
 
       };
       let {getByTestId} = render(<ButtonGroupWithRefs setUp={setUp} />);
       let buttonGroup = getByTestId(buttonGroupId);
-      expect(buttonGroup).not.toHaveAttribute('class', expect.stringContaining('spectrum-ButtonGroup--vertical'));
+      expect(buttonGroup).not.toHaveAttribute("class", expect.stringContaining("spectrum-ButtonGroup--vertical"));
 
       // ResizeObserver not actually implemented in jsdom, so rely on the fallback to window resize listener
-      act(() => {window.dispatchEvent(new Event('resize'));});
-      expect(buttonGroup).toHaveAttribute('class', expect.stringContaining('spectrum-ButtonGroup--vertical'));
+      act(() => {window.dispatchEvent(new Event("resize"));});
+      expect(buttonGroup).toHaveAttribute("class", expect.stringContaining("spectrum-ButtonGroup--vertical"));
 
-      act(() => {window.dispatchEvent(new Event('resize'));});
-      expect(buttonGroup).not.toHaveAttribute('class', expect.stringContaining('spectrum-ButtonGroup--vertical'));
+      act(() => {window.dispatchEvent(new Event("resize"));});
+      expect(buttonGroup).not.toHaveAttribute("class", expect.stringContaining("spectrum-ButtonGroup--vertical"));
     });
     // can't test children being added because i don't have access to the ref in time
   });

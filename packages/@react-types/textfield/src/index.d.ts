@@ -24,22 +24,22 @@ import {
   TextInputDOMProps,
   Validation,
   ValueBase
-} from '@react-types/shared';
-import {ReactElement} from 'react';
+} from "@react-types/shared";
+import {ReactElement} from "react";
 
 export interface TextFieldProps extends InputBase, Validation, FocusableProps, TextInputBase, ValueBase<string>, LabelableProps {}
 
 export interface AriaTextFieldProps extends TextFieldProps, AriaLabelingProps, FocusableDOMProps, TextInputDOMProps, AriaValidationProps {
   // https://www.w3.org/TR/wai-aria-1.2/#textbox
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
-  'aria-activedescendant'?: string,
+  "aria-activedescendant"?: string,
   /**
    * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be
    * presented if they are made.
    */
-  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both',
+  "aria-autocomplete"?: "none" | "inline" | "list" | "both",
   /** Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. */
-  'aria-haspopup'?: boolean | 'false' | 'true' | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  "aria-haspopup"?: boolean | "false" | "true" | "menu" | "listbox" | "tree" | "grid" | "dialog"
 }
 
 export interface SpectrumTextFieldProps extends AriaTextFieldProps, SpectrumLabelableProps, StyleProps {

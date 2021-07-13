@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import Transition from 'react-transition-group/Transition';
+import React from "react";
+import Transition from "react-transition-group/Transition";
 
 const OPEN_STATES = {
   entering: false,

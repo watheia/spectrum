@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {useEffect, useRef, useState} from 'react';
-import {useLayoutEffect} from './useLayoutEffect';
-import {useSSRSafeId} from '@react-aria/ssr';
+import {useEffect, useRef, useState} from "react";
+import {useLayoutEffect} from "./useLayoutEffect";
+import {useSSRSafeId} from "@react-aria/ssr";
 
 let idsUpdaterMap: Map<string, (v: string) => void> = new Map();
 

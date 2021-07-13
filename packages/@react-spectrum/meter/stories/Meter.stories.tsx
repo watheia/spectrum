@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meter} from '../';
-import {number, withKnobs} from '@storybook/addon-knobs';
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import {Meter} from "../";
+import {number, withKnobs} from "@storybook/addon-knobs";
+import React from "react";
+import {storiesOf} from "@storybook/react";
 
 const sliderOptions = {
   range: true,
@@ -23,50 +23,50 @@ const sliderOptions = {
 };
 
 const formatOptions = {
-  style: 'currency',
-  currency: 'JPY'
+  style: "currency",
+  currency: "JPY"
 };
 
-storiesOf('Meter', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Meter", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .addDecorator(withKnobs)
   .add(
-    'value: 50',
+    "value: 50",
     () => render({value: 50})
   )
   .add(
-    'value: 100',
+    "value: 100",
     () => render({value: 100})
   )
   .add(
-    'size: S',
+    "size: S",
     () => {
-      const value = number('Value', 50, sliderOptions);
-      return render({value, size: 'S'});
+      const value = number("Value", 50, sliderOptions);
+      return render({value, size: "S"});
     }
   )
   .add(
-    'showValueLabel: true',
+    "showValueLabel: true",
     () => {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return render({showValueLabel: true, value});
     }
   )
   .add(
-    'showValueLabel: false',
+    "showValueLabel: false",
     () => {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return render({showValueLabel: false, value});
     }
   )
   .add(
-    'valueLabel: 1 of 4',
-    () => render({value: 25, valueLabel: '1 of 4'})
+    "valueLabel: 1 of 4",
+    () => render({value: 25, valueLabel: "1 of 4"})
   )
   .add(
-    'Using number formatOptions with currency style',
+    "Using number formatOptions with currency style",
     () => {
-      const value = number('Value', 60, sliderOptions);
+      const value = number("Value", 60, sliderOptions);
       return render({
         showValueLabel: true,
         value,
@@ -75,93 +75,93 @@ storiesOf('Meter', module)
     }
   )
   .add(
-    'no visible label',
+    "no visible label",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({label: null, 'aria-label': 'Meter', value});
+      const value = number("Value", 32, sliderOptions);
+      return render({label: null, "aria-label": "Meter", value});
     }
   )
   .add(
-    'labelPosition: side',
+    "labelPosition: side",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, labelPosition: 'side'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, labelPosition: "side"});
     }
   )
   .add(
-    'labelPosition: top',
+    "labelPosition: top",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, labelPosition: 'top'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, labelPosition: "top"});
     }
   )
   .add(
-    'variant: positive',
+    "variant: positive",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({variant: 'positive', value});
+      const value = number("Value", 32, sliderOptions);
+      return render({variant: "positive", value});
     }
   )
   .add(
-    'variant: critical',
+    "variant: critical",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({variant: 'critical', value});
+      const value = number("Value", 32, sliderOptions);
+      return render({variant: "critical", value});
     }
   )
   .add(
-    'variant: warning',
+    "variant: warning",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({variant: 'warning', value});
+      const value = number("Value", 32, sliderOptions);
+      return render({variant: "warning", value});
     }
   )
   .add(
-    'parent width 100%',
+    "parent width 100%",
     () => (
-      <span style={{width: '100%'}}>
+      <span style={{width: "100%"}}>
         {render({value: 32})}
       </span>
     )
   )
   .add(
-    'parent width 100px',
+    "parent width 100px",
     () => (
-      <span style={{width: '100px'}}>
+      <span style={{width: "100px"}}>
         {render({value: 32})}
       </span>
     )
   )
   .add(
-    'width: 300px',
-    () => render({value: 32, width: '300px'})
+    "width: 300px",
+    () => render({value: 32, width: "300px"})
   )
   .add(
-    'width: 300px, labelPosition: side',
-    () => render({value: 32, width: '300px', labelPosition: 'side'})
+    "width: 300px, labelPosition: side",
+    () => render({value: 32, width: "300px", labelPosition: "side"})
   )
   .add(
-    'width: 30px',
-    () => render({value: 32, width: '30px'})
+    "width: 30px",
+    () => render({value: 32, width: "30px"})
   )
   .add(
-    'width: 30px, labelPosition: side',
-    () => render({value: 32, width: '30px', labelPosition: 'side'})
+    "width: 30px, labelPosition: side",
+    () => render({value: 32, width: "30px", labelPosition: "side"})
   )
   .add(
-    'Using raw values for minValue, maxValue, and value',
+    "Using raw values for minValue, maxValue, and value",
     () => render({
       showValueLabel: true,
-      labelPosition: 'top',
+      labelPosition: "top",
       maxValue: 2147483648,
       value: 715827883
     })
   )
   .add(
-    'Using raw values with number formatter',
+    "Using raw values with number formatter",
     () => render({
       showValueLabel: true,
-      labelPosition: 'top',
+      labelPosition: "top",
       maxValue: 2147483648,
       value: 715827883,
       formatOptions

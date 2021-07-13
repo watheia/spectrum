@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps} from '@react-types/shared';
-import {useId} from './useId';
+import {AriaLabelingProps, DOMProps} from "@react-types/shared";
+import {useId} from "./useId";
 
 /**
  * Merges aria-label and aria-labelledby into aria-labelledby when both exist.
@@ -21,8 +21,8 @@ import {useId} from './useId';
 export function useLabels(props: DOMProps & AriaLabelingProps, defaultLabel?: string): DOMProps & AriaLabelingProps {
   let {
     id,
-    'aria-label': label,
-    'aria-labelledby': labelledBy
+    "aria-label": label,
+    "aria-labelledby": labelledBy
   } = props;
 
   // If there is both an aria-label and aria-labelledby,
@@ -30,9 +30,9 @@ export function useLabels(props: DOMProps & AriaLabelingProps, defaultLabel?: st
   id = useId(id);
   if (labelledBy && label) {
     let ids = new Set([...labelledBy.trim().split(/\s+/), id]);
-    labelledBy = [...ids].join(' ');
+    labelledBy = [...ids].join(" ");
   } else if (labelledBy) {
-    labelledBy = labelledBy.trim().split(/\s+/).join(' ');
+    labelledBy = labelledBy.trim().split(/\s+/).join(" ");
   }
 
   // If no labels are provided, use the default
@@ -42,7 +42,7 @@ export function useLabels(props: DOMProps & AriaLabelingProps, defaultLabel?: st
 
   return {
     id,
-    'aria-label': label,
-    'aria-labelledby': labelledBy
+    "aria-label": label,
+    "aria-labelledby": labelledBy
   };
 }

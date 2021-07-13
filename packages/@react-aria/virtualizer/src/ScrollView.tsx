@@ -11,8 +11,8 @@
  */
 
 // @ts-ignore
-import {flushSync} from 'react-dom';
-import {getScrollLeft} from './utils';
+import {flushSync} from "react-dom";
+import {getScrollLeft} from "./utils";
 import React, {
   CSSProperties,
   HTMLAttributes,
@@ -22,21 +22,21 @@ import React, {
   useEffect,
   useRef,
   useState
-} from 'react';
-import {Rect, Size} from '@react-stately/virtualizer';
-import {useLayoutEffect} from '@react-aria/utils';
-import {useLocale} from '@react-aria/i18n';
-import {useResizeObserver} from '@react-aria/utils';
+} from "react";
+import {Rect, Size} from "@react-stately/virtualizer";
+import {useLayoutEffect} from "@react-aria/utils";
+import {useLocale} from "@react-aria/i18n";
+import {useResizeObserver} from "@react-aria/utils";
 
 interface ScrollViewProps extends HTMLAttributes<HTMLElement> {
   contentSize: Size,
   onVisibleRectChange: (rect: Rect) => void,
   children: ReactNode,
   innerStyle?: CSSProperties,
-  sizeToFit?: 'width' | 'height',
+  sizeToFit?: "width" | "height",
   onScrollStart?: () => void,
   onScrollEnd?: () => void,
-  scrollDirection?: 'horizontal' | 'vertical' | 'both'
+  scrollDirection?: "horizontal" | "vertical" | "both"
 }
 
 function ScrollView(props: ScrollViewProps, ref: RefObject<HTMLDivElement>) {
@@ -48,7 +48,7 @@ function ScrollView(props: ScrollViewProps, ref: RefObject<HTMLDivElement>) {
     sizeToFit,
     onScrollStart,
     onScrollEnd,
-    scrollDirection = 'both',
+    scrollDirection = "both",
     ...otherProps
   } = props;
 
@@ -131,9 +131,9 @@ function ScrollView(props: ScrollViewProps, ref: RefObject<HTMLDivElement>) {
     let w = dom.clientWidth;
     let h = dom.clientHeight;
     if (sizeToFit && contentSize.width > 0 && contentSize.height > 0) {
-      if (sizeToFit === 'width') {
+      if (sizeToFit === "width") {
         w = Math.min(w, contentSize.width);
-      } else if (sizeToFit === 'height') {
+      } else if (sizeToFit === "height") {
         h = Math.min(h, contentSize.height);
       }
     }
@@ -156,19 +156,19 @@ function ScrollView(props: ScrollViewProps, ref: RefObject<HTMLDivElement>) {
     ...otherProps.style
   };
 
-  if (scrollDirection === 'horizontal') {
-    style.overflowX = 'auto';
-    style.overflowY = 'hidden';
-  } else if (scrollDirection === 'vertical') {
-    style.overflowY = 'auto';
-    style.overflowX = 'hidden';
+  if (scrollDirection === "horizontal") {
+    style.overflowX = "auto";
+    style.overflowY = "hidden";
+  } else if (scrollDirection === "vertical") {
+    style.overflowY = "auto";
+    style.overflowX = "hidden";
   } else {
-    style.overflow = 'auto';
+    style.overflow = "auto";
   }
 
   return (
     <div {...otherProps} style={style} ref={ref} onScroll={onScroll}>
-      <div role="presentation" style={{width: contentSize.width, height: contentSize.height, pointerEvents: isScrolling ? 'none' : 'auto', position: 'relative', ...innerStyle}}>
+      <div role="presentation" style={{width: contentSize.width, height: contentSize.height, pointerEvents: isScrolling ? "none" : "auto", position: "relative", ...innerStyle}}>
         {children}
       </div>
     </div>

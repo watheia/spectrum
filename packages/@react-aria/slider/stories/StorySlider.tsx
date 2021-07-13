@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaSliderProps} from '@react-types/slider';
-import {FocusRing} from '@react-aria/focus';
-import React from 'react';
-import styles from './story-slider.css';
-import {useNumberFormatter} from '@react-aria/i18n';
-import {useSlider, useSliderThumb} from '@react-aria/slider';
-import {useSliderState} from '@react-stately/slider';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import {AriaSliderProps} from "@react-types/slider";
+import {FocusRing} from "@react-aria/focus";
+import React from "react";
+import styles from "./story-slider.css";
+import {useNumberFormatter} from "@react-aria/i18n";
+import {useSlider, useSliderThumb} from "@react-aria/slider";
+import {useSliderState} from "@react-stately/slider";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 interface StorySliderProps extends AriaSliderProps<number> {
   origin?: number,
@@ -78,7 +78,7 @@ export function StorySlider(props: StorySliderProps) {
           <div
             className={styles.thumb}
             style={{
-              'left': `${state.getThumbPercent(0) * 100}%`
+              "left": `${state.getThumbPercent(0) * 100}%`
             }}>
             {/* We put thumbProps on thumbHandle, so that you cannot drag by the tip */}
             <div {...thumbProps} className={styles.thumbHandle}>

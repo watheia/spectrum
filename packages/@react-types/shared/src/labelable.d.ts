@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {ReactNode} from 'react';
+import {ReactNode} from "react";
 
-export type LabelPosition = 'top' | 'side';
-export type Alignment = 'start' | 'end';
-export type NecessityIndicator = 'icon' | 'label';
+export type LabelPosition = "top" | "side";
+export type Alignment = "start" | "end";
+export type NecessityIndicator = "icon" | "label";
 
 export interface LabelableProps {
   /** The content to display as the label. */

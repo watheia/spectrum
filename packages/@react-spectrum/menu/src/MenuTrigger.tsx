@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, unwrapDOMRef, useDOMRef, useIsMobileDevice} from '@react-spectrum/utils';
-import {DismissButton, useOverlayPosition} from '@react-aria/overlays';
-import {DOMRef, DOMRefValue} from '@react-types/shared';
-import {FocusScope} from '@react-aria/focus';
-import {MenuContext} from './context';
-import {Placement} from '@react-types/overlays';
-import {Popover, Tray} from '@react-spectrum/overlays';
-import {PressResponder} from '@react-aria/interactions';
-import React, {forwardRef, Fragment, useRef} from 'react';
-import {SpectrumMenuTriggerProps} from '@react-types/menu';
-import styles from '@adobe/spectrum-css-temp/components/menu/vars.css';
-import {useMenuTrigger} from '@react-aria/menu';
-import {useMenuTriggerState} from '@react-stately/menu';
+import {classNames, unwrapDOMRef, useDOMRef, useIsMobileDevice} from "@react-spectrum/utils";
+import {DismissButton, useOverlayPosition} from "@react-aria/overlays";
+import {DOMRef, DOMRefValue} from "@react-types/shared";
+import {FocusScope} from "@react-aria/focus";
+import {MenuContext} from "./context";
+import {Placement} from "@react-types/overlays";
+import {Popover, Tray} from "@react-spectrum/overlays";
+import {PressResponder} from "@react-aria/interactions";
+import React, {forwardRef, Fragment, useRef} from "react";
+import {SpectrumMenuTriggerProps} from "@react-types/menu";
+import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
+import {useMenuTrigger} from "@react-aria/menu";
+import {useMenuTriggerState} from "@react-stately/menu";
 
 function MenuTrigger(props: SpectrumMenuTriggerProps, ref: DOMRef<HTMLElement>) {
   let menuPopoverRef = useRef<DOMRefValue<HTMLDivElement>>();
@@ -32,9 +32,9 @@ function MenuTrigger(props: SpectrumMenuTriggerProps, ref: DOMRef<HTMLElement>) 
   let menuRef = useRef<HTMLUListElement>();
   let {
     children,
-    align = 'start',
+    align = "start",
     shouldFlip = true,
-    direction = 'bottom',
+    direction = "bottom",
     closeOnSelect
   } = props;
 
@@ -45,14 +45,14 @@ function MenuTrigger(props: SpectrumMenuTriggerProps, ref: DOMRef<HTMLElement>) 
 
   let initialPlacement: Placement;
   switch (direction) {
-    case 'left':
-    case 'right':
-    case 'start':
-    case 'end':
-      initialPlacement = `${direction} ${align === 'end' ? 'bottom' : 'top'}` as Placement;
+    case "left":
+    case "right":
+    case "start":
+    case "end":
+      initialPlacement = `${direction} ${align === "end" ? "bottom" : "top"}` as Placement;
       break;
-    case 'bottom':
-    case 'top':
+    case "bottom":
+    case "top":
     default:
       initialPlacement = `${direction} ${align}` as Placement;
   }
@@ -75,10 +75,10 @@ function MenuTrigger(props: SpectrumMenuTriggerProps, ref: DOMRef<HTMLElement>) 
     closeOnSelect,
     autoFocus: state.focusStrategy || true,
     UNSAFE_style: isMobile ? {
-      width: '100%',
-      maxHeight: 'inherit'
+      width: "100%",
+      maxHeight: "inherit"
     } : undefined,
-    UNSAFE_className: classNames(styles, {'spectrum-Menu-popover': !isMobile})
+    UNSAFE_className: classNames(styles, {"spectrum-Menu-popover": !isMobile})
   };
 
   let contents = (

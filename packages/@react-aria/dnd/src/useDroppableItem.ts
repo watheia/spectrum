@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import * as DragManager from './DragManager';
-import {DroppableCollectionState} from '@react-stately/dnd';
-import {DropTarget} from '@react-types/shared';
-import {getTypes} from './utils';
-import {HTMLAttributes, RefObject, useEffect} from 'react';
-import {useVirtualDrop} from './useVirtualDrop';
+import * as DragManager from "./DragManager";
+import {DroppableCollectionState} from "@react-stately/dnd";
+import {DropTarget} from "@react-types/shared";
+import {getTypes} from "./utils";
+import {HTMLAttributes, RefObject, useEffect} from "react";
+import {useVirtualDrop} from "./useVirtualDrop";
 
 interface DroppableItemOptions {
   target: DropTarget
@@ -49,7 +49,7 @@ export function useDroppableItem(options: DroppableItemOptions, state: Droppable
     options.target,
     getTypes(dragSession.dragTarget.items),
     dragSession.dragTarget.allowedDropOperations
-  ) !== 'cancel';
+  ) !== "cancel";
 
   let isDropTarget = state.isDropTarget(options.target);
   useEffect(() => {
@@ -61,7 +61,7 @@ export function useDroppableItem(options: DroppableItemOptions, state: Droppable
   return {
     dropProps: {
       ...dropProps,
-      'aria-hidden': !dragSession || isValidDropTarget ? undefined : 'true'
+      "aria-hidden": !dragSession || isValidDropTarget ? undefined : "true"
     }
   };
 }

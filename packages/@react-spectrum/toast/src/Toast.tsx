@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import AlertMedium from '@spectrum-icons/ui/AlertMedium';
-import {Button, ClearButton} from '@react-spectrum/button';
-import {classNames, useDOMRef, useStyleProps} from '@react-spectrum/utils';
-import CrossMedium from '@spectrum-icons/ui/CrossMedium';
-import {DOMRef} from '@react-types/shared';
-import InfoMedium from '@spectrum-icons/ui/InfoMedium';
-import React from 'react';
-import styles from '@adobe/spectrum-css-temp/components/toast/vars.css';
-import SuccessMedium from '@spectrum-icons/ui/SuccessMedium';
-import toastContainerStyles from './toastContainer.css';
-import {ToastProps, ToastState} from '@react-types/toast';
-import {useToast} from '@react-aria/toast';
+import AlertMedium from "@spectrum-icons/ui/AlertMedium";
+import {Button, ClearButton} from "@react-spectrum/button";
+import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
+import CrossMedium from "@spectrum-icons/ui/CrossMedium";
+import {DOMRef} from "@react-types/shared";
+import InfoMedium from "@spectrum-icons/ui/InfoMedium";
+import React from "react";
+import styles from "@adobe/spectrum-css-temp/components/toast/vars.css";
+import SuccessMedium from "@spectrum-icons/ui/SuccessMedium";
+import toastContainerStyles from "./toastContainer.css";
+import {ToastProps, ToastState} from "@react-types/toast";
+import {useToast} from "@react-aria/toast";
 
 interface SpectrumToastProps extends ToastProps, ToastState {}
 
@@ -55,30 +55,30 @@ function Toast(props: SpectrumToastProps, ref: DOMRef<HTMLDivElement>) {
       {...toastProps}
       ref={domRef}
       className={classNames(styles,
-        'spectrum-Toast',
-        {['spectrum-Toast--' + variant]: variant},
+        "spectrum-Toast",
+        {["spectrum-Toast--" + variant]: variant},
         styleProps.className,
         classNames(
           toastContainerStyles,
-          'spectrum-Toast'
+          "spectrum-Toast"
         )
       )}>
       {Icon &&
         <Icon
           {...iconProps}
-          UNSAFE_className={classNames(styles, 'spectrum-Toast-typeIcon')} />
+          UNSAFE_className={classNames(styles, "spectrum-Toast-typeIcon")} />
       }
-      <div className={classNames(styles, 'spectrum-Toast-body')}>
-        <div className={classNames(styles, 'spectrum-Toast-content')}>{children}</div>
+      <div className={classNames(styles, "spectrum-Toast-body")}>
+        <div className={classNames(styles, "spectrum-Toast-content")}>{children}</div>
         {actionLabel &&
           <Button
             {...actionButtonProps}
-            UNSAFE_className={classNames(styles, 'spectrum-Button')}
+            UNSAFE_className={classNames(styles, "spectrum-Button")}
             isQuiet
             variant="overBackground">{actionLabel}</Button>
         }
       </div>
-      <div className={classNames(styles, 'spectrum-Toast-buttons')}>
+      <div className={classNames(styles, "spectrum-Toast-buttons")}>
         <ClearButton {...closeButtonProps} variant="overBackground">
           <CrossMedium />
         </ClearButton>

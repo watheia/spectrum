@@ -1,4 +1,4 @@
-# [React Stately](https://spectrum-kit.vercel.app/react-stately/index.html)
+# [React Stately](https://watheia.app/react-stately/index.html)
 
 A library of React Hooks that provides cross-platform state management for your design system.
 
@@ -11,7 +11,7 @@ A library of React Hooks that provides cross-platform state management for your 
 
 ## Getting started
 
-The easiest way to start building a component library with React Stately is by following our [getting started](https://spectrum-kit.vercel.app/react-stately/getting-started.html) guide. It walks through all of the steps needed to install the hooks from npm, and create your first component.
+The easiest way to start building a component library with React Stately is by following our [getting started](https://watheia.app/react-stately/getting-started.html) guide. It walks through all of the steps needed to install the hooks from npm, and create your first component.
 
 ### Example
 
@@ -56,4 +56,4 @@ function RadioGroup(props) {
 ## Learn more
 
 React Stately is part of a family of libraries that help you build adaptive, accessible, and robust user experiences.
-Learn more about [React Spectrum](https://spectrum-kit.vercel.app/react-spectrum/index.html) and [React Aria](https://spectrum-kit.vercel.app/react-aria/index.html) on [our website](https://spectrum-kit.vercel.app/index.html).
+Learn more about [React Spectrum](https://watheia.app/react-spectrum/index.html) and [React Aria](https://watheia.app/react-aria/index.html) on [our website](https://watheia.app/index.html).

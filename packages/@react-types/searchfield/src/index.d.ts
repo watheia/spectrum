@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaTextFieldProps, SpectrumTextFieldProps, TextFieldProps} from '@react-types/textfield';
+import {AriaTextFieldProps, SpectrumTextFieldProps, TextFieldProps} from "@react-types/textfield";
 
 export interface SearchFieldProps extends TextFieldProps {
   /** Handler that is called when the SearchField is submitted. */

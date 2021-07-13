@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {getItemCount} from '@react-stately/collections';
-import {HTMLAttributes, Key, RefObject} from 'react';
-import {isFocusVisible, useHover, usePress} from '@react-aria/interactions';
-import {mergeProps, useSlotId} from '@react-aria/utils';
-import {PressEvent} from '@react-types/shared';
-import {TreeState} from '@react-stately/tree';
-import {useSelectableItem} from '@react-aria/selection';
+import {getItemCount} from "@react-stately/collections";
+import {HTMLAttributes, Key, RefObject} from "react";
+import {isFocusVisible, useHover, usePress} from "@react-aria/interactions";
+import {mergeProps, useSlotId} from "@react-aria/utils";
+import {PressEvent} from "@react-types/shared";
+import {TreeState} from "@react-stately/tree";
+import {useSelectableItem} from "@react-aria/selection";
 
 interface MenuItemAria {
   /** Props for the menu item element. */
@@ -40,7 +40,7 @@ interface AriaMenuItemProps {
   isSelected?: boolean,
 
   /** A screen reader only label for the menu item. */
-  'aria-label'?: string,
+  "aria-label"?: string,
 
   /** The unique key for the menu item. */
   key?: Key,
@@ -78,11 +78,11 @@ export function useMenuItem<T>(props: AriaMenuItemProps, state: TreeState<T>, re
     onAction
   } = props;
 
-  let role = 'menuitem';
-  if (state.selectionManager.selectionMode === 'single') {
-    role = 'menuitemradio';
-  } else if (state.selectionManager.selectionMode === 'multiple') {
-    role = 'menuitemcheckbox';
+  let role = "menuitem";
+  if (state.selectionManager.selectionMode === "single") {
+    role = "menuitemradio";
+  } else if (state.selectionManager.selectionMode === "multiple") {
+    role = "menuitemcheckbox";
   }
 
   let labelId = useSlotId();
@@ -90,20 +90,20 @@ export function useMenuItem<T>(props: AriaMenuItemProps, state: TreeState<T>, re
   let keyboardId = useSlotId();
 
   let ariaProps = {
-    'aria-disabled': isDisabled,
+    "aria-disabled": isDisabled,
     role,
-    'aria-label': props['aria-label'],
-    'aria-labelledby': labelId,
-    'aria-describedby': [descriptionId, keyboardId].filter(Boolean).join(' ') || undefined
+    "aria-label": props["aria-label"],
+    "aria-labelledby": labelId,
+    "aria-describedby": [descriptionId, keyboardId].filter(Boolean).join(" ") || undefined
   };
 
-  if (state.selectionManager.selectionMode !== 'none') {
-    ariaProps['aria-checked'] = isSelected;
+  if (state.selectionManager.selectionMode !== "none") {
+    ariaProps["aria-checked"] = isSelected;
   }
 
   if (isVirtualized) {
-    ariaProps['aria-posinset'] = state.collection.getItem(key).index;
-    ariaProps['aria-setsize'] = getItemCount(state.collection);
+    ariaProps["aria-posinset"] = state.collection.getItem(key).index;
+    ariaProps["aria-setsize"] = getItemCount(state.collection);
   }
 
   let onKeyDown = (e: KeyboardEvent) => {
@@ -114,12 +114,12 @@ export function useMenuItem<T>(props: AriaMenuItemProps, state: TreeState<T>, re
     }
 
     switch (e.key) {
-      case ' ':
-        if (!isDisabled && state.selectionManager.selectionMode === 'none' && closeOnSelect !== false && onClose) {
+      case " ":
+        if (!isDisabled && state.selectionManager.selectionMode === "none" && closeOnSelect !== false && onClose) {
           onClose();
         }
         break;
-      case 'Enter':
+      case "Enter":
         // The Enter key should always close on select, except if overridden.
         if (!isDisabled && closeOnSelect !== false && onClose) {
           onClose();
@@ -129,20 +129,20 @@ export function useMenuItem<T>(props: AriaMenuItemProps, state: TreeState<T>, re
   };
 
   let onPressStart = (e: PressEvent) => {
-    if (e.pointerType === 'keyboard' && onAction) {
+    if (e.pointerType === "keyboard" && onAction) {
       onAction(key);
     }
   };
 
   let onPressUp = (e: PressEvent) => {
-    if (e.pointerType !== 'keyboard') {
+    if (e.pointerType !== "keyboard") {
       if (onAction) {
         onAction(key);
       }
 
       // Pressing a menu item should close by default in single selection mode but not multiple
       // selection mode, except if overridden by the closeOnSelect prop.
-      if (onClose && (closeOnSelect ?? state.selectionManager.selectionMode !== 'multiple')) {
+      if (onClose && (closeOnSelect ?? state.selectionManager.selectionMode !== "multiple")) {
         onClose();
       }
     }

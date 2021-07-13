@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {getRowLabelledBy} from './utils';
-import {GridRowAria, GridRowProps, useGridRow} from '@react-aria/grid';
-import {RefObject} from 'react';
-import {TableCollection} from '@react-types/table';
-import {TableState} from '@react-stately/table';
+import {getRowLabelledBy} from "./utils";
+import {GridRowAria, GridRowProps, useGridRow} from "@react-aria/grid";
+import {RefObject} from "react";
+import {TableCollection} from "@react-types/table";
+import {TableState} from "@react-stately/table";
 
 /**
  * Provides the behavior and accessibility implementation for a row in a table.
@@ -27,7 +27,7 @@ export function useTableRow<T>(props: GridRowProps<T>, state: TableState<T>, ref
   return {
     rowProps: {
       ...rowProps,
-      'aria-labelledby': getRowLabelledBy(state, node.key)
+      "aria-labelledby": getRowLabelledBy(state, node.key)
     }
   };
 }

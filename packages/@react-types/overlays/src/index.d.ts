@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {HTMLAttributes, ReactElement, ReactNode} from 'react';
-import {StyleProps} from '@react-types/shared';
+import {HTMLAttributes, ReactElement, ReactNode} from "react";
+import {StyleProps} from "@react-types/shared";
 
-export type Placement = 'bottom' | 'bottom left' | 'bottom right' | 'bottom start' | 'bottom end' |
-    'top' | 'top left' | 'top right' | 'top start' | 'top end' |
-    'left' | 'left top' | 'left bottom' | 'start' | 'start top' | 'start bottom' |
-    'right' | 'right top' | 'right bottom' | 'end' | 'end top' | 'end bottom';
+export type Placement = "bottom" | "bottom left" | "bottom right" | "bottom start" | "bottom end" |
+    "top" | "top left" | "top right" | "top start" | "top end" |
+    "left" | "left top" | "left bottom" | "start" | "start top" | "start bottom" |
+    "right" | "right top" | "right bottom" | "end" | "end top" | "end bottom";
 
-export type Axis = 'top' | 'bottom' | 'left' | 'right';
-export type SizeAxis = 'width' | 'height';
-export type PlacementAxis = Axis | 'center';
+export type Axis = "top" | "bottom" | "left" | "right";
+export type SizeAxis = "width" | "height";
+export type PlacementAxis = Axis | "center";
 
 export interface PositionProps {
   /**
@@ -78,7 +78,7 @@ export interface ModalProps extends StyleProps, OverlayProps {
   children: ReactElement,
   isOpen?: boolean,
   onClose?: () => void,
-  type?: 'modal' | 'fullscreen' | 'fullscreenTakeover',
+  type?: "modal" | "fullscreen" | "fullscreenTakeover",
   isDismissable?: boolean
 }
 

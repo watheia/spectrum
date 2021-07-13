@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {Collection, DragTypes, DropOperation, DroppableCollectionProps, DropTarget, ItemDropTarget, Node} from '@react-types/shared';
-import {MultipleSelectionManager} from '@react-stately/selection';
-import {useState} from 'react';
+import {Collection, DragTypes, DropOperation, DroppableCollectionProps, DropTarget, ItemDropTarget, Node} from "@react-types/shared";
+import {MultipleSelectionManager} from "@react-stately/selection";
+import {useState} from "react";
 
 interface DroppableCollectionStateOptions extends DroppableCollectionProps {
   collection: Collection<Node<unknown>>,
@@ -32,12 +32,12 @@ export function useDroppableCollectionState(props: DroppableCollectionStateOptio
   let [target, setTarget] = useState<DropTarget>(null);
 
   let getOppositeTarget = (target: ItemDropTarget): ItemDropTarget => {
-    if (target.dropPosition === 'before') {
+    if (target.dropPosition === "before") {
       let key = props.collection.getKeyBefore(target.key);
-      return key != null ? {type: 'item', key, dropPosition: 'after'} : null;
-    } else if (target.dropPosition === 'after') {
+      return key != null ? {type: "item", key, dropPosition: "after"} : null;
+    } else if (target.dropPosition === "after") {
       let key = props.collection.getKeyAfter(target.key);
-      return key != null ? {type: 'item', key, dropPosition: 'before'} : null;
+      return key != null ? {type: "item", key, dropPosition: "before"} : null;
     }
   };
 
@@ -50,18 +50,18 @@ export function useDroppableCollectionState(props: DroppableCollectionStateOptio
         return;
       }
 
-      if (target && typeof props.onDropExit === 'function') {
+      if (target && typeof props.onDropExit === "function") {
         props.onDropExit({
-          type: 'dropexit',
+          type: "dropexit",
           x: 0, // todo
           y: 0,
           target
         });
       }
 
-      if (newTarget && typeof props.onDropEnter === 'function') {
+      if (newTarget && typeof props.onDropEnter === "function") {
         props.onDropEnter({
-          type: 'dropenter',
+          type: "dropenter",
           x: 0, // todo
           y: 0,
           target: newTarget
@@ -77,12 +77,12 @@ export function useDroppableCollectionState(props: DroppableCollectionStateOptio
 
       // Check if the targets point at the same point between two items, one referring before, and the other after.
       if (
-        dropTarget?.type === 'item' &&
-        target?.type === 'item' &&
+        dropTarget?.type === "item" &&
+        target?.type === "item" &&
         dropTarget.key !== target.key &&
         dropTarget.dropPosition !== target.dropPosition &&
-        dropTarget.dropPosition !== 'on' &&
-        target.dropPosition !== 'on'
+        dropTarget.dropPosition !== "on" &&
+        target.dropPosition !== "on"
       ) {
         return isEqualDropTarget(getOppositeTarget(dropTarget), target) ||
           isEqualDropTarget(dropTarget, getOppositeTarget(target));
@@ -91,7 +91,7 @@ export function useDroppableCollectionState(props: DroppableCollectionStateOptio
       return false;
     },
     getDropOperation(target, types, allowedOperations) {
-      return typeof props.getDropOperation === 'function'
+      return typeof props.getDropOperation === "function"
         ? props.getDropOperation(target, types, allowedOperations)
         : allowedOperations[0];
     }
@@ -104,9 +104,9 @@ function isEqualDropTarget(a: DropTarget, b: DropTarget) {
   }
 
   switch (a.type) {
-    case 'root':
-      return b?.type === 'root';
-    case 'item':
-      return b?.type === 'item' && b?.key === a.key && b?.dropPosition === a.dropPosition;
+    case "root":
+      return b?.type === "root";
+    case "item":
+      return b?.type === "item" && b?.key === a.key && b?.dropPosition === a.dropPosition;
   }
 }

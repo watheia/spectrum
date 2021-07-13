@@ -10,27 +10,27 @@
  * governing permissions and limitations under the License.
  */
 
-import {parseColor} from '../src/Color';
-import {renderHook} from '@testing-library/react-hooks';
-import {useColor} from '../src/useColor';
+import {parseColor} from "../src/Color";
+import {renderHook} from "@testing-library/react-hooks";
+import {useColor} from "../src/useColor";
 
-describe('useColor tests', function () {
-  it('should accept string value', function () {
-    let {result} = renderHook(() => useColor('#abc'));
-    expect(result.current.getChannelValue('red')).toBe(170);
-    expect(result.current.getChannelValue('green')).toBe(187);
-    expect(result.current.getChannelValue('blue')).toBe(204);
-    expect(result.current.getChannelValue('alpha')).toBe(1);
+describe("useColor tests", function () {
+  it("should accept string value", function () {
+    let {result} = renderHook(() => useColor("#abc"));
+    expect(result.current.getChannelValue("red")).toBe(170);
+    expect(result.current.getChannelValue("green")).toBe(187);
+    expect(result.current.getChannelValue("blue")).toBe(204);
+    expect(result.current.getChannelValue("alpha")).toBe(1);
   });
 
-  it('should return the same Color object if provided as argument', function () {
-    let color = parseColor('#abc');
+  it("should return the same Color object if provided as argument", function () {
+    let color = parseColor("#abc");
     let {result} = renderHook(() => useColor(color));
     expect(result.current).toBe(color);
   });
 
-  it('should return undefined color and colorInt for invalid color value', function () {
-    let {result} = renderHook(() => useColor('invalidColor'));
+  it("should return undefined color and colorInt for invalid color value", function () {
+    let {result} = renderHook(() => useColor("invalidColor"));
     expect(result.current).toBeUndefined();
   });
 });

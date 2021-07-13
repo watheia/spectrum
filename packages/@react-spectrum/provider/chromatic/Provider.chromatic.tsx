@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {Button} from '@react-spectrum/button';
-import {Checkbox} from '@react-spectrum/checkbox';
-import customTheme from './custom-theme.css';
-import {Flex} from '@react-spectrum/layout';
-import {Form} from '@react-spectrum/form';
-import {Provider} from '../';
-import {Radio, RadioGroup} from '@react-spectrum/radio';
-import React from 'react';
-import scaleLarge from '@adobe/spectrum-css-temp/vars/spectrum-large.css';
-import scaleMedium from '@adobe/spectrum-css-temp/vars/spectrum-medium.css';
-import {storiesOf} from '@storybook/react';
-import {Switch} from '@react-spectrum/switch';
-import {TextField} from '@react-spectrum/textfield';
+import {Button} from "@react-spectrum/button";
+import {Checkbox} from "@react-spectrum/checkbox";
+import customTheme from "./custom-theme.css";
+import {Flex} from "@react-spectrum/layout";
+import {Form} from "@react-spectrum/form";
+import {Provider} from "../";
+import {Radio, RadioGroup} from "@react-spectrum/radio";
+import React from "react";
+import scaleLarge from "@adobe/spectrum-css-temp/vars/spectrum-large.css";
+import scaleMedium from "@adobe/spectrum-css-temp/vars/spectrum-medium.css";
+import {storiesOf} from "@storybook/react";
+import {Switch} from "@react-spectrum/switch";
+import {TextField} from "@react-spectrum/textfield";
 
 const THEME = {
   light: customTheme,
@@ -30,13 +30,13 @@ const THEME = {
   large: scaleLarge
 };
 
-storiesOf('Provider', module)
+storiesOf("Provider", module)
   // don't need all the isEmphasized etc tests, the value being sent is tested in unit tests
   // that the components look correctly with those values is being tested in those components chromatic tests
 
   // keeping custom theme to show that the theme only changes expected things, in this case, the button, nothing else
   .add(
-    'custom theme',
+    "custom theme",
     () => render({theme: THEME})
   );
 

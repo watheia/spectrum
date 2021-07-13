@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
-import {Meta, Story} from '@storybook/react';
-import {ProgressBar} from '../';
-import React, {CSSProperties} from 'react';
-import {SpectrumProgressBarProps} from '@react-types/progress';
+import {Meta, Story} from "@storybook/react";
+import {ProgressBar} from "../";
+import React, {CSSProperties} from "react";
+import {SpectrumProgressBarProps} from "@react-types/progress";
 
 const meta: Meta<SpectrumProgressBarProps> = {
-  title: 'ProgressBar',
+  title: "ProgressBar",
   component: ProgressBar
 };
 
 export default meta;
 
 const grayedBoxStyle: CSSProperties = {
-  width: '250px',
-  height: '60px',
-  backgroundColor: 'rgba(0,0,0,0.4)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
+  width: "250px",
+  height: "60px",
+  backgroundColor: "rgba(0,0,0,0.4)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
 };
 
 const Template = (): Story<SpectrumProgressBarProps> => (args) => (
@@ -37,19 +37,19 @@ const Template = (): Story<SpectrumProgressBarProps> => (args) => (
 
 
 export const Default = Template().bind({});
-Default.args = {label: 'Progress label', value: 50};
+Default.args = {label: "Progress label", value: 50};
 
 export const SizeS = Template().bind({});
-SizeS.args = {...Default.args, size: 'S'};
+SizeS.args = {...Default.args, size: "S"};
 
 export const ShowValueLabelFalse = Template().bind({});
 ShowValueLabelFalse.args = {...Default.args, showValueLabel: false};
 
 export const LabelPositionSide = Template().bind({});
-LabelPositionSide.args = {...Default.args, labelPosition: 'side'};
+LabelPositionSide.args = {...Default.args, labelPosition: "side"};
 
 export const OverBackground = Template().bind({});
-OverBackground.args = {...Default.args, variant: 'overBackground'};
+OverBackground.args = {...Default.args, variant: "overBackground"};
 OverBackground.decorators = [(Story) => <div style={grayedBoxStyle}><Story /></div>];
 
 export const Value0 = Template().bind({});

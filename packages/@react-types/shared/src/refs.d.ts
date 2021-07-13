@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {Ref} from 'react';
+import {Ref} from "react";
 
 export interface DOMRefValue<T extends HTMLElement = HTMLElement> {
   UNSAFE_getDOMNode(): T

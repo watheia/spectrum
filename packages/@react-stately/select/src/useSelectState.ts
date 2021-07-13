@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {MenuTriggerState, useMenuTriggerState} from '@react-stately/menu';
-import {SelectProps} from '@react-types/select';
-import {SingleSelectListState, useSingleSelectListState} from '@react-stately/list';
-import {useState} from 'react';
+import {MenuTriggerState, useMenuTriggerState} from "@react-stately/menu";
+import {SelectProps} from "@react-types/select";
+import {SingleSelectListState, useSingleSelectListState} from "@react-stately/list";
+import {useState} from "react";
 
 export interface SelectState<T> extends SingleSelectListState<T>, MenuTriggerState {
   /** Whether the select is currently focused. */

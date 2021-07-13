@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {ListState} from '@react-stately/list';
-import React from 'react';
+import {ListState} from "@react-stately/list";
+import React from "react";
 
 export const ListBoxContext = React.createContext<ListState<unknown>>(null);

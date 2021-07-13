@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {DOMRef} from '@react-types/shared';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HeadingProps} from '@react-types/text';
-import React, {ElementType, forwardRef} from 'react';
-import {useDOMRef, useSlotProps, useStyleProps} from '@react-spectrum/utils';
+import {DOMRef} from "@react-types/shared";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HeadingProps} from "@react-types/text";
+import React, {ElementType, forwardRef} from "react";
+import {useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
 
-const slotDOMProps = new Set(['aria-current']);
+const slotDOMProps = new Set(["aria-current"]);
 
 function Heading(props: HeadingProps, ref: DOMRef<HTMLHeadingElement>) {
-  let slotProps = useSlotProps({}, 'heading');
+  let slotProps = useSlotProps({}, "heading");
   props = mergeProps(slotProps, props);
 
   let domProps = mergeProps(

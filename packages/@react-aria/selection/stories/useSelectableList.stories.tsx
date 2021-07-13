@@ -1,10 +1,10 @@
-import {CollectionBase, Node} from '@react-types/shared';
-import {Item} from '@react-spectrum/actiongroup';
-import {ListState, useListState} from '@react-stately/list';
-import * as React from 'react';
-import {Section} from '@react-spectrum/menu';
-import {storiesOf} from '@storybook/react';
-import {useSelectableItem, useSelectableList} from '../src';
+import {CollectionBase, Node} from "@react-types/shared";
+import {Item} from "@react-spectrum/actiongroup";
+import {ListState, useListState} from "@react-stately/list";
+import * as React from "react";
+import {Section} from "@react-spectrum/menu";
+import {storiesOf} from "@storybook/react";
+import {useSelectableItem, useSelectableList} from "../src";
 
 function SelectableList(props: CollectionBase<any> & {
   isSubUlRelativelyPositioned: boolean,
@@ -27,8 +27,8 @@ function SelectableList(props: CollectionBase<any> & {
     <ul
       {...listProps} 
       style={{
-        height: 200, overflow: 'auto', padding: 10, margin: 0, listStyle: 'none',
-        position: props.isUlRelativelyPositioned ? 'relative' : 'static'
+        height: 200, overflow: "auto", padding: 10, margin: 0, listStyle: "none",
+        position: props.isUlRelativelyPositioned ? "relative" : "static"
       }} 
       ref={listRef}>
       {Array.from(state.collection).map(node => {
@@ -36,14 +36,14 @@ function SelectableList(props: CollectionBase<any> & {
           return (
             <>
               <div
-                style={{textTransform: 'uppercase'}}>{node.rendered}</div>
+                style={{textTransform: "uppercase"}}>{node.rendered}</div>
               <ul
                 key={node.key}
                 style={{
-                  position: props.isSubUlRelativelyPositioned ? 'relative' : 'static',
+                  position: props.isSubUlRelativelyPositioned ? "relative" : "static",
                   padding: 0,
                   margin: 0,
-                  listStyle: 'none'
+                  listStyle: "none"
                 }}>
                 {Array.from(node.childNodes).map(renderLeaf)}
               </ul>
@@ -76,8 +76,8 @@ function SelectableItem(props: {
       {...itemProps}
       key={node.key} 
       style={{
-        backgroundColor: isFocused ? 'gray' : 'white',
-        fontWeight: isFocused ? 'bold' : 'normal'
+        backgroundColor: isFocused ? "gray" : "white",
+        fontWeight: isFocused ? "bold" : "normal"
       }}
       ref={ref}>
       {node.rendered}
@@ -86,24 +86,24 @@ function SelectableItem(props: {
 }
 
 const options = [
-  <Section title={'Brass'}>
+  <Section title={"Brass"}>
     <Item>Trumpet</Item>
     <Item>Horn</Item>
     <Item>Trombone</Item>
     <Item>Tuba</Item>
   </Section>,
-  <Section title={'String'}>
+  <Section title={"String"}>
     <Item>Violin</Item>
     <Item>Viola</Item>
     <Item>Cello</Item>
     <Item>Harp</Item>
   </Section>,
-  <Section title={'Wind'}>
+  <Section title={"Wind"}>
     <Item>Flute</Item>
     <Item>Oboe</Item>
     <Item>Clarinet</Item>
   </Section>,
-  <Section title={'Percussion'}>
+  <Section title={"Percussion"}>
     <Item>Piano</Item>
     <Item>Drums</Item>
   </Section>
@@ -111,23 +111,23 @@ const options = [
 
 // Press up and down to focus on different items, and make sure the scroll
 // container scrolls to reveal as expected.
-storiesOf('useSelectableList', module)
-  .add('Static ul, static sub ul', () => (
+storiesOf("useSelectableList", module)
+  .add("Static ul, static sub ul", () => (
     <SelectableList isSubUlRelativelyPositioned={false} isUlRelativelyPositioned={false}>
       {options}
     </SelectableList>
   ))
-  .add('Static ul, relative sub ul', () => (
+  .add("Static ul, relative sub ul", () => (
     <SelectableList isSubUlRelativelyPositioned isUlRelativelyPositioned={false}>
       {options}
     </SelectableList>
   ))
-  .add('Relative ul, static sub ul', () => (
+  .add("Relative ul, static sub ul", () => (
     <SelectableList isSubUlRelativelyPositioned={false} isUlRelativelyPositioned>
       {options}
     </SelectableList>
   ))
-  .add('Relative ul, relative sub ul', () => (
+  .add("Relative ul, relative sub ul", () => (
     <SelectableList isSubUlRelativelyPositioned isUlRelativelyPositioned>
       {options}
     </SelectableList>

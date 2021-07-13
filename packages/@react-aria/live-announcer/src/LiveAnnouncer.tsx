@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import React, {Fragment, ReactNode, RefObject, useImperativeHandle, useState} from 'react';
-import ReactDOM from 'react-dom';
-import {VisuallyHidden} from '@react-aria/visually-hidden';
+import React, {Fragment, ReactNode, RefObject, useImperativeHandle, useState} from "react";
+import ReactDOM from "react-dom";
+import {VisuallyHidden} from "@react-aria/visually-hidden";
 
-type Assertiveness = 'assertive' | 'polite';
+type Assertiveness = "assertive" | "polite";
 interface Announcer {
   announce(message: string, assertiveness: Assertiveness, timeout: number): void,
   clear(assertiveness: Assertiveness): void
@@ -32,7 +32,7 @@ let messageId = 0;
  */
 export function announce(
   message: string,
-  assertiveness: Assertiveness = 'assertive',
+  assertiveness: Assertiveness = "assertive",
   timeout = LIVEREGION_TIMEOUT_DELAY
 ) {
   ensureInstance(announcer => announcer.announce(message, assertiveness, timeout));
@@ -61,8 +61,8 @@ export function destroyAnnouncer() {
  */
 function ensureInstance(callback: (announcer: Announcer) => void) {
   if (!liveRegionAnnouncer.current) {
-    node = document.createElement('div');
-    node.dataset.liveAnnouncer = 'true';
+    node = document.createElement("div");
+    node.dataset.liveAnnouncer = "true";
     document.body.prepend(node);
     ReactDOM.render(
       <LiveRegionAnnouncer ref={liveRegionAnnouncer} />,
@@ -79,27 +79,27 @@ const LiveRegionAnnouncer = React.forwardRef((_, ref: RefObject<Announcer>) => {
   let [politeMessages, setPoliteMessages] = useState([]);
 
   let clear = (assertiveness: Assertiveness) => {
-    if (!assertiveness || assertiveness === 'assertive') {
+    if (!assertiveness || assertiveness === "assertive") {
       setAssertiveMessages([]);
     }
 
-    if (!assertiveness || assertiveness === 'polite') {
+    if (!assertiveness || assertiveness === "polite") {
       setPoliteMessages([]);
     }
   };
 
-  let announce = (message: string, assertiveness = 'assertive', timeout = LIVEREGION_TIMEOUT_DELAY) => {
+  let announce = (message: string, assertiveness = "assertive", timeout = LIVEREGION_TIMEOUT_DELAY) => {
     let id = messageId++;
 
-    if (assertiveness === 'assertive') {
+    if (assertiveness === "assertive") {
       setAssertiveMessages(messages => [...messages, {id, text: message}]);
     } else {
       setPoliteMessages(messages => [...messages, {id, text: message}]);
     }
 
-    if (message !== '') {
+    if (message !== "") {
       setTimeout(() => {
-        if (assertiveness === 'assertive') {
+        if (assertiveness === "assertive") {
           setAssertiveMessages(messages => messages.filter(message => message.id !== id));
         } else {
           setPoliteMessages(messages => messages.filter(message => message.id !== id));
@@ -127,10 +127,10 @@ const LiveRegionAnnouncer = React.forwardRef((_, ref: RefObject<Announcer>) => {
 
 interface MessageBlockProps {
    children: ReactNode,
-   'aria-live': Assertiveness
+   "aria-live": Assertiveness
  }
 
-function MessageBlock({children, 'aria-live': ariaLive}: MessageBlockProps) {
+function MessageBlock({children, "aria-live": ariaLive}: MessageBlockProps) {
   return (
     <VisuallyHidden
       role="log"

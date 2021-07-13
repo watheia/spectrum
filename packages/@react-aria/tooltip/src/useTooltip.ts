@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaTooltipProps} from '@react-types/tooltip';
-import {filterDOMProps, mergeProps} from '@react-aria/utils';
-import {HTMLAttributes} from 'react';
-import {TooltipTriggerState} from '@react-stately/tooltip';
-import {useHover} from '@react-aria/interactions';
+import {AriaTooltipProps} from "@react-types/tooltip";
+import {filterDOMProps, mergeProps} from "@react-aria/utils";
+import {HTMLAttributes} from "react";
+import {TooltipTriggerState} from "@react-stately/tooltip";
+import {useHover} from "@react-aria/interactions";
 
 interface TooltipAria {
   /**
@@ -36,7 +36,7 @@ export function useTooltip(props: AriaTooltipProps, state?: TooltipTriggerState)
 
   return {
     tooltipProps: mergeProps(domProps, hoverProps, {
-      role: 'tooltip'
+      role: "tooltip"
     })
   };
 }

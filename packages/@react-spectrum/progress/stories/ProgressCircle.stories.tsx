@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {number, withKnobs} from '@storybook/addon-knobs';
-import {ProgressCircle} from '../';
-import React, {CSSProperties} from 'react';
-import {storiesOf} from '@storybook/react';
+import {number, withKnobs} from "@storybook/addon-knobs";
+import {ProgressCircle} from "../";
+import React, {CSSProperties} from "react";
+import {storiesOf} from "@storybook/react";
 
 const sliderOptions = {
   range: true,
@@ -23,85 +23,85 @@ const sliderOptions = {
 };
 
 const grayedBoxStyle: CSSProperties = {
-  width: '100px',
-  height: '100px',
-  backgroundColor: 'rgba(0,0,0,0.4)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
+  width: "100px",
+  height: "100px",
+  backgroundColor: "rgba(0,0,0,0.4)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center"
 };
 
-storiesOf('Progress/ProgressCircle', module)
-  .addParameters({providerSwitcher: {status: 'positive'}})
+storiesOf("Progress/ProgressCircle", module)
+  .addParameters({providerSwitcher: {status: "positive"}})
   .addDecorator(withKnobs)
   .add(
-    'Default',
+    "Default",
     () => render()
   )
   .add(
-    'value: 50',
+    "value: 50",
     () => {
-      const value = number('Value', 50, sliderOptions);
+      const value = number("Value", 50, sliderOptions);
       return render({value});
     }
   )
   .add(
-    'value: 100',
+    "value: 100",
     () => {
-      const value = number('Value', 100, sliderOptions);
+      const value = number("Value", 100, sliderOptions);
       return render({value});
     }
   )
   .add(
-    'size: S',
+    "size: S",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, size: 'S'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, size: "S"});
     }
   )
   .add(
-    'size: L',
+    "size: L",
     () => {
-      const value = number('Value', 32, sliderOptions);
-      return render({value, size: 'L'});
+      const value = number("Value", 32, sliderOptions);
+      return render({value, size: "L"});
     }
   )
   .add(
-    'variant: overBackground',
+    "variant: overBackground",
     () =>  {
-      const value = number('Value', 32, sliderOptions);
+      const value = number("Value", 32, sliderOptions);
       return (
         <div style={grayedBoxStyle}>
-          {render({value, variant: 'overBackground'})}
+          {render({value, variant: "overBackground"})}
         </div>
       );
     }
   )
   .add(
-    'Using raw values for minValue, maxValue, and value',
+    "Using raw values for minValue, maxValue, and value",
     () => render({
-      labelPosition: 'top',
+      labelPosition: "top",
       maxValue: 2147483648,
       value: 715827883
     })
   )
   .add(
-    'isIndeterminate: true',
+    "isIndeterminate: true",
     () => render({isIndeterminate: true})
   )
   .add(
-    'isIndeterminate: true, size: S',
-    () => render({isIndeterminate: true, size: 'S'})
+    "isIndeterminate: true, size: S",
+    () => render({isIndeterminate: true, size: "S"})
   )
   .add(
-    'isIndeterminate: true, size: L',
-    () => render({isIndeterminate: true, size: 'L'})
+    "isIndeterminate: true, size: L",
+    () => render({isIndeterminate: true, size: "L"})
   )
   .add(
-    'isIndeterminate: true, variant: overBackground',
+    "isIndeterminate: true, variant: overBackground",
     () => (
       <div style={grayedBoxStyle}>
-        {render({isIndeterminate: true, variant: 'overBackground'})}
+        {render({isIndeterminate: true, variant: "overBackground"})}
       </div>
     )
   );

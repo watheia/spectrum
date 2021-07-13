@@ -32,10 +32,10 @@ export const DROP_OPERATION_ALLOWED = {
 export const EFFECT_ALLOWED = invert(DROP_OPERATION_ALLOWED);
 export const DROP_EFFECT = invert(DROP_OPERATION);
 export const DROP_EFFECT_TO_DROP_OPERATION = {
-  none: 'cancel',
-  link: 'link',
-  copy: 'copy',
-  move: 'move'
+  none: "cancel",
+  link: "link",
+  copy: "copy",
+  move: "move"
 };
 
 export const DROP_OPERATION_TO_DROP_EFFECT = invert(DROP_EFFECT_TO_DROP_OPERATION);
@@ -49,6 +49,6 @@ function invert(object) {
   return res;
 }
 
-export const NATIVE_DRAG_TYPES = new Set(['text/plain', 'text/uri-list', 'text/html']);
-export const CUSTOM_DRAG_TYPE = 'application/vnd.react-aria.items+json';
-export const GENERIC_TYPE = 'application/octet-stream';
+export const NATIVE_DRAG_TYPES = new Set(["text/plain", "text/uri-list", "text/html"]);
+export const CUSTOM_DRAG_TYPE = "application/vnd.react-aria.items+json";
+export const GENERIC_TYPE = "application/octet-stream";

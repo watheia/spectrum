@@ -10,46 +10,46 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {useActionGroup} from '../';
-import {useListState} from '@react-stately/list';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {useActionGroup} from "../";
+import {useListState} from "@react-stately/list";
 
-describe('useActionGroup', function () {
+describe("useActionGroup", function () {
   let renderActionGroupHook = (props) => {
     let {result} = renderHook(() => useActionGroup(props, useListState(props)));
     return result.current;
   };
 
-  it('handles defaults', function () {
+  it("handles defaults", function () {
     let {actionGroupProps} = renderActionGroupHook({});
-    expect(actionGroupProps.role).toBe('toolbar');
+    expect(actionGroupProps.role).toBe("toolbar");
   });
 
-  it('handles vertical orientation', function () {
-    let {actionGroupProps} = renderActionGroupHook({orientation: 'vertical'});
-    expect(actionGroupProps['aria-orientation']).toBe('vertical');
+  it("handles vertical orientation", function () {
+    let {actionGroupProps} = renderActionGroupHook({orientation: "vertical"});
+    expect(actionGroupProps["aria-orientation"]).toBe("vertical");
   });
 
-  it('handles selection mode none', function () {
-    let {actionGroupProps} = renderActionGroupHook({selectionMode: 'none'});
-    expect(actionGroupProps.role).toBe('toolbar');
-    expect(actionGroupProps['aria-orientation']).toBe('horizontal');
+  it("handles selection mode none", function () {
+    let {actionGroupProps} = renderActionGroupHook({selectionMode: "none"});
+    expect(actionGroupProps.role).toBe("toolbar");
+    expect(actionGroupProps["aria-orientation"]).toBe("horizontal");
   });
 
-  it('handles selection mode single', function () {
-    let {actionGroupProps} = renderActionGroupHook({selectionMode: 'single'});
-    expect(actionGroupProps.role).toBe('radiogroup');
+  it("handles selection mode single", function () {
+    let {actionGroupProps} = renderActionGroupHook({selectionMode: "single"});
+    expect(actionGroupProps.role).toBe("radiogroup");
   });
 
-  it('handles selection mode multiple', function () {
-    let {actionGroupProps} = renderActionGroupHook({selectionMode: 'multiple'});
-    expect(actionGroupProps.role).toBe('toolbar');
-    expect(actionGroupProps['aria-orientation']).toBe('horizontal');
+  it("handles selection mode multiple", function () {
+    let {actionGroupProps} = renderActionGroupHook({selectionMode: "multiple"});
+    expect(actionGroupProps.role).toBe("toolbar");
+    expect(actionGroupProps["aria-orientation"]).toBe("horizontal");
   });
 
-  it('handles isDisabled', function () {
+  it("handles isDisabled", function () {
     let {actionGroupProps} = renderActionGroupHook({isDisabled: true});
-    expect(actionGroupProps['aria-disabled']).toBeTruthy();
+    expect(actionGroupProps["aria-disabled"]).toBeTruthy();
   });
 });

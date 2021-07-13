@@ -92,7 +92,7 @@ module.exports = {
     'comma-dangle': ERROR,
     'indent': OFF,
     'indent-legacy': [ERROR, ERROR, {SwitchCase: 1}],
-    'quotes': [ERROR, 'single', 'avoid-escape'],
+    'quotes': [ERROR, 'double', 'avoid-escape'],
     'linebreak-style': [ERROR, 'unix'],
     'semi': [ERROR, 'always'],
     'space-before-function-paren': [ERROR, {anonymous: 'always', named: 'never', asyncArrow: 'ignore'}],

@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {CalendarCell} from './CalendarCell';
-import {CalendarState, RangeCalendarState} from '@react-stately/calendar';
-import React from 'react';
+import {CalendarCell} from "./CalendarCell";
+import {CalendarState, RangeCalendarState} from "@react-stately/calendar";
+import React from "react";
 
 interface CalendarTableBodyProps {
   state: CalendarState | RangeCalendarState

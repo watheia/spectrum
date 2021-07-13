@@ -18,8 +18,8 @@ import {
   Orientation,
   SingleSelection,
   StyleProps
-} from '@react-types/shared';
-import {Key, ReactNode} from 'react';
+} from "@react-types/shared";
+import {Key, ReactNode} from "react";
 
 export interface AriaTabProps {
   /** The key of the tab. */
@@ -28,14 +28,14 @@ export interface AriaTabProps {
   isDisabled?: boolean
 }
 
-export interface TabListProps<T> extends CollectionBase<T>, Omit<SingleSelection, 'disallowEmptySelection'> {}
+export interface TabListProps<T> extends CollectionBase<T>, Omit<SingleSelection, "disallowEmptySelection"> {}
 
 interface AriaTabListBase {
   /**
    * Whether tabs are activated automatically on focus or manually.
    * @default 'automatic'
    */
-  keyboardActivation?: 'automatic' | 'manual',
+  keyboardActivation?: "automatic" | "manual",
   /**
    * The orientation of the tabs.
    * @default 'horizontal'
@@ -62,7 +62,7 @@ export interface SpectrumTabsProps<T> extends AriaTabListBase, SingleSelection, 
   /** Whether the tabs are displayed in a quiet style. */
   isQuiet?: boolean,
   /** The amount of space between the tabs. */
-  density?: 'compact' | 'regular'
+  density?: "compact" | "regular"
 }
 
 export interface SpectrumTabListProps<T> extends DOMProps, StyleProps {

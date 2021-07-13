@@ -12,6 +12,6 @@
 
 /// <reference types="css-module-types" />
 
-export * from './MenuTrigger';
-export * from './Menu';
-export {Item, Section} from '@react-stately/collections';
+export * from "./MenuTrigger";
+export * from "./Menu";
+export {Item, Section} from "@react-stately/collections";

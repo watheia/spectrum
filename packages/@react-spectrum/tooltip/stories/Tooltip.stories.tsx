@@ -10,65 +10,65 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {storiesOf} from '@storybook/react';
-import {Tooltip} from '../src';
+import React from "react";
+import {storiesOf} from "@storybook/react";
+import {Tooltip} from "../src";
 
-storiesOf('Tooltip', module)
+storiesOf("Tooltip", module)
   .add(
-    'default',
-    () => render('This is a tooltip.')
+    "default",
+    () => render("This is a tooltip.")
   )
   .add(
-    'placement: left',
-    () => render('This is a tooltip.', {placement: 'left'})
+    "placement: left",
+    () => render("This is a tooltip.", {placement: "left"})
   )
   .add(
-    'placement: right',
-    () => render('This is a tooltip.', {placement: 'right'})
+    "placement: right",
+    () => render("This is a tooltip.", {placement: "right"})
   )
   .add(
-    'placement: top',
-    () => render('This is a tooltip.', {placement: 'top'})
+    "placement: top",
+    () => render("This is a tooltip.", {placement: "top"})
   )
   .add(
-    'placement: bottom',
-    () => render('This is a tooltip.', {placement: 'bottom'})
+    "placement: bottom",
+    () => render("This is a tooltip.", {placement: "bottom"})
   )
   .add(
-    'variant: neutral',
-    () => render('This is a tooltip.', {variant: 'neutral'})
+    "variant: neutral",
+    () => render("This is a tooltip.", {variant: "neutral"})
   )
   .add(
-    'variant: positive',
-    () => render('This is a tooltip.', {variant: 'positive'})
+    "variant: positive",
+    () => render("This is a tooltip.", {variant: "positive"})
   )
   .add(
-    'variant: negative',
-    () => render('This is a tooltip.', {variant: 'negative'})
+    "variant: negative",
+    () => render("This is a tooltip.", {variant: "negative"})
   )
   .add(
-    'variant: info',
-    () => render('This is a tooltip.', {variant: 'info'})
+    "variant: info",
+    () => render("This is a tooltip.", {variant: "info"})
   )
   .add(
-    'variant: neutral, icon',
-    () => render('This is a tooltip.', {variant: 'neutral', showIcon: true})
+    "variant: neutral, icon",
+    () => render("This is a tooltip.", {variant: "neutral", showIcon: true})
   )
   .add(
-    'variant: positive, icon',
-    () => render('This is a tooltip.', {variant: 'positive', showIcon: true})
+    "variant: positive, icon",
+    () => render("This is a tooltip.", {variant: "positive", showIcon: true})
   )
   .add(
-    'variant: negative, icon',
-    () => render('This is a tooltip.', {variant: 'negative', showIcon: true})
+    "variant: negative, icon",
+    () => render("This is a tooltip.", {variant: "negative", showIcon: true})
   )
   .add(
-    'variant: info, icon',
-    () => render('This is a tooltip.', {variant: 'info', showIcon: true})
+    "variant: info, icon",
+    () => render("This is a tooltip.", {variant: "info", showIcon: true})
   )
   .add(
-    'long content',
+    "long content",
     () => render(longMarkup)
   );
 
@@ -84,7 +84,7 @@ const longMarkup = (
 
 function render(content, props = {}) {
   return (
-    <div style={{display: 'inline-block'}}>
+    <div style={{display: "inline-block"}}>
       <Tooltip
         {...props}
         isOpen>

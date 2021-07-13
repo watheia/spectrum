@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {mergeProps} from '@react-aria/utils';
-import {PressProps, usePress} from './usePress';
-import React, {HTMLAttributes, ReactElement, RefObject, useRef} from 'react';
+import {mergeProps} from "@react-aria/utils";
+import {PressProps, usePress} from "./usePress";
+import React, {HTMLAttributes, ReactElement, RefObject, useRef} from "react";
 
 interface PressableProps extends PressProps {
   children: ReactElement<HTMLAttributes<HTMLElement>, string>

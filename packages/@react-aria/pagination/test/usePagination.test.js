@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import React from 'react';
-import {renderHook} from '@testing-library/react-hooks';
-import {usePagination} from '../';
+import React from "react";
+import {renderHook} from "@testing-library/react-hooks";
+import {usePagination} from "../";
 
-describe('usePagination tests', function () {
+describe("usePagination tests", function () {
 
   let setValue = jest.fn();
   let state = {};
@@ -58,63 +58,63 @@ describe('usePagination tests', function () {
     state.ref = {};
   });
 
-  it('handles defaults', () => {
+  it("handles defaults", () => {
     let paginationProps = renderPaginationHook({defaultValue: 1});
-    expect(typeof paginationProps.prevButtonProps.onPress).toBe('function');
-    expect(typeof paginationProps.nextButtonProps.onPress).toBe('function');
-    expect(typeof paginationProps.textProps.onKeyDown).toBe('function');
+    expect(typeof paginationProps.prevButtonProps.onPress).toBe("function");
+    expect(typeof paginationProps.nextButtonProps.onPress).toBe("function");
+    expect(typeof paginationProps.textProps.onKeyDown).toBe("function");
   });
 
-  it('handles aria props', function () {
+  it("handles aria props", function () {
     let paginationProps = renderPaginationHook({defaultValue: 1});
-    expect(paginationProps.prevButtonProps['aria-label']).toEqual('Previous');
-    expect(paginationProps.nextButtonProps['aria-label']).toBe('Next');
+    expect(paginationProps.prevButtonProps["aria-label"]).toEqual("Previous");
+    expect(paginationProps.nextButtonProps["aria-label"]).toBe("Next");
   });
 
-  it('handles valid onkeydown', function () {
+  it("handles valid onkeydown", function () {
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.textProps.onKeyDown(event('Up'));
+    paginationProps.textProps.onKeyDown(event("Up"));
     expect(state.onIncrement).toHaveBeenCalled();
   });
 
-  it('handles invalid onkeydown : value <= 1', function () {
+  it("handles invalid onkeydown : value <= 1", function () {
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.textProps.onKeyDown(event('Down'));
+    paginationProps.textProps.onKeyDown(event("Down"));
     expect(state.onDecrement).toHaveBeenCalled();
   });
 
-  it('handles invalid onkeydown : value is a character', function () {
+  it("handles invalid onkeydown : value is a character", function () {
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.textProps.onKeyDown(event('a'));
+    paginationProps.textProps.onKeyDown(event("a"));
     expect(state.onChange).not.toHaveBeenCalled();
   });
 
-  it('handles valid previous', function () {
+  it("handles valid previous", function () {
     state.value = 2;
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.prevButtonProps.onPress(event('click'));
+    paginationProps.prevButtonProps.onPress(event("click"));
     expect(state.onDecrement).toHaveBeenCalled();
     expect(props.onPrevious).toHaveBeenCalledWith(state.ref.current);
   });
 
-  it('handles invalid previous', function () {
+  it("handles invalid previous", function () {
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.prevButtonProps.onPress(event('click'));
+    paginationProps.prevButtonProps.onPress(event("click"));
     expect(state.onDecrement).toHaveBeenCalled();
     expect(props.onPrevious).toHaveBeenCalledWith(state.ref.current);
   });
 
-  it('handles valid next', function () {
+  it("handles valid next", function () {
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.nextButtonProps.onPress(event('click'));
+    paginationProps.nextButtonProps.onPress(event("click"));
     expect(state.onIncrement).toHaveBeenCalled();
     expect(props.onNext).toHaveBeenCalledWith(state.ref.current);
   });
 
-  it('handles invalid next', function () {
+  it("handles invalid next", function () {
     state.value = maxValue;
     let paginationProps = renderPaginationHook({defaultValue: 1, maxValue: maxValue});
-    paginationProps.nextButtonProps.onPress(event('click'));
+    paginationProps.nextButtonProps.onPress(event("click"));
     expect(state.onIncrement).toHaveBeenCalled();
     expect(props.onNext).toHaveBeenCalledWith(state.ref.current);
   });

@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-jest.mock('@react-aria/live-announcer');
-import {act, fireEvent, render, within} from '@testing-library/react';
-import {announce} from '@react-aria/live-announcer';
-import {Example} from '../stories/Example';
-import {Provider} from '@react-spectrum/provider';
-import React from 'react';
-import {theme} from '@react-spectrum/theme-default';
-import {triggerPress} from '@react-spectrum/test-utils';
+jest.mock("@react-aria/live-announcer");
+import {act, fireEvent, render, within} from "@testing-library/react";
+import {announce} from "@react-aria/live-announcer";
+import {Example} from "../stories/Example";
+import {Provider} from "@react-spectrum/provider";
+import React from "react";
+import {theme} from "@react-spectrum/theme-default";
+import {triggerPress} from "@react-spectrum/test-utils";
 
-describe('ActionBar', () => {
+describe("ActionBar", () => {
   beforeAll(() => {
-    jest.spyOn(window.HTMLElement.prototype, 'clientWidth', 'get').mockImplementation(() => 1000);
-    jest.spyOn(window.HTMLElement.prototype, 'clientHeight', 'get').mockImplementation(() => 500);
-    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+    jest.spyOn(window.HTMLElement.prototype, "clientWidth", "get").mockImplementation(() => 1000);
+    jest.spyOn(window.HTMLElement.prototype, "clientHeight", "get").mockImplementation(() => 500);
+    jest.spyOn(window, "requestAnimationFrame").mockImplementation(cb => cb());
     jest.useFakeTimers();
   });
 
@@ -31,107 +31,107 @@ describe('ActionBar', () => {
     act(() => jest.runAllTimers());
   });
 
-  it('should open when there are selected items', () => {
+  it("should open when there are selected items", () => {
     let tree = render(<Provider theme={theme}><Example /></Provider>);
 
-    let table = tree.getByRole('grid');
-    let rows = within(table).getAllByRole('row');
+    let table = tree.getByRole("grid");
+    let rows = within(table).getAllByRole("row");
 
-    expect(tree.queryByRole('toolbar')).toBeNull();
+    expect(tree.queryByRole("toolbar")).toBeNull();
     triggerPress(rows[1]);
 
-    expect(announce).toHaveBeenCalledWith('Actions available.');
+    expect(announce).toHaveBeenCalledWith("Actions available.");
 
-    let toolbar = tree.getByRole('toolbar');
-    expect(toolbar).toHaveAttribute('aria-label', 'Actions');
+    let toolbar = tree.getByRole("toolbar");
+    expect(toolbar).toHaveAttribute("aria-label", "Actions");
 
-    let buttons = within(toolbar).getAllByRole('button');
+    let buttons = within(toolbar).getAllByRole("button");
     expect(buttons).toHaveLength(5);
 
-    expect(tree.getByText('1 selected')).toBeInTheDocument();
+    expect(tree.getByText("1 selected")).toBeInTheDocument();
 
-    let clearButton = tree.getByLabelText('Clear selection');
-    expect(clearButton.tagName).toBe('BUTTON');
+    let clearButton = tree.getByLabelText("Clear selection");
+    expect(clearButton.tagName).toBe("BUTTON");
   });
 
-  it('should update the selected count when selecting more items', () => {
+  it("should update the selected count when selecting more items", () => {
     let tree = render(<Provider theme={theme}><Example /></Provider>);
 
-    let table = tree.getByRole('grid');
-    let rows = within(table).getAllByRole('row');
+    let table = tree.getByRole("grid");
+    let rows = within(table).getAllByRole("row");
 
     triggerPress(rows[1]);
 
-    let selectedCount = tree.getByText('1 selected');
+    let selectedCount = tree.getByText("1 selected");
 
     triggerPress(rows[2]);
-    expect(selectedCount).toHaveTextContent('2 selected');
+    expect(selectedCount).toHaveTextContent("2 selected");
   });
 
-  it('should work with select all', () => {
+  it("should work with select all", () => {
     let tree = render(<Provider theme={theme}><Example /></Provider>);
 
-    let selectAll = tree.getByLabelText('Select All');
+    let selectAll = tree.getByLabelText("Select All");
     triggerPress(selectAll);
 
-    expect(tree.getByText('All selected')).toBeInTheDocument();
+    expect(tree.getByText("All selected")).toBeInTheDocument();
   });
 
-  it('should close and restore focus when pressing the clear button', () => {
+  it("should close and restore focus when pressing the clear button", () => {
     let tree = render(<Provider theme={theme}><Example /></Provider>);
 
-    let table = tree.getByRole('grid');
-    let rows = within(table).getAllByRole('row');
-    let checkbox = within(rows[1]).getByRole('checkbox');
+    let table = tree.getByRole("grid");
+    let rows = within(table).getAllByRole("row");
+    let checkbox = within(rows[1]).getByRole("checkbox");
 
     triggerPress(checkbox);
     act(() => jest.runAllTimers());
     expect(document.activeElement).toBe(checkbox);
 
-    let clearButton = tree.getByLabelText('Clear selection');
+    let clearButton = tree.getByLabelText("Clear selection");
 
     act(() => clearButton.focus());
     triggerPress(clearButton);
     act(() => jest.runAllTimers());
 
-    expect(tree.queryByRole('toolbar')).toBeNull();
+    expect(tree.queryByRole("toolbar")).toBeNull();
     expect(document.activeElement).toBe(checkbox);
   });
 
-  it('should close when pressing the escape key', () => {
+  it("should close when pressing the escape key", () => {
     let tree = render(<Provider theme={theme}><Example /></Provider>);
 
-    let table = tree.getByRole('grid');
-    let rows = within(table).getAllByRole('row');
-    let checkbox = within(rows[1]).getByRole('checkbox');
+    let table = tree.getByRole("grid");
+    let rows = within(table).getAllByRole("row");
+    let checkbox = within(rows[1]).getByRole("checkbox");
 
     triggerPress(checkbox);
     act(() => jest.runAllTimers());
     expect(document.activeElement).toBe(checkbox);
 
-    let toolbar = tree.getByRole('toolbar');
-    act(() => within(toolbar).getAllByRole('button')[0].focus());
+    let toolbar = tree.getByRole("toolbar");
+    act(() => within(toolbar).getAllByRole("button")[0].focus());
 
-    fireEvent.keyDown(document.activeElement, {key: 'Escape'});
-    fireEvent.keyUp(document.activeElement, {key: 'Escape'});
+    fireEvent.keyDown(document.activeElement, {key: "Escape"});
+    fireEvent.keyUp(document.activeElement, {key: "Escape"});
     act(() => jest.runAllTimers());
 
-    expect(tree.queryByRole('toolbar')).toBeNull();
+    expect(tree.queryByRole("toolbar")).toBeNull();
     expect(document.activeElement).toBe(checkbox);
   });
 
-  it('should fire onAction when clicking on an action', () => {
+  it("should fire onAction when clicking on an action", () => {
     let onAction = jest.fn();
     let tree = render(<Provider theme={theme}><Example onAction={onAction} /></Provider>);
 
-    let table = tree.getByRole('grid');
-    let rows = within(table).getAllByRole('row');
+    let table = tree.getByRole("grid");
+    let rows = within(table).getAllByRole("row");
 
     triggerPress(rows[1]);
 
-    let toolbar = tree.getByRole('toolbar');
-    triggerPress(within(toolbar).getAllByRole('button')[0]);
+    let toolbar = tree.getByRole("toolbar");
+    triggerPress(within(toolbar).getAllByRole("button")[0]);
 
-    expect(onAction).toHaveBeenCalledWith('edit');
+    expect(onAction).toHaveBeenCalledWith("edit");
   });
 });

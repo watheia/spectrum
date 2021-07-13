@@ -14,7 +14,7 @@ import {
   FocusEvent,
   KeyboardEvent as ReactKeyboardEvent,
   SyntheticEvent
-} from 'react';
+} from "react";
 
 // Event bubbling can be problematic in real-world applications, so the default for React Spectrum components
 // is not to propagate. This can be overridden by calling continuePropagation() on the event.
@@ -26,11 +26,11 @@ export type BaseEvent<T extends SyntheticEvent> = T & {
 
 export type KeyboardEvent = BaseEvent<ReactKeyboardEvent<any>>;
 
-export type PointerType = 'mouse' | 'pen' | 'touch' | 'keyboard' | 'virtual';
+export type PointerType = "mouse" | "pen" | "touch" | "keyboard" | "virtual";
 
 export interface PressEvent {
   /** The type of press event being fired. */
-  type: 'pressstart' | 'pressend' | 'pressup' | 'press',
+  type: "pressstart" | "pressend" | "pressup" | "press",
   /** The pointer type that triggered the press event. */
   pointerType: PointerType,
   /** The target element of the press event. */
@@ -45,9 +45,9 @@ export interface PressEvent {
 
 export interface HoverEvent {
   /** The type of hover event being fired. */
-  type: 'hoverstart' | 'hoverend',
+  type: "hoverstart" | "hoverend",
   /** The pointer type that triggered the hover event. */
-  pointerType: 'mouse' | 'pen',
+  pointerType: "mouse" | "pen",
   /** The target element of the hover event. */
   target: HTMLElement
 }
@@ -108,12 +108,12 @@ interface BaseMoveEvent {
 
 export interface MoveStartEvent extends BaseMoveEvent {
   /** The type of move event being fired. */
-  type: 'movestart'
+  type: "movestart"
 }
 
 export interface MoveMoveEvent extends BaseMoveEvent {
   /** The type of move event being fired. */
-  type: 'move',
+  type: "move",
   /** The amount moved in the X direction since the last event. */
   deltaX: number,
   /** The amount moved in the Y direction since the last event. */
@@ -122,7 +122,7 @@ export interface MoveMoveEvent extends BaseMoveEvent {
 
 export interface MoveEndEvent extends BaseMoveEvent {
   /** The type of move event being fired. */
-  type: 'moveend'
+  type: "moveend"
 }
 
 export type MoveEvent = MoveStartEvent | MoveMoveEvent | MoveEndEvent;
