@@ -38,29 +38,56 @@ export function HeaderInfo(props) {
       <table className={styles["headerInfo"]}>
         <tbody>
           <tr>
-            <th className={typographyStyles["spectrum-Body--secondary"]}>install</th>
-            <td className={typographyStyles["spectrum-Body4"]}><code className={typographyStyles["spectrum-Code4"]}>yarn add {importName}</code></td>
+            <th className={typographyStyles["spectrum-Body--secondary"]}>
+              install
+            </th>
+            <td className={typographyStyles["spectrum-Body4"]}>
+              <code className={typographyStyles["spectrum-Code4"]}>
+                yarn add {importName}
+              </code>
+            </td>
           </tr>
           <tr>
-            <th className={typographyStyles["spectrum-Body--secondary"]}>version</th>
-            <td className={typographyStyles["spectrum-Body4"]}>{packageData.version}</td>
+            <th className={typographyStyles["spectrum-Body--secondary"]}>
+              version
+            </th>
+            <td className={typographyStyles["spectrum-Body4"]}>
+              {packageData.version}
+            </td>
           </tr>
-          {componentNames &&
+          {componentNames && (
             <tr>
-              <th className={typographyStyles["spectrum-Body--secondary"]}>usage</th>
+              <th className={typographyStyles["spectrum-Body--secondary"]}>
+                usage
+              </th>
               <td className={typographyStyles["spectrum-Body4"]}>
-                <Lowlight language="js" value={`import {${componentNames.join(", ")}} from '${importName}'`} inline className={typographyStyles["spectrum-Code4"]} />
+                <Lowlight
+                  language="js"
+                  value={`import {${componentNames.join(
+                    ", "
+                  )}} from '${importName}'`}
+                  inline
+                  className={typographyStyles["spectrum-Code4"]}
+                />
               </td>
             </tr>
-          }
+          )}
         </tbody>
       </table>
       <Flex wrap gap="size-200">
         {sourceData.map((source) => (
           <ResourceCard type={source.type} url={source.url} />
         ))}
-        <ResourceCard type="GitHub" url={`https://github.com/watheia/rsp-kit/tree/main/packages/${encodeURI(packageData.name)}`} />
-        <ResourceCard type="NPM" url={`https://www.npmjs.com/package/${encodeURI(packageData.name)}`} />
+        <ResourceCard
+          type="GitHub"
+          url={`https://gitlab.com/watheia/spectrum/tree/main/packages/${encodeURI(
+            packageData.name
+          )}`}
+        />
+        <ResourceCard
+          type="NPM"
+          url={`https://www.npmjs.com/package/${encodeURI(packageData.name)}`}
+        />
       </Flex>
     </>
   );

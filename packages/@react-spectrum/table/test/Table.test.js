@@ -3302,20 +3302,20 @@ describe("TableView", function () {
 
   describe("layout", function () {
     describe("row heights", function () {
-      let renderTable = (props, scale) => render(
-        <TableView aria-label="Table" {...props}>
-          <TableHeader columns={columns}>
-            {column => <Column>{column.name}</Column>}
-          </TableHeader>
-          <TableBody items={items}>
-            {item =>
-              (<Row key={item.foo}>
-                {key => <Cell>{item[key]}</Cell>}
-              </Row>)
-            }
-          </TableBody>
-        </TableView>
-      , scale);
+      let renderTable = (props, scale) =>
+        render(
+          <TableView aria-label="Table" {...props}>
+            <TableHeader columns={columns}>
+              {(column) => <Column>{column.name}</Column>}
+            </TableHeader>
+            <TableBody items={items}>
+              {(item) => (
+                <Row key={item.foo}>{(key) => <Cell>{item[key]}</Cell>}</Row>
+              )}
+            </TableBody>
+          </TableView>,
+          scale
+        );
 
       it("should layout rows with default height", function () {
         let tree = renderTable();
@@ -3354,7 +3354,7 @@ describe("TableView", function () {
       });
 
       it('should layout rows with density="compact"', function () {
-        let tree = renderTable({density: "compact"});
+        let tree = renderTable({ density: "compact" });
         let rows = tree.getAllByRole("row");
         expect(rows).toHaveLength(3);
 
@@ -3372,7 +3372,7 @@ describe("TableView", function () {
       });
 
       it('should layout rows with density="compact" in large scale', function () {
-        let tree = renderTable({density: "compact"}, "large");
+        let tree = renderTable({ density: "compact" }, "large");
         let rows = tree.getAllByRole("row");
         expect(rows).toHaveLength(3);
 
@@ -3390,7 +3390,7 @@ describe("TableView", function () {
       });
 
       it('should layout rows with density="spacious"', function () {
-        let tree = renderTable({density: "spacious"});
+        let tree = renderTable({ density: "spacious" });
         let rows = tree.getAllByRole("row");
         expect(rows).toHaveLength(3);
 
@@ -3408,7 +3408,7 @@ describe("TableView", function () {
       });
 
       it('should layout rows with density="spacious" in large scale', function () {
-        let tree = renderTable({density: "spacious"}, "large");
+        let tree = renderTable({ density: "spacious" }, "large");
         let rows = tree.getAllByRole("row");
         expect(rows).toHaveLength(3);
 
@@ -3426,12 +3426,13 @@ describe("TableView", function () {
       });
 
       it('should support variable row heights with overflowMode="wrap"', function () {
-        let scrollHeight = jest.spyOn(window.HTMLElement.prototype, "scrollHeight", "get")
+        let scrollHeight = jest
+          .spyOn(window.HTMLElement.prototype, "scrollHeight", "get")
           .mockImplementation(function () {
             return this.textContent === "Foo 1" ? 64 : 48;
           });
 
-        let tree = renderTable({overflowMode: "wrap"});
+        let tree = renderTable({ overflowMode: "wrap" });
         let rows = tree.getAllByRole("row");
         expect(rows).toHaveLength(3);
 
@@ -3454,7 +3455,8 @@ describe("TableView", function () {
       });
 
       it('should support variable column header heights with overflowMode="wrap"', function () {
-        let scrollHeight = jest.spyOn(window.HTMLElement.prototype, "scrollHeight", "get")
+        let scrollHeight = jest
+          .spyOn(window.HTMLElement.prototype, "scrollHeight", "get")
           .mockImplementation(function () {
             return this.textContent === "Tier Two Header B" ? 48 : 34;
           });
@@ -3462,14 +3464,14 @@ describe("TableView", function () {
         let tree = render(
           <TableView aria-label="Table" overflowMode="wrap">
             <TableHeader columns={nestedColumns}>
-              {column => <Column childColumns={column.children}>{column.name}</Column>}
+              {(column) => (
+                <Column childColumns={column.children}>{column.name}</Column>
+              )}
             </TableHeader>
             <TableBody items={items}>
-              {item =>
-                (<Row key={item.foo}>
-                  {key => <Cell>{item[key]}</Cell>}
-                </Row>)
-              }
+              {(item) => (
+                <Row key={item.foo}>{(key) => <Cell>{item[key]}</Cell>}</Row>
+              )}
             </TableBody>
           </TableView>
         );
@@ -3501,21 +3503,25 @@ describe("TableView", function () {
         scrollHeight.mockRestore();
       });
 
-      // To test https://github.com/watheia/rsp-kit/issues/1885
+      // To test https://gitlab.com/watheia/spectrum/issues/1885
       it('should not throw error if selection mode changes with overflowMode="wrap" and selection was controlled', function () {
         function ControlledSelection(props) {
           let [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
           return (
-            <TableView aria-label="Table" overflowMode="wrap" selectionMode={props.selectionMode} selectedKeys={selectedKeys} onSelectionChange={setSelectedKeys}>
+            <TableView
+              aria-label="Table"
+              overflowMode="wrap"
+              selectionMode={props.selectionMode}
+              selectedKeys={selectedKeys}
+              onSelectionChange={setSelectedKeys}
+            >
               <TableHeader columns={columns}>
-                {column => <Column>{column.name}</Column>}
+                {(column) => <Column>{column.name}</Column>}
               </TableHeader>
               <TableBody items={items}>
-                {item =>
-                  (<Row key={item.foo}>
-                    {key => <Cell>{item[key]}</Cell>}
-                  </Row>)
-                }
+                {(item) => (
+                  <Row key={item.foo}>{(key) => <Cell>{item[key]}</Cell>}</Row>
+                )}
               </TableBody>
             </TableView>
           );

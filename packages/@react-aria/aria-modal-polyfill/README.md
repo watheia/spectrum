@@ -1,6 +1,6 @@
 # @react-aria/aria-modal-polyfill
 
-This package is part of [react-spectrum](https://github.com/watheia/rsp-kit).
+This package is part of [react-spectrum](https://gitlab.com/watheia/spectrum).
 Certain browser + screen reader combinations do not implement aria-modal correctly, allowing users to navigate outside of the modal.
 This package watches a container for aria-modal nodes and hides the rest of the dom from screen readers when one is open use the [aria-hidden](https://www.npmjs.com/package/aria-hidden) package.
 
