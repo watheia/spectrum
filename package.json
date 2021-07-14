@@ -5,7 +5,7 @@
   "description": "Spectrum-UI Kit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/watheia/rsp-kit"
+    "url": "https://gitlab.com/watheia/spectrum"
   },
   "browserslist": [
     "chrome >= 61",

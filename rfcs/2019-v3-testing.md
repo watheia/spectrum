@@ -26,7 +26,7 @@ outcome? -->
 
 To understand the impetus behind this testing reform, one must understand the proposed changes occurring with React Spectrum v3. Here is a list that covers a couple of them:
 
-1. [Architecture changes powered by React Hooks](https://github.com/watheia/rsp-kit/blob/main/rfcs/2019-v3-architecture.md)
+1. [Architecture changes powered by React Hooks](https://gitlab.com/watheia/spectrum/blob/main/rfcs/2019-v3-architecture.md)
 2. CSS Modules for styling flexibility
 3. Minor/major api changes for many of the current components
 
@@ -72,14 +72,14 @@ Note: The following serves mainly as a guideline. Tests should be constructed to
 
 The majority of the tests that will be written after this transition will be mount style tests using the React Testing Library. Each test will be scoped at a component level, with exceptions made for integration testing of several components if those components prove to be tightly coupled. Tests should cover general component behavior as seen from an end user's perspective, with all interactions done via simulated events (clicks, keyboard interactions, etc) and not by direct function calls. For the most part, this style of test writing will be enforced by the React Testing Library itself. Shallow style tests can still be written in Enzyme for situations that require it (testing bits of internal component logic or forcing prop/state changes) but should be avoided if at all possible.
 
-The second kind of tests will be those written against the state/behavior hooks described [here](https://github.com/watheia/rsp-kit/blob/main/rfcs/2019-v3-architecture.md#architecture). Since hooks are basically functions, tests will cover the standard input-output test cases. These tests will be written using the React Hooks Testing Library so we won't have to write our own hook wrapping test harnesses.
+The second kind of tests will be those written against the state/behavior hooks described [here](https://gitlab.com/watheia/spectrum/blob/main/rfcs/2019-v3-architecture.md#architecture). Since hooks are basically functions, tests will cover the standard input-output test cases. These tests will be written using the React Hooks Testing Library so we won't have to write our own hook wrapping test harnesses.
 
 A tentative third type of test would be UI tests that could run against a real browser. Ideally, we would be able to reuse the mount tests and run them in browser but the viability of this has not been fully explored yet. If this ends up being impossible,
 [Jest Puppeteer](https://github.com/smooth-code/jest-puppeteer) may prove to be a reasonable framework for writing automated tests that run in headless Chrome. UI tests are typically quite expensive to write and maintain, so further discussions regarding their usage will need to be had before committing.
 
 ### Where will tests live?
 
-With the new package based structure proposed in v3, tests should live near the code they test. For example, component tests should be located in `packages/@react-spectrum/COMPONENT/tests` and hooks tests should be located in `@react-stately` or `@react-aria` respectively. See [here](https://github.com/watheia/rsp-kit/blob/main/rfcs/2019-v3-architecture.md#packages-and-file-structure) for a visual diagram.
+With the new package based structure proposed in v3, tests should live near the code they test. For example, component tests should be located in `packages/@react-spectrum/COMPONENT/tests` and hooks tests should be located in `@react-stately` or `@react-aria` respectively. See [here](https://gitlab.com/watheia/spectrum/blob/main/rfcs/2019-v3-architecture.md#packages-and-file-structure) for a visual diagram.
 
 ### When should the tests be written?
 
@@ -182,4 +182,4 @@ Jest snapshot testing was also considered, but was deemed to possibly too noisy.
     context for this proposal, please include those links here.
 -->
 
-Sample implementation can be found here: https://github.com/watheia/rsp-kit/compare/v3...test_framework_explore. Feedback is greatly appreciated.
+Sample implementation can be found here: https://gitlab.com/watheia/spectrum/compare/v3...test_framework_explore. Feedback is greatly appreciated.

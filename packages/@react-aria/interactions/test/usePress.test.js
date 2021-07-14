@@ -1977,34 +1977,49 @@ describe("usePress", function () {
     });
 
     it("should remove user-select: none to html element when press end", function () {
-      let {getByText} = render(
+      let { getByText } = render(
         <Example
           onPressStart={handler}
           onPressEnd={handler}
           onPressChange={handler}
           onPress={handler}
-          onPressUp={handler} />
+          onPressUp={handler}
+        />
       );
 
       let el = getByText("test");
 
-      fireEvent.touchStart(el, {targetTouches: [{identifier: 1}]});
-      fireEvent.touchEnd(el, {changedTouches: [{identifier: 1}]});
+      fireEvent.touchStart(el, { targetTouches: [{ identifier: 1 }] });
+      fireEvent.touchEnd(el, { changedTouches: [{ identifier: 1 }] });
 
-      act(() => {jest.advanceTimersByTime(300);});
-      expect(document.documentElement.style.webkitUserSelect).toBe(mockUserSelect);
+      act(() => {
+        jest.advanceTimersByTime(300);
+      });
+      expect(document.documentElement.style.webkitUserSelect).toBe(
+        mockUserSelect
+      );
 
       // Checkbox doesn't remove `user-select: none;` style from HTML Element issue
-      // see https://github.com/watheia/rsp-kit/issues/862
-      fireEvent.touchStart(el, {targetTouches: [{identifier: 1}]});
-      fireEvent.touchEnd(el, {changedTouches: [{identifier: 1}]});
-      fireEvent.touchStart(el, {targetTouches: [{identifier: 1}]});
-      fireEvent.touchMove(el, {changedTouches: [{identifier: 1, clientX: 100, clientY: 100}]});
-      act(() => {jest.advanceTimersByTime(300);});
-      fireEvent.touchEnd(el, {changedTouches: [{identifier: 1, clientX: 100, clientY: 100}]});
-      act(() => {jest.advanceTimersByTime(300);});
+      // see https://gitlab.com/watheia/spectrum/issues/862
+      fireEvent.touchStart(el, { targetTouches: [{ identifier: 1 }] });
+      fireEvent.touchEnd(el, { changedTouches: [{ identifier: 1 }] });
+      fireEvent.touchStart(el, { targetTouches: [{ identifier: 1 }] });
+      fireEvent.touchMove(el, {
+        changedTouches: [{ identifier: 1, clientX: 100, clientY: 100 }],
+      });
+      act(() => {
+        jest.advanceTimersByTime(300);
+      });
+      fireEvent.touchEnd(el, {
+        changedTouches: [{ identifier: 1, clientX: 100, clientY: 100 }],
+      });
+      act(() => {
+        jest.advanceTimersByTime(300);
+      });
 
-      expect(document.documentElement.style.webkitUserSelect).toBe(mockUserSelect);
+      expect(document.documentElement.style.webkitUserSelect).toBe(
+        mockUserSelect
+      );
     });
 
     it("should not remove user-select: none when pressing two different elements quickly", function () {

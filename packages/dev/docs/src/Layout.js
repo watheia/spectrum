@@ -10,29 +10,29 @@
  * governing permissions and limitations under the License.
  */
 
+import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
+import ruleStyles from "@adobe/spectrum-css-temp/components/rule/vars.css";
+import sideNavStyles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
+import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import { MDXProvider } from "@mdx-js/react";
+import { Divider } from "@react-spectrum/divider";
+import { theme } from "@react-spectrum/theme-default";
 import ChevronLeft from "@spectrum-icons/ui/ChevronLeftLarge";
 import clsx from "clsx";
-import {Divider} from "@react-spectrum/divider";
-import docStyles from "./docs.css";
-import {getAnchorProps} from "./utils";
+import path from "path";
+import React from "react";
 import heroImageAria from "url:../pages/assets/ReactAria_976x445_2x.png";
 import heroImageHome from "url:../pages/assets/ReactSpectrumHome_976x445_2x.png";
 import heroImageSpectrum from "url:../pages/assets/ReactSpectrum_976x445_2x.png";
 import heroImageStately from "url:../pages/assets/ReactStately_976x445_2x.png";
-import highlightCss from "./syntax-highlight.css";
-import {ImageContext} from "./Image";
-import {LinkProvider} from "./types";
-import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
+import docStyles from "./docs.css";
+import { ImageContext } from "./Image";
 import LogoSvg from "./LogoSvg";
-import {MDXProvider} from "@mdx-js/react";
-import path from "path";
-import React from "react";
-import ruleStyles from "@adobe/spectrum-css-temp/components/rule/vars.css";
-import sideNavStyles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
-import {theme} from "@react-spectrum/theme-default";
-import {ToC} from "./ToC";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
-import {VersionBadge} from "./VersionBadge";
+import highlightCss from "./syntax-highlight.css";
+import { ToC } from "./ToC";
+import { LinkProvider } from "./types";
+import { getAnchorProps } from "./utils";
+import { VersionBadge } from "./VersionBadge";
 
 const TLD = "watheia.app";
 const HERO = {
@@ -122,7 +122,8 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
         theme.medium["spectrum--medium"],
         typographyStyles.spectrum,
         docStyles.provider,
-        highlightCss.spectrum)}>
+        highlightCss.spectrum
+      )}>
       <head>
         <title>{title}</title>
         <meta charset="utf-8" />
@@ -134,7 +135,8 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
             possible during loading. It also handles when the media queries update, or
             local storage is updated. */}
         <script
-          dangerouslySetInnerHTML={{__html: `(() => {
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
             let classList = document.documentElement.classList;
             let style = document.documentElement.style;
             let dark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -167,13 +169,34 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
             fine.addListener(update);
             window.addEventListener('storage', update);
           })();
-        `.replace(/\n|\s{2,}/g, "")}} />
-        <link rel="preload" as="font" href="https://use.typekit.net/af/eaf09c/000000000000000000017703/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3" crossOrigin="" />
-        <link rel="preload" as="font" href="https://use.typekit.net/af/cb695f/000000000000000000017701/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3" crossOrigin="" />
-        <link rel="preload" as="font" href="https://use.typekit.net/af/505d17/00000000000000003b9aee44/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3" crossOrigin="" />
-        <link rel="preload" as="font" href="https://use.typekit.net/af/74ffb1/000000000000000000017702/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3" crossOrigin="" />
-        {styles.map(s => <link rel="stylesheet" href={s.url} />)}
-        {scripts.map(s => <script type={s.type} src={s.url} defer />)}
+        `.replace(/\n|\s{2,}/g, "")
+          }} />
+        <link
+          rel="preload"
+          as="font"
+          href="https://use.typekit.net/af/eaf09c/000000000000000000017703/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3"
+          crossOrigin="" />
+        <link
+          rel="preload"
+          as="font"
+          href="https://use.typekit.net/af/cb695f/000000000000000000017701/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3"
+          crossOrigin="" />
+        <link
+          rel="preload"
+          as="font"
+          href="https://use.typekit.net/af/505d17/00000000000000003b9aee44/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3"
+          crossOrigin="" />
+        <link
+          rel="preload"
+          as="font"
+          href="https://use.typekit.net/af/74ffb1/000000000000000000017702/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3"
+          crossOrigin="" />
+        {styles.map((s) => (
+          <link rel="stylesheet" href={s.url} />
+        ))}
+        {scripts.map((s) => (
+          <script type={s.type} src={s.url} defer />
+        ))}
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta name="twitter:card" content="summary_large_image" />
@@ -186,8 +209,8 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
         <meta property="og:locale" content="en_US" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{__html: JSON.stringify(
-            {
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
               "@context": "http://schema.org",
               "@type": "Article",
               author: "Watheia Labs",
@@ -196,24 +219,26 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
               image: heroUrl,
               publisher: {
                 "@type": "Organization",
-                url: "https://rsp-kit.vercel.app",
+                url: "https://watheia.app",
                 name: "Watheia",
-                logo: "https://cdn.watheia.org/assets/favicon.ico"
+                logo: "https://cdn.watheia.org/assets/wa-card.png"
               }
-            }
-          )}} />
+            })
+          }} />
       </head>
       <body>
         {children}
         <script
-          dangerouslySetInnerHTML={{__html: `
+          dangerouslySetInnerHTML={{
+            __html: `
             window.addEventListener('load', () => {
               let script = document.createElement('script');
               script.async = true;
               script.src = 'https://assets.adobedtm.com/a7d65461e54e/01d650a3ee55/launch-4d5498348926.min.js';
               document.head.appendChild(script);
             });
-          `}} />
+          `
+          }} />
       </body>
     </html>
   );

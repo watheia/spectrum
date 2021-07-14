@@ -81,7 +81,7 @@ Backwards incompatible/breaking changes to react-spectrum module API's may cause
 
 ### Sample Implementation of basic Storybook and UXP Button
 
-https://github.com/watheia/rsp-kit/compare/main...krisnye:monorepo?expand=1
+https://gitlab.com/watheia/spectrum/compare/main...krisnye:monorepo?expand=1
 
 ## Drawbacks
 
