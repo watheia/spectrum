@@ -34,7 +34,7 @@ import { LinkProvider } from "./types";
 import { getAnchorProps } from "./utils";
 import { VersionBadge } from "./VersionBadge";
 
-const TLD = "watheia.app";
+const TLD = "docs.watheia.app";
 const HERO = {
   "react-spectrum": heroImageSpectrum,
   "react-aria": heroImageAria,
@@ -219,7 +219,7 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
               image: heroUrl,
               publisher: {
                 "@type": "Organization",
-                url: "https://watheia.app",
+                url: "https://docs.watheia.app",
                 name: "Watheia",
                 logo: "https://cdn.watheia.org/assets/wa-card.png"
               }
@@ -397,9 +397,9 @@ function Footer() {
       <hr className={clsx(ruleStyles["spectrum-Rule"], ruleStyles["spectrum-Rule--small"], ruleStyles["spectrum-Rule--horizontal"])} />
       <ul>
         <li>Copyright © {year} Watheia Labs, LLC. All rights reserved.</li>
-        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//watheia.app/terms">Privacy</a></li>
-        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//watheia.app/terms">Terms of Use</a></li>
-        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//watheia.app/terms">Cookies</a></li>
+        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//docs.watheia.app/terms">Privacy</a></li>
+        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//docs.watheia.app/terms">Terms of Use</a></li>
+        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//docs.watheia.app/terms">Cookies</a></li>
       </ul>
     </footer>
   );
