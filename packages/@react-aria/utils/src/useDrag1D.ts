@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {getOffset} from "./getOffset";
-import {Orientation} from "@react-types/shared";
-import React, {HTMLAttributes, MutableRefObject, useRef} from "react";
+import { Orientation } from "@react-types/shared";
+import React, { HTMLAttributes, MutableRefObject, useRef } from "react";
+import { getOffset } from "./getOffset";
 
 interface UseDrag1DProps {
   containerRef: MutableRefObject<HTMLElement>,
@@ -39,7 +39,7 @@ const draggingElements: HTMLElement[] = [];
 // It can also handle either a vertical or horizontal movement, but not both at the same time
 
 export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
-  console.warn("useDrag1D is deprecated, please use `useMove` instead https://watheia.app/react-aria/useMove.html");
+  console.warn("useDrag1D is deprecated, please use `useMove` instead https://blog.watheia.app/react-aria/useMove.html");
   let {containerRef, reverse, orientation, onHover, onDrag, onPositionChange, onIncrement, onDecrement, onIncrementToMax, onDecrementToMin, onCollapseToggle} = props;
   let getPosition = (e) => orientation === "horizontal" ? e.clientX : e.clientY;
   let getNextOffset = (e: MouseEvent) => {

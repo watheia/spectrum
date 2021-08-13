@@ -123,7 +123,8 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
         typographyStyles.spectrum,
         docStyles.provider,
         highlightCss.spectrum
-      )}>
+      )}
+    >
       <head>
         <title>{title}</title>
         <meta charset="utf-8" />
@@ -169,28 +170,33 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
             fine.addListener(update);
             window.addEventListener('storage', update);
           })();
-        `.replace(/\n|\s{2,}/g, "")
-          }} />
+        `.replace(/\n|\s{2,}/g, ""),
+          }}
+        />
         <link
           rel="preload"
           as="font"
           href="https://use.typekit.net/af/eaf09c/000000000000000000017703/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3"
-          crossOrigin="" />
+          crossOrigin=""
+        />
         <link
           rel="preload"
           as="font"
           href="https://use.typekit.net/af/cb695f/000000000000000000017701/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3"
-          crossOrigin="" />
+          crossOrigin=""
+        />
         <link
           rel="preload"
           as="font"
           href="https://use.typekit.net/af/505d17/00000000000000003b9aee44/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3"
-          crossOrigin="" />
+          crossOrigin=""
+        />
         <link
           rel="preload"
           as="font"
           href="https://use.typekit.net/af/74ffb1/000000000000000000017702/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3"
-          crossOrigin="" />
+          crossOrigin=""
+        />
         {styles.map((s) => (
           <link rel="stylesheet" href={s.url} />
         ))}
@@ -219,12 +225,13 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
               image: heroUrl,
               publisher: {
                 "@type": "Organization",
-                url: "https://watheia.app",
+                url: "https://blog.watheia.app",
                 name: "Watheia",
-                logo: "https://cdn.watheia.org/assets/wa-card.png"
-              }
-            })
-          }} />
+                logo: "https://cdn.watheia.org/assets/wa-card.png",
+              },
+            }),
+          }}
+        />
       </head>
       <body>
         {children}
@@ -237,8 +244,9 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
               script.src = 'https://assets.adobedtm.com/a7d65461e54e/01d650a3ee55/launch-4d5498348926.min.js';
               document.head.appendChild(script);
             });
-          `
-          }} />
+          `,
+          }}
+        />
       </body>
     </html>
   );
