@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/watheia/spectrum"
+    "url": "https://github.com/watheia/spectrum"
   },
   "main": "generateIcons.js",
   "private": true,

@@ -10,31 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {ActionButton, Button} from "@react-spectrum/button";
+import { useFilter } from "@react-aria/i18n";
+import { ActionButton, Button } from "@react-spectrum/button";
+import { ButtonGroup } from "@react-spectrum/buttongroup";
+import { Dialog, DialogTrigger } from "@react-spectrum/dialog";
+import { Divider } from "@react-spectrum/divider";
+import { IllustratedMessage } from "@react-spectrum/illustratedmessage";
+import { Flex } from "@react-spectrum/layout";
+import { Link } from "@react-spectrum/link";
+import { Radio, RadioGroup } from "@react-spectrum/radio";
+import { SearchField } from "@react-spectrum/searchfield";
+import { Switch } from "@react-spectrum/switch";
+import { Heading } from "@react-spectrum/text";
+import { TextField } from "@react-spectrum/textfield";
+import { Content, View } from "@react-spectrum/view";
+import { useAsyncList } from "@react-stately/data";
+import { SelectionMode } from "@react-types/shared";
 import Add from "@spectrum-icons/workflow/Add";
-import {ButtonGroup} from "@react-spectrum/buttongroup";
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from "../";
-import {Content} from "@react-spectrum/view";
-import {CRUDExample} from "./CRUDExample";
 import Delete from "@spectrum-icons/workflow/Delete";
-import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
-import {Divider} from "@react-spectrum/divider";
-import {Flex} from "@react-spectrum/layout";
-import {Heading} from "@react-spectrum/text";
-import {HidingColumns} from "./HidingColumns";
-import {IllustratedMessage} from "@react-spectrum/illustratedmessage";
-import {Link} from "@react-spectrum/link";
-import {Radio, RadioGroup} from "@react-spectrum/radio";
-import React, {Key, useState} from "react";
-import {SearchField} from "@react-spectrum/searchfield";
-import {SelectionMode} from "@react-types/shared";
-import {storiesOf} from "@storybook/react";
-import {Switch} from "@react-spectrum/switch";
-import {TextField} from "@react-spectrum/textfield";
-import {useAsyncList} from "@react-stately/data";
-import {useFilter} from "@react-aria/i18n";
-import {View} from "@react-spectrum/view";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import React, { Key, useState } from "react";
+import { Cell, Column, Row, TableBody, TableHeader, TableView } from "../";
+import { CRUDExample } from "./CRUDExample";
+import { HidingColumns } from "./HidingColumns";
 
 let columns = [
   {name: "Foo", key: "foo"},
@@ -259,7 +258,7 @@ storiesOf("TableView", module)
     </TableView>
   ))
   .add(
-    // For testing https://gitlab.com/watheia/spectrum/issues/1885
+    // For testing https://github.com/watheia/spectrum/issues/1885
     "swap selection mode",
     () => <ChangableSelectionMode />
   )
