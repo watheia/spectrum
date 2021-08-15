@@ -19,11 +19,11 @@ import React from "react";
 import styles from "./actionbar.css";
 
 function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<HTMLDivElement>) {
-  // Grabs specific props from the closest Provider (see https://blog.watheia.app/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
+  // Grabs specific props from the closest Provider (see https://watheia.org/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
   props = useProviderProps(props);
 
-  let {children} = props;
-  let {styleProps} = useStyleProps(props);
+  let { children } = props;
+  let { styleProps } = useStyleProps(props);
   let domRef = useDOMRef(ref);
 
   return (
@@ -31,7 +31,8 @@ function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<
       {...filterDOMProps(props)}
       {...styleProps}
       ref={domRef}
-      className={classNames(styles, "ActionBarContainer", styleProps.className)}>
+      className={classNames(styles, "ActionBarContainer", styleProps.className)}
+    >
       {children}
     </div>
   );

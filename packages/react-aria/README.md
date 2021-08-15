@@ -1,4 +1,4 @@
-# [React Aria](https://blog.watheia.app/react-aria/index.html)
+# [React Aria](https://watheia.org/react-aria/index.html)
 
 A library of React Hooks that provides accessible UI primitives for your design system.
 
@@ -11,7 +11,7 @@ A library of React Hooks that provides accessible UI primitives for your design 
 
 ## Getting started
 
-The easiest way to start building a component library with React Aria is by following our [getting started](https://blog.watheia.app/react-aria/getting-started.html) guide. It walks through all of the steps needed to install the hooks from npm, and create your first component.
+The easiest way to start building a component library with React Aria is by following our [getting started](https://watheia.org/react-aria/getting-started.html) guide. It walks through all of the steps needed to install the hooks from npm, and create your first component.
 
 ### Example
 
@@ -37,4 +37,4 @@ function Button(props) {
 ## Learn more
 
 React Aria is part of a family of libraries that help you build adaptive, accessible, and robust user experiences.
-Learn more about [React Spectrum](https://blog.watheia.app/react-spectrum/index.html) and [React Stately](https://blog.watheia.app/react-stately/index.html) on [our website](https://blog.watheia.app/index.html).
+Learn more about [React Spectrum](https://watheia.org/react-spectrum/index.html) and [React Stately](https://watheia.org/react-stately/index.html) on [our website](https://watheia.org/index.html).

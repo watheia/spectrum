@@ -42,7 +42,12 @@ export function getUsedLinks(obj, links, usedLinks = {}) {
 }
 
 export function getAnchorProps(href) {
-  if (!/^http/.test(href) || /localhost|reactspectrum\.blob\.core\.windows\.net|react-spectrum\.(corp\.)?adobe\.com|^#/.test(href)) {
+  if (
+    !/^http/.test(href) ||
+    /localhost|reactspectrum\.blob\.core\.windows\.net|react-spectrum\.(corp\.)?watheia\.org|^#/.test(
+      href
+    )
+  ) {
     return {};
   }
 
