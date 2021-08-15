@@ -10,31 +10,30 @@
  * governing permissions and limitations under the License.
  */
 
+import { FocusRing, useFocusRing } from "@react-aria/focus";
+import { useLocale, useMessageFormatter } from "@react-aria/i18n";
+import { useHover, usePress } from "@react-aria/interactions";
+import { useTable, useTableCell, useTableColumnHeader, useTableHeaderRow, useTableRow, useTableRowGroup, useTableSelectAllCheckbox, useTableSelectionCheckbox } from "@react-aria/table";
+import { mergeProps, useLayoutEffect } from "@react-aria/utils";
+import { layoutInfoToStyle, ScrollView, setScrollLeft, useVirtualizer, VirtualizerItem } from "@react-aria/virtualizer";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { Checkbox } from "@react-spectrum/checkbox";
+import { ProgressCircle } from "@react-spectrum/progress";
+import { useProvider, useProviderProps } from "@react-spectrum/provider";
+import { Tooltip, TooltipTrigger } from "@react-spectrum/tooltip";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { TableLayout } from "@react-stately/layout";
+import { TableState, useTableState } from "@react-stately/table";
+import { Rect, ReusableView, useVirtualizerState } from "@react-stately/virtualizer";
+import { GridNode } from "@react-types/grid";
+import { DOMRef } from "@react-types/shared";
+import { SpectrumColumnProps, SpectrumTableProps } from "@react-types/table";
 import ArrowDownSmall from "@spectrum-icons/ui/ArrowDownSmall";
-import {Checkbox} from "@react-spectrum/checkbox";
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {FocusRing, useFocusRing} from "@react-aria/focus";
-import {GridNode} from "@react-types/grid";
+import styles from "@watheia/spectrum-css-temp/components/table/vars.css";
+import React, { ReactElement, useCallback, useContext, useMemo, useRef } from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import {layoutInfoToStyle, ScrollView, setScrollLeft, useVirtualizer, VirtualizerItem} from "@react-aria/virtualizer";
-import {mergeProps, useLayoutEffect} from "@react-aria/utils";
-import {ProgressCircle} from "@react-spectrum/progress";
-import React, {ReactElement, useCallback, useContext, useMemo, useRef} from "react";
-import {Rect, ReusableView, useVirtualizerState} from "@react-stately/virtualizer";
-import {SpectrumColumnProps, SpectrumTableProps} from "@react-types/table";
-import styles from "@adobe/spectrum-css-temp/components/table/vars.css";
 import stylesOverrides from "./table.css";
-import {TableLayout} from "@react-stately/layout";
-import {TableState, useTableState} from "@react-stately/table";
-import {Tooltip, TooltipTrigger} from "@react-spectrum/tooltip";
-import {useHover} from "@react-aria/interactions";
-import {useLocale, useMessageFormatter} from "@react-aria/i18n";
-import {usePress} from "@react-aria/interactions";
-import {useProvider, useProviderProps} from "@react-spectrum/provider";
-import {useTable, useTableCell, useTableColumnHeader, useTableHeaderRow, useTableRow, useTableRowGroup, useTableSelectAllCheckbox, useTableSelectionCheckbox} from "@react-aria/table";
-import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 const DEFAULT_HEADER_HEIGHT = {
   medium: 34,
@@ -651,4 +650,5 @@ function CenteredWrapper({children}) {
  * Tables are containers for displaying information. They allow users to quickly scan, sort, compare, and take action on large amounts of data.
  */
 const _TableView = React.forwardRef(TableView) as <T>(props: SpectrumTableProps<T> & {ref?: DOMRef<HTMLDivElement>}) => ReactElement;
-export {_TableView as TableView};
+export { _TableView as TableView };
+

@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {clamp} from "@react-aria/utils";
-import {classNames} from "@react-spectrum/utils";
-import {FocusableRef} from "@react-types/shared";
+import { useLocale } from "@react-aria/i18n";
+import { clamp } from "@react-aria/utils";
+import { classNames } from "@react-spectrum/utils";
+import { FocusableRef } from "@react-types/shared";
+import { SpectrumSliderProps } from "@react-types/slider";
+import styles from "@watheia/spectrum-css-temp/components/slider/vars.css";
 import React from "react";
-import {SliderBase, SliderBaseChildArguments, SliderBaseProps} from "./SliderBase";
-import {SliderThumb} from "./SliderThumb";
-import {SpectrumSliderProps} from "@react-types/slider";
-import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
-import {useLocale} from "@react-aria/i18n";
+import { SliderBase, SliderBaseChildArguments, SliderBaseProps } from "./SliderBase";
+import { SliderThumb } from "./SliderThumb";
 
 function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
   let {onChange, onChangeEnd, value, defaultValue, isFilled, fillOffset, trackGradient, getValueLabel, ...otherProps} = props;
@@ -48,7 +48,7 @@ function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
       }}
       style={
         // @ts-ignore
-        {"--spectrum-slider-track-gradient": trackGradient && `linear-gradient(to ${direction === "ltr" ? "right" : "left"}, ${trackGradient.join(", ")})`}
+        {"--wa-slider-track-gradient": trackGradient && `linear-gradient(to ${direction === "ltr" ? "right" : "left"}, ${trackGradient.join(", ")})`}
       }>
       {({trackRef, inputRef, state}: SliderBaseChildArguments) => {
         fillOffset = fillOffset != null ? clamp(fillOffset, state.getThumbMinValue(0), state.getThumbMaxValue(0)) : fillOffset;
@@ -65,8 +65,8 @@ function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
               //    width: calc(var(--width) * 1%)M
               // }
               // @ts-ignore
-              "--spectrum-track-background-size": `${(1 / state.getThumbPercent(0)) * 100}%`,
-              "--spectrum-track-background-position": direction === "ltr" ? "0" : "100%"
+              "--wa-track-background-size": `${(1 / state.getThumbPercent(0)) * 100}%`,
+              "--wa-track-background-position": direction === "ltr" ? "0" : "100%"
             }} />
         );
         let upperTrack = (
@@ -75,8 +75,8 @@ function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
             style={{
               width: `${(1 - state.getThumbPercent(0)) * 100}%`,
               // @ts-ignore
-              "--spectrum-track-background-size": `${(1 / (1 - state.getThumbPercent(0))) * 100}%`,
-              "--spectrum-track-background-position": direction === "ltr" ? "100%" : "0"
+              "--wa-track-background-size": `${(1 / (1 - state.getThumbPercent(0))) * 100}%`,
+              "--wa-track-background-position": direction === "ltr" ? "100%" : "0"
             }} />
         );
 
@@ -117,4 +117,5 @@ function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
  * Sliders allow users to quickly select a value within a range. They should be used when the upper and lower bounds to the range are invariable.
  */
 const _Slider = React.forwardRef(Slider);
-export {_Slider as Slider};
+export { _Slider as Slider };
+

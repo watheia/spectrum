@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import Add from "@spectrum-icons/workflow/Add";
-import {AriaButtonProps} from "@react-types/button";
+import { useButton } from "@react-aria/button";
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { mergeProps } from "@react-aria/utils";
+import { useProvider, useProviderProps } from "@react-spectrum/provider";
+import { classNames } from "@react-spectrum/utils";
+import { AriaButtonProps } from "@react-types/button";
 import ChevronDownSmall from "@spectrum-icons/ui/ChevronDownSmall";
 import ChevronUpSmall from "@spectrum-icons/ui/ChevronUpSmall";
-import {classNames} from "@react-spectrum/utils";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import React, {RefObject} from "react";
+import Add from "@spectrum-icons/workflow/Add";
 import Remove from "@spectrum-icons/workflow/Remove";
-import stepperStyle from "@adobe/spectrum-css-temp/components/stepper/vars.css";
-import {useButton} from "@react-aria/button";
-import {useHover} from "@react-aria/interactions";
-import {useProvider, useProviderProps} from "@react-spectrum/provider";
+import stepperStyle from "@watheia/spectrum-css-temp/components/stepper/vars.css";
+import React, { RefObject } from "react";
 
 interface StepButtonProps extends AriaButtonProps {
   isQuiet: boolean,
@@ -79,4 +79,5 @@ function StepButton(props: StepButtonProps, ref: RefObject<HTMLDivElement>) {
  * Buttons for NumberField.
  */
 let _StepButton = React.forwardRef(StepButton);
-export {_StepButton as StepButton};
+export { _StepButton as StepButton };
+

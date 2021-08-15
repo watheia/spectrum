@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
+import { Button } from "@react-spectrum/button";
+import { Text } from "@react-spectrum/text";
 import Bell from "@spectrum-icons/workflow/Bell";
-import {Button} from "@react-spectrum/button";
-import {ButtonGroup} from "../";
-import React, {useState} from "react";
-import {storiesOf} from "@storybook/react";
-import {Text} from "@react-spectrum/text";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import React, { useState } from "react";
+import { ButtonGroup } from "../";
 
 storiesOf("ButtonGroup", module)
   .add(
@@ -54,7 +54,7 @@ storiesOf("ButtonGroup", module)
   .add(
     "resizeable container",
     () => (
-      <div style={{minWidth: "100px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{minWidth: "100px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {render({})}
       </div>
     )
@@ -73,7 +73,7 @@ function render(props) {
 let ExpandingSibling = (props = {}) => {
   let [isExpanded, setIsExpanded] = useState(false);
   return (
-    <div style={{display: "flex", flexWrap: "nowrap", width: "1000px", overflow: "hidden", padding: "10px", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+    <div style={{display: "flex", flexWrap: "nowrap", width: "1000px", overflow: "hidden", padding: "10px", backgroundColor: "var(--wa-global-color-gray-50)"}}>
       <div style={{paddingRight: isExpanded ? "200px" : "10px"}}>
         <Button variant="secondary" onPress={() => setIsExpanded(prev => !prev)}>{isExpanded ? "Shrink" : "Expand"}</Button>
       </div>

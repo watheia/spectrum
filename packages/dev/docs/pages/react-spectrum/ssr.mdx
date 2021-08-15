@@ -31,7 +31,7 @@ In React, SSR works by rendering the component to HTML on the server, and then *
 In order to make React Spectrum components work with SSR, you will need to wrap your application in an [SSRProvider](../react-aria/SSRProvider.html) component. This signals to all nested React Spectrum components that they are being rendered in an SSR context.
 
 ```tsx
-import {SSRProvider, Provider, defaultTheme} from '@adobe/react-spectrum';
+import {SSRProvider, Provider, defaultTheme} from '@watheia/react-spectrum';
 
 <SSRProvider>
   <Provider theme={defaultTheme} locale={locale}>
@@ -64,7 +64,7 @@ With these installed, add the following to your `next.config.js` file. This will
 const withPlugins = require('next-compose-plugins');
 const withCSS = require('@zeit/next-css');
 const withTM = require('next-transpile-modules')([
-  '@adobe/react-spectrum',
+  '@watheia/react-spectrum',
   '@spectrum-icons/.*',
   '@react-spectrum/.*'
 ]);

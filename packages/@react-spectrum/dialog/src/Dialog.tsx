@@ -10,22 +10,22 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from "@react-spectrum/button";
-import {classNames, SlotProvider, unwrapDOMRef, useDOMRef, useHasChild, useStyleProps} from "@react-spectrum/utils";
+import { useDialog } from "@react-aria/dialog";
+import { FocusScope } from "@react-aria/focus";
+import { useMessageFormatter } from "@react-aria/i18n";
+import { DismissButton } from "@react-aria/overlays";
+import { mergeProps } from "@react-aria/utils";
+import { ActionButton } from "@react-spectrum/button";
+import { Grid } from "@react-spectrum/layout";
+import { classNames, SlotProvider, unwrapDOMRef, useDOMRef, useHasChild, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumDialogProps } from "@react-types/dialog";
+import { DOMRef } from "@react-types/shared";
 import CrossLarge from "@spectrum-icons/ui/CrossLarge";
-import {DialogContext, DialogContextValue} from "./context";
-import {DismissButton} from "@react-aria/overlays";
-import {DOMRef} from "@react-types/shared";
-import {FocusScope} from "@react-aria/focus";
-import {Grid} from "@react-spectrum/layout";
+import styles from "@watheia/spectrum-css-temp/components/dialog/vars.css";
+import React, { useContext, useRef } from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import {mergeProps} from "@react-aria/utils";
-import React, {useContext, useRef} from "react";
-import {SpectrumDialogProps} from "@react-types/dialog";
-import styles from "@adobe/spectrum-css-temp/components/dialog/vars.css";
-import {useDialog} from "@react-aria/dialog";
-import {useMessageFormatter} from "@react-aria/i18n";
+import { DialogContext, DialogContextValue } from "./context";
 
 let sizeMap = {
   S: "small",
@@ -118,4 +118,5 @@ function Dialog(props: SpectrumDialogProps, ref: DOMRef) {
  * Depending on the kind of Dialog, further interactions may be blocked until the Dialog is acknowledged.
  */
 let _Dialog = React.forwardRef(Dialog);
-export {_Dialog as Dialog};
+export { _Dialog as Dialog };
+

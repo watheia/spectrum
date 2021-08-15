@@ -41,7 +41,10 @@ module.exports = function (context) {
     let pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
 
     // The only dev dependency should be spectrum-css.
-    if (exists(pkg.devDependencies, pkgName) && pkgName === '@adobe/spectrum-css-temp') {
+    if (
+      exists(pkg.devDependencies, pkgName) &&
+      pkgName === "@watheia/spectrum-css-temp"
+    ) {
       return;
     }
 

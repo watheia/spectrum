@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {getUsedLinks} from "./utils";
-import {LinkContext, TypeContext} from "./types";
-import React, {useContext} from "react";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
+import React, { useContext } from "react";
 import styles from "./docs.css";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import { LinkContext, TypeContext } from "./types";
+import { getUsedLinks } from "./utils";
 
 export function TypeLink({links, type}) {
   let registered = useContext(LinkContext);

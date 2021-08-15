@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
-import React, {forwardRef} from "react";
-import {SpectrumStatusLightProps} from "@react-types/statuslight";
-import styles from "@adobe/spectrum-css-temp/components/statuslight/vars.css";
-import {useProviderProps} from "@react-spectrum/provider";
+import { filterDOMProps } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { DOMRef } from "@react-types/shared";
+import { SpectrumStatusLightProps } from "@react-types/statuslight";
+import styles from "@watheia/spectrum-css-temp/components/statuslight/vars.css";
+import React, { forwardRef } from "react";
 
 function StatusLight(props: SpectrumStatusLightProps, ref: DOMRef<HTMLDivElement>) {
   let {
@@ -62,4 +62,5 @@ function StatusLight(props: SpectrumStatusLightProps, ref: DOMRef<HTMLDivElement
  * When status lights have a semantic meaning, they should use semantic variant colors.
  */
 let _StatusLight = forwardRef(StatusLight);
-export {_StatusLight as StatusLight};
+export { _StatusLight as StatusLight };
+

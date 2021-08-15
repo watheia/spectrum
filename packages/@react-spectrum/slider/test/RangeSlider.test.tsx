@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {fireEvent, render} from "@testing-library/react";
-import {press, testKeypresses} from "./utils";
-import {Provider} from "@adobe/react-spectrum";
-import {RangeSlider} from "../";
-import React, {useState} from "react";
-import {theme} from "@react-spectrum/theme-default";
+import { theme } from "@react-spectrum/theme-default";
+import { fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "@watheia/react-spectrum";
+import React, { useState } from "react";
+import { RangeSlider } from "../";
+import { press, testKeypresses } from "./utils";
 
 
 describe("RangeSlider", function () {

@@ -138,7 +138,7 @@ function Table(props) {
 
   return (
     <table {...gridProps} ref={ref} style={{borderCollapse: 'collapse'}}>
-      <TableRowGroup type="thead" style={{borderBottom: '2px solid var(--spectrum-global-color-gray-800)'}}>
+      <TableRowGroup type="thead" style={{borderBottom: '2px solid var(--wa-global-color-gray-800)'}}>
         {collection.headerRows.map(headerRow => (
           <TableHeaderRow key={headerRow.key} item={headerRow} state={state}>
             {[...headerRow.childNodes].map(column =>
@@ -269,7 +269,7 @@ function TableRow({item, children, state}) {
         background: isSelected
           ? 'blueviolet'
           : item.index % 2
-            ? 'var(--spectrum-alias-highlight-hover)'
+            ? 'var(--wa-alias-highlight-hover)'
             : 'none',
         color: isSelected ? 'white' : null,
         outline: isFocusVisible ? '2px solid orange' : 'none'

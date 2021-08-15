@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
-import React, {forwardRef} from "react";
-import {SpectrumWellProps} from "@react-types/well";
-import styles from "@adobe/spectrum-css-temp/components/well/vars.css";
+import { filterDOMProps } from "@react-aria/utils";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { DOMRef } from "@react-types/shared";
+import { SpectrumWellProps } from "@react-types/well";
+import styles from "@watheia/spectrum-css-temp/components/well/vars.css";
+import React, { forwardRef } from "react";
 
 function Well(props: SpectrumWellProps, ref: DOMRef<HTMLDivElement>) {
   let {
@@ -51,4 +51,5 @@ function Well(props: SpectrumWellProps, ref: DOMRef<HTMLDivElement>) {
  * Often this is used to display preformatted text, such as code/markup examples on a documentation page.
  */
 const _Well = forwardRef(Well);
-export {_Well as Well};
+export { _Well as Well };
+

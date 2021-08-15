@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {clamp} from "@react-aria/utils";
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import React, {CSSProperties} from "react";
-import {SpectrumProgressCircleProps} from "@react-types/progress";
-import styles from "@adobe/spectrum-css-temp/components/circleloader/vars.css";
-import {useProgressBar} from "@react-aria/progress";
+import { useProgressBar } from "@react-aria/progress";
+import { clamp } from "@react-aria/utils";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumProgressCircleProps } from "@react-types/progress";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/circleloader/vars.css";
+import React, { CSSProperties } from "react";
 
 function ProgressCircle(props: SpectrumProgressCircleProps, ref: DOMRef<HTMLDivElement>) {
   let {
@@ -102,4 +102,5 @@ function ProgressCircle(props: SpectrumProgressCircleProps, ref: DOMRef<HTMLDivE
  * They can represent determinate or indeterminate progress.
  */
 let _ProgressCircle = React.forwardRef(ProgressCircle);
-export {_ProgressCircle as ProgressCircle};
+export { _ProgressCircle as ProgressCircle };
+

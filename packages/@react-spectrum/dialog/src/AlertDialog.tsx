@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
+import { useMessageFormatter } from "@react-aria/i18n";
+import { chain } from "@react-aria/utils";
+import { Button } from "@react-spectrum/button";
+import { ButtonGroup } from "@react-spectrum/buttongroup";
+import { Divider } from "@react-spectrum/divider";
+import { Heading } from "@react-spectrum/text";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { Content } from "@react-spectrum/view";
+import { SpectrumButtonProps } from "@react-types/button";
+import { SpectrumAlertDialogProps } from "@react-types/dialog";
+import { DOMRef } from "@react-types/shared";
 import AlertMedium from "@spectrum-icons/ui/AlertMedium";
-import {Button} from "@react-spectrum/button";
-import {ButtonGroup} from "@react-spectrum/buttongroup";
-import {chain} from "@react-aria/utils";
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {Content} from "@react-spectrum/view";
-import {Dialog} from "./Dialog";
-import {DialogContext, DialogContextValue} from "./context";
-import {Divider} from "@react-spectrum/divider";
-import {DOMRef} from "@react-types/shared";
-import {Heading} from "@react-spectrum/text";
+import styles from "@watheia/spectrum-css-temp/components/dialog/vars.css";
+import React, { forwardRef, useContext } from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import React, {forwardRef, useContext} from "react";
-import {SpectrumAlertDialogProps} from "@react-types/dialog";
-import {SpectrumButtonProps} from "@react-types/button";
-import styles from "@adobe/spectrum-css-temp/components/dialog/vars.css";
-import {useMessageFormatter} from "@react-aria/i18n";
+import { DialogContext, DialogContextValue } from "./context";
+import { Dialog } from "./Dialog";
 
 /**
  * AlertDialogs are a specific type of Dialog. They display important information that users need to acknowledge.
@@ -114,4 +114,5 @@ function AlertDialog(props: SpectrumAlertDialogProps, ref: DOMRef) {
  * AlertDialogs are a specific type of Dialog. They display important information that users need to acknowledge.
  */
 let _AlertDialog = forwardRef(AlertDialog);
-export {_AlertDialog as AlertDialog};
+export { _AlertDialog as AlertDialog };
+

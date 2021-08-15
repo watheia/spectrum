@@ -10,40 +10,40 @@
  * governing permissions and limitations under the License.
  */
 
+import { FocusScope } from "@react-aria/focus";
+import { useMessageFormatter } from "@react-aria/i18n";
+import { PressResponder, useHover } from "@react-aria/interactions";
+import { DismissButton, useOverlayPosition } from "@react-aria/overlays";
+import { HiddenSelect, useSelect } from "@react-aria/select";
+import { mergeProps, useLayoutEffect, useResizeObserver } from "@react-aria/utils";
+import { FieldButton } from "@react-spectrum/button";
+import { useFormProps } from "@react-spectrum/form";
+import { Label } from "@react-spectrum/label";
+import { ListBoxBase, useListBoxLayout } from "@react-spectrum/listbox";
+import { Popover, Tray } from "@react-spectrum/overlays";
+import { ProgressCircle } from "@react-spectrum/progress";
+import { useProvider, useProviderProps } from "@react-spectrum/provider";
+import { Text } from "@react-spectrum/text";
+import {
+    classNames,
+    dimensionValue,
+    SlotProvider,
+    useDOMRef,
+    useIsMobileDevice,
+    useStyleProps,
+    useUnwrapDOMRef
+} from "@react-spectrum/utils";
+import { useSelectState } from "@react-stately/select";
+import { Placement } from "@react-types/overlays";
+import { SpectrumPickerProps } from "@react-types/select";
+import { DOMRef, DOMRefValue, FocusableRefValue, LabelPosition } from "@react-types/shared";
 import AlertMedium from "@spectrum-icons/ui/AlertMedium";
 import ChevronDownMedium from "@spectrum-icons/ui/ChevronDownMedium";
-import {
-  classNames,
-  dimensionValue,
-  SlotProvider,
-  useDOMRef,
-  useIsMobileDevice,
-  useStyleProps,
-  useUnwrapDOMRef
-} from "@react-spectrum/utils";
-import {DismissButton, useOverlayPosition} from "@react-aria/overlays";
-import {DOMRef, DOMRefValue, FocusableRefValue, LabelPosition} from "@react-types/shared";
-import {FieldButton} from "@react-spectrum/button";
-import {FocusScope} from "@react-aria/focus";
-import {HiddenSelect, useSelect} from "@react-aria/select";
+import styles from "@watheia/spectrum-css-temp/components/dropdown/vars.css";
+import labelStyles from "@watheia/spectrum-css-temp/components/fieldlabel/vars.css";
+import React, { ReactElement, useCallback, useRef, useState } from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import {Label} from "@react-spectrum/label";
-import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
-import {ListBoxBase, useListBoxLayout} from "@react-spectrum/listbox";
-import {mergeProps, useLayoutEffect, useResizeObserver} from "@react-aria/utils";
-import {Placement} from "@react-types/overlays";
-import {Popover, Tray} from "@react-spectrum/overlays";
-import {PressResponder, useHover} from "@react-aria/interactions";
-import {ProgressCircle} from "@react-spectrum/progress";
-import React, {ReactElement, useCallback, useRef, useState} from "react";
-import {SpectrumPickerProps} from "@react-types/select";
-import styles from "@adobe/spectrum-css-temp/components/dropdown/vars.css";
-import {Text} from "@react-spectrum/text";
-import {useFormProps} from "@react-spectrum/form";
-import {useMessageFormatter} from "@react-aria/i18n";
-import {useProvider, useProviderProps} from "@react-spectrum/provider";
-import {useSelectState} from "@react-stately/select";
 
 function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -168,7 +168,7 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
     let style = {
       ...overlayProps.style,
       width: menuWidth ? dimensionValue(menuWidth) : width,
-      minWidth: isQuiet ? `calc(${buttonWidth}px + calc(2 * var(--spectrum-dropdown-quiet-offset)))` : buttonWidth
+      minWidth: isQuiet ? `calc(${buttonWidth}px + calc(2 * var(--wa-dropdown-quiet-offset)))` : buttonWidth
     };
 
     overlay = (
@@ -308,4 +308,5 @@ function Picker<T extends object>(props: SpectrumPickerProps<T>, ref: DOMRef<HTM
 // forwardRef doesn't support generic parameters, so cast the result to the correct type
 // https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref
 const _Picker = React.forwardRef(Picker) as <T>(props: SpectrumPickerProps<T> & {ref?: DOMRef<HTMLDivElement>}) => ReactElement;
-export {_Picker as Picker};
+export { _Picker as Picker };
+

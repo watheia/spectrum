@@ -45,9 +45,9 @@ For every @react-spectrum module which needs a modified implementation of one or
 
 ### UXP mono-package for consumers
 
-We will create a new package at `packages/@adobe/react-spectrum-uxp` that has the same API and exports as `packages/@adobe/react-spectrum` but exports our UXP specific components where needed and simply re-exports any base components that need no changes.
+We will create a new package at `packages/@watheia/react-spectrum-uxp` that has the same API and exports as `packages/@watheia/react-spectrum` but exports our UXP specific components where needed and simply re-exports any base components that need no changes.
 
-This package will be published on npmjs.com as `@adobe/react-spectrum-uxp`.
+This package will be published on npmjs.com as `@watheia/react-spectrum-uxp`.
 
 ### UXP Storybook for developers
 
@@ -65,13 +65,13 @@ This new package will:
 
 ### UXP Consumption of React-Spectrum components
 
-UXP clients will simply modify their existing `@adobe/react-spectrum` import and change it to `@adobe/react-spectrum-uxp`. This can also be done with aliasing in most bundlers so that no source code needs to be changed.
+UXP clients will simply modify their existing `@watheia/react-spectrum` import and change it to `@watheia/react-spectrum-uxp`. This can also be done with aliasing in most bundlers so that no source code needs to be changed.
 
 We may provide plugins for both parcel and webpack that simplify consumption if needed, but the usage of conditional exports may make this unnecessary.
 
 ### UXP Development process
 
-In order to streamline review process and avoid undue burden on core react-spectrum developers, we propose making UXP team architects code owners over the react-spectrum-uxp folder `packages/@react-spectrum-uxp` and the mono-package folder `./packages/@adobe/react-spectrum-uxp`.
+In order to streamline review process and avoid undue burden on core react-spectrum developers, we propose making UXP team architects code owners over the react-spectrum-uxp folder `packages/@react-spectrum-uxp` and the mono-package folder `./packages/@watheia/react-spectrum-uxp`.
 
 The currently existing PR tests will ensure that uxp specific targets are always built successfully.
 

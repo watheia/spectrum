@@ -16,10 +16,10 @@
     Renamed from padding-y to padding-height to fix docs issue where fallback var replaced this value
     (due to old spectrum-css postcss-custom-properties-custom-mapping plugin).
   */
-  padding-top: var(--spectrum-selectlist-option-padding-height);
-  padding-inline-start: var(--spectrum-selectlist-option-padding);
-  font-size: var(--spectrum-selectlist-option-text-size);
-  font-weight: var(--spectrum-selectlist-option-text-font-weight);
+  padding-top: var(--wa-selectlist-option-padding-height);
+  padding-inline-start: var(--wa-selectlist-option-padding);
+  font-size: var(--wa-selectlist-option-text-size);
+  font-weight: var(--wa-selectlist-option-text-font-weight);
   font-style: italic;
 }
 
@@ -45,17 +45,17 @@
 }
 
 .tray-textfield {
-  margin: var(--spectrum-global-dimension-size-150);
-  margin-bottom: var(--spectrum-global-dimension-size-50);
+  margin: var(--wa-global-dimension-size-150);
+  margin-bottom: var(--wa-global-dimension-size-50);
   flex-shrink: 0;
   width: initial !important;
 
   &.has-label {
-    margin-top: var(--spectrum-global-dimension-size-50);
+    margin-top: var(--wa-global-dimension-size-50);
   }
 
   .tray-textfield-input {
-    padding-inline-start: var(--spectrum-textfield-padding-x);
+    padding-inline-start: var(--wa-textfield-padding-x);
   }
 }
 

@@ -10,21 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from "@react-spectrum/button";
-import {CalendarAria} from "@react-aria/calendar";
-import {CalendarPropsBase} from "@react-types/calendar";
-import {CalendarState, RangeCalendarState} from "@react-stately/calendar";
-import {CalendarTableBody} from "./CalendarTableBody";
-import {CalendarTableHeader} from "./CalendarTableHeader";
+import { CalendarAria } from "@react-aria/calendar";
+import { useDateFormatter, useLocale } from "@react-aria/i18n";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { ActionButton } from "@react-spectrum/button";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { CalendarState, RangeCalendarState } from "@react-stately/calendar";
+import { CalendarPropsBase } from "@react-types/calendar";
+import { DOMProps, StyleProps } from "@react-types/shared";
 import ChevronLeft from "@spectrum-icons/ui/ChevronLeftLarge";
 import ChevronRight from "@spectrum-icons/ui/ChevronRightLarge";
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {DOMProps, StyleProps} from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/calendar/vars.css";
 import React from "react";
-import styles from "@adobe/spectrum-css-temp/components/calendar/vars.css";
-import {useDateFormatter, useLocale} from "@react-aria/i18n";
-import {useProviderProps} from "@react-spectrum/provider";
-import {VisuallyHidden} from "@react-aria/visually-hidden";
+import { CalendarTableBody } from "./CalendarTableBody";
+import { CalendarTableHeader } from "./CalendarTableHeader";
 
 interface CalendarBaseProps extends CalendarPropsBase, DOMProps, StyleProps {
   state: CalendarState | RangeCalendarState,

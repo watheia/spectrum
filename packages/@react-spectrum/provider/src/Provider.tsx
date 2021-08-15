@@ -10,25 +10,25 @@
  * governing permissions and limitations under the License.
  */
 
+import { I18nProvider, useLocale } from "@react-aria/i18n";
+import { ModalProvider, useModalProvider } from "@react-aria/overlays";
+import { filterDOMProps } from "@react-aria/utils";
 import {
-  BreakpointProvider,
-  shouldKeepSpectrumClassNames,
-  useDOMRef,
-  useMatchedBreakpoints,
-  useStyleProps
+    BreakpointProvider,
+    shouldKeepSpectrumClassNames,
+    useDOMRef,
+    useMatchedBreakpoints,
+    useStyleProps
 } from "@react-spectrum/utils";
+import { ProviderContext, ProviderProps } from "@react-types/provider";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/page/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/index.css";
 import clsx from "clsx";
-import {DOMRef} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
-import {I18nProvider, useLocale} from "@react-aria/i18n";
-import {ModalProvider, useModalProvider} from "@react-aria/overlays";
-import {ProviderContext, ProviderProps} from "@react-types/provider";
-import React, {useContext, useEffect, useRef} from "react";
-import styles from "@adobe/spectrum-css-temp/components/page/vars.css";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/index.css";
-import {useColorScheme, useScale} from "./mediaQueries";
+import React, { useContext, useEffect, useRef } from "react";
 // @ts-ignore
-import {version} from "../package.json";
+import { version } from "../package.json";
+import { useColorScheme, useScale } from "./mediaQueries";
 
 const Context = React.createContext<ProviderContext | null>(null);
 Context.displayName = "ProviderContext";
@@ -119,7 +119,7 @@ function Provider(props: ProviderProps, ref: DOMRef<HTMLDivElement>) {
  * and can also be used to provide common properties to a group of components.
  */
 let _Provider = React.forwardRef(Provider);
-export {_Provider as Provider};
+export { _Provider as Provider };
 
 const ProviderWrapper = React.forwardRef(function ProviderWrapper(props: ProviderProps, ref: DOMRef<HTMLDivElement>) {
   let {

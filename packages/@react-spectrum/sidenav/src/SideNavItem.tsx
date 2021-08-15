@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import React, {useContext, useRef} from "react";
-import {SideNavContext} from "./SideNavContext";
-import {SpectrumSideNavItemProps} from "@react-types/sidenav";
-import styles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
-import {useHover} from "@react-aria/interactions";
-import {useSideNavItem} from "@react-aria/sidenav";
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { useSideNavItem } from "@react-aria/sidenav";
+import { mergeProps } from "@react-aria/utils";
+import { classNames } from "@react-spectrum/utils";
+import { SpectrumSideNavItemProps } from "@react-types/sidenav";
+import styles from "@watheia/spectrum-css-temp/components/sidenav/vars.css";
+import React, { useContext, useRef } from "react";
+import { SideNavContext } from "./SideNavContext";
 
 export function SideNavItem<T>(props: SpectrumSideNavItemProps<T>) {
   let ref = useRef<HTMLAnchorElement>();

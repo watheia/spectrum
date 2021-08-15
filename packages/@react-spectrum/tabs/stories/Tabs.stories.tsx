@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {ActionGroup, Flex, Heading, Text} from "@adobe/react-spectrum";
+import { Button } from "@react-spectrum/button";
+import { ButtonGroup } from "@react-spectrum/buttongroup";
+import { TextField } from "@react-spectrum/textfield";
+import { SpectrumTabsProps } from "@react-types/tabs";
 import Bookmark from "@spectrum-icons/workflow/Bookmark";
-import {Button} from "@react-spectrum/button";
-import {ButtonGroup} from "@react-spectrum/buttongroup";
 import Calendar from "@spectrum-icons/workflow/Calendar";
 import Dashboard from "@spectrum-icons/workflow/Dashboard";
-import {Item, TabList, TabPanels, Tabs} from "..";
-import React, {ReactNode, useState} from "react";
-import {SpectrumTabsProps} from "@react-types/tabs";
-import {storiesOf} from "@storybook/react";
-import {TextField} from "@react-spectrum/textfield";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import { ActionGroup, Flex, Heading, Text } from "@watheia/react-spectrum";
+import React, { ReactNode, useState } from "react";
+import { Item, TabList, TabPanels, Tabs } from "..";
 
 storiesOf("Tabs", module)
   .add(
@@ -90,7 +90,7 @@ storiesOf("Tabs", module)
   .add(
     "resizeable",
     () => (
-      <div style={{minWidth: "100px", width: "300px", height: "400px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{minWidth: "100px", width: "300px", height: "400px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {render()}
       </div>
     )
@@ -118,7 +118,7 @@ storiesOf("Tabs", module)
   .add(
     "testing: tabs in flex",
     () => (
-      <Flex minHeight={400} minWidth={400} UNSAFE_style={{borderWidth: 1, borderStyle: "solid", borderColor: "var(--spectrum-global-color-gray-800)", padding: "10px"}}>
+      <Flex minHeight={400} minWidth={400} UNSAFE_style={{borderWidth: 1, borderStyle: "solid", borderColor: "var(--wa-global-color-gray-800)", padding: "10px"}}>
         <Tabs>
           <TabList>
             <Item>Tab 1</Item>
@@ -532,7 +532,7 @@ let DynamicTabsWithDecoration = (props = {}) => {
               </Item>
             )}
           </TabList>
-          <Flex alignItems="center" justifyContent="end" flex="0 0 auto" alignSelf="stretch" UNSAFE_style={{borderBottom: "var(--spectrum-alias-border-size-thick) solid var(--spectrum-global-color-gray-200)"}}>
+          <Flex alignItems="center" justifyContent="end" flex="0 0 auto" alignSelf="stretch" UNSAFE_style={{borderBottom: "var(--wa-alias-border-size-thick) solid var(--wa-global-color-gray-200)"}}>
             <ActionGroup marginEnd="30px" disabledKeys={tabs.length === 1 ? ["remove"] : undefined} onAction={val => val === "add" ? addTab() : removeTab()}>
               <Item key="add">
                 <Text>Add Tab</Text>

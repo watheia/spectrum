@@ -1,0 +1,146 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+@import '../commons/index.css';
+@import '../overlay/index.css';
+
+:root {
+  --wa-popover-target-offset: 13px;
+  --wa-popover-dialog-padding: 30px 29px;
+  --wa-popover-dialog-min-width: 270px;
+
+  --wa-popover-min-width: var(--wa-global-dimension-size-400);
+  --wa-popover-min-height: var(--wa-global-dimension-size-400);
+
+  /* Popover tip positioning for left/right oriented popovers (-11px/-25px) */
+  --wa-popover-tip-horizontal-offset: calc(var(--wa-global-dimension-size-250) * -1);
+  /* Popover tip positioning for top/bottom oriented popovers (6px/8px) */
+  --wa-popover-tip-vertical-offset: var(--wa-global-dimension-size-75);
+
+  --wa-popover-tip-triangle-top-offset: calc(var(--wa-global-dimension-size-225) * -1);
+}
+
+.spectrum-Popover {
+  @inherit: %spectrum-overlay;
+
+  /* Be a flexbox to allow a full sized content area that scrolls */
+  display: inline-flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  min-width: var(--wa-popover-min-width);
+  min-height: var(--wa-popover-min-height);
+
+  position: absolute;
+
+  border-style: solid;
+  border-width: var(--wa-popover-border-size);
+  border-radius: var(--wa-popover-border-radius);
+
+  outline: none; /* Hide focus outline */
+  box-sizing: border-box;
+
+  &.is-open {
+    @inherit: %spectrum-overlay--open;
+  }
+}
+
+.spectrum-Popover-tip {
+  position: absolute;
+  --wa-popover-tip-size: var(--wa-popover-tip-width);
+  --wa-popover-tip-borderWidth: var(--wa-popover-border-size);
+  /* https://stackoverflow.com/questions/44170229/how-to-prevent-half-pixel-svg-shift-on-high-pixel-ratio-devices-retina */
+  -webkit-transform: translate(0, 0);
+
+  .spectrum-Popover-tip-triangle {
+    stroke-linecap: square;
+    stroke-linejoin: miter;
+    stroke-width: var(--wa-popover-border-size);
+  }
+}
+
+.spectrum-Popover--dialog {
+  min-width: var(--wa-popover-dialog-min-width);
+  padding: var(--wa-popover-dialog-padding);
+}
+
+.spectrum-Popover--left {
+  &.spectrum-Popover--withTip {
+    margin-right: var(--wa-popover-target-offset);
+  }
+
+  &.is-open {
+    @inherit: %spectrum-overlay--left--open;
+  }
+  .spectrum-Popover-tip {
+    left: 100%;
+  }
+}
+
+.spectrum-Popover--right {
+  &.spectrum-Popover--withTip {
+    margin-left: var(--wa-popover-target-offset);
+  }
+
+  &.is-open {
+    @inherit: %spectrum-overlay--right--open;
+  }
+  .spectrum-Popover-tip {
+    right: 100%;
+    transform: scaleX(-1);
+  }
+}
+
+/* Center the tip by default */
+.spectrum-Popover--left,
+.spectrum-Popover--right {
+  .spectrum-Popover-tip {
+    top: 50%;
+    margin-top: calc(var(--wa-global-dimension-size-150) * -1);
+  }
+}
+
+.spectrum-Popover--bottom {
+  &.spectrum-Popover--withTip {
+    margin-top: var(--wa-popover-target-offset);
+  }
+
+  &.is-open {
+    @inherit: %spectrum-overlay--bottom--open;
+  }
+  .spectrum-Popover-tip {
+    bottom: 100%;
+    transform: scaleY(-1);
+  }
+}
+
+.spectrum-Popover--top {
+  &.spectrum-Popover--withTip {
+    margin-bottom: var(--wa-popover-target-offset);
+  }
+
+  &.is-open {
+    @inherit: %spectrum-overlay--top--open;
+  }
+  .spectrum-Popover-tip {
+    top: 100%;
+  }
+}
+
+/* Center the tip by default */
+.spectrum-Popover--bottom,
+.spectrum-Popover--top {
+  .spectrum-Popover-tip {
+    left: 50%;
+    margin-left: calc(var(--wa-global-dimension-size-150) * -1);
+  }
+}

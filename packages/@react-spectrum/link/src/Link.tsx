@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, getWrappedElement, useStyleProps} from "@react-spectrum/utils";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import React, {useRef} from "react";
-import {SpectrumLinkProps} from "@react-types/link";
-import styles from "@adobe/spectrum-css-temp/components/link/vars.css";
-import {useHover} from "@react-aria/interactions";
-import {useLink} from "@react-aria/link";
-import {useProviderProps} from "@react-spectrum/provider";
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { useLink } from "@react-aria/link";
+import { mergeProps } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, getWrappedElement, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumLinkProps } from "@react-types/link";
+import styles from "@watheia/spectrum-css-temp/components/link/vars.css";
+import React, { useRef } from "react";
 
 /**
  * Links allow users to navigate to a different location.

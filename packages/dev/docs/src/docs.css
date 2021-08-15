@@ -66,7 +66,7 @@ html, body {
 
 .provider {
   min-height: 100%;
-  --page-background: var(--spectrum-global-color-gray-50);
+  --page-background: var(--wa-global-color-gray-50);
   background: var(--page-background) !important;
   color-scheme: light dark;
   --blue: #0040ff;
@@ -86,7 +86,7 @@ html, body {
 }
 
 .dark {
-  --page-background: var(--spectrum-global-color-gray-75);
+  --page-background: var(--wa-global-color-gray-75);
   --blue: dodgerblue;
   --gray: #868686;
   --anatomy-gray-900: #8ca4d9;
@@ -101,7 +101,7 @@ html, body {
   --anatomy-gray-75: #0e1525;
   --anatomy-gray-50: #0c1220;
   .example {
-    background-color: var(--spectrum-global-color-gray-100);
+    background-color: var(--wa-global-color-gray-100);
   }
   .article pre  {
     --hljs-background:  #212121; /* between gray-100 and gray-200 */
@@ -186,7 +186,7 @@ html, body {
   bottom: 0;
   width: 256px;
   padding: 0 24px;
-  background: var(--spectrum-global-color-gray-100);
+  background: var(--wa-global-color-gray-100);
   box-sizing: border-box;
 }
 
@@ -217,8 +217,8 @@ html, body {
 }
 
 .sideNavItem:focus {
-  background-color: var(--spectrum-sidenav-item-background-color-key-focus);
-  color: var(--spectrum-sidenav-item-text-color-key-focus);
+  background-color: var(--wa-sidenav-item-background-color-key-focus);
+  color: var(--wa-sidenav-item-text-color-key-focus);
 
   &::before {
     content: '';
@@ -228,15 +228,15 @@ html, body {
     right: 0;
     bottom: 0;
 
-    border: var(--spectrum-tabs-focus-ring-size) solid transparent;
-    border-radius: var(--spectrum-sidenav-item-border-radius);
+    border: var(--wa-tabs-focus-ring-size) solid transparent;
+    border-radius: var(--wa-sidenav-item-border-radius);
 
-    border-color: var(--spectrum-sidenav-item-border-color-key-focus);
+    border-color: var(--wa-sidenav-item-border-color-key-focus);
   }
 }
 
 .backBtn {
-  color: var(--spectrum-global-color-gray-900);
+  color: var(--wa-global-color-gray-900);
   margin: -4px 6px -4px -4px;
   padding: 2px;
   border: 2px solid transparent;
@@ -244,7 +244,7 @@ html, body {
 
   &:focus {
     outline: none;
-    border-color: var(--spectrum-alias-border-color-focus);
+    border-color: var(--wa-alias-border-color-focus);
   }
 }
 
@@ -256,7 +256,7 @@ html, body {
 
   &:focus {
     outline: none;
-    border-color: var(--spectrum-alias-border-color-focus);
+    border-color: var(--wa-alias-border-color-focus);
   }
 
   svg {
@@ -318,7 +318,7 @@ footer li:last-child:after {
 
 .propTable {
   width: 100%;
-  margin-bottom: var(--spectrum-global-dimension-size-150);
+  margin-bottom: var(--wa-global-dimension-size-150);
 }
 
 .propTable td:last-child {
@@ -370,7 +370,7 @@ footer li:last-child:after {
 }
 
 .article h1.articleHeader + p {
-  font-size: var(--spectrum-body-2-text-size);
+  font-size: var(--wa-body-2-text-size);
 }
 
 .article.inCategory h1.articleHeader + p {
@@ -388,7 +388,7 @@ footer li:last-child:after {
 .example {
   padding: 40px;
   border-radius: 4px;
-  margin-bottom: var(--spectrum-global-dimension-size-150);
+  margin-bottom: var(--wa-global-dimension-size-150);
 }
 
 .snippet {
@@ -402,7 +402,7 @@ footer li:last-child:after {
 }
 
 .article pre {
-  background: var(--spectrum-global-color-gray-75);
+  background: var(--wa-global-color-gray-75);
   padding: 18px;
   border-radius: 4px;
   overflow-x: auto;
@@ -431,13 +431,13 @@ code {
 /* Override spectrum font size for code in large scale */
 .medium code {
   &, .colorLink {
-    font-size: var(--spectrum-global-dimension-static-font-size-100);
+    font-size: var(--wa-global-dimension-static-font-size-100);
   }
 }
 
 .large code {
   &, .colorLink {
-    font-size: var(--spectrum-global-dimension-static-font-size-200);
+    font-size: var(--wa-global-dimension-static-font-size-200);
   }
 }
 
@@ -455,8 +455,8 @@ code :global(.large) {
 }
 
 .keyboard {
-  font-family: var(--spectrum-font-family-base);
-  background: var(--spectrum-global-color-gray-300);
+  font-family: var(--wa-font-family-base);
+  background: var(--wa-global-color-gray-300);
   padding: 2px 6px;
   border-radius: 4px;
   margin: 0 2px;
@@ -467,7 +467,7 @@ code :global(.large) {
   text-align: left;
   color: black;
   cursor: pointer;
-  border-bottom: 1px solid var(--spectrum-global-color-gray-300);
+  border-bottom: 1px solid var(--wa-global-color-gray-300);
   padding: 0;
 }
 
@@ -502,7 +502,7 @@ summary {
 
 summary:focus {
   outline: none;
-  border-color: var(--spectrum-alias-border-color-focus);
+  border-color: var(--wa-alias-border-color-focus);
 }
 
 summary:focus.mouseFocus {
@@ -578,7 +578,7 @@ h2.sectionHeader {
   justify-content: space-between;
   padding: 0 8px;
   box-sizing: border-box;
-  height: var(--spectrum-global-dimension-size-600);
+  height: var(--wa-global-dimension-size-600);
   [dir='ltr'] & {
     right: 0;
   }
@@ -596,7 +596,7 @@ h2.sectionHeader {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
-  margin-top: var(--spectrum-global-dimension-size-200);
+  margin-top: var(--wa-global-dimension-size-200);
 }
 
 .responsiveVideo iframe {
@@ -610,9 +610,9 @@ h2.sectionHeader {
 .float {
   float: left;
   margin: 0;
-  margin-right: var(--spectrum-global-dimension-size-200);
-  margin-bottom: var(--spectrum-global-dimension-size-200);
-  width: var(--spectrum-global-dimension-size-3400);
+  margin-right: var(--wa-global-dimension-size-200);
+  margin-bottom: var(--wa-global-dimension-size-200);
+  width: var(--wa-global-dimension-size-3400);
 }
 
 .link:focus {
@@ -710,11 +710,11 @@ h2.sectionHeader {
 
   .propTable td[data-column]:before {
     content: attr(data-column);
-    font-size: var(--spectrum-table-header-text-size);
-    font-weight: var(--spectrum-table-header-text-font-weight);
-    min-height: var(--spectrum-table-header-min-height);
-    letter-spacing: var(--spectrum-table-header-text-letter-spacing);
-    color: var(--spectrum-table-header-text-color);
+    font-size: var(--wa-table-header-text-size);
+    font-weight: var(--wa-table-header-text-font-weight);
+    min-height: var(--wa-table-header-min-height);
+    letter-spacing: var(--wa-table-header-text-letter-spacing);
+    color: var(--wa-table-header-text-color);
     text-transform: uppercase;
     width: 80px;
     display: inline-block;
@@ -773,7 +773,7 @@ h2.sectionHeader {
     height: 100%;
     content: '';
     z-index: 99;
-    background: var(--spectrum-alias-background-color-modal-overlay);
+    background: var(--wa-alias-background-color-modal-overlay);
     opacity: 0;
     transition: opacity 200ms;
     pointer-events: none;
@@ -791,7 +791,7 @@ h2.sectionHeader {
 
   /* Show the toolbar at the top with the hamburger and theme switcher buttons */
   .pageHeader {
-    border-bottom: 1px solid var(--spectrum-global-color-gray-200);
+    border-bottom: 1px solid var(--wa-global-color-gray-200);
     background: var(--page-background);
     z-index: 50;
     display: flex;

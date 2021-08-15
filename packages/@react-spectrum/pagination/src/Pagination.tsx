@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from "@react-spectrum/button";
+import { useMessageFormatter } from "@react-aria/i18n";
+import { usePagination } from "@react-aria/pagination";
+import { ActionButton } from "@react-spectrum/button";
+import { useProviderProps } from "@react-spectrum/provider";
+import { TextField } from "@react-spectrum/textfield";
+import { classNames } from "@react-spectrum/utils";
+import { usePaginationState } from "@react-stately/pagination";
+import { PaginationBase } from "@react-types/pagination";
 import ChevronLeftMedium from "@spectrum-icons/ui/ChevronLeftMedium";
 import ChevronRightMedium from "@spectrum-icons/ui/ChevronRightMedium";
-import {classNames} from "@react-spectrum/utils";
-import intlMessages from "../intl";
-import {PaginationBase} from "@react-types/pagination";
+import styles from "@watheia/spectrum-css-temp/components/pagination/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import React from "react";
-import styles from "@adobe/spectrum-css-temp/components/pagination/vars.css";
-import {TextField} from "@react-spectrum/textfield";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
-import {useMessageFormatter} from "@react-aria/i18n";
-import {usePagination} from "@react-aria/pagination";
-import {usePaginationState} from "@react-stately/pagination";
-import {useProviderProps} from "@react-spectrum/provider";
+import intlMessages from "../intl";
 
 export function PaginationInput(props: PaginationBase) {
   props = Object.assign({}, {defaultValue: 1}, props);

@@ -11,18 +11,18 @@
  */
 
 .spectrum {
-  --hljs-color: var(--spectrum-global-color-gray-800);
-  --hljs-background: var(--spectrum-global-color-gray-75);
-  --hljs-keyword-color: var(--spectrum-global-color-fuchsia-700);
-  --hljs-section-color: var(--spectrum-global-color-red-600);
-  --hljs-string-color: var(--spectrum-global-color-green-600);
-  --hljs-literal-color: var(--spectrum-global-color-purple-700);
-  --hljs-attribute-color: var(--spectrum-global-color-indigo-700);
-  --hljs-class-color: var(--spectrum-global-color-seafoam-600);
-  --hljs-function-color: var(--spectrum-global-color-blue-600);
-  --hljs-variable-color: var(--spectrum-global-color-magenta-700);
-  --hljs-title-color: var(--spectrum-global-color-indigo-700);
-  --hljs-comment-color: var(--spectrum-global-color-gray-700);
+  --hljs-color: var(--wa-global-color-gray-800);
+  --hljs-background: var(--wa-global-color-gray-75);
+  --hljs-keyword-color: var(--wa-global-color-fuchsia-700);
+  --hljs-section-color: var(--wa-global-color-red-600);
+  --hljs-string-color: var(--wa-global-color-green-600);
+  --hljs-literal-color: var(--wa-global-color-purple-700);
+  --hljs-attribute-color: var(--wa-global-color-indigo-700);
+  --hljs-class-color: var(--wa-global-color-seafoam-600);
+  --hljs-function-color: var(--wa-global-color-blue-600);
+  --hljs-variable-color: var(--wa-global-color-magenta-700);
+  --hljs-title-color: var(--wa-global-color-indigo-700);
+  --hljs-comment-color: var(--wa-global-color-gray-700);
 }
 
 /** for now keep syntax highlighting different from prop table. we can join them later if need be,

@@ -30,52 +30,51 @@ async function build() {
 
   // Generate a package.json containing just what we need to build the website
   let pkg = {
-    name: 'case-studies',
-    version: '0.0.0',
+    name: "case-studies",
+    version: "0.0.0",
     private: true,
-    workspaces: [
-      'packages/*/*'
-    ],
+    workspaces: ["packages/*/*"],
     devDependencies: Object.fromEntries(
-      Object.entries(packageJSON.devDependencies)
-        .filter(([name]) =>
-          name.startsWith('@parcel') ||
-          name === 'parcel' ||
-          name === 'patch-package' ||
-          name.startsWith('@spectrum-css') ||
-          name.startsWith('postcss') ||
-          name.startsWith('@adobe')
-        )
+      Object.entries(packageJSON.devDependencies).filter(
+        ([name]) =>
+          name.startsWith("@parcel") ||
+          name === "parcel" ||
+          name === "patch-package" ||
+          name.startsWith("@spectrum-css") ||
+          name.startsWith("postcss") ||
+          name.startsWith("@watheia")
+      )
     ),
     dependencies: {},
     resolutions: packageJSON.resolutions,
     browserslist: packageJSON.browserslist,
     scripts: {
-      build: "DOCS_ENV=production PARCEL_WORKER_BACKEND=process parcel build 'docs/*/*/docs/*.mdx' 'packages/dev/docs/pages/**/*.mdx' --no-scope-hoist",
-      postinstall: 'patch-package'
-    }
+      build:
+        "DOCS_ENV=production PARCEL_WORKER_BACKEND=process parcel build 'docs/*/*/docs/*.mdx' 'packages/dev/docs/pages/**/*.mdx' --no-scope-hoist",
+      postinstall: "patch-package",
+    },
   };
 
   console.info("Using package", pkg);
 
   // Add dependencies on each published package to the package.json, and
   // copy the docs from the current package into the temp dir.
-  let packagesDir = path.join(__dirname, '..', 'packages');
-  let packages = glob.sync('*/*/package.json', {cwd: packagesDir});
+  let packagesDir = path.join(__dirname, "..", "packages");
+  let packages = glob.sync("*/*/package.json", { cwd: packagesDir });
   for (let p of packages) {
     console.info(`Loading package from ${p}`);
-    let json = JSON.parse(fs.readFileSync(path.join(packagesDir, p), 'utf8'));
-    if (!json.private && json.name !== '@adobe/react-spectrum') {
-      let docsDir = path.join(packagesDir, path.dirname(p), 'docs');
+    let json = JSON.parse(fs.readFileSync(path.join(packagesDir, p), "utf8"));
+    if (!json.private && json.name !== "@watheia/react-spectrum") {
+      let docsDir = path.join(packagesDir, path.dirname(p), "docs");
       let hasDocs = false;
       if (fs.existsSync(docsDir)) {
         let contents = fs.readdirSync(docsDir);
         for (let file of contents) {
           let docFile = path.join(docsDir, file);
-          let destFile = path.join(dir, 'docs', json.name, 'docs', file);
-          if (file.endsWith('.mdx')) {
+          let destFile = path.join(dir, "docs", json.name, "docs", file);
+          if (file.endsWith(".mdx")) {
             // Skip mdx files with an after_version key that is <= to the current package version.
-            let contents = fs.readFileSync(docFile, 'utf8');
+            let contents = fs.readFileSync(docFile, "utf8");
             let m = contents.match(/after_version:\s*(.*)/);
             if (!m || semver.gt(json.version, m[1])) {
               fs.copySync(docFile, destFile);
@@ -89,18 +88,30 @@ async function build() {
       }
 
       if (hasDocs) {
-        pkg.dependencies[json.name] = 'latest';
+        pkg.dependencies[json.name] = "latest";
       }
     }
   }
 
-  fs.writeFileSync(path.join(dir, 'package.json'), JSON.stringify(pkg, false, 2));
+  fs.writeFileSync(
+    path.join(dir, "package.json"),
+    JSON.stringify(pkg, false, 2)
+  );
 
   // Copy necessary code and configuration over
-  fs.copySync(path.join(__dirname, '..', 'yarn.lock'), path.join(dir, 'yarn.lock'));
-  fs.copySync(path.join(__dirname, '..', 'packages', 'dev'), path.join(dir, 'packages', 'dev'));
-  fs.removeSync(path.join(dir, 'packages', 'dev', 'v2-test-deps'));
-  fs.copySync(path.join(__dirname, '..', 'packages', '@adobe', 'spectrum-css-temp'), path.join(dir, 'packages', '@adobe', 'spectrum-css-temp'));
+  fs.copySync(
+    path.join(__dirname, "..", "yarn.lock"),
+    path.join(dir, "yarn.lock")
+  );
+  fs.copySync(
+    path.join(__dirname, "..", "packages", "dev"),
+    path.join(dir, "packages", "dev")
+  );
+  fs.removeSync(path.join(dir, "packages", "dev", "v2-test-deps"));
+  fs.copySync(
+    path.join(__dirname, "..", "packages", "@watheia", "spectrum-css-temp"),
+    path.join(dir, "packages", "@watheia", "spectrum-css-temp")
+  );
   fs.copySync(path.join(__dirname, '..', '.parcelrc'), path.join(dir, '.parcelrc'));
   fs.copySync(path.join(__dirname, '..', 'cssnano.config.js'), path.join(dir, 'cssnano.config.js'));
   fs.copySync(path.join(__dirname, '..', 'postcss.config.js'), path.join(dir, 'postcss.config.js'));

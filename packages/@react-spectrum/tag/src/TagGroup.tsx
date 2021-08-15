@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import React, {useContext} from "react";
-import {Removable} from "@react-types/shared";
-import {SpectrumTagGroupProps} from "@react-types/tag";
-import styles from "@adobe/spectrum-css-temp/components/tags/vars.css";
-import {useProviderProps} from "@react-spectrum/provider";
-import {useTagGroup} from "@react-aria/tag";
+import { useTagGroup } from "@react-aria/tag";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { Removable } from "@react-types/shared";
+import { SpectrumTagGroupProps } from "@react-types/tag";
+import styles from "@watheia/spectrum-css-temp/components/tags/vars.css";
+import React, { useContext } from "react";
 
 interface TagGroupContextValue extends Removable<any, void> {
   isDisabled?: boolean,

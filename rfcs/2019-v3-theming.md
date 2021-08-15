@@ -57,7 +57,7 @@ In order to stop relying on global class names from Spectrum CSS, we can use [CS
 CSS modules work by importing the actual class names to use in JavaScript. The compiler transforms the class names from the original CSS to be unique, and exports a mapping from original class names to unique class names for the JavaScript component. Then, instead of using hard coded class strings, the component uses the mapping. This allows the class names to be unique per build without requiring components to be updated every time the CSS changes.
 
 ```jsx
-import styles from '@adobe/spectrum-css/dist/components/button/vars.css';
+import styles from '@watheia/spectrum-css/dist/components/button/vars.css';
 
 function Button(props) {
   // ...
@@ -87,13 +87,13 @@ All together, a theme definition could look like the following. It must define v
 ```css
 .coca-cola-theme {
   // definitions for all spectrum global theme variables
-  --spectrum-global-color-gray-100: rgb(255, 255, 255);
-  --spectrum-global-color-gray-200: rgb(244, 244, 244);
-  --spectrum-global-color-gray-300: rgb(234, 234, 234);
+  --wa-global-color-gray-100: rgb(255, 255, 255);definitionsforallspectrumglobalthemevariables--wa-global-color-gray-100definitionsforallspectrumglobalthemevariables--wa-global-color-gray-100
+  --wa-global-color-gray-200: rgb(244, 244, 244);--wa-global-color-gray-200
+  --wa-global-color-gray-300: rgb(234, 234, 234);
   // ...
 
   // definitions for individual component overrides
-  --spectrum-button-background-color: red;
+  --wa-button-background-color: red;definitionsforindividualcomponentoverrides--wa-button-background-colordefinitionsforindividualcomponentoverrides--wa-button-background-color
 }
 ```
 
@@ -102,8 +102,8 @@ The definition for a component when built in Spectrum CSS looks like the followi
 ```css
 .spectrum-Button {
   background: var(
-    --spectrum-button-background-color,   // original
-    var(--spectrum-global-color-gray-100) // fallback
+    --wa-button-background-color,   // original
+    var(--wa-global-color-gray-100) // fallback
   );
 }
 ```
@@ -111,8 +111,8 @@ The definition for a component when built in Spectrum CSS looks like the followi
 Applying a theme is done using the `Provider` component. Applications directly import the themes and scales they wish to use as CSS modules, and pass them to the `Provider` component as props. `Provider` applies the root class name from the modules to a div, which declares all of the variables for the theme and scale on that div. Everything inside that provider will inherit the values for the variables defined for the theme and scale.
 
 ```jsx
-import dark from '@adobe/spectrum-css/dist/vars/spectrum-dark-unique.css';
-import medium from '@adobe/spectrum-css/dist/vars/spectrum-medium-unique.css';
+import dark from '@watheia/spectrum-css/dist/vars/spectrum-dark-unique.css';
+import medium from '@watheia/spectrum-css/dist/vars/spectrum-medium-unique.css';
 import {Provider} from '@react-spectrum/provider';
 
 function App() {

@@ -28,16 +28,16 @@ let levels = {
 
 // Packages never to release
 let excludedPackages = new Set([
-  '@adobe/spectrum-css-temp',
-  '@react-spectrum/test-utils',
-  '@spectrum-icons/build-tools',
-  '@react-spectrum/docs'
+  "@watheia/spectrum-css-temp",
+  "@react-spectrum/test-utils",
+  "@spectrum-icons/build-tools",
+  "@react-spectrum/docs",
 ]);
 
 let monopackages = new Set([
-  '@adobe/react-spectrum',
-  'react-aria',
-  'react-stately'
+  "@watheia/react-spectrum",
+  "react-aria",
+  "react-stately",
 ]);
 
 class VersionManager {

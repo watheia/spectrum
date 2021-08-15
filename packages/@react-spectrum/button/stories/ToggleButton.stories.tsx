@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
 import Add from "@spectrum-icons/workflow/Add";
-import {Flex, Text, View} from "@adobe/react-spectrum";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import { Flex, Text, View } from "@watheia/react-spectrum";
 import React from "react";
-import {storiesOf} from "@storybook/react";
-import {ToggleButton} from "../";
+import { ToggleButton } from "../";
 
 storiesOf("Button/ToggleButton", module)
   .addParameters({providerSwitcher: {status: "positive"}})

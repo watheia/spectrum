@@ -10,6 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
+import { Label } from "@react-spectrum/label";
+import { Text } from "@react-spectrum/text";
+import { SpectrumListBoxProps } from "@react-types/listbox";
 import AlignCenter from "@spectrum-icons/workflow/AlignCenter";
 import AlignLeft from "@spectrum-icons/workflow/AlignLeft";
 import AlignRight from "@spectrum-icons/workflow/AlignRight";
@@ -17,13 +20,10 @@ import Blower from "@spectrum-icons/workflow/Blower";
 import Book from "@spectrum-icons/workflow/Book";
 import Copy from "@spectrum-icons/workflow/Copy";
 import Cut from "@spectrum-icons/workflow/Cut";
-import {Item, ListBox, Section} from "../";
-import {Label} from "@react-spectrum/label";
-import {Meta, Story} from "@storybook/react";
 import Paste from "@spectrum-icons/workflow/Paste";
+import { Meta, Story } from "@storybook/react";
 import React from "react";
-import {SpectrumListBoxProps} from "@react-types/listbox";
-import {Text} from "@react-spectrum/text";
+import { Item, ListBox, Section } from "../";
 
 let iconMap = {
   AlignCenter,
@@ -81,7 +81,7 @@ const meta: Meta<SpectrumListBoxProps<object>> = {
   decorators: [Story => (
     <div style={{display: "flex", flexDirection: "column"}}>
       <Label id="label">Choose an item</Label>
-      <div style={{display: "flex", minWidth: "200px", background: "var(--spectrum-global-color-gray-50)", border: "1px solid lightgray", maxHeight: 600}}>
+      <div style={{display: "flex", minWidth: "200px", background: "var(--wa-global-color-gray-50)", border: "1px solid lightgray", maxHeight: 600}}>
         <Story />
       </div>
     </div>

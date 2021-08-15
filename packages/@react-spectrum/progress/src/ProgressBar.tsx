@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {ProgressBarBase} from "./ProgressBarBase";
+import { useProgressBar } from "@react-aria/progress";
+import { classNames } from "@react-spectrum/utils";
+import { SpectrumProgressBarProps } from "@react-types/progress";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/barloader/vars.css";
 import React from "react";
-import {SpectrumProgressBarProps} from "@react-types/progress";
-import styles from "@adobe/spectrum-css-temp/components/barloader/vars.css";
-import {useProgressBar} from "@react-aria/progress";
+import { ProgressBarBase } from "./ProgressBarBase";
 
 function ProgressBar(props: SpectrumProgressBarProps, ref: DOMRef<HTMLDivElement>) {
   let {variant, ...otherProps} = props;
@@ -47,4 +47,5 @@ function ProgressBar(props: SpectrumProgressBarProps, ref: DOMRef<HTMLDivElement
  * They can represent either determinate or indeterminate progress.
  */
 let _ProgressBar = React.forwardRef(ProgressBar);
-export {_ProgressBar as ProgressBar};
+export { _ProgressBar as ProgressBar };
+

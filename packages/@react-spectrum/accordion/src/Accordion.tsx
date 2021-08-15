@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
+import { useAccordion, useAccordionItem } from "@react-aria/accordion";
+import { FocusRing } from "@react-aria/focus";
+import { useLocale } from "@react-aria/i18n";
+import { useHover } from "@react-aria/interactions";
+import { filterDOMProps, mergeProps } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { TreeState, useTreeState } from "@react-stately/tree";
+import { SpectrumAccordionProps } from "@react-types/accordion";
+import { DOMRef, Node } from "@react-types/shared";
 import ChevronLeftMedium from "@spectrum-icons/ui/ChevronLeftMedium";
 import ChevronRightMedium from "@spectrum-icons/ui/ChevronRightMedium";
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef, Node} from "@react-types/shared";
-import {filterDOMProps, mergeProps} from "@react-aria/utils";
-import {FocusRing} from "@react-aria/focus";
-import React, {useRef} from "react";
-import {SpectrumAccordionProps} from "@react-types/accordion";
-import styles from "@adobe/spectrum-css-temp/components/accordion/vars.css";
-import {TreeState, useTreeState} from "@react-stately/tree";
-import {useAccordion, useAccordionItem} from "@react-aria/accordion";
-import {useHover} from "@react-aria/interactions";
-import {useLocale} from "@react-aria/i18n";
-import {useProviderProps} from "@react-spectrum/provider";
+import styles from "@watheia/spectrum-css-temp/components/accordion/vars.css";
+import React, { useRef } from "react";
 
 
 function Accordion<T extends object>(props: SpectrumAccordionProps<T>, ref: DOMRef<HTMLDivElement>) {
@@ -97,4 +97,5 @@ function AccordionItem<T>(props: AccordionItemProps<T>) {
 }
 
 const _Accordion = React.forwardRef(Accordion);
-export {_Accordion as Accordion};
+export { _Accordion as Accordion };
+

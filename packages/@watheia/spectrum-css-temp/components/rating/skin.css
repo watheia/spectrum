@@ -1,0 +1,96 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+.spectrum-Rating {
+  &.is-focused {
+    box-shadow: 0 0 0 var(--wa-global-dimension-static-size-25) var(--wa-rating-focus-ring-color);
+  }
+
+  &:hover {
+    .spectrum-Rating-icon {
+      /* Make all stars colored when the component is hovered */
+      color: var(--wa-rating-icon-color-selected);
+
+      &:hover {
+        /* The icon that's actually hovered is darker */
+        color: var(--wa-rating-icon-color-hover);
+      }
+
+      &:active {
+        /* The icon that's actually hovered is darker */
+        color: var(--wa-rating-icon-color-down);
+      }
+
+      /* Show which star is currently selected */
+      &.is-currentValue {
+        &:after {
+          /* Match the color of the star */
+          background: currentColor;
+        }
+      }
+    }
+  }
+}
+
+.spectrum-Rating-icon {
+  color: var(--wa-rating-icon-color);
+
+  &.is-selected {
+    color: var(--wa-alias-icon-color-selected);
+  }
+
+  &:hover {
+    /* All stars following the hovered star */
+    & ~ .spectrum-Rating-icon {
+      color: var(--wa-rating-icon-color);
+    }
+  }
+}
+
+.spectrum-Rating--quiet {
+  .spectrum-Rating-icon {
+    color: var(--wa-rating-quiet-icon-color);
+
+    &.is-selected {
+      color: var(--wa-rating-quiet-icon-color-selected);
+    }
+  }
+
+  &:hover {
+    .spectrum-Rating-icon {
+      /* Make all stars selected when the component is hovered */
+      color: var(--wa-rating-quiet-icon-color-selected);
+
+      &:hover {
+        /* The icon that's actually hovered is darker */
+        color: var(--wa-rating-quiet-icon-color-hover);
+      }
+
+      &:active {
+        color: var(--wa-rating-quiet-icon-color-down);
+      }
+    }
+  }
+}
+
+/* Disabled */
+.spectrum-Rating {
+  &.is-disabled {
+    .spectrum-Rating-icon {
+      color: var(--wa-rating-icon-color-disabled);
+
+      &.is-selected {
+        color: var(--wa-rating-icon-color-disabled);
+      }
+    }
+  }
+}

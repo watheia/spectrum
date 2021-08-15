@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {mergeProps, useLayoutEffect} from "@react-aria/utils";
-import {Overlay} from "./Overlay";
+import { useModal, useOverlay } from "@react-aria/overlays";
+import { mergeProps, useLayoutEffect } from "@react-aria/utils";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { PlacementAxis, PopoverProps } from "@react-types/overlays";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/popover/vars.css";
+import React, { forwardRef, HTMLAttributes, ReactNode, RefObject, useRef, useState } from "react";
+import { Overlay } from "./Overlay";
 import overrideStyles from "./overlays.css";
-import {PlacementAxis, PopoverProps} from "@react-types/overlays";
-import React, {forwardRef, HTMLAttributes, ReactNode, RefObject, useRef, useState} from "react";
-import styles from "@adobe/spectrum-css-temp/components/popover/vars.css";
-import {useModal, useOverlay} from "@react-aria/overlays";
 
 interface PopoverWrapperProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode,
@@ -144,13 +144,13 @@ function Arrow(props) {
   useLayoutEffect(() => {
     if (ref.current) {
       let spectrumTipWidth = window.getComputedStyle(ref.current)
-        .getPropertyValue("--spectrum-popover-tip-size");
+        .getPropertyValue("--wa-popover-tip-size");
       if (spectrumTipWidth !== "") {
         setSize(parseInt(spectrumTipWidth, 10) / 2);
       }
 
       let spectrumBorderWidth = window.getComputedStyle(ref.current)
-        .getPropertyValue("--spectrum-popover-tip-borderWidth");
+        .getPropertyValue("--wa-popover-tip-borderWidth");
       if (spectrumBorderWidth !== "") {
         setBorderWidth(parseInt(spectrumBorderWidth, 10));
       }
@@ -200,7 +200,7 @@ function Arrow(props) {
 }
 
 let _Popover = forwardRef(Popover);
-export {_Popover as Popover};
+export { _Popover as Popover };
 
 /**
  * More explanation on popover tips.

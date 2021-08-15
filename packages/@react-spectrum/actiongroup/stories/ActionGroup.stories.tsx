@@ -10,8 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {ActionGroup} from "../";
+import { Flex } from "@react-spectrum/layout";
+import { Text } from "@react-spectrum/text";
+import { Tooltip, TooltipTrigger } from "@react-spectrum/tooltip";
+import { View } from "@react-spectrum/view";
+import { Item } from "@react-stately/collections";
 import BookIcon from "@spectrum-icons/workflow/Book";
 import Brush from "@spectrum-icons/workflow/Brush";
 import CopyIcon from "@spectrum-icons/workflow/Copy";
@@ -19,34 +22,31 @@ import DeleteIcon from "@spectrum-icons/workflow/Delete";
 import DocumentIcon from "@spectrum-icons/workflow/Document";
 import DrawIcon from "@spectrum-icons/workflow/Draw";
 import DuplicateIcon from "@spectrum-icons/workflow/Duplicate";
-import {Flex} from "@react-spectrum/layout";
 import Heal from "@spectrum-icons/workflow/Heal";
 import InfoIcon from "@spectrum-icons/workflow/Info";
-import {Item} from "@react-stately/collections";
 import MoveIcon from "@spectrum-icons/workflow/MoveTo";
 import PropertiesIcon from "@spectrum-icons/workflow/Properties";
-import React from "react";
 import Sampler from "@spectrum-icons/workflow/Sampler";
 import Select from "@spectrum-icons/workflow/Select";
 import SettingsIcon from "@spectrum-icons/workflow/Settings";
-import {storiesOf} from "@storybook/react";
 import TagBold from "@spectrum-icons/workflow/TagBold";
 import TagItalic from "@spectrum-icons/workflow/TagItalic";
 import TagUnderline from "@spectrum-icons/workflow/TagUnderline";
-import {Text} from "@react-spectrum/text";
+import TextIcon from "@spectrum-icons/workflow/Text";
 import TextAlignCenter from "@spectrum-icons/workflow/TextAlignCenter";
 import TextAlignJustify from "@spectrum-icons/workflow/TextAlignJustify";
 import TextAlignLeft from "@spectrum-icons/workflow/TextAlignLeft";
 import TextAlignRight from "@spectrum-icons/workflow/TextAlignRight";
-import TextIcon from "@spectrum-icons/workflow/Text";
 import TextStrikethrough from "@spectrum-icons/workflow/TextStrikethrough";
 import TextStyle from "@spectrum-icons/workflow/TextStyle";
-import {Tooltip, TooltipTrigger} from "@react-spectrum/tooltip";
 import VectorDraw from "@spectrum-icons/workflow/VectorDraw";
-import {View} from "@react-spectrum/view";
 import ViewCardIcon from "@spectrum-icons/workflow/ViewCard";
 import ViewGridIcon from "@spectrum-icons/workflow/ViewGrid";
 import ViewListIcon from "@spectrum-icons/workflow/ViewList";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import React from "react";
+import { ActionGroup } from "../";
 
 const docItems = [{children: "Document setup", name: "1"}, {children: "Settings", name: "2"}];
 const editItems = [{children: "Edit", name: "1"}, {children: "Copy", name: "2"}, {children: "Delete", name: "3"}];
@@ -276,7 +276,7 @@ storiesOf("ActionGroup", module)
   .add(
     "overflowMode: wrap",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 250, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 250, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         <ActionGroup overflowMode="wrap" onAction={action("onAction")}>
           <Item>
             <DrawIcon />
@@ -305,7 +305,7 @@ storiesOf("ActionGroup", module)
   .add(
     "overflowMode: collapse",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 250, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 250, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsible()}
         {renderCollapsible({density: "compact"})}
         {renderCollapsible({density: "compact", isJustified: true})}
@@ -316,7 +316,7 @@ storiesOf("ActionGroup", module)
   .add(
     "buttonLabelBehavior: hide",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 250, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 250, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsible({buttonLabelBehavior: "hide"})}
         {renderCollapsibleText({buttonLabelBehavior: "hide"})}
       </div>
@@ -325,7 +325,7 @@ storiesOf("ActionGroup", module)
   .add(
     "buttonLabelBehavior: collapse",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 500, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", width: 500, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsible({buttonLabelBehavior: "collapse"})}
         {renderCollapsibleText({buttonLabelBehavior: "collapse"})}
       </div>
@@ -334,7 +334,7 @@ storiesOf("ActionGroup", module)
   .add(
     "overflowMode: collapse, selection",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", display: "flex", gap: 10, width: 300, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", display: "flex", gap: 10, width: 300, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsibleFormatting({density: "compact", maxWidth: "50%", isEmphasized: true})}
         {renderCollapsibleAlignment({density: "compact", maxWidth: "50%", isEmphasized: true})}
       </div>
@@ -343,7 +343,7 @@ storiesOf("ActionGroup", module)
   .add(
     "overflowMode: collapse, summaryIcon",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", display: "flex", gap: 10, width: 300, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", display: "flex", gap: 10, width: 300, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsibleFormatting({density: "compact", overflowMode: "collapse", summaryIcon: <TextStyle />, isEmphasized: true})}
         {renderCollapsibleAlignment({density: "compact", overflowMode: "collapse", isEmphasized: true})}
       </div>
@@ -352,7 +352,7 @@ storiesOf("ActionGroup", module)
   .add(
     "overflowMode: collapse, single selection",
     () => (
-      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", display: "flex", gap: 10, width: 300, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "horizontal", overflow: "auto", display: "flex", gap: 10, width: 300, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsibleAlignment({density: "compact", maxWidth: "50%", isEmphasized: true})}
         {renderCollapsibleAlignment({density: "compact", maxWidth: "50%", isEmphasized: true, buttonLabelBehavior: "show"})}
         {renderCollapsibleAlignmentNoIcons({density: "compact", maxWidth: "50%", isEmphasized: true, buttonLabelBehavior: "show"})}
@@ -362,7 +362,7 @@ storiesOf("ActionGroup", module)
   .add(
     "orientation: vertical, overflowMode: collapse",
     () => (
-      <div style={{padding: "10px", resize: "vertical", overflow: "auto", width: 32, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{padding: "10px", resize: "vertical", overflow: "auto", width: 32, backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderCollapsible({orientation: "vertical", buttonLabelBehavior: "hide", maxHeight: "100%", marginBottom: 0})}
       </div>
     )
@@ -372,7 +372,7 @@ storiesOf("ActionGroup", module)
     () => (
       <Flex direction="column">
         <p>Note: this is currently unsupported by Spectrum. Container should scroll.</p>
-        <div style={{padding: "10px", resize: "vertical", overflow: "auto", width: 32, backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+        <div style={{padding: "10px", resize: "vertical", overflow: "auto", width: 32, backgroundColor: "var(--wa-global-color-gray-50)"}}>
           {renderTools({orientation: "vertical", buttonLabelBehavior: "hide", maxHeight: "100%"})}
         </div>
       </Flex>

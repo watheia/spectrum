@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render} from "@testing-library/react";
-import {installMouseEvent} from "@react-spectrum/test-utils";
-import {press, testKeypresses} from "./utils";
-import {Provider} from "@adobe/react-spectrum";
-import React, {useState} from "react";
-import {Slider} from "../";
-import {theme} from "@react-spectrum/theme-default";
+import { installMouseEvent } from "@react-spectrum/test-utils";
+import { theme } from "@react-spectrum/theme-default";
+import { act, fireEvent, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "@watheia/react-spectrum";
+import React, { useState } from "react";
+import { Slider } from "../";
+import { press, testKeypresses } from "./utils";
 
 describe("Slider", function () {
   it("supports aria-label", function () {

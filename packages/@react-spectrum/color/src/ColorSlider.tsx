@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
-import {ColorThumb} from "./ColorThumb";
-import {Flex} from "@react-spectrum/layout";
-import {FocusableRef} from "@react-types/shared";
-import {Label} from "@react-spectrum/label";
-import React, {useRef, useState} from "react";
-import {SpectrumColorSliderProps} from "@react-types/color";
-import styles from "@adobe/spectrum-css-temp/components/colorslider/vars.css";
-import {useColorSlider} from "@react-aria/color";
-import {useColorSliderState} from "@react-stately/color";
-import {useFocus, useFocusVisible} from "@react-aria/interactions";
-import {useLocale} from "@react-aria/i18n";
-import {useProviderProps} from "@react-spectrum/provider";
+import { useColorSlider } from "@react-aria/color";
+import { useLocale } from "@react-aria/i18n";
+import { useFocus, useFocusVisible } from "@react-aria/interactions";
+import { Label } from "@react-spectrum/label";
+import { Flex } from "@react-spectrum/layout";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useFocusableRef, useStyleProps } from "@react-spectrum/utils";
+import { useColorSliderState } from "@react-stately/color";
+import { SpectrumColorSliderProps } from "@react-types/color";
+import { FocusableRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/colorslider/vars.css";
+import React, { useRef, useState } from "react";
+import { ColorThumb } from "./ColorThumb";
 
 function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -137,4 +137,5 @@ function ColorSlider(props: SpectrumColorSliderProps, ref: FocusableRef<HTMLDivE
  * ColorSliders allow users to adjust an individual channel of a color value.
  */
 let _ColorSlider = React.forwardRef(ColorSlider);
-export {_ColorSlider as ColorSlider};
+export { _ColorSlider as ColorSlider };
+

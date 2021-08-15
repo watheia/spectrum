@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, dimensionValue, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
-import {ColorThumb} from "./ColorThumb";
-import {FocusableRef} from "@react-types/shared";
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import {SpectrumColorWheelProps} from "@react-types/color";
-import styles from "@adobe/spectrum-css-temp/components/colorwheel/vars.css";
-import {useColorWheel} from "@react-aria/color";
-import {useColorWheelState} from "@react-stately/color";
-import {useFocusRing} from "@react-aria/focus";
-import {useProviderProps} from "@react-spectrum/provider";
-import {useResizeObserver} from "@react-aria/utils";
+import { useColorWheel } from "@react-aria/color";
+import { useFocusRing } from "@react-aria/focus";
+import { useResizeObserver } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, dimensionValue, useFocusableRef, useStyleProps } from "@react-spectrum/utils";
+import { useColorWheelState } from "@react-stately/color";
+import { SpectrumColorWheelProps } from "@react-types/color";
+import { FocusableRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/colorwheel/vars.css";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { ColorThumb } from "./ColorThumb";
 
 const WHEEL_THICKNESS = 24;
 
@@ -41,7 +41,7 @@ function ColorWheel(props: SpectrumColorWheelProps, ref: FocusableRef<HTMLDivEle
     if (containerRef.current) {
       setWheelRadius(containerRef.current.offsetWidth / 2);
       let thickness = window.getComputedStyle(containerRef.current)
-        .getPropertyValue("--spectrum-colorwheel-track-thickness");
+        .getPropertyValue("--wa-colorwheel-track-thickness");
       if (thickness) {
         setWheelThickness(parseInt(thickness, 10));
       }
@@ -108,4 +108,5 @@ function ColorWheel(props: SpectrumColorWheelProps, ref: FocusableRef<HTMLDivEle
  * ColorWheels allow users to adjust the hue of an HSL or HSB color value on a circular track.
  */
 let _ColorWheel = React.forwardRef(ColorWheel);
-export {_ColorWheel as ColorWheel};
+export { _ColorWheel as ColorWheel };
+

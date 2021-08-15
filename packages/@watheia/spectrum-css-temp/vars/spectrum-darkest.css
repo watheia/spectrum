@@ -1,0 +1,121 @@
+/*
+ * Copyright 2020 Adobe. All rights reserved.
+ * This file is licensed to you under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License. You may obtain a copy
+ * of the License at http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+ * OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ */
+
+.spectrum--darkest {
+  --wa-global-color-status: Verified;
+  --wa-global-color-version: 5.0.1;
+  --wa-global-color-celery-400: rgb(61, 167, 78);
+  --wa-global-color-celery-500: rgb(68, 181, 86);
+  --wa-global-color-celery-600: rgb(75, 195, 95);
+  --wa-global-color-celery-700: rgb(81, 210, 103);
+  --wa-global-color-chartreuse-400: rgb(124, 195, 63);
+  --wa-global-color-chartreuse-500: rgb(133, 208, 68);
+  --wa-global-color-chartreuse-600: rgb(142, 222, 73);
+  --wa-global-color-chartreuse-700: rgb(155, 236, 84);
+  --wa-global-color-yellow-400: rgb(210, 178, 0);
+  --wa-global-color-yellow-500: rgb(223, 191, 0);
+  --wa-global-color-yellow-600: rgb(237, 204, 0);
+  --wa-global-color-yellow-700: rgb(250, 217, 0);
+  --wa-global-color-magenta-400: rgb(202, 41, 150);
+  --wa-global-color-magenta-500: rgb(216, 55, 144);
+  --wa-global-color-magenta-600: rgb(226, 73, 157);
+  --wa-global-color-magenta-700: rgb(236, 90, 170);
+  --wa-global-color-fuchsia-400: rgb(177, 48, 189);
+  --wa-global-color-fuchsia-500: rgb(192, 56, 204);
+  --wa-global-color-fuchsia-600: rgb(207, 62, 220);
+  --wa-global-color-fuchsia-700: rgb(217, 81, 229);
+  --wa-global-color-purple-400: rgb(134, 76, 204);
+  --wa-global-color-purple-500: rgb(146, 86, 217);
+  --wa-global-color-purple-600: rgb(157, 100, 225);
+  --wa-global-color-purple-700: rgb(168, 115, 223);
+  --wa-global-color-indigo-400: rgb(92, 92, 224);
+  --wa-global-color-indigo-500: rgb(103, 103, 236);
+  --wa-global-color-indigo-600: rgb(117, 117, 241);
+  --wa-global-color-indigo-700: rgb(130, 130, 246);
+  --wa-global-color-seafoam-400: rgb(22, 135, 140);
+  --wa-global-color-seafoam-500: rgb(27, 149, 154);
+  --wa-global-color-seafoam-600: rgb(32, 163, 168);
+  --wa-global-color-seafoam-700: rgb(35, 178, 184);
+  --wa-global-color-red-400: rgb(215, 55, 63);
+  --wa-global-color-red-500: rgb(227, 72, 80);
+  --wa-global-color-red-600: rgb(236, 91, 98);
+  --wa-global-color-red-700: rgb(247, 109, 116);
+  --wa-global-color-orange-400: rgb(218, 123, 17);
+  --wa-global-color-orange-500: rgb(230, 134, 25);
+  --wa-global-color-orange-600: rgb(242, 148, 35);
+  --wa-global-color-orange-700: rgb(249, 164, 63);
+  --wa-global-color-green-400: rgb(38, 142, 108);
+  --wa-global-color-green-500: rgb(45, 157, 120);
+  --wa-global-color-green-600: rgb(51, 171, 132);
+  --wa-global-color-green-700: rgb(57, 185, 144);
+  --wa-global-color-blue-400: rgb(20, 115, 230);
+  --wa-global-color-blue-500: rgb(38, 128, 235);
+  --wa-global-color-blue-600: rgb(55, 142, 240);
+  --wa-global-color-blue-700: rgb(75, 156, 245);
+  --wa-global-color-gray-50: rgb(8, 8, 8);
+  --wa-global-color-gray-75: rgb(26, 26, 26);
+  --wa-global-color-gray-100: rgb(30, 30, 30);
+  --wa-global-color-gray-200: rgb(44, 44, 44);
+  --wa-global-color-gray-300: rgb(57, 57, 57);
+  --wa-global-color-gray-400: rgb(73, 73, 73);
+  --wa-global-color-gray-500: rgb(92, 92, 92);
+  --wa-global-color-gray-600: rgb(124, 124, 124);
+  --wa-global-color-gray-700: rgb(162, 162, 162);
+  --wa-global-color-gray-800: rgb(200, 200, 200);
+  --wa-global-color-gray-900: rgb(239, 239, 239);
+  --wa-alias-background-color-modal-overlay: rgba(0,0,0,0.6);
+  --wa-alias-dropshadow-color: rgba(0,0,0,0.8);
+  --wa-alias-background-color-hover-overlay: rgba(239,239,239,0.08);
+  --wa-alias-highlight-hover: rgba(239,239,239,0.08);
+  --wa-alias-highlight-active: rgba(239,239,239,0.15);
+  --wa-alias-highlight-selected: rgba(38,128,235,0.2);
+  --wa-alias-highlight-selected-hover: rgba(38,128,235,0.3);
+  --wa-alias-text-highlight-color: rgba(38,128,235,0.3);
+  --wa-alias-background-color-quickactions: rgba(30,30,30,0.9);
+  --wa-alias-radial-reaction-color-default: rgba(200,200,200,0.6);
+  --wa-alias-pasteboard-background-color: var(--wa-global-color-gray-50);
+  --wa-alias-appframe-border-color: var(--wa-global-color-gray-50);
+  --wa-alias-appframe-separator-color: var(--wa-global-color-gray-50);
+  --wa-colorarea-border-color: rgba(239,239,239,0.1);
+  --wa-colorarea-border-color-hover: rgba(239,239,239,0.1);
+  --wa-colorarea-border-color-down: rgba(239,239,239,0.1);
+  --wa-colorarea-border-color-key-focus: rgba(239,239,239,0.1);
+  --wa-colorslider-border-color: rgba(239,239,239,0.1);
+  --wa-colorslider-border-color-hover: rgba(239,239,239,0.1);
+  --wa-colorslider-border-color-down: rgba(239,239,239,0.1);
+  --wa-colorslider-border-color-key-focus: rgba(239,239,239,0.1);
+  --wa-colorslider-vertical-border-color: rgba(239,239,239,0.1);
+  --wa-colorslider-vertical-border-color-hover: rgba(239,239,239,0.1);
+  --wa-colorslider-vertical-border-color-down: rgba(239,239,239,0.1);
+  --wa-colorslider-vertical-border-color-key-focus: rgba(239,239,239,0.1);
+  --wa-colorwheel-border-color: rgba(239,239,239,0.1);
+  --wa-colorwheel-border-color-hover: rgba(239,239,239,0.1);
+  --wa-colorwheel-border-color-down: rgba(239,239,239,0.1);
+  --wa-colorwheel-border-color-key-focus: rgba(239,239,239,0.1);
+  --wa-miller-column-item-background-color-selected: rgba(38,128,235,0.1);
+  --wa-miller-column-item-background-color-selected-hover: rgba(38,128,235,0.2);
+  --wa-tabs-compact-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-tabs-compact-vertical-rule-color: var(--wa-global-color-gray-200);
+  --wa-tabs-compact-vertical-emphasized-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-tabs-compact-vertical-emphasized-rule-color: var(--wa-global-color-gray-200);
+  --wa-tabs-emphasized-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-tabs-quiet-compact-emphasized-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-tabs-quiet-compact-vertical-emphasized-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-tabs-quiet-emphasized-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-tabs-quiet-vertical-emphasized-selection-indicator-color: var(--wa-global-color-blue-500);
+  --wa-well-background-color: rgba(200,200,200,0.02);
+  --wa-well-border-color: rgba(239,239,239,0.05);
+  /* BEGIN RSP PATCH */
+  /* missing in spectrum-css */
+  --wa-tray-background-color: var(--wa-global-color-gray-100);
+  /* END RSP PATCH */
+}

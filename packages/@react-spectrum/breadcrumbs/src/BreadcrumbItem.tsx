@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {BreadcrumbItemProps} from "@react-types/breadcrumbs";
+import { useBreadcrumbItem } from "@react-aria/breadcrumbs";
+import { FocusRing } from "@react-aria/focus";
+import { useLocale } from "@react-aria/i18n";
+import { useHover } from "@react-aria/interactions";
+import { mergeProps } from "@react-aria/utils";
+import { classNames, getWrappedElement } from "@react-spectrum/utils";
+import { BreadcrumbItemProps } from "@react-types/breadcrumbs";
 import ChevronRightSmall from "@spectrum-icons/ui/ChevronRightSmall";
-import {classNames, getWrappedElement} from "@react-spectrum/utils";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import React, {Fragment, useRef} from "react";
-import styles from "@adobe/spectrum-css-temp/components/breadcrumb/vars.css";
-import {useBreadcrumbItem} from "@react-aria/breadcrumbs";
-import {useHover} from "@react-aria/interactions";
-import {useLocale} from "@react-aria/i18n";
+import styles from "@watheia/spectrum-css-temp/components/breadcrumb/vars.css";
+import React, { Fragment, useRef } from "react";
 
 export function BreadcrumbItem(props: BreadcrumbItemProps) {
   let {

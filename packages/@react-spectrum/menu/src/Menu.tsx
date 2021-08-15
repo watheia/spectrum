@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {MenuContext} from "./context";
-import {MenuItem} from "./MenuItem";
-import {MenuSection} from "./MenuSection";
-import {mergeProps, useSyncRef} from "@react-aria/utils";
-import React, {ReactElement, useContext} from "react";
-import {SpectrumMenuProps} from "@react-types/menu";
-import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
-import {useMenu} from "@react-aria/menu";
-import {useTreeState} from "@react-stately/tree";
+import { useMenu } from "@react-aria/menu";
+import { mergeProps, useSyncRef } from "@react-aria/utils";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { useTreeState } from "@react-stately/tree";
+import { SpectrumMenuProps } from "@react-types/menu";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/menu/vars.css";
+import React, { ReactElement, useContext } from "react";
+import { MenuContext } from "./context";
+import { MenuItem } from "./MenuItem";
+import { MenuSection } from "./MenuSection";
 
 function Menu<T extends object>(props: SpectrumMenuProps<T>, ref: DOMRef<HTMLUListElement>) {
   let contextProps = useContext(MenuContext);
@@ -81,4 +81,5 @@ function Menu<T extends object>(props: SpectrumMenuProps<T>, ref: DOMRef<HTMLULi
 // forwardRef doesn't support generic parameters, so cast the result to the correct type
 // https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref
 const _Menu = React.forwardRef(Menu) as <T>(props: SpectrumMenuProps<T> & {ref?: DOMRef<HTMLUListElement>}) => ReactElement;
-export {_Menu as Menu};
+export { _Menu as Menu };
+

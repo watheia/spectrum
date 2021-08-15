@@ -11,16 +11,16 @@
  */
 
 import Asterisk from "@spectrum-icons/workflow/Asterisk";
+import linkStyle from "@watheia/spectrum-css-temp/components/link/vars.css";
+import tableStyles from "@watheia/spectrum-css-temp/components/table/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import clsx from "clsx";
-import {getAnchorProps, getUsedLinks} from "./utils";
-import {getDoc} from "globals-docs";
-import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
-import Lowlight from "react-lowlight";
+import { getDoc } from "globals-docs";
 import Markdown from "markdown-to-jsx";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
+import Lowlight from "react-lowlight";
 import styles from "./docs.css";
-import tableStyles from "@adobe/spectrum-css-temp/components/table/vars.css";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import { getAnchorProps, getUsedLinks } from "./utils";
 
 const DOC_LINKS = {
   "React.Component": "https://reactjs.org/docs/react-component.html",

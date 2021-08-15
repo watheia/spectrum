@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {ColorWheel} from "../";
-import {Flex} from "@adobe/react-spectrum";
-import {parseColor} from "@react-stately/color";
-import React, {useState} from "react";
-import {storiesOf} from "@storybook/react";
+import { parseColor } from "@react-stately/color";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import { Flex } from "@watheia/react-spectrum";
+import React, { useState } from "react";
+import { ColorWheel } from "../";
 
 storiesOf("ColorWheel", module)
   .add(

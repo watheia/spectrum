@@ -11,9 +11,9 @@
  */
 
 import ChevronRight from "@spectrum-icons/workflow/ChevronRight";
-import {InterfaceType, TypeContext} from "./types";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import React from "react";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import { InterfaceType, TypeContext } from "./types";
 
 const GROUPS = {
   Events: [

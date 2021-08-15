@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
-import {FocusableRef} from "@react-types/shared";
-import React, {CSSProperties, ReactNode, RefObject, useRef} from "react";
-import {SliderState, useSliderState} from "@react-stately/slider";
-import {SpectrumBarSliderBase} from "@react-types/slider";
-import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
-import {useNumberFormatter} from "@react-aria/i18n";
-import {useProviderProps} from "@react-spectrum/provider";
-import {useSlider} from "@react-aria/slider";
+import { useNumberFormatter } from "@react-aria/i18n";
+import { useSlider } from "@react-aria/slider";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useFocusableRef, useStyleProps } from "@react-spectrum/utils";
+import { SliderState, useSliderState } from "@react-stately/slider";
+import { FocusableRef } from "@react-types/shared";
+import { SpectrumBarSliderBase } from "@react-types/slider";
+import styles from "@watheia/spectrum-css-temp/components/slider/vars.css";
+import React, { CSSProperties, ReactNode, RefObject, useRef } from "react";
 
 export interface SliderBaseChildArguments {
   inputRef: RefObject<HTMLInputElement>,
@@ -187,4 +187,5 @@ function SliderBase(props: SliderBaseProps, ref: FocusableRef<HTMLDivElement>) {
 }
 
 const _SliderBase = React.forwardRef(SliderBase);
-export {_SliderBase as SliderBase};
+export { _SliderBase as SliderBase };
+

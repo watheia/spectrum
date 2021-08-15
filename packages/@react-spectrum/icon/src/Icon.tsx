@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, IconColorValue, StyleProps} from "@react-types/shared";
-import {baseStyleProps, classNames, StyleHandlers, useSlotProps, useStyleProps} from "@react-spectrum/utils";
-import {filterDOMProps} from "@react-aria/utils";
-import React, {ReactElement} from "react";
-import styles from "@adobe/spectrum-css-temp/components/icon/vars.css";
-import {useProvider} from "@react-spectrum/provider";
+import { filterDOMProps } from "@react-aria/utils";
+import { useProvider } from "@react-spectrum/provider";
+import { baseStyleProps, classNames, StyleHandlers, useSlotProps, useStyleProps } from "@react-spectrum/utils";
+import { AriaLabelingProps, DOMProps, IconColorValue, StyleProps } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/icon/vars.css";
+import React, { ReactElement } from "react";
 
 interface IconProps extends DOMProps, AriaLabelingProps, StyleProps {
   /**
@@ -48,7 +48,7 @@ interface IconProps extends DOMProps, AriaLabelingProps, StyleProps {
 export type IconPropsWithoutChildren = Omit<IconProps, "children">;
 
 function iconColorValue(value: IconColorValue) {
-  return `var(--spectrum-semantic-${value}-color-icon)`;
+  return `var(--wa-semantic-${value}-color-icon)`;
 }
 
 const iconStyleProps: StyleHandlers = {

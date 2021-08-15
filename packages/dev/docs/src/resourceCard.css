@@ -13,7 +13,7 @@
 .resourceCard {
   width: 224px;
   flex: 0 0 auto;
-  box-shadow: 0 0 0 1px var(--spectrum-global-color-gray-300);
+  box-shadow: 0 0 0 1px var(--wa-global-color-gray-300);
   transition: 125ms ease-in-out;
   height: 64px;
   display: flex;
@@ -24,13 +24,13 @@
   text-decoration: none;
 
   &:hover {
-    box-shadow: 0 0 0 1px var(--spectrum-global-color-gray-400);
+    box-shadow: 0 0 0 1px var(--wa-global-color-gray-400);
     transition: 125ms ease-in-out;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px var(--spectrum-alias-border-color-focus);
+    box-shadow: 0 0 0 2px var(--wa-alias-border-color-focus);
   }
 
   @media screen and (max-width: 960px) {
@@ -42,8 +42,8 @@
   }
 
   .gitImage, .spectrumImage, .w3cImage {
-    background-color: var(--spectrum-global-color-gray-200);
-    fill: var(--spectrum-global-color-gray-900);
+    background-color: var(--wa-global-color-gray-200);
+    fill: var(--wa-global-color-gray-900);
   }
 
   .cardContent {
@@ -60,7 +60,7 @@
   }
 
   .cardType {
-    color: var(--spectrum-global-color-gray-700);
+    color: var(--wa-global-color-gray-700);
     font-size: 12px;
 
   }

@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {ListLayout} from "@react-stately/layout";
-import {Node} from "@react-types/shared";
-import React, {ReactElement, useMemo, useRef} from "react";
-import {ReusableView} from "@react-stately/virtualizer";
-import {SideNavContext} from "./SideNavContext";
-import {SideNavItem} from "./SideNavItem";
-import {SideNavSection} from "./SideNavSection";
-import {SpectrumSideNavProps} from "@react-types/sidenav";
-import styles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
-import {useCollator} from "@react-aria/i18n";
-import {useSideNav} from "@react-aria/sidenav";
-import {useTreeState} from "@react-stately/tree";
-import {Virtualizer, VirtualizerItem} from "@react-aria/virtualizer";
+import { useCollator } from "@react-aria/i18n";
+import { useSideNav } from "@react-aria/sidenav";
+import { Virtualizer, VirtualizerItem } from "@react-aria/virtualizer";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { ListLayout } from "@react-stately/layout";
+import { useTreeState } from "@react-stately/tree";
+import { ReusableView } from "@react-stately/virtualizer";
+import { Node } from "@react-types/shared";
+import { SpectrumSideNavProps } from "@react-types/sidenav";
+import styles from "@watheia/spectrum-css-temp/components/sidenav/vars.css";
+import React, { ReactElement, useMemo, useRef } from "react";
+import { SideNavContext } from "./SideNavContext";
+import { SideNavItem } from "./SideNavItem";
+import { SideNavSection } from "./SideNavSection";
 
 export function SideNav<T extends object>(props: SpectrumSideNavProps<T>) {
   let state = useTreeState(props);

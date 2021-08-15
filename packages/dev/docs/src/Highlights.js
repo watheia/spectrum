@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import docStyles from "./docs.css";
-import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
+import linkStyle from "@watheia/spectrum-css-temp/components/link/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import React from "react";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import docStyles from "./docs.css";
 
 export function Highlights({items}) {
   return (

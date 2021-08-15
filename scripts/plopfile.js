@@ -26,120 +26,142 @@ module.exports = function (plop) {
   });
 
   // controller generator
-  plop.setGenerator('component', {
-    description: 'add new component',
-    prompts: [{
-      type: 'list',
-      name: 'projectType',
-      message: 'what type of project are you setting up',
-      choices: [rspProject, otherProject]
-    }, {
-      type: 'checkbox',
-      name: 'scopes',
-      message: 'scope name(s)',
-      choices: ['@react-aria', '@react-spectrum', '@react-stately', '@react-types'],
-      validate: (answer) => answer.length > 0,
-      when: ({projectType}) => projectType === rspProject
-    }, {
-      type: 'input',
-      name: 'scopeName',
-      message: 'scope name for new package',
-      validate: (answer) => answer.length > 0,
-      when: ({projectType}) => projectType === otherProject
-    }, {
-      type: 'input',
-      name: 'packageName',
-      message: 'package name, all lowercase (e.g. textfield)',
-      validate: (answer) => answer.length > 0
-    }, {
-      type: 'input',
-      name: 'componentName',
-      message: 'component name, please use appropriate uppercase (e.g. TextField)',
-      validate: (answer) => answer.length > 0,
-      when: ({projectType}) => projectType === rspProject
-    }, {
-      type: 'input',
-      name: 'componentCSS',
-      message: 'component css module name, blank if N/A. If unsure, check @adobe/spectrum-css-temp/components for a module containing the desired css (e.g. textfield)',
-      validate: (answer) => answer.length >= 0,
-      default: null,
-      when: ({projectType, scopes}) => projectType === rspProject && scopes.includes('@react-spectrum')
-    }],
+  plop.setGenerator("component", {
+    description: "add new component",
+    prompts: [
+      {
+        type: "list",
+        name: "projectType",
+        message: "what type of project are you setting up",
+        choices: [rspProject, otherProject],
+      },
+      {
+        type: "checkbox",
+        name: "scopes",
+        message: "scope name(s)",
+        choices: [
+          "@react-aria",
+          "@react-spectrum",
+          "@react-stately",
+          "@react-types",
+        ],
+        validate: (answer) => answer.length > 0,
+        when: ({ projectType }) => projectType === rspProject,
+      },
+      {
+        type: "input",
+        name: "scopeName",
+        message: "scope name for new package",
+        validate: (answer) => answer.length > 0,
+        when: ({ projectType }) => projectType === otherProject,
+      },
+      {
+        type: "input",
+        name: "packageName",
+        message: "package name, all lowercase (e.g. textfield)",
+        validate: (answer) => answer.length > 0,
+      },
+      {
+        type: "input",
+        name: "componentName",
+        message:
+          "component name, please use appropriate uppercase (e.g. TextField)",
+        validate: (answer) => answer.length > 0,
+        when: ({ projectType }) => projectType === rspProject,
+      },
+      {
+        type: "input",
+        name: "componentCSS",
+        message:
+          "component css module name, blank if N/A. If unsure, check @watheia/spectrum-css-temp/components for a module containing the desired css (e.g. textfield)",
+        validate: (answer) => answer.length >= 0,
+        default: null,
+        when: ({ projectType, scopes }) =>
+          projectType === rspProject && scopes.includes("@react-spectrum"),
+      },
+    ],
     actions: function (data) {
-      let {projectType, scopes, scopeName, packageName, componentName, componentCSS} = data;
+      let {
+        projectType,
+        scopes,
+        scopeName,
+        packageName,
+        componentName,
+        componentCSS,
+      } = data;
       let actions = [];
 
       if (projectType === rspProject) {
-        if (scopes.includes('@react-aria')) {
+        if (scopes.includes("@react-aria")) {
           actions.push({
-            type: 'addMany',
-            templateFiles: '../plop-templates/@react-aria/**',
-            base: '../plop-templates/@react-aria/',
+            type: "addMany",
+            templateFiles: "../plop-templates/@react-aria/**",
+            base: "../plop-templates/@react-aria/",
             destination: `../packages/@react-aria/${packageName}`,
-            data: {componentName, scopes}
+            data: { componentName, scopes },
           });
           actions.push({
-            type: 'renameMany',
+            type: "renameMany",
             templateFiles: `packages/@react-aria/${packageName}/**`,
-            renamer: name => `${name.replace('Component', componentName)}`
+            renamer: (name) => `${name.replace("Component", componentName)}`,
           });
         }
 
-        if (scopes.includes('@react-spectrum')) {
+        if (scopes.includes("@react-spectrum")) {
           actions.push({
-            type: 'addMany',
-            templateFiles: '../plop-templates/@react-spectrum/**',
-            base: '../plop-templates/@react-spectrum/',
+            type: "addMany",
+            templateFiles: "../plop-templates/@react-spectrum/**",
+            base: "../plop-templates/@react-spectrum/",
             destination: `../packages/@react-spectrum/${packageName}`,
-            data: {packageName, componentName, componentCSS, scopes}
+            data: { packageName, componentName, componentCSS, scopes },
           });
           actions.push({
-            type: 'renameMany',
+            type: "renameMany",
             templateFiles: `packages/@react-spectrum/${packageName}/**`,
-            renamer: name => `${name.replace('Component', componentName)}`
+            renamer: (name) => `${name.replace("Component", componentName)}`,
           });
         }
 
-        if (scopes.includes('@react-stately')) {
+        if (scopes.includes("@react-stately")) {
           actions.push({
-            type: 'addMany',
-            templateFiles: '../plop-templates/@react-stately/**',
-            base: '../plop-templates/@react-stately/',
+            type: "addMany",
+            templateFiles: "../plop-templates/@react-stately/**",
+            base: "../plop-templates/@react-stately/",
             destination: `../packages/@react-stately/${packageName}`,
-            data: {packageName, componentName, scopes}
+            data: { packageName, componentName, scopes },
           });
           actions.push({
-            type: 'renameMany',
+            type: "renameMany",
             templateFiles: `packages/@react-stately/${packageName}/**`,
-            renamer: name => `${name.replace('Component', componentName)}`
+            renamer: (name) => `${name.replace("Component", componentName)}`,
           });
         }
 
-        if (scopes.includes('@react-types')) {
+        if (scopes.includes("@react-types")) {
           actions.push({
-            type: 'addMany',
-            templateFiles: '../plop-templates/@react-types/**',
-            base: '../plop-templates/@react-types/',
+            type: "addMany",
+            templateFiles: "../plop-templates/@react-types/**",
+            base: "../plop-templates/@react-types/",
             destination: `../packages/@react-types/${packageName}`,
-            data: {packageName, componentName, scopes}
+            data: { packageName, componentName, scopes },
           });
           actions.push({
-            type: 'renameMany',
+            type: "renameMany",
             templateFiles: `packages/@react-types/${packageName}/**`,
-            renamer: name => `${name.replace('Component', componentName)}`
+            renamer: (name) => `${name.replace("Component", componentName)}`,
           });
         }
       } else {
         actions.push({
-          type: 'addMany',
-          templateFiles: '../plop-templates/@scope/**',
-          base: '../plop-templates/@scope/',
+          type: "addMany",
+          templateFiles: "../plop-templates/@scope/**",
+          base: "../plop-templates/@scope/",
           destination: `../packages/@${scopeName}/${packageName}`,
-          data: {scopeName, packageName, componentName}
+          data: { scopeName, packageName, componentName },
         });
       }
 
       return actions;
-    }
+    },
   });
 };

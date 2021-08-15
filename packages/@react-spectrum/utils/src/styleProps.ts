@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
-import {BackgroundColorValue, BorderColorValue, BorderRadiusValue, BorderSizeValue, ColorValue, DimensionValue, Direction, Responsive, ResponsiveProp, StyleProps, ViewStyleProps} from "@react-types/shared";
-import {CSSProperties, HTMLAttributes} from "react";
-import {useBreakpoint} from "./BreakpointProvider";
-import {useLocale} from "@react-aria/i18n";
+import { useLocale } from "@react-aria/i18n";
+import { BackgroundColorValue, BorderColorValue, BorderRadiusValue, BorderSizeValue, ColorValue, DimensionValue, Direction, Responsive, ResponsiveProp, StyleProps, ViewStyleProps } from "@react-types/shared";
+import { CSSProperties, HTMLAttributes } from "react";
+import { useBreakpoint } from "./BreakpointProvider";
 
 type Breakpoint = "base" | "S" | "M" | "L" | string;
 type StyleName = string | string[] | ((dir: Direction) => string);
@@ -133,10 +133,10 @@ export function dimensionValue(value: DimensionValue) {
   }
 
   if (FUNC_RE.test(value)) {
-    return value.replace(SPECTRUM_VARIABLE_RE, "var(--spectrum-global-dimension-$&, var(--spectrum-alias-$&))");
+    return value.replace(SPECTRUM_VARIABLE_RE, "var(--wa-global-dimension-$&, var(--wa-alias-$&))");
   }
 
-  return `var(--spectrum-global-dimension-${value}, var(--spectrum-alias-${value}))`;
+  return `var(--wa-global-dimension-${value}, var(--wa-alias-${value}))`;
 }
 
 export function responsiveDimensionValue(value: Responsive<DimensionValue>, matchedBreakpoints: Breakpoint[]) {
@@ -146,27 +146,27 @@ export function responsiveDimensionValue(value: Responsive<DimensionValue>, matc
 
 type ColorType = "default" | "background" | "border" | "icon" | "status";
 function colorValue(value: ColorValue, type: ColorType = "default") {
-  return `var(--spectrum-global-color-${value}, var(--spectrum-semantic-${value}-color-${type}))`;
+  return `var(--wa-global-color-${value}, var(--wa-semantic-${value}-color-${type}))`;
 }
 
 function backgroundColorValue(value: BackgroundColorValue) {
-  return `var(--spectrum-alias-background-color-${value}, ${colorValue(value as ColorValue, "background")})`;
+  return `var(--wa-alias-background-color-${value}, ${colorValue(value as ColorValue, "background")})`;
 }
 
 function borderColorValue(value: BorderColorValue) {
   if (value === "default") {
-    return "var(--spectrum-alias-border-color)";
+    return "var(--wa-alias-border-color)";
   }
 
-  return `var(--spectrum-alias-border-color-${value}, ${colorValue(value as ColorValue, "border")})`;
+  return `var(--wa-alias-border-color-${value}, ${colorValue(value as ColorValue, "border")})`;
 }
 
 function borderSizeValue(value: BorderSizeValue) {
-  return `var(--spectrum-alias-border-size-${value})`;
+  return `var(--wa-alias-border-size-${value})`;
 }
 
 function borderRadiusValue(value: BorderRadiusValue) {
-  return `var(--spectrum-alias-border-radius-${value})`;
+  return `var(--wa-alias-border-radius-${value})`;
 }
 
 function hiddenValue(value: boolean) {

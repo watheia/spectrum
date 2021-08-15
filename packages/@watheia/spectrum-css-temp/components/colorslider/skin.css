@@ -1,0 +1,27 @@
+:root {
+  /* todo: fix this in DNA */
+  --wa-colorslider-border-color: var(--wa-colorarea-border-color);
+}
+
+.spectrum-ColorSlider {
+  background-color: var(--wa-global-color-static-white);
+  box-shadow: inset 0 0 0 var(--wa-colorslider-border-size) var(--wa-colorslider-border-color);
+
+  &:before {
+    /* Add a half-percent to fix diagonal line issue in Chrome on non-retina displays */
+    background-image:
+      linear-gradient(-45deg, transparent 75.5%, var(--wa-global-color-static-gray-500) 75.5%),
+      linear-gradient(45deg, transparent 75.5%, var(--wa-global-color-static-gray-500) 75.5%),
+      linear-gradient(-45deg, var(--wa-global-color-static-gray-500) 25.5%, transparent 25.5%),
+      linear-gradient(45deg, var(--wa-global-color-static-gray-500) 25.5%, transparent 25.5%);
+  }
+
+  &.is-disabled {
+    background: var(--wa-colorslider-fill-color-disabled) !important;
+    box-shadow: inset 0 0 0 var(--wa-colorslider-border-size) var(--wa-colorslider-border-color-disabled);
+  }
+
+  .spectrum-ColorSlider-handle {
+    margin: 0;
+  }
+}

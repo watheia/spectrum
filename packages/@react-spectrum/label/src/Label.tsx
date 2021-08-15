@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
+import { useMessageFormatter } from "@react-aria/i18n";
+import { filterDOMProps } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumLabelProps } from "@react-types/label";
+import { DOMRef } from "@react-types/shared";
 import Asterisk from "@spectrum-icons/ui/Asterisk";
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
+import styles from "@watheia/spectrum-css-temp/components/fieldlabel/vars.css";
+import React from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import React from "react";
-import {SpectrumLabelProps} from "@react-types/label";
-import styles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
-import {useMessageFormatter} from "@react-aria/i18n";
-import {useProviderProps} from "@react-spectrum/provider";
 
 function Label(props: SpectrumLabelProps, ref: DOMRef<HTMLLabelElement>) {
   props = useProviderProps(props);
@@ -79,4 +79,5 @@ function Label(props: SpectrumLabelProps, ref: DOMRef<HTMLLabelElement>) {
 }
 
 let _Label = React.forwardRef(Label);
-export {_Label as Label};
+export { _Label as Label };
+

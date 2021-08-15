@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonElementTypeProps, ButtonProps} from "@react-types/button";
-import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
+import { useButton } from "@react-aria/button";
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { mergeProps } from "@react-aria/utils";
+import { classNames, useFocusableRef, useStyleProps } from "@react-spectrum/utils";
+import { AriaButtonElementTypeProps, ButtonProps } from "@react-types/button";
+import { DOMProps, FocusableRef, StyleProps } from "@react-types/shared";
 import CrossSmall from "@spectrum-icons/ui/CrossSmall";
-import {DOMProps, FocusableRef, StyleProps} from "@react-types/shared";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import React, {ElementType} from "react";
-import styles from "@adobe/spectrum-css-temp/components/button/vars.css";
-import {useButton} from "@react-aria/button";
-import {useHover} from "@react-aria/interactions";
+import styles from "@watheia/spectrum-css-temp/components/button/vars.css";
+import React, { ElementType } from "react";
 
 interface ClearButtonProps<T extends ElementType = "button"> extends ButtonProps, AriaButtonElementTypeProps<T>, DOMProps, StyleProps {
   focusClassName?: string,
@@ -78,4 +78,5 @@ function ClearButton(props: ClearButtonProps, ref: FocusableRef<HTMLButtonElemen
 }
 
 let _ClearButton = React.forwardRef(ClearButton);
-export {_ClearButton as ClearButton};
+export { _ClearButton as ClearButton };
+

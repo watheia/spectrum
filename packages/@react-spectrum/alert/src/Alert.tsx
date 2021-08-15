@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
+import { useMessageFormatter } from "@react-aria/i18n";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumAlertProps } from "@react-types/alert";
 import AlertMedium from "@spectrum-icons/ui/AlertMedium";
-import {classNames, useStyleProps} from "@react-spectrum/utils";
 import HelpMedium from "@spectrum-icons/ui/HelpMedium";
 import InfoMedium from "@spectrum-icons/ui/InfoMedium";
-import intlMessages from "../intl";
-import React from "react";
-import {SpectrumAlertProps} from "@react-types/alert";
-import styles from "@adobe/spectrum-css-temp/components/alert/vars.css";
 import SuccessMedium from "@spectrum-icons/ui/SuccessMedium";
-import {useMessageFormatter} from "@react-aria/i18n";
+import styles from "@watheia/spectrum-css-temp/components/alert/vars.css";
+import React from "react";
+import intlMessages from "../intl";
 
 let ICONS = {
   error: AlertMedium,

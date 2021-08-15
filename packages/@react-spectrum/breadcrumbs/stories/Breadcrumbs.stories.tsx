@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {Breadcrumbs} from "../";
 // import {Heading} from '@react-spectrum/text';
-import {Item} from "@react-stately/collections";
+import { Item } from "@react-stately/collections";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
 import React from "react";
-import {storiesOf} from "@storybook/react";
+import { Breadcrumbs } from "../";
 
 let styles = {
   width: "100vw"
@@ -92,7 +92,7 @@ storiesOf("Breadcrumbs", module)
   .add(
     "resizeable",
     () => (
-      <div style={{minWidth: "100px", width: "300px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--spectrum-global-color-gray-50)"}}>
+      <div style={{minWidth: "100px", width: "300px", padding: "10px", resize: "horizontal", overflow: "auto", backgroundColor: "var(--wa-global-color-gray-50)"}}>
         {renderMany({})}
       </div>
     )

@@ -10,11 +10,11 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
+import { useDateFormatter } from "@react-aria/i18n";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { classNames } from "@react-spectrum/utils";
+import styles from "@watheia/spectrum-css-temp/components/calendar/vars.css";
 import React from "react";
-import styles from "@adobe/spectrum-css-temp/components/calendar/vars.css";
-import {useDateFormatter} from "@react-aria/i18n";
-import {VisuallyHidden} from "@react-aria/visually-hidden";
 
 interface CalendarTableHeaderProps {
   weekDays: Array<Date>
