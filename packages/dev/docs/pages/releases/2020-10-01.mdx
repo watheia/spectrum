@@ -7,65 +7,68 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License. -->
 
-import {BlogPostLayout, Hero} from '@react-spectrum/docs';
+import { BlogPostLayout, Hero } from "@react-spectrum/docs";
 export default BlogPostLayout;
 
 ---
+
 description: This release includes the new `Tooltip`, `TooltipTrigger`, and `DialogContainer` components, a new light theme, and mono-packages for react-aria and react-stately. Thanks to all of the contributors!
 date: 2020-10-01
+
 ---
 
 # October 1, 2020 Release
 
 Another exciting set of releases have dropped! 🎤
 
-We have released the `Tooltip` and `TooltipTrigger` components! We’ve put a lot of effort into making our tooltips fully accessible and as native-like as possible, including matching the delay behavior when hovering over multiple elements with tooltips. See the documentation for [React Spectrum](https://docs.watheia.app/react-spectrum/Tooltip.html) and [React Aria](https://docs.watheia.app/react-aria/useTooltipTrigger.html) for more details.
+We have released the `Tooltip` and `TooltipTrigger` components! We’ve put a lot of effort into making our tooltips fully accessible and as native-like as possible, including matching the delay behavior when hovering over multiple elements with tooltips. See the documentation for [React Spectrum](https://watheia.org/react-spectrum/Tooltip.html) and [React Aria](https://watheia.org/react-aria/useTooltipTrigger.html) for more details.
 
-The much requested `DialogContainer` component has been also added to this release. This allows you to have more control over where your `Dialog` is rendered, and support triggers that unmount (e.g. dialogs in menus). Visit our [docs](https://docs.watheia.app/react-spectrum/DialogContainer.html) for more details.
+The much requested `DialogContainer` component has been also added to this release. This allows you to have more control over where your `Dialog` is rendered, and support triggers that unmount (e.g. dialogs in menus). Visit our [docs](https://watheia.org/react-spectrum/DialogContainer.html) for more details.
 
-We have also added a new light theme to React Spectrum thanks to [@evargast](https://github.com/evargast). You can find out more in our [theming](https://docs.watheia.app/react-spectrum/theming.html#how-themes-are-defined) guide.
+We have also added a new light theme to React Spectrum thanks to [@evargast](https://github.com/evargast). You can find out more in our [theming](https://watheia.org/react-spectrum/theming.html#how-themes-are-defined) guide.
 
-As an additional convenience for those using multiple React Aria or React Stately hooks, we now offer a single package each for `react-aria` and `react-stately`. This allows you to install a single package instead of many individual packages. See our getting started guides for [React Aria](https://docs.watheia.app/react-aria/getting-started.html#mono-package) and [React Stately](https://docs.watheia.app/react-stately/getting-started.html#mono-package) to find out how you can take advantage of them.
+As an additional convenience for those using multiple React Aria or React Stately hooks, we now offer a single package each for `react-aria` and `react-stately`. This allows you to install a single package instead of many individual packages. See our getting started guides for [React Aria](https://watheia.org/react-aria/getting-started.html#mono-package) and [React Stately](https://watheia.org/react-stately/getting-started.html#mono-package) to find out how you can take advantage of them.
 
-Finally, make sure you check out the [last blog post](https://docs.watheia.app/blog/building-a-button-part-3.html) of the series on Building a Button which was added to our [blog](https://docs.watheia.app/blog/index.html). As always, a huge thank you to all our contributors for the new features, fixes and updates. 🤩
+Finally, make sure you check out the [last blog post](https://watheia.org/blog/building-a-button-part-3.html) of the series on Building a Button which was added to our [blog](https://watheia.org/blog/index.html). As always, a huge thank you to all our contributors for the new features, fixes and updates. 🤩
 
 ## New components
 
-- **DialogContainer** - [@devongovett](https://github.com/devongovett) - [PR](https://gitlab.com/watheia/spectrum/pull/1082) - [documentation](https://docs.watheia.app/react-spectrum/DialogContainer.html)
-    - `@react-spectrum/dialog`
-- **Tooltip** - [@snowystinger](https://github.com/snowystinger) - [PR](https://gitlab.com/watheia/spectrum/pull/843) - [documentation](https://docs.watheia.app/react-spectrum/Tooltip.html)
-    - `@react-spectrum/tooltip`
-    - `@react-aria/tooltip`
-    - `@react-stately/tooltip`
+- **DialogContainer** - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1082) - [documentation](https://watheia.org/react-spectrum/DialogContainer.html)
+  - `@react-spectrum/dialog`
+- **Tooltip** - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/843) - [documentation](https://watheia.org/react-spectrum/Tooltip.html)
+  - `@react-spectrum/tooltip`
+  - `@react-aria/tooltip`
+  - `@react-stately/tooltip`
 
 ## New features
 
-- Support for upcoming React 17 - [@snowystinger](https://github.com/snowystinger) - [PR](https://gitlab.com/watheia/spectrum/pull/1040)
-- Allow `usePreventScroll` to be disabled - [@McZenith](https://github.com/McZenith) - [PR](https://gitlab.com/watheia/spectrum/pull/972)
-- Update `ScrollView` to implement `useResizeObserver` - [@snowystinger](https://github.com/snowystinger) - [PR](https://gitlab.com/watheia/spectrum/pull/910)
-- Add `CheckboxGroup` to `@adobe/react-spectrum` package - [@royalbhati](https://github.com/royalbhati) - [PR](https://gitlab.com/watheia/spectrum/pull/1102)
-- Add ability to prevent focus in `usePress` - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://gitlab.com/watheia/spectrum/pull/1073)
-- Added new `NoSearchResults` illustration for `IllustratedMessage` - [@evargast](https://github.com/evargast) - [PR](https://gitlab.com/watheia/spectrum/pull/1086)
-- Add `@react-spectrum/theme-light` package - [@evargast](https://github.com/evargast) - [PR](https://gitlab.com/watheia/spectrum/pull/1046/)
+- Support for upcoming React 17 - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1040)
+- Allow `usePreventScroll` to be disabled - [@McZenith](https://github.com/McZenith) - [PR](https://github.com/watheia/spectrum/pull/972)
+- Update `ScrollView` to implement `useResizeObserver` - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/910)
+- Add `CheckboxGroup` to `@adobe/react-spectrum` package - [@royalbhati](https://github.com/royalbhati) - [PR](https://github.com/watheia/spectrum/pull/1102)
+- Add ability to prevent focus in `usePress` - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1073)
+- Added new `NoSearchResults` illustration for `IllustratedMessage` - [@evargast](https://github.com/evargast) - [PR](https://github.com/watheia/spectrum/pull/1086)
+- Add `@react-spectrum/theme-light` package - [@evargast](https://github.com/evargast) - [PR](https://github.com/watheia/spectrum/pull/1046/)
+
 ## Fixed
-- Fix .editorconfig for indent_style - [@alexey-yunoshev](https://github.com/alexey-yunoshev) - [PR](https://gitlab.com/watheia/spectrum/pull/1036)
-- `Flex` passes Id to top level element - [@LucianRadu](https://github.com/LucianRadu) - [PR](https://gitlab.com/watheia/spectrum/pull/1041)
-- Skip in-scope elements when restoring Focus in `useSelect` - [@devongovett](https://github.com/devongovett) - [PR](https://gitlab.com/watheia/spectrum/pull/1049)
-- Allow falsy keys in `Picker` - [@kamal](https://github.com/kamal) - [PR](https://gitlab.com/watheia/spectrum/pull/1015)
-- Fix transition events breaking SSR - [@HipsterBrown](https://github.com/HipsterBrown) - [PR](https://gitlab.com/watheia/spectrum/pull/1052)
-- Fix inputRef type for `useSearchField` & `useTextField` - [@RafalFilipek](https://github.com/RafalFilipek) - [PR](https://gitlab.com/watheia/spectrum/pull/1027)
-- Reset box-sizing in `ActionButton`  - [@deloreyj](https://github.com/deloreyj) - [PR](https://gitlab.com/watheia/spectrum/pull/1058)
-- Fix scrolling in `Menu` trays [@ktabors](https://github.com/ktabors) - [PR](https://gitlab.com/watheia/spectrum/pull/958)
-- Adjust positioning code for `useOverlayPosition` when placement=”top” - [@chungwu](https://github.com/chungwu) - [PR](https://gitlab.com/watheia/spectrum/pull/1005)
-- Hide unsupported functionality in full screen `Dialog` - [@ktabors](https://github.com/ktabors) - [PR](https://gitlab.com/watheia/spectrum/pull/1062)
-- Fix types of workflow icons - [@clentfort](https://github.com/clentfort) - [PR](https://gitlab.com/watheia/spectrum/pull/1028)
-- Make sure user-select is removed on HTML elements - [@zidian257](https://github.com/zidian257) - [PR](https://gitlab.com/watheia/spectrum/pull/926)
-- Fix prop types for `useListBox` - [@mischnic](https://github.com/mischnic) -  [PR](https://gitlab.com/watheia/spectrum/pull/1107)
+
+- Fix .editorconfig for indent_style - [@alexey-yunoshev](https://github.com/alexey-yunoshev) - [PR](https://github.com/watheia/spectrum/pull/1036)
+- `Flex` passes Id to top level element - [@LucianRadu](https://github.com/LucianRadu) - [PR](https://github.com/watheia/spectrum/pull/1041)
+- Skip in-scope elements when restoring Focus in `useSelect` - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1049)
+- Allow falsy keys in `Picker` - [@kamal](https://github.com/kamal) - [PR](https://github.com/watheia/spectrum/pull/1015)
+- Fix transition events breaking SSR - [@HipsterBrown](https://github.com/HipsterBrown) - [PR](https://github.com/watheia/spectrum/pull/1052)
+- Fix inputRef type for `useSearchField` & `useTextField` - [@RafalFilipek](https://github.com/RafalFilipek) - [PR](https://github.com/watheia/spectrum/pull/1027)
+- Reset box-sizing in `ActionButton` - [@deloreyj](https://github.com/deloreyj) - [PR](https://github.com/watheia/spectrum/pull/1058)
+- Fix scrolling in `Menu` trays [@ktabors](https://github.com/ktabors) - [PR](https://github.com/watheia/spectrum/pull/958)
+- Adjust positioning code for `useOverlayPosition` when placement=”top” - [@chungwu](https://github.com/chungwu) - [PR](https://github.com/watheia/spectrum/pull/1005)
+- Hide unsupported functionality in full screen `Dialog` - [@ktabors](https://github.com/ktabors) - [PR](https://github.com/watheia/spectrum/pull/1062)
+- Fix types of workflow icons - [@clentfort](https://github.com/clentfort) - [PR](https://github.com/watheia/spectrum/pull/1028)
+- Make sure user-select is removed on HTML elements - [@zidian257](https://github.com/zidian257) - [PR](https://github.com/watheia/spectrum/pull/926)
+- Fix prop types for `useListBox` - [@mischnic](https://github.com/mischnic) - [PR](https://github.com/watheia/spectrum/pull/1107)
 
 ## Docs
 
-- Update case in IllustratedMessage - [@evargast](https://github.com/evargast) - [PR](https://gitlab.com/watheia/spectrum/pull/1086)
-
+- Update case in IllustratedMessage - [@evargast](https://github.com/evargast) - [PR](https://github.com/watheia/spectrum/pull/1086)
 
 ## Released packages
 
@@ -194,4 +197,4 @@ Finally, make sure you check out the [last blog post](https://docs.watheia.app/b
  - @spectrum-icons/illustrations@3.2.0
  - @spectrum-icons/ui@3.2.0
  - @spectrum-icons/workflow@3.2.0
- ```
+```

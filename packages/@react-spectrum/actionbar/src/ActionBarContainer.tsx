@@ -10,20 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
+import { filterDOMProps } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumActionBarContainerProps } from "@react-types/actionbar";
+import { DOMRef } from "@react-types/shared";
 import React from "react";
-import {SpectrumActionBarContainerProps} from "@react-types/actionbar";
 import styles from "./actionbar.css";
-import {useProviderProps} from "@react-spectrum/provider";
 
-function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<HTMLDivElement>) {
-  // Grabs specific props from the closest Provider (see https://docs.watheia.app/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
+function ActionBarContainer(
+  props: SpectrumActionBarContainerProps,
+  ref: DOMRef<HTMLDivElement>
+) {
+  // Grabs specific props from the closest Provider (see https://watheia.org/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
   props = useProviderProps(props);
 
-  let {children} = props;
-  let {styleProps} = useStyleProps(props);
+  let { children } = props;
+  let { styleProps } = useStyleProps(props);
   let domRef = useDOMRef(ref);
 
   return (
@@ -31,7 +34,8 @@ function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<
       {...filterDOMProps(props)}
       {...styleProps}
       ref={domRef}
-      className={classNames(styles, "ActionBarContainer", styleProps.className)}>
+      className={classNames(styles, "ActionBarContainer", styleProps.className)}
+    >
       {children}
     </div>
   );
@@ -41,4 +45,4 @@ function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<
  * TODO: Add description of component here.
  */
 const _ActionBarContainer = React.forwardRef(ActionBarContainer);
-export {_ActionBarContainer as ActionBarContainer};
+export { _ActionBarContainer as ActionBarContainer };

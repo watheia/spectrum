@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/watheia/spectrum"
+    "url": "https://github.com/watheia/spectrum"
   },
   "dependencies": {
     "@adobe/focus-ring-polyfill": "^0.x",

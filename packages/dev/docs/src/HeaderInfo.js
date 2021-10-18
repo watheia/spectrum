@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {Flex} from "@react-spectrum/layout";
-import js from "highlight.js/lib/languages/javascript";
-import Lowlight from "react-lowlight";
-import React from "react";
-import {ResourceCard} from "./ResourceCard";
-import styles from "./headerInfo.css";
 import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import { Flex } from "@react-spectrum/layout";
+import js from "highlight.js/lib/languages/javascript";
+import React from "react";
+import Lowlight from "react-lowlight";
+import styles from "./headerInfo.css";
+import { ResourceCard } from "./ResourceCard";
 
 Lowlight.registerLanguage("js", js);
 
@@ -80,7 +80,7 @@ export function HeaderInfo(props) {
         ))}
         <ResourceCard
           type="GitHub"
-          url={`https://gitlab.com/watheia/spectrum/tree/main/packages/${encodeURI(
+          url={`https://github.com/watheia/spectrum/tree/main/packages/${encodeURI(
             packageData.name
           )}`}
         />

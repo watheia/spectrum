@@ -11,28 +11,27 @@
  */
 
 jest.mock("@react-aria/live-announcer");
-import {act, fireEvent, render as renderComponent, within} from "@testing-library/react";
-import {ActionButton, Button} from "@react-spectrum/button";
+import { getFocusableTreeWalker } from "@react-aria/focus";
+import { announce } from "@react-aria/live-announcer";
+import { ActionButton, Button } from "@react-spectrum/button";
+import { ButtonGroup } from "@react-spectrum/buttongroup";
+import { Dialog, DialogTrigger } from "@react-spectrum/dialog";
+import { Divider } from "@react-spectrum/divider";
+import { Link } from "@react-spectrum/link";
+import { Provider } from "@react-spectrum/provider";
+import { Switch } from "@react-spectrum/switch";
+import { triggerPress, typeText } from "@react-spectrum/test-utils";
+import { Heading } from "@react-spectrum/text";
+import { TextField } from "@react-spectrum/textfield";
+import { theme } from "@react-spectrum/theme-default";
+import { Content } from "@react-spectrum/view";
 import Add from "@spectrum-icons/workflow/Add";
-import {announce} from "@react-aria/live-announcer";
-import {ButtonGroup} from "@react-spectrum/buttongroup";
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from "../";
-import {Content} from "@react-spectrum/view";
-import {CRUDExample} from "../stories/CRUDExample";
-import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
-import {Divider} from "@react-spectrum/divider";
-import {getFocusableTreeWalker} from "@react-aria/focus";
-import {Heading} from "@react-spectrum/text";
-import {HidingColumns} from "../stories/HidingColumns";
-import {Link} from "@react-spectrum/link";
-import {Provider} from "@react-spectrum/provider";
-import React from "react";
-import {Switch} from "@react-spectrum/switch";
-import {TextField} from "@react-spectrum/textfield";
-import {theme} from "@react-spectrum/theme-default";
-import {triggerPress} from "@react-spectrum/test-utils";
-import {typeText} from "@react-spectrum/test-utils";
+import { act, fireEvent, render as renderComponent, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
+import { Cell, Column, Row, TableBody, TableHeader, TableView } from "../";
+import { CRUDExample } from "../stories/CRUDExample";
+import { HidingColumns } from "../stories/HidingColumns";
 
 let columns = [
   {name: "Foo", key: "foo"},
@@ -3503,7 +3502,7 @@ describe("TableView", function () {
         scrollHeight.mockRestore();
       });
 
-      // To test https://gitlab.com/watheia/spectrum/issues/1885
+      // To test https://github.com/watheia/spectrum/issues/1885
       it('should not throw error if selection mode changes with overflowMode="wrap" and selection was controlled', function () {
         function ControlledSelection(props) {
           let [selectedKeys, setSelectedKeys] = React.useState(new Set([]));

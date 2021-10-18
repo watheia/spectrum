@@ -148,5 +148,5 @@ How flexible do we want toast customization to be?
 ## Additional Links
 
 https://w3c.github.io/aria-practices/examples/alert/alert.html
-https://gitlab.com/watheia/spectrum/blob/main/specs/accessibility/Toast.mdx
+https://github.com/watheia/spectrum/blob/main/specs/accessibility/Toast.mdx
 https://spectrum.adobe.com/page/toast/

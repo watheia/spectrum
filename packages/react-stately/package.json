@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/watheia/spectrum"
+    "url": "https://github.com/watheia/spectrum"
   },
   "dependencies": {
     "@react-stately/checkbox": "^3.0.2",

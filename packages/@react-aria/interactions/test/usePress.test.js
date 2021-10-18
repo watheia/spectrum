@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {act, fireEvent, render} from "@testing-library/react";
-import {ActionButton} from "@react-spectrum/button";
-import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
-import {installMouseEvent, installPointerEvent} from "@react-spectrum/test-utils";
+import { ActionButton } from "@react-spectrum/button";
+import { Dialog, DialogTrigger } from "@react-spectrum/dialog";
+import { Provider } from "@react-spectrum/provider";
+import { installMouseEvent, installPointerEvent } from "@react-spectrum/test-utils";
+import { theme } from "@react-spectrum/theme-default";
+import { act, fireEvent, render } from "@testing-library/react";
 import MatchMediaMock from "jest-matchmedia-mock";
-import {Provider} from "@react-spectrum/provider";
 import React from "react";
-import {theme} from "@react-spectrum/theme-default";
-import {usePress} from "../";
+import { usePress } from "../";
 
 function Example(props) {
   let {elementType: ElementType = "div", ...otherProps} = props;
@@ -2000,7 +2000,7 @@ describe("usePress", function () {
       );
 
       // Checkbox doesn't remove `user-select: none;` style from HTML Element issue
-      // see https://gitlab.com/watheia/spectrum/issues/862
+      // see https://github.com/watheia/spectrum/issues/862
       fireEvent.touchStart(el, { targetTouches: [{ identifier: 1 }] });
       fireEvent.touchEnd(el, { changedTouches: [{ identifier: 1 }] });
       fireEvent.touchStart(el, { targetTouches: [{ identifier: 1 }] });

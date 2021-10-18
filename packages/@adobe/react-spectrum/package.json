@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/watheia/spectrum"
+    "url": "https://github.com/watheia/spectrum"
   },
   "dependencies": {
     "@react-aria/i18n": "^3.3.1",
