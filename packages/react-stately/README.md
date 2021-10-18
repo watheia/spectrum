@@ -4,10 +4,10 @@ A library of React Hooks that provides cross-platform state management for your 
 
 ## Features
 
-* 🏠 **Foundational** – React Stately provides the foundation and core logic for your component library. It handles state management for common components through an easy-to-use interface.
-* 📱 **Cross-platform** – React Stately only provides state management, with no assumptions about the DOM or other view systems.
-* ⚓️ **Powered by React Hooks** – React Stately is implemented as a library of React Hooks, which allows you to adapt them to your needs through composition.
-* 🎨 **Design agnostic** – React Stately doesn’t make any assumptions about your design. It provides state management that’s intrinsic to the functionality of the component.
+- 🏠 **Foundational** – React Stately provides the foundation and core logic for your component library. It handles state management for common components through an easy-to-use interface.
+- 📱 **Cross-platform** – React Stately only provides state management, with no assumptions about the DOM or other view systems.
+- ⚓️ **Powered by React Hooks** – React Stately is implemented as a library of React Hooks, which allows you to adapt them to your needs through composition.
+- 🎨 **Design agnostic** – React Stately doesn’t make any assumptions about your design. It provides state management that’s intrinsic to the functionality of the component.
 
 ## Getting started
 
@@ -18,7 +18,7 @@ The easiest way to start building a component library with React Stately is by f
 Here is a very basic example of using React Aria.
 
 ```jsx
-import {useRadioGroupState} from '@react-stately/radio';
+import { useRadioGroupState } from "@react-stately/radio";
 
 function RadioGroup(props) {
   let state = useRadioGroupState(props);
@@ -29,8 +29,8 @@ function RadioGroup(props) {
         <input
           type="radio"
           name={state.name}
-          checked={state.selectedValue === 'dogs'}
-          onChange={() => state.setSelectedValue('dogs')}
+          checked={state.selectedValue === "dogs"}
+          onChange={() => state.setSelectedValue("dogs")}
         />
         Dogs
       </label>
@@ -38,8 +38,8 @@ function RadioGroup(props) {
         <input
           type="radio"
           name={state.name}
-          checked={state.selectedValue === 'cats'}
-          onChange={() => state.setSelectedValue('cats')}
+          checked={state.selectedValue === "cats"}
+          onChange={() => state.setSelectedValue("cats")}
         />
         Cats
       </label>
@@ -50,7 +50,7 @@ function RadioGroup(props) {
 <RadioGroup
   defaultValue="dogs"
   onChange={(value) => alert(`Selected ${value}`)}
-/>
+/>;
 ```
 
 ## Learn more

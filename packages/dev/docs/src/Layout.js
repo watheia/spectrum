@@ -38,53 +38,126 @@ const TLD = "watheia.org";
 const HERO = {
   "react-spectrum": heroImageSpectrum,
   "react-aria": heroImageAria,
-  "react-stately": heroImageStately
+  "react-stately": heroImageStately,
 };
 
 const mdxComponents = {
-  h1: ({children, ...props}) => (
-    <h1 {...props} className={clsx(typographyStyles["spectrum-Heading1--display"], typographyStyles["spectrum-Article"], docStyles["articleHeader"])}>
+  h1: ({ children, ...props }) => (
+    <h1
+      {...props}
+      className={clsx(
+        typographyStyles["spectrum-Heading1--display"],
+        typographyStyles["spectrum-Article"],
+        docStyles["articleHeader"]
+      )}
+    >
       {children}
     </h1>
   ),
-  h2: ({children, ...props}) => (
+  h2: ({ children, ...props }) => (
     <>
-      <h2 {...props} className={clsx(typographyStyles["spectrum-Heading3"], docStyles["sectionHeader"], docStyles["docsHeader"])}>
+      <h2
+        {...props}
+        className={clsx(
+          typographyStyles["spectrum-Heading3"],
+          docStyles["sectionHeader"],
+          docStyles["docsHeader"]
+        )}
+      >
         {children}
         <span className={clsx(docStyles["headingAnchor"])}>
-          <a className={clsx(linkStyle["spectrum-Link"], docStyles.link, docStyles.anchor)} href={`#${props.id}`} aria-label={`Direct link to ${children}`}>#</a>
+          <a
+            className={clsx(
+              linkStyle["spectrum-Link"],
+              docStyles.link,
+              docStyles.anchor
+            )}
+            href={`#${props.id}`}
+            aria-label={`Direct link to ${children}`}
+          >
+            #
+          </a>
         </span>
       </h2>
       <Divider marginBottom="33px" />
     </>
   ),
-  h3: ({children, ...props}) => (
-    <h3 {...props} className={clsx(typographyStyles["spectrum-Heading4"], docStyles["sectionHeader"], docStyles["docsHeader"])}>
+  h3: ({ children, ...props }) => (
+    <h3
+      {...props}
+      className={clsx(
+        typographyStyles["spectrum-Heading4"],
+        docStyles["sectionHeader"],
+        docStyles["docsHeader"]
+      )}
+    >
       {children}
       <span className={docStyles["headingAnchor"]}>
-        <a className={clsx(linkStyle["spectrum-Link"], docStyles.link, docStyles.anchor)} href={`#${props.id}`} aria-label={`Direct link to ${children}`}>#</a>
+        <a
+          className={clsx(
+            linkStyle["spectrum-Link"],
+            docStyles.link,
+            docStyles.anchor
+          )}
+          href={`#${props.id}`}
+          aria-label={`Direct link to ${children}`}
+        >
+          #
+        </a>
       </span>
     </h3>
   ),
-  p: ({children, ...props}) => <p className={typographyStyles["spectrum-Body3"]} {...props}>{children}</p>,
-  ul: ({children, ...props}) => <ul {...props} className={typographyStyles["spectrum-Body3"]}>{children}</ul>,
-  ol: ({children, ...props}) => <ol {...props} className={typographyStyles["spectrum-Body3"]}>{children}</ol>,
-  code: ({children, ...props}) => <code {...props} className={typographyStyles["spectrum-Code4"]}>{children}</code>,
-  inlineCode: ({children, ...props}) => <code {...props} className={typographyStyles["spectrum-Code4"]}>{children}</code>,
-  a: ({children, ...props}) => <a {...props} className={clsx(linkStyle["spectrum-Link"], docStyles.link)} {...getAnchorProps(props.href)}>{children}</a>,
-  kbd: ({children, ...props}) => <kbd {...props} className={docStyles["keyboard"]}>{children}</kbd>
+  p: ({ children, ...props }) => (
+    <p className={typographyStyles["spectrum-Body3"]} {...props}>
+      {children}
+    </p>
+  ),
+  ul: ({ children, ...props }) => (
+    <ul {...props} className={typographyStyles["spectrum-Body3"]}>
+      {children}
+    </ul>
+  ),
+  ol: ({ children, ...props }) => (
+    <ol {...props} className={typographyStyles["spectrum-Body3"]}>
+      {children}
+    </ol>
+  ),
+  code: ({ children, ...props }) => (
+    <code {...props} className={typographyStyles["spectrum-Code4"]}>
+      {children}
+    </code>
+  ),
+  inlineCode: ({ children, ...props }) => (
+    <code {...props} className={typographyStyles["spectrum-Code4"]}>
+      {children}
+    </code>
+  ),
+  a: ({ children, ...props }) => (
+    <a
+      {...props}
+      className={clsx(linkStyle["spectrum-Link"], docStyles.link)}
+      {...getAnchorProps(props.href)}
+    >
+      {children}
+    </a>
+  ),
+  kbd: ({ children, ...props }) => (
+    <kbd {...props} className={docStyles["keyboard"]}>
+      {children}
+    </kbd>
+  ),
 };
 
 const sectionTitles = {
   blog: "Case Studies",
-  releases: "Spectrum Resources"
+  releases: "Spectrum Resources",
 };
 
 function dirToTitle(dir) {
   return dir
     .split("/")[0]
     .split("-")
-    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(" ");
 }
 
@@ -96,7 +169,7 @@ function isBlogSection(section) {
   return section === "blog" || section === "releases";
 }
 
-function Page({children, currentPage, publicUrl, styles, scripts}) {
+function Page({ children, currentPage, publicUrl, styles, scripts }) {
   let parts = currentPage.name.split("/");
   let isBlog = isBlogSection(parts[0]);
   let isSubpage = parts.length > 1 && !/index\.html$/.test(currentPage.name);
@@ -105,9 +178,21 @@ function Page({children, currentPage, publicUrl, styles, scripts}) {
     pageSection = sectionTitles[parts[0]];
   }
 
-  let keywords = [...new Set(currentPage.keywords.concat([currentPage.category, currentPage.title, pageSection]).filter(k => !!k))];
-  let description = stripMarkdown(currentPage.description) || `Documentation for ${currentPage.title} in the ${pageSection} package.`;
-  let title = currentPage.title + (!/index\.html$/.test(currentPage.name) || isBlog ? ` – ${pageSection}` : "");
+  let keywords = [
+    ...new Set(
+      currentPage.keywords
+        .concat([currentPage.category, currentPage.title, pageSection])
+        .filter((k) => !!k)
+    ),
+  ];
+  let description =
+    stripMarkdown(currentPage.description) ||
+    `Documentation for ${currentPage.title} in the ${pageSection} package.`;
+  let title =
+    currentPage.title +
+    (!/index\.html$/.test(currentPage.name) || isBlog
+      ? ` – ${pageSection}`
+      : "");
   let hero = (parts.length > 1 ? HERO[parts[0]] : "") || heroImageHome;
   let heroUrl = `https://${TLD}/${currentPage.image || path.basename(hero)}`;
 
@@ -262,10 +347,10 @@ const CATEGORY_ORDER = [
   "Content",
   "Internationalization",
   "Server Side Rendering",
-  "Utilities"
+  "Utilities",
 ];
 
-function Nav({currentPageName, pages}) {
+function Nav({ currentPageName, pages }) {
   let isIndex = /index\.html$/;
   let currentParts = currentPageName.split("/");
   let isBlog = isBlogSection(currentParts[0]);
@@ -276,11 +361,14 @@ function Nav({currentPageName, pages}) {
 
   let currentDir = currentParts[0];
 
-  pages = pages.filter(p => {
+  pages = pages.filter((p) => {
     let pageParts = p.name.split("/");
     let pageDir = pageParts[0];
     if (isBlogSection(pageDir)) {
-      return currentParts.length === 1 && pageParts[pageParts.length - 1] === "index.html";
+      return (
+        currentParts.length === 1 &&
+        pageParts[pageParts.length - 1] === "index.html"
+      );
     }
 
     // Skip the error page, its only used for 404s
@@ -294,7 +382,11 @@ function Nav({currentPageName, pages}) {
     }
 
     // Top-level index pages (react-spectrum/index.html)
-    if (currentParts.length === 1 && pageParts.length > 1 && isIndex.test(p.name)) {
+    if (
+      currentParts.length === 1 &&
+      pageParts.length > 1 &&
+      isIndex.test(p.name)
+    ) {
       return true;
     }
 
@@ -307,20 +399,20 @@ function Nav({currentPageName, pages}) {
       category: "Spectrum Ecosystem",
       name: "spectrum-design",
       title: "Spectrum Design",
-      url: "https://spectrum.adobe.com"
+      url: "https://spectrum.adobe.com",
     });
     pages.push({
       category: "Spectrum Ecosystem",
       name: "spectrum-css",
       title: "Spectrum CSS",
-      url: "https://opensource.adobe.com/spectrum-css/"
+      url: "https://opensource.adobe.com/spectrum-css/",
     });
   }
 
   // Key by category
   let pageMap = {};
   let rootPages = [];
-  pages.forEach(p => {
+  pages.forEach((p) => {
     let cat = p.category;
     if (cat) {
       if (cat in pageMap) {
@@ -347,18 +439,29 @@ function Nav({currentPageName, pages}) {
     }
   }
 
-  let title = currentParts.length > 1 ? dirToTitle(currentPageName) : "Watheia Labs";
+  let title =
+    currentParts.length > 1 ? dirToTitle(currentPageName) : "Watheia Labs";
   let currentPageIsIndex = isIndex.test(currentPageName);
 
-  function SideNavItem({name, url, title, preRelease}) {
+  function SideNavItem({ name, url, title, preRelease }) {
     const isCurrentPage = !currentPageIsIndex && name === currentPageName;
     return (
-      <li className={clsx(sideNavStyles["spectrum-SideNav-item"], {[sideNavStyles["is-selected"]]: isCurrentPage || (name === blogIndex && isBlog)})}>
+      <li
+        className={clsx(sideNavStyles["spectrum-SideNav-item"], {
+          [sideNavStyles["is-selected"]]:
+            isCurrentPage || (name === blogIndex && isBlog),
+        })}
+      >
         <a
-          className={clsx(sideNavStyles["spectrum-SideNav-itemLink"], docStyles.sideNavItem)}
+          className={clsx(
+            sideNavStyles["spectrum-SideNav-itemLink"],
+            docStyles.sideNavItem
+          )}
           href={url}
           aria-current={isCurrentPage ? "page" : null}
-          {...getAnchorProps(url)}>{title}
+          {...getAnchorProps(url)}
+        >
+          {title}
           <VersionBadge version={preRelease} />
         </a>
       </li>
@@ -368,27 +471,50 @@ function Nav({currentPageName, pages}) {
   return (
     <nav className={docStyles.nav} aria-labelledby="nav-title-id">
       <header>
-        {currentParts.length > 1 &&
+        {currentParts.length > 1 && (
           <a href="../index.html" className={docStyles.backBtn}>
             <ChevronLeft aria-label="Back" />
           </a>
-        }
-        <a href={isBlog ? "/index.html" : "./index.html"} className={docStyles.homeBtn} id="nav-title-id">
+        )}
+        <a
+          href={isBlog ? "/index.html" : "./index.html"}
+          className={docStyles.homeBtn}
+          id="nav-title-id"
+        >
           <LogoSvg />
-          <h2 className={typographyStyles["spectrum-Heading4"]}>
-            {title}
-          </h2>
+          <h2 className={typographyStyles["spectrum-Heading4"]}>{title}</h2>
         </a>
       </header>
       <ul className={sideNavStyles["spectrum-SideNav"]}>
-        {rootPages.map(p => <SideNavItem {...p} />)}
-        {categories.map(key => {
-          const headingId = `${key.trim().toLowerCase().replace(/\s+/g, "-")}-heading`;
+        {rootPages.map((p) => (
+          <SideNavItem {...p} />
+        ))}
+        {categories.map((key) => {
+          const headingId = `${key
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, "-")}-heading`;
           return (
             <li className={sideNavStyles["spectrum-SideNav-item"]}>
-              <h3 className={sideNavStyles["spectrum-SideNav-heading"]} id={headingId}>{key}</h3>
-              <ul className={sideNavStyles["spectrum-SideNav"]} aria-labelledby={headingId}>
-                {pageMap[key].sort((a, b) => (a.order || 0) < (b.order || 0) || a.title < b.title ? -1 : 1).map(p => <SideNavItem {...p} />)}
+              <h3
+                className={sideNavStyles["spectrum-SideNav-heading"]}
+                id={headingId}
+              >
+                {key}
+              </h3>
+              <ul
+                className={sideNavStyles["spectrum-SideNav"]}
+                aria-labelledby={headingId}
+              >
+                {pageMap[key]
+                  .sort((a, b) =>
+                    (a.order || 0) < (b.order || 0) || a.title < b.title
+                      ? -1
+                      : 1
+                  )
+                  .map((p) => (
+                    <SideNavItem {...p} />
+                  ))}
               </ul>
             </li>
           );
@@ -402,29 +528,81 @@ function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className={docStyles.pageFooter}>
-      <hr className={clsx(ruleStyles["spectrum-Rule"], ruleStyles["spectrum-Rule--small"], ruleStyles["spectrum-Rule--horizontal"])} />
+      <hr
+        className={clsx(
+          ruleStyles["spectrum-Rule"],
+          ruleStyles["spectrum-Rule--small"],
+          ruleStyles["spectrum-Rule--horizontal"]
+        )}
+      />
       <ul>
         <li>Copyright © {year} Watheia Labs, LLC. All rights reserved.</li>
-        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//watheia.org/terms">Privacy</a></li>
-        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//watheia.org/terms">Terms of Use</a></li>
-        <li><a className={clsx(linkStyle["spectrum-Link"], linkStyle["spectrum-Link--secondary"], docStyles.link)} href="//watheia.org/terms">Cookies</a></li>
+        <li>
+          <a
+            className={clsx(
+              linkStyle["spectrum-Link"],
+              linkStyle["spectrum-Link--secondary"],
+              docStyles.link
+            )}
+            href="//watheia.org/terms"
+          >
+            Privacy
+          </a>
+        </li>
+        <li>
+          <a
+            className={clsx(
+              linkStyle["spectrum-Link"],
+              linkStyle["spectrum-Link--secondary"],
+              docStyles.link
+            )}
+            href="//watheia.org/terms"
+          >
+            Terms of Use
+          </a>
+        </li>
+        <li>
+          <a
+            className={clsx(
+              linkStyle["spectrum-Link"],
+              linkStyle["spectrum-Link--secondary"],
+              docStyles.link
+            )}
+            href="//watheia.org/terms"
+          >
+            Cookies
+          </a>
+        </li>
       </ul>
     </footer>
   );
 }
 
 export const PageContext = React.createContext();
-export function BaseLayout({scripts, styles, pages, currentPage, publicUrl, children, toc}) {
+export function BaseLayout({
+  scripts,
+  styles,
+  pages,
+  currentPage,
+  publicUrl,
+  children,
+  toc,
+}) {
   return (
-    <Page scripts={scripts} styles={styles} publicUrl={publicUrl} currentPage={currentPage}>
-      <div style={{isolation: "isolate"}}>
+    <Page
+      scripts={scripts}
+      styles={styles}
+      publicUrl={publicUrl}
+      currentPage={currentPage}
+    >
+      <div style={{ isolation: "isolate" }}>
         <header className={docStyles.pageHeader} />
         <Nav currentPageName={currentPage.name} pages={pages} />
         <main>
           <MDXProvider components={mdxComponents}>
             <ImageContext.Provider value={publicUrl}>
               <LinkProvider>
-                <PageContext.Provider value={{pages, currentPage}}>
+                <PageContext.Provider value={{ pages, currentPage }}>
                   {children}
                 </PageContext.Provider>
               </LinkProvider>
@@ -441,7 +619,16 @@ export function BaseLayout({scripts, styles, pages, currentPage, publicUrl, chil
 export function Layout(props) {
   return (
     <BaseLayout {...props}>
-      <article className={clsx(typographyStyles["spectrum-Typography"], docStyles.article, {[docStyles.inCategory]: !props.currentPage.name.endsWith("index.html")})}>
+      <article
+        className={clsx(
+          typographyStyles["spectrum-Typography"],
+          docStyles.article,
+          {
+            [docStyles.inCategory]:
+              !props.currentPage.name.endsWith("index.html"),
+          }
+        )}
+      >
         <VersionBadge version={props.currentPage.preRelease} size="large" />
         {props.children}
       </article>
@@ -452,7 +639,13 @@ export function Layout(props) {
 export function BlogLayout(props) {
   return (
     <BaseLayout {...props}>
-      <div className={clsx(typographyStyles["spectrum-Typography"], docStyles.article, docStyles.inCategory)}>
+      <div
+        className={clsx(
+          typographyStyles["spectrum-Typography"],
+          docStyles.article,
+          docStyles.inCategory
+        )}
+      >
         {props.children}
       </div>
     </BaseLayout>
@@ -471,30 +664,49 @@ export function BlogPostLayout(props) {
       h1: (props) => (
         <header className={docStyles.blogHeader}>
           {mdxComponents.h1(props)}
-          {author && <address className={typographyStyles["spectrum-Body4"]}>By <a rel="author" href={authorParts[2]} className={clsx(linkStyle["spectrum-Link"], docStyles.link)} {...getAnchorProps(authorParts[2])}>{authorParts[1]}</a></address>}
+          {author && (
+            <address className={typographyStyles["spectrum-Body4"]}>
+              By{" "}
+              <a
+                rel="author"
+                href={authorParts[2]}
+                className={clsx(linkStyle["spectrum-Link"], docStyles.link)}
+                {...getAnchorProps(authorParts[2])}
+              >
+                {authorParts[1]}
+              </a>
+            </address>
+          )}
           <Time date={date} />
         </header>
-      )
+      ),
     };
   }
 
   return (
     <Layout {...props}>
-      <MDXProvider components={components}>
-        {props.children}
-      </MDXProvider>
+      <MDXProvider components={components}>{props.children}</MDXProvider>
     </Layout>
   );
 }
 
-export function Time({date}) {
+export function Time({ date }) {
   // treat date as local time rather than UTC
-  let localDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+  let localDate = new Date(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate()
+  );
   return (
     <time
       dateTime={date.toISOString().slice(0, 10)}
-      className={typographyStyles["spectrum-Body4"]}>
-      {localDate.toLocaleString("en-US", {year: "numeric", month: "long", day: "numeric"})}
+      className={typographyStyles["spectrum-Body4"]}
+    >
+      {localDate.toLocaleString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
     </time>
   );
 }

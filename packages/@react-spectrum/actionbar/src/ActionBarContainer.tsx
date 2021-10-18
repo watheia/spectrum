@@ -18,7 +18,10 @@ import { DOMRef } from "@react-types/shared";
 import React from "react";
 import styles from "./actionbar.css";
 
-function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<HTMLDivElement>) {
+function ActionBarContainer(
+  props: SpectrumActionBarContainerProps,
+  ref: DOMRef<HTMLDivElement>
+) {
   // Grabs specific props from the closest Provider (see https://watheia.org/react-spectrum/Provider.html#property-groups). Remove if your component doesn't support any of the listed props.
   props = useProviderProps(props);
 
@@ -43,4 +46,3 @@ function ActionBarContainer(props: SpectrumActionBarContainerProps, ref: DOMRef<
  */
 const _ActionBarContainer = React.forwardRef(ActionBarContainer);
 export { _ActionBarContainer as ActionBarContainer };
-

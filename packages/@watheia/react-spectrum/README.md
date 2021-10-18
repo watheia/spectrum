@@ -4,10 +4,10 @@ A React implementation of Spectrum, Adobe’s design system.
 
 ## Features
 
-* ♿️ **Accessible** – React Spectrum components are designed with accessibility top-of-mind and include full screen reader and keyboard navigation support.
-* 📱 **Adaptive** – React Spectrum components are designed to work with mouse, touch, and keyboard interactions. They’re built with responsive design principles to deliver a great experience, no matter the device.
-* 🌍 **International** – React Spectrum components are designed to support over 30 languages, including support for right-to-left languages, date and number formatting, and more.
-* 🎨 **Customizable theming** – React Spectrum supports custom themes to match your brand, including automatic support for dark mode.
+- ♿️ **Accessible** – React Spectrum components are designed with accessibility top-of-mind and include full screen reader and keyboard navigation support.
+- 📱 **Adaptive** – React Spectrum components are designed to work with mouse, touch, and keyboard interactions. They’re built with responsive design principles to deliver a great experience, no matter the device.
+- 🌍 **International** – React Spectrum components are designed to support over 30 languages, including support for right-to-left languages, date and number formatting, and more.
+- 🎨 **Customizable theming** – React Spectrum supports custom themes to match your brand, including automatic support for dark mode.
 
 ## Getting started
 
@@ -18,15 +18,13 @@ The easiest way to start building a React Spectrum application is by following o
 Here is a very basic example of using React Spectrum.
 
 ```jsx
-import {Provider, defaultTheme, Button} from '@watheia/react-spectrum';
+import { Provider, defaultTheme, Button } from "@watheia/react-spectrum";
 
 // Render it in your app!
 function App() {
   return (
     <Provider theme={theme}>
-      <Button
-        variant="cta"
-        onPress={() => alert('Hey there!')}>
+      <Button variant="cta" onPress={() => alert("Hey there!")}>
         Hello React Spectrum!
       </Button>
     </Provider>

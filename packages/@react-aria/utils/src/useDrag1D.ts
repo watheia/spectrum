@@ -15,17 +15,17 @@ import React, { HTMLAttributes, MutableRefObject, useRef } from "react";
 import { getOffset } from "./getOffset";
 
 interface UseDrag1DProps {
-  containerRef: MutableRefObject<HTMLElement>,
-  reverse?: boolean,
-  orientation?: Orientation,
-  onHover?: (hovered: boolean) => void,
-  onDrag?: (dragging: boolean) => void,
-  onPositionChange?: (position: number) => void,
-  onIncrement?: () => void,
-  onDecrement?: () => void,
-  onIncrementToMax?: () => void,
-  onDecrementToMin?: () => void,
-  onCollapseToggle?: () => void
+  containerRef: MutableRefObject<HTMLElement>;
+  reverse?: boolean;
+  orientation?: Orientation;
+  onHover?: (hovered: boolean) => void;
+  onDrag?: (dragging: boolean) => void;
+  onPositionChange?: (position: number) => void;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
+  onIncrementToMax?: () => void;
+  onDecrementToMin?: () => void;
+  onCollapseToggle?: () => void;
 }
 
 // Keep track of elements that we are currently handling dragging for via useDrag1D.
@@ -42,19 +42,34 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
   console.warn(
     "useDrag1D is deprecated, please use `useMove` instead https://watheia.org/react-aria/useMove.html"
   );
-  let {containerRef, reverse, orientation, onHover, onDrag, onPositionChange, onIncrement, onDecrement, onIncrementToMax, onDecrementToMin, onCollapseToggle} = props;
-  let getPosition = (e) => orientation === "horizontal" ? e.clientX : e.clientY;
+  let {
+    containerRef,
+    reverse,
+    orientation,
+    onHover,
+    onDrag,
+    onPositionChange,
+    onIncrement,
+    onDecrement,
+    onIncrementToMax,
+    onDecrementToMin,
+    onCollapseToggle,
+  } = props;
+  let getPosition = (e) =>
+    orientation === "horizontal" ? e.clientX : e.clientY;
   let getNextOffset = (e: MouseEvent) => {
     let containerOffset = getOffset(containerRef.current, reverse, orientation);
     let mouseOffset = getPosition(e);
-    let nextOffset = reverse ? containerOffset - mouseOffset : mouseOffset - containerOffset;
+    let nextOffset = reverse
+      ? containerOffset - mouseOffset
+      : mouseOffset - containerOffset;
     return nextOffset;
   };
   let dragging = useRef(false);
   let prevPosition = useRef(0);
 
   // Keep track of the current handlers in a ref so that the events can access them.
-  let handlers = useRef({onPositionChange, onDrag});
+  let handlers = useRef({ onPositionChange, onDrag });
   handlers.current.onDrag = onDrag;
   handlers.current.onPositionChange = onPositionChange;
 
@@ -99,7 +114,7 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
     const target = e.currentTarget;
     // If we're already handling dragging on a descendant with useDrag1D, then
     // we don't want to handle the drag motion on this target as well.
-    if (draggingElements.some(elt => target.contains(elt))) {
+    if (draggingElements.some((elt) => target.contains(elt))) {
       return;
     }
     draggingElements.push(target);
@@ -186,5 +201,5 @@ export function useDrag1D(props: UseDrag1DProps): HTMLAttributes<HTMLElement> {
     }
   };
 
-  return {onMouseDown, onMouseEnter, onMouseOut, onKeyDown};
+  return { onMouseDown, onMouseEnter, onMouseOut, onKeyDown };
 }

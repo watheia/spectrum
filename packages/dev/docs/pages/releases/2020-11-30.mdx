@@ -7,23 +7,29 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License. -->
 
-import {BlogPostLayout, Hero} from '@react-spectrum/docs';
+import { BlogPostLayout, Hero } from "@react-spectrum/docs";
 export default BlogPostLayout;
 
 ---
+
 description: We have lots of bug fixes in this release. We have fixes for iOS 14, improved types, better focus handling and some new features. Thanks to everyone who submitted helpful issues and of course to those who contributed fixes!
 date: 2020-11-30
+
 ---
 
 # November 30, 2020 Release
+
 We have lots of bug fixes in this release. We have fixes for iOS 14, improved types, better focus handling and some new features. Thanks to everyone who submitted helpful issues and of course to those who contributed fixes!
 
 ## New features
+
 - Add `isDisabled` option to `useInteractOutside` - [@toshi1127](https://github.com/toshi1127) - [PR](https://github.com/watheia/spectrum/pull/1273)
 - Add `isDisabled` option to `useModal` - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1176)
 - Add `trigger` option to `TooltipTrigger` and `useTooltipTrigger` - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1226)
 - Add `useFilter` to `@react-aria/i18n` - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1307) - [Docs](https://watheia.org/react-aria/useFilter.html)
+
 ## Fixed
+
 - Fixed styling of `SearchField` with `validationState` prop - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1176)
 - Prevent iOS virtual keyboard from hiding when navigating to clear button with VoiceOver - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1176)
 - Improve TypeScript types for `useButton` and `useToggleButton` based on `elementType` - [@toinelin](https://github.com/toinelin) - [PR](https://github.com/watheia/spectrum/pull/1191)
@@ -37,25 +43,25 @@ We have lots of bug fixes in this release. We have fixes for iOS 14, improved ty
 - Use ResizeObserver in `ButtonGroup` component - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1225)
 - Fix mutating keys of `ActionGroup` items in `TooltipTrigger` - [@samiur98](https://github.com/samiur98) - [PR](https://github.com/watheia/spectrum/pull/1242)
 - Use custom `delay` prop in `useTooltipTriggerState` - [@johnjacobkenny](https://github.com/johnjacobkenny) - [PR](https://github.com/watheia/spectrum/pull/1201)
-- Fix DOM prop names for `NoSearchResults` in `@spectrum-icons/illustrations`  - [@evargast](https://github.com/evargast) - [PR](https://github.com/watheia/spectrum/pull/1255)
+- Fix DOM prop names for `NoSearchResults` in `@spectrum-icons/illustrations` - [@evargast](https://github.com/evargast) - [PR](https://github.com/watheia/spectrum/pull/1255)
 - Fix typo in `useMove` - [@johnjacobkenny](https://github.com/johnjacobkenny) - [PR](https://github.com/watheia/spectrum/pull/1218)
 - Improved `LiveAnnouncer` types - [@anuraghazra](https://github.com/anuraghazra) - [PR](https://github.com/watheia/spectrum/pull/1210)
-- Fix text color of disabled active selected state  - [@ktabors](https://github.com/ktabors) - [PR](https://github.com/watheia/spectrum/pull/1232)
+- Fix text color of disabled active selected state - [@ktabors](https://github.com/ktabors) - [PR](https://github.com/watheia/spectrum/pull/1232)
+
 ## Docs
+
 - Fix docs typo in react-aria getting started - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1254)
 - Fix docs useSelect console warning - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1222)
-
 
 ## Under construction
 
 Pre-release versions of the following components have been released. Please feel free to try them out, and report any issues you encounter.
 
-
 - [ComboBox](http://watheia.org/react-spectrum/ComboBox.html)
 - [Tabs](http://watheia.org/react-spectrum/Tabs.html)
 
-
 ## Released packages
+
 ```
      - @watheia/react-spectrum@3.6.0
      - @react-aria/button@3.3.0

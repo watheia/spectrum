@@ -7,12 +7,14 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License. -->
 
-import {BlogPostLayout, Hero} from '@react-spectrum/docs';
+import { BlogPostLayout, Hero } from "@react-spectrum/docs";
 export default BlogPostLayout;
 
 ---
+
 description: This month we bring you some important updates to our under construction components, and we have also added some additional documentation on how we manage our pre-releases. Hopefully this can be used as a guide when deciding to try our new components. We have also added new translations for strings across all supported locales and new documentation for our ColorSlider, ColorWheel, and ColorField components. Additionally, we have made improvements to our FocusScope and fixed issues in Menu, Picker, ActionGroup, and Tooltip.
 date: 2021-03-24
+
 ---
 
 # March 24, 2021 Release
@@ -24,6 +26,7 @@ We have also added new translations for strings across all supported locales and
 As always we want to thank all of our amazing contributors for the time they donate.
 
 ## New features
+
 - Upgraded babel version - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1402)
 - Support custom key in Collections - [@marbemac](https://github.com/marbemac) - [PR](https://github.com/watheia/spectrum/pull/1577)
 - Add delay to loading spinner in `ComboBox` - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1557)
@@ -32,6 +35,7 @@ As always we want to thank all of our amazing contributors for the time they don
 - Add revert function to `aria-modal-polyfill` - [@Andarist](https://github.com/Andarist) - [PR](https://github.com/watheia/spectrum/pull/1680)
 
 ## Updated
+
 - Update Tooltip positioning - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1515)
 - Cleanup Tooltip timers - [@Andarist](https://github.com/Andarist) - [PR](https://github.com/watheia/spectrum/pull/1562)
 - Add wrapping text in `Menu` - [@ktabors](https://github.com/ktabors) - [PR](https://github.com/watheia/spectrum/pull/1600)
@@ -47,15 +51,16 @@ As always we want to thank all of our amazing contributors for the time they don
 - Fix infinite loop in `useTreeData` update method - [@razvanip](https://github.com/razvanip) - [PR](https://github.com/watheia/spectrum/pull/1499)
 - Fix disabled keys handling in `ActionGroup` - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1359)
 - Refactor `NumberField` css - [@snowystinger](https://github.com/snowystinger) - [PR](https://github.com/watheia/spectrum/pull/1614)
-- Update blur handling in  `useComboBoxState` - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1587)
-- Fix `Table` paging on load  - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1678)
+- Update blur handling in `useComboBoxState` - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1587)
+- Fix `Table` paging on load - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1678)
 - Fix typeahead in `useSelect` when closed - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1374)
 - Update `Menu` item css size variable - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1709)
 - Add `ListData` interface to react-stately - [@kqito](https://github.com/kqito) - [PR](https://github.com/watheia/spectrum/pull/1702)
-- Fix height fill in `Table` - [@LFDanLu](https://github.com/LFDanLu)  - [PR](https://github.com/watheia/spectrum/pull/1698)
+- Fix height fill in `Table` - [@LFDanLu](https://github.com/LFDanLu) - [PR](https://github.com/watheia/spectrum/pull/1698)
 - Ensure `onPressEnd` is fired correctly on disabled elements - [@devongovett](https://github.com/devongovett) - [PR](https://github.com/watheia/spectrum/pull/1719)
 
 ## Docs
+
 - Add ref to useRadioGroup examples - [@RubenSandwich](https://github.com/RubenSandwich) - [PR](https://github.com/watheia/spectrum/pull/1588)
 - Sync Contributing docs to contribute file - [@AndyOGo](https://github.com/AndyOGo) - [PR](https://github.com/watheia/spectrum/pull/1571)
 - Update mergeProps descriptions - [@AndyOGo](https://github.com/AndyOGo) - [PR](https://github.com/watheia/spectrum/pull/1551)
@@ -67,7 +72,6 @@ As always we want to thank all of our amazing contributors for the time they don
 ## Under construction
 
 Pre-release versions of the following components have been released. Please feel free to try them out, and report any issues you encounter.
-
 
 - NumberField rc
   - [React Spectrum](https://watheia.org/react-spectrum/NumberField.html)
@@ -93,6 +97,7 @@ Pre-release versions of the following components have been released. Please feel
   - [RFC](https://github.com/watheia/spectrum/blob/main/rfcs/2020-v3-dnd.md)
 
 ## Released packages
+
 ```
 - @watheia/react-spectrum@3.9.0
 - @internationalized/message@3.0.0-rc.0
@@ -162,4 +167,3 @@ Pre-release versions of the following components have been released. Please feel
 - react-aria@3.5.0
 - react-stately@3.4.0
 ```
-
