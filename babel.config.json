@@ -1,5 +1,6 @@
 {
-  "presets": [
+  "babelrcRoots": ["*"],
+    "presets": [
     "@babel/preset-typescript",
     "@babel/preset-react",
     ["@parcel/babel-preset-env",

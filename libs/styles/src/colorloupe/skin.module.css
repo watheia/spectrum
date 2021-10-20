@@ -1,0 +1,11 @@
+.wa-ColorLoupe-outer {
+  fill: var(--wa-colorloupe-inner-border-color);
+  stroke: var(--wa-colorloupe-outer-border-color);
+}
+
+.wa-ColorLoupe-inner-background {
+  fill: var(--wa-global-color-static-white);
+}
+.wa-ColorLoupe-inner-checker {
+  fill: var(--wa-global-color-static-gray-500);
+}

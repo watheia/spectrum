@@ -1,0 +1,43 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+.wa-Label {
+  display: inline-block;
+  position: relative;
+
+  width: auto;
+
+  padding: var(--wa-global-dimension-size-50) var(--wa-global-dimension-size-125);
+
+  border-radius: var(--wa-border-radius);
+
+  font-size: var(--wa-global-dimension-size-150);
+  line-height: var(--wa-global-font-line-height-medium);
+
+  cursor: default;
+
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  font-smoothing: subpixel-antialiased;
+}
+
+.wa-Label--large {
+  font-size: var(--wa-global-dimension-size-175);
+  padding: var(--wa-global-dimension-size-100) var(--wa-global-dimension-size-150);
+}
+
+.wa-Label--small {
+  font-size: var(--wa-global-dimension-font-size-50);
+  padding: var(--wa-global-dimension-size-40) var(--wa-global-dimension-size-85);
+}

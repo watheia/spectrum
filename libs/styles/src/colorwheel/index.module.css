@@ -1,0 +1,100 @@
+:root {
+  /* todo: fix this in DNA */
+  --wa-colorwheel-focus-ring-size: var(--wa-global-dimension-static-size-25);
+  --wa-colorwheel-border-radius: 100%;
+  --wa-colorwheel-width: calc(var(--wa-global-dimension-size-125) * 16);
+  --wa-colorwheel-height: var(--wa-colorwheel-width);
+}
+
+%wa-ColorControl-handle--focused {
+  /* Bigger handle when focused */
+  width: calc(var(--wa-colorhandle-size) * 2);
+  height: calc(var(--wa-colorhandle-size) * 2);
+
+  margin-left: calc(-1 * var(--wa-colorhandle-size));
+  margin-top: calc(-1 * var(--wa-colorhandle-size));
+}
+
+/** index.css (scale dependent) */
+
+%wa-ColorControl-hiddenField {
+  opacity: 0.0001;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.wa-ColorWheel {
+  position: relative;
+  display: block;
+  width: var(--wa-colorwheel-width);
+  height: var(--wa-colorwheel-height);
+  /* expose to JS */
+  --wa-colorwheel-track-thickness: var(--wa-colorwheel-track-width);
+
+  border-radius: var(--wa-colorwheel-border-radius);
+
+  user-select: none;
+  touch-action: none;
+  cursor: default;
+
+  .wa-ColorWheel-handle {
+    margin: 0;
+  }
+
+  &.is-focused {
+    z-index: 2;
+
+    .wa-ColorWheel-handle {
+      @extend %wa-ColorControl-handle--focused;
+    }
+  }
+
+  &.is-disabled {
+    pointer-events: none;
+  }
+
+  &.is-dragged {
+    /* Be on top when dragging so loupe can overlap */
+    z-index: 2;
+  }
+}
+
+.wa-ColorWheel-gradient {
+  position: relative;
+  z-index: 0;
+  width: var(--wa-colorwheel-width);
+  height: var(--wa-colorwheel-height);
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    border-radius: 100%;
+    border-width: var(--wa-colorwheel-border-size);
+    border-style: solid;
+  }
+
+  &:before {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  &:after {
+    top: calc(var(--wa-colorwheel-track-width) - var(--wa-colorwheel-border-size));
+    left: calc(var(--wa-colorwheel-track-width) - var(--wa-colorwheel-border-size));
+    bottom: calc(var(--wa-colorwheel-track-width) - var(--wa-colorwheel-border-size));
+    right: calc(var(--wa-colorwheel-track-width) - var(--wa-colorwheel-border-size));
+  }
+}
+
+.wa-ColorWheel-slider {
+  @extend %wa-ColorControl-hiddenField;
+}

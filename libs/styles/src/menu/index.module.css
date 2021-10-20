@@ -1,0 +1,223 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-menu-margin-x: var(--wa-global-dimension-size-40);
+  --wa-selectlist-heading-text-size: var(--wa-global-dimension-font-size-50);
+  --wa-selectlist-heading-text-font-weight: 400;
+  --wa-selectlist-heading-text-transform: uppercase;
+  --wa-selectlist-heading-letter-spacing: 0.06em;
+  --wa-selectlist-heading-margin: var(--wa-global-dimension-size-75) 0 0 0;
+  --wa-selectlist-heading-padding-left: var(--wa-global-dimension-size-150);
+  --wa-selectlist-heading-padding-right: var(--wa-global-dimension-size-450);
+
+  /* OVERRIDE: DNA uses a static size which doesn't properly adjust on large scale */
+  /* Remove once https://git.corp.adobe.com/Spectrum/wa-dna/pull/409 is released. */
+  --wa-selectlist-option-padding: var(--wa-global-dimension-size-150);
+
+  --wa-selectlist-option-selectable-padding-right: calc(
+    var(--wa-global-dimension-size-100) + var(--wa-icon-checkmark-medium-width) +
+      var(--wa-selectlist-option-icon-padding-x)
+  );
+
+  --wa-selectlist-option-icon-margin-top: var(--wa-global-dimension-size-50);
+
+  /* Hardcoded for wrapping study */
+  --wa-selectlist-option-label-line-height: 1.3;
+
+  /* From wa: this value should be the same for both medium and large scale. */
+  --wa-menu-max-width: 320px;
+}
+
+.wa-Menu-popover {
+  max-width: var(--wa-menu-max-width);
+}
+
+.wa-Menu {
+  text-align: start;
+  display: block;
+
+  box-sizing: border-box;
+
+  padding: var(--wa-popover-padding-y) 0;
+  margin: 0;
+
+  list-style-type: none;
+
+  overflow-y: auto;
+  user-select: none;
+
+  & .wa-Menu-sectionHeading {
+    /* Support headings as LI */
+    margin-block-start: var(--wa-menu-margin-x);
+    margin-block-end: var(--wa-menu-margin-x);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.wa-Menu-checkmark {
+  transform: scale(1);
+  opacity: 1;
+  /*
+    Renamed from padding-y to padding-height to fix docs issue where fallback var replaced this value
+    (due to old wa-css postcss-custom-properties-custom-mapping plugin).
+  */
+  padding-block-start: calc(
+    var(--wa-selectlist-option-icon-padding-y) - var(--wa-selectlist-option-padding-height)
+  );
+}
+
+.wa-Menu-item {
+  cursor: default;
+  position: relative;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  border-inline-start: var(--wa-selectlist-border-size-key-focus) solid transparent;
+
+  font-size: var(--wa-selectlist-option-text-size);
+  font-weight: var(--wa-selectlist-option-text-font-weight);
+  font-style: normal;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.is-selected {
+    .wa-Menu-checkmark {
+      display: block;
+    }
+  }
+
+  .wa-Icon + .wa-Menu-itemLabel,
+  .wa-Menu-itemIcon + .wa-Menu-itemLabel {
+    margin-inline-start: var(--wa-selectlist-thumbnail-image-padding-x);
+  }
+}
+
+.wa-Menu-itemLabel {
+  grid-area: text;
+  line-height: var(--wa-global-font-line-height-small);
+  word-break: break-all;
+}
+
+.wa-Menu-itemLabel--wrapping {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.wa-Menu-checkmark {
+  display: none;
+  align-self: start;
+  justify-self: end;
+  grid-area: checkmark;
+}
+
+.wa-Menu-divider {
+  /* Add the correct box sizing for hr in Firefox. */
+  box-sizing: content-box;
+
+  /* Show the overflow for hr in Edge and IE. */
+  overflow: visible;
+
+  block-size: var(--wa-selectlist-divider-size);
+  margin: calc(var(--wa-selectlist-divider-padding) / 2) var(--wa-selectlist-option-padding);
+  padding: 0 0;
+  border: none;
+}
+
+.wa-Menu-sectionHeading {
+  display: block;
+  margin: var(--wa-selectlist-heading-margin);
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-inline-start: var(--wa-selectlist-heading-padding-left);
+  padding-inline-end: var(--wa-selectlist-heading-padding-right);
+
+  font-size: var(--wa-selectlist-heading-text-size);
+  font-weight: var(--wa-selectlist-heading-text-font-weight);
+  line-height: var(--wa-text-body-line-height);
+  text-transform: var(--wa-selectlist-heading-text-transform);
+  letter-spacing: var(--wa-selectlist-heading-letter-spacing);
+}
+
+.wa-Menu .wa-Menu {
+  /* Fill parent menu when nested */
+  display: block;
+  margin: 0;
+}
+
+.wa-Menu-itemGrid {
+  display: grid;
+  grid-template-columns:
+    calc(var(--wa-selectlist-option-padding) - var(--wa-selectlist-border-size-key-focus))
+    auto 1fr auto auto auto var(--wa-selectlist-option-padding);
+  /*
+    Renamed from padding-y to padding-height to fix docs issue where fallback var replaced this value
+    (due to old wa-css postcss-custom-properties-custom-mapping plugin).
+  */
+  grid-template-rows: var(--wa-selectlist-option-padding-height) 1fr auto var(
+      --wa-selectlist-option-padding-height
+    );
+  grid-template-areas:
+    ". .    .            .         .     .            ."
+    ". icon text         checkmark end   keyboard     ."
+    ". icon description  checkmark end   keyboard     ."
+    ". .    .            .         .     .            .";
+}
+
+.wa-Menu-item.is-selectable {
+  .wa-Menu-itemGrid {
+    grid-template-columns:
+      calc(var(--wa-selectlist-option-padding) - var(--wa-selectlist-border-size-key-focus))
+      auto 1fr calc(
+        var(--wa-icon-checkmark-medium-width) + var(--wa-selectlist-option-icon-padding-x)
+      )
+      auto auto var(--wa-selectlist-option-padding);
+  }
+}
+
+/* Added .wa-Menu so paddings from component styles are overriden */
+.wa-Menu .wa-Menu-end {
+  grid-area: end;
+  justify-self: end;
+  align-self: start;
+  padding-inline-start: var(--wa-global-dimension-size-125);
+}
+.wa-Menu-icon {
+  grid-area: icon;
+  /* Margin around the whole menu item is 6px. Icon should be 7px from the top according to XD. */
+  padding-block-start: var(--wa-global-dimension-size-10);
+  padding-inline-end: var(--wa-global-dimension-size-100);
+}
+.wa-Menu-description {
+  grid-area: description;
+  line-height: var(--wa-global-font-line-height-small);
+  font-size: var(--wa-global-dimension-size-150);
+}
+.wa-Menu-keyboard {
+  grid-area: keyboard;
+  align-self: start;
+  padding-inline-start: var(--wa-global-dimension-size-125);
+  /* override default browser styling. */
+  /* keyboard shortcuts are always ASCII, so use base font */
+  font-family: var(--wa-font-family-base);
+}

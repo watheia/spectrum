@@ -1,0 +1,193 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+:root {
+  /* todo: fix in DNA */
+  --wa-radio-emphasized-circle-border-color-selected-key-focus: var(
+    --wa-radio-emphasized-circle-border-color-selected-hover
+  );
+}
+
+.wa-Radio .wa-Radio-input {
+  &:checked + .wa-Radio-button {
+    &:before {
+      border-color: var(--wa-radio-emphasized-circle-border-color-selected);
+    }
+  }
+}
+
+.wa-Radio-label {
+  color: var(--wa-radio-emphasized-text-color);
+}
+
+.wa-Radio-button {
+  &:before {
+    background-color: var(--wa-radio-emphasized-circle-background-color);
+    border-color: var(--wa-radio-emphasized-circle-border-color);
+  }
+}
+
+.wa-Radio {
+  &:hover {
+    .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-hover);
+        box-shadow: none;
+      }
+    }
+
+    .wa-Radio-input:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-selected-hover);
+      }
+    }
+
+    .wa-Radio-label {
+      color: var(--wa-radio-emphasized-text-color-hover);
+    }
+  }
+
+  &:active {
+    .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-down);
+      }
+    }
+
+    .wa-Radio-input:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-selected-down);
+      }
+    }
+
+    .wa-Radio-label {
+      color: var(--wa-radio-emphasized-text-color-down);
+    }
+  }
+  & .wa-Radio-input:focus-ring,
+  &:hover .wa-Radio-input:focus-ring {
+    &:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-selected-key-focus);
+      }
+    }
+  }
+}
+
+.wa-Radio--quiet {
+  .wa-Radio-input:checked + .wa-Radio-button {
+    &:before {
+      border-color: var(--wa-radio-quiet-circle-border-color-selected);
+    }
+  }
+  &:hover {
+    .wa-Radio-input:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-quiet-circle-border-color-selected-hover);
+      }
+    }
+  }
+  &:active {
+    .wa-Radio-input:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-quiet-circle-border-color-selected-down);
+      }
+    }
+  }
+  & .wa-Radio-input:focus-ring,
+  &:hover .wa-Radio-input:focus-ring {
+    &:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-quiet-circle-border-color-selected-key-focus);
+      }
+    }
+  }
+}
+
+.wa-Radio,
+.wa-Radio--quiet {
+  &.is-invalid {
+    .wa-Radio-button,
+    .wa-Radio-input:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-error);
+      }
+    }
+    .wa-Radio-label {
+      color: var(--wa-radio-emphasized-circle-border-color-error);
+    }
+  }
+  &.is-invalid:hover {
+    .wa-Radio-input + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-error-hover);
+      }
+    }
+    .wa-Radio-label {
+      color: var(--wa-radio-emphasized-circle-border-color-error-hover);
+    }
+  }
+  &.is-invalid:active {
+    .wa-Radio-input + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-emphasized-circle-border-color-error-down);
+      }
+    }
+    .wa-Radio-label {
+      color: var(--wa-radio-emphasized-circle-border-color-error-down);
+    }
+  }
+  &.is-invalid .wa-Radio-input:focus-ring,
+  &.is-invalid:hover .wa-Radio-input:focus-ring {
+    &:not(:checked) + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-circle-border-color-error-key-focus);
+      }
+    }
+    &:checked + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-circle-border-color-error-selected-key-focus);
+      }
+    }
+  }
+}
+
+.wa-Radio-input {
+  &:disabled + .wa-Radio-button {
+    &:before {
+      border-color: var(--wa-radio-emphasized-circle-border-color-disabled) !important;
+    }
+  }
+
+  &:disabled ~ .wa-Radio-label {
+    color: var(--wa-radio-emphasized-text-color-disabled) !important;
+  }
+}
+
+/* Focus Overrides all */
+/* Removed :before so that border-color isn't overwritten by keyboard focus */
+.wa-Radio,
+.wa-Radio--quiet {
+  & .wa-Radio-input:focus-ring,
+  &:hover .wa-Radio-input:focus-ring {
+    &:not(:checked) + .wa-Radio-button {
+      &:before {
+        border-color: var(--wa-radio-circle-border-color-key-focus);
+      }
+    }
+    & + .wa-Radio-button {
+      &:after {
+        box-shadow: 0 0 0 var(--wa-radio-focus-ring-size-key-focus)
+          var(--wa-radio-focus-ring-color-key-focus);
+      }
+    }
+  }
+}

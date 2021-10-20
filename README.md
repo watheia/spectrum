@@ -1,44 +1,90 @@
-# [React Spectrum Libraries](https://watheia.org/)
+# Spectrum
 
-A collection of libraries and tools that help you build adaptive, accessible, and robust user experiences.
+This project was generated using [Nx](https://nx.dev).
 
-### React Spectrum
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-A React implementation of Spectrum, Adobe’s design system. Spectrum provides adaptive, accessible, and cohesive experiences for all Adobe applications.
+🔎 **Smart, Extensible Build Framework**
 
-[Explore React Spectrum](https://watheia.org/react-spectrum/index.html)
+## Adding capabilities to your workspace
 
-### React Aria
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-A library of React Hooks that provides accessible UI primitives for your design system.
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-[Learn more about React Aria](https://watheia.org/react-aria/index.html)
+Below are our core plugins:
 
-### React Stately
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
 
-A library of React Hooks that provides cross-platform state management for your design system.
+There are also many [community plugins](https://nx.dev/community) you could add.
 
-[More information about React Stately](https://watheia.org/react-stately/index.html)
+## Generate an application
 
-## Features
+Run `nx g @nrwl/react:app my-app` to generate an application.
 
-- ♿️ **[Accessible](https://watheia.org/react-aria/accessibility.html)** – Accessibility and behavior is implemented according to [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.2/), including full screen reader and keyboard navigation support. All components have been tested across a wide variety of screen readers and devices to ensure the best experience possible for all users.
-- 📱 **[Adaptive](https://watheia.org/react-aria/interactions.html)** – All components are designed to work with mouse, touch, and keyboard interactions. They’re built with responsive design principles to deliver a great experience, no matter the device.
-- 🌍 **[International](https://watheia.org/react-aria/internationalization.html)** – Support over 30 languages is included out of the box, including support for right-to-left languages, date and number formatting, and more.
-- 🎨 **[Customizable](https://watheia.org/react-spectrum/theming.html)** – React Spectrum components support custom themes, and automatically adapt for dark mode. For even more customizability, you can build your own components with your own DOM structure and styling using the [React Aria](https://watheia.org/react-aria/index.html) and [React Stately](https://watheia.org/react-stately/index.html) hooks to provide behavior, accessibility, and interactions.
+> You can use any of the plugins above to generate applications as well.
 
-## Getting started
+When using Nx, you can create multiple applications and libraries in the same workspace.
 
-React Spectrum includes several libraries, which you can choose depending on your usecase.
+## Generate a library
 
-- [React Spectrum](https://watheia.org/react-spectrum/getting-started.html) is an implementation of Adobe's design system. If you’re integrating with Adobe software or would like a complete component library to use in your project, look no further!
-- [React Aria](https://watheia.org/react-aria/getting-started.html) is a collection of React Hooks that provides accessible UI primitives for use in your own design system. If you're building a component library for the web from scratch with your own styling, start here.
-- [React Stately](https://watheia.org/react-stately/getting-started.html) is a library of state management hooks for use in your component library. If you're using React Aria, you'll likely also use React Stately, but it can also be used independently (e.g. on other platforms like React Native).
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
-[Read more about our architecture](https://watheia.org/architecture.html).
+> You can also use any of the plugins above to generate libraries as well.
 
-## Contributing
+Libraries are shareable across libraries and applications. They can be imported from `@spectrum/mylib`.
 
-One of the goals of the React Spectrum project is to make building design systems and component libraries as easy as possible, while maintaining high quality interactions and accessibility support. We aim to raise the bar for web applications. The best way to achieve that goal is **together**. We would love contributions from the community no matter how big or small. 😍
+## Development server
 
-Read our [contributing guide](https://watheia.org/contribute.html) to learn about how to propose bugfixes and improvements, and how the development process works. For detailed information about our architecture, and how all of the pieces fit together, read our [architecture docs](https://watheia.org/architecture.html).
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+
+## Build
+
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+
+Run `nx affected:test` to execute the unit tests affected by a change.
+
+## Running end-to-end tests
+
+Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+
+## Understand your workspace
+
+Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+
+## Further help
+
+Visit the [Nx Documentation](https://nx.dev) to learn more.
+
+## ☁ Nx Cloud
+
+### Distributed Computation Caching & Distributed Task Execution
+
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+
+Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+
+Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+
+Visit [Nx Cloud](https://nx.app/) to learn more.

@@ -1,0 +1,182 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+@import "./font.module.css";
+
+/* @mixin typography .wa-Body1 {}
+@mixin typography .wa-Body2 {}
+@mixin typography .wa-Body3 {}
+@mixin typography .wa-Body4 {}
+@mixin typography .wa-Body5 {}
+@mixin typography .wa-Heading1 {}
+@mixin typography .wa-Heading2 {}
+@mixin typography .wa-Heading3 {}
+@mixin typography .wa-Heading4 {}
+@mixin typography .wa-Heading5 {}
+@mixin typography .wa-Heading6 {}
+@mixin typography .wa-Subheading {}
+@mixin typography .wa-Detail {}
+@mixin typography .wa-Heading1--quiet, heading-quiet-1 {}
+@mixin typography .wa-Heading2--quiet, heading-quiet-2 {}
+@mixin typography .wa-Heading1--strong, heading-strong-1 {}
+@mixin typography .wa-Heading2--strong, heading-strong-2 {}
+@mixin typography .wa-Heading1--display, display-1 {}
+@mixin typography .wa-Heading2--display, display-2 {}
+@mixin typography .wa-Heading1--display.wa-Heading1--strong, display-strong-1 {}
+@mixin typography .wa-Heading2--display.wa-Heading2--strong, display-strong-2 {}
+@mixin typography .wa-Heading1--display.wa-Heading1--quiet, display-quiet-1 {}
+@mixin typography .wa-Heading2--display.wa-Heading2--quiet, display-quiet-2 {}
+
+.wa-Typography {
+  @mixin typographyMargins .wa-Body1 {}
+  @mixin typographyMargins .wa-Body2 {}
+  @mixin typographyMargins .wa-Body3 {}
+  @mixin typographyMargins .wa-Body4 {}
+  @mixin typographyMargins .wa-Body5 {}
+  @mixin typographyMargins .wa-Heading1 {}
+  @mixin typographyMargins .wa-Heading2 {}
+  @mixin typographyMargins .wa-Heading3 {}
+  @mixin typographyMargins .wa-Heading4 {}
+  @mixin typographyMargins .wa-Heading5 {}
+  @mixin typographyMargins .wa-Heading6 {}
+  @mixin typographyMargins .wa-Subheading {}
+  @mixin typographyMargins .wa-Detail {}
+  @mixin typographyMargins .wa-Heading1--quiet, heading-quiet-1 {}
+  @mixin typographyMargins .wa-Heading2--quiet, heading-quiet-2 {}
+  @mixin typographyMargins .wa-Heading1--strong, heading-strong-1 {}
+  @mixin typographyMargins .wa-Heading2--strong, heading-strong-2 {}
+  @mixin typographyMargins .wa-Heading1--display, display-1 {}
+  @mixin typographyMargins .wa-Heading2--display, display-2 {}
+  @mixin typographyMargins .wa-Heading1--display.wa-Heading1--strong, display-strong-1 {}
+  @mixin typographyMargins .wa-Heading2--display.wa-Heading2--strong, display-strong-2 {}
+  @mixin typographyMargins .wa-Heading1--display.wa-Heading1--quiet, display-quiet-1 {}
+  @mixin typographyMargins .wa-Heading2--display.wa-Heading2--quiet, display-quiet-2 {}
+}
+
+.wa-Article {
+  font-family: var(--wa-body-article-1-text-font-family);
+  @mixin typography .wa-Body1, body-article-1 {}
+  @mixin typography .wa-Body2, body-article-2 {}
+  @mixin typography .wa-Body3, body-article-3 {}
+  @mixin typography .wa-Body4, body-article-4 {}
+  @mixin typography .wa-Body5, body-article-5 {}
+  @mixin typography .wa-Heading1, heading-article-1 {}
+  @mixin typography .wa-Heading2, heading-article-2 {}
+  @mixin typography .wa-Heading3, heading-article-3 {}
+  @mixin typography .wa-Heading4, heading-article-4 {}
+  @mixin typography .wa-Heading5, heading-article-5 {}
+  @mixin typography .wa-Heading6, heading-article-6 {}
+  @mixin typography .wa-Subheading, subheading-article {}
+  @mixin typography .wa-Detail, detail-article {}
+  @mixin typography .wa-Heading1--quiet, heading-quiet-article-1 {}
+  @mixin typography .wa-Heading2--quiet, heading-quiet-article-2 {}
+  @mixin typography .wa-Heading1--display, display-article-1 {}
+  @mixin typography .wa-Heading2--display, display-article-2 {}
+  @mixin typography .wa-Heading1--display.wa-Heading1--quiet, display-quiet-article-1 {}
+  @mixin typography .wa-Heading2--display.wa-Heading2--quiet, display-quiet-article-2 {}
+}
+.wa {
+  &:lang(ja),
+  &:lang(ko),
+  &:lang(zh) {
+    @mixin typography .wa-Body1, body-han-1 {}
+    @mixin typography .wa-Body2, body-han-2 {}
+    @mixin typography .wa-Body3, body-han-3 {}
+    @mixin typography .wa-Body4, body-han-4 {}
+    @mixin typography .wa-Body5, body-han-5 {}
+    @mixin typography .wa-Heading1, heading-han-1 {}
+    @mixin typography .wa-Heading2, heading-han-2 {}
+    @mixin typography .wa-Heading3, heading-han-3 {}
+    @mixin typography .wa-Heading4, heading-han-4 {}
+    @mixin typography .wa-Heading5, heading-han-5 {}
+    @mixin typography .wa-Heading6, heading-han-6 {}
+    @mixin typography .wa-Subheading, subheading-han {}
+    @mixin typography .wa-Detail, detail-han {}
+    @mixin typography .wa-Heading1--quiet, heading-quiet-han-1 {}
+    @mixin typography .wa-Heading2--quiet, heading-quiet-han-2 {}
+    @mixin typography .wa-Heading1--strong, heading-strong-han-1 {}
+    @mixin typography .wa-Heading2--strong, heading-strong-han-2 {}
+    @mixin typography .wa-Heading1--display, display-han-1 {}
+    @mixin typography .wa-Heading2--display, display-han-2 {}
+    @mixin typography .wa-Heading1--display.wa-Heading1--strong, display-strong-han-1 {}
+    @mixin typography .wa-Heading2--display.wa-Heading2--strong, display-strong-han-2 {}
+    @mixin typography .wa-Heading1--display.wa-Heading1--quiet, display-quiet-han-1 {}
+    @mixin typography .wa-Heading2--display.wa-Heading2--quiet, display-quiet-han-2 {}
+  }
+}
+@mixin typography .wa-Code1, body-code-1, true {
+  font-family: var(--wa-body-code-1-text-font-family);
+}
+@mixin typography .wa-Code2, body-code-2, true {
+  font-family: var(--wa-body-code-2-text-font-family);
+}
+@mixin typography .wa-Code3, body-code-3, true {
+  font-family: var(--wa-body-code-3-text-font-family);
+}
+@mixin typography .wa-Code4, body-code-4, true {
+  font-family: var(--wa-body-code-4-text-font-family);
+}
+@mixin typography .wa-Code5, body-code-5, true {
+  font-family: var(--wa-body-code-5-text-font-family);
+} */
+
+/*
+  The &.wa makes it so users can do <div class="wa wa--large"> and still get the right font sizes
+  Without this, they would have to do <div class="wa--large"><div class="wa">, which makes no sense
+*/
+&.wa,
+&.wa-Body,
+.wa,
+.wa-Body {
+  font-size: var(--wa-body-4-text-size);
+  font-style: var(--wa-body-4-text-font-style);
+  font-weight: var(--wa-body-4-text-font-weight);
+  line-height: var(--wa-body-4-text-line-height);
+}
+
+.wa-Body--italic {
+  font-style: var(--wa-body-4-emphasis-text-font-style);
+}
+
+/*
+.wa-Body--large {
+  @extend .wa-Body2;
+}
+
+.wa-Body--small {
+  @extend .wa-Body5;
+}
+
+.wa-Body--secondary {
+  @extend .wa-Body4;
+}
+
+.wa-Heading--display {
+  @extend .wa-Heading2--display.wa-Heading2--quiet;
+}
+
+.wa-Heading--pageTitle {
+  @extend .wa-Heading2--quiet;
+}
+
+.wa-Heading--subtitle1 {
+  @extend .wa-Heading4;
+}
+
+.wa-Heading--subtitle2 {
+  @extend .wa-Heading6;
+}
+
+.wa-Heading--subtitle3 {
+  @extend .wa-Subheading;
+} */

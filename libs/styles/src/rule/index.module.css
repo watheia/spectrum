@@ -1,0 +1,72 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+.wa-Rule {
+  /* Show the overflow for hr in Edge and IE. */
+  overflow: visible;
+
+  border: none;
+  border-width: var(--wa-rule-medium-height);
+  border-radius: var(--wa-rule-medium-height);
+
+  /* hr elements are given a default margin, reset it so that flex can work */
+  margin: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  align-self: stretch;
+}
+
+.wa-Rule--large {
+  border-radius: var(--wa-rule-large-border-radius);
+}
+
+.wa-Rule--medium {
+  border-radius: var(--wa-rule-medium-border-radius);
+}
+
+.wa-Rule--small {
+  border-radius: var(--wa-rule-small-border-radius);
+}
+
+.wa-Rule--horizontal {
+  &.wa-Rule--large {
+    block-size: var(--wa-rule-large-height);
+  }
+
+  &.wa-Rule--medium {
+    block-size: var(--wa-rule-medium-height);
+  }
+
+  &.wa-Rule--small {
+    block-size: var(--wa-rule-small-height);
+  }
+}
+
+.wa-Rule--vertical {
+  height: auto;
+  /* expected usage, people need to set height 100% if they aren't using flex on the container
+   * if they *ARE* using flex, then they need to either have align-items stretch OR align-self stretch
+   */
+  &.wa-Rule--large {
+    inline-size: var(--wa-rule-large-height);
+  }
+
+  &.wa-Rule--medium {
+    inline-size: var(--wa-rule-medium-height);
+  }
+
+  &.wa-Rule--small {
+    inline-size: var(--wa-rule-small-height);
+  }
+}

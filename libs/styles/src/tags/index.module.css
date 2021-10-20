@@ -1,0 +1,72 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+.wa-Tags {
+  display: inline-block;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wa-Tags-item {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+
+  margin: calc(var(--wa-taggroup-tag-gap-y) / 2) calc(var(--wa-taggroup-tag-gap-x) / 2);
+  padding: 0 calc(var(--wa-tag-padding-x) - var(--wa-tag-border-size));
+  block-size: var(--wa-tag-height);
+  max-inline-size: 100%;
+
+  border-width: var(--wa-tag-border-size);
+  border-style: solid;
+  border-radius: var(--wa-border-radius);
+  outline: none;
+  user-select: none;
+
+  transition: border-color var(--wa-global-animation-duration-100) ease-in-out,
+    color var(--wa-global-animation-duration-100) ease-in-out,
+    box-shadow var(--wa-global-animation-duration-100) ease-in-out,
+    background-color var(--wa-global-animation-duration-100) ease-in-out;
+
+  &.is-disabled {
+    pointer-events: none;
+  }
+
+  > .wa-Tags-itemIcon {
+    margin-inline-end: var(--wa-tag-icon-padding-x);
+    margin-inline-start: calc(var(--wa-tag-deletable-border-size-key-focus) * -1);
+  }
+
+  .wa-Tags-itemClearButton {
+    display: flex;
+    margin-inline-end: calc(-0.5 * var(--wa-tag-padding-x));
+    margin-inline-start: var(--wa-tag-deletable-border-size-key-focus);
+    block-size: var(--wa-alias-font-size-default);
+    inline-size: var(--wa-alias-font-size-default);
+    border-radius: var(--wa-alias-border-radius-small);
+  }
+}
+
+.wa-Tags-itemLabel {
+  block-size: 100%;
+  line-height: calc(var(--wa-tag-height) - calc(var(--wa-tag-border-size) * 2));
+  flex: 1 1 auto;
+  font-size: var(--wa-tag-text-size);
+  cursor: default;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

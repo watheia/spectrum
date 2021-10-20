@@ -1,0 +1,70 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+:root {
+  --wa-menu-selected-color: var(--wa-global-color-blue-600);
+  --wa-selectlist-divider-color: var(--wa-global-color-gray-300);
+}
+
+.wa-Menu {
+  background-color: var(--wa-selectlist-background-color);
+}
+
+.wa-Menu-item {
+  background-color: var(--wa-selectlist-option-background-color);
+  color: var(--wa-selectlist-option-text-color);
+
+  &:focus-ring,
+  &.is-focused {
+    background-color: var(--wa-selectlist-option-background-color-key-focus);
+    color: var(--wa-selectlist-option-text-color-key-focus);
+    border-inline-start-color: var(--wa-selectlist-option-focus-indicator-color);
+  }
+
+  &:hover,
+  &:focus,
+  &.is-highlighted,
+  &.is-open {
+    background-color: var(--wa-selectlist-option-background-color-hover);
+    color: var(--wa-selectlist-option-text-color-hover);
+  }
+
+  &.is-selected {
+    .wa-Menu-checkmark {
+      color: var(--wa-selectlist-option-icon-color-selected);
+    }
+  }
+
+  .is-active,
+  &:active {
+    background-color: var(--wa-selectlist-option-background-color-down);
+  }
+
+  &.is-disabled {
+    background-color: var(--wa-selectlist-option-background-color-disabled);
+    background-image: none;
+    color: var(--wa-selectlist-option-text-color-disabled);
+    cursor: default;
+  }
+}
+
+.wa-Menu-sectionHeading {
+  color: var(--wa-heading-subtitle3-text-color);
+}
+
+.wa-Menu-divider {
+  background-color: var(--wa-selectlist-divider-color);
+}
+
+.wa-Menu-description {
+  color: var(--wa-global-color-gray-700);
+}

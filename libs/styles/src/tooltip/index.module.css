@@ -1,0 +1,238 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+@import "../overlay/index.css";
+
+:root {
+  --wa-tooltip-target-offset: var(--wa-global-dimension-size-40);
+  /* This variable needs to be updated in Spectrum DNA. Using the height variable so it scales to wa-large */
+  --wa-tooltip-tip-width: var(--wa-tooltip-tip-height);
+}
+
+.wa-Tooltip {
+  @inherit: %wa-overlay;
+
+  position: relative;
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+
+  vertical-align: top;
+
+  inline-size: auto;
+  padding: var(--wa-tooltip-padding-top) var(--wa-tooltip-padding-x);
+  border-radius: var(--wa-tooltip-border-radius);
+  min-block-size: var(--wa-tooltip-min-height);
+
+  font-size: var(--wa-tooltip-text-size);
+  font-weight: var(--wa-tooltip-text-font-weight);
+  line-height: var(--wa-tooltip-text-line-height);
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+
+  &.is-open {
+    @inherit: %wa-overlay--open;
+  }
+
+  & {
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.wa-Tooltip-tip {
+  position: absolute;
+
+  height: 0;
+  width: 0;
+
+  border-width: var(--wa-tooltip-tip-width);
+  border-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.wa-Tooltip--right,
+.wa-Tooltip--left {
+  .wa-Tooltip-tip {
+    top: 50%;
+    margin-top: calc(var(--wa-tooltip-tip-width) * -1);
+  }
+}
+
+.wa-Tooltip--right {
+  margin-left: var(--wa-tooltip-target-offset);
+  &.is-open {
+    @inherit: %wa-overlay--right--open;
+  }
+  .wa-Tooltip-tip {
+    right: 100%;
+    transform: rotate(90deg);
+  }
+}
+
+.wa-Tooltip--left {
+  margin-right: var(--wa-tooltip-target-offset);
+  &.is-open {
+    @inherit: %wa-overlay--left--open;
+  }
+  .wa-Tooltip-tip {
+    left: 100%;
+    transform: rotate(-90deg);
+  }
+}
+
+.wa-Tooltip--top {
+  margin-bottom: var(--wa-tooltip-target-offset);
+  &.is-open {
+    @inherit: %wa-overlay--top--open;
+  }
+  .wa-Tooltip-tip {
+    top: 100%;
+  }
+}
+
+.wa-Tooltip--bottom {
+  margin-top: var(--wa-tooltip-target-offset);
+  &.is-open {
+    @inherit: %wa-overlay--bottom--open;
+  }
+  .wa-Tooltip-tip {
+    bottom: 100%;
+    transform: rotate(-180deg);
+  }
+}
+
+.wa-Tooltip--bottom,
+.wa-Tooltip--top {
+  .wa-Tooltip-tip {
+    left: 50%;
+    margin-left: calc(var(--wa-tooltip-tip-width) * -1);
+  }
+}
+
+.wa-Tooltip-typeIcon {
+  margin-inline-start: calc(var(--wa-tooltip-icon-margin-x) - var(--wa-tooltip-padding-x));
+  margin-inline-end: var(--wa-tooltip-icon-margin-x);
+  inline-size: var(--wa-tooltip-icon-size);
+  block-size: var(--wa-tooltip-icon-size);
+  align-self: flex-start;
+
+  /* Adjusts for weird misalignment */
+  margin-top: 1px;
+}
+
+.wa-Tooltip-label {
+  max-inline-size: var(--wa-tooltip-content-max-width);
+
+  /* Make sure line height is correct to prevent problems in Windows */
+  line-height: var(--wa-tooltip-text-line-height);
+}
+
+.u-tooltip-showOnHover {
+  display: inline-block;
+  position: relative;
+
+  .wa-Tooltip {
+    position: absolute;
+    white-space: nowrap;
+    /* Required for animations to work, !important for diff scaling to work */
+    visibility: visible !important;
+    transition: transform var(--wa-global-animation-duration-100) ease-in-out;
+    top: -100%;
+  }
+
+  .wa-Tooltip-label {
+    /* Don't try to wrap as the mechanism used for this helper does not support wrapping */
+    max-inline-size: none;
+  }
+
+  .wa-Tooltip--right,
+  .wa-Tooltip--left {
+    top: 50%;
+    .wa-Tooltip-tip {
+      top: 50%;
+    }
+  }
+
+  .wa-Tooltip--right {
+    left: 100%;
+    transform: translate(0, -50%);
+  }
+
+  .wa-Tooltip--left {
+    transform: translate(-100%, -50%);
+  }
+
+  .wa-Tooltip--bottom,
+  .wa-Tooltip--top {
+    left: 50%;
+    .wa-Tooltip-tip {
+      left: 50%;
+    }
+  }
+
+  .wa-Tooltip--bottom {
+    top: 100%;
+    transform: translate(-50%, calc(var(--wa-tooltip-tip-margin) * -1));
+  }
+
+  .wa-Tooltip--top {
+    transform: translate(-50%, var(--wa-tooltip-tip-margin));
+  }
+
+  &:hover .wa-Tooltip,
+  &:focus .wa-Tooltip,
+  &.is-focused .wa-Tooltip,
+  *:focus .wa-Tooltip {
+    opacity: 1;
+  }
+
+  &:hover .wa-Tooltip.wa-Tooltip--bottom,
+  &:focus .wa-Tooltip.wa-Tooltip--bottom,
+  &.is-focused .wa-Tooltip.wa-Tooltip--bottom,
+  *:focus .wa-Tooltip.wa-Tooltip--bottom {
+    transform: translate(-50%, 0);
+  }
+
+  &:hover .wa-Tooltip.wa-Tooltip--top,
+  &:focus .wa-Tooltip.wa-Tooltip--top,
+  &.is-focused .wa-Tooltip.wa-Tooltip--top,
+  *:focus .wa-Tooltip.wa-Tooltip--top {
+    transform: translate(-50%, calc(var(--wa-tooltip-tip-margin) * -1));
+  }
+
+  &:hover .wa-Tooltip.wa-Tooltip--left,
+  &:focus .wa-Tooltip.wa-Tooltip--left,
+  &.is-focused .wa-Tooltip.wa-Tooltip--left,
+  *:focus .wa-Tooltip.wa-Tooltip--left {
+    transform: translate(calc(-100% - var(--wa-tooltip-tip-margin)), -50%);
+  }
+
+  &:hover .wa-Tooltip.wa-Tooltip--right,
+  &:focus .wa-Tooltip.wa-Tooltip--right,
+  &.is-focused .wa-Tooltip.wa-Tooltip--right,
+  *:focus .wa-Tooltip.wa-Tooltip--right {
+    transform: translate(var(--wa-tooltip-tip-margin), -50%);
+  }
+}

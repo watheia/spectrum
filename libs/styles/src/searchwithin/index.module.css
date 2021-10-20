@@ -1,0 +1,60 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-searchwithin-width: 250px;
+
+  /* Force override */
+  --wa-searchwithin-border-radius: 0;
+  --wa-searchwithin-dropdown-min-width: 0;
+}
+
+.wa-SearchWithin {
+  width: var(--wa-searchwithin-width);
+  display: inline-flex;
+  position: relative;
+
+  .wa-Dropdown {
+    width: auto;
+    min-width: 0;
+  }
+
+  .wa-Dropdown-trigger {
+    border-top-right-radius: var(--wa-searchwithin-border-radius);
+    border-bottom-right-radius: var(--wa-searchwithin-border-radius);
+  }
+
+  .wa-Dropdown-label {
+    /* Override dropdown's min-width and be tiny */
+    min-width: var(--wa-searchwithin-dropdown-min-width);
+  }
+
+  .wa-Textfield {
+    flex: 1;
+    margin-left: calc(var(--wa-textfield-border-size) * -1); /* hides left border */
+    border-top-left-radius: var(--wa-searchwithin-border-radius);
+    border-bottom-left-radius: var(--wa-searchwithin-border-radius);
+
+    &:hover,
+    &:focus {
+      position: relative; /* shows left border */
+    }
+  }
+
+  .wa-ClearButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

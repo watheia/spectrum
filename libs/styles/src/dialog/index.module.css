@@ -1,0 +1,378 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+@import "../overlay/index.css";
+
+:root {
+  /* Distance between the edge of the fullscreen dialog and header */
+  --wa-dialog-fullscreen-padding-top: calc(var(--wa-dialog-padding) - 10px);
+
+  /* The font-size of the fullscreen dialog header */
+  --wa-dialog-fullscreen-header-text-size: 28px;
+
+  /* The font-weight of the fullscreen dialog header */
+  --wa-dialog-fullscreen-header-text-font-weight: 100;
+
+  /* Distance between top and bottom of dialog and edge of window for fullscreen dialog */
+  --wa-dialog-fullscreen-margin: 40px;
+
+  --wa-dialog-small-width: 400px;
+  --wa-dialog-medium-width: 480px;
+  --wa-dialog-large-width: 640px;
+  --wa-dialog-max-width: 90vw;
+  --wa-dialog-max-height: 90%;
+  --wa-dialog-hero-height: var(--wa-global-dimension-size-1600);
+  --wa-dialog-alert-width: var(--wa-dialog-medium-width);
+
+  --wa-dialog-button-margin: var(--wa-global-dimension-size-200);
+  --wa-dialog-content-margin-bottom: var(--wa-global-dimension-size-450);
+
+  /* 12px desktop (medium scale) and 8px mobile (large scale) */
+  --wa-dialog-close-button-padding: calc(26px - var(--wa-global-dimension-size-175));
+  --wa-dialog-close-button-size: var(--wa-global-dimension-size-400);
+
+  --wa-dialog-gap-size: var(--wa-global-dimension-size-200);
+}
+
+.wa-Dialog {
+  /* Be a flexbox to allow a full sized content area that scrolls */
+  display: flex;
+
+  /* Allow 100% width, taking into account padding */
+  box-sizing: border-box;
+
+  /* Be no bigger than max-width, but also be 90% if the viewport is smaller than max-width */
+  width: fit-content;
+  min-width: var(--wa-dialog-min-width);
+  max-width: 100%;
+
+  max-height: inherit;
+
+  outline: none;
+}
+
+.wa-Dialog--small {
+  width: var(--wa-dialog-small-width);
+}
+
+.wa-Dialog--medium {
+  width: var(--wa-dialog-medium-width);
+}
+
+.wa-Dialog--large {
+  width: var(--wa-dialog-large-width);
+}
+
+.wa-Dialog-hero {
+  grid-area: hero;
+  height: var(--wa-dialog-hero-height);
+
+  border-top-left-radius: var(--wa-dialog-border-radius);
+  border-top-right-radius: var(--wa-dialog-border-radius);
+
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+}
+
+.wa-Dialog .wa-Dialog-grid {
+  display: grid;
+  grid-template-columns: var(--wa-dialog-padding) auto 1fr auto minmax(0, auto) var(
+      --wa-dialog-padding
+    );
+  grid-template-rows: auto var(--wa-dialog-padding) auto auto 1fr auto var(
+      --wa-dialog-padding
+    );
+  grid-template-areas:
+    "hero hero    hero    hero        hero        hero"
+    ".    .       .       .           .           ."
+    ".    heading header  header      typeIcon    ."
+    ".    divider divider divider     divider     ."
+    ".    content content content     content     ."
+    ".    footer  footer  buttonGroup buttonGroup ."
+    ".    .       .       .           .           .";
+  width: 100%;
+}
+
+.wa-Dialog-heading {
+  grid-area: heading;
+
+  margin: 0;
+
+  font-size: var(--wa-dialog-title-text-size);
+  font-weight: var(--wa-dialog-title-text-font-weight);
+  line-height: var(--wa-dialog-title-text-line-height);
+
+  outline: none; /* Hide focus outline */
+
+  padding-inline-end: var(--wa-dialog-gap-size);
+
+  &.wa-Dialog-heading--noHeader {
+    grid-area: heading-start / heading-start / header-end / header-end;
+    padding-inline-end: 0;
+  }
+}
+
+.wa-Dialog-header {
+  grid-area: header;
+  display: flex;
+  /* Without this, buttons will be stretched */
+  align-items: center;
+  justify-content: flex-end;
+
+  box-sizing: border-box;
+
+  outline: none; /* Hide focus outline around header */
+}
+
+.wa-Dialog-typeIcon {
+  grid-area: typeIcon;
+}
+
+.wa-Dialog .wa-Dialog-divider {
+  grid-area: divider;
+  width: 100%;
+  margin-top: var(--wa-dialog-rule-margin-top);
+  margin-bottom: var(--wa-dialog-rule-margin-bottom);
+}
+
+.wa-Dialog--noDivider {
+  .wa-Dialog-divider {
+    display: none;
+  }
+}
+
+.wa-Dialog-content {
+  grid-area: content;
+  box-sizing: border-box;
+
+  /*
+  v2 is currently worse, inputs that get focus rings get a slight clipping unless overflow: visible replaces this line
+  we should think of a better way to handle this, see padding/margin below for fix
+  */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  outline: none; /* Hide focus outline */
+
+  font-size: var(--wa-dialog-content-text-size);
+  font-weight: var(--wa-dialog-content-text-font-weight);
+  line-height: var(--wa-dialog-content-text-line-height);
+
+  /*
+  this is kinda dumb, but needed for the keyboard focus rings so they don't get clipped.
+  is there a better way to treat this
+  it's needed in every instance of overflow being set to anything other than visible
+  */
+  padding: calc(var(--wa-global-dimension-size-25) * 2);
+  margin: calc(var(--wa-global-dimension-size-25) * -2);
+}
+
+.wa-Dialog-footer {
+  grid-area: footer;
+  /* this padding isn't built into the grid because it disappears with this footer */
+  padding-block-start: var(--wa-global-dimension-static-size-500);
+
+  display: flex;
+  flex-wrap: wrap;
+
+  outline: none; /* Hide focus outline */
+
+  /* Both selectors are required to override the button + button rule */
+  > *,
+  > .wa-Button + .wa-Button {
+    margin-bottom: 0;
+  }
+}
+
+.wa-Dialog-buttonGroup {
+  grid-area: buttonGroup;
+  /* this padding isn't built into the grid because it disappears with this buttonGroup */
+  padding-block-start: var(--wa-global-dimension-static-size-500);
+  display: flex;
+  justify-content: flex-end;
+  /* this padding should be safe as button group is always end aligned */
+  padding-inline-start: var(--wa-dialog-gap-size);
+  /* Fixes Firefox buttongroup overflow (switch from horizontal buttongroup to vertical buttongroup) */
+  max-width: 100%;
+
+  &.wa-Dialog-buttonGroup--noFooter {
+    grid-area: footer-start / footer-start / buttonGroup-end / buttonGroup-end;
+  }
+}
+
+.wa-Dialog.wa-Dialog--dismissable .wa-Dialog-grid {
+  grid-template-columns:
+    var(--wa-dialog-padding) auto 1fr auto minmax(0, auto) minmax(
+      0,
+      var(--wa-dialog-close-button-size)
+    )
+    var(--wa-dialog-padding);
+  grid-template-rows: auto var(--wa-dialog-padding) auto auto 1fr auto var(
+      --wa-dialog-padding
+    );
+  grid-template-areas:
+    "hero hero    hero    hero        hero        hero        hero"
+    ".    .       .       .           .           closeButton closeButton"
+    ".    heading header  header      typeIcon    closeButton closeButton"
+    ".    divider divider divider     divider     divider     ."
+    ".    content content content     content     content     ."
+    ".    footer  footer  buttonGroup buttonGroup buttonGroup ."
+    ".    .       .       .           .           .           .";
+
+  .wa-Dialog-buttonGroup {
+    display: none;
+  }
+  .wa-Dialog-footer {
+    grid-area: footer / footer/ buttonGroup / buttonGroup;
+  }
+}
+
+.wa-Dialog.wa-Dialog--dismissable .wa-Dialog-closeButton {
+  grid-area: closeButton;
+  /* align and justify so it doesn't do the default 'stretch' and end up with forced height/width */
+  align-self: start;
+  justify-self: end;
+
+  margin-inline-end: var(--wa-dialog-close-button-padding);
+  margin-block-start: var(--wa-dialog-close-button-padding);
+}
+
+/* Alert Dialog is a specific type of Dialog */
+.wa-Dialog--error {
+  width: var(--wa-dialog-alert-width);
+}
+
+.wa-Dialog--fullscreen {
+  width: 100%;
+  height: 100%;
+}
+.wa-Dialog--fullscreenTakeover {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 0;
+}
+/** @unofficial */
+.wa-Dialog--fullscreen,
+.wa-Dialog--fullscreenTakeover {
+  max-height: none;
+  max-width: none;
+
+  &.wa-Dialog .wa-Dialog-grid {
+    display: grid;
+    grid-template-columns: var(--wa-dialog-padding) 1fr auto auto var(--wa-dialog-padding);
+    grid-template-rows: var(--wa-dialog-padding) auto auto 1fr var(--wa-dialog-padding);
+    grid-template-areas:
+      ".    .       .       .            ."
+      ".    heading header  buttonGroup  ."
+      ".    divider divider divider      ."
+      ".    content content content      ."
+      ".    .       .       .            .";
+  }
+
+  .wa-Dialog-heading {
+    font-size: var(--wa-dialog-fullscreen-header-text-size);
+  }
+
+  .wa-Dialog-content {
+    max-height: none;
+  }
+
+  .wa-Dialog-footer,
+  .wa-Dialog-buttonGroup {
+    padding-block-start: 0px;
+  }
+
+  .wa-Dialog-footer,
+  .wa-Dialog-typeIcon,
+  .wa-Dialog-closeButton {
+    display: none;
+  }
+
+  .wa-Dialog-buttonGroup {
+    grid-area: buttonGroup;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .wa-Dialog .wa-Dialog-grid {
+    grid-template-columns: var(--wa-dialog-padding) auto 1fr auto minmax(0, auto) var(
+        --wa-dialog-padding
+      );
+    grid-template-rows: auto var(--wa-dialog-padding) auto auto auto 1fr auto var(
+        --wa-dialog-padding
+      );
+    grid-template-areas:
+      "hero hero    hero    hero        hero        hero"
+      ".    .       .       .           .           ."
+      ".    heading heading heading     typeIcon    ."
+      ".    header  header  header      header      ."
+      ".    divider divider divider     divider     ."
+      ".    content content content     content     ."
+      ".    footer  footer  buttonGroup buttonGroup ."
+      ".    .       .       .           .           .";
+  }
+
+  .wa-Dialog.wa-Dialog--dismissable .wa-Dialog-grid {
+    grid-template-columns:
+      var(--wa-dialog-padding) auto 1fr auto minmax(0, auto) minmax(
+        0,
+        var(--wa-dialog-close-button-size)
+      )
+      var(--wa-dialog-padding);
+    grid-template-rows: auto var(--wa-dialog-padding) auto auto auto 1fr auto var(
+        --wa-dialog-padding
+      );
+    grid-template-areas:
+      "hero hero    hero    hero        hero        hero        hero"
+      ".    .       .       .           .           closeButton closeButton"
+      ".    heading heading heading     typeIcon    closeButton closeButton"
+      ".    header  header  header      header      header      ."
+      ".    divider divider divider     divider     divider     ."
+      ".    content content content     content     content     ."
+      ".    footer  footer  buttonGroup buttonGroup buttonGroup ."
+      ".    .       .       .           .           .           .";
+  }
+
+  .wa-Dialog .wa-Dialog-header {
+    justify-content: flex-start;
+  }
+
+  .wa-Dialog--fullscreen,
+  .wa-Dialog--fullscreenTakeover {
+    &.wa-Dialog .wa-Dialog-grid {
+      display: grid;
+      grid-template-columns: var(--wa-dialog-padding) 1fr var(--wa-dialog-padding);
+      grid-template-rows: var(--wa-dialog-padding) auto auto auto 1fr auto var(
+          --wa-dialog-padding
+        );
+      grid-template-areas:
+        ".    .            ."
+        ".    heading      ."
+        ".    header       ."
+        ".    divider      ."
+        ".    content      ."
+        ".    buttonGroup  ."
+        ".    .            .";
+    }
+
+    .wa-Dialog-buttonGroup {
+      padding-block-start: var(--wa-global-dimension-static-size-500);
+    }
+
+    .wa-Dialog-heading {
+      font-size: var(--wa-dialog-title-text-size);
+    }
+  }
+}

@@ -1,0 +1,115 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+/* override DNA variables to use ones that change in large scale instead of staying static */
+:root {
+  --wa-search-padding-left: var(--wa-global-dimension-size-450);
+  --wa-search-padding-right: var(--wa-global-dimension-size-350);
+  --wa-search-quiet-padding-left: var(--wa-global-dimension-size-300);
+  --wa-search-quiet-padding-right: var(--wa-global-dimension-size-350);
+}
+
+.wa-Search {
+  display: inline-block;
+  position: relative;
+
+  .wa-ClearButton {
+    position: absolute;
+    inset-inline-end: 0;
+    top: 0;
+  }
+
+  &.is-quiet .wa-Search-input {
+    padding-inline-start: var(--wa-search-quiet-padding-left);
+    padding-inline-end: var(--wa-search-quiet-padding-right);
+  }
+
+  &.wa-Search--invalid .wa-ClearButton {
+    inset-inline-end: calc(
+      var(--wa-icon-alert-medium-width) + var(--wa-textfield-padding-x)
+    );
+  }
+
+  &.wa-Search--valid .wa-ClearButton {
+    inset-inline-end: calc(
+      var(--wa-icon-checkmark-medium-width) + var(--wa-textfield-padding-x) / 2 +
+        var(--wa-global-dimension-size-150)
+    );
+  }
+
+  /* Flip clear button and circle loader position so circle loader is to the left of the clear button */
+  &.wa-Search--loadable .wa-ClearButton {
+    inset-inline-end: 0;
+  }
+
+  /* Flip clear button and circle loader position so circle loader is to the left of the clear button */
+  &.wa-Search--loadable .wa-Search-circleLoader {
+    inset-inline-end: calc(
+      var(--wa-icon-checkmark-medium-width) + var(--wa-textfield-padding-x) / 2 +
+        var(--wa-global-dimension-size-150)
+    );
+  }
+
+  /* Move validation icons so that they sit to the left of the clear button (for async loading combobox tray, same position as loading indicator)  */
+  &.wa-Search--loadable .wa-Search-validationIcon {
+    inset-inline-end: calc(
+      var(--wa-icon-checkmark-medium-width) + var(--wa-textfield-padding-x) / 2 +
+        var(--wa-global-dimension-size-150)
+    );
+    padding-inline-end: 0;
+  }
+}
+
+.wa-Search-input {
+  display: block;
+
+  /* Correct the odd appearance of input[type="search"] in Chrome and Safari.*/
+  /* This gets overridden by .wa-Textfield */
+  -webkit-appearance: none;
+
+  /* Correct the outline for input[type="search"] style in Safari. */
+  outline-offset: -2px;
+
+  text-indent: 0;
+
+  /* Don't let long strings overlap the close icon */
+  padding-inline-end: var(--wa-search-padding-right);
+
+  /* Remove the inner padding and cancel buttons for input[type="search"] in Chrome and Safari on macOS. */
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  .wa-Textfield.wa-Search--invalid & {
+    padding-inline-end: calc(
+      var(--wa-search-padding-right) + var(--wa-textfield-padding-x) +
+        var(--wa-icon-alert-medium-width) + var(--wa-textfield-icon-margin-left)
+    );
+  }
+
+  .wa-Textfield.wa-Search--valid & {
+    padding-inline-end: calc(
+      var(--wa-search-padding-right) + var(--wa-textfield-padding-x) +
+        var(--wa-icon-checkmark-medium-width) + var(--wa-textfield-icon-margin-left)
+    );
+  }
+
+  .wa-Textfield.wa-Search--loadable & {
+    padding-inline-end: calc(
+      var(--wa-search-padding-right) + var(--wa-textfield-padding-x) +
+        var(--wa-icon-checkmark-medium-width) + var(--wa-textfield-icon-margin-left)
+    );
+  }
+}

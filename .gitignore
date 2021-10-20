@@ -1,19 +1,50 @@
-.DS_Store
-coverage
-node_modules
-npm-debug.log
-build-storybook.log
-test-reports.xml
-junit.xml
-.nyc_output
-dist
-.idea
-.package-lock.json
-.cache
-.parcel-cache
-packages/dev/v2-test-deps
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-dist
-public
-storybook-static
-junit.xml
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+test-report.xml
+apps/web/.env.local

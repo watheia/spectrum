@@ -1,0 +1,5 @@
+@tailwind utilities;
+@import "./chrome-bug.css";
+@import "./nprogress";
+@import "./layout.css";
+@import "./fonts.css";

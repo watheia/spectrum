@@ -1,0 +1,167 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-splitview-vertical-width: 100%;
+  --wa-splitview-vertical-gripper-width: 50%;
+  --wa-splitview-vertical-gripper-outer-width: 100%;
+  --wa-splitview-vertical-gripper-reset: 0;
+}
+
+.wa-SplitView {
+  display: flex;
+  overflow: hidden;
+}
+
+.wa-SplitView-pane {
+  height: 100%;
+}
+
+.wa-SplitView-gripper {
+  content: "";
+  display: block;
+  position: absolute;
+  border-style: solid;
+  border-radius: var(--wa-rail-gripper-border-radius);
+
+  top: 50%;
+  transform: translate(0, -50%);
+
+  /* half of (width + horizontal border - handle width) * -1 (for negative opposite) */
+  left: calc(
+    (
+        (
+            var(--wa-rail-gripper-width) +
+              (2 * var(--wa-rail-gripper-border-width-horizontal)) -
+              var(--wa-rail-handle-width)
+          ) / 2
+      ) * -1
+  );
+  width: var(--wa-rail-gripper-width);
+  height: var(--wa-rail-gripper-height);
+  border-width: var(--wa-rail-gripper-border-width-vertical)
+    var(--wa-rail-gripper-border-width-horizontal);
+
+  touch-action: none;
+}
+
+.wa-SplitView-splitter {
+  /* Contain the gripper */
+  position: relative;
+
+  /* Prevent text selection while dragging */
+  user-select: none;
+
+  touch-action: none;
+
+  width: var(--wa-rail-handle-width);
+  height: 100%;
+  z-index: 1;
+
+  &.is-collapsed-start,
+  &.is-collapsed-end {
+    .wa-SplitView-gripper {
+      /* make the center line of the gripper */
+      &:before {
+        content: "";
+        position: absolute;
+
+        top: 0;
+        left: calc(50% - calc(var(--wa-rail-handle-width) / 2));
+        width: var(--wa-rail-handle-width);
+        height: 100%;
+      }
+    }
+  }
+
+  &.is-collapsed-start {
+    .wa-SplitView-gripper {
+      left: 0;
+    }
+  }
+
+  &.is-collapsed-end {
+    .wa-SplitView-gripper {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+.wa-SplitView--vertical {
+  flex-direction: column;
+
+  .wa-SplitView-pane {
+    height: auto;
+    width: var(--wa-splitview-vertical-width);
+  }
+
+  .wa-SplitView-gripper {
+    /* half of (height + vertical border - handle width) * -1 (for negative opposite) */
+    top: calc(
+      (
+          (
+              var(--wa-rail-gripper-width) +
+                (2 * var(--wa-rail-gripper-border-width-horizontal)) -
+                var(--wa-rail-handle-width)
+            ) / 2
+        ) * -1
+    );
+
+    transform: translate(calc(var(--wa-splitview-vertical-gripper-width) * -1), 0);
+    left: var(--wa-splitview-vertical-gripper-width);
+    width: var(--wa-rail-gripper-height); /* same as default height */
+    height: var(--wa-rail-gripper-width); /* same as default width */
+
+    /* opposite of default border-width */
+    border-width: var(--wa-rail-gripper-border-width-horizontal)
+      var(--wa-rail-gripper-border-width-vertical);
+  }
+
+  .wa-SplitView-splitter {
+    width: var(--wa-splitview-vertical-width);
+    height: var(--wa-rail-handle-width);
+
+    &.is-collapsed-start,
+    &.is-collapsed-end {
+      .wa-SplitView-gripper {
+        left: var(--wa-splitview-vertical-gripper-width);
+
+        /* make the center line of the gripper */
+        &:before {
+          top: calc(
+            var(--wa-splitview-vertical-gripper-width) -
+              calc(var(--wa-rail-handle-width) / 2)
+          );
+          left: var(--wa-splitview-vertical-gripper-reset);
+          width: var(--wa-splitview-vertical-gripper-outer-width);
+          height: var(--wa-rail-handle-width);
+        }
+      }
+    }
+
+    &.is-collapsed-start {
+      .wa-SplitView-gripper {
+        top: var(--wa-splitview-vertical-gripper-reset);
+      }
+    }
+
+    &.is-collapsed-end {
+      .wa-SplitView-gripper {
+        top: auto;
+        bottom: var(--wa-splitview-vertical-gripper-reset);
+      }
+    }
+  }
+}

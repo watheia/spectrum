@@ -1,0 +1,122 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-splitbutton-trigger-border-left: 0;
+  --wa-splitbutton-trigger-min-width: 0;
+  --wa-spltibutton-margin-left: 0;
+  --wa-splitbutton-icon-gap: var(--wa-global-dimension-size-150);
+}
+
+.wa-SplitButton {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  vertical-align: top;
+
+  /* Spacing for buttons placed inline */
+  & + .wa-SplitButton,
+  & + .wa-Button {
+    margin-left: var(--wa-margin);
+  }
+}
+
+/* Spacing for buttons placed inline */
+.wa-Button + .wa-SplitButton {
+  margin-left: var(--wa-margin);
+}
+
+.wa-SplitButton-action {
+  margin-left: 0;
+
+  border-radius: var(--wa-button-primary-border-radius) 0 0
+    var(--wa-button-primary-border-radius);
+
+  /* CTA is special and doesn't have a border between the buttons */
+  &.wa-Button--cta {
+    border-right: 0;
+    margin-right: var(--wa-button-primary-border-size);
+  }
+
+  & + .wa-SplitButton-trigger {
+    /* Override button + button style */
+    margin-left: var(--wa-spltibutton-margin-left);
+  }
+}
+
+.wa-SplitButton-trigger {
+  margin-left: 0;
+
+  border-radius: 0 var(--wa-button-primary-border-radius)
+    var(--wa-button-primary-border-radius) 0;
+  border-left-width: var(--wa-splitbutton-trigger-border-left);
+
+  padding-left: calc(var(--wa-padding) * calc(2 / 3));
+  padding-right: calc(var(--wa-padding) - var(--wa-button-primary-border-size));
+
+  min-width: var(--wa-splitbutton-trigger-min-width);
+
+  &:focus-ring {
+    box-shadow: none;
+  }
+}
+
+.wa-SplitButton-icon {
+  display: block;
+  margin-top: 1px;
+}
+
+.wa-SplitButton-action,
+.wa-SplitButton-trigger {
+  position: relative;
+
+  &:focus {
+    /* Be on top when focused or border leaks */
+    z-index: 1;
+  }
+}
+
+.wa-SplitButton-action {
+  .wa-Button-label + .wa-Icon {
+    margin-left: var(--wa-splitbutton-icon-gap);
+  }
+}
+
+.wa-SplitButton--left {
+  .wa-SplitButton-action {
+    border-radius: 0 var(--wa-button-primary-border-radius)
+      var(--wa-button-primary-border-radius) 0;
+    margin-right: 0;
+    margin-left: var(--wa-spltibutton-margin-left);
+
+    /* CTA is special and doesn't have a border between the buttons */
+    &.wa-Button--cta {
+      border-left: 0;
+      margin-left: var(--wa-button-primary-border-size);
+    }
+  }
+
+  .wa-SplitButton-trigger {
+    margin-right: 0;
+
+    border-radius: var(--wa-button-primary-border-radius) 0 0
+      var(--wa-button-primary-border-radius);
+
+    border-left-width: var(--wa-button-primary-border-size);
+    border-right-width: var(--wa-splitbutton-trigger-border-left);
+
+    padding-right: calc(var(--wa-padding) * calc(2 / 3));
+    padding-left: calc(var(--wa-padding) - var(--wa-button-primary-border-size));
+  }
+}

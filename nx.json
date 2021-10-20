@@ -1,0 +1,40 @@
+{
+  "npmScope": "spectrum",
+  "affected": {
+    "defaultBase": "main"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*",
+    ".stylelintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e", "stylelint"],
+        "accessToken": "ODc4ZDFmOGUtNDU5Ni00NDA5LTk5ZTQtYTA0NDFiZWIwYWRmfHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "projects": {
+    "e2e-hybrid-homepage": {
+      "tags": [],
+      "implicitDependencies": ["web-hybrid-homepage"]
+    },
+    "web-hybrid-homepage": {
+      "tags": []
+    }
+  }
+}

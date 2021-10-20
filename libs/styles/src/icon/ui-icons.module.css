@@ -1,0 +1,185 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* Hide UI icons on older browsers with SVG 1.1 implementations */
+.wa--medium {
+  .wa-UIIcon--large {
+    display: none;
+  }
+  .wa-UIIcon--medium {
+    display: inline;
+  }
+}
+
+.wa--large {
+  .wa-UIIcon--medium {
+    display: none;
+  }
+  .wa-UIIcon--large {
+    display: inline;
+  }
+}
+
+/* Hide UI icons on browsers that implement SVG 2 correctly (Firefox 56+) */
+.wa--large {
+  x--ui-icon-large-display: block;
+  x--ui-icon-medium-display: none;
+}
+.wa--medium {
+  x--ui-icon-medium-display: block;
+  x--ui-icon-large-display: none;
+}
+
+.wa-UIIcon--large {
+  display: xvar(--ui-icon-large-display);
+}
+.wa-UIIcon--medium {
+  display: xvar(--ui-icon-medium-display);
+}
+
+/* UI Icons */
+.wa-UIIcon-AlertMedium {
+  inline-size: var(--wa-icon-alert-medium-width);
+  block-size: var(--wa-icon-alert-medium-height);
+}
+.wa-UIIcon-AlertSmall {
+  inline-size: var(--wa-icon-alert-small-width);
+  block-size: var(--wa-icon-alert-small-height);
+}
+.wa-UIIcon-ArrowDownSmall {
+  inline-size: var(--wa-icon-arrow-down-small-width);
+  block-size: var(--wa-icon-arrow-down-small-height);
+}
+.wa-UIIcon-ArrowLeftMedium {
+  inline-size: var(--wa-icon-arrow-left-medium-width);
+  block-size: var(--wa-icon-arrow-left-medium-height);
+}
+.wa-UIIcon-Asterisk {
+  inline-size: var(--wa-fieldlabel-asterisk-size);
+  block-size: var(--wa-fieldlabel-asterisk-size);
+}
+.wa-UIIcon-CheckmarkMedium {
+  inline-size: var(--wa-icon-checkmark-medium-width);
+  block-size: var(--wa-icon-checkmark-medium-height);
+}
+.wa-UIIcon-CheckmarkSmall {
+  inline-size: var(--wa-icon-checkmark-small-width);
+  block-size: var(--wa-icon-checkmark-small-height);
+}
+.wa-UIIcon-ChevronDownMedium {
+  inline-size: var(--wa-icon-chevron-down-medium-width);
+  block-size: var(--wa-icon-chevron-down-medium-height);
+}
+.wa-UIIcon-ChevronDownSmall {
+  inline-size: var(--wa-icon-chevron-down-small-width);
+  block-size: var(--wa-icon-chevron-down-small-height);
+}
+.wa-UIIcon-ChevronLeftLarge {
+  inline-size: var(--wa-icon-chevron-left-large-width);
+  block-size: var(--wa-icon-chevron-left-large-height);
+}
+.wa-UIIcon-ChevronLeftMedium {
+  inline-size: var(--wa-icon-chevron-left-medium-width);
+  block-size: var(--wa-icon-chevron-left-medium-height);
+}
+.wa-UIIcon-ChevronRightLarge {
+  inline-size: var(--wa-icon-chevron-right-large-width);
+  block-size: var(--wa-icon-chevron-right-large-height);
+}
+.wa-UIIcon-ChevronRightMedium {
+  inline-size: var(--wa-icon-chevron-right-medium-width);
+  block-size: var(--wa-icon-chevron-right-medium-height);
+}
+.wa-UIIcon-ChevronRightSmall {
+  inline-size: var(--wa-icon-chevron-right-small-width);
+  block-size: var(--wa-icon-chevron-right-small-height);
+}
+.wa-UIIcon-ChevronUpSmall {
+  inline-size: var(--wa-icon-chevron-up-small-width);
+  block-size: var(--wa-icon-chevron-up-small-height);
+}
+.wa-UIIcon-CornerTriangle {
+  inline-size: var(--wa-icon-cornertriangle-width);
+  block-size: var(--wa-icon-cornertriangle-height);
+}
+.wa-UIIcon-CrossLarge {
+  inline-size: var(--wa-icon-cross-large-width);
+  block-size: var(--wa-icon-cross-large-height);
+}
+.wa-UIIcon-CrossMedium {
+  inline-size: var(--wa-icon-cross-medium-width);
+  block-size: var(--wa-icon-cross-medium-height);
+}
+.wa-UIIcon-CrossSmall {
+  inline-size: var(--wa-icon-cross-small-width);
+  block-size: var(--wa-icon-cross-small-height);
+}
+.wa-UIIcon-DashSmall {
+  inline-size: var(--wa-icon-dash-small-width);
+  block-size: var(--wa-icon-dash-small-height);
+}
+.wa-UIIcon-DoubleGripper {
+  inline-size: var(--wa-icon-doublegripper-width);
+  block-size: var(--wa-icon-doublegripper-height);
+}
+.wa-UIIcon-FolderBreadcrumb {
+  inline-size: var(--wa-icon-folderbreadcrumb-width);
+  block-size: var(--wa-icon-folderbreadcrumb-height);
+}
+.wa-UIIcon-HelpMedium {
+  inline-size: var(--wa-icon-info-medium-width);
+  block-size: var(--wa-icon-info-medium-height);
+}
+.wa-UIIcon-HelpSmall {
+  inline-size: var(--wa-icon-info-small-width);
+  block-size: var(--wa-icon-info-small-height);
+}
+.wa-UIIcon-InfoMedium {
+  inline-size: var(--wa-icon-info-medium-width);
+  block-size: var(--wa-icon-info-medium-height);
+}
+.wa-UIIcon-InfoSmall {
+  inline-size: var(--wa-icon-info-small-width);
+  block-size: var(--wa-icon-info-small-height);
+}
+.wa-UIIcon-Magnifier {
+  inline-size: var(--wa-icon-magnifier-width);
+  block-size: var(--wa-icon-magnifier-height);
+}
+.wa-UIIcon-SkipLeft {
+  inline-size: var(--wa-icon-skip-left-width);
+  block-size: var(--wa-icon-skip-left-height);
+}
+.wa-UIIcon-SkipRight {
+  inline-size: var(--wa-icon-skip-right-width);
+  block-size: var(--wa-icon-skip-right-height);
+}
+.wa-UIIcon-Star {
+  inline-size: var(--wa-icon-star-width);
+  block-size: var(--wa-icon-star-height);
+}
+.wa-UIIcon-StarOutline {
+  inline-size: var(--wa-icon-star-outline-width);
+  block-size: var(--wa-icon-star-outline-height);
+}
+.wa-UIIcon-SuccessMedium {
+  inline-size: var(--wa-icon-success-medium-width);
+  block-size: var(--wa-icon-success-medium-height);
+}
+.wa-UIIcon-SuccessSmall {
+  inline-size: var(--wa-icon-success-small-width);
+  block-size: var(--wa-icon-success-small-height);
+}
+.wa-UIIcon-TripleGripper {
+  inline-size: var(--wa-icon-triplegripper-width);
+  block-size: var(--wa-icon-triplegripper-height);
+}

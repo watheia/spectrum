@@ -1,0 +1,305 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-textfield-padding-top: 3px;
+  --wa-textfield-padding-bottom: 5px;
+
+  /* Todo fix in DNA */
+  --wa-textfield-quiet-border-radius: 0;
+
+  --wa-textfield-quiet-invalid-background-position: 100% 50%;
+
+  --wa-textfield-multiline-height: auto;
+  --wa-textfield-multiline-min-height: var(--wa-global-dimension-size-700);
+
+  --wa-textfield-multiline-padding-x: var(--wa-textfield-padding-x);
+  --wa-textfield-multiline-padding-top: var(--wa-textfield-padding-top);
+  --wa-textfield-multiline-padding-bottom: var(--wa-textfield-padding-bottom);
+
+  /* Todo: DNA uses incorrect font family "Adobe Clean" */
+  --wa-textfield-text-font-family-fixed: var(--wa-font-family-base);
+}
+
+.wa-Textfield {
+  display: inline-flex;
+  position: relative;
+  min-width: var(--wa-textfield-min-width);
+  width: var(--wa-component-single-line-width);
+
+  &.wa-Textfield--quiet.wa-Textfield--multiline .wa-Textfield-input {
+    height: var(--wa-textfield-height);
+    min-height: var(--wa-textfield-height);
+    overflow-x: hidden;
+  }
+}
+
+.wa-Textfield-input {
+  /* box */
+  box-sizing: border-box;
+  border: var(--wa-textfield-border-size) solid;
+  border-radius: var(--wa-textfield-border-radius);
+
+  /* Apply padding by default to center text, giving consistency between input and textfield */
+  padding: var(--wa-textfield-padding-top) var(--wa-textfield-padding-x)
+    var(--wa-textfield-padding-bottom) calc(var(--wa-textfield-padding-x) - 1px);
+  /* Use padding instead of text-indent because text-indent does not left align the text in Edge browser  */
+  text-indent: 0;
+
+  width: 100%;
+  height: var(--wa-textfield-height);
+
+  vertical-align: top; /* used to align them correctly in forms. */
+
+  /* Remove the margin for input in Firefox and Safari. */
+  margin: 0;
+
+  /* Show the overflow for input in Edge. */
+  overflow: visible;
+
+  /* Change the input font styles in all browsers */
+  font-family: var(--wa-textfield-text-font-family-fixed);
+  font-size: var(--wa-textfield-text-size);
+  line-height: var(--wa-textfield-text-line-height);
+  text-overflow: ellipsis;
+
+  transition: border-color var(--wa-global-animation-duration-100) ease-in-out,
+    box-shadow var(--wa-global-animation-duration-100) ease-in-out;
+
+  outline: none;
+
+  -webkit-appearance: none;
+  /*
+    Removes the native spin buttons in Firefox; -moz-appearance: none results in spinners.
+    This has to come after -webkit-appearance or it gets overridden (#214)
+    Details: http://stackoverflow.com/questions/23372903/hide-spinner-in-input-number-firefox-29
+
+    Sets the opacity to 1 as normalize.css sets an opacity to placeholders
+    Details: https://github.com/csstools/normalize.css/blob/master/normalize.css#L297
+  */
+  -moz-appearance: textfield;
+
+  &::placeholder,
+  &.is-placeholder {
+    font-weight: var(--wa-textfield-placeholder-text-font-weight);
+    font-style: var(--wa-textfield-placeholder-text-font-style);
+    font-synthesis: none;
+    transition: color var(--wa-global-animation-duration-100) ease-in-out;
+    opacity: 1;
+  }
+
+  /* added to work with Edge, note, it needs double ::
+   * not single : which is what autoprefixer will add
+   */
+  &::-ms-input-placeholder {
+    font-weight: var(--wa-textfield-placeholder-text-font-weight);
+    font-style: var(--wa-textfield-placeholder-text-font-style);
+    transition: color var(--wa-global-animation-duration-100) ease-in-out;
+    opacity: 1;
+  }
+
+  /* placeholder gets clipped for synthetic italics, we rely on font-synthesis once
+   * chrome supports it https://bugs.chromium.org/p/chromium/issues/detail?id=509989
+   */
+  &:lang(ja),
+  &:lang(zh),
+  &:lang(ko),
+  &:lang(ar),
+  &:lang(he) {
+    &::placeholder,
+    &.is-placeholder {
+      font-style: normal;
+    }
+    &::-ms-input-placeholder {
+      /* added to work with Edge, same as above */
+      font-style: normal;
+    }
+  }
+
+  &:hover {
+    &::placeholder {
+      font-weight: var(--wa-textfield-placeholder-text-font-weight);
+    }
+  }
+
+  &:disabled {
+    /* Disable the resize functionality when disabled */
+    resize: none;
+
+    /* The opacity must be set to 1 */
+    opacity: 1;
+    &::placeholder,
+    &.is-placeholder {
+      font-weight: var(--wa-textfield-placeholder-text-font-weight);
+    }
+  }
+
+  /* Remove the native clear button in IE */
+  /* http://stackoverflow.com/questions/14007655/remove-ie10s-clear-field-x-button-on-certain-inputs */
+  &::-ms-clear {
+    width: 0;
+    height: 0;
+  }
+
+  /* removes the native spin buttons */
+  /* http://stackoverflow.com/questions/23372903/hide-spinner-in-input-number-firefox-29 */
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* removes the red border that appears in Firefox */
+  &:-moz-ui-invalid {
+    box-shadow: none;
+  }
+
+  .wa-Textfield--multiline & {
+    height: var(--wa-textfield-multiline-height);
+    min-height: var(--wa-textfield-multiline-min-height);
+    padding: var(--wa-textfield-multiline-padding-top)
+      var(--wa-textfield-multiline-padding-x) var(--wa-textfield-multiline-padding-bottom)
+      calc(var(--wa-textfield-multiline-padding-x) - 1px);
+
+    /* Remove the default vertical scrollbar for textarea in IE. */
+    overflow: auto;
+  }
+
+  .wa-Textfield--quiet & {
+    border-radius: var(--wa-textfield-quiet-border-radius);
+    border-width: 0 0 var(--wa-textfield-quiet-border-size) 0;
+
+    /* removes the side padding to align the text properly */
+    padding-inline-start: var(--wa-textfield-quiet-padding-x);
+    padding-inline-end: var(--wa-textfield-quiet-padding-x);
+
+    /* Treat all quiet inputs and textareas the same */
+    resize: none;
+    overflow-y: hidden;
+  }
+
+  .wa-Textfield--valid & {
+    padding-inline-end: calc(
+      var(--wa-textfield-padding-x) + var(--wa-icon-checkmark-medium-width) +
+        var(--wa-textfield-icon-margin-left)
+    );
+  }
+
+  .wa-Textfield--invalid & {
+    padding-inline-end: calc(
+      var(--wa-textfield-padding-x) + var(--wa-icon-alert-medium-width) +
+        var(--wa-textfield-icon-margin-left)
+    );
+  }
+
+  .wa-Textfield--loadable & {
+    padding-inline-end: calc(
+      var(--wa-textfield-padding-x) + var(--wa-icon-alert-medium-width) +
+        var(--wa-textfield-icon-margin-left)
+    );
+  }
+}
+
+.wa-Textfield-validationIcon {
+  /* TODO: Confirm if this is ok for the validation icon sizing
+    Note that the sizes are a bit different when compared with old background icons(more noticable for checkmark)
+  */
+  position: absolute;
+  padding-inline-end: calc(
+    var(--wa-textfield-padding-x, var(--wa-global-dimension-size-150)) / 2
+  );
+  pointer-events: all;
+  transition: color var(--wa-global-animation-duration-100) ease-in-out;
+
+  .wa-Textfield--quiet & {
+    padding-inline-end: 0;
+  }
+}
+
+.wa-Textfield--invalid .wa-Textfield-validationIcon {
+  width: var(--wa-icon-alert-medium-width);
+  height: var(--wa-icon-alert-medium-height);
+  top: calc(
+    calc(var(--wa-textfield-icon-frame) / 2) - calc(var(--wa-icon-alert-medium-height) / 2)
+  );
+  inset-inline-end: calc(
+    calc(var(--wa-textfield-icon-frame) / 2) - calc(var(--wa-icon-alert-medium-width) / 2)
+  );
+}
+.wa-Textfield--valid .wa-Textfield-validationIcon {
+  width: var(--wa-icon-checkmark-medium-width);
+  height: var(--wa-icon-checkmark-medium-height);
+  top: calc(
+    calc(var(--wa-textfield-icon-frame) / 2) -
+      calc(var(--wa-icon-checkmark-medium-height) / 2)
+  );
+  inset-inline-end: var(--wa-global-dimension-size-150);
+}
+
+/* styles the left icon for textfield, assumes usage of workflow icon sizing (18px by 18px) */
+.wa-Textfield-icon {
+  display: block;
+  position: absolute;
+  height: var(--wa-icon-info-medium-height);
+  width: var(--wa-icon-info-medium-width);
+  /* This has a named variable in a future update of wa-css. */
+  inset-inline-start: var(--wa-global-dimension-size-150);
+  top: var(--wa-global-dimension-size-85);
+  transition: fill var(--wa-global-animation-duration-100) ease-in-out;
+}
+
+/* styles the textfield properly if the left icon is provided */
+.wa-Textfield-inputIcon {
+  /* Use padding instead of text-indent so long strings don't overlap the icon */
+  /* These values have real names in a wa-css update, when we update, use those. */
+  padding-inline-start: calc(
+    var(--wa-global-dimension-size-150) + var(--wa-global-dimension-size-225) +
+      var(--wa-global-dimension-size-65)
+  );
+
+  .wa-Textfield--quiet & {
+    padding-inline-start: calc(
+      var(--wa-global-dimension-size-100) + var(--wa-icon-info-medium-width)
+    );
+
+    /* Since quiet button has no left padding, push the icon all the way to the left */
+    & ~ .wa-Textfield-icon {
+      inset-inline-start: 0;
+    }
+  }
+
+  &.wa-Textfield--multiline {
+    height: var(--wa-textfield-height);
+    min-height: var(--wa-textfield-height);
+  }
+}
+
+/* same positioning as invalid icon */
+.wa-Textfield--loadable .wa-Textfield-circleLoader {
+  position: absolute;
+  top: calc(
+    calc(var(--wa-textfield-icon-frame) / 2) - calc(var(--wa-loader-circle-small-width) / 2)
+  );
+  /* can't use padding right since it breaks the circle loader so add here */
+  inset-inline-end: calc(
+    calc(
+        calc(var(--wa-textfield-icon-frame) / 2) -
+          calc(var(--wa-icon-alert-medium-width) / 2)
+      ) + calc(var(--wa-textfield-padding-x, var(--wa-global-dimension-size-150)) / 2)
+  );
+
+  .wa-Textfield--quiet& {
+    padding-inline-end: 0;
+  }
+}

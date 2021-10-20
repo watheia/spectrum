@@ -1,0 +1,42 @@
+{
+  "root": "libs/atoms/checkbox",
+  "sourceRoot": "libs/atoms/checkbox/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/atoms/checkbox",
+        "tsConfig": "libs/atoms/checkbox/tsconfig.lib.json",
+        "project": "libs/atoms/checkbox/package.json",
+        "entryFile": "libs/atoms/checkbox/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/atoms/checkbox/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/atoms/checkbox/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/atoms/checkbox"],
+      "options": {
+        "jestConfig": "libs/atoms/checkbox/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "root": "libs/atoms/textfield",
+  "sourceRoot": "libs/atoms/textfield/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/atoms/textfield",
+        "tsConfig": "libs/atoms/textfield/tsconfig.lib.json",
+        "project": "libs/atoms/textfield/package.json",
+        "entryFile": "libs/atoms/textfield/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/atoms/textfield/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/atoms/textfield/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/atoms/textfield"],
+      "options": {
+        "jestConfig": "libs/atoms/textfield/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

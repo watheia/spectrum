@@ -2,54 +2,111 @@
 # To contribute improvements to CI/CD templates, please follow the Development guide at:
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Nodejs.gitlab-ci.yml
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
 
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
-image: node:12
+image: node:latest
 
-stages:
+cache:
+  policy: pull
+  paths:
+    - .yarn
+    - node_modules
+
+stages: # List of stages for jobs, and their order of execution
+  - warmup
   - build
   - test
   - deploy
 
-# Pick zero or more services to be used on all builds.
-# Only needed when using a docker container to run your tests in.
-# Check out: http://docs.gitlab.com/ee/ci/docker/using_docker_images.html#what-is-a-service
-# services:
-#   - mysql:latest
-#   - redis:latest
-#   - postgres:latest
-
-# This folder is cached between builds
-# http://docs.gitlab.com/ee/ci/yaml/README.html#cache
-cache:
-  paths:
-    - .yarn
-    - node_modules/
-    - .parcel-cache/
-
-test:
-  stage: test
-  needs: []
-  before_script:
-      - export SHELL="bash"
-      - export PATH="./node_modules/.bin:${PATH}"
+install: # This job runs in the build stage, which runs first.
+  stage: warmup
   script:
     - yarn install
-    - yarn test --coverage
+  cache:
+    policy: push
+    paths:
+      - .yarn
+      - node_modules
+
+build: # This job runs in the build stage, which runs first.
+  stage: build
+  needs: [install]
+  script:
+    - yarn nx run-many
+      --target=build
+      --all=true
+      --configuration=production
+      --verbose=true
+  artifacts:
+    untracked: false
+    expire_in: 30 days
+    paths:
+      - dist/apps
+      - dist/libs
+
+test: # This job runs in the test stage.
+  stage: test # It only starts when the job in the build stage completes successfully.
+  needs: [install]
+  script:
+    - yarn nx run-many
+      --target=test
+      --all=true
+      --verbose=true
+      --coverage
+  artifacts:
+    untracked: false
+    expire_in: 30 days
+    when: always
+    reports:
+      junit:
+        - test-report.xml
+    paths:
+      - coverage
+      - test-report.xml
+
+lint: # This job also runs in the test stage.
+  needs: [install]
+  stage: test # It can run at the same time as unit-test-job (in parallel).
+  allow_failure: true # TODO revisit broken workspace linter
+  script:
+    - yarn nx run-many
+      --target=lint
+      --all=true
+
+# e2e: # This job also runs in the test stage.
+#   needs: [install, build]
+#   stage: test # It can run at the same time as unit-test-job (in parallel).
+#   script:
+#     - yarn nx run-many
+#       --target=e2e
+#       --all=true
+#       --verbose=true
+#   artifacts:
+#     untracked: false
+#     expire_in: 30 days
+#     paths:
+#       - dist/cypress
+
+pages:
+  stage: deploy
+  needs: [install]
+  script:
+    - yarn nx run web:export --verbose
+    - rm -rf public
+    - cp -r dist/apps/exported public
   artifacts:
     paths:
-      - dist/
-
-# chromatic:
-#   stage: deploy
-#   # Sets the docker image for the job
-#   image: node:12
-
-#   # Installs the dependencies
-#   before_script:
-#     - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
-#   script:
-#     - yarn chromatic
-
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

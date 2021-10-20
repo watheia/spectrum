@@ -1,0 +1,169 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-radio-radius: calc(var(--wa-radio-circle-diameter) / 2);
+  --wa-radio-border-width-checked: calc(
+    calc(var(--wa-radio-circle-diameter) / 2) - calc(var(--wa-radio-circle-dot-size) / 2)
+  );
+
+  --wa-radio-labelbelow-label-margin: var(--wa-global-dimension-size-40) 0 0 0;
+  --wa-radio-labelbelow-height: auto;
+
+  /* Hardcoded for wrapping study.
+  Will be a DNA token in https://jira.corp.adobe.com/browse/SDS-4466 */
+  --wa-radio-label-margin-top: var(--wa-global-dimension-size-65);
+
+  /* Fix for inconsistent line-height between browsers that would push the label 1px below the intended baseline */
+  /* more info: https://stackoverflow.com/questions/47700568/css-fonts-render-differently-in-firefox-and-chrome */
+  --wa-radio-label-line-height: 1.49;
+}
+
+.wa-Radio {
+  display: inline-flex;
+  align-items: flex-start;
+
+  position: relative;
+
+  min-block-size: var(--wa-radio-height);
+  max-inline-size: 100%;
+
+  margin-inline-end: calc(var(--wa-radio-cursor-hit-x) * 2);
+
+  vertical-align: top;
+
+  isolation: isolate;
+}
+
+.wa-Radio-input {
+  /* Change the font styles in all browsers for input. */
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+
+  /* Remove the margin for input in Firefox and Safari. */
+  margin: 0;
+
+  /* Show the overflow for input in Edge. */
+  overflow: visible;
+
+  /* Add the correct box sizing for [type="radio"] in IE 10-. */
+  box-sizing: border-box;
+
+  /* Remove the padding for [type="radio"] in IE 10-. */
+  padding: 0;
+
+  /* Hit area */
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: calc(var(--wa-radio-cursor-hit-x) * -1);
+  inline-size: calc(100% + var(--wa-radio-cursor-hit-x) * 2);
+  block-size: 100%;
+
+  opacity: 0.0001;
+  z-index: 1;
+
+  cursor: default;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:checked + .wa-Radio-button {
+    &:before {
+      border-width: var(--wa-radio-border-width-checked);
+    }
+  }
+
+  &:focus-ring {
+    + .wa-Radio-button {
+      &:after {
+        margin: calc(var(--wa-alias-focus-ring-gap) * -1);
+      }
+    }
+  }
+}
+
+.wa-Radio-label {
+  text-align: start;
+  margin-inline-start: var(--wa-radio-text-gap);
+  /* Hardcoded as no good way to calculate this */
+  margin-block-start: var(--wa-radio-label-margin-top);
+  font-size: var(--wa-radio-text-size);
+  line-height: var(--wa-radio-label-line-height);
+  transition: color var(--wa-global-animation-duration-100) ease-in-out;
+}
+
+.wa-Radio-button {
+  position: relative;
+  box-sizing: border-box;
+  inline-size: var(--wa-radio-circle-diameter);
+  block-size: var(--wa-radio-circle-diameter);
+
+  /* Fix vertical alignment when not wrapping since we're flex-start */
+  margin: calc((var(--wa-radio-height) - var(--wa-radio-circle-diameter)) / 2) 0;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+  &:before {
+    display: block;
+    z-index: 0;
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+
+    width: var(--wa-radio-circle-diameter);
+    height: var(--wa-radio-circle-diameter);
+
+    border-radius: var(--wa-radio-radius);
+    border-width: var(--wa-radio-circle-border-size);
+    border-style: solid;
+
+    transition: border var(--wa-global-animation-duration-100) ease-in-out,
+      box-shadow var(--wa-global-animation-duration-100) ease-in-out;
+  }
+
+  &:after {
+    border-radius: 100%;
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: var(--wa-alias-focus-ring-gap);
+    transform: translateX(0); /* Forces FF to render on the pixel grid */
+
+    transition: box-shadow var(--wa-global-animation-duration-100) ease-out,
+      margin var(--wa-global-animation-duration-100) ease-out;
+  }
+}
+
+.wa-Radio--labelBelow {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  block-size: var(--wa-radio-labelbelow-height);
+
+  .wa-Radio-button {
+    flex-shrink: 0;
+
+    margin: 0;
+  }
+
+  .wa-Radio-label {
+    margin: var(--wa-radio-labelbelow-label-margin);
+  }
+}

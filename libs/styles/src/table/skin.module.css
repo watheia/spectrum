@@ -1,0 +1,235 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+.wa-Table-headWrapper {
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.wa-Table-headCell {
+  color: var(--wa-table-header-text-color);
+  background-color: var(--wa-alias-background-color-default);
+
+  &.is-sortable {
+    .wa-Table-sortedIcon {
+      color: var(--wa-table-header-sort-icon-color);
+    }
+
+    &.is-hovered {
+      color: var(--wa-table-header-text-color-hover);
+
+      .wa-Table-sortedIcon {
+        color: var(--wa-table-header-sort-icon-color-hover);
+      }
+    }
+
+    &:focus-ring,
+    &.is-focused {
+      color: var(--wa-table-header-text-color-key-focus);
+
+      .wa-Table-sortedIcon {
+        color: var(--wa-table-header-sort-icon-color-key-focus);
+      }
+    }
+
+    &:active {
+      color: var(--wa-table-header-text-color-down);
+
+      .wa-Table-sortedIcon {
+        color: var(--wa-table-header-sort-icon-color-down);
+      }
+    }
+  }
+}
+
+/* Helper for shared drop target overlay */
+%drop-target {
+  border-color: var(--wa-alias-border-color-focus);
+  box-shadow: 0 0 0 1px var(--wa-alias-border-color-focus);
+
+  &::before {
+    background-color: var(--wa-alias-highlight-selected);
+  }
+}
+
+.wa-Table-cell,
+.wa-Table-headCell {
+  &:focus-ring,
+  &.is-focused {
+    &::before {
+      box-shadow: inset 0 0 0 2px var(--wa-table-cell-border-color-key-focus);
+    }
+  }
+}
+
+.wa-Table-body {
+  border-style: solid;
+  border-color: var(--wa-table-border-color);
+  background-color: var(--wa-table-background-color);
+
+  &.is-drop-target {
+    border-color: var(--wa-alias-border-color-focus);
+    box-shadow: 0 0 0 1px var(--wa-alias-border-color-focus);
+
+    &::before {
+      background-color: var(--wa-alias-highlight-selected);
+    }
+  }
+}
+
+/* The tbody tag doesn't allow setting a border-radius, so these hacks are to make that work
+   by putting the border on the individual cells instead. */
+tbody.wa-Table-body {
+  border: none;
+
+  .wa-Table-row {
+    border-top: none;
+  }
+
+  .wa-Table-cell {
+    border-top: 1px solid var(--wa-table-cell-border-color);
+  }
+
+  .wa-Table-row .wa-Table-cell:first-child {
+    border-left: 1px solid var(--wa-table-cell-border-color);
+  }
+
+  .wa-Table-row .wa-Table-cell:last-child {
+    border-right: 1px solid var(--wa-table-cell-border-color);
+  }
+
+  .wa-Table-row:last-child .wa-Table-cell {
+    border-bottom: 1px solid var(--wa-table-cell-border-color);
+  }
+}
+
+.wa-Table-row {
+  border-bottom: 1px solid var(--wa-table-cell-border-color);
+  box-sizing: border-box;
+
+  .wa-Table-cellWrapper {
+    /* Add an opaque background so that the transparent background
+     * on the cell doesn't allow other cells to show through sticky cells. */
+    background-color: var(--wa-table-background-color);
+  }
+
+  /* We apply background color to the cell rather than the row so that
+   * cells can overlap (e.g. sticky row headers). */
+  &.is-hovered .wa-Table-cell {
+    background-color: var(--wa-table-row-background-color-hover);
+  }
+
+  &:focus-ring .wa-Table-cell,
+  &.is-focused .wa-Table-cell {
+    background-color: var(--wa-table-row-background-color-hover);
+  }
+
+  &:focus-ring {
+    &:before {
+      background: var(--wa-selectlist-option-focus-indicator-color);
+    }
+  }
+
+  &.is-active .wa-Table-cell:not(.is-disabled) {
+    background-color: var(--wa-table-row-background-color-down);
+  }
+
+  &.is-selected {
+    .wa-Table-cell {
+      background-color: var(--wa-table-row-background-color-selected);
+    }
+
+    &.is-hovered .wa-Table-cell {
+      background-color: var(--wa-table-row-background-color-selected-hover);
+    }
+
+    &:focus-ring .wa-Table-cell,
+    &.is-focused .wa-Table-cell {
+      background-color: var(--wa-table-row-background-color-selected-key-focus);
+    }
+  }
+
+  &.is-drop-target {
+    &::before {
+      box-shadow: inset 0 0 0 2px var(--wa-alias-border-color-focus);
+      background-color: var(--wa-alias-highlight-selected);
+    }
+  }
+}
+
+.wa-Table-cell {
+  color: var(--wa-table-cell-text-color);
+  background-color: var(--wa-table-cell-background-color);
+}
+
+.wa-Table-cell--divider {
+  border-inline-end-style: solid;
+  border-inline-end-color: var(--wa-table-divider-border-color);
+}
+
+.wa-Table--quiet {
+  .wa-Table-body {
+    border-width: 1px 0;
+    background-color: var(--wa-table-quiet-cell-background-color);
+
+    &.is-drop-target {
+      box-shadow: none;
+      border-color: transparent;
+
+      &::before {
+        box-shadow: inset 0 0 0 2px var(--wa-alias-border-color-focus);
+      }
+    }
+  }
+
+  .wa-Table-row {
+    .wa-Table-cellWrapper {
+      background-color: var(--wa-alias-background-color-default);
+    }
+
+    &.is-hovered .wa-Table-cell {
+      background-color: var(--wa-table-quiet-row-background-color-hover);
+    }
+
+    &:focus-ring .wa-Table-cell,
+    &.is-focused .wa-Table-cell {
+      background-color: var(--wa-table-quiet-row-background-color-hover);
+    }
+
+    &.is-active .wa-Table-cell:not(.is-disabled) {
+      background-color: var(--wa-table-quiet-row-background-color-down);
+    }
+
+    &.is-selected {
+      .wa-Table-cell {
+        background-color: var(--wa-table-quiet-row-background-color-selected);
+      }
+
+      &.is-hovered .wa-Table-cell {
+        background-color: var(--wa-table-quiet-row-background-color-selected-hover);
+      }
+
+      &:focus-ring .wa-Table-cell,
+      &.is-focused .wa-Table-cell {
+        background-color: var(--wa-table-quiet-row-background-color-selected-key-focus);
+      }
+    }
+  }
+
+  tbody.wa-Table-body {
+    .wa-Table-row .wa-Table-cell:first-child,
+    .wa-Table-row .wa-Table-cell:last-child {
+      border-left: none;
+      border-right: none;
+    }
+  }
+}

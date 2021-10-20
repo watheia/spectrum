@@ -1,0 +1,56 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+:root {
+  --wa-buttongroup-button-gap-reset: 0;
+}
+
+.wa-ButtonGroup {
+  display: inline-flex;
+  align-items: flex-start;
+  /* necessary so that offsetLeft on button children is correct */
+  position: relative;
+
+  .wa-ButtonGroup-Button {
+    flex-shrink: 0;
+  }
+
+  .wa-ButtonGroup-Button + .wa-ButtonGroup-Button {
+    margin-inline-start: var(--wa-buttongroup-button-gap-x);
+  }
+
+  &.wa-ButtonGroup--alignEnd {
+    justify-content: flex-end;
+  }
+
+  &.wa-ButtonGroup--alignCenter {
+    justify-content: center;
+  }
+}
+
+.wa-ButtonGroup--vertical {
+  display: inline-flex;
+  flex-direction: column;
+
+  .wa-ButtonGroup-Button + .wa-ButtonGroup-Button {
+    margin-block-start: var(--wa-buttongroup-button-gap-y);
+    margin-inline-start: var(--wa-buttongroup-button-gap-reset);
+  }
+
+  &.wa-ButtonGroup--alignEnd {
+    align-items: flex-end;
+  }
+
+  &.wa-ButtonGroup--alignCenter {
+    align-items: center;
+  }
+}

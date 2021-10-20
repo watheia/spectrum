@@ -1,0 +1,89 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable",
+      "es2016.array.include",
+      "es2017.object",
+      "esnext.intl"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "allowJs": true,
+    "checkJs": false,
+    "charset": "UTF-8",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "listEmittedFiles": true,
+    "isolatedModules": true,
+    "newLine": "lf",
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@waweb/atoms.button": [
+        "libs/atoms/button/src/index.ts"
+      ],
+      "@waweb/atoms.checkbox": [
+        "libs/atoms/checkbox/src/index.ts"
+      ],
+      "@waweb/atoms.label": [
+        "libs/atoms/label/src/index.ts"
+      ],
+      "@waweb/atoms.switch": [
+        "libs/atoms/switch/src/index.ts"
+      ],
+      "@waweb/atoms.textfield": [
+        "libs/atoms/textfield/src/index.ts"
+      ],
+      "@waweb/auth": [
+        "libs/auth/src/index.ts"
+      ],
+      "@waweb/dato": [
+        "libs/dato/src/index.ts"
+      ],
+      "@waweb/model": [
+        "libs/model/src/index.ts"
+      ],
+      "@waweb/molecules.form": [
+        "libs/molecules/form/src/index.ts"
+      ],
+      "@waweb/organisms.layout": [
+        "libs/organisms/layout/src/index.ts"
+      ],
+      "@waweb/provider": [
+        "libs/provider/src/index.ts"
+      ],
+      "@waweb/styles": [
+        "libs/styles/src/index.css"
+      ],
+      "@waweb/test-utils": [
+        "libs/test-utils/src/index.ts"
+      ],
+      "@waweb/theme": [
+        "libs/theme/src/index.ts"
+      ],
+      "@waweb/utils": [
+        "libs/utils/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp",
+    "**/*.spec.(js|jsx|ts|tsx)"
+  ]
+}

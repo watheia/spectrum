@@ -1,0 +1,156 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+.wa-Tags-item {
+  color: var(--wa-tag-text-color);
+  background-color: var(--wa-tag-background-color);
+  border-color: var(--wa-tag-border-color);
+
+  &:hover {
+    background-color: var(--wa-tag-background-color-hover);
+    color: var(--wa-tag-text-color-hover);
+    border-color: var(--wa-tag-border-color-hover);
+  }
+
+  &.focus-ring {
+    background-color: var(--wa-tag-background-color-key-focus);
+    color: var(--wa-tag-text-color-key-focus);
+    border-color: var(--wa-tag-border-color-key-focus);
+    box-shadow: 0 0 0 1px var(--wa-tag-border-color-key-focus);
+  }
+
+  &.is-selected {
+    background-color: var(--wa-tag-background-color-selected);
+    color: var(--wa-tag-text-color-selected);
+    border-color: var(--wa-tag-border-color-selected);
+    &:hover {
+      background-color: var(--wa-tag-background-color-selected-hover);
+    }
+
+    &.focus-ring {
+      box-shadow: 0 0 0 2px var(--wa-tag-border-color-selected-key-focus);
+      border-color: var(--wa-tag-text-color-selected-key-focus);
+    }
+    &.is-invalid {
+      border-color: var(--wa-tag-border-color-error-selected);
+      .wa-Tags-itemIcon,
+      .wa-Tags-itemLabel,
+      .wa-Tags-itemClearButton {
+        color: var(--wa-tag-text-color-error-selected);
+      }
+      &.focus-ring {
+        box-shadow: 0 0 0 2px var(--wa-tag-border-color-key-focus);
+        border-color: var(--wa-tag-border-color-error-selected);
+      }
+      &:hover {
+        border-color: var(--wa-tag-border-color-selected);
+      }
+    }
+  }
+
+  &.is-invalid {
+    color: var(--wa-tag-icon-color-error);
+    border-color: var(--wa-tag-border-color-error);
+
+    &:hover {
+      color: var(--wa-tag-icon-color-error-hover);
+      border-color: var(--wa-tag-border-color-error-hover);
+    }
+
+    &.focus-ring {
+      color: var(--wa-tag-icon-color-error-hover);
+      border-color: var(--wa-tag-border-color-key-focus);
+      box-shadow: 0 0 0 1px var(--wa-tag-border-color-key-focus);
+    }
+
+    .wa-Tags-itemIcon,
+    .wa-Tags-itemClearButton {
+      color: var(--wa-tag-border-color-error);
+    }
+  }
+
+  &.is-disabled {
+    color: var(--wa-tag-text-color-disabled);
+    background-color: var(--wa-tag-background-color-disabled);
+    border-color: var(--wa-tag-border-color-disabled);
+
+    .wa-Avatar {
+      /* Duplicated so state is on the tag */
+      opacity: var(--wa-avatar-small-opacity-disabled);
+    }
+  }
+}
+
+.wa-Tags-item--removable {
+  &:hover {
+    color: var(--wa-tag-removable-text-color-hover);
+  }
+
+  &:active {
+    color: var(--wa-tag-removable-text-color-down);
+  }
+
+  &.is-invalid {
+    &:hover {
+      border-color: var(--wa-tag-removable-border-color-error-hover);
+      .wa-Tags-itemClearButton {
+        color: var(--wa-tag-removable-border-color-error-hover);
+      }
+    }
+
+    .wa-Tags-itemClearButton {
+      &.is-focused {
+        color: var(--wa-tag-icon-color-error-hover);
+      }
+    }
+
+    &:active {
+      border-color: var(--wa-tag-removable-border-color-error-down);
+      color: var(--wa-tag-removable-text-color-error-down);
+    }
+  }
+
+  &.is-focused {
+    color: var(--wa-tag-removable-text-color-key-focus);
+
+    &.is-invalid {
+      color: var(--wa-tag-removable-text-color-error-key-focus);
+    }
+  }
+
+  &.is-selected {
+    color: var(--wa-tag-removable-text-color-selected);
+    &.is-focused {
+      color: var(--wa-tag-removable-text-color-selected-key-focus);
+    }
+    .wa-Tags-itemClearButton {
+      color: var(--wa-tag-removable-button-icon-color-selected);
+      &:hover {
+        background-color: var(--wa-tag-removable-button-background-color-selected-hover);
+        color: var(--wa-tag-removable-button-icon-color-selected-hover);
+      }
+    }
+  }
+
+  .wa-Tags-itemClearButton {
+    &.is-focused {
+      border: 2px solid var(--wa-tag-removable-border-color-key-focus);
+      border-radius: var(--wa-alias-border-radius-regular);
+      background-color: var(--wa-tag-removable-button-background-color-key-focus);
+      color: var(--wa-tag-removable-button-icon-color-key-focus);
+    }
+    &:hover {
+      background-color: var(--wa-tag-removable-button-background-color-hover);
+      color: var(--wa-tag-removable-button-icon-color-hover);
+    }
+  }
+}

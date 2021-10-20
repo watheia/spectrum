@@ -1,0 +1,227 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* Default */
+.wa-ToggleSwitch-switch {
+  background-color: var(--wa-switch-emphasized-track-color);
+  /* :after is the focus ring */
+  /* :before is used for the handle of the switch */
+  &:before {
+    background-color: var(--wa-switch-emphasized-handle-background-color);
+    border-color: var(--wa-switch-emphasized-handle-border-color);
+  }
+}
+.wa-ToggleSwitch-input ~ .wa-ToggleSwitch-label {
+  color: var(--wa-switch-emphasized-text-color);
+}
+/* Selected */
+.wa-ToggleSwitch-input {
+  &:checked + .wa-ToggleSwitch-switch {
+    background-color: var(--wa-switch-emphasized-track-color-selected);
+    &:before {
+      border-color: var(--wa-switch-emphasized-handle-border-color-selected);
+    }
+  }
+}
+/* Hover */
+.wa-ToggleSwitch:hover {
+  .wa-ToggleSwitch-input {
+    & + .wa-ToggleSwitch-switch {
+      &:before {
+        border-color: var(--wa-switch-emphasized-handle-border-color-hover);
+        box-shadow: none;
+      }
+    }
+    & ~ .wa-ToggleSwitch-label {
+      color: var(--wa-switch-emphasized-text-color-hover);
+    }
+    /* Selected Hover */
+    &:checked:enabled + .wa-ToggleSwitch-switch {
+      background-color: var(--wa-switch-emphasized-track-color-selected-hover);
+      &:before {
+        border-color: var(--wa-switch-emphasized-handle-border-color-selected-hover);
+      }
+    }
+  }
+}
+/* Down */
+.wa-ToggleSwitch:active {
+  .wa-ToggleSwitch-input {
+    & + .wa-ToggleSwitch-switch {
+      &:before {
+        border-color: var(--wa-switch-emphasized-handle-border-color-down);
+      }
+    }
+    & ~ .wa-ToggleSwitch-label {
+      color: var(--wa-switch-emphasized-text-color-down);
+    }
+    /* Selected Down */
+    &:checked:enabled + .wa-ToggleSwitch-switch {
+      background-color: var(--wa-switch-emphasized-track-color-selected-down);
+      &:before {
+        border-color: var(--wa-switch-emphasized-handle-border-color-selected-down);
+      }
+    }
+  }
+}
+/* Disabled */
+.wa-ToggleSwitch .wa-ToggleSwitch-input:disabled {
+  & + .wa-ToggleSwitch-switch {
+    background-color: var(--wa-switch-emphasized-track-color-disabled);
+    &:before {
+      border-color: var(--wa-switch-emphasized-handle-border-color-disabled);
+    }
+  }
+  & ~ .wa-ToggleSwitch-label {
+    color: var(--wa-switch-emphasized-text-color-disabled);
+  }
+  /* Selected Disabled */
+  &:checked {
+    & + .wa-ToggleSwitch-switch {
+      background-color: var(--wa-switch-emphasized-track-color-selected-disabled);
+      &:before {
+        border-color: var(--wa-switch-emphasized-handle-border-color-selected-disabled);
+      }
+    }
+    & ~ .wa-ToggleSwitch-label {
+      color: var(--wa-switch-emphasized-text-color-selected-disabled);
+    }
+  }
+}
+/* Quiet */
+/* Quiet Selected */
+.wa-ToggleSwitch--quiet {
+  .wa-ToggleSwitch-input:checked + .wa-ToggleSwitch-switch {
+    background-color: var(--wa-switch-quiet-track-color-selected);
+    &:before {
+      border-color: var(--wa-switch-quiet-handle-border-color-selected);
+    }
+  }
+}
+/* Quiet Selected Hover */
+.wa-ToggleSwitch--quiet:hover {
+  .wa-ToggleSwitch-input:checked:enabled + .wa-ToggleSwitch-switch {
+    background-color: var(--wa-switch-quiet-track-color-selected-hover);
+    &:before {
+      border-color: var(--wa-switch-quiet-handle-border-color-selected-hover);
+    }
+  }
+}
+/* Quiet Selected Down */
+.wa-ToggleSwitch.wa-ToggleSwitch--quiet:active {
+  .wa-ToggleSwitch-input:checked:enabled + .wa-ToggleSwitch-switch {
+    background-color: var(--wa-switch-quiet-track-color-selected-down);
+    &:before {
+      border-color: var(--wa-switch-quiet-handle-border-color-selected-down);
+    }
+  }
+}
+/* Key Focus */
+.wa-ToggleSwitch,
+.wa-ToggleSwitch:hover {
+  .wa-ToggleSwitch-input:focus-ring {
+    & + .wa-ToggleSwitch-switch {
+      &:after {
+        box-shadow: 0 0 0 var(--wa-switch-focus-ring-size-key-focus)
+          var(--wa-switch-focus-ring-color-key-focus);
+      }
+      &:before {
+        border-color: var(--wa-switch-emphasized-handle-border-color-key-focus);
+      }
+    }
+    /* Selected Key Focus */
+    &:checked {
+      & + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-emphasized-track-color-selected-key-focus);
+        &:before {
+          border-color: var(--wa-switch-emphasized-handle-border-color-selected-key-focus);
+        }
+      }
+    }
+  }
+}
+
+.wa-ToggleSwitch--quiet,
+.wa-ToggleSwitch--quiet:hover {
+  .wa-ToggleSwitch-input:focus-ring {
+    /* Selected Key Focus */
+    &:checked {
+      & + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-quiet-track-color-selected-key-focus);
+        &:before {
+          border-color: var(--wa-switch-quiet-handle-border-color-selected-key-focus);
+        }
+      }
+    }
+  }
+}
+
+.wa-ToggleSwitch--ab {
+  .wa-ToggleSwitch-input {
+    &:checked + .wa-ToggleSwitch-switch {
+      background-color: var(--wa-switch-track-color);
+    }
+
+    &:checked + .wa-ToggleSwitch-switch {
+      &:before {
+        /* Don't be blue */
+        border-color: var(--wa-switch-handle-border-color);
+      }
+    }
+
+    &:focus-ring {
+      &:checked + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-track-color);
+
+        &:before {
+          border-color: var(--wa-switch-handle-border-color-selected);
+        }
+      }
+    }
+
+    &:disabled {
+      &:checked + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-emphasized-track-color-disabled);
+      }
+
+      & + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-emphasized-track-color-disabled);
+
+        &:before {
+          border-color: var(--wa-switch-emphasized-handle-border-color-disabled);
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .wa-ToggleSwitch-input {
+      &:checked:enabled + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-emphasized-track-color);
+        &:before {
+          border-color: var(--wa-switch-emphasized-handle-border-color-hover);
+        }
+      }
+    }
+  }
+
+  &:active {
+    .wa-ToggleSwitch-input {
+      &:checked:enabled + .wa-ToggleSwitch-switch {
+        background-color: var(--wa-switch-emphasized-track-color);
+        &:before {
+          border-color: var(--wa-switch-emphasized-handle-border-color-down);
+        }
+      }
+    }
+  }
+}

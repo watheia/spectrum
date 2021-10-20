@@ -1,0 +1,118 @@
+{
+  "version": 2,
+  "projects": {
+    "atoms-button": "libs/atoms/button",
+    "atoms-checkbox": "libs/atoms/checkbox",
+    "atoms-label": "libs/atoms/label",
+    "atoms-switch": "libs/atoms/switch",
+    "atoms-text": "libs/atoms/text",
+    "atoms-textfield": "libs/atoms/textfield",
+    "auth": "libs/auth",
+    "dato": "libs/dato",
+    "e2e-hybrid-homepage": {
+      "root": "apps/e2e/hybrid-homepage",
+      "sourceRoot": "apps/e2e/hybrid-homepage/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/e2e/hybrid-homepage/cypress.json",
+            "devServerTarget": "web-hybrid-homepage:serve",
+            "tsConfig": "apps/e2e/hybrid-homepage/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "web-hybrid-homepage:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/e2e/hybrid-homepage/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "e2e-provider-e2e": "apps/e2e/provider-e2e",
+    "model": "libs/model",
+    "molecules-form": "libs/molecules/form",
+    "organisms-layout": "libs/organisms/layout",
+    "provider": "libs/provider",
+    "styles": "libs/styles",
+    "test-utils": "libs/test-utils",
+    "theme": "libs/theme",
+    "utils": "libs/utils",
+    "web-hybrid-homepage": {
+      "root": "apps/web/hybrid-homepage",
+      "sourceRoot": "apps/web/hybrid-homepage",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "root": "apps/web/hybrid-homepage",
+            "outputPath": "dist/apps/web/hybrid-homepage"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "web-hybrid-homepage:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "web-hybrid-homepage:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "web-hybrid-homepage:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/web/hybrid-homepage"],
+          "options": {
+            "jestConfig": "apps/web/hybrid-homepage/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/web/hybrid-homepage/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "web-hybrid-homepage"
+}

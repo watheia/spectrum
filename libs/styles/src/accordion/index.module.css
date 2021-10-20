@@ -1,0 +1,153 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+:root {
+  --wa-accordion-icon-width: 6px;
+  --wa-accordion-icon-height: 10px;
+
+  /* Subtract the size of the border since it's on the item itself */
+  --wa-accordion-item-height-actual: calc(
+    var(--wa-accordion-item-height) - var(--wa-accordion-item-border-size)
+  );
+  --wa-accordion-item-title-tracking-actual: calc(
+    var(--wa-accordion-item-title-tracking) / 100
+  );
+
+  --wa-accordion-item-title-padding-y: var(--wa-global-dimension-size-150);
+  --wa-accordion-item-line-height: 1.3;
+}
+
+.wa-Accordion {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.wa-Accordion-itemIndicator {
+  display: block;
+
+  position: absolute;
+  inset-inline-start: var(--wa-accordion-icon-spacing);
+  inset-block-start: calc(
+    var(--wa-accordion-item-height-actual) / 2 - var(--wa-accordion-icon-height) / 2
+  );
+
+  transition: transform ease var(--wa-global-animation-duration-100);
+}
+
+.wa-Accordion-item {
+  z-index: inherit;
+  position: relative;
+
+  display: list-item;
+  margin: 0;
+
+  border-bottom: var(--wa-accordion-item-border-size) solid transparent;
+
+  &:first-of-type {
+    border-top: var(--wa-accordion-item-border-size) solid transparent;
+  }
+}
+
+.wa-Accordion-itemHeading {
+  margin: 0;
+}
+
+.wa-Accordion-itemHeader {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  box-sizing: border-box;
+  /* left padding takes into account the icon's size as well as the focus state's left border */
+  padding-block: var(--wa-accordion-item-title-padding-y);
+  padding-inline-start: calc(calc(var(--wa-accordion-item-padding) * 2) + 2px);
+  padding-inline-end: var(--wa-accordion-item-padding);
+  margin: 0;
+
+  min-height: var(--wa-accordion-item-height-actual);
+
+  font-size: var(--wa-accordion-item-title-text-size);
+  line-height: var(--wa-accordion-item-line-height);
+  text-transform: uppercase;
+  letter-spacing: var(--wa-accordion-item-title-tracking-actual);
+
+  text-overflow: ellipsis;
+  cursor: default;
+  font-weight: 500;
+
+  /* reset styling if button element is used */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: inherit;
+  border: 0;
+  font-family: inherit;
+  text-align: start;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+
+    &::after {
+      content: "";
+
+      position: absolute;
+      inset-inline-start: 0;
+      top: calc(var(--wa-accordion-item-border-size) * -1);
+      bottom: calc(var(--wa-accordion-item-border-size) * -1);
+
+      width: var(--wa-accordion-item-border-size-key-focus);
+    }
+  }
+}
+
+.wa-Accordion-itemContent {
+  padding: 0 var(--wa-accordion-item-content-padding)
+    var(--wa-accordion-item-content-padding) var(--wa-accordion-item-content-padding);
+  display: none;
+}
+
+.wa-Accordion-item {
+  &.is-open {
+    > .wa-Accordion-itemHeading {
+      > .wa-Accordion-itemHeader {
+        > .wa-Accordion-itemIndicator {
+          [dir="ltr"] & {
+            transform: rotate(90deg);
+          }
+          [dir="rtl"] & {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+    }
+
+    > .wa-Accordion-itemHeader::after {
+      /* No bottom border when open, so be less tall */
+      height: var(--wa-accordion-item-height-actual);
+    }
+
+    > .wa-Accordion-itemContent {
+      display: block;
+    }
+  }
+
+  &.is-disabled {
+    .wa-Accordion-itemHeader {
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,107 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+.wa-Tabs {
+  border-block-end-color: var(--wa-tabs-rule-color);
+
+  &.wa-Tabs--isCollapsed {
+    :focus-ring {
+      /* FieldButton Picker focus ring override */
+      box-shadow: none;
+
+      &::before {
+        border-color: var(--wa-tabs-focus-ring-color);
+      }
+    }
+  }
+}
+
+.wa-Tabs--vertical {
+  border-inline-start-color: var(--wa-tabs-vertical-rule-color);
+}
+
+.wa-Tabs-selectionIndicator {
+  background-color: var(--wa-tabs-selection-indicator-color);
+}
+
+.wa-Tabs-item {
+  color: var(--wa-tabs-text-color);
+
+  .wa-Icon {
+    fill: var(--wa-tabs-icon-color);
+  }
+
+  &:hover {
+    color: var(--wa-tabs-text-color-hover);
+
+    .wa-Icon {
+      fill: var(--wa-tabs-icon-color-hover);
+    }
+  }
+
+  &.is-selected {
+    color: var(--wa-tabs-text-color-selected);
+
+    .wa-Icon {
+      fill: var(--wa-tabs-icon-color-selected);
+    }
+  }
+
+  &:focus-ring {
+    color: var(--wa-tabs-text-color-key-focus);
+
+    &::before {
+      border-color: var(--wa-tabs-focus-ring-color);
+    }
+
+    .wa-Icon {
+      fill: var(--wa-tabs-icon-color-key-focus);
+    }
+  }
+
+  &.is-disabled {
+    color: var(--wa-tabs-text-color-disabled);
+
+    .wa-Icon {
+      fill: var(--wa-tabs-icon-color-disabled);
+    }
+  }
+}
+
+.wa-Tabs--quiet {
+  border-block-end-color: var(--wa-tabs-quiet-rule-color);
+
+  .wa-Tabs-selectionIndicator {
+    background-color: var(--wa-tabs-quiet-selection-indicator-color);
+  }
+}
+
+.wa-Tabs--vertical {
+  &.wa-Tabs--quiet,
+  &.wa-Tabs--compact {
+    border-inline-start-color: var(--wa-tabs-quiet-vertical-rule-color);
+
+    .wa-Tabs-selectionIndicator {
+      background-color: var(--wa-tabs-quiet-selection-indicator-color);
+    }
+  }
+}
+
+.wa-TabsPanel-tabpanel {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-ring {
+    border-color: var(--wa-tabs-focus-ring-color);
+  }
+}

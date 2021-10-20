@@ -1,0 +1,174 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+& {
+  background-color: var(--wa-alias-background-color-default);
+
+  /* Prevent tap highlights */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.app {
+  min-width: 300px;
+  max-width: 600px;
+  margin: 50px auto;
+  font-family: sans-serif;
+}
+
+.app .gutter-left {
+  margin-left: 9px;
+}
+
+.app .col-span-2 {
+  grid-column: span 2;
+}
+
+.app .flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app header {
+  padding: 5px;
+  background-color: #143055;
+  border-radius: 3px;
+  color: white;
+}
+
+.app main {
+  padding: 0 36px;
+}
+
+.app p {
+  text-align: center;
+}
+
+.app h1 {
+  margin-left: 18px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.app h2 {
+  margin: 40px 0 10px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.app .resources {
+  display: grid;
+  padding: 0;
+  grid-gap: 9px;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+  text-align: center;
+}
+
+.app .resource {
+  height: 36px;
+  padding: 3px 9px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  color: #0094ba;
+  text-decoration: none;
+}
+
+.app .resource:hover {
+  background-color: rgba(68, 138, 255, 0.04);
+}
+
+.app pre {
+  padding: 9px;
+  background-color: black;
+  border-radius: 4px;
+  color: #eee;
+}
+
+.app details {
+  padding: 3px 9px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: 9px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 4px;
+  color: #333;
+}
+
+.app summary {
+  height: 36px;
+  line-height: 36px;
+  outline: none;
+}
+
+.app .github-star-container {
+  margin-top: 12px;
+  line-height: 20px;
+}
+
+.app .github-star-container a {
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+}
+
+.app .github-star-badge {
+  display: flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid rgba(27, 31, 35, 0.2);
+  margin-left: 4px;
+  background-image: linear-gradient(-180deg, #fafbfc, #eff3f6 90%);
+  border-radius: 3px;
+  color: #24292e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.app .github-star-badge:hover {
+  border-color: rgba(27, 31, 35, 0.35);
+  background-image: linear-gradient(-180deg, #f0f3f6, #e6ebf1 90%);
+  background-position: -0.5em;
+}
+
+.app .github-star-badge .material-icons {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}

@@ -1,0 +1,42 @@
+{
+  "root": "libs/organisms/layout",
+  "sourceRoot": "libs/organisms/layout/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/organisms/layout",
+        "tsConfig": "libs/organisms/layout/tsconfig.lib.json",
+        "project": "libs/organisms/layout/package.json",
+        "entryFile": "libs/organisms/layout/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/organisms/layout/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/organisms/layout/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/organisms/layout"],
+      "options": {
+        "jestConfig": "libs/organisms/layout/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,27 +1,7 @@
-/*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
- */
-
-// For a detailed explanation regarding each configuration property, visit:
-// https://jestjs.io/docs/en/configuration.html
-
-// Mock v2 if not installed
-let mocks = {};
-try {
-  require.resolve('@react/react-spectrum/Button');
-} catch (err) {
-  mocks['^@react\/.*'] = 'identity-obj-proxy';
-}
+const { getJestProjects } = require("@nrwl/jest")
 
 module.exports = {
+  projects: getJestProjects(),
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -52,13 +32,23 @@ module.exports = {
     "/dist/",
     "/.parcel-cache/"
   ],
+  moduleNameMapper: {
+    /* Handle CSS imports (with CSS modules)
+    https://jestjs.io/docs/webpack#mocking-css-modules */
+    "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
 
-  // A list of reporter names that Jest uses when writing coverage reports
+    // Handle CSS imports (without CSS modules)
+    "^.+\\.(css|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
+    '\\.\./Icon/.*$': '<rootDir>/__mocks__/iconMock.js',
+    ...mocks
+  },
   coverageReporters: [
-    // "json",
-    // "text",
+    "json",
     "lcov",
-    // "clover"
+    "text",
+    "clover"
   ],
 
   // An object that configures minimum threshold enforcement for coverage results
@@ -66,8 +56,6 @@ module.exports = {
 
   // A path to a custom dependency extractor
   // dependencyExtractor: null,
-
-  displayName: 'component and hooks',
 
   // Make calling deprecated APIs throw helpful error messages
   // errorOnDeprecated: false,
@@ -100,12 +88,6 @@ module.exports = {
   // ],
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
-  moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/__mocks__/fileMock.js',
-    '\\.(css|styl)$': 'identity-obj-proxy',
-    '\\.\./Icon/.*$': '<rootDir>/__mocks__/iconMock.js',
-    ...mocks
-  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],
@@ -118,9 +100,6 @@ module.exports = {
 
   // A preset that is used as a base for Jest's configuration
   // preset:
-
-  // Run tests from one or more projects
-  projects: ['<rootDir>'],
 
   // Use this configuration option to add custom reporters to Jest
   reporters: [
@@ -146,9 +125,9 @@ module.exports = {
   // rootDir: null,
 
   // A list of paths to directories that Jest should use to search for files in
-  roots: [
-    'packages/'
-  ],
+  // roots: [
+  //   'packages/'
+  // ],
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
@@ -174,43 +153,43 @@ module.exports = {
   // The glob patterns Jest uses to detect test files
   // see issue https://github.com/facebook/jest/issues/7108
   testMatch: [
-    "**/packages/**/*.test.[tj]s?(x)"
-  ],
-
-  // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    "/node_modules/",
-    "\\.ssr\\.test\\.[tj]sx?$"
+    "**/packages/**/*.(test|spec).[tj]s?(x)"
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
 
   // This option allows the use of a custom results processor
-  // testResultsProcessor: null,
+  testResultsProcessor: "<rootDir>/node_modules/jest-junit-reporter",
 
   // This option allows use of a custom test runner
   // testRunner: "jasmine2",
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
-  // testURL: "http://localhost",
+  testURL: "http://localhost:4200",
 
   // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: null,
+  transform: {
+    /* Use babel-jest to transpile tests with the next/babel preset
+    https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object */
+    "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { presets: ["next/babel"] }]
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  transformIgnorePatterns: [
+    "/node_modules/",
+    "^.+\\.module\\.(css|sass|scss)$",
+    "^.+\\.stories\\.(js|jsx|ts|tsx)$"
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  // verbose: null,
+  verbose: true,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   watchPathIgnorePatterns: [
@@ -219,6 +198,10 @@ module.exports = {
     ".parcel-cache"
   ],
 
-  // Whether to use watchman for file crawling
-  // watchman: true,
-};
+
+  // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "\\.ssr\\.test\\.[tj]sx?$"
+  ]
+}

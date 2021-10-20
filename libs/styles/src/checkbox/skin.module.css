@@ -1,0 +1,213 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+:root {
+  /* todo: fix in DNA */
+  --wa-checkbox-emphasized-text-color-key-focus: var(
+    --wa-checkbox-emphasized-text-color-hover
+  );
+  --wa-checkbox-emphasized-box-border-color-selected-key-focus: var(
+    --wa-checkbox-emphasized-box-border-color-selected-hover
+  );
+}
+
+.wa-Checkbox {
+  color: var(--wa-checkbox-text-color);
+}
+.wa-Checkbox .wa-Checkbox-checkmark,
+.wa-Checkbox .wa-Checkbox-partialCheckmark {
+  color: var(--wa-checkbox-checkmark-color);
+}
+
+.wa-Checkbox-box {
+  &:before {
+    border-color: var(--wa-checkbox-emphasized-box-border-color);
+    background-color: var(--wa-checkbox-emphasized-box-background-color);
+  }
+}
+
+.wa-Checkbox-label {
+  color: var(--wa-checkbox-emphasized-text-color);
+}
+
+/* Indeterminate is basically a checked state, so handle colors for checked state here */
+.wa-Checkbox.is-indeterminate .wa-Checkbox-box,
+.wa-Checkbox-input:checked + .wa-Checkbox-box {
+  &:before {
+    border-color: var(--wa-checkbox-emphasized-box-border-color-selected);
+  }
+}
+
+.wa-Checkbox:hover {
+  &.is-indeterminate .wa-Checkbox-box,
+  .wa-Checkbox-input:checked + .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-emphasized-box-border-color-selected-hover);
+    }
+  }
+}
+
+.wa-Checkbox:active {
+  &.is-indeterminate .wa-Checkbox-box,
+  .wa-Checkbox-input:checked + .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-emphasized-box-border-color-selected-down);
+    }
+  }
+}
+
+.wa-Checkbox {
+  border-color: var(--wa-checkbox-emphasized-box-border-color);
+
+  &:hover {
+    .wa-Checkbox-box {
+      &:before {
+        border-color: var(--wa-checkbox-emphasized-box-border-color-hover);
+      }
+    }
+    .wa-Checkbox-label {
+      color: var(--wa-checkbox-emphasized-text-color-hover);
+    }
+  }
+
+  &:active {
+    .wa-Checkbox-box {
+      &:before {
+        border-color: var(--wa-checkbox-emphasized-box-border-color-down);
+      }
+    }
+    .wa-Checkbox-label {
+      color: var(--wa-checkbox-emphasized-text-color-down);
+    }
+  }
+}
+
+.wa-Checkbox .wa-Checkbox-input,
+.wa-Checkbox .wa-Checkbox-input:checked {
+  &:disabled + .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-emphasized-box-border-color-disabled);
+      background-color: var(--wa-checkbox-emphasized-box-background-color-disabled);
+    }
+  }
+
+  &:disabled ~ .wa-Checkbox-label {
+    color: var(--wa-checkbox-text-color-disabled);
+  }
+}
+
+/* Focus */
+.wa-Checkbox-input {
+  & + .wa-Checkbox-box {
+    &:after {
+      box-shadow: 0 0 0 var(--wa-checkbox-focus-ring-size-key-focus)
+        var(--wa-checkbox-focus-ring-color-key-focus);
+      opacity: 0;
+    }
+  }
+  &:focus-ring + .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-box-border-color-key-focus);
+    }
+    &:after {
+      opacity: 1;
+    }
+  }
+  .wa-Checkbox.is-indeterminate &,
+  &:checked {
+    &:focus-ring + .wa-Checkbox-box {
+      &:before {
+        border-color: var(--wa-checkbox-emphasized-box-border-color-selected-key-focus);
+      }
+    }
+  }
+  &:focus-ring ~ .wa-Checkbox-label {
+    color: var(--wa-checkbox-emphasized-text-color-key-focus);
+  }
+}
+
+.wa-Checkbox--quiet .wa-Checkbox-input:checked + .wa-Checkbox-box,
+.wa-Checkbox--quiet.is-indeterminate .wa-Checkbox-box,
+.wa-Checkbox--quiet.is-indeterminate .wa-Checkbox-input:focus-ring + .wa-Checkbox-box {
+  &:before {
+    border-color: var(--wa-checkbox-quiet-box-border-color-selected);
+  }
+}
+.wa-Checkbox--quiet:hover {
+  &.is-indeterminate .wa-Checkbox-box,
+  .wa-Checkbox-input:checked + .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-quiet-box-border-color-selected-hover);
+    }
+  }
+}
+.wa-Checkbox--quiet:active {
+  &.is-indeterminate .wa-Checkbox-box,
+  .wa-Checkbox-input:checked + .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-quiet-box-border-color-selected-down);
+    }
+  }
+}
+
+.wa-Checkbox.is-invalid {
+  /* Extra-specific selectors added here to handle checked state */
+  .wa-Checkbox-input:checked + .wa-Checkbox-box,
+  .wa-Checkbox-box {
+    &:before {
+      border-color: var(--wa-checkbox-box-border-color-error);
+    }
+  }
+
+  .wa-Checkbox-label {
+    color: var(--wa-checkbox-text-color-error);
+  }
+
+  &.is-indeterminate .wa-Checkbox-input:focus-ring,
+  .wa-Checkbox-input:focus-ring {
+    & + .wa-Checkbox-box {
+      &:before {
+        border-color: var(--wa-checkbox-box-border-color-error-hover);
+      }
+    }
+
+    & ~ .wa-Checkbox-label {
+      color: var(--wa-checkbox-text-color-error-hover);
+    }
+  }
+
+  &:hover {
+    .wa-Checkbox-input:checked + .wa-Checkbox-box,
+    .wa-Checkbox-box {
+      &:before {
+        border-color: var(--wa-checkbox-box-border-color-error-hover);
+      }
+    }
+
+    .wa-Checkbox-label {
+      color: var(--wa-checkbox-text-color-error-hover);
+    }
+  }
+
+  &:active {
+    .wa-Checkbox-input:checked + .wa-Checkbox-box,
+    .wa-Checkbox-box {
+      &:before {
+        border-color: var(--wa-checkbox-box-border-color-error-down);
+      }
+    }
+
+    .wa-Checkbox-label {
+      color: var(--wa-checkbox-text-color-error-down);
+    }
+  }
+}

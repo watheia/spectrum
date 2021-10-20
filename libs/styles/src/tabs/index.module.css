@@ -1,0 +1,297 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  --wa-tabs-item-height: calc(var(--wa-tabs-height) - var(--wa-tabs-rule-height));
+  --wa-tabs-compact-item-height: calc(
+    var(--wa-tabs-quiet-compact-height) - var(--wa-tabs-rule-height)
+  );
+}
+
+.wa-TabsPanel {
+  display: flex;
+  /* This is so TabsPanel can collapse with wrapping block/flex containers out of the box. If end user wants to place element next to tabpanel,
+  they must include flex: 1 1 auto and min-width: 0 on the Tabs component. */
+  width: 100%;
+}
+
+.wa-TabsPanel--horizontal {
+  flex-direction: column;
+}
+
+.wa-TabsPanel--vertical {
+  flex-direction: row;
+}
+
+.wa-Tabs {
+  display: flex;
+
+  /* Contain the selection indicator */
+  position: relative;
+  z-index: 0;
+
+  margin: 0;
+  padding: 0;
+
+  /* Friends should align to the top of the tabs */
+  vertical-align: top;
+
+  outline: none;
+  user-select: none;
+}
+
+.wa-Tabs-item {
+  /* Contain the focus ring */
+  position: relative;
+
+  box-sizing: border-box;
+
+  block-size: var(--wa-tabs-item-height);
+  line-height: var(--wa-tabs-item-height);
+
+  /* Float above the tab line */
+  z-index: 1;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition: color var(--wa-global-animation-duration-100) ease-out;
+  cursor: default;
+  outline: none;
+
+  &.is-disabled {
+    cursor: default;
+
+    .wa-Tabs-itemLabel {
+      cursor: default;
+    }
+  }
+
+  .wa-Icon {
+    /* Vertical centering */
+    block-size: var(--wa-tabs-item-height);
+    transition: fill var(--wa-global-animation-duration-100) ease-out;
+    /* Prevents a wiggle in Safari when switching tabs. */
+    transform: translate3d(0, 0, 0);
+
+    & + .wa-Tabs-itemLabel {
+      margin-inline-start: var(--wa-tabs-icon-gap);
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+
+    box-sizing: border-box;
+
+    block-size: var(--wa-tabs-focus-ring-height);
+    margin-block-start: calc(
+      calc(var(--wa-tabs-focus-ring-height) / -2) + calc(var(--wa-tabs-rule-height) / 2)
+    );
+    inset-inline-start: calc(var(--wa-tabs-focus-ring-padding-x) * -1);
+    inset-inline-end: calc(var(--wa-tabs-focus-ring-padding-x) * -1);
+    border: var(--wa-tabs-focus-ring-size) solid transparent;
+    border-radius: var(--wa-tabs-focus-ring-border-radius);
+
+    pointer-events: none;
+  }
+}
+
+.wa-Tabs-itemLabel {
+  cursor: default;
+  vertical-align: top;
+  display: inline-block;
+
+  font-size: var(--wa-tabs-text-size);
+  font-weight: var(--wa-tabs-text-font-weight);
+
+  &:empty {
+    /* Hide the tab label if it's not being used */
+    display: none;
+  }
+}
+
+.wa-Tabs-selectionIndicator {
+  position: absolute;
+  inset-inline-start: 0;
+
+  /* Be below the tab */
+  z-index: 0;
+  transform-origin: top left;
+
+  [dir="ltr"] .wa-Tabs--horizontal & {
+    transform: translateX(var(--wa-tabs-focus-ring-padding-x));
+  }
+
+  [dir="rtl"] .wa-Tabs--horizontal & {
+    transform: translateX(calc(var(--wa-tabs-focus-ring-padding-x) * -1));
+  }
+
+  border-radius: var(--wa-tabs-rule-border-radius);
+}
+
+.wa-Tabs--compact {
+  .wa-Tabs-item {
+    block-size: var(--wa-tabs-compact-item-height);
+    line-height: var(--wa-tabs-compact-item-height);
+
+    .wa-Icon {
+      /* Vertical centering */
+      block-size: var(--wa-tabs-compact-item-height);
+    }
+  }
+}
+
+.wa-Tabs--horizontal {
+  align-items: center;
+
+  border-block-end: var(--wa-tabs-rule-height) solid;
+
+  .wa-Tabs-item {
+    vertical-align: top;
+
+    /* Target anything since React likes to add lots of happy <div>s around all things */
+    & + *:not(.wa-Tabs-selectionIndicator) {
+      margin-inline-start: var(--wa-tabs-item-gap);
+    }
+  }
+
+  .wa-Tabs-selectionIndicator {
+    position: absolute;
+    block-size: var(--wa-tabs-rule-height);
+
+    inset-block-end: calc(var(--wa-tabs-rule-height) * -1);
+    transition: transform var(--wa-tabs-selection-indicator-animation-duration) ease-in-out,
+      width var(--wa-tabs-selection-indicator-animation-duration) ease-in-out;
+  }
+
+  &.wa-Tabs--isCollapsed {
+    inset-inline-start: 0;
+    block-size: var(--wa-tabs-item-height);
+
+    /* FieldButton Picker focus ring override */
+    & button {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+
+        box-sizing: border-box;
+
+        block-size: var(--wa-tabs-focus-ring-height);
+        margin-block-start: calc(
+          calc(var(--wa-tabs-focus-ring-height) / -2) + calc(var(--wa-tabs-rule-height) / 2)
+        );
+        inset-inline-start: calc(var(--wa-tabs-focus-ring-padding-x) * -1);
+        inset-inline-end: calc(var(--wa-tabs-focus-ring-padding-x) * -1);
+        border: var(--wa-tabs-focus-ring-size) solid transparent;
+        border-radius: var(--wa-tabs-focus-ring-border-radius);
+
+        pointer-events: none;
+      }
+    }
+
+    &.wa-Tabs--compact {
+      & button {
+        height: calc(var(--wa-tabs-compact-item-height));
+      }
+    }
+  }
+
+  &.wa-Tabs--compact {
+    /* The ActionButton is taller than the tabs, so don't push tabs around */
+    box-sizing: content-box;
+    block-size: var(--wa-tabs-compact-item-height);
+    align-items: end;
+  }
+}
+
+/* Quiet tabs should not extend all the way across the screen as their line doesn't */
+.wa-Tabs--quiet {
+  display: inline-flex;
+}
+
+.wa-Tabs--vertical {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 0;
+  border-inline-start: var(--wa-tabs-vertical-rule-width) solid;
+
+  .wa-Tabs-item {
+    block-size: var(--wa-tabs-vertical-item-height);
+    padding: 0 var(--wa-tabs-focus-ring-padding-x);
+    /* Subtract focus ring padding from margin-left since the padding value already offsets tabs-items */
+    margin-inline-start: calc(
+      var(--wa-tabs-vertical-item-margin-left) - var(--wa-tabs-focus-ring-padding-x)
+    );
+    margin-block-end: var(--wa-tabs-vertical-item-gap);
+
+    &::before {
+      /* padding is included in click area of tab items, so only need to offset by the size of the focus ring's border */
+      inset-inline-start: calc(var(--wa-tabs-focus-ring-size) * -1);
+      inset-inline-end: calc(var(--wa-tabs-focus-ring-size) * -1);
+      margin-block-start: calc(calc(var(--wa-tabs-focus-ring-height) / -2));
+    }
+  }
+
+  &.wa-Tabs--compact {
+    .wa-Tabs-item {
+      block-size: var(--wa-tabs-compact-vertical-item-height);
+      line-height: var(--wa-tabs-compact-vertical-item-height);
+      margin-block-end: var(--wa-tabs-compact-vertical-item-gap);
+
+      .wa-Icon {
+        /* Vertical centering */
+        block-size: var(--wa-tabs-compact-vertical-item-height);
+      }
+    }
+  }
+
+  .wa-Tabs-selectionIndicator {
+    position: absolute;
+    inline-size: var(--wa-tabs-vertical-rule-width);
+
+    inset-inline-start: calc(var(--wa-tabs-vertical-rule-width) * -1);
+    transition: transform var(--wa-tabs-selection-indicator-animation-duration) ease-in-out,
+      height var(--wa-tabs-selection-indicator-animation-duration) ease-in-out;
+  }
+}
+
+.wa-TabsPanel-collapseWrapper {
+  display: flex;
+  position: relative;
+}
+
+.wa-TabsPanel-tabs {
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0%;
+
+  &.wa-Tabs--vertical {
+    flex-grow: 0;
+  }
+}
+
+.wa-TabsPanel-tabpanel {
+  flex-grow: 1;
+  border: var(--wa-tabs-focus-ring-size) solid transparent;
+}
+
+.wa-TabsPanel--vertical {
+  .wa-Tabs {
+    padding-right: var(--wa-global-dimension-size-160);
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "root": "libs/atoms/switch",
+  "sourceRoot": "libs/atoms/switch/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/atoms/switch",
+        "tsConfig": "libs/atoms/switch/tsconfig.lib.json",
+        "project": "libs/atoms/switch/package.json",
+        "entryFile": "libs/atoms/switch/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "assets": [
+          {
+            "glob": "libs/atoms/switch/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/atoms/switch/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/atoms/switch"],
+      "options": {
+        "jestConfig": "libs/atoms/switch/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

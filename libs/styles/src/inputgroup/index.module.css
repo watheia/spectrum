@@ -1,0 +1,223 @@
+/*
+Copyright 2019 Adobe. All rights reserved.
+This file is licensed to you under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License. You may obtain a copy
+of the License at http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under
+the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
+OF ANY KIND, either express or implied. See the License for the specific language
+governing permissions and limitations under the License.
+*/
+
+/* @import '../commons/index.css'; */
+
+:root {
+  /* Todo: move to DNA */
+  --wa-combobox-quiet-fieldbutton-border-radius: 0;
+  --wa-combobox-quiet-fieldbutton-padding-right: 0;
+  --wa-combobox-quiet-fieldbutton-padding-left: var(--wa-global-dimension-size-130);
+  --wa-combobox-validation-icon-right: var(--wa-global-dimension-size-100);
+  --wa-datepicker-input-width: calc(
+    var(--wa-global-dimension-size-1600) - 2 * var(--wa-padding)
+  );
+  --wa-datepicker-datetime-input-width: calc(
+    var(--wa-datepicker-input-width) + var(--wa-global-dimension-size-700) -
+      var(--wa-global-dimension-static-font-size-100) / 2
+  );
+  --wa-datepicker-range-dash-margin-left: calc(
+    -0.5 * var(--wa-global-dimension-static-font-size-100)
+  );
+  --wa-datepicker-range-dash-padding-top: 0;
+  --wa-datepicker-range-dash-line-height: calc(
+    var(--wa-textfield-height) - var(--wa-global-dimension-size-100)
+  );
+
+  --wa-combobox-button-width: var(--wa-global-dimension-size-400);
+}
+
+.wa-InputGroup {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  min-width: calc(2.5 * var(--wa-dropdown-height));
+  border-radius: var(--wa-border-radius);
+
+  .wa-FieldButton {
+    padding: 0;
+    inline-size: var(--wa-combobox-button-width);
+    border-start-start-radius: var(--wa-combobox-fieldbutton-border-top-left-radius);
+    border-end-start-radius: var(--wa-combobox-fieldbutton-border-bottom-left-radius);
+    border-width: 1px;
+    flex-shrink: 0;
+  }
+
+  &.is-disabled {
+    .wa-FieldButton {
+      border-width: 0;
+    }
+  }
+
+  .wa-InputGroup-field {
+    .wa-InputGroup-input-validationIcon {
+      padding-inline-end: 0;
+      inset-inline-end: var(--wa-combobox-validation-icon-right);
+    }
+
+    .wa-InputGroup-input-circleLoader {
+      padding-inline-end: 0;
+      inset-inline-end: var(--wa-combobox-validation-icon-right);
+    }
+  }
+}
+
+.wa-InputGroup-field {
+  flex: 1 1 auto;
+}
+
+.wa-InputGroup-input {
+  border-start-end-radius: var(--wa-combobox-textfield-border-top-right-radius);
+  border-end-end-radius: var(--wa-combobox-textfield-border-bottom-right-radius);
+  border-inline-end-style: none;
+}
+
+.wa-InputGroup--quiet {
+  border-radius: var(--wa-combobox-quiet-fieldbutton-border-radius);
+  min-width: calc(2 * var(--wa-dropdown-height));
+
+  .wa-FieldButton {
+    inline-size: auto;
+    position: relative;
+
+    padding-inline-start: var(--wa-combobox-quiet-fieldbutton-padding-left);
+    padding-inline-end: var(--wa-combobox-quiet-fieldbutton-padding-right);
+    border-width: 0;
+    border-bottom: var(--wa-textfield-quiet-affixed-border-size) solid;
+    border-radius: var(--wa-combobox-quiet-fieldbutton-border-radius);
+
+    /* More hitarea */
+    &:after {
+      content: "";
+      position: absolute;
+      block-size: 100%;
+      inline-size: 10px;
+      inset-inline-end: -10px;
+    }
+  }
+
+  .wa-InputGroup-icon {
+    inset-inline-end: 0;
+  }
+
+  &.is-disabled {
+    .wa-FieldButton {
+      border-bottom-width: 1px;
+    }
+  }
+
+  .wa-InputGroup-field {
+    .wa-InputGroup-input-validationIcon {
+      padding-inline-end: 0;
+      inset-inline-end: 0;
+    }
+
+    .wa-InputGroup-input-circleLoader {
+      padding-inline-end: 0;
+      inset-inline-end: var(--wa-global-dimension-size-10);
+    }
+  }
+}
+
+.wa-InputGroup-popover--quiet {
+  /* Define this var so it can be read from JS */
+  --wa-dropdown-quiet-offset: calc(
+    var(--wa-dropdown-quiet-popover-offset-x) + var(--wa-popover-border-size)
+  );
+  margin-inline-end: calc(var(--wa-dropdown-quiet-offset) * -1);
+}
+
+.wa-Datepicker--range {
+  border-radius: var(--wa-border-radius);
+  /* Input Group */
+  &.wa-InputGroup--quiet {
+    border-radius: var(--wa-combobox-quiet-fieldbutton-border-radius);
+    .wa-FieldButton {
+      border-radius: var(--wa-combobox-quiet-fieldbutton-border-radius);
+    }
+  }
+  /* Datetime Range */
+  &.wa-Datepicker--datetimeRange {
+    /* Inputs */
+    .wa-InputGroup-field {
+      width: var(--wa-datepicker-datetime-input-width);
+      min-width: var(--wa-datepicker-datetime-input-width);
+    }
+  }
+  /* Inputs */
+  .wa-InputGroup-field {
+    width: var(--wa-datepicker-input-width);
+    min-width: var(--wa-datepicker-input-width);
+    flex: initial;
+  }
+  .wa-Datepicker-startField {
+    .wa-InputGroup-field {
+      border-inline-end: 0;
+      padding-inline-end: var(--wa-padding);
+    }
+
+    svg {
+      display: none;
+    }
+  }
+  .wa-Datepicker-endField {
+    .wa-InputGroup-field {
+      flex: 1;
+      border-inline-start: 0;
+      border-radius: 0;
+      padding-inline-start: var(--wa-padding);
+    }
+  }
+  /* Em dash */
+  .wa-Datepicker--rangeDash {
+    line-height: var(--wa-datepicker-range-dash-line-height);
+    padding-top: var(--wa-datepicker-range-dash-padding-top);
+    flex: initial;
+    width: 0;
+    z-index: 1;
+    &:before {
+      content: "–";
+      display: inline-block;
+      margin: 0 var(--wa-datepicker-range-dash-margin-left);
+      overflow: hidden;
+      text-align: center;
+      vertical-align: middle;
+      width: var(--wa-global-dimension-static-font-size-100);
+    }
+  }
+  /* Focus ring */
+  &.is-focused {
+    .wa-Datepicker-focusRing {
+      position: absolute;
+      border-radius: var(--wa-border-radius);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  }
+  &.wa-InputGroup--quiet {
+    &.is-focused {
+      .wa-Datepicker-focusRing {
+        border-radius: var(--wa-combobox-quiet-fieldbutton-border-radius);
+        top: auto;
+      }
+    }
+    .wa-Datepicker--rangeDash {
+      &:before {
+        margin-inline-start: var(--wa-datepicker-range-dash-margin-left);
+      }
+    }
+  }
+}
