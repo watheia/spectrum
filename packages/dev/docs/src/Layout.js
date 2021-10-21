@@ -311,7 +311,7 @@ function Page({ children, currentPage, publicUrl, styles, scripts }) {
               publisher: {
                 "@type": "Organization",
                 url: "https://watheia.org",
-                name: "Watheia",
+                name: "Watheia Labs",
                 logo: "https://cdn.watheia.org/assets/wa-card.png",
               },
             }),
