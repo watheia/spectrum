@@ -12,3 +12,5 @@ packages/react-stately/dist
 /public/bit
 /.yarn
 
+*.hbs
+
