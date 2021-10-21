@@ -7,7 +7,7 @@
     "parcel": ">= 2.0.0-alpha.3.2"
   },
   "dependencies": {
-    "@parcel/plugin": "nightly",
-    "@parcel/node-resolver-core": "nightly"
+    "@parcel/node-resolver-core": "nightly",
+    "@parcel/plugin": "nightly"
   }
 }

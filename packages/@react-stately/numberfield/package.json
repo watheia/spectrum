@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
+    "@internationalized/number": "^3.0.1",
     "@react-stately/utils": "^3.2.1",
     "@react-types/numberfield": "^3.0.0",
-    "@react-types/shared": "^3.7.0",
-    "@internationalized/number": "^3.0.1"
+    "@react-types/shared": "^3.7.0"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0-rc.1"

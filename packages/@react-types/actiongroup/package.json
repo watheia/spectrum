@@ -9,8 +9,8 @@
     "url": "https://github.com/watheia/spectrum"
   },
   "dependencies": {
-    "@react-types/shared": "^3.7.0",
-    "@react-types/button": "^3.4.0"
+    "@react-types/button": "^3.4.0",
+    "@react-types/shared": "^3.7.0"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0-rc.1"

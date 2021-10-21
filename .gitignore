@@ -17,3 +17,11 @@ dist
 public
 storybook-static
 junit.xml
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

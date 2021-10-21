@@ -42,14 +42,14 @@ test:
     paths:
       - dist/
 
-# chromatic:
-#   stage: deploy
-#   # Sets the docker image for the job
-#   image: node:12
+chromatic:
+  stage: deploy
+  # Sets the docker image for the job
+  image: node:latest
 
-#   # Installs the dependencies
-#   before_script:
-#     - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
-#   script:
-#     - yarn chromatic
+  # Installs the dependencies
+  before_script:
+    - yarn install --frozen-lockfile --prefer-offline --cache-folder .yarn
+  script:
+    - yarn chromatic
 
