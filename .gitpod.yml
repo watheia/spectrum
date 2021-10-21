@@ -1,0 +1,12 @@
+tasks:
+  - init: bit install
+    command: yarn start:docs
+
+ports:
+  - port: 1234
+    onOpen: open-preview
+
+image:
+  file: .gitpod.Dockerfile
+
+
