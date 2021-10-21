@@ -1,5 +1,5 @@
 tasks:
-  - init: bit install
+  - init: bvm upgrade && bit import && bit install
     command: yarn start:docs
 
 ports:
@@ -8,5 +8,3 @@ ports:
 
 image:
   file: .gitpod.Dockerfile
-
-
