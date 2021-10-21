@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {mergeProps, useViewportSize} from "@react-aria/utils";
-import {ModalProps} from "@react-types/overlays";
-import modalStyles from "@adobe/spectrum-css-temp/components/modal/vars.css";
-import {Overlay} from "./Overlay";
+import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
+import { mergeProps, useViewportSize } from "@react-aria/utils";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { ModalProps } from "@react-types/overlays";
+import { DOMRef } from "@react-types/shared";
+import modalStyles from "@watheia/spectrum-css-temp/components/modal/vars.css";
+import React, { forwardRef, HTMLAttributes, ReactNode, RefObject } from "react";
+import { Overlay } from "./Overlay";
 import overrideStyles from "./overlays.css";
-import React, {forwardRef, HTMLAttributes, ReactNode, RefObject} from "react";
-import {Underlay} from "./Underlay";
-import {useModal, useOverlay, usePreventScroll} from "@react-aria/overlays";
+import { Underlay } from "./Underlay";
 
 interface ModalWrapperProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode,
@@ -108,4 +108,5 @@ let ModalWrapper = forwardRef(function (props: ModalWrapperProps, ref: RefObject
 });
 
 let _Modal = forwardRef(Modal);
-export {_Modal as Modal};
+export { _Modal as Modal };
+

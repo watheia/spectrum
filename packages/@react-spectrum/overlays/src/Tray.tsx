@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {mergeProps, useViewportSize} from "@react-aria/utils";
-import {Overlay} from "./Overlay";
+import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
+import { mergeProps, useViewportSize } from "@react-aria/utils";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { TrayProps } from "@react-types/overlays";
+import { DOMRef } from "@react-types/shared";
+import trayStyles from "@watheia/spectrum-css-temp/components/tray/vars.css";
+import React, { forwardRef, HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState } from "react";
+import { Overlay } from "./Overlay";
 import overrideStyles from "./overlays.css";
-import React, {forwardRef, HTMLAttributes, ReactNode, RefObject, useEffect, useRef, useState} from "react";
-import {TrayProps} from "@react-types/overlays";
-import trayStyles from "@adobe/spectrum-css-temp/components/tray/vars.css";
-import {Underlay} from "./Underlay";
-import {useModal, useOverlay, usePreventScroll} from "@react-aria/overlays";
+import { Underlay } from "./Underlay";
 
 interface TrayWrapperProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode,
@@ -135,4 +135,5 @@ let TrayWrapper = forwardRef(function (props: TrayWrapperProps, ref: RefObject<H
 });
 
 let _Tray = forwardRef(Tray);
-export {_Tray as Tray};
+export { _Tray as Tray };
+

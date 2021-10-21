@@ -10,24 +10,24 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaLabelingProps, DOMProps, FocusStrategy, Node, StyleProps} from "@react-types/shared";
-import {AriaListBoxOptions, useListBox} from "@react-aria/listbox";
-import {classNames, useStyleProps} from "@react-spectrum/utils";
+import { useCollator, useMessageFormatter } from "@react-aria/i18n";
+import { AriaListBoxOptions, useListBox } from "@react-aria/listbox";
+import { mergeProps } from "@react-aria/utils";
+import { Virtualizer, VirtualizerItem } from "@react-aria/virtualizer";
+import { ProgressCircle } from "@react-spectrum/progress";
+import { useProvider } from "@react-spectrum/provider";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { ListLayout } from "@react-stately/layout";
+import { ListState } from "@react-stately/list";
+import { ReusableView } from "@react-stately/virtualizer";
+import { AriaLabelingProps, DOMProps, FocusStrategy, Node, StyleProps } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/menu/vars.css";
+import React, { HTMLAttributes, ReactElement, ReactNode, RefObject, useMemo } from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import {ListBoxContext} from "./ListBoxContext";
-import {ListBoxOption} from "./ListBoxOption";
-import {ListBoxSection} from "./ListBoxSection";
-import {ListLayout} from "@react-stately/layout";
-import {ListState} from "@react-stately/list";
-import {mergeProps} from "@react-aria/utils";
-import {ProgressCircle} from "@react-spectrum/progress";
-import React, {HTMLAttributes, ReactElement, ReactNode, RefObject, useMemo} from "react";
-import {ReusableView} from "@react-stately/virtualizer";
-import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
-import {useCollator, useMessageFormatter} from "@react-aria/i18n";
-import {useProvider} from "@react-spectrum/provider";
-import {Virtualizer, VirtualizerItem} from "@react-aria/virtualizer";
+import { ListBoxContext } from "./ListBoxContext";
+import { ListBoxOption } from "./ListBoxOption";
+import { ListBoxSection } from "./ListBoxSection";
 
 interface ListBoxBaseProps<T> extends AriaListBoxOptions<T>, DOMProps, AriaLabelingProps, StyleProps {
   layout: ListLayout<T>,
@@ -172,4 +172,5 @@ function ListBoxBase<T>(props: ListBoxBaseProps<T>, ref: RefObject<HTMLDivElemen
 // forwardRef doesn't support generic parameters, so cast the result to the correct type
 // https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref
 const _ListBoxBase = React.forwardRef(ListBoxBase) as <T>(props: ListBoxBaseProps<T> & {ref?: RefObject<HTMLDivElement>}) => ReactElement;
-export {_ListBoxBase as ListBoxBase};
+export { _ListBoxBase as ListBoxBase };
+

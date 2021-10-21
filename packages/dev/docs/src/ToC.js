@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
+import sidenavstyles from "@watheia/spectrum-css-temp/components/sidenav/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import clsx from "clsx";
-import docStyles from "./docs.css";
 import React from "react";
-import sidenavstyles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
+import docStyles from "./docs.css";
 import styles from "./toc.css";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 export function ToC(props) {
   let {

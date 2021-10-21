@@ -44,7 +44,7 @@ async function build() {
           name === 'patch-package' ||
           name.startsWith('@spectrum-css') ||
           name.startsWith('postcss') ||
-          name.startsWith('@adobe')
+          name.startsWith('@watheia')
         )
     ),
     dependencies: {},
@@ -65,7 +65,7 @@ async function build() {
   for (let p of packages) {
     console.info(`Loading package from ${p}`);
     let json = JSON.parse(fs.readFileSync(path.join(packagesDir, p), 'utf8'));
-    if (!json.private && json.name !== '@adobe/react-spectrum') {
+    if (!json.private && json.name !== '@watheia/react-spectrum') {
       let docsDir = path.join(packagesDir, path.dirname(p), 'docs');
       let hasDocs = false;
       if (fs.existsSync(docsDir)) {
@@ -100,7 +100,7 @@ async function build() {
   fs.copySync(path.join(__dirname, '..', 'yarn.lock'), path.join(dir, 'yarn.lock'));
   fs.copySync(path.join(__dirname, '..', 'packages', 'dev'), path.join(dir, 'packages', 'dev'));
   fs.removeSync(path.join(dir, 'packages', 'dev', 'v2-test-deps'));
-  fs.copySync(path.join(__dirname, '..', 'packages', '@adobe', 'spectrum-css-temp'), path.join(dir, 'packages', '@adobe', 'spectrum-css-temp'));
+  fs.copySync(path.join(__dirname, '..', 'packages', '@watheia', 'spectrum-css-temp'), path.join(dir, 'packages', '@watheia', 'spectrum-css-temp'));
   fs.copySync(path.join(__dirname, '..', '.parcelrc'), path.join(dir, '.parcelrc'));
   fs.copySync(path.join(__dirname, '..', 'cssnano.config.js'), path.join(dir, 'cssnano.config.js'));
   fs.copySync(path.join(__dirname, '..', 'postcss.config.js'), path.join(dir, 'postcss.config.js'));

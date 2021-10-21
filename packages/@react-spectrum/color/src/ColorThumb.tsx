@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {Color} from "@react-types/color";
-import {DOMProps} from "@react-types/shared";
-import React, {ReactElement} from "react";
-import stylesHandle from "@adobe/spectrum-css-temp/components/colorhandle/vars.css";
-import stylesLoupe from "@adobe/spectrum-css-temp/components/colorloupe/vars.css";
-import {useId} from "@react-aria/utils";
+import { useId } from "@react-aria/utils";
+import { classNames } from "@react-spectrum/utils";
+import { Color } from "@react-types/color";
+import { DOMProps } from "@react-types/shared";
+import stylesHandle from "@watheia/spectrum-css-temp/components/colorhandle/vars.css";
+import stylesLoupe from "@watheia/spectrum-css-temp/components/colorloupe/vars.css";
+import React, { ReactElement } from "react";
 
 interface ColorThumbProps extends DOMProps {
   value: Color,
@@ -60,4 +60,5 @@ function ColorThumb(props: ColorThumbProps) {
   );
 }
 
-export {ColorThumb};
+export { ColorThumb };
+

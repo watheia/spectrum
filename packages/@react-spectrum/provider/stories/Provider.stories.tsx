@@ -10,20 +10,20 @@
  * governing permissions and limitations under the License.
  */
 
-import {Button} from "@react-spectrum/button";
-import {Checkbox} from "@react-spectrum/checkbox";
-import customTheme from "./custom-theme.css";
-import {Flex} from "@react-spectrum/layout";
-import {Form} from "@react-spectrum/form";
-import {Provider} from "../";
-import {Radio, RadioGroup} from "@react-spectrum/radio";
+import { Button } from "@react-spectrum/button";
+import { Checkbox } from "@react-spectrum/checkbox";
+import { Form } from "@react-spectrum/form";
+import { Flex } from "@react-spectrum/layout";
+import { Radio, RadioGroup } from "@react-spectrum/radio";
+import { Switch } from "@react-spectrum/switch";
+import { TextField } from "@react-spectrum/textfield";
+import { useBreakpoint } from "@react-spectrum/utils";
+import { storiesOf } from "@storybook/react";
+import scaleLarge from "@watheia/spectrum-css-temp/vars/spectrum-large.css";
+import scaleMedium from "@watheia/spectrum-css-temp/vars/spectrum-medium.css";
 import React from "react";
-import scaleLarge from "@adobe/spectrum-css-temp/vars/spectrum-large.css";
-import scaleMedium from "@adobe/spectrum-css-temp/vars/spectrum-medium.css";
-import {storiesOf} from "@storybook/react";
-import {Switch} from "@react-spectrum/switch";
-import {TextField} from "@react-spectrum/textfield";
-import {useBreakpoint} from "@react-spectrum/utils";
+import { Provider } from "../";
+import customTheme from "./custom-theme.css";
 
 const THEME = {
   light: customTheme,

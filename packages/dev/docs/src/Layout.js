@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
-import ruleStyles from "@adobe/spectrum-css-temp/components/rule/vars.css";
-import sideNavStyles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 import { MDXProvider } from "@mdx-js/react";
 import { Divider } from "@react-spectrum/divider";
 import { theme } from "@react-spectrum/theme-default";
 import ChevronLeft from "@spectrum-icons/ui/ChevronLeftLarge";
+import linkStyle from "@watheia/spectrum-css-temp/components/link/vars.css";
+import ruleStyles from "@watheia/spectrum-css-temp/components/rule/vars.css";
+import sideNavStyles from "@watheia/spectrum-css-temp/components/sidenav/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import clsx from "clsx";
 import path from "path";
 import React from "react";

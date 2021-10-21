@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {generatePowerset} from "@react-spectrum/story-utils";
-import {Grid, repeat} from "@react-spectrum/layout";
-import {mergeProps} from "@react-aria/utils";
-import {Meta, Story} from "@storybook/react";
-import {NumberField} from "../src";
+import { mergeProps } from "@react-aria/utils";
+import { Grid, repeat } from "@react-spectrum/layout";
+import { generatePowerset } from "@react-spectrum/story-utils";
+import { classNames } from "@react-spectrum/utils";
+import { SpectrumNumberFieldProps } from "@react-types/numberfield";
+import { Meta, Story } from "@storybook/react";
+import stepperStyles from "@watheia/spectrum-css-temp/components/stepper/vars.css";
 import React from "react";
-import {SpectrumNumberFieldProps} from "@react-types/numberfield";
-import stepperStyles from "@adobe/spectrum-css-temp/components/stepper/vars.css";
+import { NumberField } from "../src";
 
 let states = [
   {isQuiet: true},

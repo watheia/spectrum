@@ -60,7 +60,7 @@ module.exports = function (plop) {
     }, {
       type: 'input',
       name: 'componentCSS',
-      message: 'component css module name, blank if N/A. If unsure, check @adobe/spectrum-css-temp/components for a module containing the desired css (e.g. textfield)',
+      message: 'component css module name, blank if N/A. If unsure, check @watheia/spectrum-css-temp/components for a module containing the desired css (e.g. textfield)',
       validate: (answer) => answer.length >= 0,
       default: null,
       when: ({projectType, scopes}) => projectType === rspProject && scopes.includes('@react-spectrum')

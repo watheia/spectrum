@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {DOMProps, SplitViewProps, StyleProps} from "@react-types/shared";
-import React, {useRef} from "react";
-import styles from "@adobe/spectrum-css-temp/components/splitview/vars.css";
-import {useSplitView} from "@react-aria/splitview";
-import {useSplitViewState} from "@react-stately/splitview";
+import { useSplitView } from "@react-aria/splitview";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { useSplitViewState } from "@react-stately/splitview";
+import { DOMProps, SplitViewProps, StyleProps } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/splitview/vars.css";
+import React, { useRef } from "react";
 import "./SplitView.css";
 
 

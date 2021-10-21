@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {ClearButton} from "@react-spectrum/button";
+import { useSearchField } from "@react-aria/searchfield";
+import { ClearButton } from "@react-spectrum/button";
+import { useProviderProps } from "@react-spectrum/provider";
+import { TextFieldBase } from "@react-spectrum/textfield";
+import { classNames } from "@react-spectrum/utils";
+import { useSearchFieldState } from "@react-stately/searchfield";
+import { SpectrumSearchFieldProps } from "@react-types/searchfield";
+import { TextFieldRef } from "@react-types/textfield";
 import Magnifier from "@spectrum-icons/ui/Magnifier";
-import React, {forwardRef, RefObject, useRef} from "react";
-import {SpectrumSearchFieldProps} from "@react-types/searchfield";
-import styles from "@adobe/spectrum-css-temp/components/search/vars.css";
-import {TextFieldBase} from "@react-spectrum/textfield";
-import {TextFieldRef} from "@react-types/textfield";
-import {useProviderProps} from "@react-spectrum/provider";
-import {useSearchField} from "@react-aria/searchfield";
-import {useSearchFieldState} from "@react-stately/searchfield";
+import styles from "@watheia/spectrum-css-temp/components/search/vars.css";
+import React, { forwardRef, RefObject, useRef } from "react";
 
 function SearchField(props: SpectrumSearchFieldProps, ref: RefObject<TextFieldRef>) {
   props = useProviderProps(props);
@@ -84,4 +84,5 @@ function SearchField(props: SpectrumSearchFieldProps, ref: RefObject<TextFieldRe
  * A SearchField is a text field designed for searches.
  */
 let _SearchField = forwardRef(SearchField);
-export {_SearchField as SearchField};
+export { _SearchField as SearchField };
+

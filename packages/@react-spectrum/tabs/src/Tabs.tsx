@@ -10,25 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, SlotProvider, unwrapDOMRef, useDOMRef, useStyleProps, useValueEffect} from "@react-spectrum/utils";
-import {DOMProps, DOMRef, Node, Orientation} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
-import {FocusRing} from "@react-aria/focus";
-import {Item, Picker} from "@react-spectrum/picker";
-import {ListCollection, SingleSelectListState} from "@react-stately/list";
-import {mergeProps, useId, useLayoutEffect} from "@react-aria/utils";
-import React, {Key, MutableRefObject, ReactElement, useCallback, useContext, useEffect, useRef, useState} from "react";
-import {SpectrumPickerProps} from "@react-types/select";
-import {SpectrumTabListProps, SpectrumTabPanelsProps, SpectrumTabsProps} from "@react-types/tabs";
-import styles from "@adobe/spectrum-css-temp/components/tabs/vars.css";
-import {TabListState, useTabListState} from "@react-stately/tabs";
-import {Text} from "@react-spectrum/text";
-import {useCollection} from "@react-stately/collections";
-import {useHover} from "@react-aria/interactions";
-import {useLocale} from "@react-aria/i18n";
-import {useProvider, useProviderProps} from "@react-spectrum/provider";
-import {useResizeObserver} from "@react-aria/utils";
-import {useTab, useTabList, useTabPanel} from "@react-aria/tabs";
+import { FocusRing } from "@react-aria/focus";
+import { useLocale } from "@react-aria/i18n";
+import { useHover } from "@react-aria/interactions";
+import { useTab, useTabList, useTabPanel } from "@react-aria/tabs";
+import { filterDOMProps, mergeProps, useId, useLayoutEffect, useResizeObserver } from "@react-aria/utils";
+import { Item, Picker } from "@react-spectrum/picker";
+import { useProvider, useProviderProps } from "@react-spectrum/provider";
+import { Text } from "@react-spectrum/text";
+import { classNames, SlotProvider, unwrapDOMRef, useDOMRef, useStyleProps, useValueEffect } from "@react-spectrum/utils";
+import { useCollection } from "@react-stately/collections";
+import { ListCollection, SingleSelectListState } from "@react-stately/list";
+import { TabListState, useTabListState } from "@react-stately/tabs";
+import { SpectrumPickerProps } from "@react-types/select";
+import { DOMProps, DOMRef, Node, Orientation } from "@react-types/shared";
+import { SpectrumTabListProps, SpectrumTabPanelsProps, SpectrumTabsProps } from "@react-types/tabs";
+import styles from "@watheia/spectrum-css-temp/components/tabs/vars.css";
+import React, { Key, MutableRefObject, ReactElement, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 interface TabsContext<T> {
   tabProps: SpectrumTabsProps<T>,
@@ -437,4 +435,5 @@ function TabPicker<T>(props: TabPickerProps<T>) {
 // forwardRef doesn't support generic parameters, so cast the result to the correct type
 // https://stackoverflow.com/questions/58469229/react-with-typescript-generics-while-using-react-forwardref
 const _Tabs = React.forwardRef(Tabs) as <T>(props: SpectrumTabsProps<T> & {ref?: DOMRef<HTMLDivElement>}) => ReactElement;
-export {_Tabs as Tabs};
+export { _Tabs as Tabs };
+

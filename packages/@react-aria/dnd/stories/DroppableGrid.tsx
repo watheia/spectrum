@@ -10,23 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import dndStyles from "./dnd.css";
-import dropIndicatorStyles from "@adobe/spectrum-css-temp/components/dropindicator/vars.css";
-import {DroppableCollectionDropEvent} from "@react-types/shared";
-import {FocusRing} from "@react-aria/focus";
+import { FocusRing } from "@react-aria/focus";
+import { useGrid, useGridCell, useGridRow } from "@react-aria/grid";
+import { ListKeyboardDelegate } from "@react-aria/selection";
+import { mergeProps } from "@react-aria/utils";
+import { useVisuallyHidden } from "@react-aria/visually-hidden";
+import { classNames } from "@react-spectrum/utils";
+import { Item } from "@react-stately/collections";
+import { useListData } from "@react-stately/data";
+import { useDroppableCollectionState } from "@react-stately/dnd";
+import { GridCollection, useGridState } from "@react-stately/grid";
+import { useListState } from "@react-stately/list";
+import { DroppableCollectionDropEvent } from "@react-types/shared";
 import Folder from "@spectrum-icons/workflow/Folder";
-import {GridCollection, useGridState} from "@react-stately/grid";
-import {Item} from "@react-stately/collections";
-import {ListKeyboardDelegate} from "@react-aria/selection";
-import {mergeProps} from "@react-aria/utils";
+import dropIndicatorStyles from "@watheia/spectrum-css-temp/components/dropindicator/vars.css";
 import React from "react";
-import {useClipboard, useDropIndicator, useDroppableCollection} from "..";
-import {useDroppableCollectionState} from "@react-stately/dnd";
-import {useGrid, useGridCell, useGridRow} from "@react-aria/grid";
-import {useListData} from "@react-stately/data";
-import {useListState} from "@react-stately/list";
-import {useVisuallyHidden} from "@react-aria/visually-hidden";
+import { useClipboard, useDropIndicator, useDroppableCollection } from "..";
+import dndStyles from "./dnd.css";
 
 interface ListItem {
   id: string,

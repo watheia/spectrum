@@ -10,19 +10,19 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, unwrapDOMRef, useDOMRef, useIsMobileDevice} from "@react-spectrum/utils";
-import {DismissButton, useOverlayPosition} from "@react-aria/overlays";
-import {DOMRef, DOMRefValue} from "@react-types/shared";
-import {FocusScope} from "@react-aria/focus";
-import {MenuContext} from "./context";
-import {Placement} from "@react-types/overlays";
-import {Popover, Tray} from "@react-spectrum/overlays";
-import {PressResponder} from "@react-aria/interactions";
-import React, {forwardRef, Fragment, useRef} from "react";
-import {SpectrumMenuTriggerProps} from "@react-types/menu";
-import styles from "@adobe/spectrum-css-temp/components/menu/vars.css";
-import {useMenuTrigger} from "@react-aria/menu";
-import {useMenuTriggerState} from "@react-stately/menu";
+import { FocusScope } from "@react-aria/focus";
+import { PressResponder } from "@react-aria/interactions";
+import { useMenuTrigger } from "@react-aria/menu";
+import { DismissButton, useOverlayPosition } from "@react-aria/overlays";
+import { Popover, Tray } from "@react-spectrum/overlays";
+import { classNames, unwrapDOMRef, useDOMRef, useIsMobileDevice } from "@react-spectrum/utils";
+import { useMenuTriggerState } from "@react-stately/menu";
+import { SpectrumMenuTriggerProps } from "@react-types/menu";
+import { Placement } from "@react-types/overlays";
+import { DOMRef, DOMRefValue } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/menu/vars.css";
+import React, { forwardRef, Fragment, useRef } from "react";
+import { MenuContext } from "./context";
 
 function MenuTrigger(props: SpectrumMenuTriggerProps, ref: DOMRef<HTMLElement>) {
   let menuPopoverRef = useRef<DOMRefValue<HTMLDivElement>>();
@@ -129,4 +129,5 @@ function MenuTrigger(props: SpectrumMenuTriggerProps, ref: DOMRef<HTMLElement>) 
  * linking the Menu's open state with the trigger's press state.
  */
 let _MenuTrigger = forwardRef(MenuTrigger);
-export {_MenuTrigger as MenuTrigger};
+export { _MenuTrigger as MenuTrigger };
+

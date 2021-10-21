@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {Label} from "./Label";
-import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
-import {mergeProps} from "@react-aria/utils";
-import React, {RefObject} from "react";
-import {SpectrumFieldProps} from "@react-types/label";
+import { mergeProps } from "@react-aria/utils";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumFieldProps } from "@react-types/label";
+import labelStyles from "@watheia/spectrum-css-temp/components/fieldlabel/vars.css";
+import React, { RefObject } from "react";
+import { Label } from "./Label";
 
 function Field(props: SpectrumFieldProps, ref: RefObject<HTMLElement>) {
   let {
@@ -80,4 +80,5 @@ function Field(props: SpectrumFieldProps, ref: RefObject<HTMLElement>) {
 }
 
 let _Field = React.forwardRef(Field);
-export {_Field as Field};
+export { _Field as Field };
+

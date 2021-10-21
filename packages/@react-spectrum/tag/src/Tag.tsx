@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { useTag } from "@react-aria/tag";
+import { mergeProps } from "@react-aria/utils";
+import { ClearButton } from "@react-spectrum/button";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumTagProps } from "@react-types/tag";
 import Alert from "@spectrum-icons/workflow/Alert";
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {ClearButton} from "@react-spectrum/button";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
+import styles from "@watheia/spectrum-css-temp/components/tags/vars.css";
 import React from "react";
-import {SpectrumTagProps} from "@react-types/tag";
-import styles from "@adobe/spectrum-css-temp/components/tags/vars.css";
-import {useHover} from "@react-aria/interactions";
-import {useTag} from "@react-aria/tag";
-import {useTagGroupProvider} from "./TagGroup";
+import { useTagGroupProvider } from "./TagGroup";
 
 export const Tag = ((props: SpectrumTagProps) => {
   const {

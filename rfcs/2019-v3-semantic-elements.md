@@ -110,7 +110,7 @@ The headings have different font sizes, but the rest are the same.
 
 For the CSS, we might get something like this.
 ```css
-/* @adobe/spectrum-css/components/card/vars.css */
+/* @watheia/spectrum-css/components/card/vars.css */
 .spectrum-Card {
   border: 1px solid lightgrey;
   border-radius: 4px;
@@ -121,7 +121,7 @@ For the CSS, we might get something like this.
     font-size: 14px;
 }
 -------------------------------------
-/* @adobe/spectrum-css/components/dialog/vars.css */
+/* @watheia/spectrum-css/components/dialog/vars.css */
 .spectrum-Dialog {
   border: 1px solid lightgrey;
   border-radius: 4px;
@@ -135,7 +135,7 @@ For the CSS, we might get something like this.
 There would be some limitations, we'd have to accept the general form of descendent, we might not be able to guarantee direct child or any other DOM structure pattern matching.
 
 ```jsx
-import styles from '@adobe/spectrum-css/components/card/vars.css';
+import styles from '@watheia/spectrum-css/components/card/vars.css';
 export const Card = (props) => {
 
   return (

@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {ActionButton} from "@react-spectrum/button";
-import {Cell, Column, Row, TableBody, TableHeader, TableView} from "@react-spectrum/table";
+import { ActionButton } from "@react-spectrum/button";
+import { useProvider } from "@react-spectrum/provider";
+import { SearchField } from "@react-spectrum/searchfield";
+import { Cell, Column, Row, TableBody, TableHeader, TableView } from "@react-spectrum/table";
 import Paste from "@spectrum-icons/workflow/Paste";
-import React, {useEffect, useState} from "react";
-import {SearchField} from "@react-spectrum/searchfield";
-import {useProvider} from "@react-spectrum/provider";
+import React, { useEffect, useState } from "react";
 
 const icons = {
   workflow: {

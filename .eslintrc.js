@@ -294,7 +294,7 @@ module.exports = {
       ERROR,
       {
         ignore: [
-          "@adobe/spectrum-css-temp",
+          "@watheia/spectrum-css-temp",
           "@react/react-spectrum",
           "@spectrum-icons/ui",
           "@spectrum-icons/workflow",

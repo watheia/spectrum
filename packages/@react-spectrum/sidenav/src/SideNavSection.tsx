@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {layoutInfoToStyle, useVirtualizerItem} from "@react-aria/virtualizer";
-import React, {Fragment, useRef} from "react";
-import {SideNavSectionProps} from "@react-types/sidenav";
-import styles from "@adobe/spectrum-css-temp/components/sidenav/vars.css";
-import {useListBoxSection} from "@react-aria/listbox";
-import {useLocale} from "@react-aria/i18n";
+import { useLocale } from "@react-aria/i18n";
+import { useListBoxSection } from "@react-aria/listbox";
+import { layoutInfoToStyle, useVirtualizerItem } from "@react-aria/virtualizer";
+import { classNames } from "@react-spectrum/utils";
+import { SideNavSectionProps } from "@react-types/sidenav";
+import styles from "@watheia/spectrum-css-temp/components/sidenav/vars.css";
+import React, { Fragment, useRef } from "react";
 
 export function SideNavSection<T>(props: SideNavSectionProps<T>) {
   let {children, reusableView, header} = props;

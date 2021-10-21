@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {ButtonProps} from "@react-types/button";
-import {classNames, SlotProvider, useFocusableRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
-import {DOMProps, FocusableRef, StyleProps} from "@react-types/shared";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import React, {RefObject} from "react";
-import styles from "@adobe/spectrum-css-temp/components/button/vars.css";
-import {useButton} from "@react-aria/button";
-import {useHover} from "@react-aria/interactions";
+import { useButton } from "@react-aria/button";
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { mergeProps } from "@react-aria/utils";
+import { classNames, SlotProvider, useFocusableRef, useSlotProps, useStyleProps } from "@react-spectrum/utils";
+import { ButtonProps } from "@react-types/button";
+import { DOMProps, FocusableRef, StyleProps } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/button/vars.css";
+import React, { RefObject } from "react";
 
 interface FieldButtonProps extends ButtonProps, DOMProps, StyleProps {
   isQuiet?: boolean,
@@ -79,4 +79,5 @@ function FieldButton(props: FieldButtonProps, ref: FocusableRef) {
 }
 
 let _FieldButton = React.forwardRef(FieldButton);
-export {_FieldButton as FieldButton};
+export { _FieldButton as FieldButton };
+

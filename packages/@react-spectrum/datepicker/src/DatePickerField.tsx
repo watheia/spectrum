@@ -10,18 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
+import { useDateField } from "@react-aria/datepicker";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { useDatePickerFieldState } from "@react-stately/datepicker";
+import { SpectrumDatePickerProps } from "@react-types/datepicker";
 import Alert from "@spectrum-icons/ui/AlertMedium";
 import Checkmark from "@spectrum-icons/ui/CheckmarkMedium";
-import {classNames} from "@react-spectrum/utils";
-import {DatePickerSegment} from "./DatePickerSegment";
-import datepickerStyles from "./index.css";
-import inputgroupStyles from "@adobe/spectrum-css-temp/components/inputgroup/vars.css";
+import inputgroupStyles from "@watheia/spectrum-css-temp/components/inputgroup/vars.css";
+import textfieldStyles from "@watheia/spectrum-css-temp/components/textfield/vars.css";
 import React from "react";
-import {SpectrumDatePickerProps} from "@react-types/datepicker";
-import textfieldStyles from "@adobe/spectrum-css-temp/components/textfield/vars.css";
-import {useDateField} from "@react-aria/datepicker";
-import {useDatePickerFieldState} from "@react-stately/datepicker";
-import {useStyleProps} from "@react-spectrum/utils";
+import { DatePickerSegment } from "./DatePickerSegment";
+import datepickerStyles from "./index.css";
 
 export function DatePickerField(props: SpectrumDatePickerProps) {
   let state = useDatePickerFieldState(props);

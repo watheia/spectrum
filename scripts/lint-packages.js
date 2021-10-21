@@ -64,18 +64,18 @@ for (let pkg of packages) {
     } else {
       softAssert.equal(json.sideEffects, false, `${pkg} is missing sideEffects: false`);
     }
-    softAssert(!json.dependencies || !json.dependencies['@adobe/spectrum-css-temp'], `${pkg} has @adobe/spectrum-css-temp in dependencies instead of devDependencies`);
+    softAssert(!json.dependencies || !json.dependencies['@watheia/spectrum-css-temp'], `${pkg} has @watheia/spectrum-css-temp in dependencies instead of devDependencies`);
     softAssert(json.dependencies && json.dependencies['@babel/runtime'], `${pkg} is missing a dependency on @babel/runtime`);
     softAssert(!json.dependencies || !json.dependencies['@react-spectrum/test-utils'], '@react-spectrum/test-utils should be a devDependency');
     softAssert(!json.dependencies || !json.dependencies['react'], `${pkg} has react as a dependency, but it should be a peerDependency`);
 
-    if (json.name.startsWith('@react-spectrum') && json.devDependencies && json.devDependencies['@adobe/spectrum-css-temp']) {
+    if (json.name.startsWith('@react-spectrum') && json.devDependencies && json.devDependencies['@watheia/spectrum-css-temp']) {
       softAssert.deepEqual(json.targets, {
         main: {
-          includeNodeModules: ['@adobe/spectrum-css-temp']
+          includeNodeModules: ['@watheia/spectrum-css-temp']
         },
         module: {
-          includeNodeModules: ['@adobe/spectrum-css-temp']
+          includeNodeModules: ['@watheia/spectrum-css-temp']
         }
       }, `${pkg} did not match "targets"`);
     }

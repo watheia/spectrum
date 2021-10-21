@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {ErrorBoundary} from "@react-spectrum/story-utils";
-import {Flex} from "@adobe/react-spectrum";
+import { ErrorBoundary } from "@react-spectrum/story-utils";
+import { SpectrumSliderProps } from "@react-types/slider";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import { Flex } from "@watheia/react-spectrum";
 import React from "react";
-import {Slider} from "../";
-import {SpectrumSliderProps} from "@react-types/slider";
-import {storiesOf} from "@storybook/react";
+import { Slider } from "../";
 
 let message = "Your browser may not support this set of format options.";
 

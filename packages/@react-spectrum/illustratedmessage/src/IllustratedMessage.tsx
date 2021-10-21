@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, SlotProvider, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {filterDOMProps} from "@react-aria/utils";
-import {Flex} from "@react-spectrum/layout";
-import React, {forwardRef} from "react";
-import {SpectrumIllustratedMessageProps} from "@react-types/illustratedmessage";
-import styles from "@adobe/spectrum-css-temp/components/illustratedmessage/vars.css";
+import { filterDOMProps } from "@react-aria/utils";
+import { Flex } from "@react-spectrum/layout";
+import { classNames, SlotProvider, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumIllustratedMessageProps } from "@react-types/illustratedmessage";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/illustratedmessage/vars.css";
+import React, { forwardRef } from "react";
 
 function IllustratedMessage(props: SpectrumIllustratedMessageProps, ref: DOMRef<HTMLDivElement>) {
   let {
@@ -56,4 +56,5 @@ function IllustratedMessage(props: SpectrumIllustratedMessageProps, ref: DOMRef<
  * for an empty state or an error page.
  */
 let _IllustratedMessage = forwardRef(IllustratedMessage);
-export {_IllustratedMessage as IllustratedMessage};
+export { _IllustratedMessage as IllustratedMessage };
+

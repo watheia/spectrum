@@ -381,8 +381,8 @@ function transformExample(node, preRelease) {
       Program: {
         exit(path) {
           if (specifiers.length > 0) {
-            let literal =  t.stringLiteral("@adobe/react-spectrum");
-            literal.raw = "'@adobe/react-spectrum'";
+            let literal =  t.stringLiteral("@watheia/react-spectrum");
+            literal.raw = "'@watheia/react-spectrum'";
 
             let decl = t.importDeclaration(
               specifiers.map(s => t.importSpecifier(t.identifier(s), t.identifier(s))),

@@ -10,23 +10,23 @@
  * governing permissions and limitations under the License.
  */
 
+import { useDateRangePicker } from "@react-aria/datepicker";
+import { FocusRing, FocusScope, useFocusManager } from "@react-aria/focus";
+import { useLocale } from "@react-aria/i18n";
+import { useHover } from "@react-aria/interactions";
+import { mergeProps } from "@react-aria/utils";
+import { FieldButton } from "@react-spectrum/button";
+import { RangeCalendar } from "@react-spectrum/calendar";
+import { Dialog, DialogTrigger } from "@react-spectrum/dialog";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useStyleProps } from "@react-spectrum/utils";
+import { useDateRangePickerState } from "@react-stately/datepicker";
+import { SpectrumDateRangePickerProps } from "@react-types/datepicker";
 import CalendarIcon from "@spectrum-icons/workflow/Calendar";
-import {classNames, useStyleProps} from "@react-spectrum/utils";
-import {DatePickerField} from "./DatePickerField";
+import styles from "@watheia/spectrum-css-temp/components/inputgroup/vars.css";
+import React, { useRef } from "react";
+import { DatePickerField } from "./DatePickerField";
 import datepickerStyles from "./index.css";
-import {Dialog, DialogTrigger} from "@react-spectrum/dialog";
-import {FieldButton} from "@react-spectrum/button";
-import {FocusRing, FocusScope, useFocusManager} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
-import {RangeCalendar} from "@react-spectrum/calendar";
-import React, {useRef} from "react";
-import {SpectrumDateRangePickerProps} from "@react-types/datepicker";
-import styles from "@adobe/spectrum-css-temp/components/inputgroup/vars.css";
-import {useDateRangePicker} from "@react-aria/datepicker";
-import {useDateRangePickerState} from "@react-stately/datepicker";
-import {useHover} from "@react-aria/interactions";
-import {useLocale} from "@react-aria/i18n";
-import {useProviderProps} from "@react-spectrum/provider";
 
 export function DateRangePicker(props: SpectrumDateRangePickerProps) {
   props = useProviderProps(props);

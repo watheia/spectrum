@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {generatePowerset} from "@react-spectrum/story-utils";
-import {Grid, repeat, View} from "@adobe/react-spectrum";
+import { generatePowerset } from "@react-spectrum/story-utils";
+import { classNames } from "@react-spectrum/utils";
+import { storiesOf } from "@storybook/react";
+import { Grid, repeat, View } from "@watheia/react-spectrum";
+import styles from "@watheia/spectrum-css-temp/components/button/vars.css";
 import React from "react";
-import {storiesOf} from "@storybook/react";
-import styles from "@adobe/spectrum-css-temp/components/button/vars.css";
-import {ToggleButton} from "../";
+import { ToggleButton } from "../";
 
 let states = [
   {isQuiet: true},

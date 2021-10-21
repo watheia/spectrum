@@ -10,8 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 import { Flex } from "@react-spectrum/layout";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import js from "highlight.js/lib/languages/javascript";
 import React from "react";
 import Lowlight from "react-lowlight";
@@ -30,7 +30,7 @@ export function HeaderInfo(props) {
   let preRelease = packageData.version.match(/(alpha)|(beta)|(rc)/);
   let importName = packageData.name;
   if (importName.startsWith("@react-spectrum") && process.env.DOCS_ENV === "production" && !preRelease) {
-    importName = "@adobe/react-spectrum";
+    importName = "@watheia/react-spectrum";
   }
 
   return (

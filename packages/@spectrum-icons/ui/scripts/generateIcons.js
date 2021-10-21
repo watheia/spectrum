@@ -10,14 +10,14 @@
  * governing permissions and limitations under the License.
  */
 
-import {generateIcons} from '@spectrum-icons/build-tools/generateIcons';
+import { generateIcons } from '@spectrum-icons/build-tools/generateIcons';
 import * as path from 'path';
 
 let displayNameRegex = /.*?\.displayName = '(?<name>.*?)';/;
 
 function template(iconName) {
   return (
-`import {${iconName} as IconComponent} from '@adobe/react-spectrum-ui/dist/${iconName}';
+`import {${iconName} as IconComponent} from '@watheia/react-spectrum-ui/dist/${iconName}';
 import {UIIcon, UIIconPropsWithoutChildren} from '@react-spectrum/icon';
 import React from 'react';
 
@@ -28,5 +28,5 @@ export default function ${iconName}(props: UIIconPropsWithoutChildren) {
   );
 }
 
-generateIcons(path.dirname(require.resolve('@adobe/react-spectrum-ui')), path.join(__dirname, '..', 'src'), displayNameRegex, template);
+generateIcons(path.dirname(require.resolve('@watheia/react-spectrum-ui')), path.join(__dirname, '..', 'src'), displayNameRegex, template);
 

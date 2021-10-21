@@ -10,12 +10,12 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useDOMRef, useSlotProps, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
+import { useSeparator } from "@react-aria/separator";
+import { classNames, useDOMRef, useSlotProps, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumDividerProps } from "@react-types/divider";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/rule/vars.css";
 import React from "react";
-import {SpectrumDividerProps} from "@react-types/divider";
-import styles from "@adobe/spectrum-css-temp/components/rule/vars.css";
-import {useSeparator} from "@react-aria/separator";
 
 let sizeMap = {
   S: "small",
@@ -70,4 +70,5 @@ function Divider(props: SpectrumDividerProps, ref: DOMRef) {
  * They can also be used to establish rhythm and hierarchy.
  */
 let _Divider = React.forwardRef(Divider);
-export {_Divider as Divider};
+export { _Divider as Divider };
+

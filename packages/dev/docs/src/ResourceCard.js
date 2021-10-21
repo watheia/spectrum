@@ -10,10 +10,10 @@
  * governing permissions and limitations under the License.
  */
 
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
 import clsx from "clsx";
 import React from "react";
 import styles from "./resourceCard.css";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
 
 export function ResourceCard(props) {
 

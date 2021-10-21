@@ -18,7 +18,7 @@ The easiest way to start building a React Spectrum application is by following o
 Here is a very basic example of using React Spectrum.
 
 ```jsx
-import { Provider, defaultTheme, Button } from "@adobe/react-spectrum";
+import { Provider, defaultTheme, Button } from "@watheia/react-spectrum";
 
 // Render it in your app!
 function App() {

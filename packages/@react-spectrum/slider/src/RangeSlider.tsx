@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {FocusableRef} from "@react-types/shared";
+import { useLocale, useMessageFormatter } from "@react-aria/i18n";
+import { classNames } from "@react-spectrum/utils";
+import { FocusableRef } from "@react-types/shared";
+import { SpectrumRangeSliderProps } from "@react-types/slider";
+import styles from "@watheia/spectrum-css-temp/components/slider/vars.css";
+import React from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import React from "react";
-import {SliderBase, SliderBaseChildArguments, SliderBaseProps} from "./SliderBase";
-import {SliderThumb} from "./SliderThumb";
-import {SpectrumRangeSliderProps} from "@react-types/slider";
-import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
-import {useLocale, useMessageFormatter} from "@react-aria/i18n";
+import { SliderBase, SliderBaseChildArguments, SliderBaseProps } from "./SliderBase";
+import { SliderThumb } from "./SliderThumb";
 
 function RangeSlider(props: SpectrumRangeSliderProps, ref: FocusableRef<HTMLDivElement>) {
   let {onChange, onChangeEnd, value, defaultValue, getValueLabel, ...otherProps} = props;
@@ -87,4 +87,5 @@ function RangeSlider(props: SpectrumRangeSliderProps, ref: FocusableRef<HTMLDivE
  * RangeSliders allow users to quickly select a subset range. They should be used when the upper and lower bounds to the range are invariable.
  */
 const _RangeSlider = React.forwardRef(RangeSlider);
-export {_RangeSlider as RangeSlider};
+export { _RangeSlider as RangeSlider };
+

@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {CheckboxGroupContext} from "./context";
-import {classNames, useDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef, LabelPosition} from "@react-types/shared";
-import {Label} from "@react-spectrum/label";
-import labelStyles from "@adobe/spectrum-css-temp/components/fieldlabel/vars.css";
-import {Provider, useProviderProps} from "@react-spectrum/provider";
+import { useCheckboxGroup } from "@react-aria/checkbox";
+import { useFormProps } from "@react-spectrum/form";
+import { Label } from "@react-spectrum/label";
+import { Provider, useProviderProps } from "@react-spectrum/provider";
+import { classNames, useDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { useCheckboxGroupState } from "@react-stately/checkbox";
+import { SpectrumCheckboxGroupProps } from "@react-types/checkbox";
+import { DOMRef, LabelPosition } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/fieldgroup/vars.css";
+import labelStyles from "@watheia/spectrum-css-temp/components/fieldlabel/vars.css";
 import React from "react";
-import {SpectrumCheckboxGroupProps} from "@react-types/checkbox";
-import styles from "@adobe/spectrum-css-temp/components/fieldgroup/vars.css";
-import {useCheckboxGroup} from "@react-aria/checkbox";
-import {useCheckboxGroupState} from "@react-stately/checkbox";
-import {useFormProps} from "@react-spectrum/form";
+import { CheckboxGroupContext } from "./context";
 
 function CheckboxGroup(props: SpectrumCheckboxGroupProps, ref: DOMRef<HTMLDivElement>) {
   props = useProviderProps(props);
@@ -100,4 +100,5 @@ function CheckboxGroup(props: SpectrumCheckboxGroupProps, ref: DOMRef<HTMLDivEle
  * A CheckboxGroup allows users to select one or more items from a list of choices.
  */
 const _CheckboxGroup = React.forwardRef(CheckboxGroup);
-export {_CheckboxGroup as CheckboxGroup};
+export { _CheckboxGroup as CheckboxGroup };
+

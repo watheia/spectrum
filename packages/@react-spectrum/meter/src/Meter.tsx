@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
-import {ProgressBarBase} from "@react-spectrum/progress";
+import { useMeter } from "@react-aria/meter";
+import { ProgressBarBase } from "@react-spectrum/progress";
+import { classNames } from "@react-spectrum/utils";
+import { SpectrumMeterProps } from "@react-types/meter";
+import { DOMRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/barloader/vars.css";
 import React from "react";
-import {SpectrumMeterProps} from "@react-types/meter";
-import styles from "@adobe/spectrum-css-temp/components/barloader/vars.css";
-import {useMeter} from "@react-aria/meter";
 
 function Meter(props: SpectrumMeterProps, ref: DOMRef<HTMLDivElement>) {
   let {variant, ...otherProps} = props;
@@ -49,4 +49,5 @@ function Meter(props: SpectrumMeterProps, ref: DOMRef<HTMLDivElement>) {
  * Their progress is determined by user actions, rather than system actions.
  */
 let _Meter = React.forwardRef(Meter);
-export {_Meter as Meter};
+export { _Meter as Meter };
+

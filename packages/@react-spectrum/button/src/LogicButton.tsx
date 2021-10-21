@@ -10,16 +10,16 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames, useFocusableRef, useStyleProps} from "@react-spectrum/utils";
-import {FocusableRef} from "@react-types/shared";
-import {FocusRing} from "@react-aria/focus";
-import {mergeProps} from "@react-aria/utils";
+import { useButton } from "@react-aria/button";
+import { FocusRing } from "@react-aria/focus";
+import { useHover } from "@react-aria/interactions";
+import { mergeProps } from "@react-aria/utils";
+import { useProviderProps } from "@react-spectrum/provider";
+import { classNames, useFocusableRef, useStyleProps } from "@react-spectrum/utils";
+import { SpectrumLogicButtonProps } from "@react-types/button";
+import { FocusableRef } from "@react-types/shared";
+import styles from "@watheia/spectrum-css-temp/components/button/vars.css";
 import React from "react";
-import {SpectrumLogicButtonProps} from "@react-types/button";
-import styles from "@adobe/spectrum-css-temp/components/button/vars.css";
-import {useButton} from "@react-aria/button";
-import {useHover} from "@react-aria/interactions";
-import {useProviderProps} from "@react-spectrum/provider";
 
 function LogicButton(props: SpectrumLogicButtonProps, ref: FocusableRef<HTMLButtonElement>) {
   props = useProviderProps(props);
@@ -64,4 +64,5 @@ function LogicButton(props: SpectrumLogicButtonProps, ref: FocusableRef<HTMLButt
  * A LogicButton displays an operator within a boolean logic sequence.
  */
 let _LogicButton = React.forwardRef(LogicButton);
-export {_LogicButton as LogicButton};
+export { _LogicButton as LogicButton };
+

@@ -10,48 +10,47 @@
  * governing permissions and limitations under the License.
  */
 
-import {AriaButtonProps} from "@react-types/button";
-import ChevronDownMedium from "@spectrum-icons/ui/ChevronDownMedium";
+import { useComboBox } from "@react-aria/combobox";
+import { FocusRing } from "@react-aria/focus";
+import { useFilter, useMessageFormatter } from "@react-aria/i18n";
+import { PressResponder, useHover } from "@react-aria/interactions";
+import { DismissButton, useOverlayPosition } from "@react-aria/overlays";
+import { useLayoutEffect } from "@react-aria/utils";
+import { FieldButton } from "@react-spectrum/button";
+import { Field } from "@react-spectrum/label";
+import { ListBoxBase, useListBoxLayout } from "@react-spectrum/listbox";
+import { Popover } from "@react-spectrum/overlays";
+import { ProgressCircle } from "@react-spectrum/progress";
+import { useProvider, useProviderProps } from "@react-spectrum/provider";
+import { TextFieldBase } from "@react-spectrum/textfield";
 import {
-  classNames,
-  useFocusableRef,
-  useIsMobileDevice,
-  useResizeObserver,
-  useUnwrapDOMRef
+    classNames,
+    useFocusableRef,
+    useIsMobileDevice,
+    useResizeObserver,
+    useUnwrapDOMRef
 } from "@react-spectrum/utils";
-import comboboxStyles from "./combobox.css";
-import {DismissButton, useOverlayPosition} from "@react-aria/overlays";
-import {DOMRefValue, FocusableRef, FocusableRefValue} from "@react-types/shared";
-import {Field} from "@react-spectrum/label";
-import {FieldButton} from "@react-spectrum/button";
-import {FocusRing} from "@react-aria/focus";
+import { useComboBoxState } from "@react-stately/combobox";
+import { AriaButtonProps } from "@react-types/button";
+import { SpectrumComboBoxProps } from "@react-types/combobox";
+import { Placement } from "@react-types/overlays";
+import { DOMRefValue, FocusableRef, FocusableRefValue } from "@react-types/shared";
+import ChevronDownMedium from "@spectrum-icons/ui/ChevronDownMedium";
+import styles from "@watheia/spectrum-css-temp/components/inputgroup/vars.css";
+import textfieldStyles from "@watheia/spectrum-css-temp/components/textfield/vars.css";
+import React, {
+    InputHTMLAttributes,
+    ReactElement,
+    RefObject,
+    useCallback,
+    useEffect,
+    useRef,
+    useState
+} from "react";
 // @ts-ignore
 import intlMessages from "../intl/*.json";
-import {ListBoxBase, useListBoxLayout} from "@react-spectrum/listbox";
-import {MobileComboBox} from "./MobileComboBox";
-import {Placement} from "@react-types/overlays";
-import {Popover} from "@react-spectrum/overlays";
-import {PressResponder, useHover} from "@react-aria/interactions";
-import {ProgressCircle} from "@react-spectrum/progress";
-import React, {
-  InputHTMLAttributes,
-  ReactElement,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
-import {SpectrumComboBoxProps} from "@react-types/combobox";
-import styles from "@adobe/spectrum-css-temp/components/inputgroup/vars.css";
-import {TextFieldBase} from "@react-spectrum/textfield";
-import textfieldStyles from "@adobe/spectrum-css-temp/components/textfield/vars.css";
-import {useComboBox} from "@react-aria/combobox";
-import {useComboBoxState} from "@react-stately/combobox";
-import {useFilter} from "@react-aria/i18n";
-import {useLayoutEffect} from "@react-aria/utils";
-import {useMessageFormatter} from "@react-aria/i18n";
-import {useProvider, useProviderProps} from "@react-spectrum/provider";
+import comboboxStyles from "./combobox.css";
+import { MobileComboBox } from "./MobileComboBox";
 
 function ComboBox<T extends object>(props: SpectrumComboBoxProps<T>, ref: FocusableRef<HTMLElement>) {
   props = useProviderProps(props);
@@ -339,4 +338,5 @@ const ComboBoxInput = React.forwardRef(function ComboBoxInput(props: ComboBoxInp
  * ComboBoxes combine a text entry with a picker menu, allowing users to filter longer lists to only the selections matching a query.
  */
 const _ComboBox = React.forwardRef(ComboBox) as <T>(props: SpectrumComboBoxProps<T> & {ref?: FocusableRef<HTMLElement>}) => ReactElement;
-export {_ComboBox as ComboBox};
+export { _ComboBox as ComboBox };
+

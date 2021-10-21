@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-import {generateIcons} from '@spectrum-icons/build-tools/generateIcons';
+import { generateIcons } from '@spectrum-icons/build-tools/generateIcons';
 import path from 'path';
 
 let exportNameRegex = /exports\.(?<name>.*?) = .*?;/;
@@ -22,7 +22,7 @@ function template(iconName) {
     iconRename = '_' + importName;
   }
   return (
-`import {${iconName} as IconComponent} from '@adobe/react-spectrum-workflow-color/dist/${iconRename}';
+`import {${iconName} as IconComponent} from '@watheia/react-spectrum-workflow-color/dist/${iconRename}';
 import {Icon} from '@react-spectrum/icon';
 import React from 'react';
 
@@ -33,4 +33,4 @@ export default function ${iconRename}(props) {
   );
 }
 
-generateIcons(path.dirname(require.resolve('@adobe/react-spectrum-workflow-color')), path.join(__dirname, '..', 'src'), exportNameRegex, template);
+generateIcons(path.dirname(require.resolve('@watheia/react-spectrum-workflow-color')), path.join(__dirname, '..', 'src'), exportNameRegex, template);

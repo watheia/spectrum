@@ -10,15 +10,15 @@
  * governing permissions and limitations under the License.
  */
 
-import {clamp} from "@react-aria/utils";
-import {classNames} from "@react-spectrum/utils";
-import {FocusableRef} from "@react-types/shared";
+import { useLocale } from "@react-aria/i18n";
+import { clamp } from "@react-aria/utils";
+import { classNames } from "@react-spectrum/utils";
+import { FocusableRef } from "@react-types/shared";
+import { SpectrumSliderProps } from "@react-types/slider";
+import styles from "@watheia/spectrum-css-temp/components/slider/vars.css";
 import React from "react";
-import {SliderBase, SliderBaseChildArguments, SliderBaseProps} from "./SliderBase";
-import {SliderThumb} from "./SliderThumb";
-import {SpectrumSliderProps} from "@react-types/slider";
-import styles from "@adobe/spectrum-css-temp/components/slider/vars.css";
-import {useLocale} from "@react-aria/i18n";
+import { SliderBase, SliderBaseChildArguments, SliderBaseProps } from "./SliderBase";
+import { SliderThumb } from "./SliderThumb";
 
 function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
   let {onChange, onChangeEnd, value, defaultValue, isFilled, fillOffset, trackGradient, getValueLabel, ...otherProps} = props;
@@ -117,4 +117,5 @@ function Slider(props: SpectrumSliderProps, ref: FocusableRef<HTMLDivElement>) {
  * Sliders allow users to quickly select a value within a range. They should be used when the upper and lower bounds to the range are invariable.
  */
 const _Slider = React.forwardRef(Slider);
-export {_Slider as Slider};
+export { _Slider as Slider };
+

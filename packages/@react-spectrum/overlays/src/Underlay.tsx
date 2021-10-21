@@ -10,9 +10,9 @@
  * governing permissions and limitations under the License.
  */
 
-import {classNames} from "@react-spectrum/utils";
+import { classNames } from "@react-spectrum/utils";
+import underlayStyles from "@watheia/spectrum-css-temp/components/underlay/vars.css";
 import React from "react";
-import underlayStyles from "@adobe/spectrum-css-temp/components/underlay/vars.css";
 
 interface UnderlayProps {
   isOpen?: boolean

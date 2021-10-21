@@ -10,13 +10,13 @@
  * governing permissions and limitations under the License.
  */
 
-import clsx from "clsx";
+import { PageContext, renderHTMLfromMarkdown, Time } from "@react-spectrum/docs";
 import docStyles from "@react-spectrum/docs/src/docs.css";
-import {getAnchorProps} from "./utils";
-import linkStyle from "@adobe/spectrum-css-temp/components/link/vars.css";
-import {PageContext, renderHTMLfromMarkdown, Time} from "@react-spectrum/docs";
+import linkStyle from "@watheia/spectrum-css-temp/components/link/vars.css";
+import typographyStyles from "@watheia/spectrum-css-temp/components/typography/vars.css";
+import clsx from "clsx";
 import React from "react";
-import typographyStyles from "@adobe/spectrum-css-temp/components/typography/vars.css";
+import { getAnchorProps } from "./utils";
 
 export function PostListing({type}) {
   let {pages} = React.useContext(PageContext);

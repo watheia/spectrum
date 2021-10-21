@@ -10,17 +10,17 @@
  * governing permissions and limitations under the License.
  */
 
+import { useTooltip } from "@react-aria/tooltip";
+import { mergeProps } from "@react-aria/utils";
+import { classNames, createDOMRef, useStyleProps } from "@react-spectrum/utils";
+import { DOMRef } from "@react-types/shared";
+import { SpectrumTooltipProps } from "@react-types/tooltip";
 import AlertSmall from "@spectrum-icons/ui/AlertSmall";
-import {classNames, createDOMRef, useStyleProps} from "@react-spectrum/utils";
-import {DOMRef} from "@react-types/shared";
 import InfoSmall from "@spectrum-icons/ui/InfoSmall";
-import {mergeProps} from "@react-aria/utils";
-import React, {useContext, useImperativeHandle, useRef} from "react";
-import {SpectrumTooltipProps} from "@react-types/tooltip";
-import styles from "@adobe/spectrum-css-temp/components/tooltip/vars.css";
 import SuccessSmall from "@spectrum-icons/ui/SuccessSmall";
-import {TooltipContext} from "./context";
-import {useTooltip} from "@react-aria/tooltip";
+import styles from "@watheia/spectrum-css-temp/components/tooltip/vars.css";
+import React, { useContext, useImperativeHandle, useRef } from "react";
+import { TooltipContext } from "./context";
 
 let iconMap = {
   info: InfoSmall,
@@ -78,4 +78,5 @@ function Tooltip(props: SpectrumTooltipProps, ref: DOMRef) {
  * Display container for Tooltip content. Has a directional arrow dependent on its placement.
  */
 let _Tooltip = React.forwardRef(Tooltip);
-export {_Tooltip as Tooltip};
+export { _Tooltip as Tooltip };
+

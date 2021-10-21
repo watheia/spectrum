@@ -10,18 +10,18 @@
  * governing permissions and limitations under the License.
  */
 
-import {action} from "@storybook/addon-actions";
-import {ActionGroup, Flex, Heading, Text} from "@adobe/react-spectrum";
+import { Button } from "@react-spectrum/button";
+import { ButtonGroup } from "@react-spectrum/buttongroup";
+import { TextField } from "@react-spectrum/textfield";
+import { SpectrumTabsProps } from "@react-types/tabs";
 import Bookmark from "@spectrum-icons/workflow/Bookmark";
-import {Button} from "@react-spectrum/button";
-import {ButtonGroup} from "@react-spectrum/buttongroup";
 import Calendar from "@spectrum-icons/workflow/Calendar";
 import Dashboard from "@spectrum-icons/workflow/Dashboard";
-import {Item, TabList, TabPanels, Tabs} from "..";
-import React, {ReactNode, useState} from "react";
-import {SpectrumTabsProps} from "@react-types/tabs";
-import {storiesOf} from "@storybook/react";
-import {TextField} from "@react-spectrum/textfield";
+import { action } from "@storybook/addon-actions";
+import { storiesOf } from "@storybook/react";
+import { ActionGroup, Flex, Heading, Text } from "@watheia/react-spectrum";
+import React, { ReactNode, useState } from "react";
+import { Item, TabList, TabPanels, Tabs } from "..";
 
 storiesOf("Tabs", module)
   .add(

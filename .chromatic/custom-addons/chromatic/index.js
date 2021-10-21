@@ -1,8 +1,7 @@
-import {locales, scales, themes} from '../../constants';
-import {makeDecorator} from '@storybook/addons';
-import {Provider, View} from '@adobe/react-spectrum';
-import React, {useEffect} from 'react';
-import styles from './chromatic.css';
+import { makeDecorator } from '@storybook/addons';
+import { Provider, View } from '@watheia/react-spectrum';
+import React, { useEffect } from 'react';
+import { locales, scales, themes } from '../../constants';
 
 export const withChromaticProvider = makeDecorator({
   name: 'withChromaticProvider',
